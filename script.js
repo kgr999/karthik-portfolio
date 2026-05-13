@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateFollower();
 
     // Interactive Cursor States
-    document.querySelectorAll('a, button, .project-img, .step').forEach(el => {
+    document.querySelectorAll('a, button, .project-img, .step, .video-card').forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(3)';
             cursor.style.background = 'rgba(250, 255, 0, 0.2)';
