@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Custom Cursor Logic
+    // 3. Advanced Custom Cursor Logic
     const cursor = document.getElementById('cursor');
     const follower = document.getElementById('cursor-follower');
     let mouseX = 0, mouseY = 0;
@@ -55,33 +55,92 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        
+        // Fast cursor dot
         cursor.style.left = mouseX + 'px';
         cursor.style.top = mouseY + 'px';
     });
 
     function animateFollower() {
-        followerX += (mouseX - followerX) * 0.12;
-        followerY += (mouseY - followerY) * 0.12;
+        // Smooth lerp for follower
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
+        
         follower.style.left = followerX + 'px';
         follower.style.top = followerY + 'px';
         follower.style.transform = `translate(-50%, -50%)`;
+        
         requestAnimationFrame(animateFollower);
     }
     animateFollower();
 
+    // Pixel Particle Burst on Click
+    document.addEventListener('click', (e) => {
+        createParticles(e.clientX, e.clientY);
+    });
+
+    function createParticles(x, y) {
+        const particleCount = 8;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'cursor-particle';
+            document.body.appendChild(particle);
+
+            const size = Math.random() * 4 + 2;
+            const destinationX = (Math.random() - 0.5) * 100;
+            const destinationY = (Math.random() - 0.5) * 100;
+
+            gsap.set(particle, {
+                x: x,
+                y: y,
+                width: size,
+                height: size,
+                opacity: 1
+            });
+
+            gsap.to(particle, {
+                x: x + destinationX,
+                y: y + destinationY,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                onComplete: () => {
+                    document.body.removeChild(particle);
+                }
+            });
+        }
+    }
+
     // Interactive Cursor States
-    document.querySelectorAll('a, button, .project-img, .step, .video-card').forEach(el => {
+    const interactiveElements = document.querySelectorAll('a, button, .video-card, .gallery-item, .cap-card, .cert-card, .presence-card, .step');
+    
+    interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(3)';
-            cursor.style.background = 'rgba(250, 255, 0, 0.2)';
-            follower.style.width = '60px';
-            follower.style.height = '60px';
+            gsap.to(follower, {
+                width: 60,
+                height: 60,
+                backgroundColor: 'rgba(250, 255, 0, 0.1)',
+                borderColor: '#faff00',
+                duration: 0.3
+            });
+            gsap.to(cursor, {
+                scale: 2,
+                duration: 0.3
+            });
         });
+
         el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            cursor.style.background = '#faff00';
-            follower.style.width = '40px';
-            follower.style.height = '40px';
+            gsap.to(follower, {
+                width: 40,
+                height: 40,
+                backgroundColor: 'transparent',
+                borderColor: '#faff00',
+                duration: 0.3
+            });
+            gsap.to(cursor, {
+                scale: 1,
+                duration: 0.3
+            });
         });
     });
 
@@ -90,7 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-badge');
     if (closeBtn && badge) {
         closeBtn.addEventListener('click', () => {
-            badge.style.display = 'none';
+            gsap.to(badge, {
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+                onComplete: () => badge.style.display = 'none'
+            });
         });
     }
 
@@ -101,5 +165,18 @@ document.addEventListener('DOMContentLoaded', () => {
         m.innerHTML = content + content + content;
     });
 
-    console.log("%c GEN AI CREATIVE DIRECTION ACTIVE ", "background: #faff00; color: #000; font-weight: bold; padding: 5px;");
+    // 6. Section Specific Interactions (Parallax/Glow)
+    document.querySelectorAll('section').forEach(section => {
+        section.addEventListener('mousemove', (e) => {
+            const { clientX: x, clientY: y } = e;
+            const { left, top, width, height } = section.getBoundingClientRect();
+            const xPos = (x - left) / width;
+            const yPos = (y - top) / height;
+            
+            // Subtle ambient glow follows mouse in sections
+            // (Implemented via CSS vars if needed, but keeping it light)
+        });
+    });
+
+    console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #faff00; font-weight: bold; padding: 10px; border: 1px solid #faff00;");
 });
