@@ -97,19 +97,70 @@ body::after {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 100px;
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--accent-dim);
+    border-radius: 0;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+#freelance-badge::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(59, 130, 246, 0.1),
+        transparent
+    );
+    animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -150%; }
+    30% { left: 150%; }
+    100% { left: 150%; }
+}
+
+#freelance-badge:hover {
+    border-color: var(--accent);
+    background: rgba(18, 18, 18, 0.95);
+    box-shadow: var(--glow);
+    transform: translateY(-5px);
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
-    background: #4caf50;
+    width: 8px;
+    height: 8px;
+    background: #4caf50; /* Green Dot */
     border-radius: 50%;
     box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
     animation: pulse-green 2s infinite;
+}
+
+.badge-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.badge-link:hover .status-text {
+    color: var(--accent);
+    text-shadow: var(--glow);
+}
+
+.status-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.5px;
 }
 
 @keyframes pulse-green {
