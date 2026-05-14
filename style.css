@@ -1,15 +1,15 @@
 :root {
     --bg: #050505;
     --text: #ffffff;
-    --accent: #faff00; /* Electric Yellow */
-    --accent-dim: rgba(250, 255, 0, 0.1);
+    --accent: #3b82f6; /* Subtle Blue */
+    --accent-dim: rgba(59, 130, 246, 0.1);
     --border-color: rgba(255, 255, 255, 0.05);
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.1);
     --font-primary: 'Manrope', sans-serif;
     --font-heading: 'Space Grotesk', sans-serif;
     --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --glow: 0 0 20px rgba(250, 255, 0, 0.3);
+    --glow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 * {

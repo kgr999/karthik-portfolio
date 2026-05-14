@@ -95,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: y,
                 width: size,
                 height: size,
-                opacity: 1
+                opacity: 1,
+                backgroundColor: '#3b82f6'
             });
 
             gsap.to(particle, {
@@ -119,8 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.to(follower, {
                 width: 60,
                 height: 60,
-                backgroundColor: 'rgba(250, 255, 0, 0.1)',
-                borderColor: '#faff00',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                borderColor: '#3b82f6',
                 duration: 0.3
             });
             gsap.to(cursor, {
@@ -134,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 width: 40,
                 height: 40,
                 backgroundColor: 'transparent',
-                borderColor: '#faff00',
+                borderColor: '#3b82f6',
                 duration: 0.3
             });
             gsap.to(cursor, {
