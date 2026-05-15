@@ -179,5 +179,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 7. Scroll Progress Logic (Logo Area)
+    const progressBar = document.querySelector('.progress-bar');
+    const progressText = document.querySelector('.progress-text');
+
+    gsap.to('.progress-bar', {
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.3,
+            onUpdate: (self) => {
+                const progress = Math.round(self.progress * 100);
+                if (progressText) progressText.innerText = `${progress}%`;
+                
+                // Toggle green state at 100%
+                const progressContainer = document.querySelector('.logo-progress');
+                if (progress >= 100) {
+                    progressContainer.classList.add('is-complete');
+                } else {
+                    progressContainer.classList.remove('is-complete');
+                }
+            }
+        },
+        width: '100%',
+        ease: 'none'
+    });
+
+    // 8. Mobile Menu Toggle Logic
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-menu-inner a');
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    }
+
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #faff00; font-weight: bold; padding: 10px; border: 1px solid #faff00;");
 });

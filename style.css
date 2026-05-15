@@ -1,19 +1,72 @@
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
+/* Mobile Menu & Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--bg);
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 1px;
+    background: var(--text);
+    transition: var(--transition);
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--accent-dim);
-    border-radius: 10px;
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #050505;
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent);
+.mobile-menu.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.mobile-menu-inner a {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 800;
+    transition: var(--transition);
+}
+
+.mobile-menu-inner a:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.menu-toggle.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
+@media (max-width: 1024px) {
+    .menu-toggle { display: flex; }
+    .nav-links { display: none; }
+    .nav-actions .resume-btn { display: none; }
 }
 
 :root {
@@ -246,6 +299,13 @@ nav {
     align-items: center;
 }
 
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: fit-content;
+}
+
 .logo-text {
     font-family: var(--font-heading);
     font-weight: 800;
@@ -253,6 +313,52 @@ nav {
     text-decoration: none;
     color: var(--accent);
     letter-spacing: -1.5px;
+    line-height: 1;
+}
+
+.logo-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.progress-bar-container {
+    height: 1px;
+    flex-grow: 1;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: #ffffff; /* Default White */
+    transition: background 0.3s ease;
+}
+
+.progress-text {
+    font-family: monospace;
+    font-size: 0.6rem;
+    color: #ffffff; /* Default White */
+    min-width: 25px;
+    text-align: right;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+/* Completion State */
+.logo-progress.is-complete .progress-bar {
+    background: #4ade80; /* Vibrant Green */
+    box-shadow: 0 0 10px #4ade80;
+}
+
+.logo-progress.is-complete .progress-text {
+    color: #4ade80;
 }
 
 .nav-links {
@@ -803,47 +909,6 @@ section {
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* Digital Presence Section */
-.presence-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-}
-
-.presence-card {
-    background: #0a0a0a;
-    border: 1px solid var(--border-color);
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    text-decoration: none;
-    color: inherit;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.presence-card:hover {
-    border-color: var(--accent);
-    transform: scale(1.02);
-}
-
-.presence-icon {
-    font-size: 2.5rem;
-    color: var(--accent);
-}
-
-.presence-info h3 {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    text-transform: uppercase;
-}
-
-.presence-info p {
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 10px;
-}
 
 /* Workflow */
 .workflow-container {
@@ -879,54 +944,6 @@ section {
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* Experience */
-.timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-}
-
-.timeline-item {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 60px;
-}
-
-.timeline-meta {
-    border-left: 2px solid var(--accent);
-    padding-left: 30px;
-}
-
-.timeline-company {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    text-transform: uppercase;
-}
-
-.timeline-content h3 {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--accent);
-    margin-bottom: 20px;
-}
-
-.timeline-bullets {
-    list-style: none;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.timeline-bullets li {
-    margin-bottom: 20px;
-    position: relative;
-    padding-left: 25px;
-}
-
-.timeline-bullets li::before {
-    content: '♦';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-}
 
 /* Marquee Skills */
 #skills {
@@ -1016,19 +1033,46 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .container {
-        padding: 0 40px;
-    }
-
-    .workflow-container,
-    .video-grid,
-    .gallery-grid,
-    .presence-grid {
-        grid-template-columns: 1fr;
-    }
-
+    .container { padding: 0 40px; }
+    
     .video-grid {
-        grid-auto-rows: auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 400px;
+    }
+
+    .cert-card {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .cert-bg-preview {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        opacity: 1;
+        clip-path: none;
+    }
+
+    .cert-content {
+        padding: 40px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    section { padding: 80px 0; }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 500px;
     }
 
     .video-card.large {
@@ -1036,21 +1080,22 @@ footer {
         grid-row: span 1;
     }
 
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
     .gallery-item.v-stretch,
     .gallery-item.h-stretch,
     .gallery-item.square {
-        grid-column: span 1;
         height: 400px;
     }
 
-    .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .hero-content h1 {
+        font-size: clamp(3rem, 15vw, 5rem);
     }
-}
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
+    .logo-progress {
+        display: none; /* Hide progress bar on mobile for space */
     }
 }

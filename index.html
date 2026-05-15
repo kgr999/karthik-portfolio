@@ -39,7 +39,15 @@
 
     <nav>
         <div class="container nav-inner">
-            <a href="#" class="logo-text">KARTHIK G RAJ</a>
+            <div class="logo-wrapper">
+                <a href="#" class="logo-text">KARTHIK G RAJ</a>
+                <div class="logo-progress">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
             <div class="nav-links">
                 <a href="#work">Work</a>
                 <a href="#collabs">Collaborations</a>
@@ -49,9 +57,24 @@
             </div>
             <div class="nav-actions">
                 <a href="#" class="resume-btn" download>Resume</a>
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-inner">
+            <a href="#work">Work</a>
+            <a href="#collabs">Collaborations</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#visuals">Visuals</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
 
     <main>
         <!-- 1. Hero Section -->
@@ -277,50 +300,6 @@
             </div>
         </section>
 
-        <!-- 9. Digital Presence -->
-        <section id="presence">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-heading reveal-text">Presence</h2>
-                </div>
-                <div class="presence-grid reveal-item">
-                    <a href="https://linkedin.com/in/karthikgraj" class="presence-card">
-                        <div class="presence-info">
-                            <h3>LinkedIn</h3>
-                            <p>Professional network and industry insights.</p>
-                        </div>
-                    </a>
-                    <a href="https://instagram.com/karthikgraj" class="presence-card">
-                        <div class="presence-info">
-                            <h3>Instagram</h3>
-                            <p>Visual log and creative experiments.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience (Optional/Footer Area) -->
-        <section id="experience">
-            <div class="container">
-                <h2 class="section-heading reveal-text">Journey</h2>
-                <div class="timeline">
-                    <div class="timeline-item reveal-item">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">Feb 2026 – Present</span>
-                            <span class="timeline-company">AdMitra</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Creative Intern - Generative AI</h3>
-                            <ul class="timeline-bullets">
-                                <li>Engineering high-fidelity AI visuals and cinematic video content.</li>
-                                <li>Pioneering GenAI tool integration to optimize workflows.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- 10. Skills Marquee -->
         <section id="skills">
