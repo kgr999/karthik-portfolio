@@ -1028,6 +1028,11 @@ section {
     /* Full color logos - no grayscale filter */
 }
 
+/* For monochrome LobeHub SVGs (OpenAI, ElevenLabs) that default to black */
+.chip-logo-invert {
+    filter: invert(1);
+}
+
 .chip-logo-svg {
     width: 22px;
     height: 22px;
