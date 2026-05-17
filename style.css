@@ -997,9 +997,23 @@ section {
     border-color: rgba(250, 255, 0, 0.2);
 }
 
-.skill-icon svg {
+.platform-logo {
     width: 28px;
     height: 28px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.5);
+    transition: var(--transition);
+}
+
+.skill-card:hover .platform-logo {
+    filter: grayscale(0) brightness(1); /* Reveal original brand colors on hover */
+}
+
+.logo-fallback {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: inherit;
 }
 
 .skill-name {
