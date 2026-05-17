@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
+
         // Fast cursor dot
         cursor.style.left = mouseX + 'px';
         cursor.style.top = mouseY + 'px';
@@ -65,11 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Smooth lerp for follower
         followerX += (mouseX - followerX) * 0.15;
         followerY += (mouseY - followerY) * 0.15;
-        
+
         follower.style.left = followerX + 'px';
         follower.style.top = followerY + 'px';
         follower.style.transform = `translate(-50%, -50%)`;
-        
+
         requestAnimationFrame(animateFollower);
     }
     animateFollower();
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 width: size,
                 height: size,
                 opacity: 1,
-                backgroundColor: '#3b82f6'
+                backgroundColor: '#F5F5F5'
             });
 
             gsap.to(particle, {
@@ -114,14 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Interactive Cursor States
     const interactiveElements = document.querySelectorAll('a, button, .video-card, .gallery-item, .cap-card, .cert-card, .presence-card, .step');
-    
+
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             gsap.to(follower, {
                 width: 60,
                 height: 60,
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                borderColor: '#F5F5F5',
                 duration: 0.3
             });
             gsap.to(cursor, {
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 width: 40,
                 height: 40,
                 backgroundColor: 'transparent',
-                borderColor: '#3b82f6',
+                borderColor: '#F5F5F5',
                 duration: 0.3
             });
             gsap.to(cursor, {
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const { left, top, width, height } = section.getBoundingClientRect();
             const xPos = (x - left) / width;
             const yPos = (y - top) / height;
-            
+
             // Subtle ambient glow follows mouse in sections
             // (Implemented via CSS vars if needed, but keeping it light)
         });
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             onUpdate: (self) => {
                 const progress = Math.round(self.progress * 100);
                 if (progressText) progressText.innerText = `${progress}%`;
-                
+
                 // Toggle green state at 100%
                 const progressContainer = document.querySelector('.logo-progress');
                 if (progress >= 100) {
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             mobileMenu.classList.toggle('active');
-            
+
             // Prevent body scroll when menu is open
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
         });
@@ -230,17 +230,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9. Creative Ecosystem — Hover Glow
+    // 9. Creative Ecosystem — Premium Restrained Hover Glow
     document.querySelectorAll('.eco-chip[data-glow]').forEach(chip => {
         const glowColor = chip.getAttribute('data-glow');
-        chip.style.setProperty('--glow-color', glowColor + '33'); // 20% opacity for glow
+        // Initial state: very subtle color presence (or zero)
+        chip.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
+        
         chip.addEventListener('mouseenter', () => {
-            chip.style.setProperty('--glow-color', glowColor + '55'); // Intensify on hover
+            // Understated luxury: only 15% opacity glow of brand color
+            chip.style.setProperty('--glow-color', glowColor + '26'); // 15% in hex is 26
         });
+        
         chip.addEventListener('mouseleave', () => {
-            chip.style.setProperty('--glow-color', glowColor + '33');
+            chip.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
         });
     });
 
-    console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #faff00; font-weight: bold; padding: 10px; border: 1px solid #faff00;");
+    // 10. Luxury Microinteraction: 3D Tilt on Category Cards
+    document.querySelectorAll('.eco-category').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            // Extremely restrained tilt (max 3 degrees) for pure class
+            card.style.transform = `perspective(1000px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg) translateY(-2px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        });
+    });
+
+    console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
 });
