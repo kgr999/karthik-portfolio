@@ -945,85 +945,90 @@ section {
 }
 
 
-/* Tech Stack Skills */
+/* Tech Stack Directory */
 #tech-stack {
     padding: 100px 0;
     background: #050505;
 }
 
-.skills-grid {
+.stack-category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 60px;
 }
 
-.skill-card {
-    background: #0a0a0a;
-    border: 1px solid var(--border-color);
-    padding: 30px 20px;
+.stack-category-card {
+    background: transparent;
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
+    gap: 30px;
+}
+
+.category-header {
+    display: flex;
     align-items: center;
-    gap: 20px;
-    transition: var(--transition);
+    gap: 15px;
+}
+
+.category-number {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+.category-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.category-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tool-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 20px;
     border-radius: 4px;
-    text-align: center;
-    cursor: default;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.skill-card:hover {
-    border-color: #faff00;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(250, 255, 0, 0.05);
+.tool-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.5);
 }
 
-.skill-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 50%;
+.tool-logo-svg {
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: rgba(255, 255, 255, 0.7);
-    transition: var(--transition);
-    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.skill-card:hover .skill-icon {
-    background: rgba(250, 255, 0, 0.1);
-    color: #faff00;
-    border-color: rgba(250, 255, 0, 0.2);
+.tool-logo-svg svg {
+    width: 16px;
+    height: 16px;
 }
 
-.platform-logo {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    filter: grayscale(1) brightness(1.5);
-    transition: var(--transition);
-}
-
-.skill-card:hover .platform-logo {
-    filter: grayscale(0) brightness(1); /* Reveal original brand colors on hover */
-}
-
-.logo-fallback {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: inherit;
-}
-
-.skill-name {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--text);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
 
 @keyframes marquee {
     from {
