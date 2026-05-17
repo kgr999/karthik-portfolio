@@ -230,5 +230,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 9. Creative Ecosystem — Hover Glow
+    document.querySelectorAll('.eco-chip[data-glow]').forEach(chip => {
+        const glowColor = chip.getAttribute('data-glow');
+        chip.style.setProperty('--glow-color', glowColor + '33'); // 20% opacity for glow
+        chip.addEventListener('mouseenter', () => {
+            chip.style.setProperty('--glow-color', glowColor + '55'); // Intensify on hover
+        });
+        chip.addEventListener('mouseleave', () => {
+            chip.style.setProperty('--glow-color', glowColor + '33');
+        });
+    });
+
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #faff00; font-weight: bold; padding: 10px; border: 1px solid #faff00;");
 });
