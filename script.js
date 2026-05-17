@@ -233,11 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 9. Creative Ecosystem — Premium Restrained Hover Glow
     document.querySelectorAll('.eco-chip[data-glow]').forEach(chip => {
         const glowColor = chip.getAttribute('data-glow');
-        // Initial state: very subtle color presence (or zero)
         chip.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
         
         chip.addEventListener('mouseenter', () => {
-            // Understated luxury: only 15% opacity glow of brand color
             chip.style.setProperty('--glow-color', glowColor + '26'); // 15% in hex is 26
         });
         
@@ -252,12 +250,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = card.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
-            // Extremely restrained tilt (max 3 degrees) for pure class
             card.style.transform = `perspective(1000px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg) translateY(-2px)`;
         });
         
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        });
+    });
+
+
+    // 13. Collaborations Hover Brand-Glow Interaction
+    document.querySelectorAll('.client-item[data-glow]').forEach(item => {
+        const glowColor = item.getAttribute('data-glow');
+        item.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
+        
+        item.addEventListener('mouseenter', () => {
+            item.style.setProperty('--glow-color', glowColor + '26'); // 15% opacity glow
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
         });
     });
 
