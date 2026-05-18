@@ -547,99 +547,91 @@ section {
     letter-spacing: 1px;
 }
 
-/* Cinematic Campaign Switcher Console */
-.campaign-console {
-    margin-top: 60px;
+/* Scrolling Visual Systems Gallery */
+.visual-gallery {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 100px; /* High spacing for luxury, premium breathing room */
+    margin-top: 60px;
 }
 
-.console-display {
+.visual-item {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.visual-media {
     position: relative;
     width: 100%;
     aspect-ratio: 21 / 9;
-    border-radius: 24px;
-    overflow: hidden;
-    background: #050505;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-}
-
-.console-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1;
-}
-
-.console-slide.active {
-    opacity: 1;
-    visibility: visible;
-    z-index: 2;
-}
-
-/* Single Media Styling */
-.console-media-single {
-    width: 100%;
-    height: 100%;
-    background: #000;
-}
-
-.console-media-single .console-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.65);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
-}
-
-.console-display:hover .console-media-single .console-image {
-    transform: scale(1.03);
-    filter: brightness(0.8);
-}
-
-/* Dual Media Layout (21:9 Wide + 5:4 Portrait) */
-.console-media-dual {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr;
-    gap: 20px;
-    width: 100%;
-    height: 100%;
-    padding: 24px;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.media-frame {
-    position: relative;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
     background: #000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
-.media-frame .console-image {
+.visual-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.65);
+    filter: brightness(0.75);
     transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
 }
 
-.console-display:hover .media-frame .console-image {
-    transform: scale(1.03);
-    filter: brightness(0.8);
+.visual-item:hover .visual-media {
+    border-color: var(--accent);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), var(--glow);
+}
+
+.visual-item:hover .visual-image {
+    transform: scale(1.02);
+    filter: brightness(0.95);
+}
+
+.visual-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 900px;
+}
+
+.visual-tag {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.visual-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.visual-description {
+    font-family: var(--font-primary);
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
 }
 
 .frame-tag {
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 20px;
+    left: 20px;
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -647,119 +639,11 @@ section {
     color: var(--accent);
     font-family: monospace;
     font-size: 0.7rem;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 4px;
     letter-spacing: 1px;
     z-index: 5;
     pointer-events: none;
-}
-
-/* Overlay & Dynamic Content Switcher (Only visible on Hover) */
-.console-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.3) 65%, transparent 100%);
-    display: flex;
-    align-items: flex-end;
-    padding: 60px;
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none; /* Let hovers pass through to the images */
-    z-index: 10;
-}
-
-.console-display:hover .console-overlay {
-    opacity: 1;
-}
-
-.console-content {
-    transform: translateY(25px);
-    opacity: 0;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
-}
-
-.console-display:hover .console-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.console-tag {
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
-    letter-spacing: 2px;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.console-title {
-    font-family: var(--font-heading);
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 15px;
-    letter-spacing: -1px;
-}
-
-.console-brief {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-    max-width: 650px;
-}
-
-.console-selectors {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.console-btn {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    padding: 24px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.console-btn:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.15);
-}
-
-.console-btn.active {
-    background: rgba(77, 163, 255, 0.05);
-    border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(77, 163, 255, 0.15);
-}
-
-.btn-num {
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
-    transition: color 0.4s ease;
-}
-
-.console-btn.active .btn-num {
-    color: var(--accent);
-}
-
-.btn-name {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.6);
-    transition: color 0.4s ease;
-}
-
-.console-btn.active .btn-name {
-    color: #fff;
 }
 
 /* Capabilities Section */
@@ -1393,44 +1277,12 @@ footer {
         grid-row: span 1;
     }
 
-    .console-display {
-        aspect-ratio: auto;
-        min-height: 500px;
+    .visual-gallery {
+        gap: 60px;
     }
     
-    .console-media-dual {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        padding: 15px;
-    }
-    
-    .console-overlay {
-        padding: 20px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 100%);
-        opacity: 1; /* Keep overlay partially visible on mobile */
-    }
-    
-    .console-content {
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    .console-title {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-    }
-
-    .console-brief {
-        font-size: 0.9rem;
-    }
-
-    .console-selectors {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .console-btn {
-        padding: 16px;
+    .visual-title {
+        font-size: 1.6rem;
     }
 
     #freelance-badge {
@@ -1475,8 +1327,8 @@ footer {
         grid-auto-rows: 300px;
     }
     
-    .console-display {
-        min-height: 400px;
+    .visual-gallery {
+        gap: 45px;
     }
     
     .client-item {

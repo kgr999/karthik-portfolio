@@ -288,27 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 15. Cinematic Campaign Switcher Console
-    const consoleBtns = document.querySelectorAll('.console-btn');
-    const consoleSlides = document.querySelectorAll('.console-slide');
-
-    if (consoleBtns.length > 0 && consoleSlides.length > 0) {
-        consoleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const target = btn.getAttribute('data-target');
-                
-                // Update active states
-                consoleBtns.forEach(b => b.classList.remove('active'));
-                consoleSlides.forEach(s => s.classList.remove('active'));
-                
-                btn.classList.add('active');
-                const targetSlide = document.querySelector(`.console-slide[data-campaign="${target}"]`);
-                if (targetSlide) {
-                    targetSlide.classList.add('active');
-                }
-            });
-        });
-    }
 
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
 });
