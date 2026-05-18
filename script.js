@@ -156,25 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Freelance Badge Logic
-    const badge = document.getElementById('freelance-badge');
-    const closeBtn = document.querySelector('.close-badge');
-    if (closeBtn && badge) {
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            gsap.to(badge, {
-                opacity: 0,
-                y: 30,
-                scale: 0.9,
-                duration: 0.4,
-                ease: "power2.in",
-                onComplete: () => {
-                    badge.style.setProperty('display', 'none', 'important');
-                }
-            });
-        });
-    }
 
     // 5. Marquee Loop Logic
     const marquees = document.querySelectorAll('.marquee-content');
