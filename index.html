@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@500;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@500;600;700;800;900&family=Outfit:wght@700;800&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
@@ -38,12 +38,6 @@
         <div class="container nav-inner">
             <div class="logo-wrapper">
                 <a href="#" class="logo-text">KARTHIK G RAJ</a>
-                <div class="logo-progress">
-                    <div class="progress-bar-container">
-                        <div class="progress-bar"></div>
-                    </div>
-                    <span class="progress-text">0%</span>
-                </div>
             </div>
             <div class="nav-links">
                 <a href="#work">Work</a>
@@ -478,6 +472,25 @@
                         high-fidelity worlds.</p>
                 </div>
                 <div class="cinema-grid reveal-item">
+                    <!-- Top Ultrawide Video -->
+                    <div class="cinema-card ultrawide" data-glow="#A78BFA">
+                        <div class="cinema-video-wrapper">
+                            <video class="cinema-video" src="assets/videos/helicopter.mp4" loop muted playsinline
+                                autoplay></video>
+                            <div class="cinema-overlay">
+                                <span class="cinema-badge">Gen-4 Turbo</span>
+                            </div>
+                        </div>
+                        <div class="cinema-content">
+                            <span class="cinema-index">01 / WIDESCREEN FRONTIER</span>
+                            <h3 class="cinema-title">Ultrawide Horizon</h3>
+                            <p class="cinema-description">An expansive 21:9 cinematic exploration generated with
+                                state-of-the-art AI video models. Blending scale, atmosphere, and high-fidelity
+                                storytelling into a unified visual experience.</p>
+                        </div>
+                    </div>
+
+                    <!-- Existing 16:9 Videos -->
                     <div class="cinema-card" data-glow="#4DA3FF">
                         <div class="cinema-video-wrapper">
                             <video class="cinema-video" src="assets/videos/isro.mov" loop muted playsinline
@@ -487,7 +500,7 @@
                             </div>
                         </div>
                         <div class="cinema-content">
-                            <span class="cinema-index">01 / CINEMATIC ENVIRONMENTS</span>
+                            <span class="cinema-index">02 / CINEMATIC ENVIRONMENTS</span>
                             <h3 class="cinema-title">Inside the Mission</h3>
                             <p class="cinema-description">A cinematic AI-generated visual featuring myself inside an
                                 ISRO-inspired mission control environment, focused on futuristic space operations and
@@ -503,10 +516,27 @@
                             </div>
                         </div>
                         <div class="cinema-content">
-                            <span class="cinema-index">02 / IMMERSIVE VISUALS</span>
+                            <span class="cinema-index">03 / IMMERSIVE VISUALS</span>
                             <h3 class="cinema-title">Lost in Blue</h3>
                             <p class="cinema-description">An atmospheric underwater self-visual exploring emotion,
                                 silence, and cinematic worldbuilding through AI-generated environments</p>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Ultrawide Video -->
+                    <div class="cinema-card ultrawide" data-glow="#F87171">
+                        <div class="cinema-video-wrapper">
+                            <video class="cinema-video" src="assets/videos/supra.mp4" loop muted playsinline
+                                autoplay></video>
+                            <div class="cinema-overlay">
+                                <span class="cinema-badge">Gen-4 Turbo</span>
+                            </div>
+                        </div>
+                        <div class="cinema-content">
+                            <span class="cinema-index">04 / EXPANSIVE VISIONS</span>
+                            <h3 class="cinema-title">The Anamorphic Frame</h3>
+                            <p class="cinema-description">A deep-dive into ultra-widescreen aspect ratios, bringing the
+                                immersive feel of traditional cinema lenses into AI-generated motion design.</p>
                         </div>
                     </div>
                 </div>
@@ -520,11 +550,35 @@
                     <h2 class="section-heading reveal-text">Visual Systems</h2>
                     <p class="section-desc reveal-text">Cinematic poster showcase and design experiments.</p>
                 </div>
-                <div class="gallery-grid reveal-item">
-                    <div class="gallery-item v-stretch"><img src="assets/images/poster-1.png" alt="Poster 1"></div>
-                    <div class="gallery-item square"><img src="assets/images/poster-2.png" alt="Poster 2"></div>
-                    <div class="gallery-item square"><img src="assets/images/poster-3.png" alt="Poster 3"></div>
-                    <div class="gallery-item h-stretch"><img src="assets/images/hero-bg.png" alt="System Visual"></div>
+                <div class="stacking-grid reveal-item">
+                    <!-- Poster 1 -->
+                    <div class="stack-card">
+                        <img src="assets/images/poster-1.png" alt="Campaign 1" class="stack-image">
+                        <div class="stack-overlay">
+                            <h3 class="stack-title">Neural Frontiers</h3>
+                            <p class="stack-brief">A cinematic exploration of latent diffusion models bridging human
+                                psychology and generative landscapes. Exploring the boundaries of high-retention visual
+                                storytelling.</p>
+                        </div>
+                    </div>
+                    <!-- Poster 2 -->
+                    <div class="stack-card">
+                        <img src="assets/images/poster-2.png" alt="Campaign 2" class="stack-image">
+                        <div class="stack-overlay">
+                            <h3 class="stack-title">Project Aether</h3>
+                            <p class="stack-brief">Atmospheric concept art leveraging Midjourney V6 to conceptualize
+                                vast interstellar architectures, designed for deep spatial immersion.</p>
+                        </div>
+                    </div>
+                    <!-- Poster 3 -->
+                    <div class="stack-card">
+                        <img src="assets/images/poster-3.png" alt="Campaign 3" class="stack-image">
+                        <div class="stack-overlay">
+                            <h3 class="stack-title">Obsidian Echoes</h3>
+                            <p class="stack-brief">Dark, ethereal cinematic mood boards focusing on low-light
+                                photography, high-contrast composition, and experimental 21:9 anamorphic framing.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
