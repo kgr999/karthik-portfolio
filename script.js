@@ -164,6 +164,63 @@ document.addEventListener('DOMContentLoaded', () => {
         m.innerHTML = content + content + content;
     });
 
+    // 5.5. Capability Cards Progress Animation
+    const capCards = document.querySelectorAll('#capabilities-grid-animated .cap-card');
+    if (capCards.length > 0) {
+        let currentCardIndex = 0;
+        let cardTimeline = null;
+        
+        function animateCard(index) {
+            // Reset all cards
+            capCards.forEach((card) => {
+                card.classList.remove('active');
+                const progressFill = card.querySelector('.card-progress-fill');
+                if (progressFill) {
+                    gsap.killTweensOf(progressFill);
+                    gsap.set(progressFill, { width: "0%" });
+                }
+            });
+
+            // Activate target card
+            const targetCard = capCards[index];
+            targetCard.classList.add('active');
+            
+            const progressFill = targetCard.querySelector('.card-progress-fill');
+            if (progressFill) {
+                cardTimeline = gsap.to(progressFill, {
+                    width: "100%",
+                    duration: 4, // 4 seconds per card
+                    ease: "linear",
+                    onComplete: () => {
+                        currentCardIndex = (currentCardIndex + 1) % capCards.length;
+                        animateCard(currentCardIndex);
+                    }
+                });
+            }
+        }
+
+        // Start animation loop
+        animateCard(0);
+        
+        // Pause on hover, resume on leave, allow manual click switch
+        capCards.forEach((card, idx) => {
+            card.addEventListener('mouseenter', () => {
+                if (cardTimeline) cardTimeline.pause();
+            });
+            card.addEventListener('mouseleave', () => {
+                if (cardTimeline) cardTimeline.resume();
+            });
+            
+            // Allow manual click to switch
+            card.addEventListener('click', () => {
+                if (currentCardIndex !== idx) {
+                    currentCardIndex = idx;
+                    animateCard(currentCardIndex);
+                }
+            });
+        });
+    }
+
     // 6. Section Specific Interactions (Parallax/Glow)
     document.querySelectorAll('section').forEach(section => {
         section.addEventListener('mousemove', (e) => {
