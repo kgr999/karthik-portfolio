@@ -1402,3 +1402,211 @@ footer {
         gap: 30px;
     }
 }
+
+/* Creative Blueprint Section */
+#creative-blueprint {
+    padding: 120px 0;
+    background: #050505;
+    position: relative;
+}
+
+.blueprint-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr 260px;
+    gap: 40px;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.blueprint-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.blueprint-stat-card {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 35px 24px;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blueprint-stat-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--accent);
+    transform: translateY(-6px);
+    box-shadow: var(--glow);
+}
+
+.blueprint-stat-card h4 {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.blueprint-stat-card p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+.blueprint-canvas {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 24px;
+    padding: 45px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.blueprint-canvas-header {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 45px;
+    position: relative;
+}
+
+.blueprint-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.blueprint-pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.pillar-info {
+    min-height: 120px;
+}
+
+.blueprint-pillar h5 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.blueprint-pillar p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.pillar-arrow {
+    margin: 20px 0;
+    color: rgba(255, 255, 255, 0.15);
+    width: 24px;
+    height: 24px;
+    animation: bounceArrow 2s infinite ease-in-out;
+}
+
+.pillar-arrow svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes bounceArrow {
+    0%, 100% {
+        transform: translateY(0);
+        color: rgba(255, 255, 255, 0.15);
+    }
+    50% {
+        transform: translateY(-6px);
+        color: var(--accent);
+    }
+}
+
+.pillar-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #000;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillar-media img,
+.pillar-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blueprint-pillar:hover .pillar-media {
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(77, 163, 255, 0.15);
+}
+
+.blueprint-pillar:hover .pillar-media img,
+.blueprint-pillar:hover .pillar-media video {
+    transform: scale(1.05);
+}
+
+/* Blueprint Responsive CSS */
+@media (max-width: 1150px) {
+    .blueprint-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .blueprint-stats {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .blueprint-stat-card {
+        flex: 1;
+        min-width: 220px;
+    }
+    
+    .blueprint-canvas {
+        order: -1; /* Canvas displays at the top on tablet/mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    #creative-blueprint {
+        padding: 80px 0;
+    }
+    
+    .blueprint-canvas {
+        padding: 30px 20px;
+    }
+    
+    .blueprint-pillars {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+    
+    .pillar-info {
+        min-height: auto;
+    }
+    
+    .pillar-media {
+        aspect-ratio: 16 / 9;
+    }
+}
