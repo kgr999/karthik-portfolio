@@ -183,28 +183,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.querySelector('.progress-bar');
     const progressText = document.querySelector('.progress-text');
 
-    gsap.to('.progress-bar', {
-        scrollTrigger: {
-            trigger: 'body',
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 0.3,
-            onUpdate: (self) => {
-                const progress = Math.round(self.progress * 100);
-                if (progressText) progressText.innerText = `${progress}%`;
+    gsap.fromTo('.progress-bar', 
+        { width: '0%' },
+        {
+            width: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: document.documentElement,
+                start: 'top top',
+                end: 'max',
+                scrub: 0.3,
+                onUpdate: (self) => {
+                    const progress = Math.round(self.progress * 100);
+                    if (progressText) progressText.innerText = `${progress}%`;
 
-                // Toggle green state at 100%
-                const progressContainer = document.querySelector('.logo-progress');
-                if (progress >= 100) {
-                    progressContainer.classList.add('is-complete');
-                } else {
-                    progressContainer.classList.remove('is-complete');
+                    // Toggle green state at 100%
+                    const progressContainer = document.querySelector('.logo-progress');
+                    if (progressContainer) {
+                        if (progress >= 100) {
+                            progressContainer.classList.add('is-complete');
+                        } else {
+                            progressContainer.classList.remove('is-complete');
+                        }
+                    }
                 }
             }
-        },
-        width: '100%',
-        ease: 'none'
-    });
+        }
+    );
 
     // 8. Mobile Menu Toggle Logic
     const menuToggle = document.querySelector('.menu-toggle');
