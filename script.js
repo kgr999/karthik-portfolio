@@ -57,18 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
         mouseY = e.clientY;
 
         // Fast cursor dot
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
+        if (cursor) {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        }
     });
 
     function animateFollower() {
-        // Smooth lerp for follower
-        followerX += (mouseX - followerX) * 0.15;
-        followerY += (mouseY - followerY) * 0.15;
+        if (follower) {
+            // Smooth lerp for follower
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
 
-        follower.style.left = followerX + 'px';
-        follower.style.top = followerY + 'px';
-        follower.style.transform = `translate(-50%, -50%)`;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+            follower.style.transform = `translate(-50%, -50%)`;
+        }
 
         requestAnimationFrame(animateFollower);
     }
@@ -104,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: y + destinationY,
                 opacity: 0,
                 duration: 0.6,
-                ease: 'power2.out',
                 onComplete: () => {
                     document.body.removeChild(particle);
                 }
@@ -117,31 +120,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-            gsap.to(follower, {
-                width: 60,
-                height: 60,
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                borderColor: '#F5F5F5',
-                duration: 0.3
-            });
-            gsap.to(cursor, {
-                scale: 2,
-                duration: 0.3
-            });
+            if (follower) {
+                gsap.to(follower, {
+                    width: 60,
+                    height: 60,
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    borderColor: '#F5F5F5',
+                    duration: 0.3
+                });
+            }
+            if (cursor) {
+                gsap.to(cursor, {
+                    scale: 2,
+                    duration: 0.3
+                });
+            }
         });
 
         el.addEventListener('mouseleave', () => {
-            gsap.to(follower, {
-                width: 40,
-                height: 40,
-                backgroundColor: 'transparent',
-                borderColor: '#F5F5F5',
-                duration: 0.3
-            });
-            gsap.to(cursor, {
-                scale: 1,
-                duration: 0.3
-            });
+            if (follower) {
+                gsap.to(follower, {
+                    width: 40,
+                    height: 40,
+                    backgroundColor: 'transparent',
+                    borderColor: '#F5F5F5',
+                    duration: 0.3
+                });
+            }
+            if (cursor) {
+                gsap.to(cursor, {
+                    scale: 1,
+                    duration: 0.3
+                });
+            }
         });
     });
 
@@ -149,12 +160,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const badge = document.getElementById('freelance-badge');
     const closeBtn = document.querySelector('.close-badge');
     if (closeBtn && badge) {
-        closeBtn.addEventListener('click', () => {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             gsap.to(badge, {
                 opacity: 0,
-                y: 20,
-                duration: 0.5,
-                onComplete: () => badge.style.display = 'none'
+                y: 30,
+                scale: 0.9,
+                duration: 0.4,
+                ease: "power2.in",
+                onComplete: () => {
+                    badge.style.setProperty('display', 'none', 'important');
+                }
             });
         });
     }
@@ -178,38 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // (Implemented via CSS vars if needed, but keeping it light)
         });
     });
-
-    // 7. Scroll Progress Logic (Logo Area)
-    const progressBar = document.querySelector('.progress-bar');
-    const progressText = document.querySelector('.progress-text');
-
-    gsap.fromTo('.progress-bar', 
-        { width: '0%' },
-        {
-            width: '100%',
-            ease: 'none',
-            scrollTrigger: {
-                trigger: document.documentElement,
-                start: 'top top',
-                end: 'max',
-                scrub: 0.3,
-                onUpdate: (self) => {
-                    const progress = Math.round(self.progress * 100);
-                    if (progressText) progressText.innerText = `${progress}%`;
-
-                    // Toggle green state at 100%
-                    const progressContainer = document.querySelector('.logo-progress');
-                    if (progressContainer) {
-                        if (progress >= 100) {
-                            progressContainer.classList.add('is-complete');
-                        } else {
-                            progressContainer.classList.remove('is-complete');
-                        }
-                    }
-                }
-            }
-        }
-    );
 
     // 8. Mobile Menu Toggle Logic
     const menuToggle = document.querySelector('.menu-toggle');
@@ -302,6 +287,28 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--glow-color', 'rgba(77, 163, 255, 0.1)');
         });
     });
+
+    // 15. Cinematic Campaign Switcher Console
+    const consoleBtns = document.querySelectorAll('.console-btn');
+    const consoleSlides = document.querySelectorAll('.console-slide');
+
+    if (consoleBtns.length > 0 && consoleSlides.length > 0) {
+        consoleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                
+                // Update active states
+                consoleBtns.forEach(b => b.classList.remove('active'));
+                consoleSlides.forEach(s => s.classList.remove('active'));
+                
+                btn.classList.add('active');
+                const targetSlide = document.querySelector(`.console-slide[data-campaign="${target}"]`);
+                if (targetSlide) {
+                    targetSlide.classList.add('active');
+                }
+            });
+        });
+    }
 
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
 });
