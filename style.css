@@ -1847,30 +1847,63 @@ footer {
     flex-wrap: wrap;
 }
 
-.xp-brand-logo {
-    height: 36px;
+.xp-brand-logo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    padding: 6px 16px 6px 8px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+}
+
+.xp-brand-logo-btn:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(77, 163, 255, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(77, 163, 255, 0.15);
+}
+
+.xp-brand-logo-img-wrapper {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,255,255,0.05);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.8);
-    font-family: 'Space Grotesk', sans-serif;
-    border: 1px solid rgba(255,255,255,0.03);
-    transition: background 0.2s, transform 0.2s;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.xp-brand-logo:hover {
-    background: rgba(255,255,255,0.1);
-    transform: translateY(-2px);
-}
-
-.xp-brand-logo img {
-    max-height: 24px;
+.xp-brand-logo-img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    filter: brightness(0.9);
+    padding: 3px;
+}
+
+.xp-brand-logo-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
 }
 
 /* ── WINDOW 2: Freelance (DaVinci style) ── */
