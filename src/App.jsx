@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import LightRays from './LightRays';
 
 export default function App() {
     useEffect(() => {
@@ -55,8 +56,22 @@ export default function App() {
 
     <main>
         {/* 1. Hero Section */}
-        <section id="hero">
-            <div className="container">
+        <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, opacity: 0.5 }}>
+                <LightRays
+                    raysOrigin="top-center"
+                    raysColor="#4DA3FF"
+                    raysSpeed={1.5}
+                    lightSpread={0.8}
+                    rayLength={1.5}
+                    followMouse={true}
+                    mouseInfluence={0.3}
+                    noiseAmount={0.08}
+                    distortion={0.06}
+                    pulsating
+                />
+            </div>
+            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="hero-content">
                     <p className="hero-label reveal-text">Gen AI Visual Director</p>
                     <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
