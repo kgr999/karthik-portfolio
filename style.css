@@ -2260,7 +2260,7 @@ footer {
     pointer-events: none;
 }
 
-/* Responsive */
+/* Responsive Override and Layout Adapters */
 @media (max-width: 992px) {
     .xp-window-fal .xp-window-body,
     .xp-window-davinci .xp-window-body,
@@ -2268,12 +2268,82 @@ footer {
         flex-direction: column;
         height: auto;
     }
-    .xp-window-sidebar, .xp-media-pool, .xp-inspector {
-        width: 100%;
-        border: none;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+    
+    .xp-window-top {
+        flex-direction: column;
+        height: auto;
     }
-    .xp-canvas-area { min-height: 250px; }
-    .xp-window-timeline { min-height: 120px; }
-    .xp-3d-viewport { min-height: 350px; }
+    
+    .xp-window-sidebar, .xp-media-pool, .xp-inspector {
+        width: 100% !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+        height: auto !important;
+    }
+    
+    .xp-preview-monitor {
+        width: 100% !important;
+        min-height: 280px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding: 24px 16px !important;
+    }
+    
+    .xp-canvas-area { 
+        min-height: 280px; 
+    }
+    
+    .xp-window-timeline { 
+        min-height: 120px; 
+    }
+    
+    .xp-3d-viewport { 
+        min-height: 350px; 
+    }
+    
+    .xp-dvr-tracks {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .xp-dvr-track-area {
+        min-width: 550px;
+        height: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .xp-3d-viewport {
+        display: flex !important;
+        flex-direction: column-reverse !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+        padding: 24px 16px !important;
+        gap: 16px !important;
+        min-height: auto !important;
+    }
+    
+    .xp-viewport-overlay {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border: 1px solid rgba(255, 234, 77, 0.15) !important;
+        background: rgba(15,15,20,0.5) !important;
+        backdrop-filter: blur(8px) !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        margin: 0 !important;
+    }
+    
+    .xp-snap-camera-frame {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+        margin: 10px auto 0 !important;
+        width: 130px !important;
+        max-width: 100% !important;
+        aspect-ratio: 9/16 !important;
+        z-index: 5 !important;
+    }
 }
