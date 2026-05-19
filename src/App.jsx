@@ -1,17 +1,10 @@
 import React, { useEffect } from 'react';
 import LightRays from './LightRays';
+import { initPortfolio } from './portfolio-logic';
 
 export default function App() {
     useEffect(() => {
-        // Place vanilla script logic or triggers here on mount
-        const script = document.createElement('script');
-        script.src = '/src/portfolio-logic.js';
-        script.async = true;
-        document.body.appendChild(script);
-        
-        return () => {
-            document.body.removeChild(script);
-        };
+        initPortfolio();
     }, []);
 
     return (
