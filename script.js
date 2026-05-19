@@ -343,115 +343,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════════════════════════════════════════════════
 
     const xpSection = document.getElementById('experience-journey');
-    const xpLid = document.querySelector('.xp-lid');
-    const xpBootSeq = document.querySelector('.xp-boot-sequence');
-    const xpBloom = document.querySelector('.xp-screen-bloom');
-    const xpOsBar = document.querySelector('.xp-os-bar');
-    const xpViewport = document.querySelector('.xp-viewport');
-    const xpNodes = document.querySelectorAll('.xp-node');
-    const xpTimelineRail = document.querySelector('.xp-timeline-rail');
-    const xpTimelineNodes = document.querySelectorAll('.xp-timeline-node');
-    const xpTimelineProgress = document.querySelector('.xp-timeline-progress');
-    const xpClock = document.getElementById('xp-os-clock');
+    const xpWindows = document.querySelectorAll('.xp-interface-window');
 
-    if (xpSection && xpLid) {
-
-        // ── OS Clock ──
-        function updateClock() {
-            const now = new Date();
-            xpClock.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-        }
-        updateClock();
-        setInterval(updateClock, 30000);
-
-        // ── Master scroll timeline ──
-        const xpLaptopWrapper = document.querySelector('.xp-laptop-wrapper');
-        const xpMasterTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: xpSection,
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: 1.2,
-                pin: xpLaptopWrapper,
-                pinSpacing: false,
-                onUpdate: (self) => {
-                    const p = self.progress;
-
-                    // Boot sequence fades out early
-                    if (xpBootSeq) {
-                        xpBootSeq.style.opacity = p < 0.08 ? 1 - (p / 0.08) : 0;
-                        xpBootSeq.style.pointerEvents = p > 0.05 ? 'none' : 'auto';
+    if (xpSection && xpWindows.length > 0) {
+        
+        // Parallax and fade for individual windows
+        xpWindows.forEach((win) => {
+            gsap.fromTo(win, 
+                { opacity: 0, y: 50 },
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: win,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
                     }
-
-                    // Lid opens (90deg → 0deg) between 5% and 25%
-                    const lidProgress = Math.min(1, Math.max(0, (p - 0.05) / 0.2));
-                    const lidAngle = 90 * (1 - lidProgress);
-                    xpLid.style.transform = `rotateX(${lidAngle}deg)`;
-
-                    // Bloom and OS bar appear when lid is mostly open
-                    if (lidProgress > 0.7) {
-                        if (xpBloom) xpBloom.style.opacity = '1';
-                        if (xpOsBar) xpOsBar.style.opacity = '1';
-                    } else {
-                        if (xpBloom) xpBloom.style.opacity = '0';
-                        if (xpOsBar) xpOsBar.style.opacity = '0';
-                    }
-
-                    // Show/hide timeline rail
-                    if (xpTimelineRail) {
-                        if (lidProgress > 0.9) {
-                            xpTimelineRail.classList.add('visible');
-                        } else {
-                            xpTimelineRail.classList.remove('visible');
-                        }
-                    }
-
-                    // Determine active node based on scroll progress (after lid opens)
-                    const contentProgress = Math.max(0, (p - 0.3) / 0.65); // 30%-95% of section
-                    let activeIndex = 0;
-                    if (contentProgress > 0.66) activeIndex = 2;
-                    else if (contentProgress > 0.33) activeIndex = 1;
-
-                    // Activate the correct node
-                    xpNodes.forEach((node, i) => {
-                        if (i === activeIndex && lidProgress > 0.9) {
-                            node.classList.add('active');
-                        } else {
-                            node.classList.remove('active');
-                        }
-                    });
-
-                    // Scroll viewport to active node
-                    if (xpViewport && xpNodes[activeIndex] && lidProgress > 0.9) {
-                        const targetScroll = xpNodes[activeIndex].offsetTop - 10;
-                        xpViewport.scrollTo({ top: targetScroll, behavior: 'smooth' });
-                    }
-
-                    // Update orbital timeline
-                    if (xpTimelineProgress) {
-                        xpTimelineProgress.style.height = `${contentProgress * 100}%`;
-                    }
-                    xpTimelineNodes.forEach((tn, i) => {
-                        if (i === activeIndex && lidProgress > 0.9) {
-                            tn.classList.add('active');
-                        } else {
-                            tn.classList.remove('active');
-                        }
-                    });
                 }
-            }
-        });
-
-        // ── Click on orbital nodes to jump ──
-        xpTimelineNodes.forEach((tn, i) => {
-            tn.addEventListener('click', () => {
-                // Calculate target scroll position
-                const sectionTop = xpSection.offsetTop;
-                const sectionHeight = xpSection.scrollHeight - window.innerHeight;
-                const targetProgress = 0.3 + (i * 0.325 * 0.65);
-                const targetScroll = sectionTop + (targetProgress * sectionHeight);
-                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-            });
+            );
         });
 
         // ── Ambient Particle System ──
@@ -575,40 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })();
             }
 
-            // Editing Timeline — horizontal waveform lines
-            if (theme === 'editing-timeline') {
-                let frame = 0;
-                (function drawEdit() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    const w = canvas.width, h = canvas.height;
-                    const tracks = 5;
-                    const trackH = h / (tracks + 1);
-                    for (let t = 1; t <= tracks; t++) {
-                        const y = t * trackH;
-                        ctx.beginPath();
-                        ctx.moveTo(0, y);
-                        for (let x = 0; x < w; x += 3) {
-                            const amp = Math.sin((x + frame * 2 + t * 40) * 0.02) * (8 + t * 3) *
-                                        Math.sin((x + frame) * 0.005 + t) * 0.5;
-                            ctx.lineTo(x, y + amp);
-                        }
-                        const alpha = 0.06 + (t % 2) * 0.04;
-                        ctx.strokeStyle = `rgba(255,180,100,${alpha})`;
-                        ctx.lineWidth = 1.5;
-                        ctx.stroke();
-                    }
-                    // Scrubber line
-                    const scrubX = (frame * 0.8) % w;
-                    ctx.beginPath();
-                    ctx.moveTo(scrubX, 0);
-                    ctx.lineTo(scrubX, h);
-                    ctx.strokeStyle = 'rgba(255,180,100,0.12)';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                    frame++;
-                    animId = requestAnimationFrame(drawEdit);
-                })();
-            }
+
 
             // AR Holographic — floating wireframe face mesh + neon particles
             if (theme === 'ar-holographic') {
@@ -636,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const wobble = Math.sin(frame * 0.02 + ring) * 2;
                         ctx.beginPath();
                         ctx.ellipse(0, wobble, r, r * 1.3, 0, 0, Math.PI * 2);
-                        ctx.strokeStyle = `rgba(180,120,255,${0.06 + ring * 0.02})`;
+                        ctx.strokeStyle = `rgba(255,234,77,${0.06 + ring * 0.02})`;
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
@@ -646,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ctx.beginPath();
                         ctx.moveTo(Math.cos(angle) * meshR, Math.sin(angle) * meshR * 1.3);
                         ctx.lineTo(-Math.cos(angle) * meshR, -Math.sin(angle) * meshR * 1.3);
-                        ctx.strokeStyle = 'rgba(180,120,255,0.04)';
+                        ctx.strokeStyle = 'rgba(255,234,77,0.04)';
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
@@ -660,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (p.y < 0 || p.y > 1) p.vy *= -1;
                         ctx.beginPath();
                         ctx.arc(p.x * w, p.y * h, p.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(180,120,255,${0.08 + Math.sin(frame * 0.03) * 0.04})`;
+                        ctx.fillStyle = `rgba(255,234,77,${0.08 + Math.sin(frame * 0.03) * 0.04})`;
                         ctx.fill();
                     });
                     frame++;
@@ -668,6 +546,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 })();
             }
         });
+    }
+
+    // ── DaVinci Resolve Timeline Timecode Animation ──
+    const tcElement = document.querySelector('.xp-tc');
+    if (tcElement) {
+        let frames = 2; // starting frame
+        let seconds = 39;
+        let minutes = 0;
+        let hours = 1;
+        
+        setInterval(() => {
+            frames++;
+            if (frames >= 24) {
+                frames = 0;
+                seconds++;
+            }
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+            }
+            if (minutes >= 60) {
+                minutes = 0;
+                hours++;
+            }
+            
+            const pad = (num) => num.toString().padStart(2, '0');
+            tcElement.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
+        }, 1000 / 24); // 24 FPS
     }
 
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
