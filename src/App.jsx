@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import LightRays from './LightRays';
+import ColorBends from './ColorBends';
+import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import { initPortfolio } from './portfolio-logic';
 
 export default function App() {
@@ -9,6 +11,23 @@ export default function App() {
 
     return (
         <>
+            <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.15 }}>
+                <ColorBends
+                    colors={["#ff5c7a", "#8a5cff", "#00ffd1"]}
+                    rotation={90}
+                    speed={0.2}
+                    scale={1}
+                    frequency={1}
+                    warpStrength={1}
+                    mouseInfluence={1}
+                    noise={0.15}
+                    parallax={0.5}
+                    iterations={1}
+                    intensity={1.5}
+                    bandWidth={6}
+                    transparent
+                />
+            </div>
             
 
 
@@ -229,239 +248,248 @@ export default function App() {
                     <h2 className="section-heading reveal-text">My Creative Stack</h2>
                 </div>
 
-                <div className="ecosystem-grid">
+                <div style={{ maxWidth: '850px', margin: '60px auto 0 auto' }}>
+                    <ScrollStack 
+                        useWindowScroll={true} 
+                        itemDistance={120} 
+                        itemScale={0.03} 
+                        itemStackDistance={35} 
+                        stackPosition="15%" 
+                        scaleEndPosition="8%" 
+                        baseScale={0.9} 
+                        rotationAmount={0}
+                    >
+                        {/* 01 Creative Intelligence */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">01</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Creative Intelligence</h3>
+                            </div>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip" data-glow="#10a37f" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg"
+                                        alt="ChatGPT" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
+                                    <span>ChatGPT</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#d97757" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/claude-color.svg"
+                                        alt="Claude" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Claude</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#4285f4" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/gemini-color.svg"
+                                        alt="Gemini" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Gemini</span>
+                                </div>
+                            </div>
+                        </ScrollStackItem>
 
-                    {/* 01 Creative Intelligence */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">01</span>
-                            <h3 className="eco-title">Creative Intelligence</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip" data-glow="#10a37f">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg"
-                                    alt="ChatGPT" className="eco-logo eco-logo-invert" />
-                                <span>ChatGPT</span>
+                        {/* 02 Creative Direction */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">02</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Creative Direction</h3>
                             </div>
-                            <div className="eco-chip" data-glow="#d97757">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/claude-color.svg"
-                                    alt="Claude" className="eco-logo" />
-                                <span>Claude</span>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        strokeWidth="2">
+                                        <rect x="2" y="2" width="20" height="20" rx="2" />
+                                        <line x1="6" y1="6" x2="6" y2="6.01" />
+                                        <line x1="6" y1="10" x2="6" y2="10.01" />
+                                        <line x1="6" y1="14" x2="6" y2="14.01" />
+                                        <line x1="10" y1="6" x2="18" y2="6" />
+                                        <line x1="10" y1="10" x2="18" y2="10" />
+                                        <line x1="10" y1="14" x2="18" y2="14" />
+                                    </svg>
+                                    <span>Storyboarding</span>
+                                </div>
+                                <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        strokeWidth="2">
+                                        <path d="M12 20h9" />
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+                                    </svg>
+                                    <span>Narrative Design</span>
+                                </div>
+                                <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        strokeWidth="2">
+                                        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                                        <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                                        <circle cx="10" cy="13" r="2" />
+                                        <path d="m20 17-1.09-1.09a2 2 0 0 0-2.82 0L10 22" />
+                                    </svg>
+                                    <span>Visual Storytelling</span>
+                                </div>
+                                <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        strokeWidth="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <line x1="2" y1="12" x2="22" y2="12" />
+                                        <path
+                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                    </svg>
+                                    <span>Concept Development</span>
+                                </div>
                             </div>
-                            <div className="eco-chip" data-glow="#4285f4">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/gemini-color.svg"
-                                    alt="Gemini" className="eco-logo" />
-                                <span>Gemini</span>
-                            </div>
-                        </div>
-                    </div>
+                        </ScrollStackItem>
 
-                    {/* 02 Creative Direction */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">02</span>
-                            <h3 className="eco-title">Creative Direction</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip eco-chip-text" data-glow="#faff00">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    strokeWidth="2">
-                                    <rect x="2" y="2" width="20" height="20" rx="2" />
-                                    <line x1="6" y1="6" x2="6" y2="6.01" />
-                                    <line x1="6" y1="10" x2="6" y2="10.01" />
-                                    <line x1="6" y1="14" x2="6" y2="14.01" />
-                                    <line x1="10" y1="6" x2="18" y2="6" />
-                                    <line x1="10" y1="10" x2="18" y2="10" />
-                                    <line x1="10" y1="14" x2="18" y2="14" />
-                                </svg>
-                                <span>Storyboarding</span>
+                        {/* 03 Platforms & Workflows */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">03</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Platforms & Workflows</h3>
                             </div>
-                            <div className="eco-chip eco-chip-text" data-glow="#faff00">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    strokeWidth="2">
-                                    <path d="M12 20h9" />
-                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
-                                </svg>
-                                <span>Narrative Design</span>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip" data-glow="#ff4154" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg"
+                                        alt="Fal AI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Fal AI</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#a855f7" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://www.google.com/s2/favicons?domain=openart.ai&sz=128" alt="OpenArt"
+                                        className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>OpenArt</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#4ade80" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg"
+                                        alt="ComfyUI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>ComfyUI</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#60a5fa" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128"
+                                        alt="Higgsfield AI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Higgsfield AI</span>
+                                </div>
                             </div>
-                            <div className="eco-chip eco-chip-text" data-glow="#faff00">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    strokeWidth="2">
-                                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-                                    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                                    <circle cx="10" cy="13" r="2" />
-                                    <path d="m20 17-1.09-1.09a2 2 0 0 0-2.82 0L10 22" />
-                                </svg>
-                                <span>Visual Storytelling</span>
-                            </div>
-                            <div className="eco-chip eco-chip-text" data-glow="#faff00">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    strokeWidth="2">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <line x1="2" y1="12" x2="22" y2="12" />
-                                    <path
-                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                                </svg>
-                                <span>Concept Development</span>
-                            </div>
-                        </div>
-                    </div>
+                        </ScrollStackItem>
 
-                    {/* 03 Platforms & Workflows */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">03</span>
-                            <h3 className="eco-title">Platforms & Workflows</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip" data-glow="#ff4154">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg"
-                                    alt="Fal AI" className="eco-logo" />
-                                <span>Fal AI</span>
+                        {/* 04 Video Generation */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">04</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Video Generation</h3>
                             </div>
-                            <div className="eco-chip" data-glow="#a855f7">
-                                <img src="https://www.google.com/s2/favicons?domain=openart.ai&sz=128" alt="OpenArt"
-                                    className="eco-logo" />
-                                <span>OpenArt</span>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip" data-glow="#3b82f6" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/kling-color.svg"
+                                        alt="Kling AI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Kling AI</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#4285f4" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/google-color.svg"
+                                        alt="Veo 3.1" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Veo 3.1</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#818cf8" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://www.google.com/s2/favicons?domain=seedance.ai&sz=128" alt="Seedance"
+                                        className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Seedance</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#c084fc" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg"
+                                        alt="Runway" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
+                                    <span>Runway</span>
+                                </div>
                             </div>
-                            <div className="eco-chip" data-glow="#4ade80">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg"
-                                    alt="ComfyUI" className="eco-logo" />
-                                <span>ComfyUI</span>
-                            </div>
-                            <div className="eco-chip" data-glow="#60a5fa">
-                                <img src="https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128"
-                                    alt="Higgsfield AI" className="eco-logo" />
-                                <span>Higgsfield AI</span>
-                            </div>
-                        </div>
-                    </div>
+                        </ScrollStackItem>
 
-                    {/* 04 Video Generation */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">04</span>
-                            <h3 className="eco-title">Video Generation</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip" data-glow="#3b82f6">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/kling-color.svg"
-                                    alt="Kling AI" className="eco-logo" />
-                                <span>Kling AI</span>
+                        {/* 05 Image Generation */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">05</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Image Generation</h3>
                             </div>
-                            <div className="eco-chip" data-glow="#4285f4">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/google-color.svg"
-                                    alt="Veo 3.1" className="eco-logo" />
-                                <span>Veo 3.1</span>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip" data-glow="#10a37f" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg"
+                                        alt="GPT Image" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
+                                    <span>GPT Image</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#a855f7" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/flux.svg"
+                                        alt="Flux" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
+                                    <span>Flux</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#fbbf24" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/nanobanana-color.svg"
+                                        alt="NanoBanana" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>NanoBanana</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#ffffff" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/midjourney.svg"
+                                        alt="Midjourney" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
+                                    <span>Midjourney</span>
+                                </div>
                             </div>
-                            <div className="eco-chip" data-glow="#818cf8">
-                                <img src="https://www.google.com/s2/favicons?domain=seedance.ai&sz=128" alt="Seedance"
-                                    className="eco-logo" />
-                                <span>Seedance</span>
-                            </div>
-                            <div className="eco-chip" data-glow="#c084fc">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg"
-                                    alt="Runway" className="eco-logo eco-logo-invert" />
-                                <span>Runway</span>
-                            </div>
-                        </div>
-                    </div>
+                        </ScrollStackItem>
 
-                    {/* 05 Image Generation */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">05</span>
-                            <h3 className="eco-title">Image Generation</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip" data-glow="#10a37f">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg"
-                                    alt="GPT Image" className="eco-logo eco-logo-invert" />
-                                <span>GPT Image</span>
+                        {/* 06 AI Avatars */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">06</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>AI Avatars</h3>
                             </div>
-                            <div className="eco-chip" data-glow="#a855f7">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/flux.svg"
-                                    alt="Flux" className="eco-logo eco-logo-invert" />
-                                <span>Flux</span>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip" data-glow="#06b6d4" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=128" alt="HeyGen"
+                                        className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>HeyGen</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#3b82f6" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/kling-color.svg"
+                                        alt="Kling AI Avatar" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Kling AI Avatar</span>
+                                </div>
                             </div>
-                            <div className="eco-chip" data-glow="#fbbf24">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/nanobanana-color.svg"
-                                    alt="NanoBanana" className="eco-logo" />
-                                <span>NanoBanana</span>
-                            </div>
-                            <div className="eco-chip" data-glow="#ffffff">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/midjourney.svg"
-                                    alt="Midjourney" className="eco-logo eco-logo-invert" />
-                                <span>Midjourney</span>
-                            </div>
-                        </div>
-                    </div>
+                        </ScrollStackItem>
 
-                    {/* 06 AI Avatars */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">06</span>
-                            <h3 className="eco-title">AI Avatars</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip" data-glow="#06b6d4">
-                                <img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=128" alt="HeyGen"
-                                    className="eco-logo" />
-                                <span>HeyGen</span>
+                        {/* 07 Audio Generation */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">07</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Audio Generation</h3>
                             </div>
-                            <div className="eco-chip" data-glow="#3b82f6">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/kling-color.svg"
-                                    alt="Kling AI Avatar" className="eco-logo" />
-                                <span>Kling AI Avatar</span>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip" data-glow="#fbbf24" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg"
+                                        alt="ElevenLabs" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
+                                    <span>ElevenLabs</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#f472b6" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/suno.svg"
+                                        alt="Suno" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
+                                    <span>Suno</span>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </ScrollStackItem>
 
-                    {/* 07 Audio Generation */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">07</span>
-                            <h3 className="eco-title">Audio Generation</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip" data-glow="#fbbf24">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg"
-                                    alt="ElevenLabs" className="eco-logo eco-logo-invert" />
-                                <span>ElevenLabs</span>
+                        {/* 08 Post Production */}
+                        <ScrollStackItem itemClassName="eco-category">
+                            <div className="eco-header">
+                                <span className="eco-num">08</span>
+                                <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Post Production</h3>
                             </div>
-                            <div className="eco-chip" data-glow="#f472b6">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/suno.svg"
-                                    alt="Suno" className="eco-logo eco-logo-invert" />
-                                <span>Suno</span>
+                            <div className="eco-chips" style={{ gap: '12px' }}>
+                                <div className="eco-chip" data-glow="#9999ff" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/adobe-color.svg"
+                                        alt="Premiere Pro" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>Premiere Pro</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#9999ff" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/adobe-color.svg"
+                                        alt="After Effects" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>After Effects</span>
+                                </div>
+                                <div className="eco-chip" data-glow="#ff6f3c" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
+                                    <img src="https://www.google.com/s2/favicons?domain=blackmagicdesign.com&sz=128"
+                                        alt="DaVinci Resolve" className="eco-logo" style={{ width: '24px', height: '24px' }} />
+                                    <span>DaVinci Resolve</span>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* 08 Post Production */}
-                    <div className="eco-category">
-                        <div className="eco-header">
-                            <span className="eco-num">08</span>
-                            <h3 className="eco-title">Post Production</h3>
-                        </div>
-                        <div className="eco-chips">
-                            <div className="eco-chip" data-glow="#9999ff">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/adobe-color.svg"
-                                    alt="Premiere Pro" className="eco-logo" />
-                                <span>Premiere Pro</span>
-                            </div>
-                            <div className="eco-chip" data-glow="#9999ff">
-                                <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/adobe-color.svg"
-                                    alt="After Effects" className="eco-logo" />
-                                <span>After Effects</span>
-                            </div>
-                            <div className="eco-chip" data-glow="#ff6f3c">
-                                <img src="https://www.google.com/s2/favicons?domain=blackmagicdesign.com&sz=128"
-                                    alt="DaVinci Resolve" className="eco-logo" />
-                                <span>DaVinci Resolve</span>
-                            </div>
-                        </div>
-                    </div>
-
+                        </ScrollStackItem>
+                    </ScrollStack>
                 </div>
             </div>
         </section>
