@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
         duration: 1.2,
@@ -577,4 +576,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
-});
