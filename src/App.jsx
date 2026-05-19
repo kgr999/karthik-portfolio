@@ -80,7 +80,7 @@ export default function App() {
 
                 <div className="video-grid reveal-item">
                     <div className="video-card large">
-                        <video autoplay muted loop playsinline className="bg-video">
+                        <video autoPlay muted loop playsInline className="bg-video">
                             <source src="assets/videos/video1.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
@@ -89,7 +89,7 @@ export default function App() {
                         </div>
                     </div>
                     <div className="video-card">
-                        <video autoplay muted loop playsinline className="bg-video">
+                        <video autoPlay muted loop playsInline className="bg-video">
                             <source src="assets/videos/video2.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
@@ -97,7 +97,7 @@ export default function App() {
                         </div>
                     </div>
                     <div className="video-card">
-                        <video autoplay muted loop playsinline className="bg-video">
+                        <video autoPlay muted loop playsInline className="bg-video">
                             <source src="assets/videos/video3.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
@@ -105,7 +105,7 @@ export default function App() {
                         </div>
                     </div>
                     <div className="video-card">
-                        <video autoplay muted loop playsinline className="bg-video">
+                        <video autoPlay muted loop playsInline className="bg-video">
                             <source src="assets/videos/video4.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
@@ -113,7 +113,7 @@ export default function App() {
                         </div>
                     </div>
                     <div className="video-card">
-                        <video autoplay muted loop playsinline className="bg-video">
+                        <video autoPlay muted loop playsInline className="bg-video">
                             <source src="assets/videos/video5.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
@@ -121,7 +121,7 @@ export default function App() {
                         </div>
                     </div>
                     <div className="video-card">
-                        <video autoplay muted loop playsinline className="bg-video">
+                        <video autoPlay muted loop playsInline className="bg-video">
                             <source src="assets/videos/video6.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
@@ -497,7 +497,7 @@ export default function App() {
                                     </svg>
                                 </div>
                                 <div className="pillar-media">
-                                    <video src="assets/videos/supra.mp4" autoplay loop muted playsinline></video>
+                                    <video src="assets/videos/supra.mp4" autoPlay loop muted playsInline></video>
                                 </div>
                             </div>
                             
@@ -531,7 +531,7 @@ export default function App() {
                                     </svg>
                                 </div>
                                 <div className="pillar-media">
-                                    <video src="assets/videos/helicopter.mp4" autoplay loop muted playsinline></video>
+                                    <video src="assets/videos/helicopter.mp4" autoPlay loop muted playsInline></video>
                                 </div>
                             </div>
                         </div>
@@ -564,8 +564,8 @@ export default function App() {
                     {/* Top Ultrawide Video */}
                     <div className="cinema-card ultrawide" data-glow="#A78BFA">
                         <div className="cinema-video-wrapper">
-                            <video className="cinema-video" src="assets/videos/helicopter.mp4" loop muted playsinline
-                                autoplay></video>
+                            <video className="cinema-video" src="assets/videos/helicopter.mp4" loop muted playsInline
+                                autoPlay></video>
                             <div className="cinema-overlay">
                                 <span className="cinema-badge">Gen-4 Turbo</span>
                             </div>
@@ -582,8 +582,8 @@ export default function App() {
                     {/* Existing 16:9 Videos */}
                     <div className="cinema-card" data-glow="#4DA3FF">
                         <div className="cinema-video-wrapper">
-                            <video className="cinema-video" src="assets/videos/isro.mov" loop muted playsinline
-                                autoplay></video>
+                            <video className="cinema-video" src="assets/videos/isro.mov" loop muted playsInline
+                                autoPlay></video>
                             <div className="cinema-overlay">
                                 <span className="cinema-badge">Kling V3 Pro</span>
                             </div>
@@ -598,8 +598,8 @@ export default function App() {
                     </div>
                     <div className="cinema-card" data-glow="#93C5FD">
                         <div className="cinema-video-wrapper">
-                            <video className="cinema-video" src="assets/videos/underwater.mp4" loop muted playsinline
-                                autoplay></video>
+                            <video className="cinema-video" src="assets/videos/underwater.mp4" loop muted playsInline
+                                autoPlay></video>
                             <div className="cinema-overlay">
                                 <span className="cinema-badge">Seedance 2.0</span>
                             </div>
@@ -615,8 +615,8 @@ export default function App() {
                     {/* Bottom Ultrawide Video */}
                     <div className="cinema-card ultrawide" data-glow="#F87171">
                         <div className="cinema-video-wrapper">
-                            <video className="cinema-video" src="assets/videos/supra.mp4" loop muted playsinline
-                                autoplay></video>
+                            <video className="cinema-video" src="assets/videos/supra.mp4" loop muted playsInline
+                                autoPlay></video>
                             <div className="cinema-overlay">
                                 <span className="cinema-badge">Gen-4 Turbo</span>
                             </div>
@@ -694,7 +694,7 @@ export default function App() {
                                         </defs>
                                         <path d="M12 2L2 22H7L12 11L17 22H22L12 2Z" fill="url(#admitra-grad)" />
                                         <path d="M12 11L9 17H15L12 11Z" fill="#111" opacity="0.3" />
-                                        <text x="28" y="21" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" letter-spacing="0.5">AdMitra</text>
+                                        <text x="28" y="21" fill="#FFFFFF" fontFamily="'Space Grotesk', sans-serif" fontSize="16" fontWeight="700" letterSpacing="0.5">AdMitra</text>
                                     </svg>
                                 </div>
                                 <div className="xp-sidebar-nav">
