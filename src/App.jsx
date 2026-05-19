@@ -53,15 +53,17 @@ export default function App() {
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, opacity: 0.5 }}>
                 <LightRays
                     raysOrigin="top-center"
-                    raysColor="#4DA3FF"
-                    raysSpeed={1.5}
-                    lightSpread={0.8}
-                    rayLength={1.5}
+                    raysColor="#0084ff"
+                    raysSpeed={1.7}
+                    lightSpread={2}
+                    rayLength={1.2}
                     followMouse={true}
-                    mouseInfluence={0.3}
-                    noiseAmount={0.08}
-                    distortion={0.06}
+                    mouseInfluence={0.4}
+                    noiseAmount={0.23}
+                    distortion={0.05}
+                    className="custom-rays"
                     pulsating
+                    saturation={2}
                 />
             </div>
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
