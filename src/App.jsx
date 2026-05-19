@@ -42,7 +42,7 @@ export default function App() {
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
+    {/* Mobile Menu Overlay */}
     <div className="mobile-menu">
         <div className="mobile-menu-inner">
             <a href="#work">Work</a>
@@ -54,7 +54,7 @@ export default function App() {
     </div>
 
     <main>
-        <!-- 1. Hero Section -->
+        {/* 1. Hero Section */}
         <section id="hero">
             <div className="container">
                 <div className="hero-content">
@@ -69,7 +69,7 @@ export default function App() {
             </div>
         </section>
 
-        <!-- 2. Featured Work -->
+        {/* 2. Featured Work */}
         <section id="work">
             <div className="container">
                 <div className="section-header">
@@ -81,7 +81,7 @@ export default function App() {
                 <div className="video-grid reveal-item">
                     <div className="video-card large">
                         <video autoplay muted loop playsinline className="bg-video">
-                            <source src="assets/videos/video1.mp4" type="video/mp4">
+                            <source src="assets/videos/video1.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
                             <h3>01. Feature Motion</h3>
@@ -90,7 +90,7 @@ export default function App() {
                     </div>
                     <div className="video-card">
                         <video autoplay muted loop playsinline className="bg-video">
-                            <source src="assets/videos/video2.mp4" type="video/mp4">
+                            <source src="assets/videos/video2.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
                             <h3>02. Visual Synthesis</h3>
@@ -98,7 +98,7 @@ export default function App() {
                     </div>
                     <div className="video-card">
                         <video autoplay muted loop playsinline className="bg-video">
-                            <source src="assets/videos/video3.mp4" type="video/mp4">
+                            <source src="assets/videos/video3.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
                             <h3>03. Dynamic Assets</h3>
@@ -106,7 +106,7 @@ export default function App() {
                     </div>
                     <div className="video-card">
                         <video autoplay muted loop playsinline className="bg-video">
-                            <source src="assets/videos/video4.mp4" type="video/mp4">
+                            <source src="assets/videos/video4.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
                             <h3>04. Narrative Gen</h3>
@@ -114,7 +114,7 @@ export default function App() {
                     </div>
                     <div className="video-card">
                         <video autoplay muted loop playsinline className="bg-video">
-                            <source src="assets/videos/video5.mp4" type="video/mp4">
+                            <source src="assets/videos/video5.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
                             <h3>05. Future Content</h3>
@@ -122,7 +122,7 @@ export default function App() {
                     </div>
                     <div className="video-card">
                         <video autoplay muted loop playsinline className="bg-video">
-                            <source src="assets/videos/video6.mp4" type="video/mp4">
+                            <source src="assets/videos/video6.mp4" type="video/mp4" />
                         </video>
                         <div className="video-info">
                             <h3>06. Editorial AI</h3>
@@ -132,7 +132,7 @@ export default function App() {
             </div>
         </section>
 
-        <!-- 3. Collaborations Section -->
+        {/* 3. Collaborations Section */}
         <section id="collabs">
             <div className="container">
                 <div className="section-header">
@@ -164,7 +164,7 @@ export default function App() {
             </div>
         </section>
 
-        <!-- 4. Creative Capabilities -->
+        {/* 4. Creative Capabilities */}
         <section id="capabilities">
             <div className="container">
                 <div className="section-header">
@@ -212,7 +212,7 @@ export default function App() {
             </div>
         </section>
 
-        <!-- 10. Creative Ecosystem (Stacking Cards) -->
+        {/* 10. Creative Ecosystem (Stacking Cards) */}
         <section id="tech-stack">
             <div className="container">
                 <div className="section-header">
@@ -221,7 +221,7 @@ export default function App() {
 
                 <div className="ecosystem-grid">
 
-                    <!-- 01 Creative Intelligence -->
+                    {/* 01 Creative Intelligence */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">01</span>
@@ -246,7 +246,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- 02 Creative Direction -->
+                    {/* 02 Creative Direction */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">02</span>
@@ -297,7 +297,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- 03 Platforms & Workflows -->
+                    {/* 03 Platforms & Workflows */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">03</span>
@@ -327,7 +327,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- 04 Video Generation -->
+                    {/* 04 Video Generation */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">04</span>
@@ -357,7 +357,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- 05 Image Generation -->
+                    {/* 05 Image Generation */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">05</span>
@@ -387,7 +387,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- 06 AI Avatars -->
+                    {/* 06 AI Avatars */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">06</span>
@@ -407,7 +407,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- 07 Audio Generation -->
+                    {/* 07 Audio Generation */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">07</span>
@@ -427,7 +427,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- 08 Post Production -->
+                    {/* 08 Post Production */}
                     <div className="eco-category">
                         <div className="eco-header">
                             <span className="eco-num">08</span>
@@ -454,7 +454,9 @@ export default function App() {
 
                 </div>
             </div>
-        <!-- 11. The Creative Blueprint -->
+        </section>
+
+        {/* 11. The Creative Blueprint */}
         <section id="creative-blueprint">
             <div className="container">
                 <div className="section-header">
@@ -463,7 +465,7 @@ export default function App() {
                 </div>
                 
                 <div className="blueprint-grid reveal-item">
-                    <!-- Left Stat Column -->
+                    {/* Left Stat Column */}
                     <div className="blueprint-stats left">
                         <div className="blueprint-stat-card glass">
                             <h4>4.5M+</h4>
@@ -475,14 +477,14 @@ export default function App() {
                         </div>
                     </div>
                     
-                    <!-- Center Blueprint Canvas -->
+                    {/* Center Blueprint Canvas */}
                     <div className="blueprint-canvas glass">
                         <div className="blueprint-canvas-header">
                             THE BLUEPRINT OF A HIGH-RETENTION CREATIVE
                         </div>
                         
                         <div className="blueprint-pillars">
-                            <!-- Pillar 1 -->
+                            {/* Pillar 1 */}
                             <div className="blueprint-pillar">
                                 <div className="pillar-info">
                                     <h5>Algorithmic Hook</h5>
@@ -499,7 +501,7 @@ export default function App() {
                                 </div>
                             </div>
                             
-                            <!-- Pillar 2 -->
+                            {/* Pillar 2 */}
                             <div className="blueprint-pillar">
                                 <div className="pillar-info">
                                     <h5>AI-Enhanced Fidelity</h5>
@@ -516,7 +518,7 @@ export default function App() {
                                 </div>
                             </div>
                             
-                            <!-- Pillar 3 -->
+                            {/* Pillar 3 */}
                             <div className="blueprint-pillar">
                                 <div className="pillar-info">
                                     <h5>Narrative Resonance</h5>
@@ -535,7 +537,7 @@ export default function App() {
                         </div>
                     </div>
                     
-                    <!-- Right Stat Column -->
+                    {/* Right Stat Column */}
                     <div className="blueprint-stats right">
                         <div className="blueprint-stat-card glass">
                             <h4>0.8s</h4>
@@ -550,7 +552,7 @@ export default function App() {
             </div>
         </section>
 
-        <!-- 4.5. Cinematic Self-Visuals Section -->
+        {/* 4.5. Cinematic Self-Visuals Section */}
         <section id="self-visuals">
             <div className="container">
                 <div className="section-header">
@@ -559,7 +561,7 @@ export default function App() {
                         high-fidelity worlds.</p>
                 </div>
                 <div className="cinema-grid reveal-item">
-                    <!-- Top Ultrawide Video -->
+                    {/* Top Ultrawide Video */}
                     <div className="cinema-card ultrawide" data-glow="#A78BFA">
                         <div className="cinema-video-wrapper">
                             <video className="cinema-video" src="assets/videos/helicopter.mp4" loop muted playsinline
@@ -577,7 +579,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- Existing 16:9 Videos -->
+                    {/* Existing 16:9 Videos */}
                     <div className="cinema-card" data-glow="#4DA3FF">
                         <div className="cinema-video-wrapper">
                             <video className="cinema-video" src="assets/videos/isro.mov" loop muted playsinline
@@ -610,7 +612,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- Bottom Ultrawide Video -->
+                    {/* Bottom Ultrawide Video */}
                     <div className="cinema-card ultrawide" data-glow="#F87171">
                         <div className="cinema-video-wrapper">
                             <video className="cinema-video" src="assets/videos/supra.mp4" loop muted playsinline
@@ -630,7 +632,7 @@ export default function App() {
             </div>
         </section>
 
-        <!-- 5. Visual Systems Gallery -->
+        {/* 5. Visual Systems Gallery */}
         <section id="visuals">
             <div className="container">
                 <div className="section-header">
@@ -638,7 +640,7 @@ export default function App() {
                     <p className="section-desc reveal-text">Cinematic poster showcase and design experiments.</p>
                 </div>
                 <div className="visual-gallery">
-                    <!-- Project 1 -->
+                    {/* Project 1 */}
                     <div className="visual-item reveal-item">
                         <div className="visual-media" style={{marginBottom: '24px'}}>
                             <img src="assets/images/n1.png" alt="Neural Frontiers - Shot 1" className="visual-image" />
@@ -657,9 +659,9 @@ export default function App() {
                 </div>
             </div>
         </section>
-        <!-- ═══════════════════════════════════════════════════════ -->
-        <!-- EXPERIENCE JOURNEY — Retro-Futuristic Creative OS        -->
-        <!-- ═══════════════════════════════════════════════════════ -->
+        {/* ═══════════════════════════════════════════════════════ */}
+        {/* EXPERIENCE JOURNEY — Retro-Futuristic Creative OS        */}
+        {/* ═══════════════════════════════════════════════════════ */}
         <section id="experience-journey">
             <div className="container">
                 <div className="section-header xp-windows-header">
@@ -669,7 +671,7 @@ export default function App() {
                 
                 <div className="xp-windows-container">
                     
-                    <!-- ─── WINDOW 1: AdMitra (Fal.ai Inspired) ─── -->
+                    {/* ─── WINDOW 1: AdMitra (Fal.ai Inspired) ─── */}
                     <div className="xp-interface-window xp-window-fal reveal-item" data-theme="ai">
                         <div className="xp-window-header">
                             <div className="xp-window-controls">
@@ -744,15 +746,15 @@ export default function App() {
                                         <p className="xp-brands-title">KEY CAMPAIGN CLIENTS</p>
                                         <div className="xp-brands-logos">
                                             <div className="xp-brand-logo-btn">
-                                                <img src="https://logo.clearbit.com/montraelectric.com" onerror="this.style.display='none';" className="xp-brand-logo-btn-icon" alt="Montra Electric" />
+                                                <img src="https://logo.clearbit.com/montraelectric.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Montra Electric" />
                                                 <span>Montra Electric</span>
                                             </div>
                                             <div className="xp-brand-logo-btn">
-                                                <img src="https://logo.clearbit.com/amperevehicles.com" onerror="this.style.display='none';" className="xp-brand-logo-btn-icon" alt="Ampere Electric" />
+                                                <img src="https://logo.clearbit.com/amperevehicles.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Ampere Electric" />
                                                 <span>Ampere Electric</span>
                                             </div>
                                             <div className="xp-brand-logo-btn">
-                                                <img src="https://logo.clearbit.com/lincolnpharma.com" onerror="this.style.display='none';" className="xp-brand-logo-btn-icon" alt="Lincoln Pharma" />
+                                                <img src="https://logo.clearbit.com/lincolnpharma.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Lincoln Pharma" />
                                                 <span>Lincoln Pharma</span>
                                             </div>
                                         </div>
@@ -762,7 +764,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── -->
+                    {/* ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── */}
                     <div className="xp-interface-window xp-window-davinci reveal-item" data-theme="video">
                         <div className="xp-window-header">
                             <div className="xp-window-controls"><span></span><span></span><span></span></div>
@@ -811,7 +813,7 @@ export default function App() {
                                     </div>
                                 </div>
                             </div>
-                            <!-- DaVinci-style multi-track timeline -->
+                            {/* DaVinci-style multi-track timeline */}
                             <div className="xp-window-timeline xp-dvr-timeline">
                                 <div className="xp-timeline-header">
                                     <span className="xp-tc">01:00:39:02</span>
@@ -838,7 +840,7 @@ export default function App() {
                         </div>
                     </div>
 
-                    <!-- ─── WINDOW 3: Snap AR (Lens Studio Inspired) ─── -->
+                    {/* ─── WINDOW 3: Snap AR (Lens Studio Inspired) ─── */}
                     <div className="xp-interface-window xp-window-lens reveal-item" data-theme="ar">
                         <div className="xp-window-header">
                             <div className="xp-window-controls">
@@ -893,7 +895,7 @@ export default function App() {
                 </div>
             </div>
         </section>
-        <!-- 8. Certifications -->
+        {/* 8. Certifications */}
         <section id="certs">
             <div className="container">
                 <div className="section-header">
@@ -906,7 +908,7 @@ export default function App() {
                         <div className="cert-logo-wrapper">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
                                 alt="Google Logo" className="cert-provider-logo"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                                onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
                             <div className="logo-fallback" style={{display: 'none'}}>G</div>
                         </div>
                         <div className="cert-content">
@@ -930,7 +932,7 @@ export default function App() {
                         <div className="cert-logo-wrapper">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/University_of_Michigan_Logo.png"
                                 alt="U-Michigan Logo" className="cert-provider-logo"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                                onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
                             <div className="logo-fallback" style={{display: 'none'}}>M</div>
                         </div>
                         <div className="cert-content">
@@ -955,7 +957,7 @@ export default function App() {
 
 
 
-        <!-- 11. Contact Section -->
+        {/* 11. Contact Section */}
         <section id="contact">
             <div className="container">
                 <p className="contact-label reveal-text">Start a Conversation</p>
