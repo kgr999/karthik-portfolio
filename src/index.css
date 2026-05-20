@@ -73,16 +73,19 @@
     --surface: #0D0D0D;
     --text: #F5F5F5;
     --text-muted: #9CA3AF;
-    --accent: #4DA3FF; /* Electric Blue */
+    --accent: #4DA3FF;
+    /* Electric Blue */
     --accent-secondary: #93C5FD;
-    --accent-dim: rgba(77, 163, 255, 0.15); /* Electric blue dim */
+    --accent-dim: rgba(77, 163, 255, 0.15);
+    /* Electric blue dim */
     --border-color: rgba(255, 255, 255, 0.08);
     --glass-bg: rgba(255, 255, 255, 0.04);
     --glass-border: rgba(255, 255, 255, 0.08);
     --font-primary: 'Inter', sans-serif;
     --font-heading: 'Inter Tight', sans-serif;
     --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --glow: 0 0 25px rgba(77, 163, 255, 0.15); /* Electric blue glow */
+    --glow: 0 0 25px rgba(77, 163, 255, 0.15);
+    /* Electric blue glow */
 }
 
 * {
@@ -462,7 +465,8 @@ section {
 .visual-gallery {
     display: flex;
     flex-direction: column;
-    gap: 100px; /* High spacing for luxury, premium breathing room */
+    gap: 100px;
+    /* High spacing for luxury, premium breathing room */
     margin-top: 60px;
 }
 
@@ -561,7 +565,8 @@ section {
     overflow: hidden;
 }
 
-.cap-card:hover, .cap-card.active {
+.cap-card:hover,
+.cap-card.active {
     background: rgba(255, 255, 0, 0.05);
     border-color: var(--accent);
     transform: translateY(-10px);
@@ -580,7 +585,8 @@ section {
     transition: var(--transition);
 }
 
-.cap-card:hover::before, .cap-card.active::before {
+.cap-card:hover::before,
+.cap-card.active::before {
     opacity: 1;
 }
 
@@ -593,7 +599,8 @@ section {
     transition: var(--transition);
 }
 
-.cap-card:hover h3, .cap-card.active h3 {
+.cap-card:hover h3,
+.cap-card.active h3 {
     color: var(--accent);
 }
 
@@ -1048,7 +1055,7 @@ section {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .eco-category {
         padding: 40px;
     }
@@ -1119,9 +1126,11 @@ footer {
     nav {
         padding: 20px 0;
     }
+
     nav.scrolled {
         padding: 12px 0;
     }
+
     .nav-inner {
         padding: 0 40px;
     }
@@ -1173,23 +1182,23 @@ footer {
     section {
         padding: 60px 0;
     }
-    
+
     .section-heading {
         font-size: clamp(2rem, 8vw, 3rem);
     }
-    
+
     nav {
         padding: 16px 0;
     }
-    
+
     .nav-inner {
         padding: 0 20px;
     }
-    
+
     .logo-text {
         font-size: 1.2rem;
     }
-    
+
     #hero {
         padding-top: 80px;
     }
@@ -1197,7 +1206,7 @@ footer {
     .hero-content h1 {
         font-size: clamp(2.5rem, 12vw, 4.5rem);
     }
-    
+
     .hero-sub {
         font-size: 1rem;
         margin-top: 20px;
@@ -1217,7 +1226,7 @@ footer {
     .visual-gallery {
         gap: 60px;
     }
-    
+
     .visual-title {
         font-size: 1.6rem;
     }
@@ -1227,23 +1236,23 @@ footer {
     .logo-progress {
         display: none;
     }
-    
+
     .capabilities-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .cap-card {
         padding: 30px;
     }
-    
+
     .cert-content {
         padding: 25px;
     }
-    
+
     .cert-main h4 {
         font-size: 1.4rem;
     }
-    
+
     .contact-mail {
         font-size: clamp(2rem, 8vw, 3rem);
     }
@@ -1253,32 +1262,32 @@ footer {
     .video-grid {
         grid-auto-rows: 300px;
     }
-    
+
     .visual-gallery {
         gap: 45px;
     }
-    
+
     .client-item {
         padding: 10px 16px;
     }
-    
+
     .eco-category {
         padding: 20px;
     }
-    
+
     .eco-chips {
         gap: 8px;
     }
-    
+
     .eco-chip {
         padding: 6px 12px;
         font-size: 0.75rem;
     }
-    
+
     .cert-logo-wrapper {
         height: 120px;
     }
-    
+
     .main-btn {
         padding: 15px 30px;
         font-size: 0.8rem;
@@ -1315,7 +1324,8 @@ footer {
 .cinema-video-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */
     overflow: hidden;
     background: #000;
 }
@@ -1325,7 +1335,8 @@ footer {
 }
 
 .cinema-card.ultrawide .cinema-video-wrapper {
-    padding-top: 42.85%; /* 21:9 Aspect Ratio */
+    padding-top: 42.85%;
+    /* 21:9 Aspect Ratio */
 }
 
 
@@ -1375,7 +1386,8 @@ footer {
     font-family: var(--font-heading);
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--accent); /* Electric Blue */
+    color: var(--accent);
+    /* Electric Blue */
     letter-spacing: 2px;
     margin-bottom: 12px;
     text-transform: uppercase;
@@ -1537,10 +1549,13 @@ footer {
 }
 
 @keyframes bounceArrow {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
         color: rgba(255, 255, 255, 0.15);
     }
+
     50% {
         transform: translateY(-6px);
         color: var(--accent);
@@ -1582,21 +1597,22 @@ footer {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-    
+
     .blueprint-stats {
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
         gap: 20px;
     }
-    
+
     .blueprint-stat-card {
         flex: 1;
         min-width: 220px;
     }
-    
+
     .blueprint-canvas {
-        order: -1; /* Canvas displays at the top on tablet/mobile */
+        order: -1;
+        /* Canvas displays at the top on tablet/mobile */
     }
 }
 
@@ -1604,20 +1620,20 @@ footer {
     #creative-blueprint {
         padding: 80px 0;
     }
-    
+
     .blueprint-canvas {
         padding: 30px 20px;
     }
-    
+
     .blueprint-pillars {
         grid-template-columns: 1fr;
         gap: 45px;
     }
-    
+
     .pillar-info {
         min-height: auto;
     }
-    
+
     .pillar-media {
         aspect-ratio: 16 / 9;
     }
@@ -1655,7 +1671,7 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(10px);
@@ -1684,18 +1700,26 @@ footer {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.xp-window-controls span:nth-child(1) { background: #ff5f56; }
-.xp-window-controls span:nth-child(2) { background: #ffbd2e; }
-.xp-window-controls span:nth-child(3) { background: #27c93f; }
+.xp-window-controls span:nth-child(1) {
+    background: #ff5f56;
+}
+
+.xp-window-controls span:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.xp-window-controls span:nth-child(3) {
+    background: #27c93f;
+}
 
 .xp-window-title {
     margin: 0 auto;
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 0.75rem;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     letter-spacing: 0.5px;
 }
 
@@ -1710,7 +1734,7 @@ footer {
 
 .xp-window-fal .xp-window-sidebar {
     width: 240px;
-    border-right: 1px solid rgba(255,255,255,0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -1732,13 +1756,14 @@ footer {
 .xp-nav-item {
     padding: 8px 12px;
     border-radius: 6px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.xp-nav-item:hover, .xp-nav-item.active {
+.xp-nav-item:hover,
+.xp-nav-item.active {
     background: rgba(77, 163, 255, 0.1);
     color: #4DA3FF;
 }
@@ -1749,11 +1774,11 @@ footer {
     flex-direction: column;
     gap: 12px;
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .xp-stat span {
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     display: block;
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -1779,14 +1804,14 @@ footer {
 
 .xp-window-fal .xp-main-header p {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .xp-canvas-area {
     flex: 1;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     margin: 20px 0;
     position: relative;
     overflow: hidden;
@@ -1807,24 +1832,29 @@ footer {
     backdrop-filter: blur(5px);
 }
 
-.xp-panel-line { margin-bottom: 4px; }
-.xp-panel-line.xp-loading { color: #4DA3FF; }
+.xp-panel-line {
+    margin-bottom: 4px;
+}
+
+.xp-panel-line.xp-loading {
+    color: #4DA3FF;
+}
 
 .xp-window-fal .xp-main-desc {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
 }
 
 .xp-client-brands {
     margin-top: 25px;
     padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .xp-brands-title {
     font-size: 0.7rem;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     letter-spacing: 1.5px;
     margin-bottom: 15px;
 }
@@ -1880,20 +1910,21 @@ footer {
 .xp-window-top {
     display: flex;
     flex: 1;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .xp-media-pool {
     width: 220px;
-    border-right: 1px solid rgba(255,255,255,0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     padding: 15px;
-    background: rgba(15,15,15,0.5);
+    background: rgba(15, 15, 15, 0.5);
 }
 
-.xp-media-pool h4, .xp-inspector h4 {
+.xp-media-pool h4,
+.xp-inspector h4 {
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 15px;
     letter-spacing: 1px;
 }
@@ -1906,20 +1937,26 @@ footer {
 
 .xp-pool-item {
     aspect-ratio: 16/9;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
-.xp-pool-item img { width: 100%; height: 100%; object-fit: cover; }
+
+.xp-pool-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .xp-pool-placeholder span {
     font-size: 0.6rem;
-    color: rgba(255,255,255,0.2);
+    color: rgba(255, 255, 255, 0.2);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border: 1px dashed rgba(255,255,255,0.1);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
     padding: 4px 8px;
     border-radius: 3px;
 }
@@ -1940,49 +1977,90 @@ footer {
     gap: 16px;
     align-items: center;
     margin-top: 16px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
 }
-.xp-monitor-controls svg { cursor: pointer; transition: color 0.2s; }
-.xp-monitor-controls svg:hover { color: #FFB464; }
+
+.xp-monitor-controls svg {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.xp-monitor-controls svg:hover {
+    color: #FFB464;
+}
 
 .xp-monitor-inner {
     text-align: center;
     max-width: 80%;
 }
 
-.xp-monitor-inner h3 { font-size: 1.6rem; color: #fff; margin-bottom: 5px; }
-.xp-monitor-inner p { color: #FFB464; font-size: 0.9rem; margin-bottom: 20px; }
-.xp-monitor-desc { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+.xp-monitor-inner h3 {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.xp-monitor-inner p {
+    color: #FFB464;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.xp-monitor-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+}
 
 .xp-inspector {
     width: 220px;
-    border-left: 1px solid rgba(255,255,255,0.05);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
     padding: 15px;
-    background: rgba(15,15,15,0.5);
+    background: rgba(15, 15, 15, 0.5);
 }
 
-.xp-slider-group { margin-bottom: 15px; }
-.xp-slider-group label { display: block; font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
-.xp-slider { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; }
-.xp-slider-fill { height: 100%; background: #FFB464; border-radius: 2px; }
+.xp-slider-group {
+    margin-bottom: 15px;
+}
+
+.xp-slider-group label {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 5px;
+}
+
+.xp-slider {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.xp-slider-fill {
+    height: 100%;
+    background: #FFB464;
+    border-radius: 2px;
+}
 
 /* ── DaVinci Resolve Timeline ── */
-.xp-dvr-timeline { height: 220px; }
+.xp-dvr-timeline {
+    height: 220px;
+}
 
 .xp-dvr-timeline .xp-timeline-header {
     padding: 6px 15px;
     font-size: 0.7rem;
-    color: rgba(255,255,255,0.5);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(18,18,20,0.9);
+    background: rgba(18, 18, 20, 0.9);
 }
 
 .xp-tc {
     font-family: 'SF Mono', 'Fira Code', monospace;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.75rem;
 }
 
@@ -1990,18 +2068,26 @@ footer {
     display: flex;
     gap: 0;
 }
+
 .xp-dvr-tabs span {
     padding: 4px 10px;
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255, 255, 255, 0.35);
     cursor: pointer;
     border-bottom: 2px solid transparent;
     transition: all 0.2s;
 }
-.xp-dvr-tabs span.active { color: #FFB464; border-bottom-color: #FFB464; }
-.xp-dvr-tabs span:hover { color: rgba(255,255,255,0.7); }
+
+.xp-dvr-tabs span.active {
+    color: #FFB464;
+    border-bottom-color: #FFB464;
+}
+
+.xp-dvr-tabs span:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
 
 .xp-dvr-tracks {
     flex: 1;
@@ -2013,30 +2099,31 @@ footer {
     width: 32px;
     display: flex;
     flex-direction: column;
-    background: rgba(18,18,20,0.9);
-    border-right: 1px solid rgba(255,255,255,0.05);
+    background: rgba(18, 18, 20, 0.9);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 .xp-dvr-labels span {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.55rem;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255, 255, 255, 0.35);
     font-family: 'SF Mono', monospace;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .xp-dvr-track-area {
     flex: 1;
     position: relative;
-    background: rgba(20,20,22,0.6);
+    background: rgba(20, 20, 22, 0.6);
 }
 
 .xp-dvr-row {
     height: calc(100% / 7);
     position: relative;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .xp-clip {
@@ -2045,23 +2132,43 @@ footer {
     bottom: 2px;
     border-radius: 3px;
     font-size: 0.5rem;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     display: flex;
     align-items: center;
     padding: 0 4px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.xp-clip-blue { background: rgba(68,130,200,0.7); }
-.xp-clip-lblue { background: rgba(120,170,220,0.6); }
-.xp-clip-purple { background: rgba(150,110,180,0.7); }
-.xp-clip-teal { background: rgba(70,170,170,0.7); }
-.xp-clip-gray { background: rgba(150,150,150,0.4); }
-.xp-clip-agreen { background: rgba(60,160,100,0.5); }
-.xp-clip-dgreen { background: rgba(40,130,80,0.6); }
+.xp-clip-blue {
+    background: rgba(68, 130, 200, 0.7);
+}
+
+.xp-clip-lblue {
+    background: rgba(120, 170, 220, 0.6);
+}
+
+.xp-clip-purple {
+    background: rgba(150, 110, 180, 0.7);
+}
+
+.xp-clip-teal {
+    background: rgba(70, 170, 170, 0.7);
+}
+
+.xp-clip-gray {
+    background: rgba(150, 150, 150, 0.4);
+}
+
+.xp-clip-agreen {
+    background: rgba(60, 160, 100, 0.5);
+}
+
+.xp-clip-dgreen {
+    background: rgba(40, 130, 80, 0.6);
+}
 
 .xp-dvr-scrubber {
     position: absolute;
@@ -2072,8 +2179,9 @@ footer {
     z-index: 5;
     left: 18%;
     animation: dvr-scrub 12s linear infinite;
-    box-shadow: 0 0 4px rgba(255,68,68,0.5);
+    box-shadow: 0 0 4px rgba(255, 68, 68, 0.5);
 }
+
 .xp-dvr-scrubber::before {
     content: '';
     position: absolute;
@@ -2086,21 +2194,34 @@ footer {
 }
 
 @keyframes dvr-scrub {
-    0%   { left: 2%; }
-    100% { left: 96%; }
+    0% {
+        left: 2%;
+    }
+
+    100% {
+        left: 96%;
+    }
 }
 
 /* Spinner for loading indicator */
 @keyframes xp-spin-anim {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
-.xp-spin { animation: xp-spin-anim 1.5s linear infinite; }
+
+.xp-spin {
+    animation: xp-spin-anim 1.5s linear infinite;
+}
 
 /* ── Snapchat Brand Logo ── */
 .xp-snap-brand {
     padding: 12px 0 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     margin-bottom: 16px;
 }
 
@@ -2112,12 +2233,13 @@ footer {
     transform: translateY(-50%);
     width: 140px;
     aspect-ratio: 9/16;
-    border: 1px solid rgba(255,234,77,0.2);
+    border: 1px solid rgba(255, 234, 77, 0.2);
     border-radius: 12px;
     z-index: 5;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     overflow: hidden;
 }
+
 .xp-snap-camera-inner {
     width: 100%;
     height: 100%;
@@ -2127,6 +2249,7 @@ footer {
     justify-content: center;
     gap: 8px;
 }
+
 .xp-snap-camera-inner img {
     width: 100%;
     height: 100%;
@@ -2134,28 +2257,50 @@ footer {
     position: absolute;
     inset: 0;
 }
+
 .xp-snap-label {
     font-size: 0.6rem;
-    color: rgba(255,234,77,0.3);
+    color: rgba(255, 234, 77, 0.3);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .xp-snap-corner {
     position: absolute;
     width: 14px;
     height: 14px;
-    border-color: rgba(255,234,77,0.4);
+    border-color: rgba(255, 234, 77, 0.4);
     border-style: solid;
 }
-.xp-snap-corner.tl { top: 6px; left: 6px; border-width: 2px 0 0 2px; }
-.xp-snap-corner.tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
-.xp-snap-corner.bl { bottom: 6px; left: 6px; border-width: 0 0 2px 2px; }
-.xp-snap-corner.br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
+
+.xp-snap-corner.tl {
+    top: 6px;
+    left: 6px;
+    border-width: 2px 0 0 2px;
+}
+
+.xp-snap-corner.tr {
+    top: 6px;
+    right: 6px;
+    border-width: 2px 2px 0 0;
+}
+
+.xp-snap-corner.bl {
+    bottom: 6px;
+    left: 6px;
+    border-width: 0 0 2px 2px;
+}
+
+.xp-snap-corner.br {
+    bottom: 6px;
+    right: 6px;
+    border-width: 0 2px 2px 0;
+}
 
 /* ── AdMitra sidebar brand fix ── */
 .xp-sidebar-brand {
     padding: 4px 0 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     margin-bottom: 16px;
 }
 
@@ -2166,14 +2311,14 @@ footer {
 
 .xp-window-lens .xp-window-sidebar {
     width: 220px;
-    background: rgba(10,10,12,0.5);
+    background: rgba(10, 10, 12, 0.5);
     padding: 15px;
 }
 
 .xp-window-lens .xp-window-sidebar h4 {
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 15px;
     letter-spacing: 1px;
 }
@@ -2187,26 +2332,27 @@ footer {
 .xp-hierarchy li {
     padding: 6px 0;
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .xp-hierarchy li span {
-    width: 8px; height: 8px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #FFEA4D;
     display: inline-block;
 }
 
 .xp-comp-box {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 8px;
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     border-left: 2px solid #FFEA4D;
 }
 
@@ -2214,8 +2360,8 @@ footer {
     flex: 1;
     position: relative;
     background: #000;
-    border-left: 1px solid rgba(255,255,255,0.05);
-    border-right: 1px solid rgba(255,255,255,0.05);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .xp-viewport-overlay {
@@ -2224,7 +2370,7 @@ footer {
     left: 30px;
     right: 200px;
     z-index: 10;
-    background: rgba(20,20,25,0.6);
+    background: rgba(20, 20, 25, 0.6);
     backdrop-filter: blur(10px);
     border-radius: 8px;
     padding: 20px;
@@ -2245,7 +2391,7 @@ footer {
 
 .xp-viewport-desc {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
 }
 
@@ -2288,43 +2434,45 @@ footer {
         overflow: visible !important;
         padding: 16px !important;
     }
-    
+
     .xp-window-top {
         flex-direction: column;
         height: auto;
     }
-    
-    .xp-window-sidebar, .xp-media-pool, .xp-inspector {
+
+    .xp-window-sidebar,
+    .xp-media-pool,
+    .xp-inspector {
         width: 100% !important;
         border: none !important;
-        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
         height: auto !important;
     }
-    
+
     .xp-preview-monitor {
         width: 100% !important;
         min-height: 280px !important;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         padding: 24px 16px !important;
     }
-    
-    .xp-canvas-area { 
-        min-height: 280px; 
+
+    .xp-canvas-area {
+        min-height: 280px;
     }
-    
-    .xp-window-timeline { 
-        min-height: 120px; 
+
+    .xp-window-timeline {
+        min-height: 120px;
     }
-    
-    .xp-3d-viewport { 
-        min-height: 350px; 
+
+    .xp-3d-viewport {
+        min-height: 350px;
     }
-    
+
     .xp-dvr-tracks {
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .xp-dvr-track-area {
         min-width: 550px;
         height: 100%;
@@ -2341,20 +2489,20 @@ footer {
         gap: 16px !important;
         min-height: auto !important;
     }
-    
+
     .xp-viewport-overlay {
         position: relative !important;
         inset: auto !important;
         width: 100% !important;
         max-width: 100% !important;
         border: 1px solid rgba(255, 234, 77, 0.15) !important;
-        background: rgba(15,15,20,0.5) !important;
+        background: rgba(15, 15, 20, 0.5) !important;
         backdrop-filter: blur(8px) !important;
         border-radius: 8px !important;
         padding: 16px !important;
         margin: 0 !important;
     }
-    
+
     .xp-snap-camera-frame {
         position: relative !important;
         top: auto !important;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LightRays from './LightRays';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import { initPortfolio } from './portfolio-logic';
+import ProfileCard from './ProfileCard';
 
 const mockVideos = [
     { id: 1, title: "Fresh Groceries", subtitle: "Delivered in 10 mins", bg: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)", icon: "📦" },
@@ -40,7 +41,21 @@ export default function App() {
 
     return (
         <>
-            <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.15 }}>
+            <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
+                <LightRays
+                    raysOrigin="top-center"
+                    raysColor="#0084ff"
+                    raysSpeed={1.7}
+                    lightSpread={2.2}
+                    rayLength={1.8}
+                    followMouse={true}
+                    mouseInfluence={0.4}
+                    noiseAmount={0.23}
+                    distortion={0.05}
+                    className="custom-rays"
+                    pulsating
+                    saturation={2}
+                />
             </div>
 
 
@@ -73,36 +88,26 @@ export default function App() {
                     <a href="#capabilities">Capabilities</a>
                     <a href="#visuals">Visuals</a>
                     <a href="#contact">Contact</a>
+                    <a href="#" className="resume-btn" download style={{ marginTop: '20px' }}>Resume</a>
                 </div>
             </div>
 
             <main>
                 {/* 1. Hero Section */}
                 <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
-                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, opacity: 0.5 }}>
-                        <LightRays
-                            raysOrigin="top-center"
-                            raysColor="#0084ff"
-                            raysSpeed={1.7}
-                            lightSpread={2}
-                            rayLength={1.2}
-                            followMouse={true}
-                            mouseInfluence={0.4}
-                            noiseAmount={0.23}
-                            distortion={0.05}
-                            className="custom-rays"
-                            pulsating
-                            saturation={2}
-                        />
-                    </div>
                     <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                        <div className="hero-content">
-                            <p className="hero-label reveal-text">Gen AI Visual Director</p>
-                            <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
-                            <p className="hero-sub reveal-text">Pioneering high-retention visual narratives through the intersection
-                                of generative AI and human-led creative strategy.</p>
-                            <div className="hero-cta reveal-item">
-                                <a href="#capabilities" className="main-btn">View Capabilities</a>
+                        <div className="hero-grid">
+                            <div className="hero-content">
+                                <p className="hero-label reveal-text">Gen AI Visual Director</p>
+                                <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
+                                <p className="hero-sub reveal-text">Pioneering high-retention visual narratives through the intersection
+                                    of generative AI and human-led creative strategy.</p>
+                                <div className="hero-cta reveal-item">
+                                    <a href="#capabilities" className="main-btn">View Capabilities</a>
+                                </div>
+                            </div>
+                            <div className="hero-avatar-wrapper">
+                                <ProfileCard videoSrc="assets/videos/video1.mp4" />
                             </div>
                         </div>
                     </div>
