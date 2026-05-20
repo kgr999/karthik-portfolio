@@ -492,18 +492,6 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.75);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
-}
-
-.visual-item:hover .visual-media {
-    border-color: var(--accent);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), var(--glow);
-}
-
-.visual-item:hover .visual-image {
-    transform: scale(1.02);
-    filter: brightness(0.95);
 }
 
 .visual-info {
@@ -1716,9 +1704,8 @@ footer {
     flex: 1;
 }
 
-/* ── WINDOW 1: AdMitra (Fal.ai style) ── */
 .xp-window-fal .xp-window-body {
-    height: 500px;
+    height: 600px;
 }
 
 .xp-window-fal .xp-window-sidebar {
@@ -1777,8 +1764,10 @@ footer {
 .xp-window-fal .xp-window-main {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    padding: 30px;
+    flex-direction: row;
+    gap: 24px;
+    padding: 24px;
+    overflow: hidden;
     position: relative;
 }
 
@@ -2269,13 +2258,35 @@ footer {
     pointer-events: none;
 }
 
+.xp-left-pane {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+}
+
 /* Responsive Override and Layout Adapters */
 @media (max-width: 992px) {
+    .xp-left-pane {
+        flex: none;
+        min-height: auto;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
     .xp-window-fal .xp-window-body,
     .xp-window-davinci .xp-window-body,
     .xp-window-lens .xp-window-body {
         flex-direction: column;
         height: auto;
+    }
+
+    .xp-window-fal .xp-window-main {
+        flex-direction: column !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 16px !important;
     }
     
     .xp-window-top {
