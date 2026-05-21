@@ -697,6 +697,7 @@ export default function App() {
                     <div className="nav-links">
                         <a href="#capabilities">Capabilities</a>
                         <a href="#self-visuals">Visuals</a>
+                        <a href="#experience-journey">Experience</a>
                         <a href="#contact">Contact</a>
                     </div>
                     <div className="nav-actions">
@@ -714,6 +715,7 @@ export default function App() {
                 <div className="mobile-menu-inner">
                     <a href="#capabilities">Capabilities</a>
                     <a href="#self-visuals">Visuals</a>
+                    <a href="#experience-journey">Experience</a>
                     <a href="#contact">Contact</a>
                     <a href="#" className="resume-btn" download style={{ marginTop: '20px' }}>Resume</a>
                 </div>
