@@ -1239,7 +1239,7 @@ export default function App() {
                                                         <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>01.</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
-                                                                src="/assets/images/montra_logo.svg" 
+                                                                src="/assets/images/montra_logo.png" 
                                                                 onError={(e) => { 
                                                                     if (!e.target.dataset.triedFallback) {
                                                                         e.target.dataset.triedFallback = 'true';
@@ -1263,7 +1263,7 @@ export default function App() {
                                                         <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>02.</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
-                                                                src="/assets/images/ampere_logo.svg" 
+                                                                src="/assets/images/ampere_logo.png" 
                                                                 onError={(e) => { 
                                                                     if (!e.target.dataset.triedFallback) {
                                                                         e.target.dataset.triedFallback = 'true';
@@ -1287,7 +1287,7 @@ export default function App() {
                                                         <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>03.</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
-                                                                src="/assets/images/lincoln_logo.svg" 
+                                                                src="/assets/images/lincoln_logo.png" 
                                                                 onError={(e) => { 
                                                                     if (!e.target.dataset.triedFallback) {
                                                                         e.target.dataset.triedFallback = 'true';
