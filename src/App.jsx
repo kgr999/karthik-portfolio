@@ -696,7 +696,7 @@ export default function App() {
                     </div>
                     <div className="nav-links">
                         <a href="#capabilities">Capabilities</a>
-                        <a href="#visuals">Visuals</a>
+                        <a href="#self-visuals">Visuals</a>
                         <a href="#contact">Contact</a>
                     </div>
                     <div className="nav-actions">
@@ -713,7 +713,7 @@ export default function App() {
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
                     <a href="#capabilities">Capabilities</a>
-                    <a href="#visuals">Visuals</a>
+                    <a href="#self-visuals">Visuals</a>
                     <a href="#contact">Contact</a>
                     <a href="#" className="resume-btn" download style={{ marginTop: '20px' }}>Resume</a>
                 </div>
@@ -954,172 +954,6 @@ export default function App() {
                     </div>
                 </section>
 
-                {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
-                <section id="tech-stack" className="workflow-router-section">
-                    <div className="container">
-                        <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>My Creative Tech Stack</h2>
-                        </div>
-
-                        <div className="tech-stack-dashboard reveal-item">
-                            {/* SVG Neural Nodes Overlay */}
-                            <div className="tech-stack-svg-overlay">
-                                <svg width="100%" height="100%" viewBox="0 0 1000 650" preserveAspectRatio="none">
-                                    {/* Start nodes for Column 1 */}
-                                    <circle cx="280" cy="180" r="5" fill="#4da3ff" className="neural-node" style={{ color: '#4da3ff' }} />
-                                    <circle cx="280" cy="450" r="5" fill="#a855f7" className="neural-node" style={{ color: '#a855f7' }} />
-
-                                    {/* Start nodes for Column 2 */}
-                                    <circle cx="680" cy="180" r="5" fill="#eab308" className="neural-node" style={{ color: '#eab308' }} />
-                                    <circle cx="680" cy="260" r="5" fill="#06b6d4" className="neural-node" style={{ color: '#06b6d4' }} />
-                                    <circle cx="680" cy="360" r="5" fill="#4da3ff" className="neural-node" style={{ color: '#4da3ff' }} />
-                                    <circle cx="680" cy="450" r="5" fill="#ff6f3c" className="neural-node" style={{ color: '#ff6f3c' }} />
-                                    <circle cx="680" cy="560" r="5" fill="#a855f7" className="neural-node" style={{ color: '#a855f7' }} />
-
-                                    {/* Convergence Hub nodes (end terminals) */}
-                                    <circle cx="380" cy="180" r="6" fill="#4da3ff" className="neural-node-hub" />
-                                    <circle cx="780" cy="360" r="6" fill="#4da3ff" className="neural-node-hub" />
-                                </svg>
-                            </div>
-
-                            {/* Dashboard Columns Grid */}
-                            <div className="tech-stack-columns">
-                                
-                                {/* COLUMN 1: COGNITIVE INPUT */}
-                                <div className="tech-stack-column cognitive-column">
-                                    <div className="column-label">PHASE 01 // COGNITIVE CORE</div>
-                                    
-                                    {techStackCategories.filter(c => c.num === "01" || c.num === "02").map((category) => (
-                                        <div 
-                                            key={category.name} 
-                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
-                                            onMouseEnter={() => setHoveredCategory(category.name)}
-                                            onMouseLeave={() => setHoveredCategory(null)}
-                                        >
-                                            <div className="tech-stack-card-header">
-                                                <span className="tech-stack-index">{category.num}</span>
-                                                <h3 className="tech-stack-title">{category.name}</h3>
-                                            </div>
-                                            <div className="tech-stack-divider"></div>
-                                            <div className="tech-stack-badges">
-                                                {category.tools.map((tool) => (
-                                                    <div 
-                                                        key={tool.name} 
-                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
-                                                        style={{ '--tool-glow': tool.glow }}
-                                                        onMouseEnter={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(tool.name);
-                                                            setHoveredCategory(category.name);
-                                                        }}
-                                                        onMouseLeave={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(null);
-                                                        }}
-                                                    >
-                                                        <div className="tech-stack-badge-icon">
-                                                            {renderToolIcon(tool)}
-                                                        </div>
-                                                        <span className="tech-stack-badge-name">{tool.name}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* COLUMN 2: GENERATIVE MATRIX */}
-                                <div className="tech-stack-column synthesis-column">
-                                    <div className="column-label">PHASE 02 // SYNTHESIS PIPELINES</div>
-                                    
-                                    {techStackCategories.filter(c => ["03", "04", "05", "06", "07"].includes(c.num)).map((category) => (
-                                        <div 
-                                            key={category.name} 
-                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
-                                            onMouseEnter={() => setHoveredCategory(category.name)}
-                                            onMouseLeave={() => setHoveredCategory(null)}
-                                        >
-                                            <div className="tech-stack-card-header">
-                                                <span className="tech-stack-index">{category.num}</span>
-                                                <h3 className="tech-stack-title">{category.name}</h3>
-                                            </div>
-                                            <div className="tech-stack-divider"></div>
-                                            <div className="tech-stack-badges">
-                                                {category.tools.map((tool) => (
-                                                    <div 
-                                                        key={tool.name} 
-                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
-                                                        style={{ '--tool-glow': tool.glow }}
-                                                        onMouseEnter={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(tool.name);
-                                                            setHoveredCategory(category.name);
-                                                        }}
-                                                        onMouseLeave={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(null);
-                                                        }}
-                                                    >
-                                                        <div className="tech-stack-badge-icon">
-                                                            {renderToolIcon(tool)}
-                                                        </div>
-                                                        <span className="tech-stack-badge-name">{tool.name}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* COLUMN 3: CINEMATIC MASTERING */}
-                                <div className="tech-stack-column mastering-column">
-                                    <div className="column-label">PHASE 03 // MASTERING CONVERGENCE</div>
-                                    
-                                    {techStackCategories.filter(c => c.num === "08").map((category) => (
-                                        <div 
-                                            key={category.name} 
-                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
-                                            onMouseEnter={() => setHoveredCategory(category.name)}
-                                            onMouseLeave={() => setHoveredCategory(null)}
-                                        >
-                                            <div className="tech-stack-card-header">
-                                                <span className="tech-stack-index">{category.num}</span>
-                                                <h3 className="tech-stack-title">{category.name}</h3>
-                                            </div>
-                                            <div className="tech-stack-divider"></div>
-                                            <div className="tech-stack-badges">
-                                                {category.tools.map((tool) => (
-                                                    <div 
-                                                        key={tool.name} 
-                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
-                                                        style={{ '--tool-glow': tool.glow }}
-                                                        onMouseEnter={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(tool.name);
-                                                            setHoveredCategory(category.name);
-                                                        }}
-                                                        onMouseLeave={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(null);
-                                                        }}
-                                                    >
-                                                        <div className="tech-stack-badge-icon">
-                                                            {renderToolIcon(tool)}
-                                                        </div>
-                                                        <span className="tech-stack-badge-name">{tool.name}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </section>
 
                 {/* 4.5. Cinematic Self-Visuals Section */}
                 <section id="self-visuals">
@@ -1747,6 +1581,173 @@ export default function App() {
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
+                <section id="tech-stack" className="workflow-router-section">
+                    <div className="container">
+                        <div className="section-header text-center">
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>My Creative Tech Stack</h2>
+                        </div>
+
+                        <div className="tech-stack-dashboard reveal-item">
+                            {/* SVG Neural Nodes Overlay */}
+                            <div className="tech-stack-svg-overlay">
+                                <svg width="100%" height="100%" viewBox="0 0 1000 650" preserveAspectRatio="none">
+                                    {/* Start nodes for Column 1 */}
+                                    <circle cx="280" cy="180" r="5" fill="#4da3ff" className="neural-node" style={{ color: '#4da3ff' }} />
+                                    <circle cx="280" cy="450" r="5" fill="#a855f7" className="neural-node" style={{ color: '#a855f7' }} />
+
+                                    {/* Start nodes for Column 2 */}
+                                    <circle cx="680" cy="180" r="5" fill="#eab308" className="neural-node" style={{ color: '#eab308' }} />
+                                    <circle cx="680" cy="260" r="5" fill="#06b6d4" className="neural-node" style={{ color: '#06b6d4' }} />
+                                    <circle cx="680" cy="360" r="5" fill="#4da3ff" className="neural-node" style={{ color: '#4da3ff' }} />
+                                    <circle cx="680" cy="450" r="5" fill="#ff6f3c" className="neural-node" style={{ color: '#ff6f3c' }} />
+                                    <circle cx="680" cy="560" r="5" fill="#a855f7" className="neural-node" style={{ color: '#a855f7' }} />
+
+                                    {/* Convergence Hub nodes (end terminals) */}
+                                    <circle cx="380" cy="180" r="6" fill="#4da3ff" className="neural-node-hub" />
+                                    <circle cx="780" cy="360" r="6" fill="#4da3ff" className="neural-node-hub" />
+                                </svg>
+                            </div>
+
+                            {/* Dashboard Columns Grid */}
+                            <div className="tech-stack-columns">
+                                
+                                {/* COLUMN 1: COGNITIVE INPUT */}
+                                <div className="tech-stack-column cognitive-column">
+                                    <div className="column-label">PHASE 01 // COGNITIVE CORE</div>
+                                    
+                                    {techStackCategories.filter(c => c.num === "01" || c.num === "02").map((category) => (
+                                        <div 
+                                            key={category.name} 
+                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                            onMouseEnter={() => setHoveredCategory(category.name)}
+                                            onMouseLeave={() => setHoveredCategory(null)}
+                                        >
+                                            <div className="tech-stack-card-header">
+                                                <span className="tech-stack-index">{category.num}</span>
+                                                <h3 className="tech-stack-title">{category.name}</h3>
+                                            </div>
+                                            <div className="tech-stack-divider"></div>
+                                            <div className="tech-stack-badges">
+                                                {category.tools.map((tool) => (
+                                                    <div 
+                                                        key={tool.name} 
+                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
+                                                        style={{ '--tool-glow': tool.glow }}
+                                                        onMouseEnter={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(tool.name);
+                                                            setHoveredCategory(category.name);
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(null);
+                                                        }}
+                                                    >
+                                                        <div className="tech-stack-badge-icon">
+                                                            {renderToolIcon(tool)}
+                                                        </div>
+                                                        <span className="tech-stack-badge-name">{tool.name}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* COLUMN 2: GENERATIVE MATRIX */}
+                                <div className="tech-stack-column synthesis-column">
+                                    <div className="column-label">PHASE 02 // SYNTHESIS PIPELINES</div>
+                                    
+                                    {techStackCategories.filter(c => ["03", "04", "05", "06", "07"].includes(c.num)).map((category) => (
+                                        <div 
+                                            key={category.name} 
+                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                            onMouseEnter={() => setHoveredCategory(category.name)}
+                                            onMouseLeave={() => setHoveredCategory(null)}
+                                        >
+                                            <div className="tech-stack-card-header">
+                                                <span className="tech-stack-index">{category.num}</span>
+                                                <h3 className="tech-stack-title">{category.name}</h3>
+                                            </div>
+                                            <div className="tech-stack-divider"></div>
+                                            <div className="tech-stack-badges">
+                                                {category.tools.map((tool) => (
+                                                    <div 
+                                                        key={tool.name} 
+                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
+                                                        style={{ '--tool-glow': tool.glow }}
+                                                        onMouseEnter={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(tool.name);
+                                                            setHoveredCategory(category.name);
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(null);
+                                                        }}
+                                                    >
+                                                        <div className="tech-stack-badge-icon">
+                                                            {renderToolIcon(tool)}
+                                                        </div>
+                                                        <span className="tech-stack-badge-name">{tool.name}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* COLUMN 3: CINEMATIC MASTERING */}
+                                <div className="tech-stack-column mastering-column">
+                                    <div className="column-label">PHASE 03 // MASTERING CONVERGENCE</div>
+                                    
+                                    {techStackCategories.filter(c => c.num === "08").map((category) => (
+                                        <div 
+                                            key={category.name} 
+                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                            onMouseEnter={() => setHoveredCategory(category.name)}
+                                            onMouseLeave={() => setHoveredCategory(null)}
+                                        >
+                                            <div className="tech-stack-card-header">
+                                                <span className="tech-stack-index">{category.num}</span>
+                                                <h3 className="tech-stack-title">{category.name}</h3>
+                                            </div>
+                                            <div className="tech-stack-divider"></div>
+                                            <div className="tech-stack-badges">
+                                                {category.tools.map((tool) => (
+                                                    <div 
+                                                        key={tool.name} 
+                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
+                                                        style={{ '--tool-glow': tool.glow }}
+                                                        onMouseEnter={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(tool.name);
+                                                            setHoveredCategory(category.name);
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(null);
+                                                        }}
+                                                    >
+                                                        <div className="tech-stack-badge-icon">
+                                                            {renderToolIcon(tool)}
+                                                        </div>
+                                                        <span className="tech-stack-badge-name">{tool.name}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                            </div>
+
 
                         </div>
                     </div>
