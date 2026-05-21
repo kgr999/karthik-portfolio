@@ -3296,7 +3296,7 @@ footer {
 
 .xp-brands-logos {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -3304,34 +3304,78 @@ footer {
 .xp-brand-logo-btn {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 50px;
-    padding: 10px 24px 10px 18px;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+    padding: 6px 14px 6px 10px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 500;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
 }
 
 .xp-brand-logo-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
 }
 
-.xp-window-fal .xp-brand-logo-btn:hover {
-    background: rgba(59, 130, 246, 0.12) !important;
-    border-color: rgba(59, 130, 246, 0.45) !important;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.25) !important;
-    color: #fff !important;
+/* Brand specific overrides inside AdMitra (Fal) window */
+.xp-brand-logo-btn.xp-brand-montra:hover {
+    background: rgba(255, 51, 75, 0.08) !important;
+    border-color: rgba(255, 51, 75, 0.45) !important;
+    box-shadow: 0 0 20px rgba(255, 51, 75, 0.3) !important;
+}
+
+.xp-brand-logo-btn.xp-brand-ampere:hover {
+    background: rgba(0, 255, 240, 0.08) !important;
+    border-color: rgba(0, 255, 240, 0.45) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 240, 0.3) !important;
+}
+
+.xp-brand-logo-btn.xp-brand-lincoln:hover {
+    background: rgba(255, 140, 0, 0.08) !important;
+    border-color: rgba(255, 140, 0, 0.45) !important;
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.3) !important;
+}
+
+/* Monospace circular prefix badges */
+.xp-brand-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.65rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.xp-brand-montra:hover .xp-brand-badge {
+    background: rgba(255, 51, 75, 0.2) !important;
+    color: #FF334B !important;
+    border-color: rgba(255, 51, 75, 0.3) !important;
+}
+
+.xp-brand-ampere:hover .xp-brand-badge {
+    background: rgba(0, 255, 240, 0.2) !important;
+    color: #00FFF0 !important;
+    border-color: rgba(0, 255, 240, 0.3) !important;
+}
+
+.xp-brand-lincoln:hover .xp-brand-badge {
+    background: rgba(255, 140, 0, 0.2) !important;
+    color: #FF8C00 !important;
+    border-color: rgba(255, 140, 0, 0.3) !important;
 }
 
 .xp-brand-logo-btn-icon {

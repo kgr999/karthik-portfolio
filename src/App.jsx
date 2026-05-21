@@ -1234,9 +1234,9 @@ export default function App() {
                                                 <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
                                                     KEY CAMPAIGN CLIENTS
                                                 </p>
-                                                <div className="xp-brands-logos" style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'stretch', maxWidth: '280px' }}>
-                                                    <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
-                                                        <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>01.</span>
+                                                <div className="xp-brands-logos">
+                                                    <div className="xp-brand-logo-btn xp-brand-montra">
+                                                        <span className="xp-brand-badge">01</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
                                                                 src="/assets/images/montra_logo.png" 
@@ -1257,10 +1257,10 @@ export default function App() {
                                                                 M
                                                             </div>
                                                         </div>
-                                                        <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
+                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
                                                     </div>
-                                                    <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
-                                                        <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>02.</span>
+                                                    <div className="xp-brand-logo-btn xp-brand-ampere">
+                                                        <span className="xp-brand-badge">02</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
                                                                 src="/assets/images/ampere_logo.png" 
@@ -1281,10 +1281,10 @@ export default function App() {
                                                                 A
                                                             </div>
                                                         </div>
-                                                        <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Ampere Electric</span>
+                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere Electric</span>
                                                     </div>
-                                                    <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
-                                                        <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>03.</span>
+                                                    <div className="xp-brand-logo-btn xp-brand-lincoln">
+                                                        <span className="xp-brand-badge">03</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
                                                                 src="/assets/images/lincoln_logo.png" 
@@ -1305,7 +1305,7 @@ export default function App() {
                                                                 L
                                                             </div>
                                                         </div>
-                                                        <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
+                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
                                                     </div>
                                                 </div>
                                             </div>
