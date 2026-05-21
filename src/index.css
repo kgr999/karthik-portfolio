@@ -670,7 +670,7 @@ section {
 /* Creative Capabilities Redesign (Cinematic & Editorial) */
 .capabilities-section {
     padding: 140px 0;
-    background: radial-gradient(circle at 50% 20%, rgba(10, 18, 42, 0.5) 0%, rgba(3, 7, 18, 1) 100%);
+    background: var(--bg);
     position: relative;
     overflow: hidden;
 }
@@ -684,8 +684,8 @@ section {
 
 .cap-card-v2 {
     position: relative;
-    background: rgba(10, 16, 32, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.035);
     border-radius: 12px;
     padding: 45px 40px;
     display: flex;
@@ -709,7 +709,7 @@ section {
         grid-column: span 8;
         grid-row: span 1;
         min-height: 380px;
-        background: linear-gradient(135deg, rgba(77, 163, 255, 0.03) 0%, rgba(10, 16, 32, 0.35) 100%);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.03) 100%);
         padding: 55px 50px;
     }
     
@@ -744,7 +744,7 @@ section {
     background: linear-gradient(
         to right,
         rgba(255, 255, 255, 0) 0%,
-        rgba(77, 163, 255, 0.03) 50%,
+        rgba(255, 255, 255, 0.03) 50%,
         rgba(255, 255, 255, 0) 100%
     );
     transform: skewX(-25deg);
@@ -754,9 +754,9 @@ section {
 
 .cap-card-v2:hover {
     transform: translateY(-5px);
-    background: rgba(13, 22, 44, 0.45);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-                0 0 40px rgba(77, 163, 255, 0.02);
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* Arete-inspired Section Star Accent Spinner */
@@ -833,7 +833,7 @@ section {
 .cap-focus-tag:hover {
     border-color: var(--accent);
     color: var(--text);
-    background: rgba(77, 163, 255, 0.06);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 /* Tablet Capabilities Grid Optimization */

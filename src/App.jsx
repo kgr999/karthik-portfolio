@@ -752,21 +752,7 @@ export default function App() {
                 <section id="capabilities" className="capabilities-section">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                                Creative Capabilities
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                            </h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Creative Capabilities</h2>
                         </div>
                         <div className="capabilities-grid-v2 reveal-item">
                             {/* 1. Hero Card: AI Creative Direction */}
@@ -972,21 +958,7 @@ export default function App() {
                 <section id="tech-stack" className="workflow-router-section">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                                My Creative Tech Stack
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                            </h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>My Creative Tech Stack</h2>
                         </div>
 
                         <div className="tech-stack-dashboard reveal-item">
@@ -1153,21 +1125,7 @@ export default function App() {
                 <section id="self-visuals">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                                Cinematic Self-Visuals
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                            </h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Cinematic Self-Visuals</h2>
                         </div>
                         <div className="cinema-grid reveal-item">
                             {/* Top Ultrawide Video */}
@@ -1245,21 +1203,7 @@ export default function App() {
                 <section id="visuals">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                                Concept Poster Showcase
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                            </h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Concept Poster Showcase</h2>
                         </div>
                         <div className="visual-gallery">
                             {/* Project 1 */}
@@ -1312,21 +1256,7 @@ export default function App() {
                 <section id="experience-journey">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                                Experience Journey
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                            </h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Experience Journey</h2>
                         </div>
 
                         <div className="xp-windows-container">
@@ -1798,21 +1728,7 @@ export default function App() {
                 <section id="certs">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                                Certifications
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
-                                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-                                </svg>
-                            </h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Certifications</h2>
                         </div>
                         <div className="cert-grid reveal-item">
                             <div className="cert-card">
