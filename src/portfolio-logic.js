@@ -122,7 +122,7 @@ export function initPortfolio() {
     }
 
     // Interactive Cursor States
-    const interactiveElements = document.querySelectorAll('a, button, .video-card, .gallery-item, .cap-card, .cert-card, .presence-card, .step, .avatar-card-outer');
+    const interactiveElements = document.querySelectorAll('a, button, .video-card, .gallery-item, .cap-card, .cap-card-v2, .cert-card, .presence-card, .step, .avatar-card-outer');
 
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {

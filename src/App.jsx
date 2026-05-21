@@ -749,46 +749,220 @@ export default function App() {
 
                 <div className={`portfolio-sections-wrapper ${isInitialized ? 'revealed' : 'veiled'}`}>
                     {/* 4. Creative Capabilities */}
-                <section id="capabilities">
+                <section id="capabilities" className="capabilities-section">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Creative Systems</h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                                Creative Capabilities
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                            </h2>
                         </div>
-                        <div className="capabilities-grid reveal-item" id="capabilities-grid-animated">
-                            <div className="cap-card">
-                                <h3>YouTube Video Editing</h3>
-                                <p>High-end cinematic editing focused on long-form narrative retention.</p>
-                                <div className="card-progress"><div className="card-progress-fill"></div></div>
+                        <div className="capabilities-grid-v2 reveal-item">
+                            {/* 1. Hero Card: AI Creative Direction */}
+                            <div className="cap-card-v2 hero-cap-card">
+                                <div className="cap-card-header">
+                                    <div className="cap-status-group">
+                                        <span className="cap-dot-indicator pulse-blue"></span>
+                                        <span className="cap-num">01</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span className="cap-label">PRIMARY SPECIALIZATION</span>
+                                </div>
+                                <div className="cap-card-body">
+                                    <h3 className="cap-title">AI Creative Direction</h3>
+                                    <p className="cap-desc">
+                                        Leading next-generation brand narratives by combining advanced generative AI tools with high-fidelity creative direction to produce premium cinematic worlds.
+                                    </p>
+                                    <div className="cap-focus-tags">
+                                        <span className="cap-focus-tag">Multimodal AI</span>
+                                        <span className="cap-focus-tag">Cinematic Worldbuilding</span>
+                                        <span className="cap-focus-tag">Directing</span>
+                                    </div>
+                                </div>
+                                <div className="cap-meta">
+                                    <div className="meta-item">
+                                        <span className="meta-key">Focus Area</span>
+                                        <span className="meta-val">AI Production & Branding</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <span className="meta-key">Key Deliverable</span>
+                                        <span className="meta-val">Cinematic Worldbuilding</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <span className="meta-key">Technology</span>
+                                        <span className="meta-val">Multimodal AI Pipelines</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cap-card">
-                                <h3>Short Form Video Editing</h3>
-                                <p>Dynamic, high-impact vertical content engineered for the algorithm.</p>
-                                <div className="card-progress"><div className="card-progress-fill"></div></div>
+
+                            {/* 2. Cinematic Video Editing */}
+                            <div className="cap-card-v2">
+                                <div className="cap-card-header">
+                                    <div className="cap-status-group">
+                                        <span className="cap-dot-indicator"></span>
+                                        <span className="cap-num">02</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span className="cap-label">VIDEO PRODUCTION</span>
+                                </div>
+                                <div className="cap-card-body">
+                                    <h3 className="cap-title">Cinematic Video Editing</h3>
+                                    <p className="cap-desc">
+                                        High-end video editing for long-form content, documentaries, and commercials, focusing on pacing, structure, and emotional engagement.
+                                    </p>
+                                    <div className="cap-focus-tags">
+                                        <span className="cap-focus-tag">Pacing & Rhythm</span>
+                                        <span className="cap-focus-tag">Narrative Flow</span>
+                                        <span className="cap-focus-tag">Color Grading</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cap-card">
-                                <h3>Storyboarding</h3>
-                                <p>Visual planning and narrative mapping for complex production cycles.</p>
-                                <div className="card-progress"><div className="card-progress-fill"></div></div>
+
+                            {/* 3. Short-Form Video Editing */}
+                            <div className="cap-card-v2">
+                                <div className="cap-card-header">
+                                    <div className="cap-status-group">
+                                        <span className="cap-dot-indicator"></span>
+                                        <span className="cap-num">03</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span className="cap-label">SOCIAL MEDIA</span>
+                                </div>
+                                <div className="cap-card-body">
+                                    <h3 className="cap-title">Short-Form Video Editing</h3>
+                                    <p className="cap-desc">
+                                        Dynamic, high-impact vertical videos, reels, and TikToks engineered with strong visual hooks for maximum audience retention.
+                                    </p>
+                                    <div className="cap-focus-tags">
+                                        <span className="cap-focus-tag">Retention Hooks</span>
+                                        <span className="cap-focus-tag">Dynamic Captions</span>
+                                        <span className="cap-focus-tag">Sound FX</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cap-card">
-                                <h3>Content Research</h3>
-                                <p>Data-driven storytelling and deep content analysis for digital systems.</p>
-                                <div className="card-progress"><div className="card-progress-fill"></div></div>
+
+                            {/* 4. Content Research & Strategy */}
+                            <div className="cap-card-v2">
+                                <div className="cap-card-header">
+                                    <div className="cap-status-group">
+                                        <span className="cap-dot-indicator"></span>
+                                        <span className="cap-num">04</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span className="cap-label">IDEATION</span>
+                                </div>
+                                <div className="cap-card-body">
+                                    <h3 className="cap-title">Content Research & Strategy</h3>
+                                    <p className="cap-desc">
+                                        In-depth topic research and data-backed content mapping to design stories that command human attention from the first second.
+                                    </p>
+                                    <div className="cap-focus-tags">
+                                        <span className="cap-focus-tag">Audience Insights</span>
+                                        <span className="cap-focus-tag">Virality Mapping</span>
+                                        <span className="cap-focus-tag">Data Analytics</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cap-card">
-                                <h3>AI Creative Workflows</h3>
-                                <p>Bespoke automation and generative pipelines for next-gen production.</p>
-                                <div className="card-progress"><div className="card-progress-fill"></div></div>
+
+                            {/* 5. Visual Storytelling */}
+                            <div className="cap-card-v2">
+                                <div className="cap-card-header">
+                                    <div className="cap-status-group">
+                                        <span className="cap-dot-indicator"></span>
+                                        <span className="cap-num">05</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span className="cap-label">CREATIVE TECHNIQUE</span>
+                                </div>
+                                <div className="cap-card-body">
+                                    <h3 className="cap-title">Visual Storytelling</h3>
+                                    <p className="cap-desc">
+                                        Blending moving pixels, composition, lighting, and immersive sound design to elevate narrative depth and drive conversion.
+                                    </p>
+                                    <div className="cap-focus-tags">
+                                        <span className="cap-focus-tag">Composition</span>
+                                        <span className="cap-focus-tag">Dramatic Lighting</span>
+                                        <span className="cap-focus-tag">Soundscapes</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cap-card">
-                                <h3>Creative Direction</h3>
-                                <p>Holistic visual strategy and creative leadership for AI-first brands.</p>
-                                <div className="card-progress"><div className="card-progress-fill"></div></div>
+
+                            {/* 6. AI Concept Art & Workflows */}
+                            <div className="cap-card-v2">
+                                <div className="cap-card-header">
+                                    <div className="cap-status-group">
+                                        <span className="cap-dot-indicator"></span>
+                                        <span className="cap-num">06</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span className="cap-label">PRE-PRODUCTION</span>
+                                </div>
+                                <div className="cap-card-body">
+                                    <h3 className="cap-title">AI Concept Art & Workflows</h3>
+                                    <p className="cap-desc">
+                                        Bespoke conceptual artwork, visual mood boards, and customized image generation utilizing state-of-the-art AI systems.
+                                    </p>
+                                    <div className="cap-focus-tags">
+                                        <span className="cap-focus-tag">Prompt Crafting</span>
+                                        <span className="cap-focus-tag">ControlNet</span>
+                                        <span className="cap-focus-tag">Style Transfer</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cap-card">
-                                <h3>Visual Storytelling</h3>
-                                <p>The craft of moving pixels to evoke emotion and drive conversion.</p>
-                                <div className="card-progress"><div className="card-progress-fill"></div></div>
+
+                            {/* 7. Storyboarding & Pre-Visuals */}
+                            <div className="cap-card-v2">
+                                <div className="cap-card-header">
+                                    <div className="cap-status-group">
+                                        <span className="cap-dot-indicator"></span>
+                                        <span className="cap-num">07</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span className="cap-label">PLANNING</span>
+                                </div>
+                                <div className="cap-card-body">
+                                    <h3 className="cap-title">Storyboarding & Pre-Visuals</h3>
+                                    <p className="cap-desc">
+                                        Visual narrative mapping, shot design, and sequence layout to plan and optimize complex post-production cycles.
+                                    </p>
+                                    <div className="cap-focus-tags">
+                                        <span className="cap-focus-tag">Sequenced Layouts</span>
+                                        <span className="cap-focus-tag">Midjourney Panels</span>
+                                        <span className="cap-focus-tag">Shot Design</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -798,7 +972,21 @@ export default function App() {
                 <section id="tech-stack" className="workflow-router-section">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>My Creative Tech Stack</h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                                My Creative Tech Stack
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                            </h2>
                         </div>
 
                         <div className="tech-stack-dashboard reveal-item">
@@ -965,7 +1153,21 @@ export default function App() {
                 <section id="self-visuals">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Cinematic Self-Visuals</h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                                Cinematic Self-Visuals
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                            </h2>
                         </div>
                         <div className="cinema-grid reveal-item">
                             {/* Top Ultrawide Video */}
@@ -1043,7 +1245,21 @@ export default function App() {
                 <section id="visuals">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Concept Poster Showcase</h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                                Concept Poster Showcase
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                            </h2>
                         </div>
                         <div className="visual-gallery">
                             {/* Project 1 */}
@@ -1096,7 +1312,21 @@ export default function App() {
                 <section id="experience-journey">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Experience Journey</h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                                Experience Journey
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                            </h2>
                         </div>
 
                         <div className="xp-windows-container">
@@ -1568,7 +1798,21 @@ export default function App() {
                 <section id="certs">
                     <div className="container">
                         <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Certifications</h2>
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                                Certifications
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="star-indicator">
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                    <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+                                </svg>
+                            </h2>
                         </div>
                         <div className="cert-grid reveal-item">
                             <div className="cert-card">
