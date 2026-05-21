@@ -4,6 +4,7 @@ import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import { initPortfolio } from './portfolio-logic';
 import ProfileCard from './ProfileCard';
 
+
 const mockVideos = [
     { id: 1, title: "Fresh Groceries", subtitle: "Delivered in 10 mins", bg: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)", icon: "📦" },
     { id: 2, title: "Hot Biryani", subtitle: "Free delivery today", bg: "linear-gradient(135deg, #d31027 0%, #ea720c 100%)", icon: "🍛" },
@@ -16,10 +17,464 @@ const mockPosters = [
     { id: 3, title: "Eco Mobility", desc: "Zero emissions, zero stress rides", bg: "linear-gradient(135deg, #00b4db 0%, #0083b0 100%)", badge: "NEW" }
 ];
 
+const techStackCategories = [
+    {
+        num: "01",
+        name: "CREATIVE INTELLIGENCE",
+        tools: [
+            { name: "ChatGPT", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", glow: "#10a37f" },
+            { name: "Claude", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/claude-color.svg", glow: "#d97757" },
+            { name: "Gemini", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/gemini-color.svg", glow: "#4285f4" }
+        ]
+    },
+    {
+        num: "02",
+        name: "CREATIVE DIRECTION",
+        tools: [
+            { name: "Storyboarding", svg: "storyboard", glow: "#faff00" },
+            { name: "Narrative Design", svg: "narrative", glow: "#faff00" },
+            { name: "Visual Storytelling", svg: "visual", glow: "#faff00" },
+            { name: "Concept Development", svg: "concept", glow: "#faff00" }
+        ]
+    },
+    {
+        num: "03",
+        name: "PLATFORMS & WORKFLOWS",
+        tools: [
+            { name: "Fal AI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg", glow: "#ff4154" },
+            { name: "OpenArt", logo: "https://www.google.com/s2/favicons?domain=openart.ai&sz=128", glow: "#4f46e5" },
+            { name: "ComfyUI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg", glow: "#4ade80" },
+            { name: "Higgsfield AI", logo: "https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128", glow: "#a855f7" },
+            { name: "Runway", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc" }
+        ]
+    },
+    {
+        num: "04",
+        name: "VIDEO GENERATION",
+        tools: [
+            { name: "Kling", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6" },
+            { name: "Veo", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/google-color.svg", glow: "#4285f4" },
+            { name: "Seedance", logo: "https://www.google.com/s2/favicons?domain=seedance.com&sz=128", glow: "#06b6d4" }
+        ]
+    },
+    {
+        num: "05",
+        name: "IMAGE GENERATION",
+        tools: [
+            { name: "GPT Image", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", glow: "#10a37f" },
+            { name: "Flux", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/flux.svg", glow: "#a855f7" },
+            { name: "NanoBanana", svg: "nanobanana", glow: "#eab308" },
+            { name: "Midjourney", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/midjourney.svg", glow: "#ffffff" }
+        ]
+    },
+    {
+        num: "06",
+        name: "AI AVATARS",
+        tools: [
+            { name: "HeyGen", logo: "https://www.google.com/s2/favicons?domain=heygen.com&sz=128", glow: "#06b6d4" },
+            { name: "Kling AI Avatar", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6" }
+        ]
+    },
+    {
+        num: "07",
+        name: "AUDIO GENERATION",
+        tools: [
+            { name: "ElevenLabs", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg", glow: "#fbbf24" },
+            { name: "Suno", logo: "https://www.google.com/s2/favicons?domain=suno.com&sz=128", glow: "#eab308" }
+        ]
+    },
+    {
+        num: "08",
+        name: "POST PRODUCTION",
+        tools: [
+            { name: "Premiere Pro", customBadge: "Pr", color: "#14e4ff", bg: "#00005c", glow: "#14e4ff" },
+            { name: "DaVinci Resolve", logo: "https://www.google.com/s2/favicons?domain=blackmagicdesign.com&sz=128", glow: "#ff6f3c" },
+            { name: "VN", customBadge: "VN", color: "#ffffff", bg: "#000000", glow: "#ffffff" }
+        ]
+    }
+];
+
+const getTelemetryLogs = (categoryName, toolName) => {
+    if (toolName) {
+        switch (toolName) {
+            case "ChatGPT":
+                return [
+                    "⚡ COGNITIVE SYNAPSE: BOUND",
+                    "• model: GPT-4o-cinematic-agent",
+                    "• prompt latency: 12ms",
+                    "• mode: Creative Intelligence Orchestrator",
+                    "• status: Active narrative drafting..."
+                ];
+            case "Claude":
+                return [
+                    "⚡ ANTHROPIC CORE: ENGAGED",
+                    "• model: Claude 3.5 Sonnet",
+                    "• context depth: 200k tokens active",
+                    "• focus: High-retention cinematic scripting",
+                    "• status: Structure analyzer online"
+                ];
+            case "Gemini":
+                return [
+                    "⚡ GOOGLE DEEPMIND NODE: ACTIVE",
+                    "• model: Gemini 1.5 Pro Ultra",
+                    "• multimodal pipeline: Enabled",
+                    "• input: Spatial-video storyboard analysis",
+                    "• status: Multilingual processing..."
+                ];
+            case "Storyboarding":
+                return [
+                    "👁️ DIRECTION MATRIX: LIVE",
+                    "• canvas: 21:9 Anamorphic aspect ratio",
+                    "• frames: 124 generated scenes / sequence",
+                    "• precision: 99.8% flow match",
+                    "• status: Layout composition calibrated"
+                ];
+            case "Narrative Design":
+                return [
+                    "👁️ NARRATIVE ENGINE: COMPILED",
+                    "• sub-structure: Hyper-retention pacing",
+                    "• emotional tone: Blade Runner ambient style",
+                    "• vocabulary density: Monospace optimal",
+                    "• status: Pacing sync active"
+                ];
+            case "Visual Storytelling":
+                return [
+                    "👁️ COMPOSITION GRID: ENGAGED",
+                    "• rule-of-thirds: Auto-rectified",
+                    "• color gamut: DCI-P3 cinematic wide-color",
+                    "• perspective: Spatial volumetric tracking",
+                    "• status: Aesthetic mapping complete"
+                ];
+            case "Concept Development":
+                return [
+                    "👁️ WORLD CONTEXT: STABILIZED",
+                    "• moodboard compilation: Fal-comfy pipeline",
+                    "• style reference: Retro-sci-fi minimalism",
+                    "• complexity factor: Grade 9 scale",
+                    "• status: Ready for seed generation"
+                ];
+            case "Fal AI":
+                return [
+                    "📡 API ROUTER: ROUTING [FAL_AI]",
+                    "• model: fal-realtime-latent-diffusion",
+                    "• sampling: 12 steps LCM-turbo",
+                    "• bandwidth: 120MB/s stream active",
+                    "• status: Frame rendering in 85ms"
+                ];
+            case "OpenArt":
+                return [
+                    "📡 LATENT COMPILER: ON",
+                    "• workspace: OpenArt Creative Canvas",
+                    "• noise injection: 0.12 scale custom",
+                    "• canvas output: 4096x2304 high-res upscale",
+                    "• status: Latent upscale active"
+                ];
+            case "ComfyUI":
+                return [
+                    "📡 NODE GRID: COMPILING WORKFLOW",
+                    "• controlnet: openpose & depth maps active",
+                    "• models: FLUX.1 [dev] fp8 weights",
+                    "• iterations: 20 sampling steps",
+                    "• status: Executing latent pipeline..."
+                ];
+            case "Higgsfield AI":
+                return [
+                    "📡 SPATIAL RENDERER: HIGGSFIELD",
+                    "• dynamic motion vectoring: Active",
+                    "• camera paths: Orbiting-drone dolly-zoom",
+                    "• frame consistency: 94.2% stability index",
+                    "• status: Simulating physical motion..."
+                ];
+            case "Runway":
+                return [
+                    "📡 GEN-3 ALPHA COMPILER: RUNNING",
+                    "• generation: 10s video generation output",
+                    "• upscale factor: Ultra-high-fidelity resolution",
+                    "• temporal coherence: Grade A optimal",
+                    "• status: Video frame synthesis complete"
+                ];
+            case "Kling":
+                return [
+                    "🎬 VIDEO GEN CORE: KLING_V1.5",
+                    "• prompt: High-fidelity cinematic motion tracking",
+                    "• aspect ratio: 21:9 anamorphic wider",
+                    "• frame rate: 60fps high-FPS active",
+                    "• status: Motion vector simulation..."
+                ];
+            case "Veo":
+                return [
+                    "🎬 VIDEO GEN CORE: VEO_3.1",
+                    "• prompt: Volumetric lighting cinematic shadows",
+                    "• realism depth: DCI-P3 4K resolution master",
+                    "• temporal persistence: Max coherence mode",
+                    "• status: Deep-generative synthesis..."
+                ];
+            case "Seedance":
+                return [
+                    "🎬 VIDEO GEN CORE: SEEDANCE_2.0",
+                    "• focus: Latent character consistency tracking",
+                    "• motion scale: 1.25 over-boost factor",
+                    "• render pass: Sub-pixel path tracking",
+                    "• status: Rendering final pixels..."
+                ];
+            case "GPT Image":
+                return [
+                    "🎨 IMAGE GEN CORE: DALL-E-3",
+                    "• layout: Landscape visual concept poster",
+                    "• prompt expansion: Active creative script",
+                    "• clarity index: 1.0 (crisp high-contrast)",
+                    "• status: Dynamic compilation complete"
+                ];
+            case "Flux":
+                return [
+                    "🎨 IMAGE GEN CORE: FLUX.1 SCHNELL",
+                    "• structure: Distilled guidance sampling",
+                    "• resolution: 1024x1024 raw rendering",
+                    "• rendering speed: 1.4 seconds generation",
+                    "• status: Output array populated"
+                ];
+            case "NanoBanana":
+                return [
+                    "🎨 IMAGE GEN CORE: NANOBANANA",
+                    "• model: custom-finetuned creative checkpoint",
+                    "• weights: Banana-yellow volumetric shader",
+                    "• saturation scale: 1.15 bright hue",
+                    "• status: Rendering abstract visuals..."
+                ];
+            case "Midjourney":
+                return [
+                    "🎨 IMAGE GEN CORE: MIDJOURNEY_V6",
+                    "• parameter: --v 6.0 --style raw --ar 21:9",
+                    "• aesthetic weight: --s 750 (highly art-directed)",
+                    "• color profile: Cool blue-white ambient shadows",
+                    "• status: Image array compiled"
+                ];
+            case "HeyGen":
+                return [
+                    "👥 AVATAR ENGINE: HEYGEN_STUDIO",
+                    "• model: Karthik AI Clone V3.2",
+                    "• audio lipsync: Real-time neural match",
+                    "• frame coherence: 99.9% seamless face mesh",
+                    "• status: Spatial video projection active"
+                ];
+            case "Kling AI Avatar":
+                return [
+                    "👥 AVATAR ENGINE: KLING_PORTRAIT",
+                    "• mesh tracking: 120 key facial nodes",
+                    "• depth translation: 3D head rotation matrix",
+                    "• volumetric hair rendering: Active",
+                    "• status: Portrait animation compiler..."
+                ];
+            case "ElevenLabs":
+                return [
+                    "🎵 AUDIO SYNTH: ELEVEN_LABS_V2",
+                    "• voice model: Karthik Custom Voice Clone",
+                    "• voice warmth: 1.15 over-boosted bass",
+                    "• clarity ratio: 98.6% clean voice track",
+                    "• status: Streaming audio frames..."
+                ];
+            case "Suno":
+                return [
+                    "🎵 AUDIO SYNTH: SUNO_V4",
+                    "• style: Cinematic ambient sci-fi soundscapes",
+                    "• instruments: Analog synthesizers & volumetric sub-bass",
+                    "• generation: 2-minute stereo wav master",
+                    "• status: Audio wav buffer compiled"
+                ];
+            case "Premiere Pro":
+                return [
+                    "🖥️ NLE ORCHESTRATION: PREMIERE_PRO",
+                    "• project: Karthik_Creative_Narrative_Timeline.prproj",
+                    "• target: YouTube & Instagram Reels distribution",
+                    "• color profile: Rec.709 cinematic color grading",
+                    "• status: Media sync optimal"
+                ];
+            case "DaVinci Resolve":
+                return [
+                    "🖥️ NLE ORCHESTRATION: RESOLVE_V19",
+                    "• project: Freelance_Cinematic_Edits.drp",
+                    "• color engine: DaVinci YRGB Color Managed",
+                    "• grading nodes: Custom ambient blue highlight LUTs",
+                    "• status: Real-time rendering active..."
+                ];
+            case "VN":
+                return [
+                    "🖥️ NLE ORCHESTRATION: VN_EDITOR",
+                    "• template: Mobile vertical reels (9:16 layout)",
+                    "• keyframes: Sub-second algorithm sync edits",
+                    "• transition: Dynamic kinetic split screen",
+                    "• status: Rendered and packaged"
+                ];
+            default:
+                break;
+        }
+    }
+    
+    switch (categoryName) {
+        case "CREATIVE INTELLIGENCE":
+            return [
+                "🧠 COGNITIVE SYSTEM BINDING...",
+                "• system status: Online & receptive",
+                "• modules: ChatGPT, Claude, Gemini",
+                "• operational depth: Large Language Models",
+                "• status: Hover over a tool to initialize details"
+            ];
+        case "CREATIVE DIRECTION":
+            return [
+                "🎬 PRODUCTION STRATEGY ENGAGED...",
+                "• modules: Narrative, Storyboard, Visuals",
+                "• role: Cinematic Human Storytelling Director",
+                "• style: Volumetric Blade Runner minimalism",
+                "• status: Hover over a tool to view parameters"
+            ];
+        case "PLATFORMS & WORKFLOWS":
+            return [
+                "📡 GENERATIVE COMPILED ENVIRONMENT...",
+                "• nodes: Fal, OpenArt, ComfyUI, Higgsfield, Runway",
+                "• bandwidth: Real-time multi-latent pipelines",
+                "• framework: Unified Generative Orchestrator",
+                "• status: Hover over a tool to scan active weights"
+            ];
+        case "VIDEO GENERATION":
+            return [
+                "🎥 VIDEO SYNTHESIS ARRAY ACTIVE...",
+                "• engine: Kling, Veo, Seedance",
+                "• rendering: Anamorphic temporal consistency",
+                "• capability: High-FPS cinematic motion frames",
+                "• status: Hover over a tool to inspect viewport"
+            ];
+        case "IMAGE GENERATION":
+            return [
+                "🎨 IMAGE COMPILATION PIPELINE...",
+                "• modules: DALL-E, Flux, NanoBanana, Midjourney",
+                "• canvas aspect ratio: 21:9 / 4:5 / 1:1 wide",
+                "• resolution capability: Ultra HD latent upscaled",
+                "• status: Hover over a tool to inspect seeds"
+            ];
+        case "AI AVATARS":
+            return [
+                "👥 IDENTITY SYNTHESIS PIPELINES...",
+                "• models: HeyGen, Kling Portrait Mesh",
+                "• mesh parameters: 3D dynamic mesh tracking",
+                "• capability: Dynamic digital identity clone",
+                "• status: Hover over a tool to inspect nodes"
+            ];
+        case "AUDIO GENERATION":
+            return [
+                "🔊 VOLUMETRIC ACOUSTICS MODULE...",
+                "• synthesis: Voice clones & cinematic scores",
+                "• fidelity: High-def stereo audio masters",
+                "• capability: Deep narrative voice synthesizer",
+                "• status: Hover over a tool to inspect acoustics"
+            ];
+        case "POST PRODUCTION":
+            return [
+                "🎞️ NLE ORCHESTRATION CONVERGENCE...",
+                "• engines: Premiere Pro, DaVinci Resolve, VN",
+                "• master resolution: 4K UHD cinematic widescreen",
+                "• color profiling: Professional LUT color grades",
+                "• status: Hover over a tool to inspect cuts"
+            ];
+        default:
+            return [
+                "📟 CREATIVE CORE OPERATING SYSTEM",
+                "• CPU temperature: 42°C [STABLE]",
+                "• neural saturation: [190%] OVER-BOOST",
+                "• dynamic diagnostic telemetry: Ready",
+                "• action: Hover over any tool or system card to scan"
+            ];
+    }
+};
+
+const renderToolIcon = (tool) => {
+    if (tool.customBadge) {
+        return (
+            <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '16px',
+                height: '16px',
+                borderRadius: '3px',
+                fontSize: '8px',
+                fontWeight: '900',
+                background: tool.bg || '#08080c',
+                color: tool.color || '#ffffff',
+                border: `1px solid ${tool.color || 'rgba(255,255,255,0.15)'}`,
+                lineHeight: 1,
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                flexShrink: 0
+            }}>
+                {tool.customBadge}
+            </span>
+        );
+    }
+
+    if (tool.logo) {
+        return (
+            <img 
+                src={tool.logo} 
+                alt={tool.name} 
+                className={`tool-logo-img ${tool.name === 'Midjourney' || tool.name === 'Flux' || tool.name === 'ChatGPT' || tool.name === 'GPT Image' || tool.name === 'Runway' || tool.name === 'ElevenLabs' || tool.name === 'Suno' ? 'eco-logo-invert' : ''}`} 
+            />
+        );
+    }
+    
+    switch (tool.svg) {
+        case 'storyboard':
+            return (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M3 15h18M9 3v18M15 3v18" />
+                </svg>
+            );
+        case 'narrative':
+            return (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+                    <path d="M6 6h10M6 10h10" />
+                </svg>
+            );
+        case 'visual':
+            return (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m22 12-4-4v8l4-4ZM2 12h16" />
+                </svg>
+            );
+        case 'concept':
+            return (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .6 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+                    <path d="M9 18h6M10 22h4" />
+                </svg>
+            );
+        case 'nanobanana':
+            return (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#eab308" style={{ flexShrink: 0 }}>
+                    <path d="M21.97 3.74a1 1 0 0 0-1-.22c-2.73.84-5.36 2.1-7.75 3.73A19.46 19.46 0 0 0 7.9 11.8c-1.37 1.77-2.6 3.7-3.6 5.8a1 1 0 0 0 .54 1.34c1.93.88 3.96 1.48 6.03 1.78a16.66 16.66 0 0 0 8-1.54c2.14-1.12 4.07-2.6 5.75-4.4a1 1 0 0 0-.25-1.55c-1.95-1.07-3.64-2.5-5-4.22a15.86 15.86 0 0 1-2.53-5.38 1 1 0 0 0-.87-.89Z"/>
+                </svg>
+            );
+        default:
+            return <span className="tool-logo-icon">🛠️</span>;
+    }
+};
+
 export default function App() {
     const [locIdx, setLocIdx] = useState(0);
     const [creativeType, setCreativeType] = useState('video');
     const [creativeIdx, setCreativeIdx] = useState(0);
+    const [hoveredTool, setHoveredTool] = useState(null);
+    const [hoveredCategory, setHoveredCategory] = useState(null);
+
+    // OS Initialization States
+    const [isInitialized, setIsInitialized] = useState(false);
+    const [isInitializing, setIsInitializing] = useState(false);
+    const [initProgress, setInitProgress] = useState(0);
+    const [diagnosticLines, setDiagnosticLines] = useState([]);
+
+
+
     const locations = [
         { city: "Bengaluru", lang: "Kannada" },
         { city: "Delhi", lang: "Hindi" },
@@ -31,6 +486,169 @@ export default function App() {
         { city: "West Bengal", lang: "Bengali" }
     ];
 
+    // Native Web Audio Synthesizer for Immersive Sci-Fi Startup Sounds
+    const playStartupSound = () => {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            
+            const ctx = new AudioContext();
+            
+            // 1. Cinematic Core Warming Hum (Sub-bass powering up)
+            const oscHum = ctx.createOscillator();
+            const humGain = ctx.createGain();
+            const lowpass = ctx.createBiquadFilter();
+            
+            oscHum.type = 'triangle';
+            oscHum.frequency.setValueAtTime(45, ctx.currentTime);
+            oscHum.frequency.exponentialRampToValueAtTime(75, ctx.currentTime + 2.5);
+            
+            lowpass.type = 'lowpass';
+            lowpass.frequency.setValueAtTime(120, ctx.currentTime);
+            lowpass.frequency.exponentialRampToValueAtTime(350, ctx.currentTime + 2.5);
+            
+            humGain.gain.setValueAtTime(0, ctx.currentTime);
+            humGain.gain.linearRampToValueAtTime(0.4, ctx.currentTime + 0.5);
+            humGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.5);
+            
+            oscHum.connect(humGain);
+            humGain.connect(lowpass);
+            lowpass.connect(ctx.destination);
+            
+            oscHum.start(ctx.currentTime);
+            oscHum.stop(ctx.currentTime + 2.7);
+            
+            // 2. High-Tech Typewriter/Digital Clicking
+            const playDigitalClick = (time, pitch = 800) => {
+                const oscClick = ctx.createOscillator();
+                const clickGain = ctx.createGain();
+                
+                oscClick.type = 'sine';
+                oscClick.frequency.setValueAtTime(pitch, time);
+                
+                clickGain.gain.setValueAtTime(0.04, time);
+                clickGain.gain.exponentialRampToValueAtTime(0.001, time + 0.04);
+                
+                oscClick.connect(clickGain);
+                clickGain.connect(ctx.destination);
+                
+                oscClick.start(time);
+                oscClick.stop(time + 0.05);
+            };
+            
+            playDigitalClick(ctx.currentTime + 0.2, 1000);
+            playDigitalClick(ctx.currentTime + 0.6, 900);
+            playDigitalClick(ctx.currentTime + 1.1, 1100);
+            playDigitalClick(ctx.currentTime + 1.6, 950);
+            playDigitalClick(ctx.currentTime + 2.2, 1050);
+            
+            // 3. Apple/visionOS-style Resolution Chime (Warm Major 7th chord arpeggio)
+            const chimeTime = ctx.currentTime + 2.5;
+            const chord = [220.00, 277.18, 329.63, 415.30];
+            
+            const delay = ctx.createDelay();
+            delay.delayTime.value = 0.25;
+            const delayGain = ctx.createGain();
+            delayGain.gain.value = 0.25;
+            
+            delay.connect(delayGain);
+            delayGain.connect(ctx.destination);
+            delayGain.connect(delay);
+            
+            chord.forEach((freq, index) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                
+                osc.type = index % 2 === 0 ? 'sine' : 'triangle';
+                osc.frequency.setValueAtTime(freq, chimeTime);
+                
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 800;
+                
+                gain.gain.setValueAtTime(0, chimeTime);
+                const noteOnTime = chimeTime + (index * 0.08);
+                gain.gain.linearRampToValueAtTime(0.12, noteOnTime + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.001, noteOnTime + 4.0);
+                
+                osc.connect(filter);
+                filter.connect(gain);
+                
+                gain.connect(ctx.destination);
+                gain.connect(delay);
+                
+                osc.start(noteOnTime);
+                osc.stop(noteOnTime + 4.5);
+            });
+            
+        } catch (e) {
+            console.error("Web Audio API synth failed to initialize", e);
+        }
+    };
+
+    const handleInitialize = () => {
+        if (isInitializing || isInitialized) return;
+        setIsInitializing(true);
+        setInitProgress(0);
+        setDiagnosticLines([]);
+
+        // Fire native synth startup sound
+        playStartupSound();
+
+        const logs = [
+            { threshold: 0, text: "▲ SYSTEM STATUS: ONLINE" },
+            { threshold: 8, text: "▶ BINDING STORYTELLING NEURAL TERMINAL..." },
+            { threshold: 22, text: "✔ CONNECTING TO GENERATIVE COGNITIVE NETWORK... SUCCESS" },
+            { threshold: 38, text: "✔ INITIALIZING CINEMATIC SHADER COMPILER... OK" },
+            { threshold: 54, text: "▶ SYNAPSE CORE SATURATION AT [190%] OVER-BOOST" },
+            { threshold: 70, text: "▶ DEPLOYING INTERACTIVE FRONTEND BLUEPRINT..." },
+            { threshold: 85, text: "✔ AMBIENT VOLUMETRIC ACOUSTICS SYNTHESIZED" },
+            { threshold: 98, text: "✔ OS LOADED. LAUNCHING CINEMATIC STORY EXPERIENCE." }
+        ];
+
+        let currentProgress = 0;
+        const totalDuration = 2800; // 2.8 seconds
+        const stepTime = 30; // ms
+        const steps = totalDuration / stepTime;
+        const increment = 100 / steps;
+
+        const interval = setInterval(() => {
+            currentProgress += increment;
+            if (currentProgress >= 100) {
+                currentProgress = 100;
+                clearInterval(interval);
+                
+                logs.forEach(log => {
+                    setDiagnosticLines(prev => prev.includes(log.text) ? prev : [...prev, log.text]);
+                });
+                
+                setInitProgress(100);
+                
+                setTimeout(() => {
+                    setIsInitialized(true);
+                    setIsInitializing(false);
+                    // Scroll to Creative Systems after boot-up completes
+                    setTimeout(() => {
+                        const capSection = document.getElementById('capabilities');
+                        if (capSection) {
+                            capSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                        if (window.ScrollTrigger) {
+                            window.ScrollTrigger.refresh();
+                        }
+                    }, 400);
+                }, 800);
+            } else {
+                setInitProgress(Math.floor(currentProgress));
+                logs.forEach(log => {
+                    if (currentProgress >= log.threshold) {
+                        setDiagnosticLines(prev => prev.includes(log.text) ? prev : [...prev, log.text]);
+                    }
+                });
+            }
+        }, stepTime);
+    };
+
     useEffect(() => {
         initPortfolio();
         const interval = setInterval(() => {
@@ -38,6 +656,15 @@ export default function App() {
         }, 1500);
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+        // Prevent scroll until system is fully initialized
+        if (!isInitialized) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }, [isInitialized]);
 
     return (
         <>
@@ -62,7 +689,7 @@ export default function App() {
 
 
 
-            <nav>
+            <nav className={isInitialized ? '' : 'nav-standby'}>
                 <div className="nav-inner">
                     <div className="logo-wrapper">
                         <a href="#" className="logo-text">KARTHIK G RAJ</a>
@@ -83,7 +710,7 @@ export default function App() {
             </nav>
 
             {/* Mobile Menu Overlay */}
-            <div className="mobile-menu">
+            <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
                     <a href="#capabilities">Capabilities</a>
                     <a href="#visuals">Visuals</a>
@@ -93,17 +720,23 @@ export default function App() {
             </div>
 
             <main>
-                {/* 1. Hero Section */}
+                {/* 1. Hero Section — only shown before initialization */}
+                {!isInitialized && (
                 <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
                     <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="hero-grid">
                             <div className="hero-content">
                                 <p className="hero-label reveal-text">Gen AI Visual Director</p>
                                 <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
-                                <p className="hero-sub reveal-text">Pioneering high-retention visual narratives through the intersection
-                                    of generative AI and human-led creative strategy.</p>
+                                <p className="hero-sub reveal-text">I treat AI not as a tool, but as a medium for cinematic human storytelling</p>
                                 <div className="hero-cta reveal-item">
-                                    <a href="#capabilities" className="main-btn">View Capabilities</a>
+                                    <button className="init-btn" onClick={handleInitialize}>
+                                        <span className="init-btn-glow"></span>
+                                        <span className="init-btn-sweep"></span>
+                                        <span className="init-btn-loading-bar"></span>
+                                        <span className="init-btn-status-node"></span>
+                                        <span className="init-btn-text">INITIALIZE PORTFOLIO</span>
+                                    </button>
                                 </div>
                             </div>
                             <div className="hero-avatar-wrapper">
@@ -112,8 +745,10 @@ export default function App() {
                         </div>
                     </div>
                 </section>
+                )}
 
-                {/* 4. Creative Capabilities */}
+                <div className={`portfolio-sections-wrapper ${isInitialized ? 'revealed' : 'veiled'}`}>
+                    {/* 4. Creative Capabilities */}
                 <section id="capabilities">
                     <div className="container">
                         <div className="section-header">
@@ -161,255 +796,169 @@ export default function App() {
                     </div>
                 </section>
 
-                {/* 10. Creative Ecosystem (Stacking Cards) */}
-                <section id="tech-stack">
+                {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
+                <section id="tech-stack" className="workflow-router-section">
                     <div className="container">
-                        <div className="section-header">
-                            <h2 className="section-heading reveal-text">My Creative Stack</h2>
+                        <div className="section-header text-center">
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>My Creative Tech Stack</h2>
                         </div>
 
-                        <div style={{ maxWidth: '850px', margin: '60px auto 0 auto' }}>
-                            <ScrollStack
-                                useWindowScroll={true}
-                                itemDistance={120}
-                                itemScale={0.03}
-                                itemStackDistance={35}
-                                stackPosition="15%"
-                                scaleEndPosition="8%"
-                                baseScale={0.9}
-                                rotationAmount={0}
-                            >
-                                {/* 01 Creative Intelligence */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">01</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Creative Intelligence</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip" data-glow="#10a37f" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg"
-                                                alt="ChatGPT" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
-                                            <span>ChatGPT</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#d97757" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/claude-color.svg"
-                                                alt="Claude" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Claude</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#4285f4" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/gemini-color.svg"
-                                                alt="Gemini" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Gemini</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
+                        <div className="tech-stack-dashboard reveal-item">
+                            {/* SVG Neural Nodes Overlay */}
+                            <div className="tech-stack-svg-overlay">
+                                <svg width="100%" height="100%" viewBox="0 0 1000 650" preserveAspectRatio="none">
+                                    {/* Start nodes for Column 1 */}
+                                    <circle cx="280" cy="180" r="5" fill="#4da3ff" className="neural-node" style={{ color: '#4da3ff' }} />
+                                    <circle cx="280" cy="450" r="5" fill="#a855f7" className="neural-node" style={{ color: '#a855f7' }} />
 
-                                {/* 02 Creative Direction */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">02</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Creative Direction</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                strokeWidth="2">
-                                                <rect x="2" y="2" width="20" height="20" rx="2" />
-                                                <line x1="6" y1="6" x2="6" y2="6.01" />
-                                                <line x1="6" y1="10" x2="6" y2="10.01" />
-                                                <line x1="6" y1="14" x2="6" y2="14.01" />
-                                                <line x1="10" y1="6" x2="18" y2="6" />
-                                                <line x1="10" y1="10" x2="18" y2="10" />
-                                                <line x1="10" y1="14" x2="18" y2="14" />
-                                            </svg>
-                                            <span>Storyboarding</span>
-                                        </div>
-                                        <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                strokeWidth="2">
-                                                <path d="M12 20h9" />
-                                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
-                                            </svg>
-                                            <span>Narrative Design</span>
-                                        </div>
-                                        <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                strokeWidth="2">
-                                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-                                                <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                                                <circle cx="10" cy="13" r="2" />
-                                                <path d="m20 17-1.09-1.09a2 2 0 0 0-2.82 0L10 22" />
-                                            </svg>
-                                            <span>Visual Storytelling</span>
-                                        </div>
-                                        <div className="eco-chip eco-chip-text" data-glow="#faff00" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                strokeWidth="2">
-                                                <circle cx="12" cy="12" r="10" />
-                                                <line x1="2" y1="12" x2="22" y2="12" />
-                                                <path
-                                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                                            </svg>
-                                            <span>Concept Development</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
+                                    {/* Start nodes for Column 2 */}
+                                    <circle cx="680" cy="180" r="5" fill="#eab308" className="neural-node" style={{ color: '#eab308' }} />
+                                    <circle cx="680" cy="260" r="5" fill="#06b6d4" className="neural-node" style={{ color: '#06b6d4' }} />
+                                    <circle cx="680" cy="360" r="5" fill="#4da3ff" className="neural-node" style={{ color: '#4da3ff' }} />
+                                    <circle cx="680" cy="450" r="5" fill="#ff6f3c" className="neural-node" style={{ color: '#ff6f3c' }} />
+                                    <circle cx="680" cy="560" r="5" fill="#a855f7" className="neural-node" style={{ color: '#a855f7' }} />
 
-                                {/* 03 Platforms & Workflows */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">03</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Platforms & Workflows</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip" data-glow="#ff4154" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg"
-                                                alt="Fal AI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Fal AI</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#a855f7" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://www.google.com/s2/favicons?domain=openart.ai&sz=128" alt="OpenArt"
-                                                className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>OpenArt</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#4ade80" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg"
-                                                alt="ComfyUI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>ComfyUI</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#60a5fa" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128"
-                                                alt="Higgsfield AI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Higgsfield AI</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
+                                    {/* Convergence Hub nodes (end terminals) */}
+                                    <circle cx="380" cy="180" r="6" fill="#4da3ff" className="neural-node-hub" />
+                                    <circle cx="780" cy="360" r="6" fill="#4da3ff" className="neural-node-hub" />
+                                </svg>
+                            </div>
 
-                                {/* 04 Video Generation */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">04</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Video Generation</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip" data-glow="#3b82f6" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/kling-color.svg"
-                                                alt="Kling AI" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Kling AI</span>
+                            {/* Dashboard Columns Grid */}
+                            <div className="tech-stack-columns">
+                                
+                                {/* COLUMN 1: COGNITIVE INPUT */}
+                                <div className="tech-stack-column cognitive-column">
+                                    <div className="column-label">PHASE 01 // COGNITIVE CORE</div>
+                                    
+                                    {techStackCategories.filter(c => c.num === "01" || c.num === "02").map((category) => (
+                                        <div 
+                                            key={category.name} 
+                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                            onMouseEnter={() => setHoveredCategory(category.name)}
+                                            onMouseLeave={() => setHoveredCategory(null)}
+                                        >
+                                            <div className="tech-stack-card-header">
+                                                <span className="tech-stack-index">{category.num}</span>
+                                                <h3 className="tech-stack-title">{category.name}</h3>
+                                            </div>
+                                            <div className="tech-stack-divider"></div>
+                                            <div className="tech-stack-badges">
+                                                {category.tools.map((tool) => (
+                                                    <div 
+                                                        key={tool.name} 
+                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
+                                                        style={{ '--tool-glow': tool.glow }}
+                                                        onMouseEnter={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(tool.name);
+                                                            setHoveredCategory(category.name);
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(null);
+                                                        }}
+                                                    >
+                                                        <div className="tech-stack-badge-icon">
+                                                            {renderToolIcon(tool)}
+                                                        </div>
+                                                        <span className="tech-stack-badge-name">{tool.name}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <div className="eco-chip" data-glow="#4285f4" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/google-color.svg"
-                                                alt="Veo 3.1" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Veo 3.1</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#818cf8" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://www.google.com/s2/favicons?domain=seedance.ai&sz=128" alt="Seedance"
-                                                className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Seedance</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#c084fc" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg"
-                                                alt="Runway" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
-                                            <span>Runway</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
+                                    ))}
+                                </div>
 
-                                {/* 05 Image Generation */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">05</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Image Generation</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip" data-glow="#10a37f" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg"
-                                                alt="GPT Image" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
-                                            <span>GPT Image</span>
+                                {/* COLUMN 2: GENERATIVE MATRIX */}
+                                <div className="tech-stack-column synthesis-column">
+                                    <div className="column-label">PHASE 02 // SYNTHESIS PIPELINES</div>
+                                    
+                                    {techStackCategories.filter(c => ["03", "04", "05", "06", "07"].includes(c.num)).map((category) => (
+                                        <div 
+                                            key={category.name} 
+                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                            onMouseEnter={() => setHoveredCategory(category.name)}
+                                            onMouseLeave={() => setHoveredCategory(null)}
+                                        >
+                                            <div className="tech-stack-card-header">
+                                                <span className="tech-stack-index">{category.num}</span>
+                                                <h3 className="tech-stack-title">{category.name}</h3>
+                                            </div>
+                                            <div className="tech-stack-divider"></div>
+                                            <div className="tech-stack-badges">
+                                                {category.tools.map((tool) => (
+                                                    <div 
+                                                        key={tool.name} 
+                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
+                                                        style={{ '--tool-glow': tool.glow }}
+                                                        onMouseEnter={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(tool.name);
+                                                            setHoveredCategory(category.name);
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(null);
+                                                        }}
+                                                    >
+                                                        <div className="tech-stack-badge-icon">
+                                                            {renderToolIcon(tool)}
+                                                        </div>
+                                                        <span className="tech-stack-badge-name">{tool.name}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <div className="eco-chip" data-glow="#a855f7" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/flux.svg"
-                                                alt="Flux" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
-                                            <span>Flux</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#fbbf24" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/nanobanana-color.svg"
-                                                alt="NanoBanana" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>NanoBanana</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#ffffff" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/midjourney.svg"
-                                                alt="Midjourney" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
-                                            <span>Midjourney</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
+                                    ))}
+                                </div>
 
-                                {/* 06 AI Avatars */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">06</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>AI Avatars</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip" data-glow="#06b6d4" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=128" alt="HeyGen"
-                                                className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>HeyGen</span>
+                                {/* COLUMN 3: CINEMATIC MASTERING */}
+                                <div className="tech-stack-column mastering-column">
+                                    <div className="column-label">PHASE 03 // MASTERING CONVERGENCE</div>
+                                    
+                                    {techStackCategories.filter(c => c.num === "08").map((category) => (
+                                        <div 
+                                            key={category.name} 
+                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                            onMouseEnter={() => setHoveredCategory(category.name)}
+                                            onMouseLeave={() => setHoveredCategory(null)}
+                                        >
+                                            <div className="tech-stack-card-header">
+                                                <span className="tech-stack-index">{category.num}</span>
+                                                <h3 className="tech-stack-title">{category.name}</h3>
+                                            </div>
+                                            <div className="tech-stack-divider"></div>
+                                            <div className="tech-stack-badges">
+                                                {category.tools.map((tool) => (
+                                                    <div 
+                                                        key={tool.name} 
+                                                        className={`tech-stack-badge ${hoveredTool === tool.name ? 'active-badge' : ''}`}
+                                                        style={{ '--tool-glow': tool.glow }}
+                                                        onMouseEnter={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(tool.name);
+                                                            setHoveredCategory(category.name);
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.stopPropagation();
+                                                            setHoveredTool(null);
+                                                        }}
+                                                    >
+                                                        <div className="tech-stack-badge-icon">
+                                                            {renderToolIcon(tool)}
+                                                        </div>
+                                                        <span className="tech-stack-badge-name">{tool.name}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <div className="eco-chip" data-glow="#3b82f6" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/kling-color.svg"
-                                                alt="Kling AI Avatar" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Kling AI Avatar</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
+                                    ))}
+                                </div>
 
-                                {/* 07 Audio Generation */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">07</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Audio Generation</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip" data-glow="#fbbf24" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg"
-                                                alt="ElevenLabs" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
-                                            <span>ElevenLabs</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#f472b6" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/suno.svg"
-                                                alt="Suno" className="eco-logo eco-logo-invert" style={{ width: '24px', height: '24px' }} />
-                                            <span>Suno</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
+                            </div>
 
-                                {/* 08 Post Production */}
-                                <ScrollStackItem itemClassName="eco-category">
-                                    <div className="eco-header">
-                                        <span className="eco-num">08</span>
-                                        <h3 className="eco-title" style={{ fontSize: '1.25rem' }}>Post Production</h3>
-                                    </div>
-                                    <div className="eco-chips" style={{ gap: '12px' }}>
-                                        <div className="eco-chip" data-glow="#9999ff" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/adobe-color.svg"
-                                                alt="Premiere Pro" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>Premiere Pro</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#9999ff" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/adobe-color.svg"
-                                                alt="After Effects" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>After Effects</span>
-                                        </div>
-                                        <div className="eco-chip" data-glow="#ff6f3c" style={{ padding: '10px 22px', fontSize: '0.95rem' }}>
-                                            <img src="https://www.google.com/s2/favicons?domain=blackmagicdesign.com&sz=128"
-                                                alt="DaVinci Resolve" className="eco-logo" style={{ width: '24px', height: '24px' }} />
-                                            <span>DaVinci Resolve</span>
-                                        </div>
-                                    </div>
-                                </ScrollStackItem>
-                            </ScrollStack>
+
                         </div>
                     </div>
                 </section>
@@ -417,10 +966,8 @@ export default function App() {
                 {/* 4.5. Cinematic Self-Visuals Section */}
                 <section id="self-visuals">
                     <div className="container">
-                        <div className="section-header">
-                            <h2 className="section-heading reveal-text">Cinematic Self-Visuals</h2>
-                            <p className="section-desc reveal-text">Exploring the boundaries of identity inside generative,
-                                high-fidelity worlds.</p>
+                        <div className="section-header text-center">
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Cinematic Self-Visuals</h2>
                         </div>
                         <div className="cinema-grid reveal-item">
                             {/* Top Ultrawide Video */}
@@ -497,9 +1044,8 @@ export default function App() {
                 {/* 5. Visual Systems Gallery */}
                 <section id="visuals">
                     <div className="container">
-                        <div className="section-header">
-                            <h2 className="section-heading reveal-text">Visual Systems</h2>
-                            <p className="section-desc reveal-text">Cinematic poster showcase and design experiments.</p>
+                        <div className="section-header text-center">
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Concept Poster Showcase</h2>
                         </div>
                         <div className="visual-gallery">
                             {/* Project 1 */}
@@ -523,10 +1069,10 @@ export default function App() {
                                             CAMPAIGN 01 / Concept Product - Nandini Masala Majjige
                                         </span>
                                         <h3 className="visual-title" style={{ fontSize: '2.25rem', fontWeight: '800', margin: '12px 0', color: '#FFF' }}>
-                                            Neural Frontiers
+                                            BEAT THE HEAT
                                         </h3>
                                         <p className="visual-description" style={{ fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text-muted)' }}>
-                                            A cinematic exploration of latent diffusion models bridging human psychology and generative landscapes. Bridging latent spaces with real-world emotional response, this system pioneers highly immersive, high-retention visual strategy.
+                                            A localized commercial concept modernizing a regional favorite: Spiced Buttermilk. The visuals feature Bengaluru's transit and civic workers sharing moments of genuine relief in the peak of a Bengaluru summer.
                                         </p>
                                     </div>
 
@@ -551,9 +1097,8 @@ export default function App() {
                 {/* ═══════════════════════════════════════════════════════ */}
                 <section id="experience-journey">
                     <div className="container">
-                        <div className="section-header xp-windows-header">
-                            <h2 className="section-heading reveal-text">Experience Journey</h2>
-                            <p className="section-desc reveal-text">A cinematic evolution from AI systems to immersive creative technology.</p>
+                        <div className="section-header text-center">
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Experience Journey</h2>
                         </div>
 
                         <div className="xp-windows-container">
@@ -1024,10 +1569,8 @@ export default function App() {
                 {/* 8. Certifications */}
                 <section id="certs">
                     <div className="container">
-                        <div className="section-header">
-                            <h2 className="section-heading reveal-text">Certifications</h2>
-                            <p className="section-desc reveal-text">Professionally verified credentials in AI and Creative
-                                Technology.</p>
+                        <div className="section-header text-center">
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Certifications</h2>
                         </div>
                         <div className="cert-grid reveal-item">
                             <div className="cert-card">
@@ -1090,16 +1633,48 @@ export default function App() {
                         <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text">hello@karthikgraj.in</a>
                     </div>
                 </section>
-            </main>
 
-            <footer>
-                <div className="container">
-                    <p>© 2026 KARTHIK G RAJ // GEN AI VISUAL DIRECTOR</p>
+                <footer>
+                    <div className="container">
+                        <p>© 2026 KARTHIK G RAJ // GEN AI VISUAL DIRECTOR</p>
+                    </div>
+                </footer>
+            </div>
+
+        </main>
+
+            {/* Immersive Sci-Fi Operating System Initialization Overlay */}
+            {isInitializing && (
+                <div className={`system-init-overlay ${initProgress === 100 ? 'fade-out' : ''}`}>
+                    <div className="crt-flicker-overlay"></div>
+                    <div className="init-grid"></div>
+                    <div className="init-console">
+                        <div className="console-header">
+                            <span className="console-dot red"></span>
+                            <span className="console-dot yellow"></span>
+                            <span className="console-dot green"></span>
+                            <span className="console-title">CREATIVE OS v4.10.0 // INITIALIZATION DIAGNOSTICS</span>
+                        </div>
+                        <div className="console-body">
+                            <div className="diagnostics-logs">
+                                {diagnosticLines.map((line, idx) => (
+                                    <div key={idx} className="console-log-line reveal-line">
+                                        {line}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="console-progress-section">
+                                <div className="progress-label">SYSTEM LOADER: {initProgress}%</div>
+                                <div className="progress-bar-track">
+                                    <div className="progress-bar-fill" style={{ width: `${initProgress}%` }}>
+                                        <div className="progress-bar-glow"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </footer>
-
-
-
+            )}
         </>
     );
 }

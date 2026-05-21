@@ -1,0 +1,409 @@
+.avatar-card-outer {
+    width: 100%;
+    max-width: 330px;
+    aspect-ratio: 9 / 16;
+    transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform;
+    margin: 0 auto;
+    position: relative;
+}
+
+.avatar-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    background: #030303;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(77, 163, 255, 0.12),
+        0 0 20px rgba(147, 197, 253, 0.08);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: avatar-ambient-glow 8s ease-in-out infinite alternate;
+}
+
+/* Dynamic Website Theme Blue Ambient Glow breathing effect */
+@keyframes avatar-ambient-glow {
+    0% {
+        box-shadow:
+            0 30px 60px rgba(0, 0, 0, 0.7),
+            0 0 30px rgba(77, 163, 255, 0.15),
+            0 0 15px rgba(147, 197, 253, 0.08);
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+    100% {
+        box-shadow:
+            0 35px 70px rgba(0, 0, 0, 0.85),
+            0 0 50px rgba(77, 163, 255, 0.32),
+            0 0 25px rgba(147, 197, 253, 0.2);
+        border-color: rgba(77, 163, 255, 0.3);
+    }
+}
+
+.avatar-card-outer:hover .avatar-card {
+    border-color: var(--accent);
+    box-shadow:
+        0 45px 90px rgba(0, 0, 0, 0.9),
+        0 0 65px rgba(77, 163, 255, 0.45),
+        0 0 30px rgba(147, 197, 253, 0.25);
+}
+
+.avatar-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.92) contrast(1.05);
+    transition: filter 0.4s ease;
+}
+
+.avatar-card-outer:hover .avatar-video {
+    filter: brightness(1.02) contrast(1.05);
+}
+
+/* Premium Sci-Fi Hologram/Viewfinder Grid Overlay */
+.avatar-hologram {
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
+        linear-gradient(90deg, rgba(77, 163, 255, 0.02), rgba(147, 197, 253, 0.01), rgba(77, 163, 255, 0.02));
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.35;
+    transition: opacity 0.4s ease;
+}
+
+.avatar-card-outer:hover .avatar-hologram {
+    opacity: 0.25;
+}
+
+/* HUD Framing Corner Brackets */
+.avatar-corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    z-index: 4;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.avatar-corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+.avatar-corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+.avatar-corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+.avatar-corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+.avatar-card-outer:hover .avatar-corner {
+    border-color: var(--accent);
+    width: 18px;
+    height: 18px;
+}
+
+.avatar-card-outer:hover .avatar-corner-tl { transform: translate(-3px, -3px); }
+.avatar-card-outer:hover .avatar-corner-tr { transform: translate(3px, -3px); }
+.avatar-card-outer:hover .avatar-corner-bl { transform: translate(-3px, 3px); }
+.avatar-card-outer:hover .avatar-corner-br { transform: translate(3px, 3px); }
+
+/* Glassy Top HUD status bar */
+.avatar-hud-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 5;
+    background: rgba(10, 10, 12, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 12px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.avatar-card-outer:hover .avatar-hud-top {
+    background: rgba(10, 10, 12, 0.8);
+    border-color: rgba(77, 163, 255, 0.25);
+}
+
+.avatar-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    animation: avatar-pulse 2s infinite;
+}
+
+@keyframes avatar-pulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+    }
+    50% { 
+        opacity: 0.4; 
+        transform: scale(0.9);
+        box-shadow: 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+}
+
+.avatar-status-text {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.58rem;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 1.8px;
+    font-weight: 600;
+}
+
+/* Dancing Audio Equalizer */
+.avatar-equalizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 2.2px;
+    height: 10px;
+    margin-left: 6px;
+}
+
+.eq-bar {
+    width: 2.2px;
+    background: var(--accent);
+    border-radius: 1px;
+    animation: eq-bounce 0.8s ease-in-out infinite alternate;
+}
+
+.bar1 { height: 100%; animation-delay: 0.1s; }
+.bar2 { height: 50%; animation-delay: 0.3s; }
+.bar3 { height: 80%; animation-delay: 0s; }
+.bar4 { height: 35%; animation-delay: 0.2s; }
+
+@keyframes eq-bounce {
+    0% { transform: scaleY(0.35); }
+    100% { transform: scaleY(1); }
+}
+
+/* Glassy "Tap to Interact" Unmute Overlay */
+.avatar-unmute-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 3;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.avatar-card:hover .avatar-unmute-overlay {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.avatar-unmute-btn {
+    pointer-events: auto;
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(77, 163, 255, 0.25);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(77, 163, 255, 0.22),
+        0 0 10px rgba(147, 197, 253, 0.12);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: unmute-pulse 2s infinite;
+}
+
+.avatar-unmute-btn:hover {
+    background: var(--accent);
+    color: #000;
+    transform: scale(1.06);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(77, 163, 255, 0.45),
+        0 0 12px rgba(147, 197, 253, 0.22);
+    border-color: var(--accent);
+}
+
+.avatar-unmute-btn:active {
+    transform: scale(0.97);
+}
+
+@keyframes unmute-pulse {
+    0% {
+        box-shadow: 
+            0 10px 25px rgba(0, 0, 0, 0.6), 
+            0 0 0 0 rgba(77, 163, 255, 0.4),
+            0 0 0 0 rgba(147, 197, 253, 0.2);
+    }
+    70% {
+        box-shadow: 
+            0 10px 25px rgba(0, 0, 0, 0.6), 
+            0 0 0 12px rgba(77, 163, 255, 0),
+            0 0 0 6px rgba(147, 197, 253, 0);
+    }
+    100% {
+        box-shadow: 
+            0 10px 25px rgba(0, 0, 0, 0.6), 
+            0 0 0 0 rgba(77, 163, 255, 0),
+            0 0 0 0 rgba(147, 197, 253, 0);
+    }
+}
+
+/* Glassy Bottom HUD Control Center */
+.avatar-hud-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 5;
+    background: rgba(10, 10, 12, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 12px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: max-content;
+}
+
+.avatar-card-outer:hover .avatar-hud-bottom {
+    background: rgba(10, 10, 12, 0.8);
+    border-color: rgba(77, 163, 255, 0.25);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(77, 163, 255, 0.1);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+/* Frosted Tactile Circular Button Styling */
+.avatar-ctrl-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(10, 10, 12, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.avatar-ctrl-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(77, 163, 255, 0.4);
+    color: #fff;
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 
+        0 6px 15px rgba(0, 0, 0, 0.35),
+        0 0 8px rgba(77, 163, 255, 0.25);
+}
+
+/* Dynamic glowing active state when unmuted or playing */
+.avatar-ctrl-btn.active {
+    color: var(--accent);
+    border-color: rgba(77, 163, 255, 0.35);
+    background: rgba(77, 163, 255, 0.1);
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.25),
+        0 0 10px rgba(77, 163, 255, 0.18);
+}
+
+.avatar-ctrl-btn.active:hover {
+    background: rgba(77, 163, 255, 0.16);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 
+        0 6px 15px rgba(0, 0, 0, 0.35),
+        0 0 15px rgba(77, 163, 255, 0.4);
+}
+
+.avatar-ctrl-btn:active {
+    transform: translateY(0px) scale(0.95);
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE SCALING
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+    .avatar-card-outer {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 968px) {
+    .avatar-card-outer {
+        max-width: 270px;
+    }
+    .avatar-hud-top {
+        top: 16px;
+        left: 16px;
+        padding: 5px 10px;
+    }
+    .avatar-corner {
+        width: 12px;
+        height: 12px;
+    }
+    .avatar-corner-tl { top: 12px; left: 12px; }
+    .avatar-corner-tr { top: 12px; right: 12px; }
+    .avatar-corner-bl { bottom: 12px; left: 12px; }
+    .avatar-corner-br { bottom: 12px; right: 12px; }
+}
+
+@media (max-width: 768px) {
+    .avatar-card-outer {
+        max-width: 280px; /* Stacked view layout gets a very prominent, beautiful presentation */
+    }
+}
+
+@media (max-width: 480px) {
+    .avatar-card-outer {
+        max-width: 220px;
+    }
+    .avatar-hud-top {
+        top: 12px;
+        left: 12px;
+        padding: 4px 8px;
+    }
+    .avatar-status-text {
+        font-size: 0.52rem;
+        letter-spacing: 1.2px;
+    }
+    .avatar-hud-bottom {
+        bottom: 12px;
+        padding: 4px;
+    }
+    .avatar-ctrl-btn {
+        width: 30px;
+        height: 30px;
+    }
+    .avatar-ctrl-btn svg {
+        width: 11px;
+        height: 11px;
+    }
+}
