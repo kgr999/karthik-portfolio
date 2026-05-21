@@ -1237,22 +1237,73 @@ export default function App() {
                                                 <div className="xp-brands-logos" style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'stretch', maxWidth: '280px' }}>
                                                     <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
                                                         <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>01.</span>
-                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden' }}>
-                                                            <img src="https://logo.clearbit.com/montraelectric.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Montra Electric" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                            <img 
+                                                                src="/assets/images/montra_logo.svg" 
+                                                                onError={(e) => { 
+                                                                    if (!e.target.dataset.triedFallback) {
+                                                                        e.target.dataset.triedFallback = 'true';
+                                                                        e.target.src = "https://www.google.com/s2/favicons?domain=montraelectric.com&sz=128";
+                                                                    } else {
+                                                                        e.target.style.display = 'none';
+                                                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                                    }
+                                                                }} 
+                                                                className="xp-brand-logo-btn-icon" 
+                                                                alt="Montra Electric" 
+                                                                style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }} 
+                                                            />
+                                                            <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF334B', zIndex: 1 }}>
+                                                                M
+                                                            </div>
                                                         </div>
                                                         <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
                                                     </div>
                                                     <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
                                                         <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>02.</span>
-                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden' }}>
-                                                            <img src="https://logo.clearbit.com/amperevehicles.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Ampere Electric" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                            <img 
+                                                                src="/assets/images/ampere_logo.svg" 
+                                                                onError={(e) => { 
+                                                                    if (!e.target.dataset.triedFallback) {
+                                                                        e.target.dataset.triedFallback = 'true';
+                                                                        e.target.src = "https://www.google.com/s2/favicons?domain=amperevehicles.com&sz=128";
+                                                                    } else {
+                                                                        e.target.style.display = 'none';
+                                                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                                    }
+                                                                }} 
+                                                                className="xp-brand-logo-btn-icon" 
+                                                                alt="Ampere Electric" 
+                                                                style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }} 
+                                                            />
+                                                            <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#00FFF0', zIndex: 1 }}>
+                                                                A
+                                                            </div>
                                                         </div>
                                                         <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Ampere Electric</span>
                                                     </div>
                                                     <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
                                                         <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>03.</span>
-                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden' }}>
-                                                            <img src="https://logo.clearbit.com/lincolnpharma.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Lincoln Pharma" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                            <img 
+                                                                src="/assets/images/lincoln_logo.svg" 
+                                                                onError={(e) => { 
+                                                                    if (!e.target.dataset.triedFallback) {
+                                                                        e.target.dataset.triedFallback = 'true';
+                                                                        e.target.src = "https://www.google.com/s2/favicons?domain=lincolnpharma.com&sz=128";
+                                                                    } else {
+                                                                        e.target.style.display = 'none';
+                                                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                                    }
+                                                                }} 
+                                                                className="xp-brand-logo-btn-icon" 
+                                                                alt="Lincoln Pharma" 
+                                                                style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }} 
+                                                            />
+                                                            <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF8C00', zIndex: 1 }}>
+                                                                L
+                                                            </div>
                                                         </div>
                                                         <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
                                                     </div>
