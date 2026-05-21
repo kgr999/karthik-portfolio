@@ -3746,6 +3746,23 @@ footer {
     letter-spacing: 1px;
 }
 
+.xp-snap-brand {
+    padding: 8px 0 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.xp-snap-brand-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #FFEA4D;
+}
+
 .xp-hierarchy ul {
     list-style: none;
     padding: 0;
@@ -3753,7 +3770,7 @@ footer {
 }
 
 .xp-hierarchy li {
-    padding: 6px 0;
+    padding: 8px 0;
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.7);
     display: flex;
@@ -3761,22 +3778,41 @@ footer {
     align-items: center;
 }
 
-.xp-hierarchy li span {
+.xp-hierarchy-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.xp-hierarchy-item svg {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.xp-yellow-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: #FFEA4D;
     display: inline-block;
+    box-shadow: 0 0 6px rgba(255, 234, 77, 0.5);
 }
 
 .xp-comp-box {
     background: rgba(255, 255, 255, 0.05);
-    padding: 10px;
+    padding: 10px 12px;
     border-radius: 4px;
     margin-bottom: 8px;
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.8);
     border-left: 2px solid #FFEA4D;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.xp-comp-box svg {
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
 }
 
 .xp-3d-viewport {

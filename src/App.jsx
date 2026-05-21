@@ -3,7 +3,6 @@ import LightRays from './LightRays';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import { initPortfolio } from './portfolio-logic';
 import ProfileCard from './ProfileCard';
-import SystemGhost from './SystemGhost';
 
 
 const mockVideos = [
@@ -686,8 +685,9 @@ export default function App() {
                 />
             </div>
 
-            {/* System Ghost — Cinematic Ambient Intelligence */}
-            <SystemGhost isInitialized={isInitialized} />
+
+
+
 
             <nav className={isInitialized ? '' : 'nav-standby'}>
                 <div className="nav-inner">
@@ -1683,13 +1683,31 @@ export default function App() {
                                 <div className="xp-window-body">
                                     <div className="xp-window-sidebar xp-hierarchy">
                                         <div className="xp-snap-brand">
-                                            <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" alt="Snapchat" width="32" height="32" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }} />
+                                            <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" alt="Snapchat" width="22" height="22" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }} />
+                                            <span className="xp-snap-brand-text">LENS STUDIO</span>
                                         </div>
                                         <h4>Objects</h4>
                                         <ul>
-                                            <li><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '6px' }}><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> Camera</li>
-                                            <li><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '6px' }}><circle cx="12" cy="12" r="4"></circle><path d="M2 12h3M19 12h3M12 2v3M12 19v3"></path></svg> Face Mesh <span></span></li>
-                                            <li><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '6px' }}><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg> Holographic <span></span></li>
+                                            <li>
+                                                <div className="xp-hierarchy-item">
+                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                                                    <span>Camera</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="xp-hierarchy-item">
+                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><circle cx="12" cy="12" r="4"></circle><path d="M2 12h3M19 12h3M12 2v3M12 19v3"></path></svg>
+                                                    <span>Face Mesh</span>
+                                                </div>
+                                                <span className="xp-yellow-dot"></span>
+                                            </li>
+                                            <li>
+                                                <div className="xp-hierarchy-item">
+                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+                                                    <span>Holographic</span>
+                                                </div>
+                                                <span className="xp-yellow-dot"></span>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div className="xp-window-main xp-3d-viewport">
@@ -1714,9 +1732,18 @@ export default function App() {
                                     </div>
                                     <div className="xp-window-sidebar xp-inspector">
                                         <h4>Components</h4>
-                                        <div className="xp-comp-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px' }}><circle cx="12" cy="12" r="4"></circle><path d="M2 12h3M19 12h3"></path></svg> Face Tracker</div>
-                                        <div className="xp-comp-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px' }}><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg> GenAI Material</div>
-                                        <div className="xp-comp-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px' }}><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> Script</div>
+                                        <div className="xp-comp-box">
+                                            <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><circle cx="12" cy="12" r="4"></circle><path d="M2 12h3M19 12h3"></path></svg>
+                                            <span>Face Tracker</span>
+                                        </div>
+                                        <div className="xp-comp-box">
+                                            <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+                                            <span>GenAI Material</span>
+                                        </div>
+                                        <div className="xp-comp-box">
+                                            <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                            <span>Script</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
