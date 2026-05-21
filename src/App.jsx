@@ -1787,7 +1787,12 @@ export default function App() {
                 {/* 11. Contact Section */}
                 <section id="contact">
                     <div className="container">
-                        <p className="contact-label reveal-text">Start a Conversation</p>
+                        <div className="status-badge-container reveal-text">
+                            <div className="status-badge">
+                                <span className="status-dot"></span>
+                                <span className="status-text">Open for Creative Opportunities</span>
+                            </div>
+                        </div>
                         <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text">hello@karthikgraj.in</a>
                     </div>
                 </section>
