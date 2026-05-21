@@ -3,6 +3,7 @@ import LightRays from './LightRays';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import { initPortfolio } from './portfolio-logic';
 import ProfileCard from './ProfileCard';
+import SystemGhost from './SystemGhost';
 
 
 const mockVideos = [
@@ -685,9 +686,8 @@ export default function App() {
                 />
             </div>
 
-
-
-
+            {/* System Ghost — Cinematic Ambient Intelligence */}
+            <SystemGhost isInitialized={isInitialized} />
 
             <nav className={isInitialized ? '' : 'nav-standby'}>
                 <div className="nav-inner">
