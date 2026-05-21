@@ -751,10 +751,8 @@ export default function App() {
                     {/* 4. Creative Capabilities */}
                 <section id="capabilities">
                     <div className="container">
-                        <div className="section-header">
-                            <h2 className="section-heading reveal-text">Creative Systems</h2>
-                            <p className="section-desc reveal-text">The intersection of creative intelligence, storytelling, and
-                                execution.</p>
+                        <div className="section-header text-center">
+                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Creative Systems</h2>
                         </div>
                         <div className="capabilities-grid reveal-item" id="capabilities-grid-animated">
                             <div className="cap-card">
