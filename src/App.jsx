@@ -1234,18 +1234,27 @@ export default function App() {
                                                 <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
                                                     KEY CAMPAIGN CLIENTS
                                                 </p>
-                                                <div className="xp-brands-logos" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                                                    <div className="xp-brand-logo-btn" style={{ borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)' }}>
-                                                        <img src="https://logo.clearbit.com/montraelectric.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Montra Electric" />
-                                                        <span style={{ color: '#FFF' }}>Montra Electric</span>
+                                                <div className="xp-brands-logos" style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'stretch', maxWidth: '280px' }}>
+                                                    <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
+                                                        <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>01.</span>
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden' }}>
+                                                            <img src="https://logo.clearbit.com/montraelectric.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Montra Electric" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                                        </div>
+                                                        <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
                                                     </div>
-                                                    <div className="xp-brand-logo-btn" style={{ borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)' }}>
-                                                        <img src="https://logo.clearbit.com/amperevehicles.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Ampere Electric" />
-                                                        <span style={{ color: '#FFF' }}>Ampere Electric</span>
+                                                    <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
+                                                        <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>02.</span>
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden' }}>
+                                                            <img src="https://logo.clearbit.com/amperevehicles.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Ampere Electric" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                                        </div>
+                                                        <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Ampere Electric</span>
                                                     </div>
-                                                    <div className="xp-brand-logo-btn" style={{ borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)' }}>
-                                                        <img src="https://logo.clearbit.com/lincolnpharma.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Lincoln Pharma" />
-                                                        <span style={{ color: '#FFF' }}>Lincoln Pharma</span>
+                                                    <div className="xp-brand-logo-btn" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px', borderRadius: '8px', borderColor: 'rgba(59, 130, 246, 0.2)', background: 'rgba(59, 130, 246, 0.05)', width: '100%' }}>
+                                                        <span style={{ fontFamily: 'monospace', color: 'rgba(59, 130, 246, 0.6)', fontSize: '0.75rem', fontWeight: 'bold', minWidth: '16px' }}>03.</span>
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden' }}>
+                                                            <img src="https://logo.clearbit.com/lincolnpharma.com" onError={(e) => { e.target.style.display = 'none'; }} className="xp-brand-logo-btn-icon" alt="Lincoln Pharma" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                                        </div>
+                                                        <span style={{ color: '#FFF', fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1323,84 +1332,164 @@ export default function App() {
                                                          const currentCreative = creativeType === 'video' ? mockVideos[creativeIdx] : mockPosters[creativeIdx];
                                                          return (
                                                              <>
-                                                                 <div style={{
-                                                                     width: creativeType === 'video' ? '125px' : '150px',
-                                                                     aspectRatio: creativeType === 'video' ? '9/16' : '4/5',
-                                                                     background: currentCreative.bg,
-                                                                     borderRadius: '12px',
-                                                                     border: '2px solid rgba(255, 255, 255, 0.15)',
-                                                                     boxShadow: '0 8px 24px rgba(0,0,0,0.6), inset 0 0 15px rgba(255,255,255,0.15)',
-                                                                     position: 'relative',
-                                                                     overflow: 'hidden',
-                                                                     display: 'flex',
-                                                                     flexDirection: 'column',
-                                                                     justifyContent: 'center',
-                                                                     alignItems: 'center',
-                                                                     padding: '16px',
-                                                                     transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                                                                 }}>
-                                                                     {/* Creative Icon & Content */}
-                                                                     <div style={{ textAlign: 'center' }}>
-                                                                         <div style={{ fontSize: creativeType === 'video' ? '2rem' : '1.8rem', marginBottom: '8px', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.3))' }}>
-                                                                             {creativeType === 'video' ? currentCreative.icon : '✨'}
-                                                                         </div>
-                                                                         <h5 style={{ color: '#fff', fontSize: '0.8rem', fontWeight: '800', margin: '0 0 4px 0', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
-                                                                             {currentCreative.title}
-                                                                         </h5>
-                                                                         <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.6rem', margin: 0, lineHeight: '1.3', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
-                                                                             {creativeType === 'video' ? currentCreative.subtitle : currentCreative.desc}
-                                                                         </p>
-                                                                     </div>
-                                                                 </div>
+                                                                  <div style={{
+                                                                      width: creativeType === 'video' ? '180px' : '210px',
+                                                                      aspectRatio: creativeType === 'video' ? '9/16' : '4/5',
+                                                                      background: currentCreative.bg,
+                                                                      borderRadius: '16px',
+                                                                      border: '2px solid rgba(255, 255, 255, 0.2)',
+                                                                      boxShadow: '0 15px 35px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.2)',
+                                                                      position: 'relative',
+                                                                      overflow: 'hidden',
+                                                                      display: 'flex',
+                                                                      flexDirection: 'column',
+                                                                      justifyContent: 'center',
+                                                                      alignItems: 'center',
+                                                                      padding: '20px',
+                                                                      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                                                                  }}>
+                                                                      {/* Premium Badges at Top Right */}
+                                                                      {creativeType === 'video' ? (
+                                                                          <div style={{
+                                                                              position: 'absolute',
+                                                                              top: '12px',
+                                                                              right: '12px',
+                                                                              background: 'rgba(239, 68, 68, 0.85)',
+                                                                              backdropFilter: 'blur(4px)',
+                                                                              borderRadius: '4px',
+                                                                              padding: '3px 8px',
+                                                                              fontSize: '0.55rem',
+                                                                              fontWeight: '800',
+                                                                              color: '#FFF',
+                                                                              display: 'flex',
+                                                                              alignItems: 'center',
+                                                                              gap: '4px',
+                                                                              letterSpacing: '0.5px',
+                                                                              boxShadow: '0 2px 8px rgba(239,68,68,0.4)'
+                                                                          }}>
+                                                                              <span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: '#FFF', animation: 'pulse 1.2s infinite' }}></span>
+                                                                              LIVE
+                                                                          </div>
+                                                                      ) : (
+                                                                          currentCreative.badge && (
+                                                                              <div style={{
+                                                                                  position: 'absolute',
+                                                                                  top: '12px',
+                                                                                  right: '12px',
+                                                                                  background: 'rgba(255, 255, 255, 0.2)',
+                                                                                  backdropFilter: 'blur(8px)',
+                                                                                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                                                                                  borderRadius: '4px',
+                                                                                  padding: '3px 8px',
+                                                                                  fontSize: '0.55rem',
+                                                                                  fontWeight: '800',
+                                                                                  color: '#FFF',
+                                                                                  letterSpacing: '0.5px',
+                                                                                  textTransform: 'uppercase',
+                                                                                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                                                                              }}>
+                                                                                  {currentCreative.badge}
+                                                                              </div>
+                                                                          )
+                                                                      )}
 
-                                                                 {/* Creative arrow selector controls */}
-                                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '4px' }}>
-                                                                     <button 
-                                                                         onClick={() => setCreativeIdx((prev) => (prev - 1 + 3) % 3)}
-                                                                         style={{
-                                                                             background: 'rgba(255,255,255,0.05)',
-                                                                             border: '1px solid rgba(255,255,255,0.1)',
-                                                                             borderRadius: '50%',
-                                                                             width: '26px',
-                                                                             height: '26px',
-                                                                             display: 'flex',
-                                                                             alignItems: 'center',
-                                                                             justifyContent: 'center',
-                                                                             color: '#fff',
-                                                                             cursor: 'pointer',
-                                                                             transition: 'all 0.2s',
-                                                                         }}
-                                                                         onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(59, 130, 246, 0.2)'; e.currentTarget.style.borderColor = '#3B82F6'; }}
-                                                                         onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}
-                                                                     >
-                                                                         <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                                                     </button>
+                                                                      {/* Creative Icon & Content */}
+                                                                      <div style={{ textAlign: 'center', zIndex: 2 }}>
+                                                                          <div style={{ fontSize: creativeType === 'video' ? '2.8rem' : '2.6rem', marginBottom: '10px', filter: 'drop-shadow(0 6px 8px rgba(0,0,0,0.4))' }}>
+                                                                              {creativeType === 'video' ? currentCreative.icon : '✨'}
+                                                                          </div>
+                                                                          <h5 style={{ color: '#fff', fontSize: '1.05rem', fontWeight: '800', margin: '0 0 6px 0', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
+                                                                              {currentCreative.title}
+                                                                          </h5>
+                                                                          <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.72rem', margin: 0, lineHeight: '1.4', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+                                                                              {creativeType === 'video' ? currentCreative.subtitle : currentCreative.desc}
+                                                                          </p>
+                                                                      </div>
+                                                                  </div>
 
-                                                                     <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace', fontWeight: 'bold', minWidth: '85px', textAlign: 'center' }}>
-                                                                         CREATIVE {creativeIdx + 1}
-                                                                     </span>
+                                                                  {/* Sleek, premium navigation controls */}
+                                                                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '12px' }}>
+                                                                      {/* Capsule Container for Arrow Controls */}
+                                                                      <div style={{
+                                                                          display: 'flex',
+                                                                          alignItems: 'center',
+                                                                          background: 'rgba(255, 255, 255, 0.03)',
+                                                                          border: '1px solid rgba(255, 255, 255, 0.06)',
+                                                                          borderRadius: '24px',
+                                                                          padding: '2px',
+                                                                          backdropFilter: 'blur(10px)',
+                                                                          boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+                                                                      }}>
+                                                                          {/* Previous Button */}
+                                                                          <button 
+                                                                              onClick={() => setCreativeIdx((prev) => (prev - 1 + 3) % 3)}
+                                                                              style={{
+                                                                                  background: 'transparent',
+                                                                                  border: 'none',
+                                                                                  borderRadius: '50%',
+                                                                                  width: '32px',
+                                                                                  height: '32px',
+                                                                                  display: 'flex',
+                                                                                  alignItems: 'center',
+                                                                                  justifyContent: 'center',
+                                                                                  color: 'rgba(255, 255, 255, 0.6)',
+                                                                                  cursor: 'pointer',
+                                                                                  transition: 'all 0.2s ease',
+                                                                              }}
+                                                                              onMouseEnter={(e) => { e.currentTarget.style.color = '#3B82F6'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+                                                                              onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; e.currentTarget.style.background = 'transparent'; }}
+                                                                          >
+                                                                              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                                                          </button>
 
-                                                                     <button 
-                                                                         onClick={() => setCreativeIdx((prev) => (prev + 1) % 3)}
-                                                                         style={{
-                                                                             background: 'rgba(255,255,255,0.05)',
-                                                                             border: '1px solid rgba(255,255,255,0.1)',
-                                                                             borderRadius: '50%',
-                                                                             width: '26px',
-                                                                             height: '26px',
-                                                                             display: 'flex',
-                                                                             alignItems: 'center',
-                                                                             justifyContent: 'center',
-                                                                             color: '#fff',
-                                                                             cursor: 'pointer',
-                                                                             transition: 'all 0.2s',
-                                                                         }}
-                                                                         onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(59, 130, 246, 0.2)'; e.currentTarget.style.borderColor = '#3B82F6'; }}
-                                                                         onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}
-                                                                     >
-                                                                         <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                                                     </button>
-                                                                 </div>
+                                                                          {/* Vertical Divider */}
+                                                                          <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.08)' }}></div>
+
+                                                                          {/* Next Button */}
+                                                                          <button 
+                                                                              onClick={() => setCreativeIdx((prev) => (prev + 1) % 3)}
+                                                                              style={{
+                                                                                  background: 'transparent',
+                                                                                  border: 'none',
+                                                                                  borderRadius: '50%',
+                                                                                  width: '32px',
+                                                                                  height: '32px',
+                                                                                  display: 'flex',
+                                                                                  alignItems: 'center',
+                                                                                  justifyContent: 'center',
+                                                                                  color: 'rgba(255, 255, 255, 0.6)',
+                                                                                  cursor: 'pointer',
+                                                                                  transition: 'all 0.2s ease',
+                                                                              }}
+                                                                              onMouseEnter={(e) => { e.currentTarget.style.color = '#3B82F6'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+                                                                              onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; e.currentTarget.style.background = 'transparent'; }}
+                                                                          >
+                                                                              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                                                          </button>
+                                                                      </div>
+
+                                                                      {/* Glowing Pagination Dots */}
+                                                                      <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center' }}>
+                                                                          {[0, 1, 2].map((idx) => {
+                                                                              const isActive = creativeIdx === idx;
+                                                                              return (
+                                                                                  <div 
+                                                                                      key={idx}
+                                                                                      onClick={() => setCreativeIdx(idx)}
+                                                                                      style={{
+                                                                                          width: isActive ? '18px' : '6px',
+                                                                                          height: '6px',
+                                                                                          borderRadius: '3px',
+                                                                                          background: isActive ? '#3B82F6' : 'rgba(255, 255, 255, 0.2)',
+                                                                                          boxShadow: isActive ? '0 0 8px #3B82F6' : 'none',
+                                                                                          cursor: 'pointer',
+                                                                                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                                                                                      }}
+                                                                                  />
+                                                                              );
+                                                                          })}
+                                                                      </div>
+                                                                  </div>
                                                              </>
                                                          );
                                                      })()}
