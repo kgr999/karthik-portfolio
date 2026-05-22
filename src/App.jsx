@@ -2087,11 +2087,60 @@ export default function App() {
                                             <div className="xp-snap-corner bl"></div>
                                             <div className="xp-snap-corner br"></div>
                                         </div>
-                                        <div className="xp-viewport-overlay" style={{ right: '220px' }}>
+
+                                        {/* Tiny Snapchat logo and @karthik.graj tag below snaps preview */}
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: 'calc(50% + 135px)',
+                                            right: '40px',
+                                            width: '140px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            gap: '6px',
+                                            zIndex: 6,
+                                            background: 'rgba(0, 0, 0, 0.65)',
+                                            padding: '4px 10px',
+                                            borderRadius: '20px',
+                                            border: '1px solid rgba(255, 234, 77, 0.2)',
+                                            backdropFilter: 'blur(10px)',
+                                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
+                                        }}>
+                                            <img 
+                                                src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" 
+                                                alt="Snapchat Logo" 
+                                                style={{ width: '12px', height: '12px' }} 
+                                            />
+                                            <span style={{ 
+                                                color: '#FFEA4D', 
+                                                fontSize: '0.65rem', 
+                                                fontWeight: '700',
+                                                fontFamily: "'Space Grotesk', sans-serif",
+                                                letterSpacing: '0.5px'
+                                            }}>
+                                                @karthik.graj
+                                            </span>
+                                        </div>
+
+                                        <div className="xp-viewport-overlay" style={{ 
+                                            top: '30px', 
+                                            bottom: '30px', 
+                                            left: '30px',
+                                            right: '220px', 
+                                            display: 'flex', 
+                                            flexDirection: 'column', 
+                                            justifyContent: 'space-between',
+                                            padding: '24px',
+                                            background: 'rgba(10, 10, 12, 0.85)',
+                                            backdropFilter: 'blur(20px)',
+                                            border: '1px solid rgba(255, 234, 77, 0.2)',
+                                            borderRadius: '12px',
+                                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)'
+                                        }}>
                                             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
                                                 <div>
                                                     <h3 style={{ margin: 0, fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>Snap AR Lens Creator</h3>
-                                                    <p style={{ margin: '2px 0 10px 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '500' }}>Snap Inc. · Creator Program</p>
+                                                    <p style={{ margin: '4px 0 0 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '600' }}>Snap Inc. · Creator Program</p>
                                                 </div>
                                                 <span className="xp-shimmer-badge" style={{ 
                                                     fontSize: '0.65rem', 
@@ -2104,15 +2153,56 @@ export default function App() {
                                                     featured by Snapchat India
                                                 </span>
                                             </div>
-                                            <div className="xp-viewport-desc">
-                                                <p>Pioneered interactive AR experiences through Snap's Lens Studio. Leveraged spatial computing and face-tracking to design immersive lenses.</p>
+
+                                            {/* Beautiful custom bulleted points */}
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1, justifyContent: 'center', margin: '20px 0' }}>
+                                                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                                    <div style={{
+                                                        background: 'rgba(255, 234, 77, 0.1)',
+                                                        border: '1px solid rgba(255, 234, 77, 0.3)',
+                                                        borderRadius: '50%',
+                                                        width: '22px',
+                                                        height: '22px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        flexShrink: 0,
+                                                        marginTop: '2px',
+                                                        boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
+                                                    }}>
+                                                        <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                    </div>
+                                                    <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
+                                                        Designed and published viral AR experiences that qualified for the <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Snap Lens Creator Rewards</strong> program by driving massive community engagement and user-generated content.
+                                                    </p>
+                                                </div>
+
+                                                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                                    <div style={{
+                                                        background: 'rgba(255, 234, 77, 0.1)',
+                                                        border: '1px solid rgba(255, 234, 77, 0.3)',
+                                                        borderRadius: '50%',
+                                                        width: '22px',
+                                                        height: '22px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        flexShrink: 0,
+                                                        marginTop: '2px',
+                                                        boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
+                                                    }}>
+                                                        <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                    </div>
+                                                    <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
+                                                        Hosted a <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Hyperlocal community workshop</strong> to share my knowledge of Augmented Reality and Basics of Lens Studio.
+                                                    </p>
+                                                </div>
                                             </div>
-                                            
+
                                             {/* Collaboration Info Container */}
                                             <div style={{ 
                                                 display: 'flex', 
                                                 gap: '10px', 
-                                                marginTop: '16px', 
                                                 alignItems: 'center', 
                                                 background: 'rgba(255, 255, 255, 0.03)', 
                                                 padding: '8px 12px', 
@@ -2130,14 +2220,14 @@ export default function App() {
                                                         borderRadius: '4px',
                                                         border: '1px solid rgba(255,255,255,0.1)',
                                                         objectFit: 'cover'
-                                                    }} 
-                                                />
-                                                <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
-                                                    In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
-                                                </span>
+                                                     }} 
+                                                 />
+                                                 <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
+                                                     In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
+                                                 </span>
                                             </div>
                                         </div>
-                                    </div>
+                                     </div>
                                 </div>
                             </div>
                         </div>
