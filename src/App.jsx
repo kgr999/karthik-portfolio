@@ -2063,63 +2063,62 @@ export default function App() {
                                         </div>
                                     </div>
                                     <div className="xp-window-main xp-3d-viewport">
-                                        <div className="xp-snap-camera-frame">
-                                            <div className="xp-snap-camera-inner" style={{ position: 'relative' }}>
-                                                <video 
-                                                    src="/assets/videos/snaps.MP4" 
-                                                    autoPlay 
-                                                    loop 
-                                                    muted 
-                                                    playsInline 
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '100%',
-                                                        objectFit: 'cover',
-                                                        position: 'absolute',
-                                                        top: 0,
-                                                        left: 0,
-                                                        zIndex: 1
-                                                    }}
-                                                />
+                                        <div className="xp-snap-preview-container">
+                                            <div className="xp-snap-camera-frame">
+                                                <div className="xp-snap-camera-inner" style={{ position: 'relative' }}>
+                                                    <video 
+                                                        src="/assets/videos/snaps.MP4" 
+                                                        autoPlay 
+                                                        loop 
+                                                        muted 
+                                                        playsInline 
+                                                        style={{
+                                                            width: '100%',
+                                                            height: '100%',
+                                                            objectFit: 'cover',
+                                                            position: 'absolute',
+                                                            top: 0,
+                                                            left: 0,
+                                                            zIndex: 1
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="xp-snap-corner tl"></div>
+                                                <div className="xp-snap-corner tr"></div>
+                                                <div className="xp-snap-corner bl"></div>
+                                                <div className="xp-snap-corner br"></div>
                                             </div>
-                                            <div className="xp-snap-corner tl"></div>
-                                            <div className="xp-snap-corner tr"></div>
-                                            <div className="xp-snap-corner bl"></div>
-                                            <div className="xp-snap-corner br"></div>
-                                        </div>
 
-                                        {/* Tiny Snapchat logo and @karthik.graj tag below snaps preview */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            top: 'calc(50% + 135px)',
-                                            right: '40px',
-                                            width: '140px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            gap: '6px',
-                                            zIndex: 6,
-                                            background: 'rgba(0, 0, 0, 0.65)',
-                                            padding: '4px 10px',
-                                            borderRadius: '20px',
-                                            border: '1px solid rgba(255, 234, 77, 0.2)',
-                                            backdropFilter: 'blur(10px)',
-                                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
-                                        }}>
-                                            <img 
-                                                src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" 
-                                                alt="Snapchat Logo" 
-                                                style={{ width: '12px', height: '12px' }} 
-                                            />
-                                            <span style={{ 
-                                                color: '#FFEA4D', 
-                                                fontSize: '0.65rem', 
-                                                fontWeight: '700',
-                                                fontFamily: "'Space Grotesk', sans-serif",
-                                                letterSpacing: '0.5px'
+                                            {/* Tiny Snapchat logo and @karthik.graj tag below snaps preview */}
+                                            <div style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '6px',
+                                                background: 'rgba(0, 0, 0, 0.65)',
+                                                padding: '5px 12px',
+                                                borderRadius: '20px',
+                                                border: '1px solid rgba(255, 234, 77, 0.2)',
+                                                backdropFilter: 'blur(10px)',
+                                                boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                                                width: '100%',
+                                                boxSizing: 'border-box'
                                             }}>
-                                                @karthik.graj
-                                            </span>
+                                                <img 
+                                                    src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" 
+                                                    alt="Snapchat Logo" 
+                                                    style={{ width: '12px', height: '12px' }} 
+                                                />
+                                                <span style={{ 
+                                                    color: '#FFEA4D', 
+                                                    fontSize: '0.65rem', 
+                                                    fontWeight: '700',
+                                                    fontFamily: "'Space Grotesk', sans-serif",
+                                                    letterSpacing: '0.5px'
+                                                }}>
+                                                    @karthik.graj
+                                                </span>
+                                            </div>
                                         </div>
 
                                         <div className="xp-viewport-overlay" style={{ 
@@ -2367,8 +2366,6 @@ export default function App() {
                                     <div className="cert-main">
                                         <span>Google</span>
                                         <h4>AI Essentials</h4>
-                                        <p>Specialized in generative AI workflows, prompt engineering, and ethical
-                                            implementation.</p>
                                     </div>
                                     <div className="cert-footer">
                                         <a href="https://coursera.org/verify/professional-cert/FYMT0W2FGSDM" target="_blank"
@@ -2391,12 +2388,9 @@ export default function App() {
                                     <div className="cert-main">
                                         <span>University of Michigan</span>
                                         <h4>AI Basics and Tools for Creativity</h4>
-                                        <p>Exploration of latent diffusion models and the intersection of creative research and
-                                            AI.</p>
                                     </div>
                                     <div className="cert-footer">
-                                        <a href="https://coursera.org/verify/O0S4GJF3H4BS" target="_blank" className="cert-btn">View
-                                            Credential ↗</a>
+                                        <a href="https://coursera.org/verify/O0S4GJF3H4BS" target="_blank" className="cert-btn">View Credential ↗</a>
                                     </div>
                                 </div>
                                 <div className="cert-bg-preview">
