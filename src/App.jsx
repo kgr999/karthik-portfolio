@@ -1777,10 +1777,10 @@ export default function App() {
                                         <div className="xp-media-pool">
                                             <h4><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg> Media Pool</h4>
                                             <div className="xp-pool-grid">
-                                                <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
-                                                <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
-                                                <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
-                                                <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
+                                                <div className="xp-pool-item"><img src="/assets/images/da.avif" alt="da" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                <div className="xp-pool-item"><img src="/assets/images/da1.png" alt="da1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                <div className="xp-pool-item"><img src="/assets/images/da2.png" alt="da2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                <div className="xp-pool-item"><img src="/assets/images/da3.png" alt="da3" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
                                                 <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
                                                 <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
                                             </div>
@@ -1882,9 +1882,27 @@ export default function App() {
                                     </div>
                                     <div className="xp-window-main xp-3d-viewport">
                                         <div className="xp-snap-camera-frame">
-                                            <div className="xp-snap-camera-inner">
-                                                <svg viewBox="0 0 24 24" width="32" height="32" stroke="rgba(255,234,77,0.3)" strokeWidth="1.5" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                                                <span className="xp-snap-label">Lens Preview</span>
+                                            <div className="xp-snap-camera-inner" style={{ position: 'relative' }}>
+                                                <video 
+                                                    src="/assets/videos/snaps.MP4" 
+                                                    autoPlay 
+                                                    loop 
+                                                    muted 
+                                                    playsInline 
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover',
+                                                        position: 'absolute',
+                                                        top: 0,
+                                                        left: 0,
+                                                        zIndex: 1
+                                                    }}
+                                                />
+                                                <div style={{ zIndex: 2, position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', background: 'rgba(0,0,0,0.5)', padding: '6px 10px', borderRadius: '8px', border: '1px solid rgba(255, 234, 77, 0.2)', backdropFilter: 'blur(4px)' }}>
+                                                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="#ffea4d" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 4px rgba(255,234,77,0.4))' }}><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                                                    <span className="xp-snap-label" style={{ color: '#ffea4d', fontWeight: '800', textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>Live Preview</span>
+                                                </div>
                                             </div>
                                             <div className="xp-snap-corner tl"></div>
                                             <div className="xp-snap-corner tr"></div>
