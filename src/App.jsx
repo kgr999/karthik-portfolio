@@ -2161,7 +2161,7 @@ export default function App() {
                         
                         {/* Interactive Social Media Dock */}
                         <div className="social-dock-title reveal-text">
-                            SECURE_CHANNEL // SOCIAL_CONNECT
+                            Let's Connect
                         </div>
                         <div className="social-dock-wrapper reveal-text">
                             <div className="social-dock">
