@@ -4220,6 +4220,155 @@ footer {
     line-height: 1.5;
 }
 
+/* ── Snapchat India Shimmering Badge ── */
+.xp-shimmer-badge {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 234, 77, 0.1) !important;
+    color: #FFEA4D !important;
+    border: 1px solid rgba(255, 234, 77, 0.25) !important;
+    box-shadow: 0 0 10px rgba(255, 234, 77, 0.05);
+}
+
+.xp-shimmer-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: shimmer-sweep 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes shimmer-sweep {
+    0% {
+        left: -150%;
+    }
+    50% {
+        left: 150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* ── Lens Studio Insights Panel ── */
+.xp-insights-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+.xp-insights-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+}
+
+.xp-insights-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.xp-insights-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.xp-insights-dropdown:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.xp-insights-dropdown svg {
+    color: rgba(255, 255, 255, 0.6);
+    flex-shrink: 0;
+}
+
+.xp-insights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.xp-insights-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    padding: 12px 14px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.xp-insights-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: #FFEA4D;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.xp-insights-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 234, 77, 0.15);
+    transform: translateX(2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.xp-insights-card:hover::before {
+    opacity: 1;
+    height: 100%;
+    box-shadow: 0 0 8px #FFEA4D;
+}
+
+.xp-insights-label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.xp-insights-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+
 /* Canvas utilities */
 .xp-node-canvas {
     position: absolute;

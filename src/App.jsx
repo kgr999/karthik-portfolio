@@ -933,7 +933,7 @@ export default function App() {
                     <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="hero-grid">
                             <div className="hero-content">
-                                <p className="hero-label reveal-text">Gen AI Visual Director</p>
+                                <p className="hero-label reveal-text">Gen AI Creative Associate</p>
                                 <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
                                 <p className="hero-sub reveal-text">I treat AI not as a tool, but as a medium for cinematic human storytelling</p>
                                 <div className="hero-cta reveal-item">
@@ -2031,33 +2031,36 @@ export default function App() {
                                 </div>
                                 <div className="xp-window-body">
                                     <div className="xp-window-sidebar xp-hierarchy">
-                                        <div className="xp-snap-brand">
+                                        <div className="xp-snap-brand" style={{ marginBottom: '16px' }}>
                                             <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" alt="Snapchat" width="22" height="22" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }} />
                                             <span className="xp-snap-brand-text">LENS STUDIO</span>
                                         </div>
-                                        <h4>Objects</h4>
-                                        <ul>
-                                            <li>
-                                                <div className="xp-hierarchy-item">
-                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                                                    <span>Camera</span>
+                                        
+                                        {/* Premium Visual Insights Panel */}
+                                        <div className="xp-insights-container">
+                                            <div className="xp-insights-header">
+                                                <h4 className="xp-insights-title">Insights</h4>
+                                                <div className="xp-insights-dropdown">
+                                                    <span>Lifetime</span>
+                                                    <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                                 </div>
-                                            </li>
-                                            <li>
-                                                <div className="xp-hierarchy-item">
-                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><circle cx="12" cy="12" r="4"></circle><path d="M2 12h3M19 12h3M12 2v3M12 19v3"></path></svg>
-                                                    <span>Face Mesh</span>
+                                            </div>
+                                            
+                                            <div className="xp-insights-list">
+                                                <div className="xp-insights-card">
+                                                    <span className="xp-insights-label">Views</span>
+                                                    <div className="xp-insights-value">1,56,77,70,215</div>
                                                 </div>
-                                                <span className="xp-yellow-dot"></span>
-                                            </li>
-                                            <li>
-                                                <div className="xp-hierarchy-item">
-                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
-                                                    <span>Holographic</span>
+                                                <div className="xp-insights-card">
+                                                    <span className="xp-insights-label">Shares</span>
+                                                    <div className="xp-insights-value">3,03,70,979</div>
                                                 </div>
-                                                <span className="xp-yellow-dot"></span>
-                                            </li>
-                                        </ul>
+                                                <div className="xp-insights-card">
+                                                    <span className="xp-insights-label">Plays</span>
+                                                    <div className="xp-insights-value">92,08,77,446</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="xp-window-main xp-3d-viewport">
                                         <div className="xp-snap-camera-frame">
@@ -2078,26 +2081,61 @@ export default function App() {
                                                         zIndex: 1
                                                     }}
                                                 />
-                                                <div style={{ zIndex: 2, position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', background: 'rgba(0,0,0,0.5)', padding: '6px 10px', borderRadius: '8px', border: '1px solid rgba(255, 234, 77, 0.2)', backdropFilter: 'blur(4px)' }}>
-                                                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="#ffea4d" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 4px rgba(255,234,77,0.4))' }}><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                                                    <span className="xp-snap-label" style={{ color: '#ffea4d', fontWeight: '800', textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>Live Preview</span>
-                                                </div>
                                             </div>
                                             <div className="xp-snap-corner tl"></div>
                                             <div className="xp-snap-corner tr"></div>
                                             <div className="xp-snap-corner bl"></div>
                                             <div className="xp-snap-corner br"></div>
                                         </div>
-                                        <div className="xp-viewport-overlay">
-                                            <h3>Snap AR Lens Creator</h3>
-                                            <p>Snap Inc. · Creator Program</p>
+                                        <div className="xp-viewport-overlay" style={{ right: '220px' }}>
+                                            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
+                                                <div>
+                                                    <h3 style={{ margin: 0, fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>Snap AR Lens Creator</h3>
+                                                    <p style={{ margin: '2px 0 10px 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '500' }}>Snap Inc. · Creator Program</p>
+                                                </div>
+                                                <span className="xp-shimmer-badge" style={{ 
+                                                    fontSize: '0.65rem', 
+                                                    padding: '4px 10px', 
+                                                    borderRadius: '12px', 
+                                                    fontWeight: '700', 
+                                                    letterSpacing: '0.8px',
+                                                    textTransform: 'uppercase'
+                                                }}>
+                                                    featured by Snapchat India
+                                                </span>
+                                            </div>
                                             <div className="xp-viewport-desc">
                                                 <p>Pioneered interactive AR experiences through Snap's Lens Studio. Leveraged spatial computing and face-tracking to design immersive lenses.</p>
                                             </div>
-                                        </div>
-                                        <div className="xp-comp-box">
-                                            <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                                            <span>Script</span>
+                                            
+                                            {/* Collaboration Info Container */}
+                                            <div style={{ 
+                                                display: 'flex', 
+                                                gap: '10px', 
+                                                marginTop: '16px', 
+                                                alignItems: 'center', 
+                                                background: 'rgba(255, 255, 255, 0.03)', 
+                                                padding: '8px 12px', 
+                                                borderRadius: '6px', 
+                                                border: '1px solid rgba(255, 255, 255, 0.05)',
+                                                backdropFilter: 'blur(5px)',
+                                                width: 'fit-content'
+                                            }}>
+                                                <img 
+                                                    src="https://media.licdn.com/dms/image/v2/C560BAQGixHOmwquQXQ/company-logo_200_200/company-logo_200_200/0/1668519541906?e=2147483647&v=beta&t=6NYXwZcOGv4H2SgLnu_e36Wt8aBZMJ6U0ILowKguQoU" 
+                                                    alt="Under25 Logo" 
+                                                    style={{ 
+                                                        width: '20px', 
+                                                        height: '20px', 
+                                                        borderRadius: '4px',
+                                                        border: '1px solid rgba(255,255,255,0.1)',
+                                                        objectFit: 'cover'
+                                                    }} 
+                                                />
+                                                <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
+                                                    In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -2329,7 +2367,7 @@ export default function App() {
 
                 <footer>
                     <div className="container">
-                        <p>© 2026 KARTHIK G RAJ // GEN AI VISUAL DIRECTOR</p>
+                        <p>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
                     </div>
                 </footer>
             </div>
