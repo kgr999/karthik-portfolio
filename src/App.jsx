@@ -473,6 +473,32 @@ export default function App() {
     const [initProgress, setInitProgress] = useState(0);
     const [diagnosticLines, setDiagnosticLines] = useState([]);
 
+    // Real-time clock for simulator viewports
+    const [simTime, setSimTime] = useState(() => {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+        return `${hours}:${minutesStr} ${ampm}`;
+    });
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+            setSimTime(`${hours}:${minutesStr} ${ampm}`);
+        }, 10000);
+        return () => clearInterval(timer);
+    }, []);
+
 
 
     const locations = [
@@ -1236,7 +1262,6 @@ export default function App() {
                                                 </p>
                                                 <div className="xp-brands-logos">
                                                     <div className="xp-brand-logo-btn xp-brand-montra">
-                                                        <span className="xp-brand-badge">01</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
                                                                 src="/assets/images/montra_logo.png" 
@@ -1260,7 +1285,6 @@ export default function App() {
                                                         <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
                                                     </div>
                                                     <div className="xp-brand-logo-btn xp-brand-ampere">
-                                                        <span className="xp-brand-badge">02</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
                                                                 src="/assets/images/ampere_logo.png" 
@@ -1274,17 +1298,16 @@ export default function App() {
                                                                     }
                                                                 }} 
                                                                 className="xp-brand-logo-btn-icon" 
-                                                                alt="Ampere Electric" 
+                                                                alt="Ampere" 
                                                                 style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }} 
                                                             />
                                                             <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#00FFF0', zIndex: 1 }}>
                                                                 A
                                                             </div>
                                                         </div>
-                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere Electric</span>
+                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere</span>
                                                     </div>
                                                     <div className="xp-brand-logo-btn xp-brand-lincoln">
-                                                        <span className="xp-brand-badge">03</span>
                                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                             <img 
                                                                 src="/assets/images/lincoln_logo.png" 
@@ -1378,169 +1401,340 @@ export default function App() {
                                                  </div>
 
                                                  {/* Interactive Creative Previewer Viewport */}
-                                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}>
                                                      {(() => {
                                                          const currentCreative = creativeType === 'video' ? mockVideos[creativeIdx] : mockPosters[creativeIdx];
                                                          return (
                                                              <>
-                                                                  <div style={{
-                                                                      width: creativeType === 'video' ? '180px' : '210px',
-                                                                      aspectRatio: creativeType === 'video' ? '9/16' : '4/5',
-                                                                      background: currentCreative.bg,
-                                                                      borderRadius: '16px',
-                                                                      border: '2px solid rgba(255, 255, 255, 0.2)',
-                                                                      boxShadow: '0 15px 35px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.2)',
-                                                                      position: 'relative',
-                                                                      overflow: 'hidden',
-                                                                      display: 'flex',
-                                                                      flexDirection: 'column',
-                                                                      justifyContent: 'center',
-                                                                      alignItems: 'center',
-                                                                      padding: '20px',
-                                                                      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                                                                  }}>
-                                                                      {/* Premium Badges at Top Right */}
-                                                                      {creativeType === 'video' ? (
-                                                                          <div style={{
-                                                                              position: 'absolute',
-                                                                              top: '12px',
-                                                                              right: '12px',
-                                                                              background: 'rgba(239, 68, 68, 0.85)',
-                                                                              backdropFilter: 'blur(4px)',
-                                                                              borderRadius: '4px',
-                                                                              padding: '3px 8px',
-                                                                              fontSize: '0.55rem',
-                                                                              fontWeight: '800',
-                                                                              color: '#FFF',
-                                                                              display: 'flex',
-                                                                              alignItems: 'center',
-                                                                              gap: '4px',
-                                                                              letterSpacing: '0.5px',
-                                                                              boxShadow: '0 2px 8px rgba(239,68,68,0.4)'
-                                                                          }}>
-                                                                              <span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: '#FFF', animation: 'pulse 1.2s infinite' }}></span>
-                                                                              LIVE
-                                                                          </div>
-                                                                      ) : (
-                                                                          currentCreative.badge && (
-                                                                              <div style={{
-                                                                                  position: 'absolute',
-                                                                                  top: '12px',
-                                                                                  right: '12px',
-                                                                                  background: 'rgba(255, 255, 255, 0.2)',
-                                                                                  backdropFilter: 'blur(8px)',
-                                                                                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                                                                                  borderRadius: '4px',
-                                                                                  padding: '3px 8px',
-                                                                                  fontSize: '0.55rem',
-                                                                                  fontWeight: '800',
-                                                                                  color: '#FFF',
-                                                                                  letterSpacing: '0.5px',
-                                                                                  textTransform: 'uppercase',
-                                                                                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                                                                              }}>
-                                                                                  {currentCreative.badge}
-                                                                              </div>
-                                                                          )
-                                                                      )}
+                                                                 {/* Horizontal layout: Prev Button | Viewport | Next Button */}
+                                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', width: '100%' }}>
+                                                                     {/* Previous Button */}
+                                                                     <button 
+                                                                         onClick={() => setCreativeIdx((prev) => (prev - 1 + 3) % 3)}
+                                                                         aria-label="Previous Creative"
+                                                                         className="xp-arrow-nav-btn prev-btn"
+                                                                         style={{
+                                                                             background: 'rgba(255, 255, 255, 0.03)',
+                                                                             border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                                             borderRadius: '50%',
+                                                                             width: '36px',
+                                                                             height: '36px',
+                                                                             display: 'flex',
+                                                                             alignItems: 'center',
+                                                                             justifyContent: 'center',
+                                                                             color: 'rgba(255, 255, 255, 0.6)',
+                                                                             cursor: 'pointer',
+                                                                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                                             backdropFilter: 'blur(8px)',
+                                                                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                                                                             flexShrink: 0
+                                                                         }}
+                                                                         onMouseEnter={(e) => { 
+                                                                             e.currentTarget.style.color = '#3B82F6'; 
+                                                                             e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                                                                             e.currentTarget.style.borderColor = '#3B82F6';
+                                                                             e.currentTarget.style.boxShadow = '0 0 12px rgba(59, 130, 246, 0.4)';
+                                                                             e.currentTarget.style.transform = 'scale(1.08)';
+                                                                         }}
+                                                                         onMouseLeave={(e) => { 
+                                                                             e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; 
+                                                                             e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                                                                             e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                                                                             e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+                                                                             e.currentTarget.style.transform = 'none';
+                                                                         }}
+                                                                     >
+                                                                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                                                     </button>
 
-                                                                      {/* Creative Icon & Content */}
-                                                                      <div style={{ textAlign: 'center', zIndex: 2 }}>
-                                                                          <div style={{ fontSize: creativeType === 'video' ? '2.8rem' : '2.6rem', marginBottom: '10px', filter: 'drop-shadow(0 6px 8px rgba(0,0,0,0.4))' }}>
-                                                                              {creativeType === 'video' ? currentCreative.icon : '✨'}
-                                                                          </div>
-                                                                          <h5 style={{ color: '#fff', fontSize: '1.05rem', fontWeight: '800', margin: '0 0 6px 0', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
-                                                                              {currentCreative.title}
-                                                                          </h5>
-                                                                          <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.72rem', margin: 0, lineHeight: '1.4', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
-                                                                              {creativeType === 'video' ? currentCreative.subtitle : currentCreative.desc}
-                                                                          </p>
-                                                                      </div>
-                                                                  </div>
+                                                                     {/* High-Fidelity Device Simulator Viewport */}
+                                                                     <div 
+                                                                         className="sim-device-viewport"
+                                                                         style={{
+                                                                             width: '185px',
+                                                                             aspectRatio: '9/16',
+                                                                             background: creativeType === 'video' ? currentCreative.bg : '#0B0B0F',
+                                                                             borderRadius: '24px',
+                                                                             border: '3px solid rgba(255, 255, 255, 0.15)',
+                                                                             boxShadow: '0 20px 45px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05)',
+                                                                             position: 'relative',
+                                                                             overflow: 'hidden',
+                                                                             display: 'flex',
+                                                                             flexDirection: 'column',
+                                                                             justifyContent: 'flex-start',
+                                                                             transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                                                                             flexShrink: 0
+                                                                         }}
+                                                                     >
+                                                                         {/* Status Bar */}
+                                                                         <div className="sim-device-header">
+                                                                             <div className="sim-status-bar-left">{simTime}</div>
+                                                                             <div className="sim-device-notch"></div>
+                                                                             <div className="sim-status-bar-right">
+                                                                                 {/* Telemetry Status Bar Icons */}
+                                                                                 <svg width="11" height="8" viewBox="0 0 17 11" fill="currentColor" className="sim-status-icon">
+                                                                                     <rect x="0" y="8" width="2" height="3" rx="0.5" />
+                                                                                     <rect x="4" y="6" width="2" height="5" rx="0.5" />
+                                                                                     <rect x="8" y="4" width="2" height="7" rx="0.5" />
+                                                                                     <rect x="12" y="2" width="2" height="9" rx="0.5" />
+                                                                                     <rect x="16" y="0" width="2" height="11" rx="0.5" />
+                                                                                 </svg>
+                                                                                 <svg width="11" height="8" viewBox="0 0 24 24" fill="currentColor" className="sim-status-icon">
+                                                                                     <path d="M12 21a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM4.8 13.8a10 10 0 0 1 14 0l-1.4 1.4a8 8 0 0 0-11.6 0l-1.4-1.4zm-3-3a14 14 0 0 1 20.4 0l-1.4 1.4a12 12 0 0 0-17.6 0l-1.4-1.4z" />
+                                                                                 </svg>
+                                                                                 <svg width="15" height="8" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ marginLeft: '1px' }}>
+                                                                                     <rect x="1" y="1" width="18" height="10" rx="3" ry="3" />
+                                                                                     <line x1="21" y1="4" x2="21" y2="8" strokeLinecap="round" />
+                                                                                     <rect x="3" y="3" width="12" height="6" rx="1" fill="currentColor" />
+                                                                                 </svg>
+                                                                             </div>
+                                                                         </div>
 
-                                                                  {/* Sleek, premium navigation controls */}
-                                                                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '12px' }}>
-                                                                      {/* Capsule Container for Arrow Controls */}
-                                                                      <div style={{
-                                                                          display: 'flex',
-                                                                          alignItems: 'center',
-                                                                          background: 'rgba(255, 255, 255, 0.03)',
-                                                                          border: '1px solid rgba(255, 255, 255, 0.06)',
-                                                                          borderRadius: '24px',
-                                                                          padding: '2px',
-                                                                          backdropFilter: 'blur(10px)',
-                                                                          boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
-                                                                      }}>
-                                                                          {/* Previous Button */}
-                                                                          <button 
-                                                                              onClick={() => setCreativeIdx((prev) => (prev - 1 + 3) % 3)}
-                                                                              style={{
-                                                                                  background: 'transparent',
-                                                                                  border: 'none',
-                                                                                  borderRadius: '50%',
-                                                                                  width: '32px',
-                                                                                  height: '32px',
-                                                                                  display: 'flex',
-                                                                                  alignItems: 'center',
-                                                                                  justifyContent: 'center',
-                                                                                  color: 'rgba(255, 255, 255, 0.6)',
-                                                                                  cursor: 'pointer',
-                                                                                  transition: 'all 0.2s ease',
-                                                                              }}
-                                                                              onMouseEnter={(e) => { e.currentTarget.style.color = '#3B82F6'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
-                                                                              onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; e.currentTarget.style.background = 'transparent'; }}
-                                                                          >
-                                                                              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                                                          </button>
+                                                                         {creativeType === 'video' ? (
+                                                                             <>
+                                                                                 {/* Simulated live video stream / AD indicators */}
+                                                                                 <div className="sim-live-badge" style={{ top: '38px' }}>
+                                                                                     <span className="sim-live-dot"></span>
+                                                                                     AD
+                                                                                 </div>
 
-                                                                          {/* Vertical Divider */}
-                                                                          <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.08)' }}></div>
+                                                                                 {/* Reels Mode Middle Graphic Preview */}
+                                                                                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
+                                                                                     <div className="sim-reels-visual-pulse" style={{ fontSize: '2.5rem', filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.5))' }}>
+                                                                                         {currentCreative.icon}
+                                                                                     </div>
+                                                                                 </div>
 
-                                                                          {/* Next Button */}
-                                                                          <button 
-                                                                              onClick={() => setCreativeIdx((prev) => (prev + 1) % 3)}
-                                                                              style={{
-                                                                                  background: 'transparent',
-                                                                                  border: 'none',
-                                                                                  borderRadius: '50%',
-                                                                                  width: '32px',
-                                                                                  height: '32px',
-                                                                                  display: 'flex',
-                                                                                  alignItems: 'center',
-                                                                                  justifyContent: 'center',
-                                                                                  color: 'rgba(255, 255, 255, 0.6)',
-                                                                                  cursor: 'pointer',
-                                                                                  transition: 'all 0.2s ease',
-                                                                              }}
-                                                                              onMouseEnter={(e) => { e.currentTarget.style.color = '#3B82F6'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
-                                                                              onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; e.currentTarget.style.background = 'transparent'; }}
-                                                                          >
-                                                                              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                                                          </button>
-                                                                      </div>
+                                                                                 {/* Instagram-Inspired Floating Action Drawer */}
+                                                                                 <div className="sim-social-actions">
+                                                                                     {/* Avatar */}
+                                                                                     <div className="sim-action-btn reels-avatar-btn" style={{ marginBottom: '4px' }}>
+                                                                                         <div className="sim-action-icon-wrapper avatar" style={{ width: '28px', height: '28px', padding: '1px', border: '1px solid rgba(255,255,255,0.6)' }}>
+                                                                                             <div style={{
+                                                                                                 width: '100%',
+                                                                                                 height: '100%',
+                                                                                                 borderRadius: '50%',
+                                                                                                 background: 'linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%)',
+                                                                                                 display: 'flex',
+                                                                                                 alignItems: 'center',
+                                                                                                 justifyContent: 'center',
+                                                                                                 fontSize: '8px',
+                                                                                                 fontWeight: 'bold',
+                                                                                                 color: '#fff'
+                                                                                              }}>
+                                                                                                 {creativeIdx === 0 ? 'M' : creativeIdx === 1 ? 'A' : 'L'}
+                                                                                             </div>
+                                                                                         </div>
+                                                                                     </div>
 
-                                                                      {/* Glowing Pagination Dots */}
-                                                                      <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center' }}>
-                                                                          {[0, 1, 2].map((idx) => {
-                                                                              const isActive = creativeIdx === idx;
-                                                                              return (
-                                                                                  <div 
-                                                                                      key={idx}
-                                                                                      onClick={() => setCreativeIdx(idx)}
-                                                                                      style={{
-                                                                                          width: isActive ? '18px' : '6px',
-                                                                                          height: '6px',
-                                                                                          borderRadius: '3px',
-                                                                                          background: isActive ? '#3B82F6' : 'rgba(255, 255, 255, 0.2)',
-                                                                                          boxShadow: isActive ? '0 0 8px #3B82F6' : 'none',
-                                                                                          cursor: 'pointer',
-                                                                                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                                                                                      }}
-                                                                                  />
-                                                                              );
-                                                                          })}
-                                                                      </div>
-                                                                  </div>
+                                                                                     {/* Heart / Like */}
+                                                                                     <div className="sim-action-btn" onClick={() => alert('Liked Reel!')}>
+                                                                                         <div className="sim-action-icon-wrapper heart">
+                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                                                                         </div>
+                                                                                     </div>
+
+                                                                                     {/* Comment */}
+                                                                                     <div className="sim-action-btn" onClick={() => alert('Comments opened!')}>
+                                                                                         <div className="sim-action-icon-wrapper comment">
+                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                                                                         </div>
+                                                                                     </div>
+
+                                                                                     {/* Share */}
+                                                                                     <div className="sim-action-btn" onClick={() => alert('Shared Reel!')}>
+                                                                                         <div className="sim-action-icon-wrapper share">
+                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+                                                                                         </div>
+                                                                                     </div>
+
+                                                                                     {/* Music Spinning Vinyl */}
+                                                                                     <div className="sim-vinyl-wrapper">
+                                                                                         <div className="sim-vinyl-center"></div>
+                                                                                     </div>
+                                                                                 </div>
+
+                                                                                 {/* Video metadata and timeline */}
+                                                                                 <div className="sim-reels-details" style={{ paddingBottom: '12px' }}>
+                                                                                     <h5 style={{ color: '#fff', fontSize: '0.65rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                                                                                         @{creativeIdx === 0 ? 'montra_electric' : creativeIdx === 1 ? 'ampere_ev' : 'lincoln_pharma'}
+                                                                                         <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
+                                                                                         <span style={{ fontSize: '0.5rem', color: 'rgba(255,255,255,0.75)', fontWeight: '500', marginLeft: '1px' }}>• Sponsored</span>
+                                                                                     </h5>
+                                                                                     <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
+                                                                                         {currentCreative.title}
+                                                                                     </p>
+                                                                                     <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.5rem', margin: '0 0 6px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
+                                                                                         {currentCreative.subtitle}
+                                                                                     </p>
+                                                                                     
+                                                                                     {/* Audio line */}
+                                                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'rgba(255,255,255,0.9)', fontSize: '0.48rem', margin: '0 0 4px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
+                                                                                         <svg viewBox="0 0 24 24" width="8" height="8" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                                                                                         <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100px' }}>original audio - admitra.in</span>
+                                                                                     </div>
+
+                                                                                     <div className="sim-scrubber-track" style={{ marginTop: '6px' }}>
+                                                                                         <div className="sim-scrubber-fill">
+                                                                                             <div className="sim-scrubber-thumb"></div>
+                                                                                         </div>
+                                                                                     </div>
+                                                                                 </div>
+                                                                             </>
+                                                                         ) : (
+                                                                             <>
+                                                                                 {/* Instagram Post sponsored header */}
+                                                                                 <div className="sim-sponsored-header" style={{ top: '32px' }}>
+                                                                                     <div className="sim-sponsored-user">
+                                                                                         <div className="sim-sponsored-avatar">
+                                                                                             <div className="sim-sponsored-avatar-inner">
+                                                                                                 {creativeIdx === 0 ? 'M' : creativeIdx === 1 ? 'A' : 'L'}
+                                                                                             </div>
+                                                                                         </div>
+                                                                                         <div className="sim-sponsored-info">
+                                                                                             <span className="sim-sponsored-name">
+                                                                                                 {creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'}
+                                                                                                 <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ marginLeft: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z"/></svg>
+                                                                                             </span>
+                                                                                             <span className="sim-sponsored-tag">Sponsored</span>
+                                                                                         </div>
+                                                                                     </div>
+                                                                                     <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2.5"><circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/></svg>
+                                                                                 </div>
+
+                                                                                 {/* 4:5 Poster Media card */}
+                                                                                 <div 
+                                                                                     className="sim-poster-media"
+                                                                                     style={{
+                                                                                         width: '100%',
+                                                                                         height: '175px',
+                                                                                         background: currentCreative.bg,
+                                                                                         marginTop: '66px',
+                                                                                         display: 'flex',
+                                                                                         flexDirection: 'column',
+                                                                                         justifyContent: 'center',
+                                                                                         alignItems: 'center',
+                                                                                         padding: '0 12px',
+                                                                                         position: 'relative',
+                                                                                         boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)'
+                                                                                     }}
+                                                                                 >
+                                                                                     <div className="sim-reels-visual-pulse" style={{ fontSize: '2.2rem', marginBottom: '4px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.4))' }}>
+                                                                                         ✨
+                                                                                     </div>
+                                                                                     <h5 style={{ color: '#fff', fontSize: '0.78rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.7)', textAlign: 'center', lineHeight: '1.2' }}>
+                                                                                         {currentCreative.title}
+                                                                                     </h5>
+                                                                                     <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.55rem', margin: 0, lineHeight: '1.3', textShadow: '0 1px 2px rgba(0,0,0,0.7)', textAlign: 'center' }}>
+                                                                                         {currentCreative.desc}
+                                                                                     </p>
+                                                                                 </div>
+
+                                                                                 {/* Instagram Post Action Bar */}
+                                                                                 <div className="sim-poster-actions" style={{
+                                                                                     width: '100%',
+                                                                                     padding: '6px 10px',
+                                                                                     display: 'flex',
+                                                                                     alignItems: 'center',
+                                                                                     justifyContent: 'space-between',
+                                                                                     background: 'transparent'
+                                                                                 }}>
+                                                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                                                         <span className="sim-action-btn-post heart" onClick={() => alert('Liked Post!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-heart-svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                                                                         </span>
+                                                                                         <span className="sim-action-btn-post comment" onClick={() => alert('Comment section!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-comment-svg"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                                                                         </span>
+                                                                                         <span className="sim-action-btn-post share" onClick={() => alert('Shared Post!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-share-svg"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+                                                                                         </span>
+                                                                                     </div>
+                                                                                     <span className="sim-action-btn-post bookmark" onClick={() => alert('Post Bookmarked!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-bookmark-svg"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                                                                                     </span>
+                                                                                 </div>
+
+                                                                                 {/* Sponsored CTA button wrapper at bottom */}
+                                                                                 <div className="sim-sponsored-cta-wrapper" style={{ padding: '0 8px 12px 8px', background: 'none', position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 5 }}>
+                                                                                     <button 
+                                                                                         className="sim-cta-btn" 
+                                                                                         onClick={() => alert(`Redirecting to ${creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'} official page!`)}
+                                                                                         style={{
+                                                                                             padding: '6px',
+                                                                                             fontSize: '0.58rem',
+                                                                                             letterSpacing: '0.5px',
+                                                                                             borderRadius: '6px'
+                                                                                         }}
+                                                                                     >
+                                                                                         {currentCreative.badge ? `ACTIVATE: ${currentCreative.badge}` : 'LEARN MORE'}
+                                                                                     </button>
+                                                                                 </div>
+                                                                             </>
+                                                                         )}
+                                                                     </div>
+
+                                                                     {/* Next Button */}
+                                                                     <button 
+                                                                         onClick={() => setCreativeIdx((prev) => (prev + 1) % 3)}
+                                                                         aria-label="Next Creative"
+                                                                         className="xp-arrow-nav-btn next-btn"
+                                                                         style={{
+                                                                             background: 'rgba(255, 255, 255, 0.03)',
+                                                                             border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                                             borderRadius: '50%',
+                                                                             width: '36px',
+                                                                             height: '36px',
+                                                                             display: 'flex',
+                                                                             alignItems: 'center',
+                                                                             justifyContent: 'center',
+                                                                             color: 'rgba(255, 255, 255, 0.6)',
+                                                                             cursor: 'pointer',
+                                                                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                                             backdropFilter: 'blur(8px)',
+                                                                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                                                                             flexShrink: 0
+                                                                         }}
+                                                                         onMouseEnter={(e) => { 
+                                                                             e.currentTarget.style.color = '#3B82F6'; 
+                                                                             e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                                                                             e.currentTarget.style.borderColor = '#3B82F6';
+                                                                             e.currentTarget.style.boxShadow = '0 0 12px rgba(59, 130, 246, 0.4)';
+                                                                             e.currentTarget.style.transform = 'scale(1.08)';
+                                                                         }}
+                                                                         onMouseLeave={(e) => { 
+                                                                             e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; 
+                                                                             e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                                                                             e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                                                                             e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+                                                                             e.currentTarget.style.transform = 'none';
+                                                                         }}
+                                                                     >
+                                                                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                                                     </button>
+                                                                 </div>
+
+                                                                 {/* Glowing Pagination Dots */}
+                                                                 <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center', marginTop: '6px' }}>
+                                                                     {[0, 1, 2].map((idx) => {
+                                                                         const isActive = creativeIdx === idx;
+                                                                         return (
+                                                                             <div 
+                                                                                 key={idx}
+                                                                                 onClick={() => setCreativeIdx(idx)}
+                                                                                 style={{
+                                                                                     width: isActive ? '18px' : '6px',
+                                                                                     height: '6px',
+                                                                                     borderRadius: '3px',
+                                                                                     background: isActive ? '#3B82F6' : 'rgba(255, 255, 255, 0.2)',
+                                                                                     boxShadow: isActive ? '0 0 8px #3B82F6' : 'none',
+                                                                                     cursor: 'pointer',
+                                                                                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                                                                                 }}
+                                                                             />
+                                                                         );
+                                                                     })}
+                                                                 </div>
                                                              </>
                                                          );
                                                      })()}
@@ -1964,6 +2158,39 @@ export default function App() {
                             </div>
                         </div>
                         <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text">hello@karthikgraj.in</a>
+                        
+                        {/* Interactive Social Media Dock */}
+                        <div className="social-dock-title reveal-text">
+                            SECURE_CHANNEL // SOCIAL_CONNECT
+                        </div>
+                        <div className="social-dock-wrapper reveal-text">
+                            <div className="social-dock">
+                                {/* LinkedIn Button */}
+                                <a href="https://www.linkedin.com/in/karthikgraj" target="_blank" rel="noopener noreferrer" className="social-dock-btn linkedin">
+                                    <div className="btn-glow-bg"></div>
+                                    <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    <span className="btn-text">LinkedIn</span>
+                                    <span className="btn-hover-indicator"></span>
+                                </a>
+
+                                {/* Divider */}
+                                <div className="dock-divider"></div>
+
+                                {/* Instagram Button */}
+                                <a href="https://www.instagram.com/karthik.graj" target="_blank" rel="noopener noreferrer" className="social-dock-btn instagram">
+                                    <div className="btn-glow-bg"></div>
+                                    <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                    <span className="btn-text">Instagram</span>
+                                    <span className="btn-hover-indicator"></span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
