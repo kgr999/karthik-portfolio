@@ -18,6 +18,13 @@ export default function ContactPhysicsArena() {
     const ballsRef = useRef([]);
     const [aeroWink, setAeroWink] = useState(false);
 
+    // Bounding coordinates of text/link elements to calculate bouncing rebounds
+    const contactElementsRects = useRef({
+        mail: { left: 0, right: 0, top: 0, bottom: 0 },
+        linkedin: { left: 0, right: 0, top: 0, bottom: 0 },
+        instagram: { left: 0, right: 0, top: 0, bottom: 0 }
+    });
+
     // Keep track of interactive dimensions & state variables in refs for 60fps physics
     const dimensions = useRef({ width: 0, height: 0 });
     const ballsState = useRef([]);
@@ -70,20 +77,21 @@ export default function ContactPhysicsArena() {
                 heartsState.current.push({
                     id: Math.random() + i,
                     el: heartEl,
-                    x: startX + (Math.random() - 0.5) * 25,
-                    y: startY - 12,
-                    vx: (Math.random() - 0.5) * 3,
-                    vy: -2 - Math.random() * 3,
-                    scale: 0.5 + Math.random() * 0.7,
+                    x: startX + (Math.random() - 0.5) * 18,
+                    y: startY - 8,
+                    vx: (Math.random() - 0.5) * 1.5,
+                    vy: -1.2 - Math.random() * 1.5,
+                    scale: 0.4 + Math.random() * 0.4,
                     opacity: 1,
-                    rotation: (Math.random() - 0.5) * 45,
-                    decay: 0.012 + Math.random() * 0.01
+                    rotation: (Math.random() - 0.5) * 30,
+                    decay: 0.022 + Math.random() * 0.015
                 });
             }
         };
 
         // 1. Calculate parent layout sizes
         const updateDimensions = () => {
+            if (!arenaRef.current) return;
             const rect = arenaRef.current.getBoundingClientRect();
             dimensions.current = {
                 width: rect.width,
@@ -92,6 +100,40 @@ export default function ContactPhysicsArena() {
             // Dynamic coordinates for pink bot Aera in the bottom-right corner
             aeraState.current.x = rect.width - 120;
             aeraState.current.y = rect.height - 100;
+
+            // Recalculate contact elements relative positions for rebounding collisions
+            const mailEl = document.querySelector('.contact-mail');
+            const linkedinEl = document.querySelector('.social-dock-btn.linkedin');
+            const instagramEl = document.querySelector('.social-dock-btn.instagram');
+            const aRect = rect; // Arena bounding rect
+            
+            if (mailEl) {
+                const mRect = mailEl.getBoundingClientRect();
+                contactElementsRects.current.mail = {
+                    left: mRect.left - aRect.left,
+                    right: mRect.right - aRect.left,
+                    top: mRect.top - aRect.top,
+                    bottom: mRect.bottom - aRect.top
+                };
+            }
+            if (linkedinEl) {
+                const lRect = linkedinEl.getBoundingClientRect();
+                contactElementsRects.current.linkedin = {
+                    left: lRect.left - aRect.left,
+                    right: lRect.right - aRect.left,
+                    top: lRect.top - aRect.top,
+                    bottom: lRect.bottom - aRect.top
+                };
+            }
+            if (instagramEl) {
+                const iRect = instagramEl.getBoundingClientRect();
+                contactElementsRects.current.instagram = {
+                    left: iRect.left - aRect.left,
+                    right: iRect.right - aRect.left,
+                    top: iRect.top - aRect.top,
+                    bottom: iRect.bottom - aRect.top
+                };
+            }
         };
 
         updateDimensions();
@@ -127,11 +169,71 @@ export default function ContactPhysicsArena() {
         const friction = 0.99;
 
         const updatePhysics = () => {
-            const arenaW = dimensions.current.width;
-            const arenaH = dimensions.current.height;
+            let arenaW = dimensions.current.width;
+            let arenaH = dimensions.current.height;
             if (arenaW === 0 || arenaH === 0) {
-                animationFrameId = requestAnimationFrame(updatePhysics);
-                return;
+                if (arenaRef.current) {
+                    const rect = arenaRef.current.getBoundingClientRect();
+                    if (rect.width > 0 && rect.height > 0) {
+                        dimensions.current = {
+                            width: rect.width,
+                            height: rect.height
+                        };
+                        arenaW = rect.width;
+                        arenaH = rect.height;
+
+                        // Properly position elements inside new non-zero bounds!
+                        aeraState.current.x = rect.width - 120;
+                        aeraState.current.y = rect.height - 100;
+
+                        aeroState.current.x = rect.width * 0.3;
+                        aeroState.current.y = rect.height - 100;
+
+                        // Spread balls across the actual non-zero width!
+                        const balls = ballsState.current;
+                        balls.forEach((b, idx) => {
+                            b.x = 100 + idx * ((rect.width - 200) / (balls.length - 1 || 4));
+                            b.y = 50 + Math.random() * 80;
+                        });
+
+                        // Recalculate contact elements relative positions
+                        const mailEl = document.querySelector('.contact-mail');
+                        const linkedinEl = document.querySelector('.social-dock-btn.linkedin');
+                        const instagramEl = document.querySelector('.social-dock-btn.instagram');
+                        if (mailEl) {
+                            const mRect = mailEl.getBoundingClientRect();
+                            contactElementsRects.current.mail = {
+                                left: mRect.left - rect.left,
+                                right: mRect.right - rect.left,
+                                top: mRect.top - rect.top,
+                                bottom: mRect.bottom - rect.top
+                            };
+                        }
+                        if (linkedinEl) {
+                            const lRect = linkedinEl.getBoundingClientRect();
+                            contactElementsRects.current.linkedin = {
+                                left: lRect.left - rect.left,
+                                right: lRect.right - rect.left,
+                                top: lRect.top - rect.top,
+                                bottom: lRect.bottom - rect.top
+                            };
+                        }
+                        if (instagramEl) {
+                            const iRect = instagramEl.getBoundingClientRect();
+                            contactElementsRects.current.instagram = {
+                                left: iRect.left - rect.left,
+                                right: iRect.right - rect.left,
+                                top: iRect.top - rect.top,
+                                bottom: iRect.bottom - rect.top
+                            };
+                        }
+                    }
+                }
+
+                if (arenaW === 0 || arenaH === 0) {
+                    animationFrameId = requestAnimationFrame(updatePhysics);
+                    return;
+                }
             }
 
             const balls = ballsState.current;
@@ -157,6 +259,11 @@ export default function ContactPhysicsArena() {
             balls.forEach(b => {
                 if (b.id === isDragging.current || b.id === aero.heldBallId) return; // Skip updating physics for item being dragged or held
 
+                // Apply a gentle floating microgravity drift (greatly reduced ambient float force per request)
+                const floatTime = Date.now() * 0.0004 + b.id * 1.5;
+                b.vx += Math.sin(floatTime) * 0.0012;
+                b.vy += Math.cos(floatTime * 0.8) * 0.0012 - 0.0002;
+
                 // Apply velocity
                 b.x += b.vx;
                 b.y += b.vy;
@@ -164,6 +271,44 @@ export default function ContactPhysicsArena() {
                 // Apply drag/friction
                 b.vx *= friction;
                 b.vy *= friction;
+
+                // Rebound off contact text/link elements (Email, LinkedIn, Instagram buttons individually)
+                const rects = contactElementsRects.current;
+                const collideWithRect = (r) => {
+                    if (!r || r.right === 0) return;
+                    const closestX = Math.max(r.left, Math.min(b.x, r.right));
+                    const closestY = Math.max(r.top, Math.min(b.y, r.bottom));
+                    const dx = b.x - closestX;
+                    const dy = b.y - closestY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < b.radius) {
+                        const overlap = b.radius - dist;
+                        let pushX = 0;
+                        let pushY = 0;
+                        if (dist > 0) {
+                            pushX = dx / dist;
+                            pushY = dy / dist;
+                        } else {
+                            const dLeft = b.x - r.left;
+                            const dRight = r.right - b.x;
+                            const dTop = b.y - r.top;
+                            const dBottom = r.bottom - b.y;
+                            const minD = Math.min(dLeft, dRight, dTop, dBottom);
+                            if (minD === dLeft) pushX = -1;
+                            else if (minD === dRight) pushX = 1;
+                            else if (minD === dTop) pushY = -1;
+                            else pushY = 1;
+                        }
+                        b.x += pushX * (overlap + 2);
+                        b.y += pushY * (overlap + 2);
+                        if (pushX !== 0) b.vx = Math.abs(b.vx) * pushX * elasticity;
+                        if (pushY !== 0) b.vy = Math.abs(b.vy) * pushY * elasticity;
+                    }
+                };
+                collideWithRect(rects.mail);
+                collideWithRect(rects.linkedin);
+                collideWithRect(rects.instagram);
 
                 // Bounce off left/right borders
                 if (b.x - b.radius < 0) {
@@ -391,8 +536,8 @@ export default function ContactPhysicsArena() {
                         aera.state = 'happy';
                         aera.happyTimer = Date.now() + 2000;
 
-                        // Spawn 10 heart particles
-                        spawnHearts(10, aera.x, aera.y - aera.radius);
+                        // Spawn 4 heart particles
+                        spawnHearts(4, aera.x, aera.y - aera.radius);
 
                         // Flee! Backwards surprised recoil
                         aero.state = 'dodge';
@@ -465,6 +610,31 @@ export default function ContactPhysicsArena() {
             // Update Aero position
             aero.x += aero.vx;
             aero.y += aero.vy;
+
+            // Update Aera (Pink Bot) subtle floating drift position
+            const aeraFloatTime = Date.now() * 0.0006;
+            aera.vx += Math.sin(aeraFloatTime) * 0.025;
+            aera.vy += Math.cos(aeraFloatTime * 0.7) * 0.025;
+
+            // Decelerate Aera (fluid drag friction)
+            aera.vx *= 0.94;
+            aera.vy *= 0.94;
+
+            // Update Aera position coordinates
+            aera.x += aera.vx;
+            aera.y += aera.vy;
+
+            // Bounded anchor containment: Keep Aera floating gently inside a 35px radius of bottom-right
+            const aeraAnchorX = arenaW - 120;
+            const aeraAnchorY = arenaH - 100;
+            const driftDx = aera.x - aeraAnchorX;
+            const driftDy = aera.y - aeraAnchorY;
+            if (Math.abs(driftDx) > 35) {
+                aera.vx -= driftDx * 0.0025; // elegant gravity return to anchor
+            }
+            if (Math.abs(driftDy) > 35) {
+                aera.vy -= driftDy * 0.0025;
+            }
 
             // Restrict Aero inside borders
             if (aero.x - aero.radius < 20) {
@@ -587,11 +757,13 @@ export default function ContactPhysicsArena() {
                 aeroRef.current.style.transform = `translate3d(${aero.x - aero.radius}px, ${aero.y - aero.radius}px, 0) rotate(${tilt}deg)`;
             }
 
-            // Static Aera floating hover drift
+            // Static Aera floating hover drift with dynamic happy positional wiggles!
             if (aeraRef.current) {
-                const aeraHoverOffset = Math.sin(Date.now() * 0.002) * 3.5;
-                const aeraTilt = Math.sin(Date.now() * 0.001) * 1.5;
-                aeraRef.current.style.transform = `translate3d(${aera.x - aera.radius}px, ${aera.y - aera.radius + aeraHoverOffset}px, 0) rotate(${aeraTilt}deg)`;
+                const isHappy = aera.state === 'happy';
+                const aeraHoverOffset = Math.sin(Date.now() * (isHappy ? 0.006 : 0.002)) * (isHappy ? 8 : 3.5);
+                const aeraTilt = Math.sin(Date.now() * (isHappy ? 0.003 : 0.001)) * (isHappy ? 6 : 1.5);
+                const happyYOffset = isHappy ? -15 : 0;
+                aeraRef.current.style.transform = `translate3d(${aera.x - aera.radius}px, ${aera.y - aera.radius + aeraHoverOffset + happyYOffset}px, 0) rotate(${aeraTilt}deg)`;
             }
 
             animationFrameId = requestAnimationFrame(updatePhysics);
