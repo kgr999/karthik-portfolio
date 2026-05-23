@@ -459,11 +459,12 @@
 /* Curved happy smiling eyes by default for Aera */
 .aera-contact-robot .aero-eye {
     width: 9px;
-    height: 4px;
+    height: 3px;
     border-radius: 9px 9px 0 0;
     background: #ff4da6;
-    box-shadow: 0 -1px 6px #ff4da6;
+    box-shadow: 0 -1.5px 6px #ff4da6;
     animation: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Winking/Blinking cycle on curved eyes */
@@ -477,14 +478,14 @@
 
 @keyframes aera-visor-blink {
     0%, 94%, 98%, 100% {
-        height: 4px;
+        height: 3px;
         border-radius: 9px 9px 0 0;
         transform: scaleY(1);
     }
     96% {
-        height: 1.5px;
+        height: 1px;
         border-radius: 0;
-        transform: scaleY(0.4);
+        transform: scaleY(0.3);
     }
 }
 
@@ -495,41 +496,58 @@
     box-shadow: 0 0 15px #ff3399;
 }
 
-/* Holographic pink beating heart eyes (Both eyes become beating neon hearts!) */
+/* Pure CSS Beating Heart Eyes - Subtle and Charming! */
 .aera-contact-robot[data-state="happy"] .aero-eye.left,
 .aera-contact-robot[data-state="happy"] .aero-eye.right {
+    position: relative;
+    width: 10px;
+    height: 10px;
     background: transparent !important;
     box-shadow: none !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    animation: none !important;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.aera-contact-robot[data-state="happy"] .aero-eye.left::before,
+.aera-contact-robot[data-state="happy"] .aero-eye.right::before,
+.aera-contact-robot[data-state="happy"] .aero-eye.left::after,
+.aera-contact-robot[data-state="happy"] .aero-eye.right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 6px;
+    height: 9px;
+    border-radius: 6px 6px 0 0;
+    background: #ff4da6;
+    box-shadow: 0 0 6px #ff4da6;
 }
 
 .aera-contact-robot[data-state="happy"] .aero-eye.left::before,
 .aera-contact-robot[data-state="happy"] .aero-eye.right::before {
-    content: '💖';
-    font-size: 12px;
-    color: #ff4da6;
-    text-shadow: 0 0 8px #ff4da6;
-    animation: heart-beat-gaze 0.2s infinite alternate ease-in-out;
-    display: block;
+    left: 4.5px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
 }
 
-/* Offset animation slightly for a cute wiggling beat */
-.aera-contact-robot[data-state="happy"] .aero-eye.left::before {
-    animation-delay: 0s;
+.aera-contact-robot[data-state="happy"] .aero-eye.left::after,
+.aera-contact-robot[data-state="happy"] .aero-eye.right::after {
+    left: 0.5px;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
 }
 
-.aera-contact-robot[data-state="happy"] .aero-eye.right::before {
-    animation-delay: 0.08s;
+.aera-contact-robot[data-state="happy"] .aero-eye.left {
+    animation: charming-heart-beat 0.25s infinite alternate ease-in-out !important;
 }
 
-@keyframes heart-beat-gaze {
-    0% { transform: scale(0.8); }
-    100% { transform: scale(1.2); }
+.aera-contact-robot[data-state="happy"] .aero-eye.right {
+    animation: charming-heart-beat 0.25s infinite alternate ease-in-out !important;
+    animation-delay: 0.08s !important;
+}
+
+@keyframes charming-heart-beat {
+    0% { transform: scale(0.75); }
+    100% { transform: scale(1.1); }
 }
 
 .aera-contact-robot[data-state="happy"] .aero-chest .aero-core {
@@ -584,6 +602,80 @@
     text-shadow: 
         0 0 8px rgba(255, 77, 166, 0.8), 
         0 0 16px rgba(255, 77, 166, 0.4);
+}
+
+/* ── ULTRA-PREMIUM ROBOTIC AESTHETICS OVERRIDES ── */
+
+/* Glossy sweep shimmer animation across both visors */
+.aero-contact-robot .aero-visor::after,
+.aera-contact-robot .aero-visor::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15) 30%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 70%, transparent);
+    transform: translateX(-100%) skewX(-25deg);
+    animation: cyber-visor-shimmer 3.2s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 4;
+}
+
+@keyframes cyber-visor-shimmer {
+    0% { transform: translateX(-120%) skewX(-25deg); }
+    30%, 100% { transform: translateX(120%) skewX(-25deg); }
+}
+
+/* 3D Metallic Head Plate Enhancements */
+.aero-contact-robot .aero-head {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(0, 240, 255, 0.15),
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -4px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+.aera-contact-robot .aero-head {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 77, 166, 0.15),
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -4px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Chest Core Gradient Glows */
+.aero-contact-robot .aero-core {
+    background: radial-gradient(circle, #00f0ff 30%, #0088ff 100%) !important;
+    box-shadow: 
+        0 0 12px #00f0ff, 
+        0 0 24px rgba(0, 240, 255, 0.5),
+        inset 0 0 4px rgba(255, 255, 255, 0.5) !important;
+}
+
+.aera-contact-robot .aero-core {
+    background: radial-gradient(circle, #ff4da6 30%, #ff007f 100%) !important;
+    box-shadow: 
+        0 0 12px #ff4da6, 
+        0 0 24px rgba(255, 77, 166, 0.5),
+        inset 0 0 4px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Thicker dynamic arm stroke lines */
+.aero-contact-robot .aero-arm-svg path,
+.aera-contact-robot .aero-arm-svg path {
+    stroke-width: 5px !important;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)) !important;
+}
+
+/* Cybernetic stabilizer ear-node glows */
+.aero-contact-robot .aero-ear {
+    border-color: rgba(0, 240, 255, 0.4) !important;
+}
+.aera-contact-robot .aero-ear {
+    border-color: rgba(255, 77, 166, 0.4) !important;
 }
 
 

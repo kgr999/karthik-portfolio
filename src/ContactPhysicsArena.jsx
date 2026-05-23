@@ -37,6 +37,7 @@ export default function ContactPhysicsArena() {
         state: 'chase',
         targetBallId: null,
         heldBallId: null,
+        lastPickedId: null,
         holdTimer: 0,
         dodgeTimer: 0,
         hoverActive: false,
@@ -391,24 +392,25 @@ export default function ContactPhysicsArena() {
             if (!aero.state) aero.state = 'chase';
 
             if (aero.state === 'chase') {
-                // Find closest non-dragged, non-hidden ball to chase
-                let targetBall = null;
-                let minDist = Infinity;
+                // Find or validate the current target ball
+                let targetBall = balls.find(b => b.id === aero.targetBallId && !b.hidden && b.id !== isDragging.current);
 
-                balls.forEach(b => {
-                    if (b.id === isDragging.current || b.hidden) return;
-                    const dx = b.x - aero.x;
-                    const dy = b.y - aero.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < minDist) {
-                        minDist = dist;
-                        targetBall = b;
+                // If no target ball is locked, or it became invalid, select a new random target!
+                if (!targetBall) {
+                    const activeBalls = balls.filter(b => !b.hidden && b.id !== isDragging.current);
+                    if (activeBalls.length > 0) {
+                        // Filter out the last picked ball to avoid back-to-back repetitions!
+                        const freshBalls = activeBalls.filter(b => b.id !== aero.lastPickedId);
+                        const candidates = freshBalls.length > 0 ? freshBalls : activeBalls;
+                        
+                        // Select one candidate completely at random!
+                        const selectedBall = candidates[Math.floor(Math.random() * candidates.length)];
+                        aero.targetBallId = selectedBall.id;
+                        targetBall = selectedBall;
                     }
-                });
+                }
 
                 if (targetBall && !aero.hoverActive) {
-                    aero.targetBallId = targetBall.id;
-
                     // Steer the head suction cup directly under the ball
                     const targetX = targetBall.x;
                     const targetY = targetBall.y + targetBall.radius + aero.radius - 8;
@@ -429,11 +431,18 @@ export default function ContactPhysicsArena() {
                         // Activate vacuum lock!
                         aero.state = 'hold';
                         aero.heldBallId = targetBall.id;
+                        aero.lastPickedId = targetBall.id; // Record as last picked!
                         aero.holdTimer = Date.now() + 1200; // 1.2s lock timer
                         targetBall.vx = 0;
                         targetBall.vy = 0;
                         targetBall.scale = 1;
                     }
+                } else if (!targetBall) {
+                    // No target ball available: wander slowly around center
+                    const targetX = arenaW * 0.5;
+                    const targetY = arenaH - 120;
+                    aero.vx += (targetX - aero.x) * 0.001;
+                    aero.vy += (targetY - aero.y) * 0.001;
                 }
             } else if (aero.state === 'hold') {
                 // Lock held ball's position relative to Aero's top gravity cup
