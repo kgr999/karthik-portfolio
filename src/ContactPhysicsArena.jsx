@@ -108,7 +108,9 @@ export default function ContactPhysicsArena() {
             vx: (Math.random() - 0.5) * 4,
             vy: 2 + Math.random() * 3,
             radius: 24, // 48px diameter
-            mass: 1
+            mass: 1,
+            scale: 1,
+            hidden: false
         }));
 
         // Initialize Aera (Pink Female Bot) bottom right
@@ -134,6 +136,7 @@ export default function ContactPhysicsArena() {
 
             const balls = ballsState.current;
             const aero = aeroState.current;
+            const aera = aeraState.current;
 
             // ── A. UPDATE DRAGGED BALL ──
             if (isDragging.current !== null) {
