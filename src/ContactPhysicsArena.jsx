@@ -55,7 +55,12 @@ export default function ContactPhysicsArena() {
         radius: 40,
         state: 'idle',
         happyTimer: 0,
-        hoverActive: false
+        hoverActive: false,
+        vx: 0,
+        vy: 0,
+        pushTargetId: null,
+        chargeTimeout: 0,
+        nextPushTime: Date.now() + 3000
     });
 
     const heartsState = useRef([]);
@@ -556,6 +561,8 @@ export default function ContactPhysicsArena() {
                         // Aera happy heart-burst reaction
                         aera.state = 'happy';
                         aera.happyTimer = Date.now() + 2000;
+                        aera.pushTargetId = null; // Abort any active push target!
+                        aeraState.current.nextPushTime = Date.now() + 6000 + Math.random() * 4000; // wait 6-10s before pushing again!
 
                         // Spawn 4 heart particles
                         spawnHearts(4, aera.x, aera.y - aera.radius);
@@ -632,11 +639,115 @@ export default function ContactPhysicsArena() {
             aero.x += aero.vx;
             aero.y += aero.vy;
 
-            // Anchor Aera exactly in the bottom-right corner (no drifting)
-            aera.x = arenaW - 120;
-            aera.y = arenaH - 100;
-            aera.vx = 0;
-            aera.vy = 0;
+            // ── D2. AUTOMATED AERA COMPANION CHARGE & PUSH STATE MACHINE ──
+            if (aera.state === 'idle') {
+                const anchorX = arenaW - 120;
+                const anchorY = aeraState.current.y || (arenaH - 100);
+                
+                aera.x = anchorX;
+                aera.y = anchorY;
+                aera.vx = 0;
+                aera.vy = 0;
+
+                // Check if it's time to charge a ball!
+                if (Date.now() >= aeraState.current.nextPushTime) {
+                    // Pick a random ball that is active, non-dragged, non-hidden, and not held/chased by Aero
+                    const activeBalls = balls.filter(b => !b.hidden && b.id !== isDragging.current && b.id !== aero.heldBallId && b.id !== aero.targetBallId);
+                    if (activeBalls.length > 0) {
+                        const selectedBall = activeBalls[Math.floor(Math.random() * activeBalls.length)];
+                        aera.pushTargetId = selectedBall.id;
+                        aera.state = 'charge';
+                        aera.chargeTimeout = Date.now() + 3500;
+                    } else {
+                        aeraState.current.nextPushTime = Date.now() + 1000; // try again in 1s
+                    }
+                }
+            } else if (aera.state === 'charge') {
+                // Find and validate the target ball to push
+                let targetBall = balls.find(b => b.id === aera.pushTargetId && !b.hidden && b.id !== isDragging.current && b.id !== aero.heldBallId && b.id !== aero.targetBallId);
+
+                // If the target ball is lost, hidden, dragged, or held, abort!
+                if (!targetBall || Date.now() > aera.chargeTimeout) {
+                    aera.state = 'return';
+                    aera.pushTargetId = null;
+                    aeraState.current.nextPushTime = Date.now() + 4000 + Math.random() * 3000; // wait 4-7s before next charge
+                } else {
+                    // Steer directly towards the ball at high speed!
+                    const dx = targetBall.x - aera.x;
+                    const dy = targetBall.y - aera.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    // High-acceleration charging thrust!
+                    const thrustForce = 0.016;
+                    aera.vx += (dx / (dist || 1)) * thrustForce * 18;
+                    aera.vy += (dy / (dist || 1)) * thrustForce * 18;
+
+                    // Apply drag/friction to Aera
+                    aera.vx *= 0.94;
+                    aera.vy *= 0.94;
+
+                    aera.x += aera.vx;
+                    aera.y += aera.vy;
+
+                    // If we collide with the ball, give it an extra massive shove!
+                    const collisionDist = targetBall.radius + aera.radius - 4;
+                    if (dist < collisionDist) {
+                        const angle = Math.atan2(dy, dx);
+                        
+                        // Push the ball away with dramatic high-speed recoil!
+                        targetBall.x = aera.x + Math.cos(angle) * (collisionDist + 4);
+                        targetBall.y = aera.y + Math.sin(angle) * (collisionDist + 4);
+
+                        const pushPower = 16 + Math.random() * 6; // massive dynamic shove!
+                        targetBall.vx = Math.cos(angle) * pushPower;
+                        targetBall.vy = Math.sin(angle) * pushPower;
+
+                        // Give Aera herself a slight kickback recoil in the opposite direction
+                        aera.vx -= Math.cos(angle) * 5.5;
+                        aera.vy -= Math.sin(angle) * 5.5;
+
+                        // Transition immediately to return state!
+                        aera.state = 'return';
+                        aera.pushTargetId = null;
+                        aeraState.current.nextPushTime = Date.now() + 5000 + Math.random() * 4000; // wait 5-9s
+                    }
+                }
+            } else if (aera.state === 'return') {
+                // Steer back towards her anchor coordinates
+                const anchorX = arenaW - 120;
+                const anchorY = aeraState.current.y || (arenaH - 100);
+
+                const dx = anchorX - aera.x;
+                const dy = anchorY - aera.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 15) {
+                    // Safe at home base! Transition back to idle
+                    aera.state = 'idle';
+                    aera.vx = 0;
+                    aera.vy = 0;
+                } else {
+                    // Glide home smoothly
+                    aera.vx += dx * 0.0045;
+                    aera.vy += dy * 0.0045;
+
+                    aera.vx *= 0.94;
+                    aera.vy *= 0.94;
+
+                    aera.x += aera.vx;
+                    aera.y += aera.vy;
+                }
+            } else if (aera.state === 'happy') {
+                // Stabilize in place and let the wiggles play
+                aera.vx *= 0.85;
+                aera.vy *= 0.85;
+                aera.x += aera.vx;
+                aera.y += aera.vy;
+
+                if (Date.now() >= aera.happyTimer) {
+                    aera.state = 'return'; // return home after being happy
+                }
+            }
 
             // Restrict Aero inside borders
             if (aero.x - aero.radius < 20) {
