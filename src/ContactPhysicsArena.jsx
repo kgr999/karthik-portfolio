@@ -611,30 +611,11 @@ export default function ContactPhysicsArena() {
             aero.x += aero.vx;
             aero.y += aero.vy;
 
-            // Update Aera (Pink Bot) subtle floating drift position
-            const aeraFloatTime = Date.now() * 0.0006;
-            aera.vx += Math.sin(aeraFloatTime) * 0.025;
-            aera.vy += Math.cos(aeraFloatTime * 0.7) * 0.025;
-
-            // Decelerate Aera (fluid drag friction)
-            aera.vx *= 0.94;
-            aera.vy *= 0.94;
-
-            // Update Aera position coordinates
-            aera.x += aera.vx;
-            aera.y += aera.vy;
-
-            // Bounded anchor containment: Keep Aera floating gently inside a 35px radius of bottom-right
-            const aeraAnchorX = arenaW - 120;
-            const aeraAnchorY = arenaH - 100;
-            const driftDx = aera.x - aeraAnchorX;
-            const driftDy = aera.y - aeraAnchorY;
-            if (Math.abs(driftDx) > 35) {
-                aera.vx -= driftDx * 0.0025; // elegant gravity return to anchor
-            }
-            if (Math.abs(driftDy) > 35) {
-                aera.vy -= driftDy * 0.0025;
-            }
+            // Anchor Aera exactly in the bottom-right corner (no drifting)
+            aera.x = arenaW - 120;
+            aera.y = arenaH - 100;
+            aera.vx = 0;
+            aera.vy = 0;
 
             // Restrict Aero inside borders
             if (aero.x - aero.radius < 20) {
