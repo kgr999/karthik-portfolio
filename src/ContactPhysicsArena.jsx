@@ -12,6 +12,9 @@ const LOGO_BALLS_DATA = [
 export default function ContactPhysicsArena() {
     const arenaRef = useRef(null);
     const aeroRef = useRef(null);
+    const aeraRef = useRef(null);
+    const giftRef = useRef(null);
+    const heartsContainerRef = useRef(null);
     const ballsRef = useRef([]);
     const [aeroWink, setAeroWink] = useState(false);
 
@@ -29,8 +32,25 @@ export default function ContactPhysicsArena() {
         heldBallId: null,
         holdTimer: 0,
         dodgeTimer: 0,
+        hoverActive: false,
+        giftActive: false,
+        giftEmoji: '',
+        giftX: 0,
+        giftY: 0,
+        giftProgress: 0,
+        giftStep: 'carry'
+    });
+
+    const aeraState = useRef({
+        x: 0,
+        y: 0,
+        radius: 40,
+        state: 'idle',
+        happyTimer: 0,
         hoverActive: false
     });
+
+    const heartsState = useRef([]);
 
     const isDragging = useRef(null); // id of ball being dragged
     const dragOffset = useRef({ x: 0, y: 0 });
@@ -39,6 +59,29 @@ export default function ContactPhysicsArena() {
     useEffect(() => {
         if (!arenaRef.current) return;
 
+        const spawnHearts = (count, startX, startY) => {
+            if (!heartsContainerRef.current) return;
+            for (let i = 0; i < count; i++) {
+                const heartEl = document.createElement('div');
+                heartEl.className = 'physics-heart-particle';
+                heartEl.innerHTML = ['❤️', '💖', '💝', '💕', '💗'][Math.floor(Math.random() * 5)];
+                heartsContainerRef.current.appendChild(heartEl);
+
+                heartsState.current.push({
+                    id: Math.random() + i,
+                    el: heartEl,
+                    x: startX + (Math.random() - 0.5) * 25,
+                    y: startY - 12,
+                    vx: (Math.random() - 0.5) * 3,
+                    vy: -2 - Math.random() * 3,
+                    scale: 0.5 + Math.random() * 0.7,
+                    opacity: 1,
+                    rotation: (Math.random() - 0.5) * 45,
+                    decay: 0.012 + Math.random() * 0.01
+                });
+            }
+        };
+
         // 1. Calculate parent layout sizes
         const updateDimensions = () => {
             const rect = arenaRef.current.getBoundingClientRect();
@@ -46,6 +89,9 @@ export default function ContactPhysicsArena() {
                 width: rect.width,
                 height: rect.height
             };
+            // Dynamic coordinates for pink bot Aera in the bottom-right corner
+            aeraState.current.x = rect.width - 120;
+            aeraState.current.y = rect.height - 100;
         };
 
         updateDimensions();
@@ -65,8 +111,12 @@ export default function ContactPhysicsArena() {
             mass: 1
         }));
 
-        // Initialize Aero position (middle right bottom)
-        aeroState.current.x = w - 120;
+        // Initialize Aera (Pink Female Bot) bottom right
+        aeraState.current.x = w - 120;
+        aeraState.current.y = h - 100;
+
+        // Initialize Aero (Blue Bot) bottom left-center
+        aeroState.current.x = w * 0.3;
         aeroState.current.y = h - 100;
 
         // 3. High framerate physics loop
@@ -189,16 +239,16 @@ export default function ContactPhysicsArena() {
                 }
             }
 
-            // ── D. AUTOMATED AERO ROBOT SUCTION & DODGE STATE MACHINE ──
+            // ── D. AUTOMATED AERO ROBOT SUCTION, DELIVER & DODGE STATE MACHINE ──
             if (!aero.state) aero.state = 'chase';
 
             if (aero.state === 'chase') {
-                // Find closest non-dragged ball to chase
+                // Find closest non-dragged, non-hidden ball to chase
                 let targetBall = null;
                 let minDist = Infinity;
 
                 balls.forEach(b => {
-                    if (b.id === isDragging.current) return;
+                    if (b.id === isDragging.current || b.hidden) return;
                     const dx = b.x - aero.x;
                     const dy = b.y - aero.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -234,6 +284,7 @@ export default function ContactPhysicsArena() {
                         aero.holdTimer = Date.now() + 1200; // 1.2s lock timer
                         targetBall.vx = 0;
                         targetBall.vy = 0;
+                        targetBall.scale = 1;
                     }
                 }
             } else if (aero.state === 'hold') {
@@ -251,32 +302,115 @@ export default function ContactPhysicsArena() {
                     heldBall.vx = aero.vx;
                     heldBall.vy = aero.vy;
 
+                    // Dynamically animate the ball scaling down as if sucked in!
+                    const elapsed = Date.now() - (aero.holdTimer - 1200);
+                    if (elapsed > 900) {
+                        // Shrink in the final 300ms
+                        heldBall.scale = Math.max(0, 1 - (elapsed - 900) / 300);
+                    } else {
+                        heldBall.scale = 1;
+                    }
+
                     // Hover stabilization deceleration
                     aero.vx *= 0.88;
                     aero.vy *= 0.88;
 
                     // Check if holding timer has elapsed
                     if (Date.now() >= aero.holdTimer) {
-                        // LAUNCH TRIGGER! Upward projectile
-                        const launchAngle = -Math.PI / 2 + (Math.random() - 0.5) * 0.4;
-                        const launchSpeed = 16 + Math.random() * 3;
-                        heldBall.vx = Math.cos(launchAngle) * launchSpeed;
-                        heldBall.vy = Math.sin(launchAngle) * launchSpeed;
+                        // Determine emoji gift output based on tool category mapping
+                        let emoji = '🎁';
+                        if (heldBall.id === 2) emoji = '💬'; // ChatGPT -> Text msg
+                        else if (heldBall.id === 3) emoji = '🎵'; // HeyGen -> Music
+                        else if (heldBall.id === 4) emoji = '🖼️'; // NanoBanana -> Image
+                        else if (heldBall.id === 5) emoji = '🎨'; // Fal AI -> Art
+                        else if (heldBall.id === 6) emoji = '📸'; // Kling -> Photo/Video
 
-                        // Aero dynamic downward/horizontal action recoil kickback
-                        aero.vy += 10;
-                        aero.vx -= heldBall.vx * 0.45;
+                        // Consume/hide this ball and schedule a delayed respawn from top
+                        heldBall.hidden = true;
+                        heldBall.scale = 1;
+                        const respawnId = heldBall.id;
+                        setTimeout(() => {
+                            const b = ballsState.current.find(ball => ball.id === respawnId);
+                            if (b) {
+                                b.x = 100 + Math.random() * (dimensions.current.width - 200);
+                                b.y = -35;
+                                b.vx = (Math.random() - 0.5) * 3;
+                                b.vy = 2 + Math.random() * 2;
+                                b.scale = 1;
+                                b.hidden = false;
+                            }
+                        }, 3500);
 
-                        // Switch to dodge evade phase
-                        aero.state = 'dodge';
-                        aero.dodgeTimer = Date.now() + 2500;
+                        // Trigger floating gift emoji particle above Aero's head
+                        aero.giftActive = true;
+                        aero.giftEmoji = emoji;
+                        aero.giftX = aero.x;
+                        aero.giftY = aero.y - aero.radius - 18;
+                        aero.giftProgress = 0;
+                        aero.giftStep = 'carry';
+
+                        // Transition Aero to deliver state
+                        aero.state = 'deliver';
                         aero.heldBallId = null;
                     }
                 }
+            } else if (aero.state === 'deliver') {
+                // Steer Aero towards Aera's hover point (just to her left)
+                const targetX = aera.x - 70;
+                const targetY = aera.y - 15;
+
+                const dx = targetX - aero.x;
+                const dy = targetY - aero.y;
+
+                aero.vx += dx * 0.0035;
+                aero.vy += dy * 0.0035;
+
+                // Carry emoji directly above Aero
+                if (aero.giftStep === 'carry') {
+                    aero.giftX = aero.x;
+                    aero.giftY = aero.y - aero.radius - 18;
+
+                    const distToAera = Math.sqrt(Math.pow(aero.x - aera.x, 2) + Math.pow(aero.y - aera.y, 2));
+                    if (distToAera < 110) {
+                        // Start interpolation flight handover!
+                        aero.giftStep = 'fly';
+                        aero.giftProgress = 0;
+                    }
+                } else if (aero.giftStep === 'fly') {
+                    aero.giftProgress += 0.045; // Smooth 22 frames transition
+
+                    if (aero.giftProgress >= 1) {
+                        // Handover complete!
+                        aero.giftActive = false;
+                        aero.giftStep = 'carry';
+
+                        // Aera happy heart-burst reaction
+                        aera.state = 'happy';
+                        aera.happyTimer = Date.now() + 2000;
+
+                        // Spawn 10 heart particles
+                        spawnHearts(10, aera.x, aera.y - aera.radius);
+
+                        // Flee! Backwards surprised recoil
+                        aero.state = 'dodge';
+                        aero.dodgeTimer = Date.now() + 2500;
+                    } else {
+                        // Arc trajectory interpolation from Aero's suction cup to Aera's head
+                        const t = aero.giftProgress;
+                        const startX = aero.x;
+                        const startY = aero.y - aero.radius - 18;
+                        const endX = aera.x;
+                        const endY = aera.y - aera.radius - 12;
+                        
+                        const arcHeight = -35;
+                        aero.giftX = startX + (endX - startX) * t;
+                        aero.giftY = startY + (endY - startY) * t + Math.sin(t * Math.PI) * arcHeight;
+                    }
+                }
             } else if (aero.state === 'dodge') {
-                // Cooldown Evacuation steering: steer AWAY from incoming balls
+                // Evade active balls and stay away from Aera
                 balls.forEach(b => {
-                    if (b.id === isDragging.current) return;
+                    if (b.id === isDragging.current || b.hidden) return;
                     const dx = aero.x - b.x;
                     const dy = aero.y - b.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -288,15 +422,36 @@ export default function ContactPhysicsArena() {
                     }
                 });
 
+                // Repulse from Aera
+                const dx = aero.x - aera.x;
+                const dy = aero.y - aera.y;
+                const distToAera = Math.sqrt(dx * dx + dy * dy);
+                if (distToAera < 200) {
+                    const force = (200 - distToAera) / 200;
+                    aero.vx += (dx / (distToAera || 1)) * force * 0.9;
+                    aero.vy += (dy / (distToAera || 1)) * force * 0.9;
+                }
+
                 if (Date.now() >= aero.dodgeTimer) {
                     aero.state = 'chase';
                 }
             }
 
-            // Sync with direct DOM attribute injection for 60fps performance
+            // Sync Aero DOM data-state attribute
             if (aeroRef.current) {
                 if (aeroRef.current.getAttribute('data-state') !== aero.state) {
                     aeroRef.current.setAttribute('data-state', aero.state);
+                }
+            }
+
+            // Sync Aera DOM happy state winks & heart-eyes
+            if (aera.state === 'happy' && Date.now() >= aera.happyTimer) {
+                aera.state = 'idle';
+            }
+
+            if (aeraRef.current) {
+                if (aeraRef.current.getAttribute('data-state') !== aera.state) {
+                    aeraRef.current.setAttribute('data-state', aera.state);
                 }
             }
 
@@ -325,52 +480,115 @@ export default function ContactPhysicsArena() {
                 aero.vy = -aero.vy * 0.5;
             }
 
-            // ── E. AERO ROBOT BALL COLLISIONS (CHIEF PUSH INTERACTION) ──
+            // ── E. COLLISION RESOLUTIONS (AERO & AERA COLLIDERS) ──
             balls.forEach(b => {
-                if (b.id === aero.heldBallId) return; // Skip if ball is held
+                if (b.id === aero.heldBallId || b.hidden) return; // Skip if ball is held or consumed
 
-                const dx = b.x - aero.x;
-                const dy = b.y - aero.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                const collisionDist = b.radius + aero.radius - 6;
+                // 1. Aero Bounces
+                const dx1 = b.x - aero.x;
+                const dy1 = b.y - aero.y;
+                const dist1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+                const collisionDist1 = b.radius + aero.radius - 6;
 
-                if (dist < collisionDist) {
-                    // Elastic impact! Push the ball outward away from the center of Aero
-                    const angle = Math.atan2(dy, dx);
+                if (dist1 < collisionDist1) {
+                    const angle = Math.atan2(dy1, dx1);
                     
                     if (b.id !== isDragging.current) {
-                        b.x = aero.x + Math.cos(angle) * (collisionDist + 2);
-                        b.y = aero.y + Math.sin(angle) * (collisionDist + 2);
+                        b.x = aero.x + Math.cos(angle) * (collisionDist1 + 2);
+                        b.y = aero.y + Math.sin(angle) * (collisionDist1 + 2);
 
-                        // Accelerate ball velocity dynamically
                         const speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
                         const pushPower = Math.max(speed * 0.6, 7.5);
                         b.vx = Math.cos(angle) * pushPower;
                         b.vy = Math.sin(angle) * pushPower;
 
-                        // Aero winks and bounces back slightly
                         aero.vx -= Math.cos(angle) * 3.5;
                         aero.vy -= Math.sin(angle) * 3.5;
 
-                        // Trigger visual wink feedback
                         setAeroWink(true);
                         setTimeout(() => setAeroWink(false), 800);
                     }
                 }
+
+                // 2. Aera Static Rebound (Static collidable circle boundary)
+                const dx2 = b.x - aera.x;
+                const dy2 = b.y - aera.y;
+                const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+                const collisionDist2 = b.radius + aera.radius - 6;
+
+                if (dist2 < collisionDist2) {
+                    const angle = Math.atan2(dy2, dx2);
+                    
+                    if (b.id !== isDragging.current) {
+                        b.x = aera.x + Math.cos(angle) * (collisionDist2 + 2);
+                        b.y = aera.y + Math.sin(angle) * (collisionDist2 + 2);
+
+                        const speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+                        const bounceSpeed = Math.max(speed * elasticity, 5);
+                        b.vx = Math.cos(angle) * bounceSpeed;
+                        b.vy = Math.sin(angle) * bounceSpeed;
+                    }
+                }
             });
 
-            // ── F. WRITE DIRECT TRANSLATE TRANSFORMS FOR MAXIMUM PERFORMANCE ──
+            // ── F. UPDATE HEARTS & GIPH EMOJI TRAJECTORIES ──
+            const hearts = heartsState.current;
+            for (let i = hearts.length - 1; i >= 0; i--) {
+                const h = hearts[i];
+                h.y += h.vy;
+                h.x += h.vx;
+                h.x += Math.sin(Date.now() * 0.01 + h.id) * 0.5; // gentle swaying
+                h.vy *= 0.98;
+                h.vx *= 0.98;
+                h.opacity -= h.decay;
+                h.rotation += h.vx * 2;
+
+                if (h.opacity <= 0) {
+                    if (h.el && h.el.parentNode) {
+                        h.el.parentNode.removeChild(h.el);
+                    }
+                    hearts.splice(i, 1);
+                } else {
+                    h.el.style.transform = `translate3d(${h.x - 10}px, ${h.y - 10}px, 0) scale(${h.scale}) rotate(${h.rotation}deg)`;
+                    h.el.style.opacity = h.opacity;
+                }
+            }
+
+            if (giftRef.current) {
+                if (aero.giftActive) {
+                    giftRef.current.style.display = 'block';
+                    const scale = aero.giftStep === 'fly' ? 1 - aero.giftProgress * 0.4 : 1;
+                    giftRef.current.style.transform = `translate3d(${aero.giftX - 12}px, ${aero.giftY - 12}px, 0) scale(${scale})`;
+                    giftRef.current.textContent = aero.giftEmoji;
+                } else {
+                    giftRef.current.style.display = 'none';
+                }
+            }
+
+            // ── G. WRITE DIRECT TRANSLATE TRANSFORMS FOR MAXIMUM PERFORMANCE ──
             balls.forEach((b, idx) => {
                 const ballEl = ballsRef.current[idx];
                 if (ballEl) {
-                    ballEl.style.transform = `translate3d(${b.x - b.radius}px, ${b.y - b.radius}px, 0)`;
+                    if (b.hidden) {
+                        ballEl.style.display = 'none';
+                    } else {
+                        ballEl.style.display = 'flex';
+                        const scale = b.scale !== undefined ? b.scale : 1;
+                        ballEl.style.transform = `translate3d(${b.x - b.radius}px, ${b.y - b.radius}px, 0) scale(${scale})`;
+                    }
                 }
             });
 
             if (aeroRef.current) {
-                // Calculate dynamic tilt angle from motion velocity
                 const tilt = Math.min(Math.max(aero.vx * 1.8, -12), 12);
                 aeroRef.current.style.transform = `translate3d(${aero.x - aero.radius}px, ${aero.y - aero.radius}px, 0) rotate(${tilt}deg)`;
+            }
+
+            // Static Aera floating hover drift
+            if (aeraRef.current) {
+                const aeraHoverOffset = Math.sin(Date.now() * 0.002) * 3.5;
+                const aeraTilt = Math.sin(Date.now() * 0.001) * 1.5;
+                aeraRef.current.style.transform = `translate3d(${aera.x - aera.radius}px, ${aera.y - aera.radius + aeraHoverOffset}px, 0) rotate(${aeraTilt}deg)`;
             }
 
             animationFrameId = requestAnimationFrame(updatePhysics);
@@ -471,7 +689,13 @@ export default function ContactPhysicsArena() {
             onTouchEnd={handleMouseUp}
             onMouseLeave={handleMouseUp}
         >
-            {/* Redesigned Premium Cybernetic Hover Assistant Aero */}
+            {/* Hearts Particle Overlay */}
+            <div className="hearts-container" ref={heartsContainerRef}></div>
+
+            {/* Gift Delivery Emoji Element */}
+            <div className="physics-gift-emoji" ref={giftRef}>🎁</div>
+
+            {/* Redesigned Premium Cybernetic Hover Assistant Aero (Blue Bot) */}
             <div 
                 className={`aero-contact-robot ${aeroWink ? 'contact-wink-active' : ''}`} 
                 ref={aeroRef}
@@ -504,6 +728,65 @@ export default function ContactPhysicsArena() {
                     {/* Head & Face Visor */}
                     <div className="aero-head">
                         <div className="suction-cone"></div>
+                        <div className="aero-antenna">
+                            <div className="aero-antenna-line"></div>
+                            <div className="aero-antenna-tip"></div>
+                        </div>
+                        <div className="aero-visor">
+                            <div className="aero-eye left"></div>
+                            <div className="aero-eye right"></div>
+                        </div>
+                        <div className="aero-ears">
+                            <div className="aero-ear left"></div>
+                            <div className="aero-ear right"></div>
+                        </div>
+                    </div>
+
+                    {/* Pointing/Waving Arm (Left Arm) */}
+                    <div className="aero-arm-left">
+                        <svg viewBox="0 0 40 100" className="aero-arm-svg">
+                            <path d="M25,12 L25,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
+                            <circle cx="25" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
+                            <circle cx="25" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
+                            <g className="aero-hand-group">
+                                <path d="M29,66 C33,70 32,78 27,82 C22,80 21,72 24,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+                                <circle cx="27" cy="74" r="2" fill="var(--accent)" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            {/* Redesigned Premium Cybernetic Hover Assistant Aera (Pink Bot) */}
+            <div 
+                className="aera-contact-robot" 
+                ref={aeraRef}
+                data-state="idle"
+            >
+                <div className="aero-body-wrapper" style={{ transform: 'none', animation: 'none' }}>
+                    {/* Waving/Pointing Arm (Right Arm) */}
+                    <div className="aero-arm-right">
+                        <svg viewBox="0 0 40 100" className="aero-arm-svg">
+                            <path d="M15,12 L15,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
+                            <circle cx="15" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
+                            <circle cx="15" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
+                            <g className="aero-hand-group">
+                                <path d="M11,66 C7,70 8,78 13,82 C18,80 19,72 16,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+                                <circle cx="13" cy="74" r="2" fill="var(--accent)" />
+                            </g>
+                        </svg>
+                    </div>
+
+                    {/* Torso & Core */}
+                    <div className="aero-torso">
+                        <div className="aero-chest">
+                            <div className="aero-core-pulse"></div>
+                            <div className="aero-core"></div>
+                        </div>
+                    </div>
+
+                    {/* Head & Face Visor */}
+                    <div className="aero-head">
                         <div className="aero-antenna">
                             <div className="aero-antenna-line"></div>
                             <div className="aero-antenna-tip"></div>
