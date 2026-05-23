@@ -100,12 +100,18 @@ export default function ContactPhysicsArena() {
             };
             // Dynamic coordinates for pink bot Aera in the bottom-right corner
             aeraState.current.x = rect.width - 120;
-            aeraState.current.y = rect.height - 100;
+            
+            const instagramEl = document.querySelector('.social-dock-btn.instagram');
+            if (instagramEl) {
+                const iRect = instagramEl.getBoundingClientRect();
+                aeraState.current.y = (iRect.top + iRect.bottom) / 2 - rect.top;
+            } else {
+                aeraState.current.y = rect.height - 100;
+            }
 
             // Recalculate contact elements relative positions for rebounding collisions
             const mailEl = document.querySelector('.contact-mail');
             const linkedinEl = document.querySelector('.social-dock-btn.linkedin');
-            const instagramEl = document.querySelector('.social-dock-btn.instagram');
             const aRect = rect; // Arena bounding rect
             
             if (mailEl) {
@@ -185,7 +191,14 @@ export default function ContactPhysicsArena() {
 
                         // Properly position elements inside new non-zero bounds!
                         aeraState.current.x = rect.width - 120;
-                        aeraState.current.y = rect.height - 100;
+
+                        const instagramEl = document.querySelector('.social-dock-btn.instagram');
+                        if (instagramEl) {
+                            const iRect = instagramEl.getBoundingClientRect();
+                            aeraState.current.y = (iRect.top + iRect.bottom) / 2 - rect.top;
+                        } else {
+                            aeraState.current.y = rect.height - 100;
+                        }
 
                         aeroState.current.x = rect.width * 0.3;
                         aeroState.current.y = rect.height - 100;
@@ -200,7 +213,6 @@ export default function ContactPhysicsArena() {
                         // Recalculate contact elements relative positions
                         const mailEl = document.querySelector('.contact-mail');
                         const linkedinEl = document.querySelector('.social-dock-btn.linkedin');
-                        const instagramEl = document.querySelector('.social-dock-btn.instagram');
                         if (mailEl) {
                             const mRect = mailEl.getBoundingClientRect();
                             contactElementsRects.current.mail = {

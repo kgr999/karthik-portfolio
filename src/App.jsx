@@ -2556,9 +2556,9 @@ export default function App() {
                             </div>
                         </div>
  
-                        <footer style={{ borderTop: 'none', padding: 0, zIndex: 5, pointerEvents: 'auto' }}>
-                            <div className="container" style={{ padding: 0, minHeight: 'auto' }}>
-                                <p>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
+                        <footer style={{ borderTop: 'none', padding: '10px 0 20px 0', zIndex: 5, pointerEvents: 'auto' }}>
+                            <div className="footer-content" style={{ padding: 0, minHeight: 'auto', display: 'flex', justifyContent: 'center' }}>
+                                <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
                             </div>
                         </footer>
                     </div>
