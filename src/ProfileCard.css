@@ -138,7 +138,31 @@
     border-radius: 50%;
     background: #10b981;
     box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+}
+
+.avatar-status-dot.status-active {
+    background: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
     animation: avatar-pulse 2s infinite;
+}
+
+.avatar-status-dot.status-loading {
+    background: #ef4444 !important;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8) !important;
+    animation: avatar-pulse-red 1s infinite alternate !important;
+}
+
+@keyframes avatar-pulse-red {
+    0% { 
+        opacity: 0.4; 
+        transform: scale(0.9);
+        box-shadow: 0 0 2px rgba(239, 68, 68, 0.2);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1.15);
+        box-shadow: 0 0 12px rgba(239, 68, 68, 0.9);
+    }
 }
 
 @keyframes avatar-pulse {

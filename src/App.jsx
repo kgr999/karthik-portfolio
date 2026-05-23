@@ -3,6 +3,7 @@ import LightRays from './LightRays';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import { initPortfolio } from './portfolio-logic';
 import ProfileCard from './ProfileCard';
+import ContactPhysicsArena from './ContactPhysicsArena';
 
 
 const mockVideos = [
@@ -340,7 +341,7 @@ const getTelemetryLogs = (categoryName, toolName) => {
             return [
                 "🎬 PRODUCTION STRATEGY ENGAGED...",
                 "• modules: Narrative, Storyboard, Visuals",
-                "• role: Cinematic Human Storytelling Director",
+                "• role: Cinematic Human Storytelling Associate",
                 "• style: Volumetric Blade Runner minimalism",
                 "• status: Hover over a tool to view parameters"
             ];
@@ -652,6 +653,51 @@ export default function App() {
     const [initProgress, setInitProgress] = useState(0);
     const [diagnosticLines, setDiagnosticLines] = useState([]);
 
+    // Hero AI Assistant Robot (Aero) states
+    const [robotState, setRobotState] = useState('stage-spawn'); // 'stage-spawn', 'stage-wave', 'stage-blink', 'stage-point-look', 'stage-move', 'stage-idle'
+    const [cloneStatus, setCloneStatus] = useState('loading'); // 'loading', 'active'
+
+    useEffect(() => {
+        // Reset states on mount
+        setRobotState('stage-spawn');
+        setCloneStatus('loading');
+
+        // Timeline:
+        // 1. At 0.5s: Aero waves with its right hand
+        const timer1 = setTimeout(() => {
+            setRobotState('stage-wave');
+        }, 500);
+
+        // 2. At 2.0s: Lowers its right hand down, blinks
+        const timer2 = setTimeout(() => {
+            setRobotState('stage-blink');
+        }, 2000);
+
+        // 3. At 3.0s: Points towards profile card in its left hand, tilts head
+        const timer3 = setTimeout(() => {
+            setRobotState('stage-point-look');
+        }, 3000);
+
+        // 4. At 3.8s: Moves dramatically towards the left under the Initialize Portfolio button
+        const timer4 = setTimeout(() => {
+            setRobotState('stage-point-look stage-move');
+        }, 3800);
+
+        // 5. At 5.6s: Arrives under the button, AI Clone active status completes (green dot!)
+        const timer5 = setTimeout(() => {
+            setCloneStatus('active');
+            setRobotState('stage-idle');
+        }, 5600);
+
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+            clearTimeout(timer4);
+            clearTimeout(timer5);
+        };
+    }, []);
+
     // Real-time clock for simulator viewports
     const [simTime, setSimTime] = useState(() => {
         const now = new Date();
@@ -947,7 +993,62 @@ export default function App() {
                                 </div>
                             </div>
                             <div className="hero-avatar-wrapper">
-                                <ProfileCard videoSrc="assets/videos/video1.mp4" />
+                                <ProfileCard videoSrc="assets/videos/video1.mp4" cloneStatus={cloneStatus} />
+                            </div>
+                        </div>
+
+                        {/* Hero AI Assistant Robot Aero */}
+                        <div className={`aero-hero-robot ${robotState}`}>
+                            <div className="aero-body-wrapper">
+                                {/* Waving/Pointing Arm (Right Arm) */}
+                                <div className="aero-arm-right">
+                                    <svg viewBox="0 0 40 100" className="aero-arm-svg">
+                                        <path d="M15,12 L15,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
+                                        <circle cx="15" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
+                                        <circle cx="15" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
+                                        <g className="aero-hand-group">
+                                            <path d="M11,66 C7,70 8,78 13,82 C18,80 19,72 16,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+                                            <circle cx="13" cy="74" r="2" fill="var(--accent)" />
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                {/* Torso & Core */}
+                                <div className="aero-torso">
+                                    <div className="aero-chest">
+                                        <div className="aero-core-pulse"></div>
+                                        <div className="aero-core"></div>
+                                    </div>
+                                </div>
+
+                                {/* Head & Face Visor */}
+                                <div className="aero-head">
+                                    <div className="aero-antenna">
+                                        <div className="aero-antenna-line"></div>
+                                        <div className="aero-antenna-tip"></div>
+                                    </div>
+                                    <div className="aero-visor">
+                                        <div className="aero-eye left"></div>
+                                        <div className="aero-eye right"></div>
+                                    </div>
+                                    <div className="aero-ears">
+                                        <div className="aero-ear left"></div>
+                                        <div className="aero-ear right"></div>
+                                    </div>
+                                </div>
+
+                                {/* Left Arm */}
+                                <div className="aero-arm-left">
+                                    <svg viewBox="0 0 40 100" className="aero-arm-svg">
+                                        <path d="M25,12 L25,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
+                                        <circle cx="25" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
+                                        <circle cx="25" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
+                                        <g className="aero-hand-group">
+                                            <path d="M29,66 C33,70 32,78 27,82 C22,80 21,72 24,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+                                            <circle cx="27" cy="74" r="2" fill="var(--accent)" />
+                                        </g>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2404,56 +2505,64 @@ export default function App() {
 
 
                 {/* 11. Contact Section */}
-                <section id="contact">
-                    <div className="container">
+                <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
+                    {/* Open background interactive physics playground */}
+                    <ContactPhysicsArena />
+ 
+                    <div className="container" style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                         <div className="status-badge-container reveal-text">
                             <div className="status-badge">
                                 <span className="status-dot"></span>
                                 <span className="status-text">Open for Creative Opportunities</span>
                             </div>
                         </div>
-                        <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text">hello@karthikgraj.in</a>
                         
-                        {/* Interactive Social Media Dock */}
-                        <div className="social-dock-title reveal-text">
-                            Let's Connect
-                        </div>
-                        <div className="social-dock-wrapper reveal-text">
-                            <div className="social-dock">
-                                {/* LinkedIn Button */}
-                                <a href="https://www.linkedin.com/in/karthikgraj" target="_blank" rel="noopener noreferrer" className="social-dock-btn linkedin">
-                                    <div className="btn-glow-bg"></div>
-                                    <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                                    </svg>
-                                    <span className="btn-text">LinkedIn</span>
-                                    <span className="btn-hover-indicator"></span>
-                                </a>
-
-                                {/* Divider */}
-                                <div className="dock-divider"></div>
-
-                                {/* Instagram Button */}
-                                <a href="https://www.instagram.com/karthik.graj" target="_blank" rel="noopener noreferrer" className="social-dock-btn instagram">
-                                    <div className="btn-glow-bg"></div>
-                                    <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                    </svg>
-                                    <span className="btn-text">Instagram</span>
-                                    <span className="btn-hover-indicator"></span>
-                                </a>
+                        <div className="contact-center-group">
+                            <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>hello@karthikgraj.in</a>
+                            
+                            {/* Interactive Social Media Dock */}
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <div className="social-dock-title reveal-text">
+                                    Let's Connect
+                                </div>
+                                <div className="social-dock-wrapper reveal-text" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>
+                                    <div className="social-dock">
+                                        {/* LinkedIn Button */}
+                                        <a href="https://www.linkedin.com/in/karthikgraj" target="_blank" rel="noopener noreferrer" className="social-dock-btn linkedin">
+                                            <div className="btn-glow-bg"></div>
+                                            <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                            </svg>
+                                            <span className="btn-text">LinkedIn</span>
+                                            <span className="btn-hover-indicator"></span>
+                                        </a>
+ 
+                                        {/* Divider */}
+                                        <div className="dock-divider"></div>
+ 
+                                        {/* Instagram Button */}
+                                        <a href="https://www.instagram.com/karthik.graj" target="_blank" rel="noopener noreferrer" className="social-dock-btn instagram">
+                                            <div className="btn-glow-bg"></div>
+                                            <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                            </svg>
+                                            <span className="btn-text">Instagram</span>
+                                            <span className="btn-hover-indicator"></span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+ 
+                        <footer style={{ borderTop: 'none', padding: 0, zIndex: 5, pointerEvents: 'auto' }}>
+                            <div className="container" style={{ padding: 0, minHeight: 'auto' }}>
+                                <p>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
+                            </div>
+                        </footer>
                     </div>
                 </section>
-
-                <footer>
-                    <div className="container">
-                        <p>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
-                    </div>
-                </footer>
             </div>
 
         </main>

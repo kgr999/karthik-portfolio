@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './ProfileCard.css';
 
-export default function ProfileCard({ videoSrc }) {
+export default function ProfileCard({ videoSrc, cloneStatus = 'active' }) {
     const videoRef = useRef(null);
     const cardRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(true);
@@ -83,8 +83,10 @@ export default function ProfileCard({ videoSrc }) {
 
                 {/* Minimal HUD overlay */}
                 <div className="avatar-hud-top">
-                    <span className="avatar-status-dot" />
-                    <span className="avatar-status-text">AI CLONE ACTIVE</span>
+                    <span className={`avatar-status-dot ${cloneStatus === 'loading' ? 'status-loading' : 'status-active'}`} />
+                    <span className="avatar-status-text">
+                        {cloneStatus === 'loading' ? 'LOADING CLONE..' : 'AI CLONE ACTIVE'}
+                    </span>
                     {!isMuted && (
                         <div className="avatar-equalizer" title="Audio Active">
                             <span className="eq-bar bar1"></span>
