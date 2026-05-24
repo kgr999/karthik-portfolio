@@ -7,9 +7,9 @@ import ContactPhysicsArena from './ContactPhysicsArena';
 
 
 const mockVideos = [
-    { id: 1, title: "Super Auto", subtitle: "Emotive Storytelling", bg: "#000", videoSrc: "/assets/videos/video1.mp4" },
-    { id: 2, title: "Ampere Nexus", subtitle: "Product showdown", bg: "linear-gradient(135deg, #d31027 0%, #ea720c 100%)", videoSrc: "/assets/videos/video2.mp4" },
-    { id: 3, title: "Eviator E350 Series", subtitle: "Best e-SCV", bg: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)", videoSrc: "/assets/videos/video3.mp4" }
+    { id: 1, title: "Super Auto", subtitle: "Emotive Storytelling", bg: "#000", videoSrc: "assets/videos/video1.mp4" },
+    { id: 2, title: "Ampere Nexus", subtitle: "Product showdown", bg: "linear-gradient(135deg, #d31027 0%, #ea720c 100%)", videoSrc: "assets/videos/video2.mp4" },
+    { id: 3, title: "Eviator E350 Series", subtitle: "Best e-SCV", bg: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)", videoSrc: "assets/videos/video3.mp4" }
 ];
 
 const mockPosters = [
@@ -969,7 +969,7 @@ export default function App() {
                                     </div>
                                 </div>
                                 <div className="hero-avatar-wrapper">
-                                    <ProfileCard videoSrc="/assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
+                                    <ProfileCard videoSrc="assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
                                 </div>
                             </div>
 
