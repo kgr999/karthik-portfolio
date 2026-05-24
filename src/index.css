@@ -3085,7 +3085,7 @@ footer {
         justify-content: center;
     }
 
-    .xp-brand-logo-btn.xp-brand-lincoln {
+    .xp-brand-logo-btn.xp-brand-montra-scv {
         /* Handled by stretch flex */
     }
 
@@ -3450,7 +3450,7 @@ footer {
 
 #experience-journey {
     position: relative;
-    padding: 120px 0;
+    padding: 70px 0;
     background: #020204;
     overflow: hidden;
 }
@@ -3461,13 +3461,13 @@ footer {
 
 .xp-windows-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 }
 
 .xp-windows-container {
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    gap: 45px;
 }
 
 /* ── Generic Window Styles ── */
@@ -3671,7 +3671,7 @@ footer {
     align-items: center;
 }
 
-.xp-brand-logo-btn.xp-brand-lincoln {
+.xp-brand-logo-btn.xp-brand-montra-scv {
     /* Flow naturally in flex layout */
 }
 
@@ -3712,7 +3712,7 @@ footer {
     box-shadow: 0 0 20px rgba(0, 255, 240, 0.3) !important;
 }
 
-.xp-brand-logo-btn.xp-brand-lincoln:hover {
+.xp-brand-logo-btn.xp-brand-montra-scv:hover {
     background: rgba(255, 140, 0, 0.08) !important;
     border-color: rgba(255, 140, 0, 0.45) !important;
     box-shadow: 0 0 20px rgba(255, 140, 0, 0.3) !important;
@@ -3747,7 +3747,7 @@ footer {
     border-color: rgba(0, 255, 240, 0.3) !important;
 }
 
-.xp-brand-lincoln:hover .xp-brand-badge {
+.xp-brand-montra-scv:hover .xp-brand-badge {
     background: rgba(255, 140, 0, 0.2) !important;
     color: #FF8C00 !important;
     border-color: rgba(255, 140, 0, 0.3) !important;
@@ -3867,6 +3867,193 @@ footer {
     margin-bottom: 20px;
 }
 
+/* Subtle Shimmer on the Independent · Remote text */
+.xp-remote-shimmer {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: linear-gradient(
+        to right,
+        #FFB464 20%,
+        #FFF 50%,
+        #FFB464 80%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    animation: remoteShimmer 3s linear infinite;
+    display: inline-block;
+}
+
+@keyframes remoteShimmer {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Tactile Platform Button Micro-interactions */
+.xp-platform-btn {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 10px 14px;
+    text-decoration: none !important;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: rgba(18, 18, 22, 0.45) !important;
+    backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.7) !important;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    font-family: inherit;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Left glowing accent bar container */
+.xp-platform-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 35%;
+    border-radius: 0 4px 4px 0;
+    opacity: 0.4;
+    transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Base icon & typography transitions */
+.xp-platform-btn .xp-btn-icon {
+    margin-right: 8px;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.xp-platform-btn span {
+    flex-grow: 1;
+    text-align: left;
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.xp-platform-btn .xp-btn-arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: inherit;
+    flex-shrink: 0;
+}
+
+/* Brand specific idle styles */
+.xp-btn-youtube::before {
+    background: rgba(255, 74, 74, 0.5);
+}
+.xp-btn-youtube .xp-btn-icon {
+    color: #FF4A4A;
+}
+
+.xp-btn-instagram::before {
+    background: rgba(255, 82, 123, 0.5);
+}
+.xp-btn-instagram .xp-btn-icon {
+    color: #FF527B;
+}
+
+.xp-btn-shorts::before {
+    background: rgba(255, 102, 51, 0.5);
+}
+.xp-btn-shorts .xp-btn-icon {
+    color: #FF6633;
+}
+
+/* Brand specific hover behaviors */
+
+/* YouTube Hover */
+.xp-btn-youtube:hover {
+    background: radial-gradient(circle at left, rgba(255, 74, 74, 0.12), rgba(18, 18, 22, 0.7)) !important;
+    border-color: rgba(255, 74, 74, 0.45) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.45),
+        0 0 12px rgba(255, 74, 74, 0.18);
+}
+
+.xp-btn-youtube:hover::before {
+    background: #FF4A4A;
+    height: 70%;
+    opacity: 1;
+    box-shadow: 0 0 8px #FF4A4A;
+}
+
+/* Instagram Hover */
+.xp-btn-instagram:hover {
+    background: radial-gradient(circle at left, rgba(255, 82, 123, 0.12), rgba(18, 18, 22, 0.7)) !important;
+    border-color: rgba(255, 82, 123, 0.45) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.45),
+        0 0 12px rgba(255, 82, 123, 0.18);
+}
+
+.xp-btn-instagram:hover::before {
+    background: #FF527B;
+    height: 70%;
+    opacity: 1;
+    box-shadow: 0 0 8px #FF527B;
+}
+
+/* Shorts Hover */
+.xp-btn-shorts:hover {
+    background: radial-gradient(circle at left, rgba(255, 102, 51, 0.12), rgba(18, 18, 22, 0.7)) !important;
+    border-color: rgba(255, 102, 51, 0.45) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.45),
+        0 0 12px rgba(255, 102, 51, 0.18);
+}
+
+.xp-btn-shorts:hover::before {
+    background: #FF6633;
+    height: 70%;
+    opacity: 1;
+    box-shadow: 0 0 8px #FF6633;
+}
+
+/* Hover General Child Animations */
+.xp-platform-btn:hover .xp-btn-icon {
+    transform: scale(1.18);
+    color: #fff;
+}
+
+.xp-platform-btn:hover span {
+    transform: translateX(2px);
+    color: #fff;
+}
+
+.xp-platform-btn:hover .xp-btn-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Active State Compression (Tactile feedback) */
+.xp-platform-btn:active {
+    transform: translateY(0px) scale(0.97) !important;
+    transition: all 0.08s ease !important;
+}
+
 .xp-monitor-desc {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
@@ -3876,31 +4063,115 @@ footer {
 .xp-inspector {
     width: 220px;
     border-left: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 15px;
-    background: rgba(15, 15, 15, 0.5);
+    padding: 15px 12px;
+    background: rgba(15, 15, 15, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+.xp-inspector h4 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 .xp-slider-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.xp-slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .xp-slider-group label {
-    display: block;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 5px;
+    display: inline-block;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 170px;
+    transition: color 0.2s ease;
+}
+
+.xp-slider-reset {
+    color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.xp-slider-reset:hover {
+    color: #FFB464;
+    transform: rotate(-45deg);
 }
 
 .xp-slider {
     height: 4px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 2px;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+    overflow: visible;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.xp-slider:hover {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .xp-slider-fill {
     height: 100%;
-    background: #FFB464;
+    position: relative;
     border-radius: 2px;
+    background: linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%) !important;
+    box-shadow: 0 0 8px rgba(255, 180, 100, 0.25);
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Beautiful thumb knob matching DaVinci parameters */
+.xp-slider-thumb {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid #FF8F3D;
+    box-shadow: 0 0 4px rgba(255, 143, 61, 0.8);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease;
+}
+
+.xp-slider-group:hover label {
+    color: #ffffff;
+}
+
+.xp-slider-group:hover .xp-slider-thumb {
+    transform: translateY(-50%) scale(1.25);
+    background: #FFB464;
+    border-color: #ffffff;
 }
 
 /* ── DaVinci Resolve Timeline ── */
@@ -6287,6 +6558,14 @@ nav.nav-standby .nav-links a {
     );
     transform: skewX(-20deg);
     animation: shimmer-sweep 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes simHeartPulse {
+    0% { transform: scale(0); opacity: 0; }
+    15% { transform: scale(1.2); opacity: 0.95; }
+    30% { transform: scale(0.9); opacity: 0.95; }
+    80% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(1.4); opacity: 0; }
 }
 
 
