@@ -103,15 +103,15 @@ export default function ContactPhysicsArena() {
                 width: rect.width,
                 height: rect.height
             };
-            // Dynamic coordinates for pink bot Aera hovering directly above the "Open for Creative Opportunities" status badge/button!
-            const badgeEl = document.querySelector('.status-badge');
-            if (badgeEl) {
-                const bRect = badgeEl.getBoundingClientRect();
-                aeraState.current.x = (bRect.left + bRect.right) / 2 - rect.left;
-                aeraState.current.y = bRect.top - rect.top - 60;
+            // Dynamic coordinates for pink bot Aera in the bottom-right corner
+            aeraState.current.x = rect.width - 120;
+            
+            const instagramEl = document.querySelector('.social-dock-btn.instagram');
+            if (instagramEl) {
+                const iRect = instagramEl.getBoundingClientRect();
+                aeraState.current.y = (iRect.top + iRect.bottom) / 2 - rect.top;
             } else {
-                aeraState.current.x = rect.width / 2;
-                aeraState.current.y = 80;
+                aeraState.current.y = rect.height - 100;
             }
 
             // Recalculate contact elements relative positions for rebounding collisions
@@ -167,17 +167,9 @@ export default function ContactPhysicsArena() {
             hidden: false
         }));
 
-        // Initialize Aera (Pink Female Bot) hovering directly above status badge/button
-        const badgeEl = document.querySelector('.status-badge');
-        if (badgeEl && arenaRef.current) {
-            const bRect = badgeEl.getBoundingClientRect();
-            const rect = arenaRef.current.getBoundingClientRect();
-            aeraState.current.x = (bRect.left + bRect.right) / 2 - rect.left;
-            aeraState.current.y = bRect.top - rect.top - 60;
-        } else {
-            aeraState.current.x = w / 2;
-            aeraState.current.y = 80;
-        }
+        // Initialize Aera (Pink Female Bot) bottom right
+        aeraState.current.x = w - 120;
+        aeraState.current.y = h - 100;
 
         // Initialize Aero (Blue Bot) bottom left-center
         aeroState.current.x = w * 0.3;
@@ -202,15 +194,15 @@ export default function ContactPhysicsArena() {
                         arenaW = rect.width;
                         arenaH = rect.height;
 
-                        // Properly position elements inside new non-zero bounds! Hovering directly above the "Open for Creative Opportunities" status badge/button!
-                        const badgeEl = document.querySelector('.status-badge');
-                        if (badgeEl) {
-                            const bRect = badgeEl.getBoundingClientRect();
-                            aeraState.current.x = (bRect.left + bRect.right) / 2 - rect.left;
-                            aeraState.current.y = bRect.top - rect.top - 60;
+                        // Properly position elements inside new non-zero bounds!
+                        aeraState.current.x = rect.width - 120;
+
+                        const instagramEl = document.querySelector('.social-dock-btn.instagram');
+                        if (instagramEl) {
+                            const iRect = instagramEl.getBoundingClientRect();
+                            aeraState.current.y = (iRect.top + iRect.bottom) / 2 - rect.top;
                         } else {
-                            aeraState.current.x = rect.width / 2;
-                            aeraState.current.y = 80;
+                            aeraState.current.y = rect.height - 100;
                         }
 
                         aeroState.current.x = rect.width * 0.3;
