@@ -4,7 +4,6 @@ import './ContactPhysicsArena.css';
 const LOGO_BALLS_DATA = [
     { id: 2, name: "ChatGPT", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", color: "#10a37f" },
     { id: 3, name: "HeyGen", logo: "https://www.google.com/s2/favicons?domain=heygen.com&sz=128", color: "#06b6d4" },
-    { id: 4, name: "NanoBanana", logo: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/nanobanana-color.png", color: "#eab308" },
     { id: 5, name: "Fal AI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg", color: "#ff4154" },
     { id: 6, name: "Kling", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", color: "#3b82f6" }
 ];
@@ -38,6 +37,7 @@ export default function ContactPhysicsArena() {
         targetBallId: null,
         heldBallId: null,
         lastPickedId: null,
+        recentlyPicked: [],
         holdTimer: 0,
         dodgeTimer: 0,
         hoverActive: false,
@@ -60,7 +60,7 @@ export default function ContactPhysicsArena() {
         vy: 0,
         pushTargetId: null,
         chargeTimeout: 0,
-        nextPushTime: Date.now() + 3000
+        nextPushTime: Date.now() + 2000 // Start pushing playful balls sooner!
     });
 
     const heartsState = useRef([]);
@@ -103,15 +103,15 @@ export default function ContactPhysicsArena() {
                 width: rect.width,
                 height: rect.height
             };
-            // Dynamic coordinates for pink bot Aera in the bottom-right corner
-            aeraState.current.x = rect.width - 120;
-            
-            const instagramEl = document.querySelector('.social-dock-btn.instagram');
-            if (instagramEl) {
-                const iRect = instagramEl.getBoundingClientRect();
-                aeraState.current.y = (iRect.top + iRect.bottom) / 2 - rect.top;
+            // Dynamic coordinates for pink bot Aera hovering directly above the "Open for Creative Opportunities" status badge/button!
+            const badgeEl = document.querySelector('.status-badge');
+            if (badgeEl) {
+                const bRect = badgeEl.getBoundingClientRect();
+                aeraState.current.x = (bRect.left + bRect.right) / 2 - rect.left;
+                aeraState.current.y = bRect.top - rect.top - 60;
             } else {
-                aeraState.current.y = rect.height - 100;
+                aeraState.current.x = rect.width / 2;
+                aeraState.current.y = 80;
             }
 
             // Recalculate contact elements relative positions for rebounding collisions
@@ -167,9 +167,17 @@ export default function ContactPhysicsArena() {
             hidden: false
         }));
 
-        // Initialize Aera (Pink Female Bot) bottom right
-        aeraState.current.x = w - 120;
-        aeraState.current.y = h - 100;
+        // Initialize Aera (Pink Female Bot) hovering directly above status badge/button
+        const badgeEl = document.querySelector('.status-badge');
+        if (badgeEl && arenaRef.current) {
+            const bRect = badgeEl.getBoundingClientRect();
+            const rect = arenaRef.current.getBoundingClientRect();
+            aeraState.current.x = (bRect.left + bRect.right) / 2 - rect.left;
+            aeraState.current.y = bRect.top - rect.top - 60;
+        } else {
+            aeraState.current.x = w / 2;
+            aeraState.current.y = 80;
+        }
 
         // Initialize Aero (Blue Bot) bottom left-center
         aeroState.current.x = w * 0.3;
@@ -194,15 +202,15 @@ export default function ContactPhysicsArena() {
                         arenaW = rect.width;
                         arenaH = rect.height;
 
-                        // Properly position elements inside new non-zero bounds!
-                        aeraState.current.x = rect.width - 120;
-
-                        const instagramEl = document.querySelector('.social-dock-btn.instagram');
-                        if (instagramEl) {
-                            const iRect = instagramEl.getBoundingClientRect();
-                            aeraState.current.y = (iRect.top + iRect.bottom) / 2 - rect.top;
+                        // Properly position elements inside new non-zero bounds! Hovering directly above the "Open for Creative Opportunities" status badge/button!
+                        const badgeEl = document.querySelector('.status-badge');
+                        if (badgeEl) {
+                            const bRect = badgeEl.getBoundingClientRect();
+                            aeraState.current.x = (bRect.left + bRect.right) / 2 - rect.left;
+                            aeraState.current.y = bRect.top - rect.top - 60;
                         } else {
-                            aeraState.current.y = rect.height - 100;
+                            aeraState.current.x = rect.width / 2;
+                            aeraState.current.y = 80;
                         }
 
                         aeroState.current.x = rect.width * 0.3;
@@ -257,6 +265,77 @@ export default function ContactPhysicsArena() {
             const balls = ballsState.current;
             const aero = aeroState.current;
             const aera = aeraState.current;
+
+            // ── PREFERS REDUCED MOTION INTERCEPT ──
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) {
+                // Keep balls statically positioned in a beautiful horizontal row
+                balls.forEach((b, idx) => {
+                    b.vx = 0;
+                    b.vy = 0;
+                    if (isDragging.current === b.id) {
+                        // Allow dragging interaction if active
+                    } else {
+                        // Spaced evenly across the screen
+                        const totalBalls = balls.length;
+                        b.x = 100 + idx * ((arenaW - 200) / (totalBalls - 1 || 3));
+                        b.y = arenaH * 0.45; // Centered vertically in the upper-mid area
+                    }
+                });
+
+                // Hold robots stably in their anchor locations without hovering or actions
+                aera.x = arenaW - 120;
+                aera.y = aeraState.current.y || (arenaH - 100);
+                aera.vx = 0;
+                aera.vy = 0;
+                aera.state = 'idle';
+
+                aero.x = arenaW * 0.3;
+                aero.y = arenaH - 100;
+                aero.vx = 0;
+                aero.vy = 0;
+                aero.state = 'chase';
+                aero.heldBallId = null;
+                aero.targetBallId = null;
+                aero.giftActive = false;
+
+                // 1. Render ball positions to DOM
+                balls.forEach((b, idx) => {
+                    const ballEl = ballsRef.current[idx];
+                    if (ballEl) {
+                        ballEl.style.display = b.hidden ? 'none' : 'flex';
+                        const scale = b.scale !== undefined ? b.scale : 1;
+                        ballEl.style.transform = `translate3d(${b.x - b.radius}px, ${b.y - b.radius}px, 0) scale(${scale})`;
+                    }
+                });
+
+                // 2. Render Aero positions to DOM
+                if (aeroRef.current) {
+                    aeroRef.current.style.transform = `translate3d(${aero.x - aero.radius}px, ${aero.y - aero.radius}px, 0) rotate(0deg)`;
+                }
+
+                // 3. Render Aera positions to DOM
+                if (aeraRef.current) {
+                    aeraRef.current.style.transform = `translate3d(${aera.x - aera.radius}px, ${aera.y - aera.radius}px, 0) rotate(0deg)`;
+                }
+
+                // Hide gift emoji
+                if (giftRef.current) {
+                    giftRef.current.style.display = 'none';
+                }
+
+                // Clear active heart particles
+                const hearts = heartsState.current;
+                while (hearts.length > 0) {
+                    const h = hearts.pop();
+                    if (h.el && h.el.parentNode) {
+                        h.el.parentNode.removeChild(h.el);
+                    }
+                }
+
+                animationFrameId = requestAnimationFrame(updatePhysics);
+                return;
+            }
 
             // ── A. UPDATE DRAGGED BALL ──
             if (isDragging.current !== null) {
@@ -416,8 +495,9 @@ export default function ContactPhysicsArena() {
                 if (!targetBall) {
                     const activeBalls = balls.filter(b => !b.hidden && b.id !== isDragging.current);
                     if (activeBalls.length > 0) {
-                        // Filter out the last picked ball to avoid back-to-back repetitions!
-                        const freshBalls = activeBalls.filter(b => b.id !== aero.lastPickedId);
+                        // Filter out recently picked balls to guarantee a diverse, randomized rotation!
+                        const recent = aero.recentlyPicked || [];
+                        const freshBalls = activeBalls.filter(b => !recent.includes(b.id));
                         const candidates = freshBalls.length > 0 ? freshBalls : activeBalls;
                         
                         // Select one candidate completely at random!
@@ -448,7 +528,16 @@ export default function ContactPhysicsArena() {
                         // Activate vacuum lock!
                         aero.state = 'hold';
                         aero.heldBallId = targetBall.id;
+                        aero.targetBallId = null; // Explicitly clear target on capture!
                         aero.lastPickedId = targetBall.id; // Record as last picked!
+                        
+                        // Add to recently picked history list to prevent back-to-back repetitive cycles
+                        if (!aero.recentlyPicked) aero.recentlyPicked = [];
+                        aero.recentlyPicked.push(targetBall.id);
+                        if (aero.recentlyPicked.length > 2) {
+                            aero.recentlyPicked.shift();
+                        }
+                        
                         aero.holdTimer = Date.now() + 1200; // 1.2s lock timer
                         targetBall.vx = 0;
                         targetBall.vy = 0;
@@ -470,6 +559,7 @@ export default function ContactPhysicsArena() {
                     aero.state = 'dodge';
                     aero.dodgeTimer = Date.now() + 2500;
                     aero.heldBallId = null;
+                    aero.targetBallId = null; // Explicitly clear target on interruption!
                 } else {
                     heldBall.x = aero.x;
                     heldBall.y = aero.y - aero.radius - heldBall.radius + 4;
@@ -562,7 +652,7 @@ export default function ContactPhysicsArena() {
                         aera.state = 'happy';
                         aera.happyTimer = Date.now() + 2000;
                         aera.pushTargetId = null; // Abort any active push target!
-                        aeraState.current.nextPushTime = Date.now() + 6000 + Math.random() * 4000; // wait 6-10s before pushing again!
+                        aeraState.current.nextPushTime = Date.now() + 2000 + Math.random() * 2000; // wait 2-4s for playful pacing!
 
                         // Spawn 4 heart particles
                         spawnHearts(4, aera.x, aera.y - aera.radius);
@@ -570,6 +660,7 @@ export default function ContactPhysicsArena() {
                         // Flee! Backwards surprised recoil
                         aero.state = 'dodge';
                         aero.dodgeTimer = Date.now() + 2500;
+                        aero.targetBallId = null; // Clear target on delivery flight completion!
                     } else {
                         // Arc trajectory interpolation from Aero's suction cup to Aera's head
                         const t = aero.giftProgress;
@@ -610,6 +701,7 @@ export default function ContactPhysicsArena() {
 
                 if (Date.now() >= aero.dodgeTimer) {
                     aero.state = 'chase';
+                    aero.targetBallId = null; // Guarantee selection of a fresh target!
                 }
             }
 
@@ -644,8 +736,14 @@ export default function ContactPhysicsArena() {
                 const anchorX = arenaW - 120;
                 const anchorY = aeraState.current.y || (arenaH - 100);
                 
-                aera.x = anchorX;
-                aera.y = anchorY;
+                // Advanced multi-frequency pseudo-random organic wander & sway with wide horizontal exploration
+                const time = Date.now() * 0.001;
+                // Combine multi-frequency prime sine waves to allow Aera to explore horizontally across a wide 250px span
+                const swayX = Math.sin(time * 0.42) * 85 + Math.sin(time * 0.95) * 30 + Math.cos(time * 0.18) * 10;
+                const swayY = 0; // Strictly cancel out vertical coordinate sways!
+                
+                aera.x = anchorX + swayX;
+                aera.y = anchorY + swayY;
                 aera.vx = 0;
                 aera.vy = 0;
 
@@ -670,7 +768,7 @@ export default function ContactPhysicsArena() {
                 if (!targetBall || Date.now() > aera.chargeTimeout) {
                     aera.state = 'return';
                     aera.pushTargetId = null;
-                    aeraState.current.nextPushTime = Date.now() + 4000 + Math.random() * 3000; // wait 4-7s before next charge
+                    aeraState.current.nextPushTime = Date.now() + 2000 + Math.random() * 1500; // wait 2-3.5s before next charge!
                 } else {
                     // Steer directly towards the ball at high speed!
                     const dx = targetBall.x - aera.x;
@@ -706,22 +804,27 @@ export default function ContactPhysicsArena() {
                         aera.vx -= Math.cos(angle) * 5.5;
                         aera.vy -= Math.sin(angle) * 5.5;
 
-                        // Transition immediately to return state!
-                        aera.state = 'return';
+                        // Playful happy winks & recoil wiggles on ball push!
+                        aera.state = 'happy';
+                        aera.happyTimer = Date.now() + 1200; // 1.2s playful reaction
                         aera.pushTargetId = null;
-                        aeraState.current.nextPushTime = Date.now() + 5000 + Math.random() * 4000; // wait 5-9s
+                        aeraState.current.nextPushTime = Date.now() + 2000 + Math.random() * 2000; // wait 2-4s
                     }
                 }
             } else if (aera.state === 'return') {
-                // Steer back towards her anchor coordinates
+                // Steer back towards her moving sway target to avoid visual jumping!
                 const anchorX = arenaW - 120;
                 const anchorY = aeraState.current.y || (arenaH - 100);
 
-                const dx = anchorX - aera.x;
-                const dy = anchorY - aera.y;
+                const time = Date.now() * 0.001;
+                const targetX = anchorX + Math.sin(time * 0.42) * 85 + Math.sin(time * 0.95) * 30 + Math.cos(time * 0.18) * 10;
+                const targetY = anchorY; // Strictly cancel out vertical coordinate sways!
+
+                const dx = targetX - aera.x;
+                const dy = targetY - aera.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist < 15) {
+                if (dist < 8) {
                     // Safe at home base! Transition back to idle
                     aera.state = 'idle';
                     aera.vx = 0;
@@ -764,6 +867,23 @@ export default function ContactPhysicsArena() {
             } else if (aero.y + aero.radius > arenaH - 20) {
                 aero.y = arenaH - aero.radius - 20;
                 aero.vy = -aero.vy * 0.5;
+            }
+
+            // Restrict Aera inside borders so she never goes out of the screen
+            if (aera.x - aera.radius < 20) {
+                aera.x = aera.radius + 20;
+                aera.vx = -aera.vx * 0.5;
+            } else if (aera.x + aera.radius > arenaW - 20) {
+                aera.x = arenaW - aera.radius - 20;
+                aera.vx = -aera.vx * 0.5;
+            }
+
+            if (aera.y - aera.radius < 20) {
+                aera.y = aera.radius + 20;
+                aera.vy = -aera.vy * 0.5;
+            } else if (aera.y + aera.radius > arenaH - 20) {
+                aera.y = arenaH - aera.radius - 20;
+                aera.vy = -aera.vy * 0.5;
             }
 
             // ── E. COLLISION RESOLUTIONS (AERO & AERA COLLIDERS) ──
@@ -873,10 +993,17 @@ export default function ContactPhysicsArena() {
             // Static Aera floating hover drift with dynamic happy positional wiggles!
             if (aeraRef.current) {
                 const isHappy = aera.state === 'happy';
-                const aeraHoverOffset = Math.sin(Date.now() * (isHappy ? 0.006 : 0.002)) * (isHappy ? 8 : 3.5);
-                const aeraTilt = Math.sin(Date.now() * (isHappy ? 0.003 : 0.001)) * (isHappy ? 6 : 1.5);
-                const happyYOffset = isHappy ? -15 : 0;
-                aeraRef.current.style.transform = `translate3d(${aera.x - aera.radius}px, ${aera.y - aera.radius + aeraHoverOffset + happyYOffset}px, 0) rotate(${aeraTilt}deg)`;
+                const time = Date.now() * 0.001;
+                
+                // Advanced horizontal-only visual hover drift (vertical component strictly cancelled out)
+                const aeraHoverX = Math.sin(time * 1.3) * (isHappy ? 5.0 : 3.0) + Math.cos(time * 0.4) * (isHappy ? 2.0 : 1.5);
+                const aeraHoverY = 0; // Strictly cancel out vertical ambient sways!
+                
+                // Complex prime-ratio multi-wave angular tilt rotation
+                const aeraTilt = (Math.sin(time * 0.8) * 1.5 + Math.cos(time * 1.7) * 1.0) * (isHappy ? 2.4 : 1.0);
+                const happyYOffset = 0; // Cancel out happy Y offset jumps to keep her strictly horizontal!
+                
+                aeraRef.current.style.transform = `translate3d(${aera.x - aera.radius + aeraHoverX}px, ${aera.y - aera.radius + aeraHoverY + happyYOffset}px, 0) rotate(${aeraTilt}deg)`;
             }
 
             animationFrameId = requestAnimationFrame(updatePhysics);
@@ -1125,6 +1252,7 @@ export default function ContactPhysicsArena() {
                             draggable="false"
                         />
                     </div>
+                    <div className="ball-tooltip">{ball.name}</div>
                 </div>
             ))}
         </div>

@@ -438,13 +438,13 @@ nav.scrolled {
 
 .hero-sub {
     margin-top: 24px;
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.1rem, 1.45vw, 1.35rem);
-    color: rgba(255, 255, 255, 0.75);
-    max-width: 620px;
-    font-weight: 300;
-    line-height: 1.6;
-    letter-spacing: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.3rem, 1.75vw, 1.6rem);
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 640px;
+    font-weight: 400;
+    line-height: 1.45;
+    letter-spacing: 0.6px;
 }
 
 .hero-cta {
@@ -2067,6 +2067,9 @@ section {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 10;
 }
 
 .status-badge:hover {
@@ -2133,7 +2136,7 @@ section {
     letter-spacing: 2px;
     color: var(--accent);
     text-transform: uppercase;
-    margin-top: 60px;
+    margin-top: 36px;
     margin-bottom: 12px;
     opacity: 0.6;
     display: flex;
@@ -3072,7 +3075,9 @@ footer {
 
     /* Brand Logos */
     .xp-brands-logos {
-        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
         gap: 8px;
     }
 
@@ -3080,11 +3085,11 @@ footer {
         padding: 6px 12px 6px 10px;
         font-size: 0.7rem;
         gap: 8px;
+        justify-content: center;
     }
 
     .xp-brand-logo-btn.xp-brand-lincoln {
-        grid-column: auto !important;
-        justify-self: stretch !important;
+        /* Handled by stretch flex */
     }
 
     .xp-brand-logo-btn-icon {
@@ -3663,15 +3668,14 @@ footer {
 }
 
 .xp-brands-logos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     align-items: center;
 }
 
 .xp-brand-logo-btn.xp-brand-lincoln {
-    grid-column: 1 / -1;
-    justify-self: center;
+    /* Flow naturally in flex layout */
 }
 
 .xp-brand-logo-btn {
@@ -3690,6 +3694,7 @@ footer {
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(8px);
+    white-space: nowrap; /* Prevent brand text wrapping! */
 }
 
 .xp-brand-logo-btn:hover {
@@ -4463,7 +4468,8 @@ footer {
     flex: 1.2;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 32px;
     min-height: 100%;
 }
 
@@ -4588,16 +4594,14 @@ footer {
    ═══════════════════════════════════════════════════ */
 
 /* 1. Standby Navigation Lock */
-nav.nav-standby .nav-links a,
-nav.nav-standby .resume-btn {
+nav.nav-standby .nav-links a {
     opacity: 0.15 !important;
     pointer-events: none !important;
     filter: blur(1.5px);
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mobile-menu.mobile-menu-standby a,
-.mobile-menu.mobile-menu-standby .resume-btn {
+.mobile-menu.mobile-menu-standby a {
     opacity: 0.15 !important;
     pointer-events: none !important;
     filter: blur(1.5px);
@@ -4645,6 +4649,48 @@ nav.nav-standby .resume-btn {
         0 10px 30px rgba(0, 0, 0, 0.5),
         inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
         0 0 15px rgba(77, 163, 255, 0.05);
+}
+
+/* Continuous Shimmer & Glow Pulse on Aero Arrival */
+@keyframes init-btn-shimmer-sweep {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 250%;
+    }
+}
+
+@keyframes init-btn-glow-pulse {
+    0% {
+        border-color: rgba(16, 185, 129, 0.4);
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+            0 0 15px rgba(16, 185, 129, 0.15);
+    }
+    50% {
+        border-color: rgba(16, 185, 129, 0.9);
+        box-shadow: 
+            0 20px 45px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+            0 0 45px rgba(16, 185, 129, 0.55);
+    }
+    100% {
+        border-color: rgba(16, 185, 129, 0.4);
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+            0 0 15px rgba(16, 185, 129, 0.15);
+    }
+}
+
+.init-btn.shimmering {
+    animation: init-btn-glow-pulse 2.2s infinite ease-in-out;
+}
+
+.init-btn.shimmering .init-btn-sweep {
+    animation: init-btn-shimmer-sweep 2.2s infinite cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Hover Accent Glow */
@@ -4767,6 +4813,14 @@ nav.nav-standby .resume-btn {
 }
 
 
+/* Background Cinematic Grayscale Standby Mode */
+.bg-grayscale {
+    filter: grayscale(100%) contrast(0.85) brightness(0.4) blur(1.5px);
+    transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: filter;
+}
+
+/* 4. Full-Screen Cinematic OS Initialization Overlay */
 /* 4. Full-Screen Cinematic OS Initialization Overlay */
 .system-init-overlay {
     position: fixed;
@@ -4774,7 +4828,7 @@ nav.nav-standby .resume-btn {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #020204;
+    background: radial-gradient(circle at center, rgba(0, 132, 255, 0.04) 0%, #020204 100%);
     z-index: 99999;
     display: flex;
     align-items: center;
@@ -4784,27 +4838,7 @@ nav.nav-standby .resume-btn {
     overflow: hidden;
 }
 
-/* CRT Screen Flicker Overlay */
-.crt-flicker-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none;
-    z-index: 10;
-    animation: crtBrightness 0.15s infinite;
-}
-
-@keyframes crtBrightness {
-    0% { opacity: 0.97; }
-    50% { opacity: 1; }
-    100% { opacity: 0.98; }
-}
-
-/* Slow-pulsing Repeating Laser Grid Backdrop */
+/* Slow-pulsing Repeating Modern Backdrop Grid */
 .init-grid {
     position: absolute;
     top: 0;
@@ -4812,51 +4846,51 @@ nav.nav-standby .resume-btn {
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(77, 163, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(77, 163, 255, 0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 50px 50px;
     background-position: center center;
-    transform: perspective(500px) rotateX(25deg) translateY(-20px) translateZ(0);
+    transform: perspective(600px) rotateX(20deg) translateY(-20px) translateZ(0);
     transform-origin: top center;
     pointer-events: none;
     z-index: 1;
-    animation: gridScroll 12s linear infinite, gridPulse 6s ease-in-out infinite alternate;
+    animation: gridScroll 20s linear infinite, gridPulse 8s ease-in-out infinite alternate;
 }
 
 @keyframes gridScroll {
     0% { background-position-y: 0px; }
-    100% { background-position-y: 400px; }
+    100% { background-position-y: 500px; }
 }
 
 @keyframes gridPulse {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.95; }
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
 }
 
-/* Terminal Console Box */
-.init-console {
+/* Glassmorphic Initializer HUD Panel */
+.init-hud-card {
     position: relative;
     width: 100%;
-    max-width: 720px;
-    background: rgba(8, 8, 12, 0.85);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(77, 163, 255, 0.25);
-    border-radius: 12px;
+    max-width: 320px;
+    background: rgba(5, 5, 8, 0.45);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
     box-shadow: 
-        0 30px 70px rgba(0, 0, 0, 0.8),
-        inset 0 1px 1px rgba(255, 255, 255, 0.1),
-        0 0 40px rgba(77, 163, 255, 0.05);
+        0 40px 100px rgba(0, 0, 0, 0.85),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.07),
+        0 0 60px rgba(0, 132, 255, 0.03);
     z-index: 5;
     overflow: hidden;
-    animation: consoleEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: consoleEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes consoleEntrance {
     0% {
         opacity: 0;
-        transform: scale(0.95) translateY(10px);
-        filter: blur(4px);
+        transform: scale(0.96) translateY(15px);
+        filter: blur(6px);
     }
     100% {
         opacity: 1;
@@ -4865,66 +4899,92 @@ nav.nav-standby .resume-btn {
     }
 }
 
-.console-header {
-    display: flex;
-    align-items: center;
-    padding: 14px 20px;
-    background: rgba(14, 14, 20, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.console-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.console-dot.red { background: #FF5F56; }
-.console-dot.yellow { background: #FFBD2E; }
-.console-dot.green { background: #27C93F; }
-
-.console-title {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 0.68rem;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 2px;
-    margin-left: auto;
-}
-
-.console-body {
-    padding: 28px 32px;
+.hud-body {
+    padding: 36px 32px 32px 32px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 28px;
 }
 
-.diagnostics-logs {
+/* ── HUD SPINNING SCANNER LOADER ── */
+.hud-scanner-section {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-height: 180px;
-    max-height: 180px;
-    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0 24px 0;
 }
 
-/* Hide scrollbar for logs */
-.diagnostics-logs::-webkit-scrollbar {
-    display: none;
+.hud-concentric-scanner {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.console-log-line {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 0.78rem;
-    line-height: 1.6;
-    letter-spacing: 0.5px;
-    color: rgba(77, 163, 255, 0.85);
+.hud-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    will-change: transform;
 }
 
-.console-log-line:last-child {
-    color: #ffffff;
-    font-weight: 600;
+.hud-ring.ring-1 {
+    width: 90px;
+    height: 90px;
+    border-top-color: var(--accent);
+    border-bottom-color: var(--accent);
+    animation: rotateClockwise 3.2s linear infinite;
 }
+
+.hud-ring.ring-2 {
+    width: 66px;
+    height: 66px;
+    border-left-color: rgba(0, 132, 255, 0.7);
+    border-right-color: rgba(0, 132, 255, 0.7);
+    animation: rotateCounterClockwise 2.2s linear infinite;
+    opacity: 0.9;
+}
+
+.hud-ring.ring-3 {
+    width: 42px;
+    height: 42px;
+    border-top-color: #ffffff;
+    border-left-color: rgba(255, 255, 255, 0.25);
+    animation: rotateClockwise 1.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    opacity: 0.8;
+}
+
+.hud-scanner-glow {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 25px 8px var(--accent),
+        0 0 40px 15px rgba(255, 77, 166, 0.2);
+    animation: scannerGlowPulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes rotateClockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes scannerGlowPulse {
+    0% { transform: scale(0.85); opacity: 0.65; }
+    100% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Typewriter entry sweep is maintained for visual progress labeling */
 
 /* Typewriter entry sweep */
 .reveal-line {
@@ -4951,7 +5011,7 @@ nav.nav-standby .resume-btn {
 
 .progress-label {
     font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.45);
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -4960,7 +5020,7 @@ nav.nav-standby .resume-btn {
 .progress-bar-track {
     position: relative;
     width: 100%;
-    height: 6px;
+    height: 5px;
     background: rgba(255, 255, 255, 0.04);
     border-radius: 10px;
     overflow: hidden;
@@ -4981,9 +5041,8 @@ nav.nav-standby .resume-btn {
     width: 10px;
     height: 100%;
     background: #ffffff;
-    box-shadow: 0 0 8px 3px rgba(77, 163, 255, 0.8);
+    box-shadow: 0 0 8px 3px rgba(255, 77, 166, 0.8);
 }
-
 
 /* 5. Complete Sequence Transitions */
 .system-init-overlay.fade-out {
@@ -5008,6 +5067,7 @@ nav.nav-standby .resume-btn {
         opacity: 0;
     }
 }
+
 
 
 /* 6. Responsive Tuning for OS Initialize */
@@ -6197,6 +6257,39 @@ nav.nav-standby .resume-btn {
     animation: none; /* lock rotation on hover */
     transform: rotate(360deg) scale(1.15) !important;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Date Shimmer Capsule for Intern Experience */
+.xp-date-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: rgba(59, 130, 246, 0.1) !important;
+    color: #fff !important;
+    border: 1px solid rgba(59, 130, 246, 0.25) !important;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.08);
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: monospace;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.xp-date-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: shimmer-sweep 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 

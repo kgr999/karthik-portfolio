@@ -724,6 +724,81 @@
     transform: rotate(25deg);
 }
 
+/* ── BALL HOVER TOOLTIP STYLING ── */
+.ball-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px) scale(0.9);
+    background: rgba(10, 10, 12, 0.95);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 255, 255, 0.05);
+    z-index: 100;
+}
+
+.ball-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: rgba(10, 10, 12, 0.95) transparent transparent transparent;
+}
+
+.physics-logo-ball:hover .ball-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    border-color: var(--ball-glow);
+    box-shadow: 
+        0 6px 15px rgba(0, 0, 0, 0.6),
+        0 0 10px var(--ball-glow);
+}
+
+/* ── PREFERS REDUCED MOTION INTERCEPT ── */
+@media (prefers-reduced-motion: reduce) {
+    .physics-logo-ball,
+    .aero-contact-robot,
+    .aera-contact-robot,
+    .aero-body-wrapper,
+    .aero-antenna-tip,
+    .aero-thruster-fire,
+    .aero-suction-node,
+    .aero-visor,
+    .aero-eye,
+    .aero-core-pulse,
+    .aero-chest,
+    .aero-arm-right,
+    .aero-arm-left,
+    .physics-gift-emoji,
+    .physics-heart-particle,
+    .aera-plasma-plume,
+    .aero-plasma-plume,
+    .scan-flicker,
+    .cone-pulse,
+    .suction-node-glow,
+    .pink-node-glow,
+    .aera-visor-blink,
+    .charming-heart-beat,
+    .cyber-visor-shimmer {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
 
 
 

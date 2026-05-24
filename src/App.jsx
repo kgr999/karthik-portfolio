@@ -7,15 +7,15 @@ import ContactPhysicsArena from './ContactPhysicsArena';
 
 
 const mockVideos = [
-    { id: 1, title: "Fresh Groceries", subtitle: "Delivered in 10 mins", bg: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)", icon: "📦" },
-    { id: 2, title: "Hot Biryani", subtitle: "Free delivery today", bg: "linear-gradient(135deg, #d31027 0%, #ea720c 100%)", icon: "🍛" },
-    { id: 3, title: "Cab Booking", subtitle: "Lowest fare guaranteed", bg: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)", icon: "🚗" }
+    { id: 1, title: "Super Auto", subtitle: "Emotive Storytelling", bg: "#000", videoSrc: "/assets/videos/video1.mp4" },
+    { id: 2, title: "Ampere Nexus", subtitle: "Product showdown", bg: "linear-gradient(135deg, #d31027 0%, #ea720c 100%)", videoSrc: "/assets/videos/video2.mp4" },
+    { id: 3, title: "Eviator E350 Series", subtitle: "Best e-SCV", bg: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)", videoSrc: "/assets/videos/video3.mp4" }
 ];
 
 const mockPosters = [
-    { id: 1, title: "Summer Sale", desc: "Up to 50% Off on everything", bg: "linear-gradient(135deg, #fc466b 0%, #3f5efb 100%)", badge: "HOT" },
-    { id: 2, title: "Weekend Feast", desc: "Buy 1 Get 1 Free on all orders", bg: "linear-gradient(135deg, #f12711 0%, #f5af19 100%)", badge: "50% OFF" },
-    { id: 3, title: "Eco Mobility", desc: "Zero emissions, zero stress rides", bg: "linear-gradient(135deg, #00b4db 0%, #0083b0 100%)", badge: "NEW" }
+    { id: 1, title: "Summer Sale", desc: "Up to 50% Off on everything", bg: "linear-gradient(135deg, #fc466b 0%, #3f5efb 100%)" },
+    { id: 2, title: "Weekend Feast", desc: "Buy 1 Get 1 Free on all orders", bg: "linear-gradient(135deg, #f12711 0%, #f5af19 100%)" },
+    { id: 3, title: "Eco Mobility", desc: "Zero emissions, zero stress rides", bg: "linear-gradient(135deg, #00b4db 0%, #0083b0 100%)" }
 ];
 
 const techStackCategories = [
@@ -327,7 +327,7 @@ const getTelemetryLogs = (categoryName, toolName) => {
                 break;
         }
     }
-    
+
     switch (categoryName) {
         case "CREATIVE INTELLIGENCE":
             return [
@@ -412,11 +412,11 @@ const ToolLogoImage = ({ src, alt, size, className, fallback }) => {
     }
 
     return (
-        <img 
-            src={src} 
-            alt={alt} 
+        <img
+            src={src}
+            alt={alt}
             style={{ width: `${size}px`, height: `${size}px`, objectFit: 'contain' }}
-            className={className} 
+            className={className}
             onError={() => setFailed(true)}
         />
     );
@@ -443,9 +443,9 @@ const renderToolIcon = (tool, size = 16) => {
         );
 
         return (
-            <ToolLogoImage 
-                src={tool.logo} 
-                alt={tool.name} 
+            <ToolLogoImage
+                src={tool.logo}
+                alt={tool.name}
                 size={size}
                 className={`tool-logo-img ${tool.name === 'Midjourney' || tool.name === 'ChatGPT' || tool.name === 'GPT Image' || tool.name === 'Runway' || tool.name === 'Gen-4 Turbo' || tool.name === 'ElevenLabs' || tool.name === 'Suno' ? 'eco-logo-invert' : ''}`}
                 fallback={fallbackElement}
@@ -475,7 +475,7 @@ const renderToolIcon = (tool, size = 16) => {
             </span>
         );
     }
-    
+
     switch (tool.svg) {
         case 'storyboard':
             return (
@@ -519,14 +519,14 @@ const renderToolIcon = (tool, size = 16) => {
                             <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
                     </defs>
-                    <path 
-                        d="M21.97 3.74a1 1 0 0 0-1-.22c-2.73.84-5.36 2.1-7.75 3.73A19.46 19.46 0 0 0 7.9 11.8c-1.37 1.77-2.6 3.7-3.6 5.8a1 1 0 0 0 .54 1.34c1.93.88 3.96 1.48 6.03 1.78a16.66 16.66 0 0 0 8-1.54c2.14-1.12 4.07-2.6 5.75-4.4a1 1 0 0 0-.25-1.55c-1.95-1.07-3.64-2.5-5-4.22a15.86 15.86 0 0 1-2.53-5.38 1 1 0 0 0-.87-.89Z" 
-                        fill="url(#banana-grad)" 
+                    <path
+                        d="M21.97 3.74a1 1 0 0 0-1-.22c-2.73.84-5.36 2.1-7.75 3.73A19.46 19.46 0 0 0 7.9 11.8c-1.37 1.77-2.6 3.7-3.6 5.8a1 1 0 0 0 .54 1.34c1.93.88 3.96 1.48 6.03 1.78a16.66 16.66 0 0 0 8-1.54c2.14-1.12 4.07-2.6 5.75-4.4a1 1 0 0 0-.25-1.55c-1.95-1.07-3.64-2.5-5-4.22a15.86 15.86 0 0 1-2.53-5.38 1 1 0 0 0-.87-.89Z"
+                        fill="url(#banana-grad)"
                         filter="url(#banana-glow)"
                     />
-                    <path 
-                        d="M21.97 3.74c-.2-.06-.41-.09-.63-.09-.5 0-.96.25-1.22.68-.46.77-.97 1.51-1.52 2.22-.16.21-.13.51.08.67.21.16.51.13.67-.08.58-.75 1.12-1.53 1.61-2.34.18-.3.14-.68-.06-.86c-.19-.18-.46-.22-.55-.2z" 
-                        fill="#ca8a04" 
+                    <path
+                        d="M21.97 3.74c-.2-.06-.41-.09-.63-.09-.5 0-.96.25-1.22.68-.46.77-.97 1.51-1.52 2.22-.16.21-.13.51.08.67.21.16.51.13.67-.08.58-.75 1.12-1.53 1.61-2.34.18-.3.14-.68-.06-.86c-.19-.18-.46-.22-.55-.2z"
+                        fill="#ca8a04"
                     />
                 </svg>
             );
@@ -540,24 +540,24 @@ const renderToolIcon = (tool, size = 16) => {
                         </linearGradient>
                     </defs>
                     <circle cx="12" cy="12" r="10" stroke="url(#seed-grad)" strokeWidth="1.5" opacity="0.35" />
-                    <path 
-                        d="M10 8.5v7l6-3.5-6-3.5z" 
-                        fill="url(#seed-grad)" 
-                        stroke="url(#seed-grad)" 
-                        strokeWidth="1" 
-                        strokeLinejoin="round" 
+                    <path
+                        d="M10 8.5v7l6-3.5-6-3.5z"
+                        fill="url(#seed-grad)"
+                        stroke="url(#seed-grad)"
+                        strokeWidth="1"
+                        strokeLinejoin="round"
                     />
-                    <path 
-                        d="M12 3a9 9 0 0 1 9 9" 
-                        stroke="url(#seed-grad)" 
-                        strokeWidth="1.5" 
-                        strokeLinecap="round" 
+                    <path
+                        d="M12 3a9 9 0 0 1 9 9"
+                        stroke="url(#seed-grad)"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
                     />
-                    <path 
-                        d="M12 21a9 9 0 0 1-9-9" 
-                        stroke="url(#seed-grad)" 
-                        strokeWidth="1.5" 
-                        strokeLinecap="round" 
+                    <path
+                        d="M12 21a9 9 0 0 1-9-9"
+                        stroke="url(#seed-grad)"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
                     />
                 </svg>
             );
@@ -651,7 +651,6 @@ export default function App() {
     const [isInitialized, setIsInitialized] = useState(false);
     const [isInitializing, setIsInitializing] = useState(false);
     const [initProgress, setInitProgress] = useState(0);
-    const [diagnosticLines, setDiagnosticLines] = useState([]);
 
     // Hero AI Assistant Robot (Aero) states
     const [robotState, setRobotState] = useState('stage-spawn'); // 'stage-spawn', 'stage-wave', 'stage-blink', 'stage-point-look', 'stage-move', 'stage-idle'
@@ -737,103 +736,98 @@ export default function App() {
         { city: "West Bengal", lang: "Bengali" }
     ];
 
-    // Native Web Audio Synthesizer for Immersive Sci-Fi Startup Sounds
-    const playStartupSound = () => {
+    // Dynamic Audio Synthesizer: Cinematic power rise sound when loading starts
+    const playLoadSound = () => {
         try {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             if (!AudioContext) return;
-            
+
             const ctx = new AudioContext();
-            
-            // 1. Cinematic Core Warming Hum (Sub-bass powering up)
-            const oscHum = ctx.createOscillator();
-            const humGain = ctx.createGain();
+
+            // Sub-bass warming sweep
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
             const lowpass = ctx.createBiquadFilter();
-            
-            oscHum.type = 'triangle';
-            oscHum.frequency.setValueAtTime(45, ctx.currentTime);
-            oscHum.frequency.exponentialRampToValueAtTime(75, ctx.currentTime + 2.5);
-            
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(55, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(105, ctx.currentTime + 1.8);
+
             lowpass.type = 'lowpass';
-            lowpass.frequency.setValueAtTime(120, ctx.currentTime);
-            lowpass.frequency.exponentialRampToValueAtTime(350, ctx.currentTime + 2.5);
-            
-            humGain.gain.setValueAtTime(0, ctx.currentTime);
-            humGain.gain.linearRampToValueAtTime(0.4, ctx.currentTime + 0.5);
-            humGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.5);
-            
-            oscHum.connect(humGain);
-            humGain.connect(lowpass);
+            lowpass.frequency.setValueAtTime(110, ctx.currentTime);
+            lowpass.frequency.exponentialRampToValueAtTime(450, ctx.currentTime + 1.8);
+
+            gain.gain.setValueAtTime(0, ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.35, ctx.currentTime + 0.3);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.8);
+
+            osc.connect(gain);
+            gain.connect(lowpass);
             lowpass.connect(ctx.destination);
-            
-            oscHum.start(ctx.currentTime);
-            oscHum.stop(ctx.currentTime + 2.7);
-            
-            // 2. High-Tech Typewriter/Digital Clicking
-            const playDigitalClick = (time, pitch = 800) => {
-                const oscClick = ctx.createOscillator();
-                const clickGain = ctx.createGain();
-                
-                oscClick.type = 'sine';
-                oscClick.frequency.setValueAtTime(pitch, time);
-                
-                clickGain.gain.setValueAtTime(0.04, time);
-                clickGain.gain.exponentialRampToValueAtTime(0.001, time + 0.04);
-                
-                oscClick.connect(clickGain);
-                clickGain.connect(ctx.destination);
-                
-                oscClick.start(time);
-                oscClick.stop(time + 0.05);
-            };
-            
-            playDigitalClick(ctx.currentTime + 0.2, 1000);
-            playDigitalClick(ctx.currentTime + 0.6, 900);
-            playDigitalClick(ctx.currentTime + 1.1, 1100);
-            playDigitalClick(ctx.currentTime + 1.6, 950);
-            playDigitalClick(ctx.currentTime + 2.2, 1050);
-            
-            // 3. Apple/visionOS-style Resolution Chime (Warm Major 7th chord arpeggio)
-            const chimeTime = ctx.currentTime + 2.5;
-            const chord = [220.00, 277.18, 329.63, 415.30];
-            
+
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 1.9);
+        } catch (e) {
+            console.error("Web Audio API failed to play load sound", e);
+        }
+    };
+
+    // Premium chord chime with delay feedback when loading completes
+    const playFinishSound = () => {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+
+            const ctx = new AudioContext();
+            const now = ctx.currentTime;
+
+            // Warm major 9th chord (F# Maj 9: F#, A#, C#, F, G#) -> extremely premium cinematic vibe
+            const chord = [185.00, 233.08, 277.18, 349.23, 415.30];
+
+            // Delay feedback node for holographic depth
             const delay = ctx.createDelay();
-            delay.delayTime.value = 0.25;
+            delay.delayTime.value = 0.28;
             const delayGain = ctx.createGain();
-            delayGain.gain.value = 0.25;
-            
+            delayGain.gain.value = 0.32;
+
             delay.connect(delayGain);
             delayGain.connect(ctx.destination);
             delayGain.connect(delay);
-            
+
             chord.forEach((freq, index) => {
                 const osc = ctx.createOscillator();
+                const oscHarmonic = ctx.createOscillator();
                 const gain = ctx.createGain();
-                
-                osc.type = index % 2 === 0 ? 'sine' : 'triangle';
-                osc.frequency.setValueAtTime(freq, chimeTime);
-                
                 const filter = ctx.createBiquadFilter();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now);
+
+                oscHarmonic.type = 'triangle';
+                oscHarmonic.frequency.setValueAtTime(freq * 2, now); // soft octave overtone
+
                 filter.type = 'lowpass';
-                filter.frequency.value = 800;
-                
-                gain.gain.setValueAtTime(0, chimeTime);
-                const noteOnTime = chimeTime + (index * 0.08);
-                gain.gain.linearRampToValueAtTime(0.12, noteOnTime + 0.05);
-                gain.gain.exponentialRampToValueAtTime(0.001, noteOnTime + 4.0);
-                
+                filter.frequency.value = 1100;
+
+                gain.gain.setValueAtTime(0, now);
+                const noteTime = now + (index * 0.05); // staggered arpeggio sweep
+                gain.gain.linearRampToValueAtTime(0.1, noteTime + 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 2.2);
+
                 osc.connect(filter);
+                oscHarmonic.connect(filter);
                 filter.connect(gain);
-                
+
                 gain.connect(ctx.destination);
                 gain.connect(delay);
-                
-                osc.start(noteOnTime);
-                osc.stop(noteOnTime + 4.5);
+
+                osc.start(noteTime);
+                osc.stop(noteTime + 2.5);
+                oscHarmonic.start(noteTime);
+                oscHarmonic.stop(noteTime + 2.5);
             });
-            
         } catch (e) {
-            console.error("Web Audio API synth failed to initialize", e);
+            console.error("Web Audio API failed to play finish sound", e);
         }
     };
 
@@ -841,24 +835,12 @@ export default function App() {
         if (isInitializing || isInitialized) return;
         setIsInitializing(true);
         setInitProgress(0);
-        setDiagnosticLines([]);
 
-        // Fire native synth startup sound
-        playStartupSound();
-
-        const logs = [
-            { threshold: 0, text: "▲ SYSTEM STATUS: ONLINE" },
-            { threshold: 8, text: "▶ BINDING STORYTELLING NEURAL TERMINAL..." },
-            { threshold: 22, text: "✔ CONNECTING TO GENERATIVE COGNITIVE NETWORK... SUCCESS" },
-            { threshold: 38, text: "✔ INITIALIZING CINEMATIC SHADER COMPILER... OK" },
-            { threshold: 54, text: "▶ SYNAPSE CORE SATURATION AT [190%] OVER-BOOST" },
-            { threshold: 70, text: "▶ DEPLOYING INTERACTIVE FRONTEND BLUEPRINT..." },
-            { threshold: 85, text: "✔ AMBIENT VOLUMETRIC ACOUSTICS SYNTHESIZED" },
-            { threshold: 98, text: "✔ OS LOADED. LAUNCHING CINEMATIC STORY EXPERIENCE." }
-        ];
+        // Trigger cinematic power rise loading sound
+        playLoadSound();
 
         let currentProgress = 0;
-        const totalDuration = 2800; // 2.8 seconds
+        const totalDuration = 2200; // Fast, clean, sleek 2.2 seconds loading
         const stepTime = 30; // ms
         const steps = totalDuration / stepTime;
         const increment = 100 / steps;
@@ -868,13 +850,12 @@ export default function App() {
             if (currentProgress >= 100) {
                 currentProgress = 100;
                 clearInterval(interval);
-                
-                logs.forEach(log => {
-                    setDiagnosticLines(prev => prev.includes(log.text) ? prev : [...prev, log.text]);
-                });
-                
+
                 setInitProgress(100);
-                
+
+                // Trigger major 9th arpeggio resolution chime
+                playFinishSound();
+
                 setTimeout(() => {
                     setIsInitialized(true);
                     setIsInitializing(false);
@@ -891,11 +872,6 @@ export default function App() {
                 }, 800);
             } else {
                 setInitProgress(Math.floor(currentProgress));
-                logs.forEach(log => {
-                    if (currentProgress >= log.threshold) {
-                        setDiagnosticLines(prev => prev.includes(log.text) ? prev : [...prev, log.text]);
-                    }
-                });
             }
         }, stepTime);
     };
@@ -919,7 +895,7 @@ export default function App() {
 
     return (
         <>
-            <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
+            <div className={isInitializing ? 'bg-grayscale' : ''} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
                 <LightRays
                     raysOrigin="top-center"
                     raysColor="#0084ff"
@@ -940,7 +916,7 @@ export default function App() {
 
 
 
-            <nav className={isInitialized ? '' : 'nav-standby'}>
+            <nav className={`${isInitialized ? '' : 'nav-standby'} ${isInitializing ? 'bg-grayscale' : ''}`}>
                 <div className="nav-inner">
                     <div className="logo-wrapper">
                         <a href="#" className="logo-text">KARTHIK G RAJ</a>
@@ -972,1623 +948,1643 @@ export default function App() {
                 </div>
             </div>
 
-            <main>
+            <main className={isInitializing ? 'bg-grayscale' : ''}>
                 {/* 1. Hero Section — only shown before initialization */}
                 {!isInitialized && (
-                <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
-                    <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                        <div className="hero-grid">
-                            <div className="hero-content">
-                                <p className="hero-label reveal-text">Gen AI Creative Associate</p>
-                                <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
-                                <p className="hero-sub reveal-text">I treat AI not as a tool, but as a medium for cinematic human storytelling</p>
-                                <div className="hero-cta reveal-item">
-                                    <button className="init-btn" onClick={handleInitialize}>
-                                        <span className="init-btn-glow"></span>
-                                        <span className="init-btn-sweep"></span>
-                                        <span className="init-btn-loading-bar"></span>
-                                        <span className="init-btn-status-node"></span>
-                                        <span className="init-btn-text">INITIALIZE PORTFOLIO</span>
-                                    </button>
+                    <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
+                        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                            <div className="hero-grid">
+                                <div className="hero-content">
+                                    <p className="hero-label reveal-text">Gen AI Creative Associate</p>
+                                    <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
+                                    <p className="hero-sub reveal-text">I treat AI not as a tool, but as a medium for cinematic human storytelling</p>
+                                    <div className="hero-cta reveal-item">
+                                        <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
+                                            <span className="init-btn-glow"></span>
+                                            <span className="init-btn-sweep"></span>
+                                            <span className="init-btn-loading-bar"></span>
+                                            <span className="init-btn-status-node"></span>
+                                            <span className="init-btn-text">INITIALIZE PORTFOLIO</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="hero-avatar-wrapper">
+                                    <ProfileCard videoSrc="/assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
                                 </div>
                             </div>
-                            <div className="hero-avatar-wrapper">
-                                <ProfileCard videoSrc="assets/videos/video1.mp4" cloneStatus={cloneStatus} />
+
+                            {/* Hero AI Assistant Robot Aero */}
+                            <div className={`aero-hero-robot ${robotState}`}>
+                                <div className="aero-body-wrapper">
+                                    {/* Waving/Pointing Arm (Right Arm) */}
+                                    <div className="aero-arm-right">
+                                        <svg viewBox="0 0 40 100" className="aero-arm-svg">
+                                            <path d="M15,12 L15,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
+                                            <circle cx="15" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
+                                            <circle cx="15" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
+                                            <g className="aero-hand-group">
+                                                <path d="M11,66 C7,70 8,78 13,82 C18,80 19,72 16,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+                                                <circle cx="13" cy="74" r="2" fill="var(--accent)" />
+                                            </g>
+                                        </svg>
+                                    </div>
+
+                                    {/* Torso & Core */}
+                                    <div className="aero-torso">
+                                        <div className="aero-chest">
+                                            <div className="aero-core-pulse"></div>
+                                            <div className="aero-core"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Head & Face Visor */}
+                                    <div className="aero-head">
+                                        <div className="aero-antenna">
+                                            <div className="aero-antenna-line"></div>
+                                            <div className="aero-antenna-tip"></div>
+                                        </div>
+                                        <div className="aero-visor">
+                                            <div className="aero-eye left"></div>
+                                            <div className="aero-eye right"></div>
+                                        </div>
+                                        <div className="aero-ears">
+                                            <div className="aero-ear left"></div>
+                                            <div className="aero-ear right"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Left Arm */}
+                                    <div className="aero-arm-left">
+                                        <svg viewBox="0 0 40 100" className="aero-arm-svg">
+                                            <path d="M25,12 L25,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
+                                            <circle cx="25" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
+                                            <circle cx="25" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
+                                            <g className="aero-hand-group">
+                                                <path d="M29,66 C33,70 32,78 27,82 C22,80 21,72 24,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+                                                <circle cx="27" cy="74" r="2" fill="var(--accent)" />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        {/* Hero AI Assistant Robot Aero */}
-                        <div className={`aero-hero-robot ${robotState}`}>
-                            <div className="aero-body-wrapper">
-                                {/* Waving/Pointing Arm (Right Arm) */}
-                                <div className="aero-arm-right">
-                                    <svg viewBox="0 0 40 100" className="aero-arm-svg">
-                                        <path d="M15,12 L15,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
-                                        <circle cx="15" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
-                                        <circle cx="15" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
-                                        <g className="aero-hand-group">
-                                            <path d="M11,66 C7,70 8,78 13,82 C18,80 19,72 16,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
-                                            <circle cx="13" cy="74" r="2" fill="var(--accent)" />
-                                        </g>
-                                    </svg>
-                                </div>
-
-                                {/* Torso & Core */}
-                                <div className="aero-torso">
-                                    <div className="aero-chest">
-                                        <div className="aero-core-pulse"></div>
-                                        <div className="aero-core"></div>
-                                    </div>
-                                </div>
-
-                                {/* Head & Face Visor */}
-                                <div className="aero-head">
-                                    <div className="aero-antenna">
-                                        <div className="aero-antenna-line"></div>
-                                        <div className="aero-antenna-tip"></div>
-                                    </div>
-                                    <div className="aero-visor">
-                                        <div className="aero-eye left"></div>
-                                        <div className="aero-eye right"></div>
-                                    </div>
-                                    <div className="aero-ears">
-                                        <div className="aero-ear left"></div>
-                                        <div className="aero-ear right"></div>
-                                    </div>
-                                </div>
-
-                                {/* Left Arm */}
-                                <div className="aero-arm-left">
-                                    <svg viewBox="0 0 40 100" className="aero-arm-svg">
-                                        <path d="M25,12 L25,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
-                                        <circle cx="25" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
-                                        <circle cx="25" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
-                                        <g className="aero-hand-group">
-                                            <path d="M29,66 C33,70 32,78 27,82 C22,80 21,72 24,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
-                                            <circle cx="27" cy="74" r="2" fill="var(--accent)" />
-                                        </g>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
                 )}
 
                 <div className={`portfolio-sections-wrapper ${isInitialized ? 'revealed' : 'veiled'}`}>
                     {/* 4. Creative Capabilities */}
-                <section id="capabilities" className="capabilities-section">
-                    <div className="container">
-                        <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Creative Capabilities</h2>
-                        </div>
-                        <div className="capabilities-grid-v2 reveal-item">
-                            {/* 1. Hero Card: AI Creative Direction */}
-                            <div className="cap-card-v2 hero-cap-card">
-                                <div className="cap-card-header">
-                                    <div className="cap-status-group">
-                                        <span className="cap-dot-indicator pulse-blue"></span>
-                                        <span className="cap-num">01</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span className="cap-label">PRIMARY SPECIALIZATION</span>
-                                </div>
-                                <div className="cap-card-body">
-                                    <h3 className="cap-title">AI Creative Direction</h3>
-                                    <p className="cap-desc">
-                                        Leading next-generation brand narratives by combining advanced generative AI tools with high-fidelity creative direction to produce premium cinematic worlds.
-                                    </p>
-                                    <div className="cap-focus-tags">
-                                        <span className="cap-focus-tag">Multimodal AI</span>
-                                        <span className="cap-focus-tag">Cinematic Worldbuilding</span>
-                                        <span className="cap-focus-tag">Directing</span>
-                                    </div>
-                                </div>
-                                <div className="cap-meta">
-                                    <div className="meta-item">
-                                        <span className="meta-key">Focus Area</span>
-                                        <span className="meta-val">AI Production & Branding</span>
-                                    </div>
-                                    <div className="meta-item">
-                                        <span className="meta-key">Key Deliverable</span>
-                                        <span className="meta-val">Cinematic Worldbuilding</span>
-                                    </div>
-                                    <div className="meta-item">
-                                        <span className="meta-key">Technology</span>
-                                        <span className="meta-val">Multimodal AI Pipelines</span>
-                                    </div>
-                                </div>
+                    <section id="capabilities" className="capabilities-section">
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Creative Capabilities</h2>
                             </div>
-
-                            {/* 2. Cinematic Video Editing */}
-                            <div className="cap-card-v2">
-                                <div className="cap-card-header">
-                                    <div className="cap-status-group">
-                                        <span className="cap-dot-indicator"></span>
-                                        <span className="cap-num">02</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
+                            <div className="capabilities-grid-v2 reveal-item">
+                                {/* 1. Hero Card: AI Creative Direction */}
+                                <div className="cap-card-v2 hero-cap-card">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator pulse-blue"></span>
+                                            <span className="cap-num">01</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">PRIMARY SPECIALIZATION</span>
                                     </div>
-                                    <span className="cap-label">VIDEO PRODUCTION</span>
-                                </div>
-                                <div className="cap-card-body">
-                                    <h3 className="cap-title">Cinematic Video Editing</h3>
-                                    <p className="cap-desc">
-                                        High-end video editing for long-form content, documentaries, and commercials, focusing on pacing, structure, and emotional engagement.
-                                    </p>
-                                    <div className="cap-focus-tags">
-                                        <span className="cap-focus-tag">Pacing & Rhythm</span>
-                                        <span className="cap-focus-tag">Narrative Flow</span>
-                                        <span className="cap-focus-tag">Color Grading</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 3. Short-Form Video Editing */}
-                            <div className="cap-card-v2">
-                                <div className="cap-card-header">
-                                    <div className="cap-status-group">
-                                        <span className="cap-dot-indicator"></span>
-                                        <span className="cap-num">03</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span className="cap-label">SOCIAL MEDIA</span>
-                                </div>
-                                <div className="cap-card-body">
-                                    <h3 className="cap-title">Short-Form Video Editing</h3>
-                                    <p className="cap-desc">
-                                        Dynamic, high-impact vertical videos, reels, and TikToks engineered with strong visual hooks for maximum audience retention.
-                                    </p>
-                                    <div className="cap-focus-tags">
-                                        <span className="cap-focus-tag">Retention Hooks</span>
-                                        <span className="cap-focus-tag">Dynamic Captions</span>
-                                        <span className="cap-focus-tag">Sound FX</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 4. Content Research & Strategy */}
-                            <div className="cap-card-v2">
-                                <div className="cap-card-header">
-                                    <div className="cap-status-group">
-                                        <span className="cap-dot-indicator"></span>
-                                        <span className="cap-num">04</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span className="cap-label">IDEATION</span>
-                                </div>
-                                <div className="cap-card-body">
-                                    <h3 className="cap-title">Content Research & Strategy</h3>
-                                    <p className="cap-desc">
-                                        In-depth topic research and data-backed content mapping to design stories that command human attention from the first second.
-                                    </p>
-                                    <div className="cap-focus-tags">
-                                        <span className="cap-focus-tag">Audience Insights</span>
-                                        <span className="cap-focus-tag">Virality Mapping</span>
-                                        <span className="cap-focus-tag">Data Analytics</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 5. Visual Storytelling */}
-                            <div className="cap-card-v2">
-                                <div className="cap-card-header">
-                                    <div className="cap-status-group">
-                                        <span className="cap-dot-indicator"></span>
-                                        <span className="cap-num">05</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span className="cap-label">CREATIVE TECHNIQUE</span>
-                                </div>
-                                <div className="cap-card-body">
-                                    <h3 className="cap-title">Visual Storytelling</h3>
-                                    <p className="cap-desc">
-                                        Blending moving pixels, composition, lighting, and immersive sound design to elevate narrative depth and drive conversion.
-                                    </p>
-                                    <div className="cap-focus-tags">
-                                        <span className="cap-focus-tag">Composition</span>
-                                        <span className="cap-focus-tag">Dramatic Lighting</span>
-                                        <span className="cap-focus-tag">Soundscapes</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 6. AI Concept Art & Workflows */}
-                            <div className="cap-card-v2">
-                                <div className="cap-card-header">
-                                    <div className="cap-status-group">
-                                        <span className="cap-dot-indicator"></span>
-                                        <span className="cap-num">06</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span className="cap-label">PRE-PRODUCTION</span>
-                                </div>
-                                <div className="cap-card-body">
-                                    <h3 className="cap-title">AI Concept Art & Workflows</h3>
-                                    <p className="cap-desc">
-                                        Bespoke conceptual artwork, visual mood boards, and customized image generation utilizing state-of-the-art AI systems.
-                                    </p>
-                                    <div className="cap-focus-tags">
-                                        <span className="cap-focus-tag">Prompt Crafting</span>
-                                        <span className="cap-focus-tag">ControlNet</span>
-                                        <span className="cap-focus-tag">Style Transfer</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 7. Storyboarding & Pre-Visuals */}
-                            <div className="cap-card-v2">
-                                <div className="cap-card-header">
-                                    <div className="cap-status-group">
-                                        <span className="cap-dot-indicator"></span>
-                                        <span className="cap-num">07</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span className="cap-label">PLANNING</span>
-                                </div>
-                                <div className="cap-card-body">
-                                    <h3 className="cap-title">Storyboarding & Pre-Visuals</h3>
-                                    <p className="cap-desc">
-                                        Visual narrative mapping, shot design, and sequence layout to plan and optimize complex post-production cycles.
-                                    </p>
-                                    <div className="cap-focus-tags">
-                                        <span className="cap-focus-tag">Sequenced Layouts</span>
-                                        <span className="cap-focus-tag">Midjourney Panels</span>
-                                        <span className="cap-focus-tag">Shot Design</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-                {/* 4.5. Cinematic Self-Visuals Section */}
-                <section id="self-visuals">
-                    <div className="container">
-                        <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Cinematic Self-Visuals</h2>
-                        </div>
-                        <div className="cinema-grid reveal-item">
-                            {/* Top Ultrawide Video */}
-                            <div className="cinema-card ultrawide" data-glow="#A78BFA">
-                                <div className="cinema-video-wrapper">
-                                    <video className="cinema-video" src="assets/videos/helicopter.mp4" loop muted playsInline
-                                        autoPlay></video>
-                                    <div className="cinema-overlay">
-                                        <span className="cinema-badge">Gen-4 Turbo</span>
-                                    </div>
-                                </div>
-                                <div className="cinema-content">
-                                    <span className="cinema-index">01 / WIDESCREEN FRONTIER</span>
-                                    <h3 className="cinema-title">Ultrawide Horizon</h3>
-                                    <p className="cinema-description">An expansive 21:9 cinematic exploration generated with
-                                        state-of-the-art AI video models. Blending scale, atmosphere, and high-fidelity
-                                        storytelling into a unified visual experience.</p>
-                                </div>
-                            </div>
-
-                            {/* Existing 16:9 Videos */}
-                            <div className="cinema-card" data-glow="#4DA3FF">
-                                <div className="cinema-video-wrapper">
-                                    <video className="cinema-video" src="assets/videos/isro.mov" loop muted playsInline
-                                        autoPlay></video>
-                                    <div className="cinema-overlay">
-                                        <span className="cinema-badge">Kling V3 Pro</span>
-                                    </div>
-                                </div>
-                                <div className="cinema-content">
-                                    <span className="cinema-index">02 / CINEMATIC ENVIRONMENTS</span>
-                                    <h3 className="cinema-title">Inside the Mission</h3>
-                                    <p className="cinema-description">A cinematic AI-generated visual featuring myself inside an
-                                        ISRO-inspired mission control environment, focused on futuristic space operations and
-                                        immersive storytelling.</p>
-                                </div>
-                            </div>
-                            <div className="cinema-card" data-glow="#93C5FD">
-                                <div className="cinema-video-wrapper">
-                                    <video className="cinema-video" src="assets/videos/underwater.mp4" loop muted playsInline
-                                        autoPlay></video>
-                                    <div className="cinema-overlay">
-                                        <span className="cinema-badge">Seedance 2.0</span>
-                                    </div>
-                                </div>
-                                <div className="cinema-content">
-                                    <span className="cinema-index">03 / IMMERSIVE VISUALS</span>
-                                    <h3 className="cinema-title">Lost in Blue</h3>
-                                    <p className="cinema-description">An atmospheric underwater self-visual exploring emotion,
-                                        silence, and cinematic worldbuilding through AI-generated environments</p>
-                                </div>
-                            </div>
-
-                            {/* Bottom Ultrawide Video */}
-                            <div className="cinema-card ultrawide" data-glow="#F87171">
-                                <div className="cinema-video-wrapper">
-                                    <video className="cinema-video" src="assets/videos/supra.mp4" loop muted playsInline
-                                        autoPlay></video>
-                                    <div className="cinema-overlay">
-                                        <span className="cinema-badge">Gen-4 Turbo</span>
-                                    </div>
-                                </div>
-                                <div className="cinema-content">
-                                    <span className="cinema-index">04 / EXPANSIVE VISIONS</span>
-                                    <h3 className="cinema-title">The Anamorphic Frame</h3>
-                                    <p className="cinema-description">A deep-dive into ultra-widescreen aspect ratios, bringing the
-                                        immersive feel of traditional cinema lenses into AI-generated motion design.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 5. Visual Systems Gallery */}
-                <section id="visuals">
-                    <div className="container">
-                        <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Concept Poster Showcase</h2>
-                        </div>
-                        <div className="visual-gallery">
-                            {/* Project 1 */}
-                            <div className="visual-item reveal-item">
-                                {/* Top: Large Ultrawide Shot 1 */}
-                                <div className="visual-media" style={{ marginBottom: '24px' }}>
-                                    <img src="assets/images/n1.png" alt="Neural Frontiers - Shot 1" className="visual-image" />
-                                </div>
-
-                                {/* Bottom: Redesigned row with details on the left and n2.png smaller on the right */}
-                                <div className="visual-details-layout" style={{
-                                    display: 'flex',
-                                    flexWrap: 'wrap-reverse',
-                                    gap: '40px',
-                                    alignItems: 'center',
-                                    marginTop: '16px'
-                                }}>
-                                    {/* Parallel Left: Campaign Details */}
-                                    <div className="visual-info" style={{ flex: '1.2', minWidth: '320px' }}>
-                                        <span className="visual-tag" style={{ fontSize: '0.85rem', color: 'var(--accent)', letterSpacing: '2px', textTransform: 'uppercase' }}>
-                                            CAMPAIGN 01 / Concept Product - Nandini Masala Majjige
-                                        </span>
-                                        <h3 className="visual-title" style={{ fontSize: '2.25rem', fontWeight: '800', margin: '12px 0', color: '#FFF' }}>
-                                            BEAT THE HEAT
-                                        </h3>
-                                        <p className="visual-description" style={{ fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text-muted)' }}>
-                                            A localized commercial concept modernizing a regional favorite: Spiced Buttermilk. The visuals feature Bengaluru's transit and civic workers sharing moments of genuine relief in the peak of a Bengaluru summer.
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">AI Creative Direction</h3>
+                                        <p className="cap-desc">
+                                            Leading next-generation brand narratives by combining advanced generative AI tools with high-fidelity creative direction to produce premium cinematic worlds.
                                         </p>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Multimodal AI</span>
+                                            <span className="cap-focus-tag">Cinematic Worldbuilding</span>
+                                            <span className="cap-focus-tag">Directing</span>
+                                        </div>
+                                    </div>
+                                    <div className="cap-meta">
+                                        <div className="meta-item">
+                                            <span className="meta-key">Focus Area</span>
+                                            <span className="meta-val">AI Production & Branding</span>
+                                        </div>
+                                        <div className="meta-item">
+                                            <span className="meta-key">Key Deliverable</span>
+                                            <span className="meta-val">Cinematic Worldbuilding</span>
+                                        </div>
+                                        <div className="meta-item">
+                                            <span className="meta-key">Technology</span>
+                                            <span className="meta-val">Multimodal AI Pipelines</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 2. Cinematic Video Editing */}
+                                <div className="cap-card-v2">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator"></span>
+                                            <span className="cap-num">02</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">VIDEO PRODUCTION</span>
+                                    </div>
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">Cinematic Video Editing</h3>
+                                        <p className="cap-desc">
+                                            High-end video editing for long-form content, documentaries, and commercials, focusing on pacing, structure, and emotional engagement.
+                                        </p>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Pacing & Rhythm</span>
+                                            <span className="cap-focus-tag">Narrative Flow</span>
+                                            <span className="cap-focus-tag">Color Grading</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 3. Short-Form Video Editing */}
+                                <div className="cap-card-v2">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator"></span>
+                                            <span className="cap-num">03</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">SOCIAL MEDIA</span>
+                                    </div>
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">Short-Form Video Editing</h3>
+                                        <p className="cap-desc">
+                                            Dynamic, high-impact vertical videos, reels, and TikToks engineered with strong visual hooks for maximum audience retention.
+                                        </p>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Retention Hooks</span>
+                                            <span className="cap-focus-tag">Dynamic Captions</span>
+                                            <span className="cap-focus-tag">Sound FX</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 4. Content Research & Strategy */}
+                                <div className="cap-card-v2">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator"></span>
+                                            <span className="cap-num">04</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">IDEATION</span>
+                                    </div>
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">Content Research & Strategy</h3>
+                                        <p className="cap-desc">
+                                            In-depth topic research and data-backed content mapping to design stories that command human attention from the first second.
+                                        </p>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Audience Insights</span>
+                                            <span className="cap-focus-tag">Virality Mapping</span>
+                                            <span className="cap-focus-tag">Data Analytics</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 5. Visual Storytelling */}
+                                <div className="cap-card-v2">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator"></span>
+                                            <span className="cap-num">05</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">CREATIVE TECHNIQUE</span>
+                                    </div>
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">Visual Storytelling</h3>
+                                        <p className="cap-desc">
+                                            Blending moving pixels, composition, lighting, and immersive sound design to elevate narrative depth and drive conversion.
+                                        </p>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Composition</span>
+                                            <span className="cap-focus-tag">Dramatic Lighting</span>
+                                            <span className="cap-focus-tag">Soundscapes</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 6. AI Concept Art & Workflows */}
+                                <div className="cap-card-v2">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator"></span>
+                                            <span className="cap-num">06</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">PRE-PRODUCTION</span>
+                                    </div>
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">AI Concept Art & Workflows</h3>
+                                        <p className="cap-desc">
+                                            Bespoke conceptual artwork, visual mood boards, and customized image generation utilizing state-of-the-art AI systems.
+                                        </p>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Prompt Crafting</span>
+                                            <span className="cap-focus-tag">ControlNet</span>
+                                            <span className="cap-focus-tag">Style Transfer</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 7. Storyboarding & Pre-Visuals */}
+                                <div className="cap-card-v2">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator"></span>
+                                            <span className="cap-num">07</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">PLANNING</span>
+                                    </div>
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">Storyboarding & Pre-Visuals</h3>
+                                        <p className="cap-desc">
+                                            Visual narrative mapping, shot design, and sequence layout to plan and optimize complex post-production cycles.
+                                        </p>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Sequenced Layouts</span>
+                                            <span className="cap-focus-tag">Midjourney Panels</span>
+                                            <span className="cap-focus-tag">Shot Design</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    {/* 4.5. Cinematic Self-Visuals Section */}
+                    <section id="self-visuals">
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Cinematic Self-Visuals</h2>
+                            </div>
+                            <div className="cinema-grid reveal-item">
+                                {/* Top Ultrawide Video */}
+                                <div className="cinema-card ultrawide" data-glow="#A78BFA">
+                                    <div className="cinema-video-wrapper">
+                                        <video className="cinema-video" src="assets/videos/helicopter.mp4" loop muted playsInline
+                                            autoPlay></video>
+                                        <div className="cinema-overlay">
+                                            <span className="cinema-badge">Gen-4 Turbo</span>
+                                        </div>
+                                    </div>
+                                    <div className="cinema-content">
+                                        <span className="cinema-index">01 / WIDESCREEN FRONTIER</span>
+                                        <h3 className="cinema-title">Ultrawide Horizon</h3>
+                                        <p className="cinema-description">An expansive 21:9 cinematic exploration generated with
+                                            state-of-the-art AI video models. Blending scale, atmosphere, and high-fidelity
+                                            storytelling into a unified visual experience.</p>
+                                    </div>
+                                </div>
+
+                                {/* Existing 16:9 Videos */}
+                                <div className="cinema-card" data-glow="#4DA3FF">
+                                    <div className="cinema-video-wrapper">
+                                        <video className="cinema-video" src="assets/videos/isro.mov" loop muted playsInline
+                                            autoPlay></video>
+                                        <div className="cinema-overlay">
+                                            <span className="cinema-badge">Kling V3 Pro</span>
+                                        </div>
+                                    </div>
+                                    <div className="cinema-content">
+                                        <span className="cinema-index">02 / CINEMATIC ENVIRONMENTS</span>
+                                        <h3 className="cinema-title">Inside the Mission</h3>
+                                        <p className="cinema-description">A cinematic AI-generated visual featuring myself inside an
+                                            ISRO-inspired mission control environment, focused on futuristic space operations and
+                                            immersive storytelling.</p>
+                                    </div>
+                                </div>
+                                <div className="cinema-card" data-glow="#93C5FD">
+                                    <div className="cinema-video-wrapper">
+                                        <video className="cinema-video" src="assets/videos/underwater.mp4" loop muted playsInline
+                                            autoPlay></video>
+                                        <div className="cinema-overlay">
+                                            <span className="cinema-badge">Seedance 2.0</span>
+                                        </div>
+                                    </div>
+                                    <div className="cinema-content">
+                                        <span className="cinema-index">03 / IMMERSIVE VISUALS</span>
+                                        <h3 className="cinema-title">Lost in Blue</h3>
+                                        <p className="cinema-description">An atmospheric underwater self-visual exploring emotion,
+                                            silence, and cinematic worldbuilding through AI-generated environments</p>
+                                    </div>
+                                </div>
+
+                                {/* Bottom Ultrawide Video */}
+                                <div className="cinema-card ultrawide" data-glow="#F87171">
+                                    <div className="cinema-video-wrapper">
+                                        <video className="cinema-video" src="assets/videos/supra.mp4" loop muted playsInline
+                                            autoPlay></video>
+                                        <div className="cinema-overlay">
+                                            <span className="cinema-badge">Gen-4 Turbo</span>
+                                        </div>
+                                    </div>
+                                    <div className="cinema-content">
+                                        <span className="cinema-index">04 / EXPANSIVE VISIONS</span>
+                                        <h3 className="cinema-title">The Anamorphic Frame</h3>
+                                        <p className="cinema-description">A deep-dive into ultra-widescreen aspect ratios, bringing the
+                                            immersive feel of traditional cinema lenses into AI-generated motion design.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 5. Visual Systems Gallery */}
+                    <section id="visuals">
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Concept Poster Showcase</h2>
+                            </div>
+                            <div className="visual-gallery">
+                                {/* Project 1 */}
+                                <div className="visual-item reveal-item">
+                                    {/* Top: Large Ultrawide Shot 1 */}
+                                    <div className="visual-media" style={{ marginBottom: '24px' }}>
+                                        <img src="assets/images/n1.png" alt="Neural Frontiers - Shot 1" className="visual-image" />
                                     </div>
 
-                                    {/* Parallel Right: n2.png (smaller in size) */}
-                                    <div className="visual-media" style={{
-                                        flex: '0.8',
-                                        minWidth: '280px',
-                                        maxWidth: '440px',
-                                        aspectRatio: '1152 / 928',
-                                        margin: 0,
-                                        boxShadow: '0 20px 45px rgba(0, 0, 0, 0.5)'
+                                    {/* Bottom: Redesigned row with details on the left and n2.png smaller on the right */}
+                                    <div className="visual-details-layout" style={{
+                                        display: 'flex',
+                                        flexWrap: 'wrap-reverse',
+                                        gap: '40px',
+                                        alignItems: 'center',
+                                        marginTop: '16px'
                                     }}>
-                                        <img src="assets/images/n2.png" alt="Neural Frontiers - Shot 2" className="visual-image" style={{ objectFit: 'cover' }} />
+                                        {/* Parallel Left: Campaign Details */}
+                                        <div className="visual-info" style={{ flex: '1.2', minWidth: '320px' }}>
+                                            <span className="visual-tag" style={{ fontSize: '0.85rem', color: 'var(--accent)', letterSpacing: '2px', textTransform: 'uppercase' }}>
+                                                CAMPAIGN 01 / Concept Product - Nandini Masala Majjige
+                                            </span>
+                                            <h3 className="visual-title" style={{ fontSize: '2.25rem', fontWeight: '800', margin: '12px 0', color: '#FFF' }}>
+                                                BEAT THE HEAT
+                                            </h3>
+                                            <p className="visual-description" style={{ fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text-muted)' }}>
+                                                A localized commercial concept modernizing a regional favorite: Spiced Buttermilk. The visuals feature Bengaluru's transit and civic workers sharing moments of genuine relief in the peak of a Bengaluru summer.
+                                            </p>
+                                        </div>
+
+                                        {/* Parallel Right: n2.png (smaller in size) */}
+                                        <div className="visual-media" style={{
+                                            flex: '0.8',
+                                            minWidth: '280px',
+                                            maxWidth: '440px',
+                                            aspectRatio: '1152 / 928',
+                                            margin: 0,
+                                            boxShadow: '0 20px 45px rgba(0, 0, 0, 0.5)'
+                                        }}>
+                                            <img src="assets/images/n2.png" alt="Neural Frontiers - Shot 2" className="visual-image" style={{ objectFit: 'cover' }} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                {/* ═══════════════════════════════════════════════════════ */}
-                {/* EXPERIENCE JOURNEY — Retro-Futuristic Creative OS        */}
-                {/* ═══════════════════════════════════════════════════════ */}
-                <section id="experience-journey">
-                    <div className="container">
-                        <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Experience Journey</h2>
-                        </div>
-
-                        <div className="xp-windows-container">
-
-                            {/* ─── WINDOW 1: AdMitra (Fal.ai Inspired) ─── */}
-                            <div className="xp-interface-window xp-window-fal reveal-item" data-theme="ai">
-                                <div className="xp-window-header">
-                                    <div className="xp-window-controls">
-                                        <span></span><span></span><span></span>
-                                    </div>
-                                    <div className="xp-window-title">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                                        www.admitra.in
-                                    </div>
-                                </div>
-                                <div className="xp-window-body">
-                                    {/* AdMitra Navigation Sidebar */}
-                                    <div className="xp-window-sidebar" style={{ width: '240px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '20px', background: 'rgba(6, 6, 8, 0.85)' }}>
-                                        <div className="xp-sidebar-brand" style={{ paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" style={{ display: 'block' }}>
-                                                    <path d="M12 2L3 20H8.5L12 11.5L15.5 20H21L12 2Z" fill="#3B82F6" />
-                                                    <path d="M12 11.5L9.5 16.5H14.5L12 11.5Z" fill="#1D4ED8" opacity="0.6" />
-                                                </svg>
-                                                <span style={{ fontSize: '16px', fontWeight: '800', letterSpacing: '1px', color: '#FFF', fontFamily: "'Space Grotesk', sans-serif" }}>
-                                                    ADMITRA
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className="xp-sidebar-nav" style={{ overflowY: 'auto', flex: '1', display: 'flex', flexDirection: 'column', gap: '4px', paddingRight: '4px' }}>
-
-                                            {/* 1. Storyboard to Videos */}
-                                            <div className="xp-nav-item active" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: '#3B82F6', background: 'rgba(59, 130, 246, 0.12)', fontWeight: '600', cursor: 'pointer' }}>
-                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" /></svg>
-                                                Storyboard to Videos
-                                            </div>
-
-                                            {/* 2. Storyboard to Posters */}
-                                            <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
-                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.28 2.72-1.62-1.95L6.5 17h11l-3.94-4.19z" /></svg>
-                                                Storyboard to Posters
-                                            </div>
-
-                                            {/* 3. Partner Marketing (Expanded Header) */}
-                                            <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px 4px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.85)', fontWeight: '600', cursor: 'pointer' }}>
-                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
-                                                Partner Marketing
-                                                <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ marginLeft: 'auto', opacity: 0.6 }}><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                            </div>
-
-                                            {/* Submenu Group for Partner Marketing */}
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', paddingLeft: '24px', marginBottom: '4px' }}>
-                                                {/* Campaigns */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
-                                                    Campaigns
-                                                </div>
-                                                {/* Analytics */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
-                                                    Analytics
-                                                </div>
-                                            </div>
-
-                                            {/* 4. Meta Marketing */}
-                                            <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
-                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" /></svg>
-                                                Meta Marketing
-                                            </div>
-
-                                            {/* 5. Projects */}
-                                            <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
-                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="13" height="13" rx="2" ry="2" /><rect x="8" y="8" width="13" height="13" rx="2" ry="2" opacity="0.6" /></svg>
-                                                Projects
-                                            </div>
-
-                                            {/* 6. Your Brand (Header) */}
-                                            <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px 4px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.85)', fontWeight: '600', marginTop: '8px' }}>
-                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2" /><line x1="9" y1="22" x2="9" y2="16" /><line x1="15" y1="22" x2="15" y2="16" /><line x1="9" y1="16" x2="15" y2="16" /><path d="M8 6h2v2H8V6zm4 0h2v2h-2V6zm-4 4h2v2H8v-2zm4 0h2v2h-2v-2z" /></svg>
-                                                Your Brand
-                                                <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ marginLeft: 'auto', opacity: 0.6 }}><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                            </div>
-
-                                            {/* Submenu Group for Your Brand */}
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', paddingLeft: '24px' }}>
-                                                {/* Products */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="16" rx="2" ry="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="3" y1="14" x2="21" y2="14" /><rect x="9" y="6" width="6" height="2" rx="0.5" /></svg>
-                                                    Products
-                                                </div>
-                                                {/* Target Audience */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-                                                    Target Audience
-                                                </div>
-                                                {/* Brand Kits */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" /></svg>
-                                                    Brand Kits
-                                                </div>
-                                                {/* Environments */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="3 20 9 10 13 16 16 11 21 20 3 20" /></svg>
-                                                    Environments
-                                                </div>
-                                                {/* Avatars */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></svg>
-                                                    Avatars
-                                                </div>
-                                                {/* Voices */}
-                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" /><path d="M19 10v1a7 7 0 0 1-14 0v-1" /><line x1="12" y1="18" x2="12" y2="22" /></svg>
-                                                    Voices
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* AdMitra Workspace Main Dashboard */}
-                                    <div className="xp-window-main">
-                                        {/* Left Side: Professional Experience Details & Clients */}
-                                        <div className="xp-left-pane">
-                                            <div>
-                                                <div className="xp-main-header" style={{ marginBottom: '16px' }}>
-                                                    <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Generative AI Intern</h3>
-                                                    <p style={{ fontSize: '0.85rem', color: '#3B82F6', fontFamily: 'monospace', fontWeight: '600' }}>
-                                                        Bengaluru · AdMitra Pvt. Ltd. &nbsp;|&nbsp; <span style={{ color: 'rgba(255,255,255,0.5)' }}>February 2026 – May 2026</span>
-                                                    </p>
-                                                </div>
-                                                <div className="xp-main-desc" style={{ fontSize: '0.9rem', lineHeight: '1.6', color: 'rgba(255,255,255,0.75)' }}>
-                                                    <p style={{ marginBottom: '14px' }}>Led end-to-end AI-powered creative operations for hyperlocal advertising campaigns across video and poster formats at scale. Translated brand strategy into structured storyboards, localized narratives, and multi-language AI-generated campaign assets.</p>
-                                                    <p>Managed high-volume creative production workflows delivering 100+ localized creatives monthly. Collaborated directly with founders and brand stakeholders to streamline campaign execution.</p>
-                                                </div>
-                                            </div>
-
-                                            {/* Key Clients logos bar embedded in details */}
-                                            <div className="xp-client-brands" style={{ marginTop: '20px', paddingTop: '15px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                                                <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
-                                                    KEY CAMPAIGN CLIENTS
-                                                </p>
-                                                <div className="xp-brands-logos">
-                                                    <div className="xp-brand-logo-btn xp-brand-montra">
-                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                            <img 
-                                                                src="/assets/images/montra_logo.png" 
-                                                                onError={(e) => { 
-                                                                    if (!e.target.dataset.triedFallback) {
-                                                                        e.target.dataset.triedFallback = 'true';
-                                                                        e.target.src = "https://www.google.com/s2/favicons?domain=montraelectric.com&sz=128";
-                                                                    } else {
-                                                                        e.target.style.display = 'none';
-                                                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                                    }
-                                                                }} 
-                                                                className="xp-brand-logo-btn-icon" 
-                                                                alt="Montra Electric" 
-                                                                style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }} 
-                                                            />
-                                                            <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF334B', zIndex: 1 }}>
-                                                                M
-                                                            </div>
-                                                        </div>
-                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
-                                                    </div>
-                                                    <div className="xp-brand-logo-btn xp-brand-ampere">
-                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                            <img 
-                                                                src="/assets/images/ampere_logo.png" 
-                                                                onError={(e) => { 
-                                                                    if (!e.target.dataset.triedFallback) {
-                                                                        e.target.dataset.triedFallback = 'true';
-                                                                        e.target.src = "https://www.google.com/s2/favicons?domain=amperevehicles.com&sz=128";
-                                                                    } else {
-                                                                        e.target.style.display = 'none';
-                                                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                                    }
-                                                                }} 
-                                                                className="xp-brand-logo-btn-icon" 
-                                                                alt="Ampere" 
-                                                                style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }} 
-                                                            />
-                                                            <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#00FFF0', zIndex: 1 }}>
-                                                                A
-                                                            </div>
-                                                        </div>
-                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere</span>
-                                                    </div>
-                                                    <div className="xp-brand-logo-btn xp-brand-lincoln">
-                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                            <img 
-                                                                src="/assets/images/lincoln_logo.png" 
-                                                                onError={(e) => { 
-                                                                    if (!e.target.dataset.triedFallback) {
-                                                                        e.target.dataset.triedFallback = 'true';
-                                                                        e.target.src = "https://www.google.com/s2/favicons?domain=lincolnpharma.com&sz=128";
-                                                                    } else {
-                                                                        e.target.style.display = 'none';
-                                                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                                    }
-                                                                }} 
-                                                                className="xp-brand-logo-btn-icon" 
-                                                                alt="Lincoln Pharma" 
-                                                                style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }} 
-                                                            />
-                                                            <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF8C00', zIndex: 1 }}>
-                                                                L
-                                                            </div>
-                                                        </div>
-                                                        <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Right Side: High-fidelity Hyperlocal Targeting telemetry (demographic indicator) */}
-                                        <div style={{ flex: '1', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', padding: '20px' }}>
-                                            <div className="xp-floating-panel" style={{
-                                                width: '100%',
-                                                maxWidth: '340px',
-                                                background: 'rgba(6, 6, 8, 0.65)',
-                                                backdropFilter: 'blur(20px)',
-                                                border: '1px solid rgba(59, 130, 246, 0.25)',
-                                                borderRadius: '12px',
-                                                padding: '24px',
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '20px',
-                                                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
-                                                position: 'relative',
-                                                overflow: 'hidden'
-                                            }}>
-                                                {/* Header / Telemetry scanner active status */}
-                                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                    <div style={{ color: '#3B82F6', fontWeight: '800', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '1px', textTransform: 'uppercase' }}>
-                                                        <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#3B82F6', boxShadow: '0 0 10px #3B82F6', animation: 'pulse 1.5s infinite' }}></span>
-                                                        Hyperlocal Engine
-                                                    </div>
-                                                    <span style={{ fontSize: '0.65rem', color: 'rgba(255, 255, 255, 0.4)', fontFamily: 'monospace' }}>SYS_ACTIVE</span>
-                                                </div>
-
-                                                 {/* Toggle buttons for Videos / Posters */}
-                                                 <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
-                                                     <button 
-                                                         onClick={() => { setCreativeType('video'); setCreativeIdx(0); }} 
-                                                         style={{ 
-                                                             flex: 1, 
-                                                             background: creativeType === 'video' ? 'rgba(59, 130, 246, 0.2)' : 'transparent', 
-                                                             border: creativeType === 'video' ? '1px solid #3B82F6' : '1px solid rgba(255,255,255,0.1)', 
-                                                             borderRadius: '6px', 
-                                                             padding: '6px 12px', 
-                                                             color: '#fff', 
-                                                             fontSize: '0.7rem', 
-                                                             fontWeight: '600', 
-                                                             cursor: 'pointer',
-                                                             transition: 'all 0.3s ease',
-                                                             boxShadow: creativeType === 'video' ? '0 0 10px rgba(59, 130, 246, 0.3)' : 'none'
-                                                         }}
-                                                     >
-                                                         Video Ads (9:16)
-                                                     </button>
-                                                     <button 
-                                                         onClick={() => { setCreativeType('poster'); setCreativeIdx(0); }} 
-                                                         style={{ 
-                                                             flex: 1, 
-                                                             background: creativeType === 'poster' ? 'rgba(59, 130, 246, 0.2)' : 'transparent', 
-                                                             border: creativeType === 'poster' ? '1px solid #3B82F6' : '1px solid rgba(255,255,255,0.1)', 
-                                                             borderRadius: '6px', 
-                                                             padding: '6px 12px', 
-                                                             color: '#fff', 
-                                                             fontSize: '0.7rem', 
-                                                             fontWeight: '600', 
-                                                             cursor: 'pointer',
-                                                             transition: 'all 0.3s ease',
-                                                             boxShadow: creativeType === 'poster' ? '0 0 10px rgba(59, 130, 246, 0.3)' : 'none'
-                                                         }}
-                                                     >
-                                                         Poster Ads (4:5)
-                                                     </button>
-                                                 </div>
-
-                                                 {/* Interactive Creative Previewer Viewport */}
-                                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}>
-                                                     {(() => {
-                                                         const currentCreative = creativeType === 'video' ? mockVideos[creativeIdx] : mockPosters[creativeIdx];
-                                                         return (
-                                                             <>
-                                                                 {/* Horizontal layout: Prev Button | Viewport | Next Button */}
-                                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', width: '100%' }}>
-                                                                     {/* Previous Button */}
-                                                                     <button 
-                                                                         onClick={() => setCreativeIdx((prev) => (prev - 1 + 3) % 3)}
-                                                                         aria-label="Previous Creative"
-                                                                         className="xp-arrow-nav-btn prev-btn"
-                                                                         style={{
-                                                                             background: 'rgba(255, 255, 255, 0.03)',
-                                                                             border: '1px solid rgba(255, 255, 255, 0.08)',
-                                                                             borderRadius: '50%',
-                                                                             width: '36px',
-                                                                             height: '36px',
-                                                                             display: 'flex',
-                                                                             alignItems: 'center',
-                                                                             justifyContent: 'center',
-                                                                             color: 'rgba(255, 255, 255, 0.6)',
-                                                                             cursor: 'pointer',
-                                                                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                                             backdropFilter: 'blur(8px)',
-                                                                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                                                                             flexShrink: 0
-                                                                         }}
-                                                                         onMouseEnter={(e) => { 
-                                                                             e.currentTarget.style.color = '#3B82F6'; 
-                                                                             e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
-                                                                             e.currentTarget.style.borderColor = '#3B82F6';
-                                                                             e.currentTarget.style.boxShadow = '0 0 12px rgba(59, 130, 246, 0.4)';
-                                                                             e.currentTarget.style.transform = 'scale(1.08)';
-                                                                         }}
-                                                                         onMouseLeave={(e) => { 
-                                                                             e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; 
-                                                                             e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                                                                             e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                                                                             e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-                                                                             e.currentTarget.style.transform = 'none';
-                                                                         }}
-                                                                     >
-                                                                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                                                     </button>
-
-                                                                     {/* High-Fidelity Device Simulator Viewport */}
-                                                                     <div 
-                                                                         className="sim-device-viewport"
-                                                                         style={{
-                                                                             width: '185px',
-                                                                             aspectRatio: '9/16',
-                                                                             background: creativeType === 'video' ? currentCreative.bg : '#0B0B0F',
-                                                                             borderRadius: '24px',
-                                                                             border: '3px solid rgba(255, 255, 255, 0.15)',
-                                                                             boxShadow: '0 20px 45px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05)',
-                                                                             position: 'relative',
-                                                                             overflow: 'hidden',
-                                                                             display: 'flex',
-                                                                             flexDirection: 'column',
-                                                                             justifyContent: 'flex-start',
-                                                                             transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                                                                             flexShrink: 0
-                                                                         }}
-                                                                     >
-                                                                         {/* Status Bar */}
-                                                                         <div className="sim-device-header">
-                                                                             <div className="sim-status-bar-left">{simTime}</div>
-                                                                             <div className="sim-device-notch"></div>
-                                                                             <div className="sim-status-bar-right">
-                                                                                 {/* Telemetry Status Bar Icons */}
-                                                                                 <svg width="11" height="8" viewBox="0 0 17 11" fill="currentColor" className="sim-status-icon">
-                                                                                     <rect x="0" y="8" width="2" height="3" rx="0.5" />
-                                                                                     <rect x="4" y="6" width="2" height="5" rx="0.5" />
-                                                                                     <rect x="8" y="4" width="2" height="7" rx="0.5" />
-                                                                                     <rect x="12" y="2" width="2" height="9" rx="0.5" />
-                                                                                     <rect x="16" y="0" width="2" height="11" rx="0.5" />
-                                                                                 </svg>
-                                                                                 <svg width="11" height="8" viewBox="0 0 24 24" fill="currentColor" className="sim-status-icon">
-                                                                                     <path d="M12 21a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM4.8 13.8a10 10 0 0 1 14 0l-1.4 1.4a8 8 0 0 0-11.6 0l-1.4-1.4zm-3-3a14 14 0 0 1 20.4 0l-1.4 1.4a12 12 0 0 0-17.6 0l-1.4-1.4z" />
-                                                                                 </svg>
-                                                                                 <svg width="15" height="8" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ marginLeft: '1px' }}>
-                                                                                     <rect x="1" y="1" width="18" height="10" rx="3" ry="3" />
-                                                                                     <line x1="21" y1="4" x2="21" y2="8" strokeLinecap="round" />
-                                                                                     <rect x="3" y="3" width="12" height="6" rx="1" fill="currentColor" />
-                                                                                 </svg>
-                                                                             </div>
-                                                                         </div>
-
-                                                                         {creativeType === 'video' ? (
-                                                                             <>
-                                                                                 {/* Simulated live video stream / AD indicators */}
-                                                                                 <div className="sim-live-badge" style={{ top: '38px' }}>
-                                                                                     <span className="sim-live-dot"></span>
-                                                                                     AD
-                                                                                 </div>
-
-                                                                                 {/* Reels Mode Middle Graphic Preview */}
-                                                                                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
-                                                                                     <div className="sim-reels-visual-pulse" style={{ fontSize: '2.5rem', filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.5))' }}>
-                                                                                         {currentCreative.icon}
-                                                                                     </div>
-                                                                                 </div>
-
-                                                                                 {/* Instagram-Inspired Floating Action Drawer */}
-                                                                                 <div className="sim-social-actions">
-                                                                                     {/* Avatar */}
-                                                                                     <div className="sim-action-btn reels-avatar-btn" style={{ marginBottom: '4px' }}>
-                                                                                         <div className="sim-action-icon-wrapper avatar" style={{ width: '28px', height: '28px', padding: '1px', border: '1px solid rgba(255,255,255,0.6)' }}>
-                                                                                             <div style={{
-                                                                                                 width: '100%',
-                                                                                                 height: '100%',
-                                                                                                 borderRadius: '50%',
-                                                                                                 background: 'linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%)',
-                                                                                                 display: 'flex',
-                                                                                                 alignItems: 'center',
-                                                                                                 justifyContent: 'center',
-                                                                                                 fontSize: '8px',
-                                                                                                 fontWeight: 'bold',
-                                                                                                 color: '#fff'
-                                                                                              }}>
-                                                                                                 {creativeIdx === 0 ? 'M' : creativeIdx === 1 ? 'A' : 'L'}
-                                                                                             </div>
-                                                                                         </div>
-                                                                                     </div>
-
-                                                                                     {/* Heart / Like */}
-                                                                                     <div className="sim-action-btn" onClick={() => alert('Liked Reel!')}>
-                                                                                         <div className="sim-action-icon-wrapper heart">
-                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                                                                         </div>
-                                                                                     </div>
-
-                                                                                     {/* Comment */}
-                                                                                     <div className="sim-action-btn" onClick={() => alert('Comments opened!')}>
-                                                                                         <div className="sim-action-icon-wrapper comment">
-                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                                                                         </div>
-                                                                                     </div>
-
-                                                                                     {/* Share */}
-                                                                                     <div className="sim-action-btn" onClick={() => alert('Shared Reel!')}>
-                                                                                         <div className="sim-action-icon-wrapper share">
-                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
-                                                                                         </div>
-                                                                                     </div>
-
-                                                                                     {/* Music Spinning Vinyl */}
-                                                                                     <div className="sim-vinyl-wrapper">
-                                                                                         <div className="sim-vinyl-center"></div>
-                                                                                     </div>
-                                                                                 </div>
-
-                                                                                 {/* Video metadata and timeline */}
-                                                                                 <div className="sim-reels-details" style={{ paddingBottom: '12px' }}>
-                                                                                     <h5 style={{ color: '#fff', fontSize: '0.65rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', gap: '3px' }}>
-                                                                                         @{creativeIdx === 0 ? 'montra_electric' : creativeIdx === 1 ? 'ampere_ev' : 'lincoln_pharma'}
-                                                                                         <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
-                                                                                         <span style={{ fontSize: '0.5rem', color: 'rgba(255,255,255,0.75)', fontWeight: '500', marginLeft: '1px' }}>• Sponsored</span>
-                                                                                     </h5>
-                                                                                     <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
-                                                                                         {currentCreative.title}
-                                                                                     </p>
-                                                                                     <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.5rem', margin: '0 0 6px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
-                                                                                         {currentCreative.subtitle}
-                                                                                     </p>
-                                                                                     
-                                                                                     {/* Audio line */}
-                                                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'rgba(255,255,255,0.9)', fontSize: '0.48rem', margin: '0 0 4px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
-                                                                                         <svg viewBox="0 0 24 24" width="8" height="8" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-                                                                                         <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100px' }}>original audio - admitra.in</span>
-                                                                                     </div>
-
-                                                                                     <div className="sim-scrubber-track" style={{ marginTop: '6px' }}>
-                                                                                         <div className="sim-scrubber-fill">
-                                                                                             <div className="sim-scrubber-thumb"></div>
-                                                                                         </div>
-                                                                                     </div>
-                                                                                 </div>
-                                                                             </>
-                                                                         ) : (
-                                                                             <>
-                                                                                 {/* Instagram Post sponsored header */}
-                                                                                 <div className="sim-sponsored-header" style={{ top: '32px' }}>
-                                                                                     <div className="sim-sponsored-user">
-                                                                                         <div className="sim-sponsored-avatar">
-                                                                                             <div className="sim-sponsored-avatar-inner">
-                                                                                                 {creativeIdx === 0 ? 'M' : creativeIdx === 1 ? 'A' : 'L'}
-                                                                                             </div>
-                                                                                         </div>
-                                                                                         <div className="sim-sponsored-info">
-                                                                                             <span className="sim-sponsored-name">
-                                                                                                 {creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'}
-                                                                                                 <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ marginLeft: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z"/></svg>
-                                                                                             </span>
-                                                                                             <span className="sim-sponsored-tag">Sponsored</span>
-                                                                                         </div>
-                                                                                     </div>
-                                                                                     <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2.5"><circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/></svg>
-                                                                                 </div>
-
-                                                                                 {/* 4:5 Poster Media card */}
-                                                                                 <div 
-                                                                                     className="sim-poster-media"
-                                                                                     style={{
-                                                                                         width: '100%',
-                                                                                         height: '175px',
-                                                                                         background: currentCreative.bg,
-                                                                                         marginTop: '66px',
-                                                                                         display: 'flex',
-                                                                                         flexDirection: 'column',
-                                                                                         justifyContent: 'center',
-                                                                                         alignItems: 'center',
-                                                                                         padding: '0 12px',
-                                                                                         position: 'relative',
-                                                                                         boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)'
-                                                                                     }}
-                                                                                 >
-                                                                                     <div className="sim-reels-visual-pulse" style={{ fontSize: '2.2rem', marginBottom: '4px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.4))' }}>
-                                                                                         ✨
-                                                                                     </div>
-                                                                                     <h5 style={{ color: '#fff', fontSize: '0.78rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.7)', textAlign: 'center', lineHeight: '1.2' }}>
-                                                                                         {currentCreative.title}
-                                                                                     </h5>
-                                                                                     <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.55rem', margin: 0, lineHeight: '1.3', textShadow: '0 1px 2px rgba(0,0,0,0.7)', textAlign: 'center' }}>
-                                                                                         {currentCreative.desc}
-                                                                                     </p>
-                                                                                 </div>
-
-                                                                                 {/* Instagram Post Action Bar */}
-                                                                                 <div className="sim-poster-actions" style={{
-                                                                                     width: '100%',
-                                                                                     padding: '6px 10px',
-                                                                                     display: 'flex',
-                                                                                     alignItems: 'center',
-                                                                                     justifyContent: 'space-between',
-                                                                                     background: 'transparent'
-                                                                                 }}>
-                                                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                                                         <span className="sim-action-btn-post heart" onClick={() => alert('Liked Post!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-heart-svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                                                                         </span>
-                                                                                         <span className="sim-action-btn-post comment" onClick={() => alert('Comment section!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-comment-svg"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                                                                         </span>
-                                                                                         <span className="sim-action-btn-post share" onClick={() => alert('Shared Post!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                                                                                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-share-svg"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
-                                                                                         </span>
-                                                                                     </div>
-                                                                                     <span className="sim-action-btn-post bookmark" onClick={() => alert('Post Bookmarked!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                                                                                         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-bookmark-svg"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-                                                                                     </span>
-                                                                                 </div>
-
-                                                                                 {/* Sponsored CTA button wrapper at bottom */}
-                                                                                 <div className="sim-sponsored-cta-wrapper" style={{ padding: '0 8px 12px 8px', background: 'none', position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 5 }}>
-                                                                                     <button 
-                                                                                         className="sim-cta-btn" 
-                                                                                         onClick={() => alert(`Redirecting to ${creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'} official page!`)}
-                                                                                         style={{
-                                                                                             padding: '6px',
-                                                                                             fontSize: '0.58rem',
-                                                                                             letterSpacing: '0.5px',
-                                                                                             borderRadius: '6px'
-                                                                                         }}
-                                                                                     >
-                                                                                         {currentCreative.badge ? `ACTIVATE: ${currentCreative.badge}` : 'LEARN MORE'}
-                                                                                     </button>
-                                                                                 </div>
-                                                                             </>
-                                                                         )}
-                                                                     </div>
-
-                                                                     {/* Next Button */}
-                                                                     <button 
-                                                                         onClick={() => setCreativeIdx((prev) => (prev + 1) % 3)}
-                                                                         aria-label="Next Creative"
-                                                                         className="xp-arrow-nav-btn next-btn"
-                                                                         style={{
-                                                                             background: 'rgba(255, 255, 255, 0.03)',
-                                                                             border: '1px solid rgba(255, 255, 255, 0.08)',
-                                                                             borderRadius: '50%',
-                                                                             width: '36px',
-                                                                             height: '36px',
-                                                                             display: 'flex',
-                                                                             alignItems: 'center',
-                                                                             justifyContent: 'center',
-                                                                             color: 'rgba(255, 255, 255, 0.6)',
-                                                                             cursor: 'pointer',
-                                                                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                                             backdropFilter: 'blur(8px)',
-                                                                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                                                                             flexShrink: 0
-                                                                         }}
-                                                                         onMouseEnter={(e) => { 
-                                                                             e.currentTarget.style.color = '#3B82F6'; 
-                                                                             e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
-                                                                             e.currentTarget.style.borderColor = '#3B82F6';
-                                                                             e.currentTarget.style.boxShadow = '0 0 12px rgba(59, 130, 246, 0.4)';
-                                                                             e.currentTarget.style.transform = 'scale(1.08)';
-                                                                         }}
-                                                                         onMouseLeave={(e) => { 
-                                                                             e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; 
-                                                                             e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                                                                             e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                                                                             e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-                                                                             e.currentTarget.style.transform = 'none';
-                                                                         }}
-                                                                     >
-                                                                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                                                     </button>
-                                                                 </div>
-
-                                                                 {/* Glowing Pagination Dots */}
-                                                                 <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center', marginTop: '6px' }}>
-                                                                     {[0, 1, 2].map((idx) => {
-                                                                         const isActive = creativeIdx === idx;
-                                                                         return (
-                                                                             <div 
-                                                                                 key={idx}
-                                                                                 onClick={() => setCreativeIdx(idx)}
-                                                                                 style={{
-                                                                                     width: isActive ? '18px' : '6px',
-                                                                                     height: '6px',
-                                                                                     borderRadius: '3px',
-                                                                                     background: isActive ? '#3B82F6' : 'rgba(255, 255, 255, 0.2)',
-                                                                                     boxShadow: isActive ? '0 0 8px #3B82F6' : 'none',
-                                                                                     cursor: 'pointer',
-                                                                                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                                                                                 }}
-                                                                             />
-                                                                         );
-                                                                     })}
-                                                                 </div>
-                                                             </>
-                                                         );
-                                                     })()}
-                                                 </div>
-
-                                                {/* Location & Language Grid */}
-                                                <div style={{
-                                                    display: 'grid',
-                                                    gridTemplateColumns: '1.2fr 0.8fr',
-                                                    gap: '16px',
-                                                    borderTop: '1px solid rgba(255,255,255,0.08)',
-                                                    paddingTop: '16px'
-                                                }}>
-                                                    <div>
-                                                        <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Target Location</span>
-                                                        <span style={{ fontSize: '1rem', color: '#FFF', fontWeight: '700', display: 'block' }}>{locations[locIdx].city}</span>
-                                                    </div>
-                                                    <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
-                                                        <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Local Dialect</span>
-                                                        <span style={{ fontSize: '1rem', color: '#3B82F6', fontWeight: '800', display: 'block' }}>{locations[locIdx].lang}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    </section>
+                    {/* ═══════════════════════════════════════════════════════ */}
+                    {/* EXPERIENCE JOURNEY — Retro-Futuristic Creative OS        */}
+                    {/* ═══════════════════════════════════════════════════════ */}
+                    <section id="experience-journey">
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Experience Journey</h2>
                             </div>
 
-                            {/* ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── */}
-                            <div className="xp-interface-window xp-window-davinci reveal-item" data-theme="video">
-                                <div className="xp-window-header">
-                                    <div className="xp-window-controls"><span></span><span></span><span></span></div>
-                                    <div className="xp-window-title">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                                        Freelance_Edits.drp
-                                    </div>
-                                </div>
-                                <div className="xp-window-body">
-                                    <div className="xp-window-top">
-                                        <div className="xp-media-pool">
-                                            <h4><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg> Media Pool</h4>
-                                            <div className="xp-pool-grid">
-                                                <div className="xp-pool-item"><img src="/assets/images/da.avif" alt="da" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                                                <div className="xp-pool-item"><img src="/assets/images/da1.png" alt="da1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                                                <div className="xp-pool-item"><img src="/assets/images/da2.png" alt="da2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                                                <div className="xp-pool-item"><img src="/assets/images/da3.png" alt="da3" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                                                <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
-                                                <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
-                                            </div>
-                                        </div>
-                                        <div className="xp-preview-monitor">
-                                            <div className="xp-monitor-inner">
-                                                <h3>Freelance Video Editor</h3>
-                                                <p>Independent · Remote</p>
-                                                <div className="xp-monitor-desc">
-                                                    <p>Crafted cinematic edits, short-form storytelling, and motion-heavy social content for diverse digital platforms. Engineered customized workflows focusing on audience retention and high-fidelity output.</p>
-                                                </div>
-                                            </div>
-                                            <div className="xp-monitor-controls">
-                                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="11 19 2 12 11 5 11 19"></polygon><polygon points="22 19 13 12 22 5 22 19"></polygon></svg>
-                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg>
-                                            </div>
-                                        </div>
-                                        <div className="xp-inspector">
-                                            <h4>
-                                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                                                Inspector
-                                            </h4>
-                                            <div className="xp-slider-group">
-                                                <label>Retention</label><div className="xp-slider"><div className="xp-slider-fill" style={{ width: '90%' }}></div></div>
-                                            </div>
-                                            <div className="xp-slider-group">
-                                                <label>Cinematic</label><div className="xp-slider"><div className="xp-slider-fill" style={{ width: '85%' }}></div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* DaVinci-style multi-track timeline */}
-                                    <div className="xp-window-timeline xp-dvr-timeline">
-                                        <div className="xp-timeline-header">
-                                            <span className="xp-tc">01:00:39:02</span>
-                                            <div className="xp-dvr-tabs">
-                                                <span>Media</span><span className="active">Edit</span><span>Color</span><span>Fairlight</span><span>Deliver</span>
-                                            </div>
-                                        </div>
-                                        <div className="xp-dvr-tracks">
-                                            <div className="xp-dvr-labels">
-                                                <span>V4</span><span>V3</span><span>V2</span><span>V1</span><span>A1</span><span>A2</span><span>A3</span>
-                                            </div>
-                                            <div className="xp-dvr-track-area">
-                                                <div className="xp-dvr-row"><div className="xp-clip xp-clip-gray" style={{ left: '8%', width: '4%' }}></div><div className="xp-clip xp-clip-gray" style={{ left: '14%', width: '3%' }}></div></div>
-                                                <div className="xp-dvr-row"><div className="xp-clip xp-clip-purple" style={{ left: '30%', width: '12%' }}>TRI...</div><div className="xp-clip xp-clip-purple" style={{ left: '44%', width: '8%' }}>ap...</div><div className="xp-clip xp-clip-purple" style={{ left: '54%', width: '8%' }}>TRI-8</div></div>
-                                                <div className="xp-dvr-row"><div className="xp-clip xp-clip-teal" style={{ left: '24%', width: '10%' }}>Tra...</div><div className="xp-clip xp-clip-teal" style={{ left: '36%', width: '8%' }}>Tex...</div><div className="xp-clip xp-clip-teal" style={{ left: '46%', width: '6%' }}>Inst</div><div className="xp-clip xp-clip-teal" style={{ left: '54%', width: '6%' }}>TRI-8</div></div>
-                                                <div className="xp-dvr-row"><div className="xp-clip xp-clip-blue" style={{ left: '2%', width: '18%' }}>P100...</div><div className="xp-clip xp-clip-blue" style={{ left: '22%', width: '6%' }}>P1...</div><div className="xp-clip xp-clip-blue" style={{ left: '30%', width: '6%' }}>P100</div><div className="xp-clip xp-clip-blue" style={{ left: '38%', width: '6%' }}>P...</div><div className="xp-clip xp-clip-lblue" style={{ left: '46%', width: '18%' }}>Gradient BG</div><div className="xp-clip xp-clip-blue" style={{ left: '66%', width: '8%' }}>P1000141</div><div className="xp-clip xp-clip-blue" style={{ left: '76%', width: '20%' }}>P1000159</div></div>
-                                                <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '2%', width: '12%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '76%', width: '20%' }}></div></div>
-                                                <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '16%', width: '8%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '26%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '34%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '40%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '46%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '52%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '58%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '66%', width: '8%' }}></div></div>
-                                                <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-dgreen" style={{ left: '2%', width: '12%' }}>Tri-8 Open</div><div className="xp-clip xp-clip-dgreen" style={{ left: '16%', width: '16%' }}>Gazing Out</div><div className="xp-clip xp-clip-dgreen" style={{ left: '34%', width: '30%' }}>All That Was</div><div className="xp-clip xp-clip-dgreen" style={{ left: '66%', width: '30%' }}>Fooled Again V2</div></div>
-                                                <div className="xp-dvr-scrubber"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div className="xp-windows-container">
 
-                            {/* ─── WINDOW 3: Snap AR (Lens Studio Inspired) ─── */}
-                            <div className="xp-interface-window xp-window-lens reveal-item" data-theme="ar">
-                                <div className="xp-window-header">
-                                    <div className="xp-window-controls">
-                                        <span></span><span></span><span></span>
-                                    </div>
-                                    <div className="xp-window-title">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19c0-2.21 2.239-4 5-4s5 1.79 5 4v1.662"></path></svg>
-                                        Snap_AR_Creator.lsproj
-                                    </div>
-                                </div>
-                                <div className="xp-window-body">
-                                    <div className="xp-window-sidebar xp-hierarchy">
-                                        <div className="xp-snap-brand" style={{ marginBottom: '16px' }}>
-                                            <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" alt="Snapchat" width="22" height="22" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }} />
-                                            <span className="xp-snap-brand-text">LENS STUDIO</span>
+                                {/* ─── WINDOW 1: AdMitra (Fal.ai Inspired) ─── */}
+                                <div className="xp-interface-window xp-window-fal reveal-item" data-theme="ai">
+                                    <div className="xp-window-header">
+                                        <div className="xp-window-controls">
+                                            <span></span><span></span><span></span>
                                         </div>
-                                        
-                                        {/* Premium Visual Insights Panel */}
-                                        <div className="xp-insights-container">
-                                            <div className="xp-insights-header">
-                                                <h4 className="xp-insights-title">Insights</h4>
-                                                <div className="xp-insights-dropdown">
-                                                    <span>Lifetime</span>
-                                                    <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="xp-insights-list">
-                                                <div className="xp-insights-card">
-                                                    <span className="xp-insights-label">Views</span>
-                                                    <div className="xp-insights-value">1,56,77,70,215</div>
-                                                </div>
-                                                <div className="xp-insights-card">
-                                                    <span className="xp-insights-label">Shares</span>
-                                                    <div className="xp-insights-value">3,03,70,979</div>
-                                                </div>
-                                                <div className="xp-insights-card">
-                                                    <span className="xp-insights-label">Plays</span>
-                                                    <div className="xp-insights-value">92,08,77,446</div>
-                                                </div>
-                                            </div>
+                                        <div className="xp-window-title">
+                                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                            www.admitra.in
                                         </div>
                                     </div>
-                                    <div className="xp-window-main xp-3d-viewport">
-                                        <div className="xp-snap-preview-container">
-                                            <div className="xp-snap-camera-frame">
-                                                <div className="xp-snap-camera-inner" style={{ position: 'relative' }}>
-                                                    <video 
-                                                        src="/assets/videos/snaps.MP4" 
-                                                        autoPlay 
-                                                        loop 
-                                                        muted 
-                                                        playsInline 
-                                                        style={{
-                                                            width: '100%',
-                                                            height: '100%',
-                                                            objectFit: 'cover',
-                                                            position: 'absolute',
-                                                            top: 0,
-                                                            left: 0,
-                                                            zIndex: 1
-                                                        }}
+                                    <div className="xp-window-body">
+                                        {/* AdMitra Navigation Sidebar */}
+                                        <div className="xp-window-sidebar" style={{ width: '240px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '20px', background: 'rgba(6, 6, 8, 0.85)' }}>
+                                            <div className="xp-sidebar-brand" style={{ paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <div style={{ width: '130px', height: '34px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <img
+                                                        src="/assets/images/admitra.png"
+                                                        alt="AdMitra Logo"
+                                                        style={{ width: '130px', height: '130px', objectFit: 'contain', display: 'block', opacity: 0.95 }}
                                                     />
                                                 </div>
-                                                <div className="xp-snap-corner tl"></div>
-                                                <div className="xp-snap-corner tr"></div>
-                                                <div className="xp-snap-corner bl"></div>
-                                                <div className="xp-snap-corner br"></div>
+                                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="2.5" fill="none" style={{ cursor: 'pointer', marginRight: '4px', transition: 'stroke 0.2s' }} onMouseEnter={(e) => e.currentTarget.setAttribute('stroke', '#fff')} onMouseLeave={(e) => e.currentTarget.setAttribute('stroke', 'rgba(255, 255, 255, 0.4)')}>
+                                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                                </svg>
                                             </div>
+                                            <div className="xp-sidebar-nav" style={{ overflowY: 'auto', flex: '1', display: 'flex', flexDirection: 'column', gap: '4px', paddingRight: '4px' }}>
 
-                                            {/* Tiny Snapchat logo and @karthik.graj tag below snaps preview */}
-                                            <div style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                gap: '6px',
-                                                background: 'rgba(0, 0, 0, 0.65)',
-                                                padding: '5px 12px',
-                                                borderRadius: '20px',
-                                                border: '1px solid rgba(255, 234, 77, 0.2)',
-                                                backdropFilter: 'blur(10px)',
-                                                boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                                                width: '100%',
-                                                boxSizing: 'border-box'
-                                            }}>
-                                                <img 
-                                                    src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" 
-                                                    alt="Snapchat Logo" 
-                                                    style={{ width: '12px', height: '12px' }} 
-                                                />
-                                                <span style={{ 
-                                                    color: '#FFEA4D', 
-                                                    fontSize: '0.65rem', 
-                                                    fontWeight: '700',
-                                                    fontFamily: "'Space Grotesk', sans-serif",
-                                                    letterSpacing: '0.5px'
-                                                }}>
-                                                    @karthik.graj
-                                                </span>
+                                                {/* 1. Storyboard to Videos */}
+                                                <div className="xp-nav-item active" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: '#3B82F6', background: 'rgba(59, 130, 246, 0.12)', fontWeight: '600', cursor: 'pointer' }}>
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" /></svg>
+                                                    Storyboard to Videos
+                                                </div>
+
+                                                {/* 2. Storyboard to Posters */}
+                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.28 2.72-1.62-1.95L6.5 17h11l-3.94-4.19z" /></svg>
+                                                    Storyboard to Posters
+                                                </div>
+
+                                                {/* 3. Partner Marketing (Expanded Header) */}
+                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px 4px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.85)', fontWeight: '600', cursor: 'pointer' }}>
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+                                                    Partner Marketing
+                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ marginLeft: 'auto', opacity: 0.6 }}><polyline points="18 15 12 9 6 15"></polyline></svg>
+                                                </div>
+
+                                                {/* Submenu Group for Partner Marketing */}
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', paddingLeft: '24px', marginBottom: '4px' }}>
+                                                    {/* Campaigns */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
+                                                        Campaigns
+                                                    </div>
+                                                    {/* Analytics */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
+                                                        Analytics
+                                                    </div>
+                                                </div>
+
+                                                {/* 4. Meta Marketing */}
+                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" /></svg>
+                                                    Meta Marketing
+                                                </div>
+
+                                                {/* 5. Projects */}
+                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="13" height="13" rx="2" ry="2" /><rect x="8" y="8" width="13" height="13" rx="2" ry="2" opacity="0.6" /></svg>
+                                                    Projects
+                                                </div>
+
+                                                {/* 6. Your Brand (Header) */}
+                                                <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px 4px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.85)', fontWeight: '600', marginTop: '8px' }}>
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2" /><line x1="9" y1="22" x2="9" y2="16" /><line x1="15" y1="22" x2="15" y2="16" /><line x1="9" y1="16" x2="15" y2="16" /><path d="M8 6h2v2H8V6zm4 0h2v2h-2V6zm-4 4h2v2H8v-2zm4 0h2v2h-2v-2z" /></svg>
+                                                    Your Brand
+                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ marginLeft: 'auto', opacity: 0.6 }}><polyline points="18 15 12 9 6 15"></polyline></svg>
+                                                </div>
+
+                                                {/* Submenu Group for Your Brand */}
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', paddingLeft: '24px' }}>
+                                                    {/* Products */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="16" rx="2" ry="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="3" y1="14" x2="21" y2="14" /><rect x="9" y="6" width="6" height="2" rx="0.5" /></svg>
+                                                        Products
+                                                    </div>
+                                                    {/* Target Audience */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                                                        Target Audience
+                                                    </div>
+                                                    {/* Brand Kits */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" /></svg>
+                                                        Brand Kits
+                                                    </div>
+                                                    {/* Environments */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="3 20 9 10 13 16 16 11 21 20 3 20" /></svg>
+                                                        Environments
+                                                    </div>
+                                                    {/* Avatars */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></svg>
+                                                        Avatars
+                                                    </div>
+                                                    {/* Voices */}
+                                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" /><path d="M19 10v1a7 7 0 0 1-14 0v-1" /><line x1="12" y1="18" x2="12" y2="22" /></svg>
+                                                        Voices
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div className="xp-viewport-overlay" style={{ 
-                                            top: '30px', 
-                                            bottom: '30px', 
-                                            left: '30px',
-                                            right: '220px', 
-                                            display: 'flex', 
-                                            flexDirection: 'column', 
-                                            justifyContent: 'space-between',
-                                            padding: '24px',
-                                            background: 'rgba(10, 10, 12, 0.85)',
-                                            backdropFilter: 'blur(20px)',
-                                            border: '1px solid rgba(255, 234, 77, 0.2)',
-                                            borderRadius: '12px',
-                                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)'
-                                        }}>
-                                            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
+                                        {/* AdMitra Workspace Main Dashboard */}
+                                        <div className="xp-window-main">
+                                            {/* Left Side: Professional Experience Details & Clients */}
+                                            <div className="xp-left-pane">
                                                 <div>
-                                                    <h3 style={{ margin: 0, fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>Snap AR Lens Creator</h3>
-                                                    <p style={{ margin: '4px 0 0 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '600' }}>Snap Inc. · Creator Program</p>
+                                                    <div className="xp-main-header" style={{ marginBottom: '16px' }}>
+                                                        <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Generative AI Intern</h3>
+                                                        <p style={{ fontSize: '0.85rem', color: '#3B82F6', fontFamily: 'monospace', fontWeight: '600' }}>
+                                                            Bengaluru · AdMitra Pvt. Ltd. &nbsp;&nbsp; <span className="xp-date-shimmer">February 2026 – May 2026</span>
+                                                        </p>
+                                                    </div>
+                                                    <div className="xp-main-desc" style={{ fontSize: '0.9rem', lineHeight: '1.6', color: 'rgba(255,255,255,0.75)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                                            <div style={{
+                                                                background: 'rgba(59, 130, 246, 0.1)',
+                                                                border: '1px solid rgba(59, 130, 246, 0.3)',
+                                                                borderRadius: '50%',
+                                                                width: '22px',
+                                                                height: '22px',
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
+                                                                flexShrink: 0,
+                                                                marginTop: '2px',
+                                                                boxShadow: '0 0 10px rgba(59, 130, 246, 0.15)'
+                                                            }}>
+                                                                <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                            </div>
+                                                            <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                                                                Led end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>AI-powered creative operations</strong> for hyperlocal advertising campaigns across video and poster formats at scale. Translated brand strategy into structured storyboards, localized narratives, and <strong style={{ color: '#3B82F6', fontWeight: '600' }}>multi-language AI-generated campaign assets</strong>.
+                                                            </p>
+                                                        </div>
+
+                                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                                            <div style={{
+                                                                background: 'rgba(59, 130, 246, 0.1)',
+                                                                border: '1px solid rgba(59, 130, 246, 0.3)',
+                                                                borderRadius: '50%',
+                                                                width: '22px',
+                                                                height: '22px',
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
+                                                                flexShrink: 0,
+                                                                marginTop: '2px',
+                                                                boxShadow: '0 0 10px rgba(59, 130, 246, 0.15)'
+                                                            }}>
+                                                                <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                            </div>
+                                                            <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                                                                Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>. Collaborated directly with founders and brand stakeholders to <strong style={{ color: '#3B82F6', fontWeight: '600' }}>streamline campaign execution</strong>.
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <span className="xp-shimmer-badge" style={{ 
-                                                    fontSize: '0.65rem', 
-                                                    padding: '4px 10px', 
-                                                    borderRadius: '12px', 
-                                                    fontWeight: '700', 
-                                                    letterSpacing: '0.8px',
-                                                    textTransform: 'uppercase'
+
+                                                {/* Key Clients logos bar embedded in details */}
+                                                <div className="xp-client-brands" style={{ marginTop: '20px', paddingTop: '15px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                                                    <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
+                                                        KEY CAMPAIGN CLIENTS
+                                                    </p>
+                                                    <div className="xp-brands-logos">
+                                                        <div className="xp-brand-logo-btn xp-brand-montra">
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                                <img
+                                                                    src="/assets/images/montra_logo.png"
+                                                                    onError={(e) => {
+                                                                        if (!e.target.dataset.triedFallback) {
+                                                                            e.target.dataset.triedFallback = 'true';
+                                                                            e.target.src = "https://www.google.com/s2/favicons?domain=montraelectric.com&sz=128";
+                                                                        } else {
+                                                                            e.target.style.display = 'none';
+                                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                                        }
+                                                                    }}
+                                                                    className="xp-brand-logo-btn-icon"
+                                                                    alt="Montra Electric"
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                                />
+                                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF334B', zIndex: 1 }}>
+                                                                    M
+                                                                </div>
+                                                            </div>
+                                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
+                                                        </div>
+                                                        <div className="xp-brand-logo-btn xp-brand-ampere">
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                                <img
+                                                                    src="/assets/images/ampere_logo.png"
+                                                                    onError={(e) => {
+                                                                        if (!e.target.dataset.triedFallback) {
+                                                                            e.target.dataset.triedFallback = 'true';
+                                                                            e.target.src = "https://www.google.com/s2/favicons?domain=amperevehicles.com&sz=128";
+                                                                        } else {
+                                                                            e.target.style.display = 'none';
+                                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                                        }
+                                                                    }}
+                                                                    className="xp-brand-logo-btn-icon"
+                                                                    alt="Ampere"
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                                />
+                                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#00FFF0', zIndex: 1 }}>
+                                                                    A
+                                                                </div>
+                                                            </div>
+                                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere</span>
+                                                        </div>
+                                                        <div className="xp-brand-logo-btn xp-brand-lincoln">
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                                <img
+                                                                    src="/assets/images/lincoln_logo.png"
+                                                                    onError={(e) => {
+                                                                        if (!e.target.dataset.triedFallback) {
+                                                                            e.target.dataset.triedFallback = 'true';
+                                                                            e.target.src = "https://www.google.com/s2/favicons?domain=lincolnpharma.com&sz=128";
+                                                                        } else {
+                                                                            e.target.style.display = 'none';
+                                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                                        }
+                                                                    }}
+                                                                    className="xp-brand-logo-btn-icon"
+                                                                    alt="Lincoln Pharma"
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                                />
+                                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF8C00', zIndex: 1 }}>
+                                                                    L
+                                                                </div>
+                                                            </div>
+                                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Right Side: High-fidelity Hyperlocal Targeting telemetry (demographic indicator) */}
+                                            <div style={{ flex: '1', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', padding: '20px' }}>
+                                                <div className="xp-floating-panel" style={{
+                                                    width: '100%',
+                                                    maxWidth: '340px',
+                                                    background: 'rgba(6, 6, 8, 0.65)',
+                                                    backdropFilter: 'blur(20px)',
+                                                    border: '1px solid rgba(59, 130, 246, 0.25)',
+                                                    borderRadius: '12px',
+                                                    padding: '24px',
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    gap: '20px',
+                                                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
+                                                    position: 'relative',
+                                                    overflow: 'hidden'
                                                 }}>
-                                                    featured by Snapchat India
-                                                </span>
+                                                    {/* Header / Telemetry scanner active status */}
+                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                        <div style={{ color: '#3B82F6', fontWeight: '800', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                                                            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#3B82F6', boxShadow: '0 0 10px #3B82F6', animation: 'pulse 1.5s infinite' }}></span>
+                                                            Hyperlocal Engine
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Toggle buttons for Videos / Posters */}
+                                                    <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
+                                                        <button
+                                                            onClick={() => { setCreativeType('video'); setCreativeIdx(0); }}
+                                                            style={{
+                                                                flex: 1,
+                                                                background: creativeType === 'video' ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
+                                                                border: creativeType === 'video' ? '1px solid #3B82F6' : '1px solid rgba(255,255,255,0.1)',
+                                                                borderRadius: '6px',
+                                                                padding: '6px 12px',
+                                                                color: '#fff',
+                                                                fontSize: '0.7rem',
+                                                                fontWeight: '600',
+                                                                cursor: 'pointer',
+                                                                transition: 'all 0.3s ease',
+                                                                boxShadow: creativeType === 'video' ? '0 0 10px rgba(59, 130, 246, 0.3)' : 'none'
+                                                            }}
+                                                        >
+                                                            Video Ads (9:16)
+                                                        </button>
+                                                        <button
+                                                            onClick={() => { setCreativeType('poster'); setCreativeIdx(0); }}
+                                                            style={{
+                                                                flex: 1,
+                                                                background: creativeType === 'poster' ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
+                                                                border: creativeType === 'poster' ? '1px solid #3B82F6' : '1px solid rgba(255,255,255,0.1)',
+                                                                borderRadius: '6px',
+                                                                padding: '6px 12px',
+                                                                color: '#fff',
+                                                                fontSize: '0.7rem',
+                                                                fontWeight: '600',
+                                                                cursor: 'pointer',
+                                                                transition: 'all 0.3s ease',
+                                                                boxShadow: creativeType === 'poster' ? '0 0 10px rgba(59, 130, 246, 0.3)' : 'none'
+                                                            }}
+                                                        >
+                                                            Poster Ads (4:5)
+                                                        </button>
+                                                    </div>
+
+                                                    {/* Interactive Creative Previewer Viewport */}
+                                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}>
+                                                        {(() => {
+                                                            const currentCreative = creativeType === 'video' ? mockVideos[creativeIdx] : mockPosters[creativeIdx];
+                                                            return (
+                                                                <>
+                                                                    {/* Horizontal layout: Prev Button | Viewport | Next Button */}
+                                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', width: '100%' }}>
+                                                                        {/* Previous Button */}
+                                                                        <button
+                                                                            onClick={() => setCreativeIdx((prev) => (prev - 1 + 3) % 3)}
+                                                                            aria-label="Previous Creative"
+                                                                            className="xp-arrow-nav-btn prev-btn"
+                                                                            style={{
+                                                                                background: 'rgba(255, 255, 255, 0.03)',
+                                                                                border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                                                borderRadius: '50%',
+                                                                                width: '36px',
+                                                                                height: '36px',
+                                                                                display: 'flex',
+                                                                                alignItems: 'center',
+                                                                                justifyContent: 'center',
+                                                                                color: 'rgba(255, 255, 255, 0.6)',
+                                                                                cursor: 'pointer',
+                                                                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                                                backdropFilter: 'blur(8px)',
+                                                                                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                                                                                flexShrink: 0
+                                                                            }}
+                                                                            onMouseEnter={(e) => {
+                                                                                e.currentTarget.style.color = '#3B82F6';
+                                                                                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                                                                                e.currentTarget.style.borderColor = '#3B82F6';
+                                                                                e.currentTarget.style.boxShadow = '0 0 12px rgba(59, 130, 246, 0.4)';
+                                                                                e.currentTarget.style.transform = 'scale(1.08)';
+                                                                            }}
+                                                                            onMouseLeave={(e) => {
+                                                                                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
+                                                                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                                                                                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                                                                                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+                                                                                e.currentTarget.style.transform = 'none';
+                                                                            }}
+                                                                        >
+                                                                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                                                        </button>
+
+                                                                        {/* High-Fidelity Device Simulator Viewport */}
+                                                                        <div
+                                                                            className="sim-device-viewport"
+                                                                            style={{
+                                                                                width: '185px',
+                                                                                aspectRatio: '9/16',
+                                                                                background: creativeType === 'video' ? currentCreative.bg : '#0B0B0F',
+                                                                                borderRadius: '24px',
+                                                                                border: '3px solid rgba(255, 255, 255, 0.15)',
+                                                                                boxShadow: '0 20px 45px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05)',
+                                                                                position: 'relative',
+                                                                                overflow: 'hidden',
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                justifyContent: 'flex-start',
+                                                                                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                                                                                flexShrink: 0
+                                                                            }}
+                                                                        >
+                                                                            {/* Status Bar */}
+                                                                            <div className="sim-device-header">
+                                                                                <div className="sim-status-bar-left">{simTime}</div>
+                                                                                <div className="sim-device-notch"></div>
+                                                                                <div className="sim-status-bar-right">
+                                                                                    {/* Telemetry Status Bar Icons */}
+                                                                                    <svg width="11" height="8" viewBox="0 0 17 11" fill="currentColor" className="sim-status-icon">
+                                                                                        <rect x="0" y="8" width="2" height="3" rx="0.5" />
+                                                                                        <rect x="4" y="6" width="2" height="5" rx="0.5" />
+                                                                                        <rect x="8" y="4" width="2" height="7" rx="0.5" />
+                                                                                        <rect x="12" y="2" width="2" height="9" rx="0.5" />
+                                                                                        <rect x="16" y="0" width="2" height="11" rx="0.5" />
+                                                                                    </svg>
+                                                                                    <svg width="11" height="8" viewBox="0 0 24 24" fill="currentColor" className="sim-status-icon">
+                                                                                        <path d="M12 21a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM4.8 13.8a10 10 0 0 1 14 0l-1.4 1.4a8 8 0 0 0-11.6 0l-1.4-1.4zm-3-3a14 14 0 0 1 20.4 0l-1.4 1.4a12 12 0 0 0-17.6 0l-1.4-1.4z" />
+                                                                                    </svg>
+                                                                                    <svg width="15" height="8" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ marginLeft: '1px' }}>
+                                                                                        <rect x="1" y="1" width="18" height="10" rx="3" ry="3" />
+                                                                                        <line x1="21" y1="4" x2="21" y2="8" strokeLinecap="round" />
+                                                                                        <rect x="3" y="3" width="12" height="6" rx="1" fill="currentColor" />
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            {creativeType === 'video' ? (
+                                                                                <>
+                                                                                    {/* Video elements or background previews */}
+                                                                                    {currentCreative.videoSrc ? (
+                                                                                        <video
+                                                                                            src={currentCreative.videoSrc}
+                                                                                            autoPlay
+                                                                                            loop
+                                                                                            muted
+                                                                                            playsInline
+                                                                                            style={{
+                                                                                                position: 'absolute',
+                                                                                                inset: 0,
+                                                                                                width: '100%',
+                                                                                                height: '100%',
+                                                                                                objectFit: 'cover',
+                                                                                                zIndex: 1
+                                                                                            }}
+                                                                                        />
+                                                                                    ) : (
+                                                                                        /* Reels Mode Middle Graphic Preview */
+                                                                                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
+                                                                                            <div className="sim-reels-visual-pulse" style={{ fontSize: '2.5rem', filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.5))' }}>
+                                                                                                {currentCreative.icon}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    )}
+
+                                                                                    {/* Instagram-Inspired Floating Action Drawer */}
+                                                                                    <div className="sim-social-actions" style={{ zIndex: 5 }}>
+                                                                                        {/* Avatar removed per user request */}
+
+                                                                                        {/* Heart / Like */}
+                                                                                        <div className="sim-action-btn" onClick={() => alert('Liked Reel!')}>
+                                                                                            <div className="sim-action-icon-wrapper heart">
+                                                                                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        {/* Comment */}
+                                                                                        <div className="sim-action-btn" onClick={() => alert('Comments opened!')}>
+                                                                                            <div className="sim-action-icon-wrapper comment">
+                                                                                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        {/* Share */}
+                                                                                        <div className="sim-action-btn" onClick={() => alert('Shared Reel!')}>
+                                                                                            <div className="sim-action-icon-wrapper share">
+                                                                                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        {/* Music Spinning Vinyl */}
+                                                                                        <div className="sim-vinyl-wrapper">
+                                                                                            <div className="sim-vinyl-center"></div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    {/* Video metadata and details */}
+                                                                                    <div className="sim-reels-details" style={{ paddingBottom: '12px', zIndex: 4 }}>
+                                                                                        <h5 style={{ color: '#fff', fontSize: '0.65rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                                                                                            @{creativeIdx === 0 ? 'montra_electric' : creativeIdx === 1 ? 'ampere_ev' : 'lincoln_pharma'}
+                                                                                            <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
+                                                                                            <span style={{ fontSize: '0.5rem', color: 'rgba(255,255,255,0.75)', fontWeight: '500', marginLeft: '1px' }}>• Sponsored</span>
+                                                                                        </h5>
+                                                                                        <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
+                                                                                            {currentCreative.title}
+                                                                                        </p>
+                                                                                        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.5rem', margin: '0 0 6px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
+                                                                                            {currentCreative.subtitle}
+                                                                                        </p>
+
+                                                                                        {/* Audio line */}
+                                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'rgba(255,255,255,0.9)', fontSize: '0.48rem', margin: 0, textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
+                                                                                            <svg viewBox="0 0 24 24" width="8" height="8" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" /></svg>
+                                                                                            <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100px' }}>original audio - admitra.in</span>
+                                                                                        </div>
+                                                                                        {/* Timeline scrubber track removed per user request */}
+                                                                                    </div>
+                                                                                </>
+                                                                            ) : (
+                                                                                <>
+                                                                                    {/* Instagram Post sponsored header */}
+                                                                                    <div className="sim-sponsored-header" style={{ top: '32px' }}>
+                                                                                        <div className="sim-sponsored-user">
+                                                                                            <div className="sim-sponsored-info" style={{ marginLeft: 0 }}>
+                                                                                                <span className="sim-sponsored-name">
+                                                                                                    {creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'}
+                                                                                                    <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ marginLeft: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
+                                                                                                </span>
+                                                                                                <span className="sim-sponsored-tag">Sponsored</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2.5"><circle cx="12" cy="5" r="1.5" fill="currentColor" /><circle cx="12" cy="12" r="1.5" fill="currentColor" /><circle cx="12" cy="19" r="1.5" fill="currentColor" /></svg>
+                                                                                    </div>
+
+                                                                                    {/* 4:5 Poster Media card */}
+                                                                                    <div
+                                                                                        className="sim-poster-media"
+                                                                                        style={{
+                                                                                            width: '100%',
+                                                                                            height: '175px',
+                                                                                            background: currentCreative.bg,
+                                                                                            marginTop: '66px',
+                                                                                            display: 'flex',
+                                                                                            flexDirection: 'column',
+                                                                                            justifyContent: 'center',
+                                                                                            alignItems: 'center',
+                                                                                            padding: '0 12px',
+                                                                                            position: 'relative',
+                                                                                            boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)'
+                                                                                        }}
+                                                                                    >
+                                                                                        <div className="sim-reels-visual-pulse" style={{ fontSize: '2.2rem', marginBottom: '4px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.4))' }}>
+                                                                                            ✨
+                                                                                        </div>
+                                                                                        <h5 style={{ color: '#fff', fontSize: '0.78rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.7)', textAlign: 'center', lineHeight: '1.2' }}>
+                                                                                            {currentCreative.title}
+                                                                                        </h5>
+                                                                                        <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.55rem', margin: 0, lineHeight: '1.3', textShadow: '0 1px 2px rgba(0,0,0,0.7)', textAlign: 'center' }}>
+                                                                                            {currentCreative.desc}
+                                                                                        </p>
+                                                                                    </div>
+
+                                                                                    {/* Instagram Post Action Bar */}
+                                                                                    <div className="sim-poster-actions" style={{
+                                                                                        width: '100%',
+                                                                                        padding: '6px 10px',
+                                                                                        display: 'flex',
+                                                                                        alignItems: 'center',
+                                                                                        justifyContent: 'space-between',
+                                                                                        background: 'transparent'
+                                                                                    }}>
+                                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                                                            <span className="sim-action-btn-post heart" onClick={() => alert('Liked Post!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-heart-svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                                                                            </span>
+                                                                                            <span className="sim-action-btn-post comment" onClick={() => alert('Comment section!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-comment-svg"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                                                                            </span>
+                                                                                            <span className="sim-action-btn-post share" onClick={() => alert('Shared Post!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-share-svg"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <span className="sim-action-btn-post bookmark" onClick={() => alert('Post Bookmarked!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-bookmark-svg"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                                                                                        </span>
+                                                                                    </div>
+
+                                                                                    {/* Sponsored CTA button wrapper at bottom */}
+                                                                                    <div className="sim-sponsored-cta-wrapper" style={{ padding: '0 8px 12px 8px', background: 'none', position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 5 }}>
+                                                                                        <button
+                                                                                            className="sim-cta-btn"
+                                                                                            onClick={() => alert(`Redirecting to ${creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'} official page!`)}
+                                                                                            style={{
+                                                                                                padding: '6px',
+                                                                                                fontSize: '0.58rem',
+                                                                                                letterSpacing: '0.5px',
+                                                                                                borderRadius: '6px'
+                                                                                            }}
+                                                                                        >
+                                                                                            {currentCreative.badge ? `ACTIVATE: ${currentCreative.badge}` : 'LEARN MORE'}
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </>
+                                                                            )}
+                                                                        </div>
+
+                                                                        {/* Next Button */}
+                                                                        <button
+                                                                            onClick={() => setCreativeIdx((prev) => (prev + 1) % 3)}
+                                                                            aria-label="Next Creative"
+                                                                            className="xp-arrow-nav-btn next-btn"
+                                                                            style={{
+                                                                                background: 'rgba(255, 255, 255, 0.03)',
+                                                                                border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                                                borderRadius: '50%',
+                                                                                width: '36px',
+                                                                                height: '36px',
+                                                                                display: 'flex',
+                                                                                alignItems: 'center',
+                                                                                justifyContent: 'center',
+                                                                                color: 'rgba(255, 255, 255, 0.6)',
+                                                                                cursor: 'pointer',
+                                                                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                                                backdropFilter: 'blur(8px)',
+                                                                                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                                                                                flexShrink: 0
+                                                                            }}
+                                                                            onMouseEnter={(e) => {
+                                                                                e.currentTarget.style.color = '#3B82F6';
+                                                                                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                                                                                e.currentTarget.style.borderColor = '#3B82F6';
+                                                                                e.currentTarget.style.boxShadow = '0 0 12px rgba(59, 130, 246, 0.4)';
+                                                                                e.currentTarget.style.transform = 'scale(1.08)';
+                                                                            }}
+                                                                            onMouseLeave={(e) => {
+                                                                                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
+                                                                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                                                                                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                                                                                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+                                                                                e.currentTarget.style.transform = 'none';
+                                                                            }}
+                                                                        >
+                                                                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    {/* Glowing Pagination Dots */}
+                                                                    <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center', marginTop: '6px' }}>
+                                                                        {[0, 1, 2].map((idx) => {
+                                                                            const isActive = creativeIdx === idx;
+                                                                            return (
+                                                                                <div
+                                                                                    key={idx}
+                                                                                    onClick={() => setCreativeIdx(idx)}
+                                                                                    style={{
+                                                                                        width: isActive ? '18px' : '6px',
+                                                                                        height: '6px',
+                                                                                        borderRadius: '3px',
+                                                                                        background: isActive ? '#3B82F6' : 'rgba(255, 255, 255, 0.2)',
+                                                                                        boxShadow: isActive ? '0 0 8px #3B82F6' : 'none',
+                                                                                        cursor: 'pointer',
+                                                                                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                                                                                    }}
+                                                                                />
+                                                                            );
+                                                                        })}
+                                                                    </div>
+                                                                </>
+                                                            );
+                                                        })()}
+                                                    </div>
+
+                                                    {/* Location & Language Grid */}
+                                                    <div style={{
+                                                        display: 'grid',
+                                                        gridTemplateColumns: '1.2fr 0.8fr',
+                                                        gap: '16px',
+                                                        borderTop: '1px solid rgba(255,255,255,0.08)',
+                                                        paddingTop: '16px'
+                                                    }}>
+                                                        <div>
+                                                            <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Target Location</span>
+                                                            <span style={{ fontSize: '1rem', color: '#FFF', fontWeight: '700', display: 'block' }}>{locations[locIdx].city}</span>
+                                                        </div>
+                                                        <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
+                                                            <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Local Dialect</span>
+                                                            <span style={{ fontSize: '1rem', color: '#3B82F6', fontWeight: '800', display: 'block' }}>{locations[locIdx].lang}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── */}
+                                <div className="xp-interface-window xp-window-davinci reveal-item" data-theme="video">
+                                    <div className="xp-window-header">
+                                        <div className="xp-window-controls"><span></span><span></span><span></span></div>
+                                        <div className="xp-window-title">
+                                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                                            Freelance_Edits.drp
+                                        </div>
+                                    </div>
+                                    <div className="xp-window-body">
+                                        <div className="xp-window-top">
+                                            <div className="xp-media-pool">
+                                                <h4><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg> Media Pool</h4>
+                                                <div className="xp-pool-grid">
+                                                    <div className="xp-pool-item"><img src="/assets/images/da.avif" alt="da" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                    <div className="xp-pool-item"><img src="/assets/images/da1.png" alt="da1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                    <div className="xp-pool-item"><img src="/assets/images/da2.png" alt="da2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                    <div className="xp-pool-item"><img src="/assets/images/da3.png" alt="da3" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                    <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
+                                                    <div className="xp-pool-item xp-pool-placeholder"><span>Drop media</span></div>
+                                                </div>
+                                            </div>
+                                            <div className="xp-preview-monitor">
+                                                <div className="xp-monitor-inner">
+                                                    <h3>Freelance Video Editor</h3>
+                                                    <p>Independent · Remote</p>
+                                                    <div className="xp-monitor-desc">
+                                                        <p>Crafted cinematic edits, short-form storytelling, and motion-heavy social content for diverse digital platforms. Engineered customized workflows focusing on audience retention and high-fidelity output.</p>
+                                                    </div>
+                                                </div>
+                                                <div className="xp-monitor-controls">
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="11 19 2 12 11 5 11 19"></polygon><polygon points="22 19 13 12 22 5 22 19"></polygon></svg>
+                                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg>
+                                                </div>
+                                            </div>
+                                            <div className="xp-inspector">
+                                                <h4>
+                                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                                                    Inspector
+                                                </h4>
+                                                <div className="xp-slider-group">
+                                                    <label>Retention</label><div className="xp-slider"><div className="xp-slider-fill" style={{ width: '90%' }}></div></div>
+                                                </div>
+                                                <div className="xp-slider-group">
+                                                    <label>Cinematic</label><div className="xp-slider"><div className="xp-slider-fill" style={{ width: '85%' }}></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* DaVinci-style multi-track timeline */}
+                                        <div className="xp-window-timeline xp-dvr-timeline">
+                                            <div className="xp-timeline-header">
+                                                <span className="xp-tc">01:00:39:02</span>
+                                                <div className="xp-dvr-tabs">
+                                                    <span>Media</span><span className="active">Edit</span><span>Color</span><span>Fairlight</span><span>Deliver</span>
+                                                </div>
+                                            </div>
+                                            <div className="xp-dvr-tracks">
+                                                <div className="xp-dvr-labels">
+                                                    <span>V4</span><span>V3</span><span>V2</span><span>V1</span><span>A1</span><span>A2</span><span>A3</span>
+                                                </div>
+                                                <div className="xp-dvr-track-area">
+                                                    <div className="xp-dvr-row"><div className="xp-clip xp-clip-gray" style={{ left: '8%', width: '4%' }}></div><div className="xp-clip xp-clip-gray" style={{ left: '14%', width: '3%' }}></div></div>
+                                                    <div className="xp-dvr-row"><div className="xp-clip xp-clip-purple" style={{ left: '30%', width: '12%' }}>TRI...</div><div className="xp-clip xp-clip-purple" style={{ left: '44%', width: '8%' }}>ap...</div><div className="xp-clip xp-clip-purple" style={{ left: '54%', width: '8%' }}>TRI-8</div></div>
+                                                    <div className="xp-dvr-row"><div className="xp-clip xp-clip-teal" style={{ left: '24%', width: '10%' }}>Tra...</div><div className="xp-clip xp-clip-teal" style={{ left: '36%', width: '8%' }}>Tex...</div><div className="xp-clip xp-clip-teal" style={{ left: '46%', width: '6%' }}>Inst</div><div className="xp-clip xp-clip-teal" style={{ left: '54%', width: '6%' }}>TRI-8</div></div>
+                                                    <div className="xp-dvr-row"><div className="xp-clip xp-clip-blue" style={{ left: '2%', width: '18%' }}>P100...</div><div className="xp-clip xp-clip-blue" style={{ left: '22%', width: '6%' }}>P1...</div><div className="xp-clip xp-clip-blue" style={{ left: '30%', width: '6%' }}>P100</div><div className="xp-clip xp-clip-blue" style={{ left: '38%', width: '6%' }}>P...</div><div className="xp-clip xp-clip-lblue" style={{ left: '46%', width: '18%' }}>Gradient BG</div><div className="xp-clip xp-clip-blue" style={{ left: '66%', width: '8%' }}>P1000141</div><div className="xp-clip xp-clip-blue" style={{ left: '76%', width: '20%' }}>P1000159</div></div>
+                                                    <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '2%', width: '12%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '76%', width: '20%' }}></div></div>
+                                                    <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '16%', width: '8%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '26%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '34%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '40%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '46%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '52%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '58%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '66%', width: '8%' }}></div></div>
+                                                    <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-dgreen" style={{ left: '2%', width: '12%' }}>Tri-8 Open</div><div className="xp-clip xp-clip-dgreen" style={{ left: '16%', width: '16%' }}>Gazing Out</div><div className="xp-clip xp-clip-dgreen" style={{ left: '34%', width: '30%' }}>All That Was</div><div className="xp-clip xp-clip-dgreen" style={{ left: '66%', width: '30%' }}>Fooled Again V2</div></div>
+                                                    <div className="xp-dvr-scrubber"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* ─── WINDOW 3: Snap AR (Lens Studio Inspired) ─── */}
+                                <div className="xp-interface-window xp-window-lens reveal-item" data-theme="ar">
+                                    <div className="xp-window-header">
+                                        <div className="xp-window-controls">
+                                            <span></span><span></span><span></span>
+                                        </div>
+                                        <div className="xp-window-title">
+                                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19c0-2.21 2.239-4 5-4s5 1.79 5 4v1.662"></path></svg>
+                                            Snap_AR_Creator.lsproj
+                                        </div>
+                                    </div>
+                                    <div className="xp-window-body">
+                                        <div className="xp-window-sidebar xp-hierarchy">
+                                            <div className="xp-snap-brand" style={{ marginBottom: '16px' }}>
+                                                <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" alt="Snapchat" width="22" height="22" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }} />
+                                                <span className="xp-snap-brand-text">LENS STUDIO</span>
                                             </div>
 
-                                            {/* Beautiful custom bulleted points */}
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1, justifyContent: 'center', margin: '20px 0' }}>
-                                                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                                    <div style={{
-                                                        background: 'rgba(255, 234, 77, 0.1)',
-                                                        border: '1px solid rgba(255, 234, 77, 0.3)',
-                                                        borderRadius: '50%',
-                                                        width: '22px',
-                                                        height: '22px',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        flexShrink: 0,
-                                                        marginTop: '2px',
-                                                        boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
-                                                    }}>
-                                                        <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                            {/* Premium Visual Insights Panel */}
+                                            <div className="xp-insights-container">
+                                                <div className="xp-insights-header">
+                                                    <h4 className="xp-insights-title">Insights</h4>
+                                                    <div className="xp-insights-dropdown">
+                                                        <span>Lifetime</span>
+                                                        <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                                     </div>
-                                                    <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                                                        Designed and published viral AR experiences that qualified for the <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Snap Lens Creator Rewards</strong> program by driving massive community engagement and user-generated content.
-                                                    </p>
                                                 </div>
 
-                                                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                                    <div style={{
-                                                        background: 'rgba(255, 234, 77, 0.1)',
-                                                        border: '1px solid rgba(255, 234, 77, 0.3)',
-                                                        borderRadius: '50%',
-                                                        width: '22px',
-                                                        height: '22px',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        flexShrink: 0,
-                                                        marginTop: '2px',
-                                                        boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
-                                                    }}>
-                                                        <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                <div className="xp-insights-list">
+                                                    <div className="xp-insights-card">
+                                                        <span className="xp-insights-label">Views</span>
+                                                        <div className="xp-insights-value">1,56,77,70,215</div>
                                                     </div>
-                                                    <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                                                        Hosted a <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Hyperlocal community workshop</strong> to share my knowledge of Augmented Reality and Basics of Lens Studio.
-                                                    </p>
+                                                    <div className="xp-insights-card">
+                                                        <span className="xp-insights-label">Shares</span>
+                                                        <div className="xp-insights-value">3,03,70,979</div>
+                                                    </div>
+                                                    <div className="xp-insights-card">
+                                                        <span className="xp-insights-label">Plays</span>
+                                                        <div className="xp-insights-value">92,08,77,446</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="xp-window-main xp-3d-viewport">
+                                            <div className="xp-snap-preview-container">
+                                                <div className="xp-snap-camera-frame">
+                                                    <div className="xp-snap-camera-inner" style={{ position: 'relative' }}>
+                                                        <video
+                                                            src="/assets/videos/snaps.MP4"
+                                                            autoPlay
+                                                            loop
+                                                            muted
+                                                            playsInline
+                                                            style={{
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                objectFit: 'cover',
+                                                                position: 'absolute',
+                                                                top: 0,
+                                                                left: 0,
+                                                                zIndex: 1
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className="xp-snap-corner tl"></div>
+                                                    <div className="xp-snap-corner tr"></div>
+                                                    <div className="xp-snap-corner bl"></div>
+                                                    <div className="xp-snap-corner br"></div>
+                                                </div>
+
+                                                {/* Tiny Snapchat logo and @karthik.graj tag below snaps preview */}
+                                                <div style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    gap: '6px',
+                                                    background: 'rgba(0, 0, 0, 0.65)',
+                                                    padding: '5px 12px',
+                                                    borderRadius: '20px',
+                                                    border: '1px solid rgba(255, 234, 77, 0.2)',
+                                                    backdropFilter: 'blur(10px)',
+                                                    boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                                                    width: '100%',
+                                                    boxSizing: 'border-box'
+                                                }}>
+                                                    <img
+                                                        src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg"
+                                                        alt="Snapchat Logo"
+                                                        style={{ width: '12px', height: '12px' }}
+                                                    />
+                                                    <span style={{
+                                                        color: '#FFEA4D',
+                                                        fontSize: '0.65rem',
+                                                        fontWeight: '700',
+                                                        fontFamily: "'Space Grotesk', sans-serif",
+                                                        letterSpacing: '0.5px'
+                                                    }}>
+                                                        @karthik.graj
+                                                    </span>
                                                 </div>
                                             </div>
 
-                                            {/* Collaboration Info Container */}
-                                            <div style={{ 
-                                                display: 'flex', 
-                                                gap: '10px', 
-                                                alignItems: 'center', 
-                                                background: 'rgba(255, 255, 255, 0.03)', 
-                                                padding: '8px 12px', 
-                                                borderRadius: '6px', 
-                                                border: '1px solid rgba(255, 255, 255, 0.05)',
-                                                backdropFilter: 'blur(5px)',
-                                                width: 'fit-content'
+                                            <div className="xp-viewport-overlay" style={{
+                                                top: '30px',
+                                                bottom: '30px',
+                                                left: '30px',
+                                                right: '220px',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                justifyContent: 'space-between',
+                                                padding: '24px',
+                                                background: 'rgba(10, 10, 12, 0.85)',
+                                                backdropFilter: 'blur(20px)',
+                                                border: '1px solid rgba(255, 234, 77, 0.2)',
+                                                borderRadius: '12px',
+                                                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)'
                                             }}>
-                                                <img 
-                                                    src="https://media.licdn.com/dms/image/v2/C560BAQGixHOmwquQXQ/company-logo_200_200/company-logo_200_200/0/1668519541906?e=2147483647&v=beta&t=6NYXwZcOGv4H2SgLnu_e36Wt8aBZMJ6U0ILowKguQoU" 
-                                                    alt="Under25 Logo" 
-                                                    style={{ 
-                                                        width: '20px', 
-                                                        height: '20px', 
-                                                        borderRadius: '4px',
-                                                        border: '1px solid rgba(255,255,255,0.1)',
-                                                        objectFit: 'cover'
-                                                     }} 
-                                                 />
-                                                 <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
-                                                     In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
-                                                 </span>
-                                            </div>
-                                        </div>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
-                <section id="tech-stack" className="workflow-router-section">
-                    <div className="container">
-                        <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>My Creative Tech Stack</h2>
-                        </div>
-
-                        <div className="tech-stack-dashboard reveal-item">
-
-                            {/* Dashboard Columns Grid */}
-                            <div className="tech-stack-columns">
-                                
-                                {/* ROW 1: Categories 01 to 04 */}
-                                <div className="tech-stack-row">
-                                    {techStackCategories.filter(c => ["01", "02", "03", "04"].includes(c.num)).map((category) => (
-                                        <div 
-                                            key={category.name} 
-                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
-                                            onMouseEnter={() => setHoveredCategory(category.name)}
-                                            onMouseLeave={() => setHoveredCategory(null)}
-                                        >
-                                            <div className="tech-stack-card-header">
-                                                <div className="category-icon-box">
-                                                    {renderCategoryIcon(category.num)}
-                                                </div>
-                                                <span className="category-level-badge">LEVEL {category.num}</span>
-                                            </div>
-                                            
-                                            <h3 className="category-display-title">{category.name}</h3>
-                                            
-                                            <div className="tech-stack-divider"></div>
-                                            
-                                            <div className="category-skills-grid">
-                                                {category.tools.map((tool) => (
-                                                    <div 
-                                                        key={tool.name} 
-                                                        className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''}`}
-                                                        style={{ '--tool-glow': tool.glow }}
-                                                        onMouseEnter={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(tool.name);
-                                                            setHoveredCategory(category.name);
-                                                        }}
-                                                        onMouseLeave={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(null);
-                                                        }}
-                                                    >
-                                                        {tool.learning && (
-                                                            <span className="skill-tile-learning-badge">learning...</span>
-                                                        )}
-                                                        <div className="tech-stack-tile-icon">
-                                                            {renderToolIcon(tool, 24)}
-                                                        </div>
-                                                        <span className="category-skill-tile-name">{tool.name.toUpperCase()}</span>
+                                                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
+                                                    <div>
+                                                        <h3 style={{ margin: 0, fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>Snap AR Lens Creator</h3>
+                                                        <p style={{ margin: '4px 0 0 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '600' }}>Snap Inc. · Creator Program</p>
                                                     </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* ROW 2: Categories 05 to 08 */}
-                                <div className="tech-stack-row">
-                                    {techStackCategories.filter(c => ["05", "06", "07", "08"].includes(c.num)).map((category) => (
-                                        <div 
-                                            key={category.name} 
-                                            className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
-                                            onMouseEnter={() => setHoveredCategory(category.name)}
-                                            onMouseLeave={() => setHoveredCategory(null)}
-                                        >
-                                            <div className="tech-stack-card-header">
-                                                <div className="category-icon-box">
-                                                    {renderCategoryIcon(category.num)}
+                                                    <span className="xp-shimmer-badge" style={{
+                                                        fontSize: '0.65rem',
+                                                        padding: '4px 10px',
+                                                        borderRadius: '12px',
+                                                        fontWeight: '700',
+                                                        letterSpacing: '0.8px',
+                                                        textTransform: 'uppercase'
+                                                    }}>
+                                                        featured by Snapchat India
+                                                    </span>
                                                 </div>
-                                                <span className="category-level-badge">LEVEL {category.num}</span>
-                                            </div>
-                                            
-                                            <h3 className="category-display-title">{category.name}</h3>
-                                            
-                                            <div className="tech-stack-divider"></div>
-                                            
-                                            <div className="category-skills-grid">
-                                                {category.tools.map((tool) => (
-                                                    <div 
-                                                        key={tool.name} 
-                                                        className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''}`}
-                                                        style={{ '--tool-glow': tool.glow }}
-                                                        onMouseEnter={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(tool.name);
-                                                            setHoveredCategory(category.name);
-                                                        }}
-                                                        onMouseLeave={(e) => {
-                                                            e.stopPropagation();
-                                                            setHoveredTool(null);
-                                                        }}
-                                                    >
-                                                        {tool.learning && (
-                                                            <span className="skill-tile-learning-badge">learning...</span>
-                                                        )}
-                                                        <div className="tech-stack-tile-icon">
-                                                            {renderToolIcon(tool, 24)}
+
+                                                {/* Beautiful custom bulleted points */}
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1, justifyContent: 'center', margin: '20px 0' }}>
+                                                    <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                                        <div style={{
+                                                            background: 'rgba(255, 234, 77, 0.1)',
+                                                            border: '1px solid rgba(255, 234, 77, 0.3)',
+                                                            borderRadius: '50%',
+                                                            width: '22px',
+                                                            height: '22px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            flexShrink: 0,
+                                                            marginTop: '2px',
+                                                            boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
+                                                        }}>
+                                                            <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                         </div>
-                                                        <span className="category-skill-tile-name">{tool.name.toUpperCase()}</span>
+                                                        <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
+                                                            Designed and published viral AR experiences that qualified for the <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Snap Lens Creator Rewards</strong> program by driving massive community engagement and user-generated content.
+                                                        </p>
                                                     </div>
-                                                ))}
+
+                                                    <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                                        <div style={{
+                                                            background: 'rgba(255, 234, 77, 0.1)',
+                                                            border: '1px solid rgba(255, 234, 77, 0.3)',
+                                                            borderRadius: '50%',
+                                                            width: '22px',
+                                                            height: '22px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            flexShrink: 0,
+                                                            marginTop: '2px',
+                                                            boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
+                                                        }}>
+                                                            <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                        </div>
+                                                        <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
+                                                            Hosted a <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Hyperlocal community workshop</strong> to share my knowledge of Augmented Reality and Basics of Lens Studio.
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                {/* Collaboration Info Container */}
+                                                <div style={{
+                                                    display: 'flex',
+                                                    gap: '10px',
+                                                    alignItems: 'center',
+                                                    background: 'rgba(255, 255, 255, 0.03)',
+                                                    padding: '8px 12px',
+                                                    borderRadius: '6px',
+                                                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                                                    backdropFilter: 'blur(5px)',
+                                                    width: 'fit-content'
+                                                }}>
+                                                    <img
+                                                        src="https://media.licdn.com/dms/image/v2/C560BAQGixHOmwquQXQ/company-logo_200_200/company-logo_200_200/0/1668519541906?e=2147483647&v=beta&t=6NYXwZcOGv4H2SgLnu_e36Wt8aBZMJ6U0ILowKguQoU"
+                                                        alt="Under25 Logo"
+                                                        style={{
+                                                            width: '20px',
+                                                            height: '20px',
+                                                            borderRadius: '4px',
+                                                            border: '1px solid rgba(255,255,255,0.1)',
+                                                            objectFit: 'cover'
+                                                        }}
+                                                    />
+                                                    <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
+                                                        In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                {/* 8. Certifications */}
-                <section id="certs">
-                    <div className="container">
-                        <div className="section-header text-center">
-                            <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Certifications</h2>
-                        </div>
-                        <div className="cert-grid reveal-item">
-                            <div className="cert-card">
-                                <div className="cert-logo-wrapper">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                                        alt="Google Logo" className="cert-provider-logo"
-                                        onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
-                                    <div className="logo-fallback" style={{ display: 'none' }}>G</div>
-                                </div>
-                                <div className="cert-content">
-                                    <div className="cert-main">
-                                        <span>Google</span>
-                                        <h4>AI Essentials</h4>
-                                    </div>
-                                    <div className="cert-footer">
-                                        <a href="https://coursera.org/verify/professional-cert/FYMT0W2FGSDM" target="_blank"
-                                            className="cert-btn">View Credential ↗</a>
-                                    </div>
-                                </div>
-                                <div className="cert-bg-preview">
-                                    <img src="assets/images/cert-google.png" alt="Google Certificate Preview" />
-                                </div>
-                            </div>
-
-                            <div className="cert-card">
-                                <div className="cert-logo-wrapper">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/University_of_Michigan_Logo.png"
-                                        alt="U-Michigan Logo" className="cert-provider-logo"
-                                        onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
-                                    <div className="logo-fallback" style={{ display: 'none' }}>M</div>
-                                </div>
-                                <div className="cert-content">
-                                    <div className="cert-main">
-                                        <span>University of Michigan</span>
-                                        <h4>AI Basics and Tools for Creativity</h4>
-                                    </div>
-                                    <div className="cert-footer">
-                                        <a href="https://coursera.org/verify/O0S4GJF3H4BS" target="_blank" className="cert-btn">View Credential ↗</a>
-                                    </div>
-                                </div>
-                                <div className="cert-bg-preview">
-                                    <img src="assets/images/cert-michigan.png" alt="U-Michigan Certificate Preview" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-
-                {/* 11. Contact Section */}
-                <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
-                    {/* Open background interactive physics playground */}
-                    <ContactPhysicsArena />
- 
-                    <div className="container" style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
-                        <div className="status-badge-container reveal-text">
-                            <div className="status-badge">
-                                <span className="status-dot"></span>
-                                <span className="status-text">Open for Creative Opportunities</span>
-                            </div>
-                        </div>
-                        
-                        <div className="contact-center-group">
-                            <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>hello@karthikgraj.in</a>
-                            
-                            {/* Interactive Social Media Dock */}
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <div className="social-dock-title reveal-text">
-                                    Let's Connect
-                                </div>
-                                <div className="social-dock-wrapper reveal-text" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>
-                                    <div className="social-dock">
-                                        {/* LinkedIn Button */}
-                                        <a href="https://www.linkedin.com/in/karthikgraj" target="_blank" rel="noopener noreferrer" className="social-dock-btn linkedin">
-                                            <div className="btn-glow-bg"></div>
-                                            <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                                            </svg>
-                                            <span className="btn-text">LinkedIn</span>
-                                            <span className="btn-hover-indicator"></span>
-                                        </a>
- 
-                                        {/* Divider */}
-                                        <div className="dock-divider"></div>
- 
-                                        {/* Instagram Button */}
-                                        <a href="https://www.instagram.com/karthik.graj" target="_blank" rel="noopener noreferrer" className="social-dock-btn instagram">
-                                            <div className="btn-glow-bg"></div>
-                                            <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                            </svg>
-                                            <span className="btn-text">Instagram</span>
-                                            <span className="btn-hover-indicator"></span>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
- 
-                        <footer style={{ borderTop: 'none', padding: '10px 0 20px 0', zIndex: 5, pointerEvents: 'auto' }}>
-                            <div className="footer-content" style={{ padding: 0, minHeight: 'auto', display: 'flex', justifyContent: 'center' }}>
-                                <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
+                    </section>
+
+                    {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
+                    <section id="tech-stack" className="workflow-router-section">
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>My Creative Tech Stack</h2>
                             </div>
-                        </footer>
-                    </div>
-                </section>
-            </div>
 
-        </main>
+                            <div className="tech-stack-dashboard reveal-item">
 
-            {/* Immersive Sci-Fi Operating System Initialization Overlay */}
+                                {/* Dashboard Columns Grid */}
+                                <div className="tech-stack-columns">
+
+                                    {/* ROW 1: Categories 01 to 04 */}
+                                    <div className="tech-stack-row">
+                                        {techStackCategories.filter(c => ["01", "02", "03", "04"].includes(c.num)).map((category) => (
+                                            <div
+                                                key={category.name}
+                                                className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                                onMouseEnter={() => setHoveredCategory(category.name)}
+                                                onMouseLeave={() => setHoveredCategory(null)}
+                                            >
+                                                <div className="tech-stack-card-header">
+                                                    <div className="category-icon-box">
+                                                        {renderCategoryIcon(category.num)}
+                                                    </div>
+                                                    <span className="category-level-badge">LEVEL {category.num}</span>
+                                                </div>
+
+                                                <h3 className="category-display-title">{category.name}</h3>
+
+                                                <div className="tech-stack-divider"></div>
+
+                                                <div className="category-skills-grid">
+                                                    {category.tools.map((tool) => (
+                                                        <div
+                                                            key={tool.name}
+                                                            className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''}`}
+                                                            style={{ '--tool-glow': tool.glow }}
+                                                            onMouseEnter={(e) => {
+                                                                e.stopPropagation();
+                                                                setHoveredTool(tool.name);
+                                                                setHoveredCategory(category.name);
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.stopPropagation();
+                                                                setHoveredTool(null);
+                                                            }}
+                                                        >
+                                                            {tool.learning && (
+                                                                <span className="skill-tile-learning-badge">learning...</span>
+                                                            )}
+                                                            <div className="tech-stack-tile-icon">
+                                                                {renderToolIcon(tool, 24)}
+                                                            </div>
+                                                            <span className="category-skill-tile-name">{tool.name.toUpperCase()}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* ROW 2: Categories 05 to 08 */}
+                                    <div className="tech-stack-row">
+                                        {techStackCategories.filter(c => ["05", "06", "07", "08"].includes(c.num)).map((category) => (
+                                            <div
+                                                key={category.name}
+                                                className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
+                                                onMouseEnter={() => setHoveredCategory(category.name)}
+                                                onMouseLeave={() => setHoveredCategory(null)}
+                                            >
+                                                <div className="tech-stack-card-header">
+                                                    <div className="category-icon-box">
+                                                        {renderCategoryIcon(category.num)}
+                                                    </div>
+                                                    <span className="category-level-badge">LEVEL {category.num}</span>
+                                                </div>
+
+                                                <h3 className="category-display-title">{category.name}</h3>
+
+                                                <div className="tech-stack-divider"></div>
+
+                                                <div className="category-skills-grid">
+                                                    {category.tools.map((tool) => (
+                                                        <div
+                                                            key={tool.name}
+                                                            className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''}`}
+                                                            style={{ '--tool-glow': tool.glow }}
+                                                            onMouseEnter={(e) => {
+                                                                e.stopPropagation();
+                                                                setHoveredTool(tool.name);
+                                                                setHoveredCategory(category.name);
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.stopPropagation();
+                                                                setHoveredTool(null);
+                                                            }}
+                                                        >
+                                                            {tool.learning && (
+                                                                <span className="skill-tile-learning-badge">learning...</span>
+                                                            )}
+                                                            <div className="tech-stack-tile-icon">
+                                                                {renderToolIcon(tool, 24)}
+                                                            </div>
+                                                            <span className="category-skill-tile-name">{tool.name.toUpperCase()}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {/* 8. Certifications */}
+                    <section id="certs">
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Certifications</h2>
+                            </div>
+                            <div className="cert-grid reveal-item">
+                                <div className="cert-card">
+                                    <div className="cert-logo-wrapper">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                                            alt="Google Logo" className="cert-provider-logo"
+                                            onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
+                                        <div className="logo-fallback" style={{ display: 'none' }}>G</div>
+                                    </div>
+                                    <div className="cert-content">
+                                        <div className="cert-main">
+                                            <span>Google</span>
+                                            <h4>AI Essentials</h4>
+                                        </div>
+                                        <div className="cert-footer">
+                                            <a href="https://coursera.org/verify/professional-cert/FYMT0W2FGSDM" target="_blank"
+                                                className="cert-btn">View Credential ↗</a>
+                                        </div>
+                                    </div>
+                                    <div className="cert-bg-preview">
+                                        <img src="assets/images/cert-google.png" alt="Google Certificate Preview" />
+                                    </div>
+                                </div>
+
+                                <div className="cert-card">
+                                    <div className="cert-logo-wrapper">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/University_of_Michigan_Logo.png"
+                                            alt="U-Michigan Logo" className="cert-provider-logo"
+                                            onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
+                                        <div className="logo-fallback" style={{ display: 'none' }}>M</div>
+                                    </div>
+                                    <div className="cert-content">
+                                        <div className="cert-main">
+                                            <span>University of Michigan</span>
+                                            <h4>AI Basics and Tools for Creativity</h4>
+                                        </div>
+                                        <div className="cert-footer">
+                                            <a href="https://coursera.org/verify/O0S4GJF3H4BS" target="_blank" className="cert-btn">View Credential ↗</a>
+                                        </div>
+                                    </div>
+                                    <div className="cert-bg-preview">
+                                        <img src="assets/images/cert-michigan.png" alt="U-Michigan Certificate Preview" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                    {/* 11. Contact Section */}
+                    <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
+                        {/* Open background interactive physics playground */}
+                        <ContactPhysicsArena />
+
+                        <div className="container" style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
+                            <div className="status-badge-container reveal-text">
+                                <div className="status-badge">
+                                    <span className="status-dot"></span>
+                                    <span className="status-text">Open for Creative Opportunities</span>
+                                </div>
+                            </div>
+
+                            <div className="contact-center-group">
+                                <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>hello@karthikgraj.in</a>
+
+                                {/* Interactive Social Media Dock */}
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <div className="social-dock-title reveal-text">
+                                        Let's Connect
+                                    </div>
+                                    <div className="social-dock-wrapper reveal-text" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>
+                                        <div className="social-dock">
+                                            {/* LinkedIn Button */}
+                                            <a href="https://www.linkedin.com/in/karthikgraj" target="_blank" rel="noopener noreferrer" className="social-dock-btn linkedin">
+                                                <div className="btn-glow-bg"></div>
+                                                <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                                                </svg>
+                                                <span className="btn-text">LinkedIn</span>
+                                                <span className="btn-hover-indicator"></span>
+                                            </a>
+
+                                            {/* Divider */}
+                                            <div className="dock-divider"></div>
+
+                                            {/* Instagram Button */}
+                                            <a href="https://www.instagram.com/karthik.graj" target="_blank" rel="noopener noreferrer" className="social-dock-btn instagram">
+                                                <div className="btn-glow-bg"></div>
+                                                <svg className="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                                </svg>
+                                                <span className="btn-text">Instagram</span>
+                                                <span className="btn-hover-indicator"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <footer style={{ borderTop: 'none', padding: '10px 0 20px 0', zIndex: 5, pointerEvents: 'auto' }}>
+                                <div className="footer-content" style={{ padding: 0, minHeight: 'auto', display: 'flex', justifyContent: 'center' }}>
+                                    <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
+                                </div>
+                            </footer>
+                        </div>
+                    </section>
+                </div>
+
+            </main>
+
+            {/* Immersive Cinematic Storytelling Neural Initializer Overlay */}
             {isInitializing && (
                 <div className={`system-init-overlay ${initProgress === 100 ? 'fade-out' : ''}`}>
-                    <div className="crt-flicker-overlay"></div>
                     <div className="init-grid"></div>
-                    <div className="init-console">
-                        <div className="console-header">
-                            <span className="console-dot red"></span>
-                            <span className="console-dot yellow"></span>
-                            <span className="console-dot green"></span>
-                            <span className="console-title">CREATIVE OS v4.10.0 // INITIALIZATION DIAGNOSTICS</span>
-                        </div>
-                        <div className="console-body">
-                            <div className="diagnostics-logs">
-                                {diagnosticLines.map((line, idx) => (
-                                    <div key={idx} className="console-log-line reveal-line">
-                                        {line}
-                                    </div>
-                                ))}
+                    <div className="init-hud-card">
+                        <div className="hud-body">
+                            {/* Counter-Rotating Concentric Scanner Ring Loader */}
+                            <div className="hud-scanner-section">
+                                <div className="hud-concentric-scanner">
+                                    <div className="hud-ring ring-1"></div>
+                                    <div className="hud-ring ring-2"></div>
+                                    <div className="hud-ring ring-3"></div>
+                                    <div className="hud-scanner-glow"></div>
+                                </div>
                             </div>
+
                             <div className="console-progress-section">
-                                <div className="progress-label">SYSTEM LOADER: {initProgress}%</div>
+                                <div className="progress-label">LOADING... {initProgress}%</div>
                                 <div className="progress-bar-track">
                                     <div className="progress-bar-fill" style={{ width: `${initProgress}%` }}>
                                         <div className="progress-bar-glow"></div>
