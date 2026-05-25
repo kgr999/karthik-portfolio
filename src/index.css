@@ -3765,7 +3765,7 @@ footer {
 /* ── WINDOW 2: Freelance (DaVinci style) ── */
 .xp-window-davinci .xp-window-body {
     flex-direction: column;
-    height: 550px;
+    height: 480px;
 }
 
 .xp-window-top {
@@ -3777,7 +3777,7 @@ footer {
 .xp-media-pool {
     width: 220px;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 15px;
+    padding: 10px;
     background: rgba(15, 15, 15, 0.5);
 }
 
@@ -3786,7 +3786,7 @@ footer {
     font-size: 0.75rem;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     letter-spacing: 1px;
 }
 
@@ -3824,7 +3824,7 @@ footer {
 
 .xp-preview-monitor {
     flex: 1;
-    padding: 20px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -4176,7 +4176,7 @@ footer {
 
 /* ── DaVinci Resolve Timeline ── */
 .xp-dvr-timeline {
-    height: 220px;
+    height: 175px;
 }
 
 .xp-dvr-timeline .xp-timeline-header {
@@ -5563,45 +5563,45 @@ nav.nav-standby .nav-links a {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(6, 6, 8, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.45);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #ffffff;
 }
 
 .sim-action-icon-wrapper.heart:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: rgba(239, 68, 68, 0.5);
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .sim-action-icon-wrapper.heart:hover svg {
-    color: #ef4444;
-    fill: #ef4444;
+    color: #fff;
 }
 
 .sim-action-icon-wrapper.comment:hover {
-    background: rgba(59, 130, 246, 0.2);
-    border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .sim-action-icon-wrapper.comment:hover svg {
-    color: #3b82f6;
+    color: #fff;
 }
 
 .sim-action-icon-wrapper.share:hover {
-    background: rgba(168, 85, 247, 0.2);
-    border-color: rgba(168, 85, 247, 0.5);
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .sim-action-icon-wrapper.share:hover svg {
-    color: #a855f7;
+    color: #fff;
 }
 
 .sim-action-btn.reels-avatar-btn:hover .sim-action-icon-wrapper.avatar {
@@ -5616,6 +5616,13 @@ nav.nav-standby .nav-links a {
     align-items: center;
     justify-content: center;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+    color: #ffffff;
+}
+
+.sim-action-btn-post svg,
+.sim-action-icon-wrapper svg {
+    filter: drop-shadow(0 1.5px 2px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+    transition: filter 0.2s ease;
 }
 
 .sim-action-btn-post:hover {
@@ -5623,25 +5630,23 @@ nav.nav-standby .nav-links a {
 }
 
 .sim-action-btn-post.heart:hover svg {
-    color: #ef4444;
-    fill: #ef4444;
-    filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6));
+    color: #fff;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
 }
 
 .sim-action-btn-post.comment:hover svg {
-    color: #3b82f6;
-    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6));
+    color: #fff;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
 }
 
 .sim-action-btn-post.share:hover svg {
-    color: #10b981;
-    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.6));
+    color: #fff;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
 }
 
 .sim-action-btn-post.bookmark:hover svg {
-    color: #eab308;
-    fill: #eab308;
-    filter: drop-shadow(0 0 4px rgba(234, 179, 8, 0.6));
+    color: #fff;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
 }
 
 /* Continuous breathing pulse for interactive preview icons */

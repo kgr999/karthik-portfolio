@@ -70,10 +70,12 @@ const techStackCategories = [
     },
     {
         num: "06",
-        name: "AI AVATARS",
+        name: "AI AVATAR & DESIGN",
         tools: [
             { name: "HeyGen", logo: "https://www.google.com/s2/favicons?domain=heygen.com&sz=128", glow: "#06b6d4", level: "90%" },
-            { name: "Kling AI Avatar", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "88%" }
+            { name: "Kling AI Avatar", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "88%" },
+            { name: "Canva", logo: "https://www.google.com/s2/favicons?domain=canva.com&sz=128", glow: "#00c4cc", level: "95%" },
+            { name: "Adobe Express", logo: "https://www.google.com/s2/favicons?domain=adobe.com&sz=128", glow: "#ff3c00", level: "90%" }
         ]
     },
     {
@@ -266,6 +268,22 @@ const getTelemetryLogs = (categoryName, toolName) => {
                     "• depth translation: 3D head rotation matrix",
                     "• volumetric hair rendering: Active",
                     "• status: Portrait animation compiler..."
+                ];
+            case "Canva":
+                return [
+                    "🎨 DESIGN SUITE: CANVA_PRO",
+                    "• vector layout: Dynamic grid system",
+                    "• template: High-conversion social marketing layout",
+                    "• brand kit: Karthik Portfolio guidelines active",
+                    "• status: Creative layout render online"
+                ];
+            case "Adobe Express":
+                return [
+                    "🎨 DESIGN SUITE: ADOBE_EXPRESS",
+                    "• cloud assets: Adobe Stock integrations bound",
+                    "• quick actions: Background removal completed",
+                    "• visual effects: Glassmorphic layers applied",
+                    "• status: Frame rendering complete"
                 ];
             case "ElevenLabs":
                 return [
@@ -648,6 +666,10 @@ export default function App() {
     const [hoveredCategory, setHoveredCategory] = useState(null);
     const [likedCreatives, setLikedCreatives] = useState({});
     const [heartPulse, setHeartPulse] = useState(false);
+    
+    // DaVinci Timeline Scrubber controls
+    const [dvrPlaying, setDvrPlaying] = useState(true);
+    const [scrubberKey, setScrubberKey] = useState(0);
 
     // OS Initialization States
     const [isInitialized, setIsInitialized] = useState(false);
@@ -1877,7 +1899,6 @@ export default function App() {
                                                                                         <h5 style={{ color: '#fff', fontSize: '0.65rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', gap: '3px' }}>
                                                                                             @{creativeIdx === 0 ? 'montra_electric' : creativeIdx === 1 ? 'ampere_ev' : 'lincoln_pharma'}
                                                                                             <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
-                                                                                            <span style={{ fontSize: '0.5rem', color: 'rgba(255,255,255,0.75)', fontWeight: '500', marginLeft: '1px' }}>• Sponsored</span>
                                                                                         </h5>
                                                                                         <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
                                                                                             {currentCreative.title}
@@ -1904,7 +1925,6 @@ export default function App() {
                                                                                                     {creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Montra SCV'}
                                                                                                     <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ marginLeft: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
                                                                                                 </span>
-                                                                                                <span className="sim-sponsored-tag">Sponsored</span>
                                                                                             </div>
                                                                                         </div>
                                                                                         <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2.5"><circle cx="12" cy="5" r="1.5" fill="currentColor" /><circle cx="12" cy="12" r="1.5" fill="currentColor" /><circle cx="12" cy="19" r="1.5" fill="currentColor" /></svg>
@@ -2139,8 +2159,44 @@ export default function App() {
                                                 <div className="xp-pool-grid" style={{ marginBottom: '16px' }}>
                                                     <div className="xp-pool-item"><img src="/assets/images/da.avif" alt="da" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
                                                     <div className="xp-pool-item"><img src="/assets/images/da1.png" alt="da1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                                                    <div className="xp-pool-item"><img src="/assets/images/da2.png" alt="da2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                                                    <div className="xp-pool-item"><img src="/assets/images/da3.png" alt="da3" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                    <div style={{
+                                                        gridColumn: 'span 2',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        padding: '4px 0'
+                                                    }}>
+                                                        <button 
+                                                            className="xp-pool-more-clients-btn" 
+                                                            style={{
+                                                                background: 'rgba(255, 255, 255, 0.04)',
+                                                                border: '1.5px solid rgba(255, 255, 255, 0.1)',
+                                                                borderRadius: '20px',
+                                                                padding: '5px 12px',
+                                                                color: 'rgba(255, 255, 255, 0.55)',
+                                                                fontSize: '0.62rem',
+                                                                fontWeight: 'bold',
+                                                                letterSpacing: '0.6px',
+                                                                textTransform: 'uppercase',
+                                                                cursor: 'pointer',
+                                                                transition: 'all 0.2s ease',
+                                                                outline: 'none'
+                                                            }}
+                                                            onMouseEnter={(e) => {
+                                                                e.currentTarget.style.borderColor = '#FF8F3D';
+                                                                e.currentTarget.style.color = '#fff';
+                                                                e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)';
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                                                                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
+                                                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+                                                            }}
+                                                            onClick={() => alert("Lincoln Pharma, Montra SCV, Snapchat Lens, AdMitra Clients, and 2 other cinematic productions.")}
+                                                        >
+                                                            +6 other clients...
+                                                        </button>
+                                                    </div>
                                                 </div>
 
                                                 {/* Platform Nav Buttons */}
@@ -2214,43 +2270,11 @@ export default function App() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="xp-monitor-controls" style={{
-                                                    display: 'flex',
-                                                    gap: '18px',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    marginTop: '16px',
-                                                    background: 'rgba(20, 20, 25, 0.85)',
-                                                    padding: '6px 20px',
-                                                    borderRadius: '30px',
-                                                    border: '1.5px solid rgba(255, 255, 255, 0.08)',
-                                                    boxShadow: '0 4px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
-                                                    backdropFilter: 'blur(10px)',
-                                                    width: 'fit-content'
-                                                }}>
-                                                    {/* Rewind */}
-                                                    <button className="xp-transport-btn rewind-btn" style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', transition: 'all 0.2s', display: 'flex', padding: '6px', borderRadius: '50%', outline: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#FF8F3D'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.transform = 'none'; }}>
-                                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 19 2 12 11 5 11 19"></polygon><polygon points="22 19 13 12 22 5 22 19"></polygon></svg>
-                                                    </button>
-                                                    
-                                                    {/* Play */}
-                                                    <button className="xp-transport-btn play-btn" style={{ background: 'rgba(255, 143, 61, 0.1)', border: '1.5px solid rgba(255, 143, 61, 0.4)', color: '#FF8F3D', cursor: 'pointer', transition: 'all 0.2s', display: 'flex', padding: '8px', borderRadius: '50%', boxShadow: '0 0 12px rgba(255, 143, 61, 0.2)', outline: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 143, 61, 0.25)'; e.currentTarget.style.boxShadow = '0 0 18px rgba(255, 143, 61, 0.4)'; e.currentTarget.style.transform = 'scale(1.12)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)'; e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 143, 61, 0.2)'; e.currentTarget.style.transform = 'none'; }}>
-                                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                                                    </button>
-                                                    
-                                                    {/* Forward */}
-                                                    <button className="xp-transport-btn forward-btn" style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', transition: 'all 0.2s', display: 'flex', padding: '6px', borderRadius: '50%', outline: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#FF8F3D'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.transform = 'none'; }}>
-                                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg>
-                                                    </button>
-                                                </div>
                                             </div>
-                                            <div className="xp-inspector" style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '14px 12px', background: '#121215', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                                <h4 style={{ fontSize: '0.72rem', fontWeight: '700', color: '#FFF', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '8px', marginBottom: '8px', letterSpacing: '1.2px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="#FF8F3D" strokeWidth="2.5" fill="none" style={{ display: 'inline', marginRight: '5px', verticalAlign: 'middle' }}><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-                                                        SKILLS INSPECTOR
-                                                    </div>
-                                                    <span style={{ fontSize: '0.58rem', color: '#FF8F3D', background: 'rgba(255, 143, 61, 0.15)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255, 143, 61, 0.25)', fontWeight: 'bold' }}>ACTIVE</span>
+                                            <div className="xp-inspector" style={{ display: 'flex', flexDirection: 'column', gap: '10px', padding: '12px 10px', background: '#121215', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                                                <h4 style={{ fontSize: '0.72rem', fontWeight: '700', color: '#FFF', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '6px', marginBottom: '2px', letterSpacing: '1.2px', display: 'flex', alignItems: 'center' }}>
+                                                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="#FF8F3D" strokeWidth="2.5" fill="none" style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }}><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                                                    Skills
                                                 </h4>
                                                 
                                                 {/* Skill 1 */}
@@ -2264,34 +2288,10 @@ export default function App() {
                                                             <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                                         </div>
                                                     </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                        <div className="xp-slider" style={{ flex: 1, height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer' }}>
-                                                            <div className="xp-slider-fill" style={{ width: '80%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
-                                                            </div>
+                                                    <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
+                                                        <div className="xp-slider-fill" style={{ width: '80%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                                            <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
                                                         </div>
-                                                        <div style={{ fontSize: '0.62rem', color: '#FF8F3D', background: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255, 255, 255, 0.05)', width: '30px', textAlign: 'center', fontFamily: 'monospace', fontWeight: 'bold' }}>0.80</div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Skill 2 */}
-                                                <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,143,61,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
-                                                    <div className="xp-slider-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                                            <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FF8F3D', boxShadow: '0 0 6px #FF8F3D', display: 'inline-block' }}></span>
-                                                            <span style={{ fontSize: '0.66rem', color: '#FFF', fontWeight: '600', letterSpacing: '0.2px' }}>Color Grading (Basic)</span>
-                                                        </div>
-                                                        <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF8F3D'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
-                                                            <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                                                        </div>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                        <div className="xp-slider" style={{ flex: 1, height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer' }}>
-                                                            <div className="xp-slider-fill" style={{ width: '45%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
-                                                            </div>
-                                                        </div>
-                                                        <div style={{ fontSize: '0.62rem', color: '#FF8F3D', background: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255, 255, 255, 0.05)', width: '30px', textAlign: 'center', fontFamily: 'monospace', fontWeight: 'bold' }}>0.45</div>
                                                     </div>
                                                 </div>
 
@@ -2306,13 +2306,10 @@ export default function App() {
                                                             <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                                         </div>
                                                     </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                        <div className="xp-slider" style={{ flex: 1, height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer' }}>
-                                                            <div className="xp-slider-fill" style={{ width: '55%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
-                                                            </div>
+                                                    <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
+                                                        <div className="xp-slider-fill" style={{ width: '55%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                                            <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
                                                         </div>
-                                                        <div style={{ fontSize: '0.62rem', color: '#FF8F3D', background: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255, 255, 255, 0.05)', width: '30px', textAlign: 'center', fontFamily: 'monospace', fontWeight: 'bold' }}>0.55</div>
                                                     </div>
                                                 </div>
 
@@ -2327,13 +2324,10 @@ export default function App() {
                                                             <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                                         </div>
                                                     </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                        <div className="xp-slider" style={{ flex: 1, height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer' }}>
-                                                            <div className="xp-slider-fill" style={{ width: '70%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
-                                                            </div>
+                                                    <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
+                                                        <div className="xp-slider-fill" style={{ width: '70%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                                            <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
                                                         </div>
-                                                        <div style={{ fontSize: '0.62rem', color: '#FF8F3D', background: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255, 255, 255, 0.05)', width: '30px', textAlign: 'center', fontFamily: 'monospace', fontWeight: 'bold' }}>0.70</div>
                                                     </div>
                                                 </div>
 
@@ -2348,13 +2342,10 @@ export default function App() {
                                                             <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                                         </div>
                                                     </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                        <div className="xp-slider" style={{ flex: 1, height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer' }}>
-                                                            <div className="xp-slider-fill" style={{ width: '75%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
-                                                            </div>
+                                                    <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
+                                                        <div className="xp-slider-fill" style={{ width: '75%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                                            <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
                                                         </div>
-                                                        <div style={{ fontSize: '0.62rem', color: '#FF8F3D', background: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255, 255, 255, 0.05)', width: '30px', textAlign: 'center', fontFamily: 'monospace', fontWeight: 'bold' }}>0.75</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2363,6 +2354,62 @@ export default function App() {
                                         <div className="xp-window-timeline xp-dvr-timeline">
                                             <div className="xp-timeline-header">
                                                 <span className="xp-tc">01:00:39:02</span>
+                                                
+                                                {/* Clean Compact Transport Controls */}
+                                                <div className="xp-timeline-transport" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                    {/* Return to Start (Rewind) Button */}
+                                                    <button 
+                                                        onClick={() => {
+                                                            setScrubberKey(prev => prev + 1);
+                                                        }}
+                                                        style={{
+                                                            background: 'transparent',
+                                                            border: 'none',
+                                                            color: 'rgba(255, 255, 255, 0.45)',
+                                                            cursor: 'pointer',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            padding: '4px',
+                                                            borderRadius: '4px',
+                                                            transition: 'all 0.2s ease',
+                                                            outline: 'none'
+                                                        }}
+                                                        onMouseEnter={(e) => { e.currentTarget.style.color = '#FF8F3D'; e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)'; }}
+                                                        onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.45)'; e.currentTarget.style.background = 'transparent'; }}
+                                                        title="Return to Start"
+                                                    >
+                                                        <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 19 2 12 11 5 11 19"></polygon><polygon points="22 19 13 12 22 5 22 19"></polygon></svg>
+                                                    </button>
+
+                                                    {/* Play / Pause Toggle Button */}
+                                                    <button 
+                                                        onClick={() => setDvrPlaying(!dvrPlaying)}
+                                                        style={{
+                                                            background: 'transparent',
+                                                            border: 'none',
+                                                            color: '#FF8F3D',
+                                                            cursor: 'pointer',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            padding: '4px',
+                                                            borderRadius: '4px',
+                                                            transition: 'all 0.2s ease',
+                                                            outline: 'none'
+                                                        }}
+                                                        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)'; }}
+                                                        onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                                                        title={dvrPlaying ? "Pause Timeline" : "Play Timeline"}
+                                                    >
+                                                        {dvrPlaying ? (
+                                                            <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                                                        ) : (
+                                                            <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" strokeWidth="2.5" fill="currentColor" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                                        )}
+                                                    </button>
+                                                </div>
+
                                                 <div className="xp-dvr-tabs">
                                                     <span>Media</span><span className="active">Edit</span><span>Color</span><span>Fairlight</span><span>Deliver</span>
                                                 </div>
@@ -2379,7 +2426,13 @@ export default function App() {
                                                     <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '2%', width: '12%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '76%', width: '20%' }}></div></div>
                                                     <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '16%', width: '8%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '26%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '34%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '40%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '46%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '52%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '58%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '66%', width: '8%' }}></div></div>
                                                     <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-dgreen" style={{ left: '2%', width: '12%' }}>Tri-8 Open</div><div className="xp-clip xp-clip-dgreen" style={{ left: '16%', width: '16%' }}>Gazing Out</div><div className="xp-clip xp-clip-dgreen" style={{ left: '34%', width: '30%' }}>All That Was</div><div className="xp-clip xp-clip-dgreen" style={{ left: '66%', width: '30%' }}>Fooled Again V2</div></div>
-                                                    <div className="xp-dvr-scrubber"></div>
+                                                    <div 
+                                                        key={scrubberKey} 
+                                                        className="xp-dvr-scrubber"
+                                                        style={{
+                                                            animationPlayState: dvrPlaying ? 'running' : 'paused'
+                                                        }}
+                                                    ></div>
                                                 </div>
                                             </div>
                                         </div>
