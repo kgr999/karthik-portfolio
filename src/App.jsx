@@ -649,39 +649,6 @@ export default function App() {
     const [likedCreatives, setLikedCreatives] = useState({});
     const [heartPulse, setHeartPulse] = useState(false);
 
-    // Interactive Skills State (DaVinci Resolve parameters)
-    const [skills, setSkills] = useState([
-        { id: 'brolls', name: "Personalized AI B-Rolls", value: 0.80, tag: "B-ROLL", active: true },
-        { id: 'color', name: "Color Grading (Basic)", value: 0.45, tag: "LUT GAIN", active: true },
-        { id: 'motion', name: "Motion Graphics (Basic)", value: 0.55, tag: "KEYFRAME", active: true },
-        { id: 'pacing', name: "Video Pacing & Sound Design", value: 0.70, tag: "AUDIO SYNC", active: true },
-        { id: 'research', name: "Content Research & Strategy", value: 0.75, tag: "RETENTION", active: true }
-    ]);
-
-    const handleSkillTrackClick = (id, e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const width = rect.width;
-        let newValue = Math.min(Math.max(clickX / width, 0), 1);
-        newValue = Math.round(newValue * 100) / 100;
-        setSkills(prev => prev.map(s => s.id === id ? { ...s, value: newValue } : s));
-    };
-
-    const handleSkillToggle = (id) => {
-        setSkills(prev => prev.map(s => s.id === id ? { ...s, active: !s.active } : s));
-    };
-
-    const handleSkillReset = (id) => {
-        const defaults = {
-            brolls: 0.80,
-            color: 0.45,
-            motion: 0.55,
-            pacing: 0.70,
-            research: 0.75
-        };
-        setSkills(prev => prev.map(s => s.id === id ? { ...s, value: defaults[id] } : s));
-    };
-
     // OS Initialization States
     const [isInitialized, setIsInitialized] = useState(false);
     const [isInitializing, setIsInitializing] = useState(false);
