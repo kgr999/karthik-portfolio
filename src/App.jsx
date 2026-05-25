@@ -2225,7 +2225,9 @@ export default function App() {
                                             <div className="xp-preview-monitor">
                                                 <div className="xp-monitor-inner">
                                                     <h3>Freelance Video Editor</h3>
-                                                    <p className="xp-remote-shimmer">Independent · Remote</p>
+                                                    <div style={{ marginBottom: '16px' }}>
+                                                        <span className="xp-remote-shimmer-badge">Independent · Remote</span>
+                                                    </div>
                                                     <div className="xp-monitor-desc" style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'left', marginTop: '16px' }}>
                                                         <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                                             <div style={{
@@ -2352,11 +2354,18 @@ export default function App() {
                                         </div>
                                         {/* DaVinci-style multi-track timeline */}
                                         <div className="xp-window-timeline xp-dvr-timeline">
-                                            <div className="xp-timeline-header">
+                                            <div className="xp-timeline-header" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                                 <span className="xp-tc">01:00:39:02</span>
                                                 
-                                                {/* Clean Compact Transport Controls */}
-                                                <div className="xp-timeline-transport" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                {/* Perfectly Centered Compact Transport Controls */}
+                                                <div className="xp-timeline-transport" style={{ 
+                                                    position: 'absolute', 
+                                                    left: '50%', 
+                                                    transform: 'translateX(-50%)', 
+                                                    display: 'flex', 
+                                                    alignItems: 'center', 
+                                                    gap: '8px' 
+                                                }}>
                                                     {/* Return to Start (Rewind) Button */}
                                                     <button 
                                                         onClick={() => {
@@ -2407,6 +2416,31 @@ export default function App() {
                                                         ) : (
                                                             <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" strokeWidth="2.5" fill="currentColor" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                                                         )}
+                                                    </button>
+
+                                                    {/* Forward / Skip to End Button */}
+                                                    <button 
+                                                        onClick={() => {
+                                                            alert('Jumped to timeline end.');
+                                                        }}
+                                                        style={{
+                                                            background: 'transparent',
+                                                            border: 'none',
+                                                            color: 'rgba(255, 255, 255, 0.45)',
+                                                            cursor: 'pointer',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            padding: '4px',
+                                                            borderRadius: '4px',
+                                                            transition: 'all 0.2s ease',
+                                                            outline: 'none'
+                                                        }}
+                                                        onMouseEnter={(e) => { e.currentTarget.style.color = '#FF8F3D'; e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)'; }}
+                                                        onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.45)'; e.currentTarget.style.background = 'transparent'; }}
+                                                        title="Skip to End"
+                                                    >
+                                                        <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg>
                                                     </button>
                                                 </div>
 
