@@ -1249,7 +1249,7 @@ export default function App() {
                             <div className="section-header text-center">
                                 <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Cinematic Self-Visuals</h2>
                             </div>
-                            <div className="cinema-grid reveal-item">
+                            <div className="cinema-grid reveal-item" style={{ gap: '20px', marginTop: '40px' }}>
                                 {/* Top Ultrawide Video */}
                                 <div className="cinema-card ultrawide" data-glow="#A78BFA">
                                     <div className="cinema-video-wrapper">
@@ -1258,13 +1258,6 @@ export default function App() {
                                         <div className="cinema-overlay">
                                             <span className="cinema-badge">Gen-4 Turbo</span>
                                         </div>
-                                    </div>
-                                    <div className="cinema-content">
-                                        <span className="cinema-index">01 / WIDESCREEN FRONTIER</span>
-                                        <h3 className="cinema-title">Ultrawide Horizon</h3>
-                                        <p className="cinema-description">An expansive 21:9 cinematic exploration generated with
-                                            state-of-the-art AI video models. Blending scale, atmosphere, and high-fidelity
-                                            storytelling into a unified visual experience.</p>
                                     </div>
                                 </div>
 
@@ -1277,13 +1270,6 @@ export default function App() {
                                             <span className="cinema-badge">Kling V3 Pro</span>
                                         </div>
                                     </div>
-                                    <div className="cinema-content">
-                                        <span className="cinema-index">02 / CINEMATIC ENVIRONMENTS</span>
-                                        <h3 className="cinema-title">Inside the Mission</h3>
-                                        <p className="cinema-description">A cinematic AI-generated visual featuring myself inside an
-                                            ISRO-inspired mission control environment, focused on futuristic space operations and
-                                            immersive storytelling.</p>
-                                    </div>
                                 </div>
                                 <div className="cinema-card" data-glow="#93C5FD">
                                     <div className="cinema-video-wrapper">
@@ -1292,12 +1278,6 @@ export default function App() {
                                         <div className="cinema-overlay">
                                             <span className="cinema-badge">Seedance 2.0</span>
                                         </div>
-                                    </div>
-                                    <div className="cinema-content">
-                                        <span className="cinema-index">03 / IMMERSIVE VISUALS</span>
-                                        <h3 className="cinema-title">Lost in Blue</h3>
-                                        <p className="cinema-description">An atmospheric underwater self-visual exploring emotion,
-                                            silence, and cinematic worldbuilding through AI-generated environments</p>
                                     </div>
                                 </div>
 
@@ -1309,12 +1289,6 @@ export default function App() {
                                         <div className="cinema-overlay">
                                             <span className="cinema-badge">Gen-4 Turbo</span>
                                         </div>
-                                    </div>
-                                    <div className="cinema-content">
-                                        <span className="cinema-index">04 / EXPANSIVE VISIONS</span>
-                                        <h3 className="cinema-title">The Anamorphic Frame</h3>
-                                        <p className="cinema-description">A deep-dive into ultra-widescreen aspect ratios, bringing the
-                                            immersive feel of traditional cinema lenses into AI-generated motion design.</p>
                                     </div>
                                 </div>
                             </div>

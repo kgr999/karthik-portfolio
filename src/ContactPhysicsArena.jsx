@@ -158,9 +158,9 @@ export default function ContactPhysicsArena() {
         ballsState.current = LOGO_BALLS_DATA.map((b, idx) => ({
             ...b,
             x: 100 + idx * ((w - 200) / (LOGO_BALLS_DATA.length - 1 || 4)),
-            y: 50 + Math.random() * 80,
+            y: h - 60 - Math.random() * 60,
             vx: (Math.random() - 0.5) * 4,
-            vy: 2 + Math.random() * 3,
+            vy: -2 - Math.random() * 3,
             radius: 24, // 48px diameter
             mass: 1,
             scale: 1,
@@ -586,9 +586,9 @@ export default function ContactPhysicsArena() {
                             const b = ballsState.current.find(ball => ball.id === respawnId);
                             if (b) {
                                 b.x = 100 + Math.random() * (dimensions.current.width - 200);
-                                b.y = -35;
+                                b.y = dimensions.current.height + 35;
                                 b.vx = (Math.random() - 0.5) * 3;
-                                b.vy = 2 + Math.random() * 2;
+                                b.vy = -3 - Math.random() * 2;
                                 b.scale = 1;
                                 b.hidden = false;
                             }
