@@ -927,6 +927,7 @@ export default function App() {
                         <a href="#capabilities">Capabilities</a>
                         <a href="#self-visuals">Visuals</a>
                         <a href="#experience-journey">Experience</a>
+                        <a href="#tech-stack">Skills</a>
                         <a href="#contact">Contact</a>
                     </div>
                     <div className="nav-actions">
@@ -945,6 +946,7 @@ export default function App() {
                     <a href="#capabilities">Capabilities</a>
                     <a href="#self-visuals">Visuals</a>
                     <a href="#experience-journey">Experience</a>
+                    <a href="#tech-stack">Skills</a>
                     <a href="#contact">Contact</a>
                     <a href="#" className="resume-btn" download style={{ marginTop: '20px' }}>Resume</a>
                 </div>
@@ -1991,20 +1993,68 @@ export default function App() {
                                                                                         </span>
                                                                                     </div>
 
-                                                                                    {/* Sponsored CTA button wrapper at bottom */}
-                                                                                    <div className="sim-sponsored-cta-wrapper" style={{ padding: '0 8px 12px 8px', background: 'none', position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 5 }}>
-                                                                                        <button
-                                                                                            className="sim-cta-btn"
-                                                                                            onClick={() => alert(`Redirecting to ${creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Montra SCV'} official page!`)}
-                                                                                            style={{
-                                                                                                padding: '6px',
-                                                                                                fontSize: '0.58rem',
-                                                                                                letterSpacing: '0.5px',
-                                                                                                borderRadius: '6px'
-                                                                                            }}
-                                                                                        >
-                                                                                            {currentCreative.badge ? `ACTIVATE: ${currentCreative.badge}` : 'LEARN MORE'}
-                                                                                        </button>
+                                                                                    {/* Instagram Likes line */}
+                                                                                    <div style={{
+                                                                                        padding: '0 10px',
+                                                                                        textAlign: 'left',
+                                                                                        fontSize: '0.52rem',
+                                                                                        fontWeight: 'bold',
+                                                                                        color: '#fff',
+                                                                                        marginBottom: '2px',
+                                                                                        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif'
+                                                                                    }}>
+                                                                                        Liked by <span style={{ color: '#fff', fontWeight: '800' }}>under25</span> and {isLiked ? '1,843' : '1,842'} others
+                                                                                    </div>
+
+                                                                                    {/* Instagram Caption */}
+                                                                                    <div style={{
+                                                                                        padding: '0 10px',
+                                                                                        textAlign: 'left',
+                                                                                        fontSize: '0.52rem',
+                                                                                        lineHeight: '1.25',
+                                                                                        color: 'rgba(255,255,255,0.9)',
+                                                                                        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+                                                                                        maxHeight: '38px',
+                                                                                        overflow: 'hidden',
+                                                                                        textOverflow: 'ellipsis',
+                                                                                        display: '-webkit-box',
+                                                                                        WebkitLineClamp: 2,
+                                                                                        WebkitBoxOrient: 'vertical'
+                                                                                    }}>
+                                                                                        <strong style={{ color: '#fff', fontWeight: '800', marginRight: '5px' }}>
+                                                                                            {creativeIdx === 0 ? 'montraelectric' : creativeIdx === 1 ? 'ampere_ev' : 'montrascv'}
+                                                                                        </strong>
+                                                                                        {currentCreative.desc}
+                                                                                    </div>
+
+                                                                                    {/* View comments & quick comment input */}
+                                                                                    <div style={{
+                                                                                        padding: '0 10px',
+                                                                                        textAlign: 'left',
+                                                                                        fontSize: '0.46rem',
+                                                                                        color: 'rgba(255,255,255,0.4)',
+                                                                                        marginTop: '2px',
+                                                                                        cursor: 'pointer',
+                                                                                        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif'
+                                                                                    }} onClick={() => alert('View all 42 comments!')}>
+                                                                                        View all 42 comments
+                                                                                    </div>
+
+                                                                                    <div style={{
+                                                                                        display: 'flex',
+                                                                                        justifyContent: 'space-between',
+                                                                                        alignItems: 'center',
+                                                                                        padding: '6px 10px',
+                                                                                        borderTop: '1px solid rgba(255,255,255,0.06)',
+                                                                                        position: 'absolute',
+                                                                                        bottom: '6px',
+                                                                                        left: 0,
+                                                                                        width: '100%',
+                                                                                        boxSizing: 'border-box',
+                                                                                        background: creativeType === 'video' ? 'transparent' : '#09090b'
+                                                                                    }}>
+                                                                                        <span style={{ fontSize: '0.46rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif' }}>Add a comment...</span>
+                                                                                        <span style={{ fontSize: '0.46rem', color: '#3897f0', fontWeight: 'bold', cursor: 'pointer', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif' }} onClick={(e) => { e.stopPropagation(); alert('Comment posted successfully!'); }}>Post</span>
                                                                                     </div>
                                                                                 </>
                                                                             )}
