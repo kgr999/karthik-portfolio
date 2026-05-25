@@ -594,68 +594,21 @@ export default function ContactPhysicsArena() {
                             }
                         }, 3500);
 
-                        // Trigger floating gift emoji particle above Aero's head
+                        // Trigger floating gift emoji particle directly from where the ball was sucked in
                         aero.giftActive = true;
                         aero.giftEmoji = emoji;
-                        aero.giftX = aero.x;
-                        aero.giftY = aero.y - aero.radius - 18;
+                        aero.giftStartX = aero.x;
+                        aero.giftStartY = aero.y - aero.radius - 18;
+                        aero.giftX = aero.giftStartX;
+                        aero.giftY = aero.giftStartY;
                         aero.giftProgress = 0;
-                        aero.giftStep = 'carry';
-
-                        // Transition Aero to deliver state
-                        aero.state = 'deliver';
-                        aero.heldBallId = null;
-                    }
-                }
-            } else if (aero.state === 'deliver') {
-                // Steer Aero towards hover point under "Open for Creative Opportunities" status badge
-                const rects = contactElementsRects.current;
-                const targetX = rects.opportunities.x;
-                const targetY = rects.opportunities.y + 90;
-
-                const dx = targetX - aero.x;
-                const dy = targetY - aero.y;
-
-                aero.vx += dx * 0.0035;
-                aero.vy += dy * 0.0035;
-
-                // Carry emoji directly above Aero
-                if (aero.giftStep === 'carry') {
-                    aero.giftX = aero.x;
-                    aero.giftY = aero.y - aero.radius - 18;
-
-                    const distToBadge = Math.sqrt(Math.pow(aero.x - rects.opportunities.x, 2) + Math.pow(aero.y - (rects.opportunities.y + 90), 2));
-                    if (distToBadge < 110) {
-                        // Start interpolation flight delivery!
                         aero.giftStep = 'fly';
-                        aero.giftProgress = 0;
-                    }
-                } else if (aero.giftStep === 'fly') {
-                    aero.giftProgress += 0.045; // Smooth 22 frames transition
 
-                    if (aero.giftProgress >= 1) {
-                        // Handover complete!
-                        aero.giftActive = false;
-                        aero.giftStep = 'carry';
-
-                        // Spawn 4 floating star particles directly on the badge!
-                        spawnStars(4, rects.opportunities.x, rects.opportunities.y);
-
-                        // Flee! Backwards surprised recoil
+                        // Transition Aero immediately to recoil/dodge (surprised recoil)
                         aero.state = 'dodge';
                         aero.dodgeTimer = Date.now() + 2500;
-                        aero.targetBallId = null; // Clear target on delivery flight completion!
-                    } else {
-                        // Arc trajectory interpolation from Aero's suction cup to the Opportunities badge center
-                        const t = aero.giftProgress;
-                        const startX = aero.x;
-                        const startY = aero.y - aero.radius - 18;
-                        const endX = rects.opportunities.x;
-                        const endY = rects.opportunities.y;
-                        
-                        const arcHeight = -35;
-                        aero.giftX = startX + (endX - startX) * t;
-                        aero.giftY = startY + (endY - startY) * t + Math.sin(t * Math.PI) * arcHeight;
+                        aero.targetBallId = null;
+                        aero.heldBallId = null;
                     }
                 }
             } else if (aero.state === 'dodge') {
@@ -768,6 +721,28 @@ export default function ContactPhysicsArena() {
                 } else {
                     h.el.style.transform = `translate3d(${h.x - 10}px, ${h.y - 10}px, 0) scale(${h.scale}) rotate(${h.rotation}deg)`;
                     h.el.style.opacity = h.opacity;
+                }
+            }
+
+            // Update flight trajectory of the shot gift emoji independently
+            if (aero.giftActive && aero.giftStep === 'fly') {
+                aero.giftProgress += 0.035; // Smooth flight speed (approx. 30 frames)
+                if (aero.giftProgress >= 1) {
+                    aero.giftActive = false;
+                    aero.giftStep = 'carry';
+                    const rects = contactElementsRects.current;
+                    spawnStars(4, rects.opportunities.x, rects.opportunities.y);
+                } else {
+                    const rects = contactElementsRects.current;
+                    const t = aero.giftProgress;
+                    const startX = aero.giftStartX !== undefined ? aero.giftStartX : aero.x;
+                    const startY = aero.giftStartY !== undefined ? aero.giftStartY : (aero.y - aero.radius - 18);
+                    const endX = rects.opportunities.x;
+                    const endY = rects.opportunities.y;
+                    
+                    const arcHeight = -65; // Elegant arc flight
+                    aero.giftX = startX + (endX - startX) * t;
+                    aero.giftY = startY + (endY - startY) * t + Math.sin(t * Math.PI) * arcHeight;
                 }
             }
 

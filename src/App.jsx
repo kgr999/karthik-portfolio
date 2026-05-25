@@ -43,7 +43,6 @@ const techStackCategories = [
         name: "PLATFORMS & WORKFLOWS",
         tools: [
             { name: "Fal AI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg", glow: "#ff4154", level: "88%" },
-            { name: "OpenArt", logo: "https://www.google.com/s2/favicons?domain=openart.ai&sz=128", glow: "#4f46e5", level: "85%" },
             { name: "Higgsfield AI", logo: "https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128", glow: "#a855f7", level: "82%" },
             { name: "Runway", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc", level: "94%" },
             { name: "ComfyUI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg", glow: "#4ade80", level: "90%", learning: true }
@@ -157,14 +156,7 @@ const getTelemetryLogs = (categoryName, toolName) => {
                     "• bandwidth: 120MB/s stream active",
                     "• status: Frame rendering in 85ms"
                 ];
-            case "OpenArt":
-                return [
-                    "📡 LATENT COMPILER: ON",
-                    "• workspace: OpenArt Creative Canvas",
-                    "• noise injection: 0.12 scale custom",
-                    "• canvas output: 4096x2304 high-res upscale",
-                    "• status: Latent upscale active"
-                ];
+
             case "ComfyUI":
                 return [
                     "📡 NODE GRID: COMPILING WORKFLOW",
@@ -343,7 +335,7 @@ const getTelemetryLogs = (categoryName, toolName) => {
         case "PLATFORMS & WORKFLOWS":
             return [
                 "📡 GENERATIVE COMPILED ENVIRONMENT...",
-                "• nodes: Fal, OpenArt, ComfyUI, Higgsfield, Runway",
+                "• nodes: Fal, ComfyUI, Higgsfield, Runway",
                 "• bandwidth: Real-time multi-latent pipelines",
                 "• framework: Unified Generative Orchestrator",
                 "• status: Hover over a tool to scan active weights"
@@ -635,7 +627,7 @@ export default function App() {
     const [hoveredCategory, setHoveredCategory] = useState(null);
     const [likedCreatives, setLikedCreatives] = useState({});
     const [heartPulse, setHeartPulse] = useState(false);
-    
+
     // DaVinci Timeline Scrubber controls
     const [dvrPlaying, setDvrPlaying] = useState(true);
     const [scrubberKey, setScrubberKey] = useState(0);
@@ -1572,28 +1564,51 @@ export default function App() {
                                                             </div>
                                                             <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere</span>
                                                         </div>
-                                                        <div className="xp-brand-logo-btn xp-brand-montra-scv">
+                                                        <div className="xp-brand-logo-btn xp-brand-lincoln-pharma">
                                                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                                 <img
-                                                                    src="/assets/images/montra_logo.png"
+                                                                    src="/assets/images/lincoln_logo.png"
                                                                     onError={(e) => {
                                                                         if (!e.target.dataset.triedFallback) {
                                                                             e.target.dataset.triedFallback = 'true';
-                                                                            e.target.src = "https://www.google.com/s2/favicons?domain=montraelectric.com&sz=128";
+                                                                            e.target.src = "https://www.google.com/s2/favicons?domain=lincolnpharma.com&sz=128";
                                                                         } else {
                                                                             e.target.style.display = 'none';
                                                                             if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
                                                                         }
                                                                     }}
                                                                     className="xp-brand-logo-btn-icon"
-                                                                    alt="Montra SCV"
+                                                                    alt="Lincoln Pharma"
                                                                     style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
                                                                 />
-                                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF8C00', zIndex: 1 }}>
-                                                                    M
+                                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#4ade80', zIndex: 1 }}>
+                                                                    L
                                                                 </div>
                                                             </div>
-                                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra SCV</span>
+                                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
+                                                        </div>
+                                                        <div className="xp-brand-logo-btn xp-brand-ekotejas">
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                                <img
+                                                                    src="https://ekotejas.in/wp-content/uploads/2023/06/Group-1941.png"
+                                                                    onError={(e) => {
+                                                                        if (!e.target.dataset.triedFallback) {
+                                                                            e.target.dataset.triedFallback = 'true';
+                                                                            e.target.src = "https://www.google.com/s2/favicons?domain=ekotejas.com&sz=128";
+                                                                        } else {
+                                                                            e.target.style.display = 'none';
+                                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                                        }
+                                                                    }}
+                                                                    className="xp-brand-logo-btn-icon"
+                                                                    alt="EkoTejas"
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                                />
+                                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#3B82F6', zIndex: 1 }}>
+                                                                    E
+                                                                </div>
+                                                            </div>
+                                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>EkoTejas</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1784,7 +1799,7 @@ export default function App() {
 
                                                                             {/* Heart overlay pulse */}
                                                                             {heartPulse && (
-                                                                                <div 
+                                                                                <div
                                                                                     style={{
                                                                                         position: 'absolute',
                                                                                         inset: 0,
@@ -1833,8 +1848,8 @@ export default function App() {
                                                                                     {/* Instagram-Inspired Floating Action Drawer */}
                                                                                     <div className="sim-social-actions" style={{ zIndex: 5 }}>
                                                                                         {/* Heart / Like */}
-                                                                                        <div 
-                                                                                            className={`sim-action-btn ${isLiked ? 'liked' : ''}`} 
+                                                                                        <div
+                                                                                            className={`sim-action-btn ${isLiked ? 'liked' : ''}`}
                                                                                             onClick={handleLikeClick}
                                                                                             style={{ cursor: 'pointer' }}
                                                                                         >
@@ -1891,7 +1906,7 @@ export default function App() {
                                                                                         <div className="sim-sponsored-user">
                                                                                             <div className="sim-sponsored-info" style={{ marginLeft: 0 }}>
                                                                                                 <span className="sim-sponsored-name">
-                                                                                                    {creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Montra SCV'}
+                                                                                                    {creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'}
                                                                                                     <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ marginLeft: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
                                                                                                 </span>
                                                                                             </div>
@@ -1937,9 +1952,9 @@ export default function App() {
                                                                                         background: 'transparent'
                                                                                     }}>
                                                                                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                                                            <span 
-                                                                                                className="sim-action-btn-post heart" 
-                                                                                                onClick={handleLikeClick} 
+                                                                                            <span
+                                                                                                className="sim-action-btn-post heart"
+                                                                                                onClick={handleLikeClick}
                                                                                                 style={{ color: isLiked ? '#ff3b30' : '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
                                                                                             >
                                                                                                 <svg viewBox="0 0 24 24" width="14" height="14" fill={isLiked ? 'currentColor' : 'none'} stroke={isLiked ? '#ff3b30' : 'currentColor'} strokeWidth="2.2" className="post-heart-svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -1985,7 +2000,7 @@ export default function App() {
                                                                                         WebkitBoxOrient: 'vertical'
                                                                                     }}>
                                                                                         <strong style={{ color: '#fff', fontWeight: '800', marginRight: '5px' }}>
-                                                                                            {creativeIdx === 0 ? 'montraelectric' : creativeIdx === 1 ? 'ampere_ev' : 'montrascv'}
+                                                                                            {creativeIdx === 0 ? 'montraelectric' : creativeIdx === 1 ? 'ampere_ev' : 'lincolnpharma'}
                                                                                         </strong>
                                                                                         {currentCreative.desc}
                                                                                     </div>
@@ -2126,8 +2141,8 @@ export default function App() {
                                             <div className="xp-media-pool">
                                                 <h4><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg> Media Pool</h4>
                                                 <div className="xp-pool-grid" style={{ marginBottom: '16px' }}>
-                                                    <div className="xp-pool-item"><img src="/assets/images/da.avif" alt="da" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                                                    <div className="xp-pool-item"><img src="/assets/images/da1.png" alt="da1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                    <div className="xp-pool-item"><img src="/assets/images/da.avif" alt="DaVinci Resolve - Cinematic Video Editing Project" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+                                                    <div className="xp-pool-item"><img src="/assets/images/da1.png" alt="DaVinci Resolve - Post Production Audio Timeline" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
                                                     <div style={{
                                                         gridColumn: 'span 2',
                                                         display: 'flex',
@@ -2135,8 +2150,8 @@ export default function App() {
                                                         alignItems: 'center',
                                                         padding: '4px 0'
                                                     }}>
-                                                        <button 
-                                                            className="xp-pool-more-clients-btn" 
+                                                        <button
+                                                            className="xp-pool-more-clients-btn"
                                                             style={{
                                                                 background: 'rgba(255, 255, 255, 0.04)',
                                                                 border: '1.5px solid rgba(255, 255, 255, 0.1)',
@@ -2161,7 +2176,7 @@ export default function App() {
                                                                 e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
                                                                 e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                                                             }}
-                                                            onClick={() => alert("Lincoln Pharma, Montra SCV, Snapchat Lens, AdMitra Clients, and 2 other cinematic productions.")}
+                                                            onClick={() => alert("Lincoln Pharma, EkoTejas, Snapchat Lens, AdMitra Clients, and 2 other cinematic productions.")}
                                                         >
                                                             +6 other clients...
                                                         </button>
@@ -2171,13 +2186,13 @@ export default function App() {
                                                 {/* Platform Nav Buttons */}
                                                 <div className="xp-pool-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '16px' }}>
                                                     <p style={{ fontSize: '0.62rem', color: 'rgba(255, 255, 255, 0.35)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: '600' }}>Platform Deliverables</p>
-                                                    
+
                                                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="xp-platform-btn xp-btn-youtube">
-                                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
                                                         <span>YouTube Videos</span>
                                                         <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="3" fill="none" className="xp-btn-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                                     </a>
-                                                    
+
                                                     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="xp-platform-btn xp-btn-instagram">
                                                         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="xp-btn-icon"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                                                         <span>Instagram Reels</span>
@@ -2185,7 +2200,7 @@ export default function App() {
                                                     </a>
 
                                                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="xp-platform-btn xp-btn-shorts">
-                                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M17.771 9.771l-1.771-1.011 1.771-1.011c1.474-.842 1.979-2.726 1.137-4.2-.842-1.474-2.726-1.979-4.2-1.137l-9.143 5.223C4.246 8.358 3.5 9.777 3.5 11.314c0 1.537.746 2.956 2.065 3.679l1.771 1.011-1.771 1.011c-1.474.842-1.979 2.726-1.137 4.2.842 1.474 2.726 1.979 4.2 1.137l9.143-5.223c1.319-.723 2.065-2.142 2.065-3.679.001-1.537-.745-2.956-2.064-3.679zM9.5 15.5v-7l6 3.5-6 3.5z"/></svg>
+                                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M17.771 9.771l-1.771-1.011 1.771-1.011c1.474-.842 1.979-2.726 1.137-4.2-.842-1.474-2.726-1.979-4.2-1.137l-9.143 5.223C4.246 8.358 3.5 9.777 3.5 11.314c0 1.537.746 2.956 2.065 3.679l1.771 1.011-1.771 1.011c-1.474.842-1.979 2.726-1.137 4.2.842 1.474 2.726 1.979 4.2 1.137l9.143-5.223c1.319-.723 2.065-2.142 2.065-3.679.001-1.537-.745-2.956-2.064-3.679zM9.5 15.5v-7l6 3.5-6 3.5z" /></svg>
                                                         <span>YouTube Shorts</span>
                                                         <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="3" fill="none" className="xp-btn-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                                     </a>
@@ -2247,7 +2262,7 @@ export default function App() {
                                                     <svg viewBox="0 0 24 24" width="12" height="12" stroke="#FF8F3D" strokeWidth="2.5" fill="none" style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }}><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
                                                     Skills
                                                 </h4>
-                                                
+
                                                 {/* Skill 1 */}
                                                 <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,143,61,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
                                                     <div className="xp-slider-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -2325,18 +2340,18 @@ export default function App() {
                                         <div className="xp-window-timeline xp-dvr-timeline">
                                             <div className="xp-timeline-header" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                                 <span className="xp-tc">01:00:39:02</span>
-                                                
+
                                                 {/* Perfectly Centered Compact Transport Controls */}
-                                                <div className="xp-timeline-transport" style={{ 
-                                                    position: 'absolute', 
-                                                    left: '50%', 
-                                                    transform: 'translateX(-50%)', 
-                                                    display: 'flex', 
-                                                    alignItems: 'center', 
-                                                    gap: '8px' 
+                                                <div className="xp-timeline-transport" style={{
+                                                    position: 'absolute',
+                                                    left: '50%',
+                                                    transform: 'translateX(-50%)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '8px'
                                                 }}>
                                                     {/* Return to Start (Rewind) Button */}
-                                                    <button 
+                                                    <button
                                                         onClick={() => {
                                                             setScrubberKey(prev => prev + 1);
                                                         }}
@@ -2361,7 +2376,7 @@ export default function App() {
                                                     </button>
 
                                                     {/* Play / Pause Toggle Button */}
-                                                    <button 
+                                                    <button
                                                         onClick={() => setDvrPlaying(!dvrPlaying)}
                                                         style={{
                                                             background: 'transparent',
@@ -2388,7 +2403,7 @@ export default function App() {
                                                     </button>
 
                                                     {/* Forward / Skip to End Button */}
-                                                    <button 
+                                                    <button
                                                         onClick={() => {
                                                             alert('Jumped to timeline end.');
                                                         }}
@@ -2429,8 +2444,8 @@ export default function App() {
                                                     <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '2%', width: '12%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '76%', width: '20%' }}></div></div>
                                                     <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-agreen" style={{ left: '16%', width: '8%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '26%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '34%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '40%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '46%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '52%', width: '4%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '58%', width: '6%' }}></div><div className="xp-clip xp-clip-agreen" style={{ left: '66%', width: '8%' }}></div></div>
                                                     <div className="xp-dvr-row xp-dvr-audio"><div className="xp-clip xp-clip-dgreen" style={{ left: '2%', width: '12%' }}>Tri-8 Open</div><div className="xp-clip xp-clip-dgreen" style={{ left: '16%', width: '16%' }}>Gazing Out</div><div className="xp-clip xp-clip-dgreen" style={{ left: '34%', width: '30%' }}>All That Was</div><div className="xp-clip xp-clip-dgreen" style={{ left: '66%', width: '30%' }}>Fooled Again V2</div></div>
-                                                    <div 
-                                                        key={scrubberKey} 
+                                                    <div
+                                                        key={scrubberKey}
                                                         className="xp-dvr-scrubber"
                                                         style={{
                                                             animationPlayState: dvrPlaying ? 'running' : 'paused'
@@ -2689,7 +2704,7 @@ export default function App() {
 
                                                 <div className="tech-stack-divider"></div>
 
-                                                <div className="category-skills-grid">
+                                                <div className="category-skills-grid" data-level={category.num}>
                                                     {category.tools.map((tool) => (
                                                         <div
                                                             key={tool.name}
@@ -2739,7 +2754,7 @@ export default function App() {
 
                                                 <div className="tech-stack-divider"></div>
 
-                                                <div className="category-skills-grid">
+                                                <div className="category-skills-grid" data-level={category.num}>
                                                     {category.tools.map((tool) => (
                                                         <div
                                                             key={tool.name}
