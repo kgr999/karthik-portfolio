@@ -80,17 +80,9 @@ const techStackCategories = [
     },
     {
         num: "07",
-        name: "AUDIO GENERATION",
+        name: "POST PRODUCTION & AUDIO",
         tools: [
             { name: "ElevenLabs", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
-            { name: "Suno", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/suno.svg", glow: "#eab308", level: "92%" }
-        ]
-    },
-    {
-        num: "08",
-        name: "POST PRODUCTION",
-        tools: [
-            { name: "Premiere Pro", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/960px-Adobe_Premiere_Pro_CC_icon.svg.png", customBadge: "Pr", color: "#14e4ff", bg: "#00005c", glow: "#14e4ff", level: "95%" },
             { name: "VN", customBadge: "VN", color: "#ffffff", bg: "#000000", glow: "#ffffff", level: "92%" },
             { name: "Topaz", logo: "https://www.ai-stat.ru/icons/png/dark/topazlabs.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
             { name: "DaVinci Resolve", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/DaVinci_Resolve_Studio.png/250px-DaVinci_Resolve_Studio.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail", glow: "#ff6f3c", level: "90%", learning: true }
@@ -293,22 +285,7 @@ const getTelemetryLogs = (categoryName, toolName) => {
                     "• clarity ratio: 98.6% clean voice track",
                     "• status: Streaming audio frames..."
                 ];
-            case "Suno":
-                return [
-                    "🎵 AUDIO SYNTH: SUNO_V4",
-                    "• style: Cinematic ambient sci-fi soundscapes",
-                    "• instruments: Analog synthesizers & volumetric sub-bass",
-                    "• generation: 2-minute stereo wav master",
-                    "• status: Audio wav buffer compiled"
-                ];
-            case "Premiere Pro":
-                return [
-                    "🖥️ NLE ORCHESTRATION: PREMIERE_PRO",
-                    "• project: Karthik_Creative_Narrative_Timeline.prproj",
-                    "• target: YouTube & Instagram Reels distribution",
-                    "• color profile: Rec.709 cinematic color grading",
-                    "• status: Media sync optimal"
-                ];
+
             case "DaVinci Resolve":
                 return [
                     "🖥️ NLE ORCHESTRATION: RESOLVE_V19",
@@ -465,7 +442,7 @@ const renderToolIcon = (tool, size = 16) => {
                 src={tool.logo}
                 alt={tool.name}
                 size={size}
-                className={`tool-logo-img ${tool.name === 'Midjourney' || tool.name === 'ChatGPT' || tool.name === 'GPT Image' || tool.name === 'Runway' || tool.name === 'Gen-4 Turbo' || tool.name === 'ElevenLabs' || tool.name === 'Suno' ? 'eco-logo-invert' : ''}`}
+                className={`tool-logo-img ${tool.name === 'Midjourney' || tool.name === 'ChatGPT' || tool.name === 'GPT Image' || tool.name === 'Runway' || tool.name === 'Gen-4 Turbo' || tool.name === 'ElevenLabs' ? 'eco-logo-invert' : ''}`}
                 fallback={fallbackElement}
             />
         );
@@ -638,15 +615,7 @@ const renderCategoryIcon = (num) => {
                     <path d="M12 2v20M17 5v14M22 9v6M7 8v8M2 10v4" />
                 </svg>
             );
-        case "08": // POST PRODUCTION (Scissors/Edit SVG)
-            return (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="6" cy="6" r="3" />
-                    <circle cx="6" cy="18" r="3" />
-                    <line x1="9.8" y1="8.2" x2="22" y2="20.4" />
-                    <line x1="9.8" y1="15.8" x2="22" y2="3.6" />
-                </svg>
-            );
+
         default:
             return (
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -2701,7 +2670,7 @@ export default function App() {
                                 <div className="tech-stack-columns">
 
                                     {/* ROW 1: Categories 01 to 04 */}
-                                    <div className="tech-stack-row">
+                                    <div className="tech-stack-row row-4">
                                         {techStackCategories.filter(c => ["01", "02", "03", "04"].includes(c.num)).map((category) => (
                                             <div
                                                 key={category.name}
@@ -2750,9 +2719,9 @@ export default function App() {
                                         ))}
                                     </div>
 
-                                    {/* ROW 2: Categories 05 to 08 */}
-                                    <div className="tech-stack-row">
-                                        {techStackCategories.filter(c => ["05", "06", "07", "08"].includes(c.num)).map((category) => (
+                                    {/* ROW 2: Categories 05 to 07 */}
+                                    <div className="tech-stack-row row-3">
+                                        {techStackCategories.filter(c => ["05", "06", "07"].includes(c.num)).map((category) => (
                                             <div
                                                 key={category.name}
                                                 className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}

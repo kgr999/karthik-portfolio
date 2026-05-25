@@ -1526,6 +1526,16 @@ section {
     gap: 14px;
 }
 
+.tech-stack-row.row-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.tech-stack-row.row-3 {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: calc(75% - 3.5px); /* Mathematically aligns card width in row-3 with cards in row-4 exactly! */
+    margin: 0 auto;
+}
+
 .tech-stack-card {
     background: rgba(6, 6, 12, 0.45);
     backdrop-filter: blur(25px);
@@ -1919,6 +1929,10 @@ section {
     
     .tech-stack-row {
         grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .tech-stack-row.row-3 {
+        max-width: 100% !important;
     }
     
     .tech-stack-svg-overlay {
