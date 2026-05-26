@@ -1469,6 +1469,16 @@ export default function App() {
                                             <div className="xp-left-pane">
                                                 <div>
                                                     <div className="xp-main-header" style={{ marginBottom: '16px' }}>
+                                                        {/* Mobile-only inline logo (visible when sidebar hidden) */}
+                                                        <div className="xp-mobile-logo" style={{ display: 'none', justifyContent: 'center', marginBottom: '12px' }}>
+                                                            <div style={{ width: '120px', height: '32px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                                <img
+                                                                    src="/assets/images/admitra.png"
+                                                                    alt="AdMitra Logo"
+                                                                    style={{ width: '120px', height: '120px', objectFit: 'contain', display: 'block', opacity: 0.95 }}
+                                                                />
+                                                            </div>
+                                                        </div>
                                                         <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Generative AI Intern</h3>
                                                         <p style={{ fontSize: '0.85rem', color: '#3B82F6', fontFamily: 'monospace', fontWeight: '600' }}>
                                                             Bengaluru · AdMitra Pvt. Ltd. &nbsp;&nbsp; <span className="xp-date-shimmer">February 2026 – May 2026</span>

@@ -6772,4 +6772,207 @@ nav.nav-standby .nav-links a {
     100% { transform: scale(1.4); opacity: 0; }
 }
 
+/* ═══════════════════════════════════════════════════
+   MOBILE OPTIMIZATIONS — Tighter spacing, centered posters, AdMitra streamlined
+   ═══════════════════════════════════════════════════ */
+
+/* --- 1. Reduce section spacing on mobile --- */
+@media (max-width: 768px) {
+    section {
+        padding: 50px 0 !important;
+    }
+    .section-header {
+        margin-bottom: 30px !important;
+    }
+    .visual-gallery {
+        gap: 40px !important;
+        margin-top: 20px !important;
+    }
+    #experience-journey {
+        padding: 40px 0 !important;
+    }
+    .xp-windows-container {
+        gap: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 35px 0 !important;
+    }
+    .section-header {
+        margin-bottom: 20px !important;
+    }
+    .visual-gallery {
+        gap: 30px !important;
+        margin-top: 15px !important;
+    }
+    #experience-journey {
+        padding: 30px 0 !important;
+    }
+    .xp-windows-container {
+        gap: 24px !important;
+    }
+}
+
+/* --- 2. Concept Poster Showcase: Center aligned, full image visible --- */
+@media (max-width: 768px) {
+    #visuals .visual-item {
+        align-items: center;
+        text-align: center;
+    }
+
+    #visuals .visual-media {
+        aspect-ratio: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-width: 0 !important;
+        flex: none !important;
+        margin: 0 auto !important;
+    }
+
+    #visuals .visual-image {
+        object-fit: contain !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    #visuals .visual-details-layout {
+        flex-direction: column !important;
+        gap: 24px !important;
+        align-items: center !important;
+    }
+
+    #visuals .visual-info {
+        min-width: 0 !important;
+        width: 100% !important;
+        flex: none !important;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #visuals .visual-details-layout {
+        gap: 18px !important;
+    }
+
+    #visuals .visual-media {
+        border-radius: 10px !important;
+    }
+
+    #visuals .visual-title {
+        font-size: 1.4rem !important;
+    }
+
+    #visuals .visual-description {
+        font-size: 0.9rem !important;
+    }
+
+    #visuals .visual-tag {
+        font-size: 0.7rem !important;
+    }
+}
+
+/* --- 3. AdMitra: Hide sidebar, show logo + title only, center viewport --- */
+@media (max-width: 768px) {
+    /* Hide the sidebar completely on mobile */
+    .xp-window-fal .xp-window-sidebar {
+        display: none !important;
+    }
+
+    /* Hide the right-side floating panel (hyperlocal engine) details 
+       but keep the viewport */
+    .xp-window-fal .xp-window-main {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        padding: 16px !important;
+    }
+
+    /* Make the left pane (experience details) streamlined */
+    .xp-window-fal .xp-left-pane {
+        width: 100% !important;
+        gap: 12px !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Show the mobile-only inline logo */
+    .xp-mobile-logo {
+        display: flex !important;
+    }
+
+    /* Center the header text */
+    .xp-window-fal .xp-main-header {
+        text-align: center !important;
+    }
+
+    .xp-window-fal .xp-main-header p {
+        justify-content: center !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+    }
+
+    /* Style descriptions for mobile readability */
+    .xp-window-fal .xp-main-desc {
+        gap: 10px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Style client brands for mobile */
+    .xp-window-fal .xp-client-brands {
+        text-align: center !important;
+    }
+
+    .xp-window-fal .xp-brands-logos {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+
+    /* Center the Hyperlocal Engine / viewport panel */
+    .xp-window-fal .xp-window-main > div:last-child {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
+    }
+
+    .xp-window-fal .xp-floating-panel {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+
+    /* Center the device viewport (phone simulator) */
+    .sim-device-viewport {
+        margin: 0 auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .xp-window-fal .xp-main-header h3 {
+        font-size: 1.3rem !important;
+    }
+
+    .xp-window-fal .xp-main-header p {
+        font-size: 0.75rem !important;
+    }
+
+    .xp-window-fal .xp-floating-panel {
+        max-width: 290px !important;
+        padding: 16px !important;
+    }
+
+    .sim-device-viewport {
+        width: 160px !important;
+    }
+}
+
 
