@@ -91,7 +91,7 @@
     left: 0;
     width: 80px;
     height: 90px;
-    z-index: 3;
+    z-index: 1 !important;
     will-change: transform;
     cursor: pointer;
 }
@@ -497,6 +497,14 @@
     .cyber-visor-shimmer {
         animation: none !important;
         transition: none !important;
+    }
+}
+
+/* Mobile scale optimization for Aero contact robot and interactive items */
+@media (max-width: 768px) {
+    .ball-logo-img {
+        width: 18px !important;
+        height: 18px !important;
     }
 }
 

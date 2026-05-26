@@ -555,8 +555,8 @@ export function initPortfolio() {
     }
 
     // ── DaVinci Resolve Timeline Timecode Animation ──
-    const tcElement = document.querySelector('.xp-tc');
-    if (tcElement) {
+    const tcElements = document.querySelectorAll('.xp-tc');
+    if (tcElements.length > 0) {
         let frames = 2; // starting frame
         let seconds = 39;
         let minutes = 0;
@@ -578,7 +578,10 @@ export function initPortfolio() {
             }
             
             const pad = (num) => num.toString().padStart(2, '0');
-            tcElement.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
+            const timeStr = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
+            tcElements.forEach(el => {
+                el.textContent = timeStr;
+            });
         }, 1000 / 24); // 24 FPS
     }
 

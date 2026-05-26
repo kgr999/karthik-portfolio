@@ -52,6 +52,7 @@ export default function ContactPhysicsArena() {
 
 
     const heartsState = useRef([]);
+    const frameCount = useRef(0);
 
     const isDragging = useRef(null); // id of ball being dragged
     const dragOffset = useRef({ x: 0, y: 0 });
@@ -83,7 +84,32 @@ export default function ContactPhysicsArena() {
             }
         };
 
-        // 1. Calculate parent layout sizes
+        // 1. Initialize balls state with dynamic radius and coordinates
+        const initW = arenaRef.current ? arenaRef.current.getBoundingClientRect().width : 800;
+        const initH = arenaRef.current ? arenaRef.current.getBoundingClientRect().height : 400;
+
+        const isMobileInit = initW < 768;
+        const initBallRadius = isMobileInit ? 18 : 24;
+        const initAeroRadius = isMobileInit ? 28 : 40;
+
+        ballsState.current = LOGO_BALLS_DATA.map((b, idx) => ({
+            ...b,
+            x: 100 + idx * ((initW - 200) / (LOGO_BALLS_DATA.length - 1 || 4)),
+            y: initH - 60 - Math.random() * 60,
+            vx: (Math.random() - 0.5) * 4,
+            vy: -2 - Math.random() * 3,
+            radius: initBallRadius,
+            mass: 1,
+            scale: 1,
+            hidden: false
+        }));
+
+        // Initialize Aero (Blue Bot) bottom left-center
+        aeroState.current.x = initW * 0.3;
+        aeroState.current.y = initH - 100;
+        aeroState.current.radius = initAeroRadius;
+
+        // 2. Calculate parent layout sizes & dynamically set radii
         const updateDimensions = () => {
             if (!arenaRef.current) return;
             const rect = arenaRef.current.getBoundingClientRect();
@@ -91,6 +117,20 @@ export default function ContactPhysicsArena() {
                 width: rect.width,
                 height: rect.height
             };
+
+            const isMobile = rect.width < 768;
+            const ballRadius = isMobile ? 18 : 24;
+            const aeroRadius = isMobile ? 28 : 40;
+
+            if (aeroState.current) {
+                aeroState.current.radius = aeroRadius;
+            }
+
+            if (ballsState.current) {
+                ballsState.current.forEach(b => {
+                    b.radius = ballRadius;
+                });
+            }
 
             // Recalculate contact elements relative positions for rebounding collisions
             const mailEl = document.querySelector('.contact-mail');
@@ -151,32 +191,17 @@ export default function ContactPhysicsArena() {
         updateDimensions();
         window.addEventListener('resize', updateDimensions);
 
-        // 2. Initialize balls state with random dispersed coordinates and speeds
-        const w = dimensions.current.width || 800;
-        const h = dimensions.current.height || 400;
-
-        ballsState.current = LOGO_BALLS_DATA.map((b, idx) => ({
-            ...b,
-            x: 100 + idx * ((w - 200) / (LOGO_BALLS_DATA.length - 1 || 4)),
-            y: h - 60 - Math.random() * 60,
-            vx: (Math.random() - 0.5) * 4,
-            vy: -2 - Math.random() * 3,
-            radius: 24, // 48px diameter
-            mass: 1,
-            scale: 1,
-            hidden: false
-        }));
-
-        // Initialize Aero (Blue Bot) bottom left-center
-        aeroState.current.x = w * 0.3;
-        aeroState.current.y = h - 100;
-
         // 3. High framerate physics loop
         let animationFrameId;
         const elasticity = 0.85;
         const friction = 0.99;
 
         const updatePhysics = () => {
+            frameCount.current = (frameCount.current || 0) + 1;
+            if (frameCount.current % 60 === 0) {
+                updateDimensions();
+            }
+
             let arenaW = dimensions.current.width;
             let arenaH = dimensions.current.height;
             if (arenaW === 0 || arenaH === 0) {
@@ -513,7 +538,9 @@ export default function ContactPhysicsArena() {
                     const cupY = aero.y - aero.radius;
                     const distToCup = Math.sqrt(Math.pow(targetBall.x - cupX, 2) + Math.pow(targetBall.y - cupY, 2));
 
-                    if (distToCup < 46) {
+                    const isMobile = dimensions.current.width < 768;
+                    const captureThreshold = isMobile ? 34 : 46;
+                    if (distToCup < captureThreshold) {
                         // Activate vacuum lock!
                         aero.state = 'hold';
                         aero.heldBallId = targetBall.id;
@@ -765,7 +792,9 @@ export default function ContactPhysicsArena() {
                         ballEl.style.display = 'none';
                     } else {
                         ballEl.style.display = 'flex';
-                        const scale = b.scale !== undefined ? b.scale : 1;
+                        const isMobile = dimensions.current.width < 768;
+                        const viewportScale = isMobile ? 0.75 : 1.0;
+                        const scale = (b.scale !== undefined ? b.scale : 1) * viewportScale;
                         ballEl.style.transform = `translate3d(${b.x - b.radius}px, ${b.y - b.radius}px, 0) scale(${scale})`;
                     }
                 }
@@ -773,7 +802,9 @@ export default function ContactPhysicsArena() {
 
             if (aeroRef.current) {
                 const tilt = Math.min(Math.max(aero.vx * 1.8, -12), 12);
-                aeroRef.current.style.transform = `translate3d(${aero.x - aero.radius}px, ${aero.y - aero.radius}px, 0) rotate(${tilt}deg)`;
+                const isMobile = dimensions.current.width < 768;
+                const scale = isMobile ? 0.7 : 1.0;
+                aeroRef.current.style.transform = `translate3d(${aero.x - aero.radius}px, ${aero.y - aero.radius}px, 0) rotate(${tilt}deg) scale(${scale})`;
             }
 
 

@@ -432,6 +432,11 @@ nav.scrolled {
 }
 
 .hero-content h1 span {
+    color: var(--text);
+    -webkit-text-stroke: 0;
+}
+
+.hero-content h1 span span {
     color: transparent;
     -webkit-text-stroke: 1.5px var(--text);
 }
@@ -1837,8 +1842,15 @@ section {
         grid-template-columns: 1fr;
     }
 
-    .category-skills-grid[data-level="01"] .category-skill-tile:nth-child(3) {
-        grid-column: auto;
+    .category-skills-grid[data-level="01"] .category-skill-tile:nth-child(3),
+    .category-skills-grid[data-level="04"] .category-skill-tile:nth-child(3) {
+        grid-column: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .tech-stack-card {
+        height: auto !important;
     }
 
     .init-hud-card {
@@ -3091,9 +3103,20 @@ footer {
         font-size: 0.8rem;
     }
 
+    .cinema-overlay {
+        top: 12px !important;
+        left: 12px !important;
+    }
+
     .cinema-badge {
-        font-size: 0.65rem;
-        padding: 4px 10px;
+        font-size: 0.62rem !important;
+        padding: 3px 8px !important;
+        gap: 4px !important;
+    }
+
+    .badge-dot {
+        width: 5px !important;
+        height: 5px !important;
     }
 
     /* Client Grid */
@@ -3303,23 +3326,47 @@ footer {
 
 .cinema-overlay {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 16px;
+    left: 16px;
     z-index: 2;
 }
 
 .cinema-badge {
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(10, 10, 12, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #F5F5F5;
-    padding: 6px 14px;
-    border-radius: 100px;
-    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 1px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     font-family: var(--font-heading);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+}
+
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: badge-dot-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes badge-dot-pulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.85);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
 }
 
 .cinema-content {
@@ -3803,6 +3850,14 @@ footer {
     margin-top: 25px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.xp-clients-desktop {
+    display: block;
+}
+
+.xp-clients-mobile {
+    display: none;
 }
 
 .xp-brands-title {
@@ -5755,8 +5810,8 @@ nav.nav-standby .nav-links a {
 }
 
 .sim-action-icon-wrapper {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.45);
@@ -6683,17 +6738,37 @@ nav.nav-standby .nav-links a {
 
 /* Advanced visual aesthetics for Left/Right controls */
 .xp-arrow-nav-btn {
-    background: rgba(6, 6, 8, 0.45) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    backdrop-filter: blur(15px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
-    box-shadow: 
-        inset 0 1px 1px rgba(255, 255, 255, 0.05),
-        0 4px 15px rgba(0,0,0,0.4) !important;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: linear-gradient(135deg, rgba(20, 20, 25, 0.75) 0%, rgba(10, 10, 12, 0.45) 100%) !important;
+    border: 1px solid rgba(59, 130, 246, 0.25) !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(12px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08) !important;
 }
 
 .xp-arrow-nav-btn svg {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.xp-arrow-nav-btn:hover {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0.1) 100%) !important;
+    border-color: rgba(59, 130, 246, 0.85) !important;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.1);
+}
+
+.xp-arrow-nav-btn:active {
+    transform: scale(0.93) !important;
 }
 
 .xp-arrow-nav-btn.prev-btn:hover svg {
@@ -6779,39 +6854,39 @@ nav.nav-standby .nav-links a {
 /* --- 1. Reduce section spacing on mobile --- */
 @media (max-width: 768px) {
     section {
-        padding: 50px 0 !important;
+        padding: 95px 0 !important;
     }
     .section-header {
-        margin-bottom: 30px !important;
+        margin-bottom: 50px !important;
+    }
+    .visual-gallery {
+        gap: 60px !important;
+        margin-top: 30px !important;
+    }
+    #experience-journey {
+        padding: 80px 0 !important;
+    }
+    .xp-windows-container {
+        gap: 60px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 75px 0 !important;
+    }
+    .section-header {
+        margin-bottom: 40px !important;
     }
     .visual-gallery {
         gap: 40px !important;
         margin-top: 20px !important;
     }
     #experience-journey {
-        padding: 40px 0 !important;
+        padding: 60px 0 !important;
     }
     .xp-windows-container {
-        gap: 30px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    section {
-        padding: 35px 0 !important;
-    }
-    .section-header {
-        margin-bottom: 20px !important;
-    }
-    .visual-gallery {
-        gap: 30px !important;
-        margin-top: 15px !important;
-    }
-    #experience-journey {
-        padding: 30px 0 !important;
-    }
-    .xp-windows-container {
-        gap: 24px !important;
+        gap: 45px !important;
     }
 }
 
@@ -6931,6 +7006,14 @@ nav.nav-standby .nav-links a {
         flex-wrap: wrap !important;
     }
 
+    .xp-clients-desktop {
+        display: none !important;
+    }
+
+    .xp-clients-mobile {
+        display: block !important;
+    }
+
     /* Center the Hyperlocal Engine / viewport panel */
     .xp-window-fal .xp-window-main > div:last-child {
         width: 100% !important;
@@ -6972,6 +7055,183 @@ nav.nav-standby .nav-links a {
 
     .sim-device-viewport {
         width: 160px !important;
+    }
+}
+
+/* ==========================================================================
+   futuristic mobile enhancements overrides
+   ========================================================================== */
+
+/* 1. DaVinci Timeline Desktop/Mobile Toggle & Styling */
+@media (min-width: 769px) {
+    .xp-timeline-mobile {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .xp-timeline-desktop {
+        display: none !important;
+    }
+    .xp-dvr-timeline {
+        height: auto !important;
+    }
+    .xp-mob-transport-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.65);
+        border-radius: 50%;
+        width: 28px !important;
+        height: 28px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+    }
+    .xp-mob-transport-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    .xp-mob-transport-btn:active {
+        transform: scale(0.9);
+        background: rgba(255, 255, 255, 0.2);
+    }
+    .xp-mob-transport-btn.play-btn {
+        background: rgba(255, 143, 61, 0.12);
+        border-color: rgba(255, 143, 61, 0.4);
+        color: #FF8F3D !important;
+        width: 34px !important;
+        height: 34px !important;
+    }
+    .xp-mob-transport-btn.play-btn:hover {
+        background: rgba(255, 143, 61, 0.2);
+        box-shadow: 0 0 10px rgba(255, 143, 61, 0.35);
+    }
+}
+
+/* 2. Expanded Level 05 - Level 07 Cards and Centered Headings */
+@media (max-width: 1024px) {
+    .tech-stack-row.row-3 {
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    /* Center the 3rd card (Level 07) in row-3 on tablet views for perfect alignment */
+    .tech-stack-row.row-3 .tech-stack-card:nth-child(3) {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+        width: 100% !important;
+        max-width: calc(50% - 7px) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #tech-stack .section-heading {
+        font-size: 1.6rem !important;
+        letter-spacing: 3px !important;
+    }
+    .tech-stack-columns {
+        gap: 14px !important;
+    }
+    .tech-stack-row.row-3 {
+        max-width: 100% !important;
+    }
+    .tech-stack-card {
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        padding: 20px !important;
+    }
+    .tech-stack-divider {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent) !important;
+        margin: 8px auto 12px !important;
+        width: 80% !important;
+    }
+    .category-skills-grid {
+        margin-top: auto !important;
+    }
+    .category-skills-grid[data-level="01"] .category-skill-tile:nth-child(3),
+    .category-skills-grid[data-level="04"] .category-skill-tile:nth-child(3) {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+        width: 100% !important;
+        max-width: calc(50% - 4px) !important;
+    }
+    .tech-stack-card-header {
+        flex-direction: column !important;
+        gap: 8px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .category-display-title {
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #tech-stack .section-heading {
+        font-size: 1.3rem !important;
+        letter-spacing: 2px !important;
+    }
+    .tech-stack-card {
+        padding: 16px !important;
+    }
+}
+
+/* 3. Certifications Header Scaling & Spacing */
+@media (max-width: 768px) {
+    #certs .section-heading {
+        font-size: 1.8rem !important;
+        padding: 0 20px !important;
+        letter-spacing: 1px !important;
+    }
+}
+
+/* 4. Side-by-Side Let's Connect Social Dock Horizontally */
+@media (max-width: 768px) {
+    .social-dock {
+        flex-direction: row !important;
+        border-radius: 40px !important;
+        padding: 6px 12px !important;
+        width: auto !important;
+        max-width: none !important;
+        gap: 12px !important;
+    }
+    .social-dock-btn {
+        width: auto !important;
+        padding: 8px 16px !important;
+    }
+    .dock-divider {
+        width: 1px !important;
+        height: 20px !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        margin: 0 4px !important;
+    }
+}
+
+/* 5. Aero assistant scale-down for mobile view */
+@media (max-width: 768px) {
+    .aero-hero-robot {
+        transform: scale(0.68) !important;
+        right: 15px !important;
+        bottom: 25px !important;
+        transform-origin: bottom right !important;
+    }
+}
+
+/* 6. Accessible resume button in navbar on mobile */
+@media (max-width: 768px) {
+    .nav-actions .resume-btn {
+        display: inline-flex !important;
+        font-size: 0.72rem !important;
+        padding: 6px 14px !important;
+        margin-right: 10px !important;
     }
 }
 
