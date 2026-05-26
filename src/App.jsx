@@ -1898,15 +1898,8 @@ export default function App() {
                                                                                             </div>
                                                                                         </div>
 
-                                                                                        {/* Comment */}
-                                                                                        <div className="sim-action-btn" onClick={() => alert('Comments opened!')}>
-                                                                                            <div className="sim-action-icon-wrapper comment">
-                                                                                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                                                                            </div>
-                                                                                        </div>
-
                                                                                         {/* Share */}
-                                                                                        <div className="sim-action-btn" onClick={() => alert('Shared Reel!')}>
+                                                                                        <div className="sim-action-btn">
                                                                                             <div className="sim-action-icon-wrapper share">
                                                                                                 <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
                                                                                             </div>
@@ -2034,14 +2027,11 @@ export default function App() {
                                                                                             >
                                                                                                 <svg viewBox="0 0 24 24" width="10" height="10" fill={isLiked ? 'currentColor' : 'none'} stroke={isLiked ? '#ff3b30' : 'currentColor'} strokeWidth="2.2" className="post-heart-svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                                                                                             </span>
-                                                                                            <span className="sim-action-btn-post comment" onClick={() => alert('Comment section!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                                                                                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-comment-svg"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                                                                            </span>
-                                                                                            <span className="sim-action-btn-post share" onClick={() => alert('Shared Post!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                            <span className="sim-action-btn-post share" style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                                                                                                 <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-share-svg"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
                                                                                             </span>
                                                                                         </div>
-                                                                                        <span className="sim-action-btn-post bookmark" onClick={() => alert('Post Bookmarked!')} style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                                                        <span className="sim-action-btn-post bookmark" style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                                                                                             <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-bookmark-svg"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
                                                                                         </span>
                                                                                     </div>
@@ -2306,7 +2296,7 @@ export default function App() {
                                                                 e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
                                                                 e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                                                             }}
-                                                            onClick={() => alert("Montra e-SCV, EkoTejas, Snapchat Lens, AdMitra Clients, and 2 other cinematic productions.")}
+
                                                         >
                                                             +6 other clients...
                                                         </button>
@@ -2314,26 +2304,23 @@ export default function App() {
                                                 </div>
 
                                                 {/* Platform Nav Buttons */}
-                                                <div className="xp-pool-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '16px' }}>
-                                                    <p style={{ fontSize: '0.62rem', color: 'rgba(255, 255, 255, 0.35)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: '600' }}>Platform Deliverables</p>
+                                                <div className="xp-pool-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '6px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '16px', alignItems: 'center' }}>
+                                                    <p style={{ fontSize: '0.62rem', color: 'rgba(255, 255, 255, 0.35)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: '600', textAlign: 'center' }}>Platform Deliverables</p>
 
-                                                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="xp-platform-btn xp-btn-youtube">
+                                                    <div className="xp-platform-btn xp-btn-youtube">
                                                         <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
                                                         <span>YouTube Videos</span>
-                                                        <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="3" fill="none" className="xp-btn-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                                    </a>
+                                                    </div>
 
-                                                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="xp-platform-btn xp-btn-instagram">
+                                                    <div className="xp-platform-btn xp-btn-instagram">
                                                         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="xp-btn-icon"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                                                         <span>Instagram Reels</span>
-                                                        <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="3" fill="none" className="xp-btn-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                                    </a>
+                                                    </div>
 
-                                                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="xp-platform-btn xp-btn-shorts">
+                                                    <div className="xp-platform-btn xp-btn-shorts">
                                                         <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M17.771 9.771l-1.771-1.011 1.771-1.011c1.474-.842 1.979-2.726 1.137-4.2-.842-1.474-2.726-1.979-4.2-1.137l-9.143 5.223C4.246 8.358 3.5 9.777 3.5 11.314c0 1.537.746 2.956 2.065 3.679l1.771 1.011-1.771 1.011c-1.474.842-1.979 2.726-1.137 4.2.842 1.474 2.726 1.979 4.2 1.137l9.143-5.223c1.319-.723 2.065-2.142 2.065-3.679.001-1.537-.745-2.956-2.064-3.679zM9.5 15.5v-7l6 3.5-6 3.5z" /></svg>
                                                         <span>YouTube Shorts</span>
-                                                        <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="3" fill="none" className="xp-btn-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="xp-preview-monitor">
@@ -2535,7 +2522,7 @@ export default function App() {
                                                     {/* Forward / Skip to End Button */}
                                                     <button
                                                         onClick={() => {
-                                                            alert('Jumped to timeline end.');
+                                                            setScrubberKey(prev => prev + 1);
                                                         }}
                                                         style={{
                                                             background: 'transparent',
@@ -2627,7 +2614,7 @@ export default function App() {
                                                 </button>
                                                 {/* Skip to End */}
                                                 <button
-                                                    onClick={() => alert('Jumped to timeline end.')}
+                                                    onClick={() => setScrubberKey(prev => prev + 1)}
                                                     className="xp-mob-transport-btn"
                                                     aria-label="Skip to End"
                                                 >
