@@ -7,15 +7,15 @@ import ContactPhysicsArena from './ContactPhysicsArena';
 
 
 const mockVideos = [
-    { id: 1, title: "Super Auto", subtitle: "Emotive Storytelling", bg: "#000", videoSrc: "/assets/videos/video1.mp4" },
-    { id: 2, title: "Ampere Nexus", subtitle: "Product showdown", bg: "linear-gradient(135deg, #d31027 0%, #ea720c 100%)", videoSrc: "/assets/videos/video2.mp4" },
-    { id: 3, title: "Eviator E350 Series", subtitle: "Best e-SCV", bg: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)", videoSrc: "/assets/videos/video3.mp4" }
+    { id: 1, title: "Montra e-SCV Campaign", subtitle: "Best e-SCV", bg: "#000", videoSrc: "/assets/videos/montrascvmob.mp4" },
+    { id: 2, title: "Ampere Nexus", subtitle: "Product Showdown", bg: "#000", videoSrc: "/assets/videos/amperemob.mp4" },
+    { id: 3, title: "Super Auto", subtitle: "Emotive Storytelling", bg: "#000", videoSrc: "/assets/videos/montraelectricmob.mp4" }
 ];
 
 const mockPosters = [
-    { id: 1, title: "Summer Sale", desc: "Up to 50% Off on everything", bg: "linear-gradient(135deg, #fc466b 0%, #3f5efb 100%)" },
-    { id: 2, title: "Weekend Feast", desc: "Buy 1 Get 1 Free on all orders", bg: "linear-gradient(135deg, #f12711 0%, #f5af19 100%)" },
-    { id: 3, title: "Eco Mobility", desc: "Zero emissions, zero stress rides", bg: "linear-gradient(135deg, #00b4db 0%, #0083b0 100%)" }
+    { id: 1, title: "Montra e-SCV Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/montrascvposter.png" },
+    { id: 2, title: "Ampere Scooter Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/ampereposter.png" },
+    { id: 3, title: "Montra Electric Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/montraelectricposter.png" }
 ];
 
 const techStackCategories = [
@@ -1881,7 +1881,7 @@ export default function App() {
                                                                                     {/* Video metadata and details */}
                                                                                     <div className="sim-reels-details" style={{ paddingBottom: '12px', zIndex: 4 }}>
                                                                                         <h5 style={{ color: '#fff', fontSize: '0.65rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', gap: '3px' }}>
-                                                                                            @{creativeIdx === 0 ? 'montra_electric' : creativeIdx === 1 ? 'ampere_ev' : 'lincoln_pharma'}
+                                                                                            @{creativeIdx === 0 ? 'montra_escv' : creativeIdx === 1 ? 'ampere_ev' : 'montra_electric'}
                                                                                             <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
                                                                                         </h5>
                                                                                         <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
@@ -1906,7 +1906,7 @@ export default function App() {
                                                                                         <div className="sim-sponsored-user">
                                                                                             <div className="sim-sponsored-info" style={{ marginLeft: 0 }}>
                                                                                                 <span className="sim-sponsored-name">
-                                                                                                    {creativeIdx === 0 ? 'Montra Electric' : creativeIdx === 1 ? 'Ampere' : 'Lincoln Pharma'}
+                                                                                                    {creativeIdx === 0 ? 'Montra e-SCV' : creativeIdx === 1 ? 'Ampere' : 'Montra Electric'}
                                                                                                     <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ marginLeft: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
                                                                                                 </span>
                                                                                             </div>
@@ -1926,20 +1926,35 @@ export default function App() {
                                                                                             flexDirection: 'column',
                                                                                             justifyContent: 'center',
                                                                                             alignItems: 'center',
-                                                                                            padding: '0 12px',
+                                                                                            padding: 0,
                                                                                             position: 'relative',
                                                                                             boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)'
                                                                                         }}
                                                                                     >
-                                                                                        <div className="sim-reels-visual-pulse" style={{ fontSize: '2.2rem', marginBottom: '4px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.4))' }}>
-                                                                                            ✨
-                                                                                        </div>
-                                                                                        <h5 style={{ color: '#fff', fontSize: '0.78rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.7)', textAlign: 'center', lineHeight: '1.2' }}>
-                                                                                            {currentCreative.title}
-                                                                                        </h5>
-                                                                                        <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.55rem', margin: 0, lineHeight: '1.3', textShadow: '0 1px 2px rgba(0,0,0,0.7)', textAlign: 'center' }}>
-                                                                                            {currentCreative.desc}
-                                                                                        </p>
+                                                                                        {currentCreative.posterSrc ? (
+                                                                                            <img
+                                                                                                src={currentCreative.posterSrc}
+                                                                                                alt={currentCreative.title}
+                                                                                                style={{
+                                                                                                    width: '100%',
+                                                                                                    height: '100%',
+                                                                                                    objectFit: 'contain',
+                                                                                                    display: 'block'
+                                                                                                }}
+                                                                                            />
+                                                                                        ) : (
+                                                                                            <>
+                                                                                                <div className="sim-reels-visual-pulse" style={{ fontSize: '2.2rem', marginBottom: '4px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.4))' }}>
+                                                                                                    ✨
+                                                                                                </div>
+                                                                                                <h5 style={{ color: '#fff', fontSize: '0.78rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.7)', textAlign: 'center', lineHeight: '1.2' }}>
+                                                                                                    {currentCreative.title}
+                                                                                                </h5>
+                                                                                                <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.55rem', margin: 0, lineHeight: '1.3', textShadow: '0 1px 2px rgba(0,0,0,0.7)', textAlign: 'center' }}>
+                                                                                                    {currentCreative.desc}
+                                                                                                </p>
+                                                                                            </>
+                                                                                        )}
                                                                                     </div>
 
                                                                                     {/* Instagram Post Action Bar */}
@@ -2176,7 +2191,7 @@ export default function App() {
                                                                 e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
                                                                 e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                                                             }}
-                                                            onClick={() => alert("Lincoln Pharma, EkoTejas, Snapchat Lens, AdMitra Clients, and 2 other cinematic productions.")}
+                                                            onClick={() => alert("Montra e-SCV, EkoTejas, Snapchat Lens, AdMitra Clients, and 2 other cinematic productions.")}
                                                         >
                                                             +6 other clients...
                                                         </button>
