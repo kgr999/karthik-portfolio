@@ -1820,9 +1820,10 @@ export default function App() {
                                                                             {creativeType === 'video' ? (
                                                                                 <>
                                                                                     {/* Video elements or background previews */}
-                                                                                    {currentCreative.videoSrc ? (
+                                                                                    {mockVideos.map((video, idx) => (
                                                                                         <video
-                                                                                            src={currentCreative.videoSrc}
+                                                                                            key={video.id}
+                                                                                            src={video.videoSrc}
                                                                                             autoPlay
                                                                                             loop
                                                                                             muted
@@ -1833,17 +1834,13 @@ export default function App() {
                                                                                                 width: '100%',
                                                                                                 height: '100%',
                                                                                                 objectFit: 'cover',
-                                                                                                zIndex: 1
+                                                                                                zIndex: 1,
+                                                                                                opacity: creativeIdx === idx ? 1 : 0,
+                                                                                                pointerEvents: creativeIdx === idx ? 'auto' : 'none',
+                                                                                                transition: 'opacity 0.3s ease'
                                                                                             }}
                                                                                         />
-                                                                                    ) : (
-                                                                                        /* Reels Mode Middle Graphic Preview */
-                                                                                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
-                                                                                            <div className="sim-reels-visual-pulse" style={{ fontSize: '2.5rem', filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.5))' }}>
-                                                                                                {currentCreative.icon}
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    )}
+                                                                                    ))}
 
                                                                                     {/* Instagram-Inspired Floating Action Drawer */}
                                                                                     <div className="sim-social-actions" style={{ zIndex: 5 }}>
@@ -1931,30 +1928,26 @@ export default function App() {
                                                                                             boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)'
                                                                                         }}
                                                                                     >
-                                                                                        {currentCreative.posterSrc ? (
-                                                                                            <img
-                                                                                                src={currentCreative.posterSrc}
-                                                                                                alt={currentCreative.title}
-                                                                                                style={{
-                                                                                                    width: '100%',
-                                                                                                    height: '100%',
-                                                                                                    objectFit: 'contain',
-                                                                                                    display: 'block'
-                                                                                                }}
-                                                                                            />
-                                                                                        ) : (
-                                                                                            <>
-                                                                                                <div className="sim-reels-visual-pulse" style={{ fontSize: '2.2rem', marginBottom: '4px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.4))' }}>
-                                                                                                    ✨
-                                                                                                </div>
-                                                                                                <h5 style={{ color: '#fff', fontSize: '0.78rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.7)', textAlign: 'center', lineHeight: '1.2' }}>
-                                                                                                    {currentCreative.title}
-                                                                                                </h5>
-                                                                                                <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.55rem', margin: 0, lineHeight: '1.3', textShadow: '0 1px 2px rgba(0,0,0,0.7)', textAlign: 'center' }}>
-                                                                                                    {currentCreative.desc}
-                                                                                                </p>
-                                                                                            </>
-                                                                                        )}
+                                                                                        {mockPosters.map((poster, idx) => (
+                                                                                            poster.posterSrc ? (
+                                                                                                <img
+                                                                                                    key={poster.id}
+                                                                                                    src={poster.posterSrc}
+                                                                                                    alt={poster.title}
+                                                                                                    style={{
+                                                                                                        position: 'absolute',
+                                                                                                        inset: 0,
+                                                                                                        width: '100%',
+                                                                                                        height: '100%',
+                                                                                                        objectFit: 'contain',
+                                                                                                        zIndex: 1,
+                                                                                                        opacity: creativeIdx === idx ? 1 : 0,
+                                                                                                        pointerEvents: creativeIdx === idx ? 'auto' : 'none',
+                                                                                                        transition: 'opacity 0.3s ease'
+                                                                                                    }}
+                                                                                                />
+                                                                                            ) : null
+                                                                                        ))}
                                                                                     </div>
 
                                                                                     {/* Instagram Post Action Bar */}
