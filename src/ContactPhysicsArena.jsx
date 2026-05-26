@@ -601,7 +601,6 @@ export default function ContactPhysicsArena() {
                         let emoji = '🎁';
                         if (heldBall.id === 2) emoji = '💬'; // ChatGPT -> Text msg
                         else if (heldBall.id === 3) emoji = '🎵'; // HeyGen -> Music
-                        else if (heldBall.id === 4) emoji = '🖼️'; // NanoBanana -> Image
                         else if (heldBall.id === 5) emoji = '🎨'; // Fal AI -> Art
                         else if (heldBall.id === 6) emoji = '📸'; // Kling -> Photo/Video
 

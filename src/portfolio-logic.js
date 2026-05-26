@@ -12,6 +12,7 @@ export function initPortfolio() {
         smoothWheel: true,
         touchMultiplier: 2
     });
+    window.lenis = lenis;
 
     function raf(time) {
         lenis.raf(time);

@@ -12,11 +12,12 @@
 .menu-toggle span {
     display: block;
     width: 25px;
-    height: 1px;
+    height: 1.5px;
     background: var(--text);
     transition: var(--transition);
 }
 
+/* Clean & Minimal Mobile Menu Overlay */
 .mobile-menu {
     position: fixed;
     top: 0;
@@ -24,14 +25,19 @@
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    background: #050505;
+    background: rgba(5, 5, 5, 0.96);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     z-index: 1500;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: var(--transition);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 .mobile-menu.active {
@@ -43,30 +49,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
+    z-index: 1;
+    width: 100%;
+    max-width: 280px;
 }
 
-.mobile-menu-inner a {
+/* Minimalist Nav Links */
+.mobile-menu-link {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--text);
-    font-weight: 800;
-    transition: var(--transition);
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mobile-menu-inner a:hover {
-    color: var(--accent);
-    transform: scale(1.1);
+.mobile-menu-link:hover,
+.mobile-menu-link:active {
+    color: #ffffff;
+    transform: scale(1.04);
 }
 
 .menu-toggle.active span:nth-child(1) {
-    transform: translateY(3.5px) rotate(45deg);
+    transform: translateY(7.5px) rotate(45deg);
 }
 
 .menu-toggle.active span:nth-child(2) {
-    transform: translateY(-3.5px) rotate(-45deg);
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
 }
 
 :root {
@@ -184,7 +200,7 @@ nav {
     transform: translateX(-50%);
     width: 90%;
     max-width: 1200px;
-    z-index: 1000;
+    z-index: 2500;
     padding: 14px 32px;
     background: rgba(10, 10, 12, 0.45);
     backdrop-filter: blur(24px) saturate(190%);
@@ -3689,6 +3705,7 @@ footer {
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
 }
 
 .xp-window-controls {
@@ -3716,11 +3733,18 @@ footer {
 }
 
 .xp-window-title {
-    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.4);
     letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
 .xp-window-body {
@@ -5119,6 +5143,10 @@ nav.nav-standby .nav-links a {
     pointer-events: none !important;
     filter: blur(1.5px);
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+nav.nav-standby .menu-toggle {
+    display: none !important;
 }
 
 .mobile-menu.mobile-menu-standby a {
@@ -7037,6 +7065,22 @@ nav.nav-standby .nav-links a {
     .sim-device-viewport {
         margin: 0 auto !important;
     }
+
+    /* Hide overlay text strings on mobile viewports */
+    .sim-hide-mobile {
+        display: none !important;
+    }
+
+    /* Move social action icons slightly lower in mobile viewport */
+    .sim-social-actions {
+        bottom: 22px !important;
+    }
+
+    /* Stylize reels details container when details are hidden on mobile */
+    .sim-reels-details {
+        padding: 10px !important;
+        background: none !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -7055,6 +7099,28 @@ nav.nav-standby .nav-links a {
 
     .sim-device-viewport {
         width: 160px !important;
+    }
+
+    /* Prevent status bar time and notch overlap in scaled down 160px phone viewport */
+    .sim-device-header {
+        height: 22px !important;
+        padding: 0 8px !important;
+    }
+    .sim-status-bar-left {
+        font-weight: 700 !important;
+        font-size: 0.5rem !important;
+        letter-spacing: -0.1px !important;
+    }
+    .sim-device-notch {
+        width: 32px !important;
+        height: 8px !important;
+        top: 5px !important;
+        border-radius: 6px !important;
+    }
+    .sim-status-bar-right {
+        scale: 0.75 !important;
+        transform-origin: right center !important;
+        gap: 3px !important;
     }
 }
 
@@ -7076,39 +7142,42 @@ nav.nav-standby .nav-links a {
     .xp-dvr-timeline {
         height: auto !important;
     }
+    .xp-dvr-tracks {
+        overflow-x: hidden !important; /* Lock horizontally so scrubber never disappears */
+    }
+    .xp-dvr-track-area {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+    .xp-mobile-transport-bar {
+        gap: 12px !important;
+        padding: 4px 0 !important;
+    }
     .xp-mob-transport-btn {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: rgba(255, 255, 255, 0.65);
-        border-radius: 50%;
-        width: 28px !important;
-        height: 28px !important;
+        background: transparent !important;
+        border: none !important;
+        color: rgba(255, 255, 255, 0.45) !important;
+        border-radius: 4px !important;
+        width: 24px !important;
+        height: 24px !important;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.2s ease;
         outline: none;
-    }
-    .xp-mob-transport-btn:hover {
-        background: rgba(255, 255, 255, 0.12);
-        color: #ffffff;
-        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: none !important;
     }
     .xp-mob-transport-btn:active {
-        transform: scale(0.9);
-        background: rgba(255, 255, 255, 0.2);
+        transform: scale(0.9) !important;
+        background: rgba(255, 143, 61, 0.1) !important;
     }
     .xp-mob-transport-btn.play-btn {
-        background: rgba(255, 143, 61, 0.12);
-        border-color: rgba(255, 143, 61, 0.4);
+        background: transparent !important;
+        border: none !important;
         color: #FF8F3D !important;
-        width: 34px !important;
-        height: 34px !important;
-    }
-    .xp-mob-transport-btn.play-btn:hover {
-        background: rgba(255, 143, 61, 0.2);
-        box-shadow: 0 0 10px rgba(255, 143, 61, 0.35);
+        width: 26px !important;
+        height: 26px !important;
     }
 }
 
@@ -7244,13 +7313,14 @@ nav.nav-standby .nav-links a {
     }
 }
 
-/* 6. Accessible resume button in navbar on mobile */
+/* 6. Accessible resume button in navbar on mobile (styled smaller) */
 @media (max-width: 768px) {
     .nav-actions .resume-btn {
         display: inline-flex !important;
-        font-size: 0.72rem !important;
-        padding: 6px 14px !important;
-        margin-right: 10px !important;
+        font-size: 0.65rem !important;
+        padding: 5px 11px !important;
+        margin-right: 8px !important;
+        letter-spacing: 1px !important;
     }
 }
 

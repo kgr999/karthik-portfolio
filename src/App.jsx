@@ -874,8 +874,43 @@ export default function App() {
         // Prevent scroll until system is fully initialized
         if (!isInitialized) {
             document.body.style.overflow = 'hidden';
+            if (window.lenis) {
+                window.lenis.stop();
+            }
         } else {
             document.body.style.overflow = '';
+            if (window.lenis) {
+                window.lenis.start();
+                // Push recalculation to next render frame to allow height shifts to commit
+                setTimeout(() => {
+                    window.lenis.resize();
+                }, 150);
+            }
+        }
+    }, [isInitialized]);
+
+    useEffect(() => {
+        if (isInitialized) {
+            const playAllVideos = () => {
+                const videos = document.querySelectorAll('.cinema-video');
+                videos.forEach(v => {
+                    if (v.paused) {
+                        v.play().catch(err => console.log("Autoplay check:", err));
+                    }
+                });
+            };
+
+            // Initial play check
+            setTimeout(playAllVideos, 600);
+
+            // Double check on scroll and touch actions to bypass mobile browser restrictions
+            window.addEventListener('touchstart', playAllVideos, { once: true });
+            window.addEventListener('scroll', playAllVideos);
+
+            return () => {
+                window.removeEventListener('touchstart', playAllVideos);
+                window.removeEventListener('scroll', playAllVideos);
+            };
         }
     }, [isInitialized]);
 
@@ -919,6 +954,7 @@ export default function App() {
                         <button className="menu-toggle" aria-label="Toggle Menu">
                             <span></span>
                             <span></span>
+                            <span></span>
                         </button>
                     </div>
                 </div>
@@ -927,12 +963,11 @@ export default function App() {
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
-                    <a href="#capabilities">Capabilities</a>
-                    <a href="#self-visuals">Visuals</a>
-                    <a href="#experience-journey">Experience</a>
-                    <a href="#tech-stack">Skills</a>
-                    <a href="#contact">Contact</a>
-                    <a href="#" className="resume-btn" download style={{ marginTop: '20px' }}>Resume</a>
+                    <a href="#capabilities" className="mobile-menu-link">Capabilities</a>
+                    <a href="#self-visuals" className="mobile-menu-link">Visuals</a>
+                    <a href="#experience-journey" className="mobile-menu-link">Experience</a>
+                    <a href="#tech-stack" className="mobile-menu-link">Skills</a>
+                    <a href="#contact" className="mobile-menu-link">Contact</a>
                 </div>
             </div>
 
@@ -1670,7 +1705,7 @@ export default function App() {
                                                     overflow: 'hidden'
                                                 }}>
                                                     {/* Header / Telemetry scanner active status */}
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                         <div style={{ color: '#3B82F6', fontWeight: '800', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '1px', textTransform: 'uppercase' }}>
                                                             <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 10px #10B981', animation: 'pulse 1.5s infinite' }}></span>
                                                             Hyperlocal Engine
@@ -1913,15 +1948,15 @@ export default function App() {
                                                                                             @{creativeIdx === 0 ? 'montra_escv' : creativeIdx === 1 ? 'ampere_ev' : 'montra_electric'}
                                                                                             <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
                                                                                         </h5>
-                                                                                        <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
+                                                                                        <p className="sim-hide-mobile" style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
                                                                                             {currentCreative.title}
                                                                                         </p>
-                                                                                        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.5rem', margin: '0 0 6px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
+                                                                                        <p className="sim-hide-mobile" style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.5rem', margin: '0 0 6px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
                                                                                             {currentCreative.subtitle}
                                                                                         </p>
 
                                                                                         {/* Audio line */}
-                                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'rgba(255,255,255,0.9)', fontSize: '0.48rem', margin: 0, textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
+                                                                                        <div className="sim-hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'rgba(255,255,255,0.9)', fontSize: '0.48rem', margin: 0, textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
                                                                                             <svg viewBox="0 0 24 24" width="8" height="8" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" /></svg>
                                                                                             <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100px' }}>original audio - admitra.in</span>
                                                                                         </div>
@@ -2012,7 +2047,7 @@ export default function App() {
                                                                                     </div>
 
                                                                                     {/* Instagram Likes line */}
-                                                                                    <div style={{
+                                                                                    <div className="sim-hide-mobile" style={{
                                                                                         padding: '0 10px',
                                                                                         textAlign: 'left',
                                                                                         fontSize: '0.52rem',
@@ -2025,7 +2060,7 @@ export default function App() {
                                                                                     </div>
 
                                                                                     {/* Instagram Caption */}
-                                                                                    <div style={{
+                                                                                    <div className="sim-hide-mobile" style={{
                                                                                         padding: '0 10px',
                                                                                         textAlign: 'left',
                                                                                         fontSize: '0.52rem',
@@ -2046,7 +2081,7 @@ export default function App() {
                                                                                     </div>
 
                                                                                     {/* View comments & quick comment input */}
-                                                                                    <div style={{
+                                                                                    <div className="sim-hide-mobile" style={{
                                                                                         padding: '0 10px',
                                                                                         textAlign: 'left',
                                                                                         fontSize: '0.46rem',
