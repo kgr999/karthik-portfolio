@@ -436,6 +436,14 @@ nav.scrolled {
     -webkit-text-stroke: 1.5px var(--text);
 }
 
+.hero-word {
+    display: inline;
+}
+
+.mobile-only-br {
+    display: none;
+}
+
 .hero-sub {
     margin-top: 24px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -2486,6 +2494,16 @@ footer {
 
     .hero-content h1 br {
         display: none;
+    }
+
+    .hero-word {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mobile-only-br {
+        display: block;
     }
 
     .hero-sub {

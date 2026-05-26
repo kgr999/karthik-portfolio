@@ -943,8 +943,15 @@ export default function App() {
                             <div className="hero-grid">
                                 <div className="hero-content">
                                     <p className="hero-label reveal-text">Gen AI Creative Associate</p>
-                                    <h1 className="reveal-text">Architecting<br /><span>Human Attention.</span></h1>
-                                    <p className="hero-sub reveal-text">I treat AI not as a tool, but as a medium for cinematic human storytelling</p>
+                                    <h1 className="reveal-text">
+                                        <span className="hero-word">Architecting</span><br />
+                                        <span className="hero-word">Human</span> <span className="hero-word"><span>Attention.</span></span>
+                                    </h1>
+                                    <p className="hero-sub reveal-text">
+                                        I treat AI not as a tool,<br className="mobile-only-br" />
+                                        but as a medium for<br className="mobile-only-br" />
+                                        cinematic human storytelling
+                                    </p>
                                     <div className="hero-cta reveal-item">
                                         <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
                                             <span className="init-btn-glow"></span>

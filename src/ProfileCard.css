@@ -250,7 +250,7 @@
 
 @media (max-width: 480px) {
     .avatar-card-outer {
-        max-width: 220px;
+        max-width: 185px;
     }
     .avatar-hud-top {
         top: 12px;
