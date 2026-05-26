@@ -945,26 +945,33 @@ export default function App() {
                                 <div className="hero-content">
                                     <p className="hero-label reveal-text">Gen AI Creative Associate</p>
                                     <h1 className="reveal-text">
-                                        <span className="hero-word">Architecting</span><br />
+                                        <span className="hero-word">Engineering</span><br />
                                         <span className="hero-word">Human</span> <span className="hero-word"><span>Attention.</span></span>
                                     </h1>
                                     <p className="hero-sub reveal-text">
-                                        I treat AI not as a tool,<br className="mobile-only-br" />
-                                        but as a medium for<br className="mobile-only-br" />
-                                        cinematic human storytelling
+                                        AI, directed with human intent.
                                     </p>
-                                    <div className="hero-cta reveal-item">
+                                    <div className="hero-cta reveal-item desktop-only-cta">
                                         <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
                                             <span className="init-btn-glow"></span>
                                             <span className="init-btn-sweep"></span>
                                             <span className="init-btn-loading-bar"></span>
                                             <span className="init-btn-status-node"></span>
-                                            <span className="init-btn-text">INITIALIZE PORTFOLIO</span>
+                                            <span className="init-btn-text">ACCESS PORTFOLIO</span>
                                         </button>
                                     </div>
                                 </div>
                                 <div className="hero-avatar-wrapper">
                                     <ProfileCard videoSrc="/assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
+                                </div>
+                                <div className="hero-cta reveal-item mobile-only-cta">
+                                    <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
+                                        <span className="init-btn-glow"></span>
+                                        <span className="init-btn-sweep"></span>
+                                        <span className="init-btn-loading-bar"></span>
+                                        <span className="init-btn-status-node"></span>
+                                        <span className="init-btn-text">ACCESS PORTFOLIO</span>
+                                    </button>
                                 </div>
                             </div>
 
@@ -1540,7 +1547,7 @@ export default function App() {
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     {/* Key Campaign Clients block for desktop */}
                                                     <div className="xp-client-brands xp-clients-desktop" style={{ width: '100%', maxWidth: '340px', marginTop: '25px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                                                         <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
@@ -2592,7 +2599,7 @@ export default function App() {
                                                     <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" strokeWidth="2.5" fill="none"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg>
                                                 </button>
                                             </div>
-                                            
+
                                             <div className="xp-dvr-tracks" style={{ height: '90px' }}>
                                                 <div className="xp-dvr-labels" style={{ width: '25px', fontSize: '0.6rem' }}>
                                                     <span>V2</span><span>V1</span><span>A1</span>
