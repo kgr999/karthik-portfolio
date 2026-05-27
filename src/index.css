@@ -2247,7 +2247,8 @@ section {
 
 @media (max-width: 768px) {
     .tech-stack-row {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
     }
     
     .tech-stack-card {
@@ -7533,6 +7534,13 @@ nav.nav-standby .menu-toggle {
     .tech-stack-row.row-3 {
         max-width: 100% !important;
     }
+    /* Center the 3rd card (Level 07) in row-3 on mobile views for perfect 2-column layout symmetry */
+    .tech-stack-row.row-3 .tech-stack-card:nth-child(3) {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+        width: 100% !important;
+        max-width: calc(50% - 6px) !important;
+    }
     .tech-stack-card {
         height: auto !important;
         min-height: auto !important;
@@ -7540,11 +7548,6 @@ nav.nav-standby .menu-toggle {
         flex-direction: column !important;
         justify-content: flex-start !important;
         padding: 20px !important;
-    }
-    .tech-stack-divider {
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent) !important;
-        margin: 8px auto 12px !important;
-        width: 80% !important;
     }
     .category-skills-grid {
         margin-top: auto !important;
@@ -7555,15 +7558,6 @@ nav.nav-standby .menu-toggle {
         justify-self: center !important;
         width: 100% !important;
         max-width: calc(50% - 4px) !important;
-    }
-    .tech-stack-card-header {
-        flex-direction: column !important;
-        gap: 8px !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    .category-display-title {
-        text-align: center !important;
     }
 }
 
