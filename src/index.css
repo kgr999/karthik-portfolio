@@ -985,10 +985,21 @@ section {
 
 /* Mobile Capabilities Grid Optimization & Default View for Touch Screens */
 @media (max-width: 767px) {
+    .capabilities-grid-v2 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
     .cap-card-v2 {
         grid-column: span 12 !important;
         padding: 20px !important;
         min-height: 180px !important;
+        position: sticky !important;
+        top: 80px !important;
+        background: rgba(10, 10, 12, 0.96) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.8) !important;
+        border-radius: 12px !important;
     }
     .hero-cap-card {
         padding: 20px !important;
@@ -1024,8 +1035,9 @@ section {
 .cap-card-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 16px;
 }
 
 .cap-num {

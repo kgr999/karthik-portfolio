@@ -1112,12 +1112,11 @@ export default function App() {
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator pulse-blue"></span>
                                             <span className="cap-num">01</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
                                         </div>
-                                        <span className="cap-label">PRIMARY SPECIALIZATION</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </div>
                                     
                                     <div className="cap-image-wrapper aspect-16-9">
@@ -1139,12 +1138,11 @@ export default function App() {
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">02</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
                                         </div>
-                                        <span className="cap-label">IDEATION</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </div>
 
                                     <div className="cap-image-wrapper aspect-16-9">
@@ -1166,12 +1164,11 @@ export default function App() {
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">03</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
                                         </div>
-                                        <span className="cap-label">PIPELINE ENGINE</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </div>
 
                                     <div className="cap-image-wrapper aspect-16-9">
@@ -1193,12 +1190,11 @@ export default function App() {
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">04</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
                                         </div>
-                                        <span className="cap-label">PRE-PRODUCTION</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </div>
 
                                     <div className="cap-image-wrapper natural-fit">
@@ -1220,12 +1216,11 @@ export default function App() {
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">05</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
                                         </div>
-                                        <span className="cap-label">CREATIVE TECHNIQUE</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </div>
 
                                     <div className="cap-image-wrapper aspect-16-9">
@@ -1247,12 +1242,11 @@ export default function App() {
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">06</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
                                         </div>
-                                        <span className="cap-label">POST-PRODUCTION</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </div>
 
                                     <div className="cap-image-wrapper aspect-16-9">
@@ -1274,12 +1268,11 @@ export default function App() {
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">07</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
                                         </div>
-                                        <span className="cap-label">FINISHING</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </div>
 
                                     <div className="cap-image-wrapper aspect-16-9">
