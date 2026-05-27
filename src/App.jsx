@@ -641,6 +641,8 @@ export default function App() {
     // Hero AI Assistant Robot (Aero) states
     const [robotState, setRobotState] = useState('stage-spawn'); // 'stage-spawn', 'stage-wave', 'stage-blink', 'stage-point-look', 'stage-move', 'stage-idle'
     const [cloneStatus, setCloneStatus] = useState('loading'); // 'loading', 'active'
+    const [midjourneyExpanded, setMidjourneyExpanded] = useState(false);
+    const [seedanceExpanded, setSeedanceExpanded] = useState(false);
 
     useEffect(() => {
         // Reset states on mount
@@ -1089,34 +1091,22 @@ export default function App() {
                                         </div>
                                         <span className="cap-label">PRIMARY SPECIALIZATION</span>
                                     </div>
+                                    
+                                    <div className="cap-image-wrapper">
+                                        <div className="cap-color-image" style={{ background: '#FFFFFF' }}></div>
+                                    </div>
+
                                     <div className="cap-card-body">
                                         <h3 className="cap-title">AI Creative Direction</h3>
-                                        <p className="cap-desc">
-                                            Leading next-generation brand narratives by combining advanced generative AI tools with high-fidelity creative direction to produce premium cinematic worlds.
-                                        </p>
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Multimodal AI</span>
                                             <span className="cap-focus-tag">Cinematic Worldbuilding</span>
                                             <span className="cap-focus-tag">Directing</span>
                                         </div>
                                     </div>
-                                    <div className="cap-meta">
-                                        <div className="meta-item">
-                                            <span className="meta-key">Focus Area</span>
-                                            <span className="meta-val">AI Production & Branding</span>
-                                        </div>
-                                        <div className="meta-item">
-                                            <span className="meta-key">Key Deliverable</span>
-                                            <span className="meta-val">Cinematic Worldbuilding</span>
-                                        </div>
-                                        <div className="meta-item">
-                                            <span className="meta-key">Technology</span>
-                                            <span className="meta-val">Multimodal AI Pipelines</span>
-                                        </div>
-                                    </div>
                                 </div>
 
-                                {/* 2. Cinematic Video Editing */}
+                                {/* 2. Content Research & Strategy */}
                                 <div className="cap-card-v2">
                                     <div className="cap-card-header">
                                         <div className="cap-status-group">
@@ -1127,22 +1117,24 @@ export default function App() {
                                                 <polyline points="7 7 17 7 17 17"></polyline>
                                             </svg>
                                         </div>
-                                        <span className="cap-label">VIDEO PRODUCTION</span>
+                                        <span className="cap-label">IDEATION</span>
                                     </div>
+
+                                    <div className="cap-image-wrapper">
+                                        <div className="cap-color-image" style={{ background: '#0052FF' }}></div>
+                                    </div>
+
                                     <div className="cap-card-body">
-                                        <h3 className="cap-title">Cinematic Video Editing</h3>
-                                        <p className="cap-desc">
-                                            High-end video editing for long-form content, documentaries, and commercials, focusing on pacing, structure, and emotional engagement.
-                                        </p>
+                                        <h3 className="cap-title">Content Research & Styling</h3>
                                         <div className="cap-focus-tags">
-                                            <span className="cap-focus-tag">Pacing & Rhythm</span>
-                                            <span className="cap-focus-tag">Narrative Flow</span>
-                                            <span className="cap-focus-tag">Color Grading</span>
+                                            <span className="cap-focus-tag">Audience Insights</span>
+                                            <span className="cap-focus-tag">Virality Mapping</span>
+                                            <span className="cap-focus-tag">Data Analytics</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* 3. Short-Form Video Editing */}
+                                {/* 3. Storyboarding & Pre-Visuals */}
                                 <div className="cap-card-v2">
                                     <div className="cap-card-header">
                                         <div className="cap-status-group">
@@ -1153,22 +1145,24 @@ export default function App() {
                                                 <polyline points="7 7 17 7 17 17"></polyline>
                                             </svg>
                                         </div>
-                                        <span className="cap-label">SOCIAL MEDIA</span>
+                                        <span className="cap-label">PRE-PRODUCTION</span>
                                     </div>
+
+                                    <div className="cap-image-wrapper has-image">
+                                        <img className="cap-color-image" src="assets/images/storyboarding.png" alt="Storyboarding & Pre-Visuals" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    </div>
+
                                     <div className="cap-card-body">
-                                        <h3 className="cap-title">Short-Form Video Editing</h3>
-                                        <p className="cap-desc">
-                                            Dynamic, high-impact vertical videos, reels, and TikToks engineered with strong visual hooks for maximum audience retention.
-                                        </p>
+                                        <h3 className="cap-title">Storyboarding & Pre-Visuals</h3>
                                         <div className="cap-focus-tags">
-                                            <span className="cap-focus-tag">Retention Hooks</span>
-                                            <span className="cap-focus-tag">Dynamic Captions</span>
-                                            <span className="cap-focus-tag">Sound FX</span>
+                                            <span className="cap-focus-tag">Sequenced Layouts</span>
+                                            <span className="cap-focus-tag">Midjourney Panels</span>
+                                            <span className="cap-focus-tag">Shot Design</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* 4. Content Research & Strategy */}
+                                {/* 4. Character Consistency & Continuity */}
                                 <div className="cap-card-v2">
                                     <div className="cap-card-header">
                                         <div className="cap-status-group">
@@ -1179,17 +1173,19 @@ export default function App() {
                                                 <polyline points="7 7 17 7 17 17"></polyline>
                                             </svg>
                                         </div>
-                                        <span className="cap-label">IDEATION</span>
+                                        <span className="cap-label">PIPELINE ENGINE</span>
                                     </div>
+
+                                    <div className="cap-image-wrapper has-image">
+                                        <img className="cap-color-image" src="assets/images/contactsheet.png" alt="Character Consistency & Continuity" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    </div>
+
                                     <div className="cap-card-body">
-                                        <h3 className="cap-title">Content Research & Strategy</h3>
-                                        <p className="cap-desc">
-                                            In-depth topic research and data-backed content mapping to design stories that command human attention from the first second.
-                                        </p>
+                                        <h3 className="cap-title">Character Building</h3>
                                         <div className="cap-focus-tags">
-                                            <span className="cap-focus-tag">Audience Insights</span>
-                                            <span className="cap-focus-tag">Virality Mapping</span>
-                                            <span className="cap-focus-tag">Data Analytics</span>
+                                            <span className="cap-focus-tag">Multi-Shot Continuity</span>
+                                            <span className="cap-focus-tag">ControlNet</span>
+                                            <span className="cap-focus-tag">Asset Locking</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1207,20 +1203,22 @@ export default function App() {
                                         </div>
                                         <span className="cap-label">CREATIVE TECHNIQUE</span>
                                     </div>
+
+                                    <div className="cap-image-wrapper has-image">
+                                        <video className="cap-color-image" src="assets/videos/storyboardingoutput.mp4" loop muted playsInline autoPlay style={{ width: '100%', height: 'auto', display: 'block' }}></video>
+                                    </div>
+
                                     <div className="cap-card-body">
                                         <h3 className="cap-title">Visual Storytelling</h3>
-                                        <p className="cap-desc">
-                                            Blending moving pixels, composition, lighting, and immersive sound design to elevate narrative depth and drive conversion.
-                                        </p>
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Composition</span>
                                             <span className="cap-focus-tag">Dramatic Lighting</span>
-                                            <span className="cap-focus-tag">Soundscapes</span>
+                                            <span className="cap-focus-tag">Visual Pacing</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* 6. AI Concept Art & Workflows */}
+                                {/* 6. AI Audio & Narration Design */}
                                 <div className="cap-card-v2">
                                     <div className="cap-card-header">
                                         <div className="cap-status-group">
@@ -1231,22 +1229,24 @@ export default function App() {
                                                 <polyline points="7 7 17 7 17 17"></polyline>
                                             </svg>
                                         </div>
-                                        <span className="cap-label">PRE-PRODUCTION</span>
+                                        <span className="cap-label">POST-PRODUCTION</span>
                                     </div>
+
+                                    <div className="cap-image-wrapper has-image">
+                                        <img className="cap-color-image" src="assets/images/6audio.png" alt="AI Audio & Narration Design" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    </div>
+
                                     <div className="cap-card-body">
-                                        <h3 className="cap-title">AI Concept Art & Workflows</h3>
-                                        <p className="cap-desc">
-                                            Bespoke conceptual artwork, visual mood boards, and customized image generation utilizing state-of-the-art AI systems.
-                                        </p>
+                                        <h3 className="cap-title">AI Audio & Narration Design</h3>
                                         <div className="cap-focus-tags">
-                                            <span className="cap-focus-tag">Prompt Crafting</span>
-                                            <span className="cap-focus-tag">ControlNet</span>
-                                            <span className="cap-focus-tag">Style Transfer</span>
+                                            <span className="cap-focus-tag">Voice Cloning</span>
+                                            <span className="cap-focus-tag">Spatial Audio Layout</span>
+                                            <span className="cap-focus-tag">Sound FX Layer</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* 7. Storyboarding & Pre-Visuals */}
+                                {/* 7. Cinematic Video Editing */}
                                 <div className="cap-card-v2">
                                     <div className="cap-card-header">
                                         <div className="cap-status-group">
@@ -1257,17 +1257,19 @@ export default function App() {
                                                 <polyline points="7 7 17 7 17 17"></polyline>
                                             </svg>
                                         </div>
-                                        <span className="cap-label">PLANNING</span>
+                                        <span className="cap-label">FINISHING</span>
                                     </div>
+
+                                    <div className="cap-image-wrapper has-image">
+                                        <img className="cap-color-image" src="assets/images/vidtimeline.avif" alt="Cinematic Video Editing" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    </div>
+
                                     <div className="cap-card-body">
-                                        <h3 className="cap-title">Storyboarding & Pre-Visuals</h3>
-                                        <p className="cap-desc">
-                                            Visual narrative mapping, shot design, and sequence layout to plan and optimize complex post-production cycles.
-                                        </p>
+                                        <h3 className="cap-title">Video Editing (Intermediate)</h3>
                                         <div className="cap-focus-tags">
-                                            <span className="cap-focus-tag">Sequenced Layouts</span>
-                                            <span className="cap-focus-tag">Midjourney Panels</span>
-                                            <span className="cap-focus-tag">Shot Design</span>
+                                            <span className="cap-focus-tag">Pacing & Rhythm</span>
+                                            <span className="cap-focus-tag">Narrative Flow</span>
+                                            <span className="cap-focus-tag">Color Grading</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1339,6 +1341,101 @@ export default function App() {
                             </div>
                         </div>
                     </section>
+
+
+                    {/* 4.6. Cinematic Prompting Section */}
+                    <section id="cinematic-prompting">
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Cinematic Prompting</h2>
+                            </div>
+
+                            <div className="prompting-grid reveal-item">
+                                {/* Midjourney Image Column */}
+                                <div className="prompting-card-wrapper">
+                                    <div className="cinema-card" data-glow="#8B5CF6" style={{ width: '100%' }}>
+                                        <div className="cinema-video-wrapper">
+                                            <img className="cinema-video" src="assets/images/midjouneycinematic.png" alt="Midjourney Cinematic Prompting" style={{ objectPosition: 'center' }} />
+                                            <div className="cinema-overlay">
+                                                <span className="cinema-badge">
+                                                    <span className="badge-dot" style={{ background: '#8B5CF6', boxShadow: '0 0 8px #8B5CF6' }}></span>
+                                                    Midjourney v6
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="prompt-details-box">
+                                        <h3 className="prompt-tool-title">2010s Cyberpunk Film</h3>
+                                        <div className={`prompt-code-panel ${midjourneyExpanded ? 'expanded' : 'collapsed'}`} style={{ '--prompt-accent': '#8B5CF6' }}>
+                                            <div className="prompt-code-header">
+                                                <span>PROMPT COMMAND</span>
+                                                <div className="prompt-actions">
+                                                    <span className="prompt-toggle-btn" onClick={() => setMidjourneyExpanded(!midjourneyExpanded)}>
+                                                        {midjourneyExpanded ? 'Show Less' : 'Show More'}
+                                                    </span>
+                                                    <span className="prompt-action-divider">|</span>
+                                                    <span className="prompt-copy-btn" onClick={(e) => {
+                                                        navigator.clipboard.writeText('Grounded 2010s cyberpunk film. Inside a moving futuristic train, daytime. A teenage boy and girl sit together in front of a large window, static medium shot, eye level, 50mm anamorphic lens. The girl stares blankly toward camera with a distant expression; the boy sits quietly beside her, looking slightly downward. Short dark hair loosely frames her face in soft daylight. Both wear layered casual streetwear worn jackets, muted urban colors. Posture is quiet and emotionally detached. Behind them, the window reveals a dense futuristic city rushing past: packed skyscrapers, stacked apartments, holographic ads, elevated transit lines, reflective glass, distant flying vehicles slightly out of focus with motion blur and atmospheric haze. Interior features metallic panels, overhead strip lights, fabric seats, reflective handrails. ARRI Alexa Mini LF, soft digital grain, shallow depth of field, restrained contrast, cool gray shadows. --ar 16:9 --raw --profile karthikgraj --v 6');
+                                                        const orig = e.target.textContent;
+                                                        e.target.textContent = 'COPIED!';
+                                                        setTimeout(() => { e.target.textContent = orig; }, 2000);
+                                                    }}>Copy</span>
+                                                </div>
+                                            </div>
+                                            <div className="prompt-code-body">
+                                                <code className="prompt-code-text">
+                                                    Grounded 2010s cyberpunk film. Inside a moving futuristic train, daytime. A teenage boy and girl sit together in front of a large window, static medium shot, eye level, 50mm anamorphic lens. The girl stares blankly toward camera with a distant expression; the boy sits quietly beside her, looking slightly downward. Short dark hair loosely frames her face in soft daylight. Both wear layered casual streetwear worn jackets, muted urban colors. Posture is quiet and emotionally detached. Behind them, the window reveals a dense futuristic city rushing past: packed skyscrapers, stacked apartments, holographic ads, elevated transit lines, reflective glass, distant flying vehicles slightly out of focus with motion blur and atmospheric haze. Interior features metallic panels, overhead strip lights, fabric seats, reflective handrails. ARRI Alexa Mini LF, soft digital grain, shallow depth of field, restrained contrast, cool gray shadows. --ar 16:9 --raw --profile karthikgraj --v 6
+                                                </code>
+                                                {!midjourneyExpanded && <div className="prompt-code-fade"></div>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Seedance Video Column */}
+                                <div className="prompting-card-wrapper">
+                                    <div className="cinema-card" data-glow="#00F0FF" style={{ width: '100%' }}>
+                                        <div className="cinema-video-wrapper">
+                                            <video className="cinema-video" src="assets/videos/midseedance.mp4" loop muted playsInline autoPlay></video>
+                                            <div className="cinema-overlay">
+                                                <span className="cinema-badge">
+                                                    <span className="badge-dot" style={{ background: '#00F0FF', boxShadow: '0 0 8px #00F0FF' }}></span>
+                                                    Seedance 2.0
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="prompt-details-box">
+                                        <h3 className="prompt-tool-title">Rain Chase</h3>
+                                        <div className={`prompt-code-panel ${seedanceExpanded ? 'expanded' : 'collapsed'}`} style={{ '--prompt-accent': '#00F0FF' }}>
+                                            <div className="prompt-code-header">
+                                                <span>MOTION DIRECTIVE</span>
+                                                <div className="prompt-actions">
+                                                    <span className="prompt-toggle-btn" onClick={() => setSeedanceExpanded(!seedanceExpanded)}>
+                                                        {seedanceExpanded ? 'Show Less' : 'Show More'}
+                                                    </span>
+                                                    <span className="prompt-action-divider">|</span>
+                                                    <span className="prompt-copy-btn" onClick={(e) => {
+                                                        navigator.clipboard.writeText('A high-speed car chase on a rain-drenched highway at night. Two muscle cars weave through heavy traffic at 140mph, headlights slicing through the downpour. One car clips a semi-truck sending sparks showering across six lanes. The camera is mounted on the hood of the lead car, rain hammering the lens. Neon highway signs blur overhead. The pursuing car fishtails through a gap between two buses. Tires hydroplane on standing water. Hyper-realistic, motion blur, reflections on wet asphalt, 8k, Michael Mann cinematography.');
+                                                        const orig = e.target.textContent;
+                                                        e.target.textContent = 'COPIED!';
+                                                        setTimeout(() => { e.target.textContent = orig; }, 2000);
+                                                    }}>Copy</span>
+                                                </div>
+                                            </div>
+                                            <div className="prompt-code-body">
+                                                <code className="prompt-code-text">
+                                                    A high-speed car chase on a rain-drenched highway at night. Two muscle cars weave through heavy traffic at 140mph, headlights slicing through the downpour. One car clips a semi-truck sending sparks showering across six lanes. The camera is mounted on the hood of the lead car, rain hammering the lens. Neon highway signs blur overhead. The pursuing car fishtails through a gap between two buses. Tires hydroplane on standing water. Hyper-realistic, motion blur, reflections on wet asphalt, 8k, Michael Mann cinematography.
+                                                </code>
+                                                {!seedanceExpanded && <div className="prompt-code-fade"></div>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
 
                     {/* 5. Visual Systems Gallery */}
                     <section id="visuals">
