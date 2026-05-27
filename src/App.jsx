@@ -86,16 +86,6 @@ const techStackCategories = [
             { name: "Topaz", logo: "https://www.ai-stat.ru/icons/png/dark/topazlabs.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
             { name: "DaVinci Resolve", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/DaVinci_Resolve_Studio.png/250px-DaVinci_Resolve_Studio.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail", glow: "#ff6f3c", level: "90%", learning: true }
         ]
-    },
-    {
-        num: "08",
-        name: "3D & IMMERSIVE AI",
-        tools: [
-            { name: "Suno AI", logo: "https://www.google.com/s2/favicons?domain=suno.com&sz=128", glow: "#eab308", level: "92%" },
-            { name: "Udio", logo: "https://www.google.com/s2/favicons?domain=udio.com&sz=128", glow: "#a855f7", level: "90%" },
-            { name: "Luma Dream Machine", logo: "https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=128", glow: "#3b82f6", level: "88%" },
-            { name: "Spline", logo: "https://www.google.com/s2/favicons?domain=spline.design&sz=128", glow: "#f43f5e", level: "85%" }
-        ]
     }
 ];
 
@@ -615,14 +605,6 @@ const renderCategoryIcon = (num) => {
             return (
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 2v20M17 5v14M22 9v6M7 8v8M2 10v4" />
-                </svg>
-            );
-        case "08": // 3D & IMMERSIVE (Box SVG)
-            return (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                    <line x1="12" y1="22.08" x2="12" y2="12" />
                 </svg>
             );
 
@@ -3030,9 +3012,9 @@ export default function App() {
                                         ))}
                                     </div>
 
-                                    {/* ROW 2: Categories 05 to 08 */}
-                                    <div className="tech-stack-row row-4">
-                                        {techStackCategories.filter(c => ["05", "06", "07", "08"].includes(c.num)).map((category) => (
+                                    {/* ROW 2: Categories 05 to 07 */}
+                                    <div className="tech-stack-row row-3">
+                                        {techStackCategories.filter(c => ["05", "06", "07"].includes(c.num)).map((category) => (
                                             <div
                                                 key={category.name}
                                                 className={`tech-stack-card ${hoveredCategory === category.name ? 'active-card' : ''}`}
