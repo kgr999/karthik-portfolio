@@ -903,12 +903,12 @@ section {
 
 .cap-focus-tag {
     display: inline-flex;
-    padding: 4px 10px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.8px;
+    padding: 5px 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    font-family: monospace;
+    font-family: 'Outfit', 'Space Grotesk', sans-serif;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.02);
     color: rgba(255, 255, 255, 0.65);
@@ -1004,21 +1004,23 @@ section {
 
 /* Card Body & Typography */
 .cap-title {
-    font-family: 'Space Grotesk', 'Outfit', var(--font-heading);
-    font-size: 1.45rem;
-    font-weight: 700;
+    font-family: 'Outfit', 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
     color: #ffffff;
-    margin-bottom: 16px;
-    letter-spacing: 0.2px;
+    margin-bottom: 14px;
+    letter-spacing: -0.2px;
+    text-transform: none;
+    line-height: 1.4;
     transition: color 0.4s ease;
 }
 
 .hero-cap-card .cap-title {
-    font-size: 2.1rem;
-    letter-spacing: 0.5px;
-    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 1.35rem;
+    letter-spacing: -0.2px;
+    background: none;
+    -webkit-text-fill-color: initial;
+    text-fill-color: initial;
 }
 
 @media (hover: hover) {
@@ -1027,9 +1029,7 @@ section {
     }
 
     .hero-cap-card:hover .cap-title {
-        background: linear-gradient(180deg, #ffffff 0%, #4da3ff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #4da3ff;
     }
 }
 

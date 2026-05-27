@@ -596,36 +596,7 @@ export function initPortfolio() {
         });
     }
 
-    // ── DaVinci Resolve Timeline Timecode Animation ──
-    const tcElements = document.querySelectorAll('.xp-tc');
-    if (tcElements.length > 0) {
-        let frames = 2; // starting frame
-        let seconds = 39;
-        let minutes = 0;
-        let hours = 1;
-        
-        setInterval(() => {
-            frames++;
-            if (frames >= 24) {
-                frames = 0;
-                seconds++;
-            }
-            if (seconds >= 60) {
-                seconds = 0;
-                minutes++;
-            }
-            if (minutes >= 60) {
-                minutes = 0;
-                hours++;
-            }
-            
-            const pad = (num) => num.toString().padStart(2, '0');
-            const timeStr = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
-            tcElements.forEach(el => {
-                el.textContent = timeStr;
-            });
-        }, 1000 / 24); // 24 FPS
-    }
+
 
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
 

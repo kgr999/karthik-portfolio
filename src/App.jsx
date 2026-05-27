@@ -632,6 +632,36 @@ export default function App() {
     // DaVinci Timeline Scrubber controls
     const [dvrPlaying, setDvrPlaying] = useState(true);
     const [scrubberKey, setScrubberKey] = useState(0);
+    const [dvrTime, setDvrTime] = useState({ hours: 1, minutes: 0, seconds: 39, frames: 2 });
+
+    useEffect(() => {
+        if (!dvrPlaying) return;
+
+        const interval = setInterval(() => {
+            setDvrTime(prev => {
+                let nextFrames = prev.frames + 1;
+                let nextSeconds = prev.seconds;
+                let nextMinutes = prev.minutes;
+                let nextHours = prev.hours;
+
+                if (nextFrames >= 24) {
+                    nextFrames = 0;
+                    nextSeconds++;
+                }
+                if (nextSeconds >= 60) {
+                    nextSeconds = 0;
+                    nextMinutes++;
+                }
+                if (nextMinutes >= 60) {
+                    nextMinutes = 0;
+                    nextHours++;
+                }
+                return { hours: nextHours, minutes: nextMinutes, seconds: nextSeconds, frames: nextFrames };
+            });
+        }, 1000 / 24);
+
+        return () => clearInterval(interval);
+    }, [dvrPlaying]);
 
     // OS Initialization States
     const [isInitialized, setIsInitialized] = useState(false);
@@ -1090,8 +1120,8 @@ export default function App() {
                                         <span className="cap-label">PRIMARY SPECIALIZATION</span>
                                     </div>
                                     
-                                    <div className="cap-image-wrapper">
-                                        <div className="cap-color-image" style={{ background: '#FFFFFF' }}></div>
+                                    <div className="cap-image-wrapper has-image">
+                                        <img className="cap-color-image" src="assets/images/capdirector.png" alt="AI Creative Direction" style={{ width: '100%', height: 'auto', display: 'block' }} />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1117,8 +1147,8 @@ export default function App() {
                                         <span className="cap-label">IDEATION</span>
                                     </div>
 
-                                    <div className="cap-image-wrapper">
-                                        <div className="cap-color-image" style={{ background: '#0052FF' }}></div>
+                                    <div className="cap-image-wrapper has-image">
+                                        <img className="cap-color-image" src="assets/images/capstoryboarding.png" alt="Content Research & Styling" style={{ width: '100%', height: 'auto', display: 'block' }} />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1145,7 +1175,7 @@ export default function App() {
                                     </div>
 
                                     <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/contactsheet.png" alt="Character Building" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                        <img className="cap-color-image" src="assets/images/capcharbuilding.png" alt="Character Building" style={{ width: '100%', height: 'auto', display: 'block' }} />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1226,7 +1256,7 @@ export default function App() {
                                     </div>
 
                                     <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/6audio.png" alt="AI Audio & Narration Design" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                        <img className="cap-color-image" src="assets/images/capaudio.png" alt="AI Audio & Narration Design" style={{ width: '100%', height: 'auto', display: 'block' }} />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1253,7 +1283,7 @@ export default function App() {
                                     </div>
 
                                     <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/vidtimeline.avif" alt="Cinematic Video Editing" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                        <img className="cap-color-image" src="assets/images/capvideo.png" alt="Cinematic Video Editing" style={{ width: '100%', height: 'auto', display: 'block' }} />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -2544,7 +2574,9 @@ export default function App() {
                                         {/* DaVinci-style multi-track timeline (Desktop View) */}
                                         <div className="xp-window-timeline xp-dvr-timeline xp-timeline-desktop">
                                             <div className="xp-timeline-header" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                <span className="xp-tc">01:00:39:02</span>
+                                                <span className="xp-tc">
+                                                    {`${dvrTime.hours.toString().padStart(2, '0')}:${dvrTime.minutes.toString().padStart(2, '0')}:${dvrTime.seconds.toString().padStart(2, '0')}:${dvrTime.frames.toString().padStart(2, '0')}`}
+                                                </span>
 
                                                 {/* Perfectly Centered Compact Transport Controls */}
                                                 <div className="xp-timeline-transport" style={{
@@ -2559,6 +2591,7 @@ export default function App() {
                                                     <button
                                                         onClick={() => {
                                                             setScrubberKey(prev => prev + 1);
+                                                            setDvrTime({ hours: 1, minutes: 0, seconds: 0, frames: 0 });
                                                         }}
                                                         style={{
                                                             background: 'transparent',
@@ -2611,6 +2644,7 @@ export default function App() {
                                                     <button
                                                         onClick={() => {
                                                             setScrubberKey(prev => prev + 1);
+                                                            setDvrTime({ hours: 1, minutes: 1, seconds: 30, frames: 0 });
                                                         }}
                                                         style={{
                                                             background: 'transparent',
@@ -2663,7 +2697,9 @@ export default function App() {
                                         {/* DaVinci-style multi-track timeline (Mobile/Phone View) */}
                                         <div className="xp-window-timeline xp-dvr-timeline xp-timeline-mobile">
                                             <div className="xp-timeline-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 12px' }}>
-                                                <span className="xp-tc">01:00:39:02</span>
+                                                <span className="xp-tc">
+                                                    {`${dvrTime.hours.toString().padStart(2, '0')}:${dvrTime.minutes.toString().padStart(2, '0')}:${dvrTime.seconds.toString().padStart(2, '0')}:${dvrTime.frames.toString().padStart(2, '0')}`}
+                                                </span>
                                                 <div className="xp-dvr-tabs">
                                                     <span className="active" style={{ fontSize: '0.6rem', padding: '2px 6px' }}>Edit Mode</span>
                                                 </div>
@@ -2681,7 +2717,10 @@ export default function App() {
                                             }}>
                                                 {/* Return to Start (Rewind) */}
                                                 <button
-                                                    onClick={() => setScrubberKey(prev => prev + 1)}
+                                                    onClick={() => {
+                                                        setScrubberKey(prev => prev + 1);
+                                                        setDvrTime({ hours: 1, minutes: 0, seconds: 0, frames: 0 });
+                                                    }}
                                                     className="xp-mob-transport-btn"
                                                     aria-label="Return to Start"
                                                 >
@@ -2702,7 +2741,10 @@ export default function App() {
                                                 </button>
                                                 {/* Skip to End */}
                                                 <button
-                                                    onClick={() => setScrubberKey(prev => prev + 1)}
+                                                    onClick={() => {
+                                                        setScrubberKey(prev => prev + 1);
+                                                        setDvrTime({ hours: 1, minutes: 1, seconds: 30, frames: 0 });
+                                                    }}
                                                     className="xp-mob-transport-btn"
                                                     aria-label="Skip to End"
                                                 >
