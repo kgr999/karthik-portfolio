@@ -23,6 +23,24 @@ export function initPortfolio() {
     // 2. GSAP Animations Setup
     gsap.registerPlugin(ScrollTrigger);
 
+    // Hero Entrance Animations (Immediate, bypasses ScrollTrigger locks)
+    gsap.to('.hero-reveal-text', {
+        opacity: 1,
+        y: 0,
+        duration: 1.0,
+        stagger: 0.15,
+        ease: 'power3.out'
+    });
+
+    gsap.to('.hero-reveal-item', {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: 'expo.out',
+        delay: 0.3
+    });
+
     // Reveal Text Animation
     gsap.utils.toArray('.reveal-text').forEach((text) => {
         gsap.to(text, {

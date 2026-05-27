@@ -978,17 +978,17 @@ export default function App() {
                 {!isInitialized && (
                     <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
                         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                            <div className="hero-grid">
+                             <div className="hero-grid">
                                 <div className="hero-content">
-                                    <p className="hero-label reveal-text">Gen AI Creative Associate</p>
-                                    <h1 className="reveal-text">
+                                    <p className="hero-label hero-reveal-text">Gen AI Creative Associate</p>
+                                    <h1 className="hero-reveal-text">
                                         <span className="hero-word">Engineering</span><br />
                                         <span className="hero-word">Human</span> <span className="hero-word"><span>Attention.</span></span>
                                     </h1>
-                                    <p className="hero-sub reveal-text">
+                                    <p className="hero-sub hero-reveal-text">
                                         AI, directed with human intent.
                                     </p>
-                                    <div className="hero-cta reveal-item desktop-only-cta">
+                                    <div className="hero-cta hero-reveal-item desktop-only-cta">
                                         <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
                                             <span className="init-btn-glow"></span>
                                             <span className="init-btn-sweep"></span>
@@ -1001,7 +1001,7 @@ export default function App() {
                                 <div className="hero-avatar-wrapper">
                                     <ProfileCard videoSrc="/assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
                                 </div>
-                                <div className="hero-cta reveal-item mobile-only-cta">
+                                <div className="hero-cta hero-reveal-item mobile-only-cta">
                                     <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
                                         <span className="init-btn-glow"></span>
                                         <span className="init-btn-sweep"></span>
