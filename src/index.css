@@ -657,10 +657,10 @@ section {
 .visual-media {
     position: relative;
     width: 100%;
-    aspect-ratio: 21 / 9;
+    height: auto;
     border-radius: 16px;
     overflow: hidden;
-    background: #000;
+    background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     transition: border-color 0.5s ease, box-shadow 0.5s ease;
@@ -668,8 +668,8 @@ section {
 
 .visual-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
 }
 
 .visual-info {
@@ -728,7 +728,7 @@ section {
     padding: 140px 0;
     background: var(--bg);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .capabilities-grid-v2 {
@@ -743,11 +743,11 @@ section {
     background: rgba(255, 255, 255, 0.015);
     border: 1px solid rgba(255, 255, 255, 0.035);
     border-radius: 10px;
-    padding: 24px;
+    padding: 16px 16px 20px 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 200px;
+    min-height: 180px;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
@@ -762,7 +762,7 @@ section {
     height: 110px;
     border-radius: 6px;
     overflow: hidden;
-    margin-top: 12px;
+    margin-top: 0px;
     margin-bottom: 12px;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -800,7 +800,7 @@ section {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 6px;
     overflow: hidden;
-    margin-top: 12px;
+    margin-top: 0px;
     margin-bottom: 12px;
     position: relative;
 }
@@ -812,6 +812,83 @@ section {
     border-radius: 6px;
 }
 
+/* Floating Media Overlay Badges (Left Numbering & Right Diagonal Arrow) */
+.cap-media-badge-left {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(10, 10, 12, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    padding: 3px 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.cap-media-badge-left .cap-num {
+    font-family: monospace;
+    font-size: 0.68rem;
+    color: #4da3ff;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.cap-media-badge-left .cap-dot-indicator {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    display: inline-block;
+}
+
+.cap-card-v2:hover .cap-media-badge-left .cap-dot-indicator {
+    background: #4da3ff;
+}
+
+.cap-media-badge-right {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(10, 10, 12, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cap-media-badge-right .card-arrow-icon {
+    width: 11px;
+    height: 11px;
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 2.5;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s ease;
+    margin: 0;
+    opacity: 1;
+}
+
+.cap-card-v2:hover .cap-media-badge-right {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.cap-card-v2:hover .cap-media-badge-right .card-arrow-icon {
+    stroke: #000000;
+    transform: rotate(45deg) scale(1.1);
+}
+
 /* Natural Fit Image Wrapper (Card 04) */
 .cap-image-wrapper.natural-fit {
     width: 100%;
@@ -820,7 +897,7 @@ section {
     background: transparent;
     border-radius: 6px;
     overflow: hidden;
-    margin-top: 12px;
+    margin-top: 0px;
     margin-bottom: 12px;
     position: relative;
 }
@@ -995,12 +1072,21 @@ section {
         padding: 20px !important;
         min-height: 180px !important;
         position: sticky !important;
-        top: 80px !important;
         background: rgba(10, 10, 12, 0.96) !important;
         border: 1px solid rgba(255, 255, 255, 0.08) !important;
         box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.8) !important;
         border-radius: 12px !important;
     }
+    
+    /* Staggered Sticky Overlaps and Paint Stacks */
+    .cap-card-v2:nth-child(1) { top: 60px !important; z-index: 1; }
+    .cap-card-v2:nth-child(2) { top: 80px !important; z-index: 2; }
+    .cap-card-v2:nth-child(3) { top: 100px !important; z-index: 3; }
+    .cap-card-v2:nth-child(4) { top: 120px !important; z-index: 4; }
+    .cap-card-v2:nth-child(5) { top: 140px !important; z-index: 5; }
+    .cap-card-v2:nth-child(6) { top: 160px !important; z-index: 6; }
+    .cap-card-v2:nth-child(7) { top: 180px !important; z-index: 7; }
+
     .hero-cap-card {
         padding: 20px !important;
     }
