@@ -750,9 +750,11 @@ section {
     min-height: 280px;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
     overflow: hidden;
     grid-column: span 12;
+    --mx: 50%;
+    --my: 50%;
 }
 
 .cap-image-wrapper {
@@ -795,11 +797,15 @@ section {
     }
     
     .hero-cap-card {
-        grid-column: span 8;
+        grid-column: span 6;
         grid-row: span 1;
-        min-height: 380px;
+        min-height: 280px;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.03) 100%);
-        padding: 55px 50px;
+        padding: 45px 40px;
+    }
+    
+    .cap-card-v2:nth-child(2) {
+        grid-column: span 6;
     }
     
     .cap-card-v2:nth-child(6),
@@ -889,23 +895,10 @@ section {
 
 /* Focus Tags micro-reveal styles */
 .cap-focus-tags {
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(12px);
-    overflow: hidden;
+    opacity: 0.95;
     display: flex;
     flex-wrap: wrap;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    margin-top: 0;
-}
-
-@media (hover: hover) {
-    .cap-card-v2:hover .cap-focus-tags {
-        opacity: 1;
-        max-height: 80px;
-        transform: translateY(0);
-        margin-top: 20px;
-    }
+    margin-top: 20px;
 }
 
 .cap-focus-tag {
@@ -970,16 +963,14 @@ section {
     
     /* Reveal focus tags by default on mobile touch viewports */
     .cap-focus-tags {
-        opacity: 0.95 !important;
-        max-height: 120px !important;
-        transform: translateY(0) !important;
         margin-top: 16px !important;
     }
 }
 
 @media (hover: hover) {
     .cap-card-v2:hover::before {
-        background: linear-gradient(135deg, rgba(77, 163, 255, 0.3) 0%, rgba(255, 255, 255, 0.03) 100%);
+        background: radial-gradient(220px circle at var(--mx) var(--my), rgba(0, 240, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+        transition: none !important; /* Instant real-time mouse tracking */
     }
 
     .cap-card-v2:hover::after {

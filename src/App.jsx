@@ -825,7 +825,7 @@ export default function App() {
         setInitProgress(0);
 
         // Trigger cinematic power rise loading sound
-        playLoadSound();
+        // playLoadSound();
 
         let currentProgress = 0;
         const totalDuration = 2200; // Fast, clean, sleek 2.2 seconds loading
@@ -842,7 +842,7 @@ export default function App() {
                 setInitProgress(100);
 
                 // Trigger major 9th arpeggio resolution chime
-                playFinishSound();
+                // playFinishSound();
 
                 setTimeout(() => {
                     setIsInitialized(true);
@@ -945,7 +945,6 @@ export default function App() {
                         <a href="#" className="logo-text">KARTHIK G RAJ</a>
                     </div>
                     <div className="nav-links">
-                        <a href="#capabilities">Capabilities</a>
                         <a href="#self-visuals">Visuals</a>
                         <a href="#experience-journey">Experience</a>
                         <a href="#tech-stack">Skills</a>
@@ -965,7 +964,6 @@ export default function App() {
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
-                    <a href="#capabilities" className="mobile-menu-link">Capabilities</a>
                     <a href="#self-visuals" className="mobile-menu-link">Visuals</a>
                     <a href="#experience-journey" className="mobile-menu-link">Experience</a>
                     <a href="#tech-stack" className="mobile-menu-link">Skills</a>
@@ -1101,7 +1099,6 @@ export default function App() {
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Multimodal AI</span>
                                             <span className="cap-focus-tag">Cinematic Worldbuilding</span>
-                                            <span className="cap-focus-tag">Directing</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1128,18 +1125,44 @@ export default function App() {
                                         <h3 className="cap-title">Content Research & Styling</h3>
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Audience Insights</span>
-                                            <span className="cap-focus-tag">Virality Mapping</span>
                                             <span className="cap-focus-tag">Data Analytics</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* 3. Storyboarding & Pre-Visuals */}
+                                {/* 3. Character Building */}
                                 <div className="cap-card-v2">
                                     <div className="cap-card-header">
                                         <div className="cap-status-group">
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">03</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span className="cap-label">PIPELINE ENGINE</span>
+                                    </div>
+
+                                    <div className="cap-image-wrapper has-image">
+                                        <img className="cap-color-image" src="assets/images/contactsheet.png" alt="Character Building" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    </div>
+
+                                    <div className="cap-card-body">
+                                        <h3 className="cap-title">Character Building</h3>
+                                        <div className="cap-focus-tags">
+                                            <span className="cap-focus-tag">Multi-Shot Continuity</span>
+                                            <span className="cap-focus-tag">Asset Locking</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 4. Storyboarding & Pre-Visuals */}
+                                <div className="cap-card-v2">
+                                    <div className="cap-card-header">
+                                        <div className="cap-status-group">
+                                            <span className="cap-dot-indicator"></span>
+                                            <span className="cap-num">04</span>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
                                                 <line x1="7" y1="17" x2="17" y2="7"></line>
                                                 <polyline points="7 7 17 7 17 17"></polyline>
@@ -1156,36 +1179,7 @@ export default function App() {
                                         <h3 className="cap-title">Storyboarding & Pre-Visuals</h3>
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Sequenced Layouts</span>
-                                            <span className="cap-focus-tag">Midjourney Panels</span>
                                             <span className="cap-focus-tag">Shot Design</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* 4. Character Consistency & Continuity */}
-                                <div className="cap-card-v2">
-                                    <div className="cap-card-header">
-                                        <div className="cap-status-group">
-                                            <span className="cap-dot-indicator"></span>
-                                            <span className="cap-num">04</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="card-arrow-icon">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
-                                        </div>
-                                        <span className="cap-label">PIPELINE ENGINE</span>
-                                    </div>
-
-                                    <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/contactsheet.png" alt="Character Consistency & Continuity" style={{ width: '100%', height: 'auto', display: 'block' }} />
-                                    </div>
-
-                                    <div className="cap-card-body">
-                                        <h3 className="cap-title">Character Building</h3>
-                                        <div className="cap-focus-tags">
-                                            <span className="cap-focus-tag">Multi-Shot Continuity</span>
-                                            <span className="cap-focus-tag">ControlNet</span>
-                                            <span className="cap-focus-tag">Asset Locking</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1212,8 +1206,7 @@ export default function App() {
                                         <h3 className="cap-title">Visual Storytelling</h3>
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Composition</span>
-                                            <span className="cap-focus-tag">Dramatic Lighting</span>
-                                            <span className="cap-focus-tag">Visual Pacing</span>
+                                            <span className="cap-focus-tag">Dramatic lighting and pacing</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1240,7 +1233,6 @@ export default function App() {
                                         <h3 className="cap-title">AI Audio & Narration Design</h3>
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Voice Cloning</span>
-                                            <span className="cap-focus-tag">Spatial Audio Layout</span>
                                             <span className="cap-focus-tag">Sound FX Layer</span>
                                         </div>
                                     </div>
@@ -1269,7 +1261,6 @@ export default function App() {
                                         <div className="cap-focus-tags">
                                             <span className="cap-focus-tag">Pacing & Rhythm</span>
                                             <span className="cap-focus-tag">Narrative Flow</span>
-                                            <span className="cap-focus-tag">Color Grading</span>
                                         </div>
                                     </div>
                                 </div>

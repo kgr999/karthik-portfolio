@@ -311,6 +311,29 @@ export function initPortfolio() {
         });
     });
 
+    // 10.5. Luxury Microinteraction: 3D Tilt & Mouse-Tracking Glow on Capability Cards
+    document.querySelectorAll('.cap-card-v2').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Set CSS variables for holographic border gradient tracking
+            card.style.setProperty('--mx', `${x}px`);
+            card.style.setProperty('--my', `${y}px`);
+            
+            // 3D perspective tilt
+            const rotX = -((e.clientY - rect.top) / rect.height - 0.5) * 3;
+            const rotY = ((e.clientX - rect.left) / rect.width - 0.5) * 3;
+            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+            card.style.setProperty('--mx', '50%');
+            card.style.setProperty('--my', '50%');
+        });
+    });
 
     // 13. Collaborations Hover Brand-Glow Interaction
     document.querySelectorAll('.client-item[data-glow]').forEach(item => {
