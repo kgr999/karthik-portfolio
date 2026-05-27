@@ -734,20 +734,20 @@ section {
 .capabilities-grid-v2 {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 24px;
-    margin-top: 50px;
+    gap: 16px;
+    margin-top: 30px;
 }
 
 .cap-card-v2 {
     position: relative;
     background: rgba(255, 255, 255, 0.015);
     border: 1px solid rgba(255, 255, 255, 0.035);
-    border-radius: 12px;
-    padding: 45px 40px;
+    border-radius: 10px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 280px;
+    min-height: 200px;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
@@ -759,11 +759,11 @@ section {
 
 .cap-image-wrapper {
     width: 100%;
-    height: 140px;
-    border-radius: 8px;
+    height: 110px;
+    border-radius: 6px;
     overflow: hidden;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -779,15 +779,57 @@ section {
 }
 
 .cap-image-wrapper.has-image {
-    height: auto;
-    border: none;
-    background: transparent;
+    height: 110px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .cap-image-wrapper.has-image .cap-color-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Aspect 16:9 Image Wrapper (Cards 01, 02, 03, 05, 06, 07) */
+.cap-image-wrapper.aspect-16-9 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.cap-image-wrapper.aspect-16-9 .cap-color-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Natural Fit Image Wrapper (Card 04) */
+.cap-image-wrapper.natural-fit {
+    width: 100%;
+    height: auto;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.cap-image-wrapper.natural-fit .cap-color-image {
     height: auto;
     width: 100%;
-    border-radius: 8px;
+    display: block;
+    border-radius: 6px;
 }
 
 /* Grid layout proportions on large viewports */
@@ -799,9 +841,9 @@ section {
     .hero-cap-card {
         grid-column: span 6;
         grid-row: span 1;
-        min-height: 280px;
+        min-height: 200px;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.03) 100%);
-        padding: 45px 40px;
+        padding: 24px;
     }
     
     .cap-card-v2:nth-child(2) {
@@ -927,17 +969,17 @@ section {
 /* Tablet Capabilities Grid Optimization */
 @media (min-width: 768px) and (max-width: 991px) {
     .capabilities-grid-v2 {
-        gap: 20px !important;
+        gap: 16px !important;
     }
     .cap-card-v2 {
         grid-column: span 6 !important;
-        min-height: 250px !important;
-        padding: 30px 28px !important;
+        min-height: 200px !important;
+        padding: 24px !important;
     }
     .hero-cap-card {
         grid-column: span 12 !important;
-        min-height: 320px !important;
-        padding: 40px 36px !important;
+        min-height: 200px !important;
+        padding: 24px !important;
     }
 }
 
@@ -945,25 +987,25 @@ section {
 @media (max-width: 767px) {
     .cap-card-v2 {
         grid-column: span 12 !important;
-        padding: 26px 22px !important;
-        min-height: 220px !important;
+        padding: 20px !important;
+        min-height: 180px !important;
     }
     .hero-cap-card {
-        padding: 32px 26px !important;
+        padding: 20px !important;
     }
     .cap-title {
-        font-size: 1.3rem !important;
+        font-size: 1.15rem !important;
     }
     .hero-cap-card .cap-title {
-        font-size: 1.7rem !important;
+        font-size: 1.15rem !important;
     }
     .cap-desc {
-        font-size: 0.9rem !important;
+        font-size: 0.85rem !important;
     }
     
     /* Reveal focus tags by default on mobile touch viewports */
     .cap-focus-tags {
-        margin-top: 16px !important;
+        margin-top: 12px !important;
     }
 }
 

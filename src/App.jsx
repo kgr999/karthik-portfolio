@@ -1120,8 +1120,8 @@ export default function App() {
                                         <span className="cap-label">PRIMARY SPECIALIZATION</span>
                                     </div>
                                     
-                                    <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/capdirector.png" alt="AI Creative Direction" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    <div className="cap-image-wrapper aspect-16-9">
+                                        <img className="cap-color-image" src="assets/images/capdirector.png" alt="AI Creative Direction" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1147,8 +1147,8 @@ export default function App() {
                                         <span className="cap-label">IDEATION</span>
                                     </div>
 
-                                    <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/capstoryboarding.png" alt="Content Research & Styling" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    <div className="cap-image-wrapper aspect-16-9">
+                                        <img className="cap-color-image" src="assets/images/capstoryboarding.png" alt="Content Research & Styling" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1174,8 +1174,8 @@ export default function App() {
                                         <span className="cap-label">PIPELINE ENGINE</span>
                                     </div>
 
-                                    <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/capcharbuilding.png" alt="Character Building" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    <div className="cap-image-wrapper aspect-16-9">
+                                        <img className="cap-color-image" src="assets/images/capcharbuilding.png" alt="Character Building" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1201,8 +1201,8 @@ export default function App() {
                                         <span className="cap-label">PRE-PRODUCTION</span>
                                     </div>
 
-                                    <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/storyboarding.png" alt="Storyboarding & Pre-Visuals" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    <div className="cap-image-wrapper natural-fit">
+                                        <img className="cap-color-image" src="assets/images/storyboarding.png" alt="Storyboarding & Pre-Visuals" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1228,8 +1228,8 @@ export default function App() {
                                         <span className="cap-label">CREATIVE TECHNIQUE</span>
                                     </div>
 
-                                    <div className="cap-image-wrapper has-image">
-                                        <video className="cap-color-image" src="assets/videos/storyboardingoutput.mp4" loop muted playsInline autoPlay style={{ width: '100%', height: 'auto', display: 'block' }}></video>
+                                    <div className="cap-image-wrapper aspect-16-9">
+                                        <video className="cap-color-image" src="assets/videos/storyboardingoutput.mp4" loop muted playsInline autoPlay></video>
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1255,8 +1255,8 @@ export default function App() {
                                         <span className="cap-label">POST-PRODUCTION</span>
                                     </div>
 
-                                    <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/capaudio.png" alt="AI Audio & Narration Design" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    <div className="cap-image-wrapper aspect-16-9">
+                                        <img className="cap-color-image" src="assets/images/capaudio.png" alt="AI Audio & Narration Design" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1282,8 +1282,8 @@ export default function App() {
                                         <span className="cap-label">FINISHING</span>
                                     </div>
 
-                                    <div className="cap-image-wrapper has-image">
-                                        <img className="cap-color-image" src="assets/images/capvideo.png" alt="Cinematic Video Editing" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                    <div className="cap-image-wrapper aspect-16-9">
+                                        <img className="cap-color-image" src="assets/images/capvideo.png" alt="Cinematic Video Editing" />
                                     </div>
 
                                     <div className="cap-card-body">
