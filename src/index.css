@@ -7919,18 +7919,16 @@ nav.nav-standby .menu-toggle {
     }
 }
 
-/* 8. Make landing page strictly non-scrollable on mobile and adjust elements */
+/* 8. Make landing page naturally scrollable on mobile and adjust elements */
 @media (max-width: 768px) {
     #hero {
-        height: 100vh !important;
-        height: 100dvh !important;
+        height: auto !important;
+        min-height: 100vh !important;
         min-height: 100dvh !important;
-        max-height: 100dvh !important;
-        overflow-y: auto !important;
-        /* Safety overflow fallback for short devices */
+        max-height: none !important;
+        overflow: visible !important;
         padding-top: 50px !important;
-        /* Minimized for optimal screen height */
-        padding-bottom: 10px !important;
+        padding-bottom: 30px !important; /* Visual padding buffer below elements */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;

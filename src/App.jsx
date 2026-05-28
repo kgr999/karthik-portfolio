@@ -926,9 +926,14 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        // Prevent scroll until system is fully initialized
+        // Prevent scroll until system is fully initialized on desktop, but allow mobile scroll fallback
+        const isMobile = window.innerWidth <= 768;
         if (!isInitialized) {
-            document.body.style.overflow = 'hidden';
+            if (isMobile) {
+                document.body.style.overflow = 'auto';
+            } else {
+                document.body.style.overflow = 'hidden';
+            }
             if (window.lenis) {
                 window.lenis.stop();
             }
