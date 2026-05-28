@@ -1,10 +1,10 @@
 .avatar-card-outer {
     width: 100%;
-    max-width: 330px;
+    max-width: 290px;
     aspect-ratio: 9 / 16;
     transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
     will-change: transform;
-    margin: 0 auto;
+    margin: 0 4vw 0 auto;
     position: relative;
 }
 
@@ -219,13 +219,13 @@
    ═══════════════════════════════════════════════════ */
 @media (max-width: 1200px) {
     .avatar-card-outer {
-        max-width: 300px;
+        max-width: 260px;
     }
 }
 
 @media (max-width: 968px) {
     .avatar-card-outer {
-        max-width: 270px;
+        max-width: 230px;
     }
     .avatar-hud-top {
         top: 16px;

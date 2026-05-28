@@ -13,9 +13,9 @@ const mockVideos = [
 ];
 
 const mockPosters = [
-    { id: 1, title: "Montra e-SCV Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/montrascvposter.png" },
-    { id: 2, title: "Ampere Scooter Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/ampereposter.png" },
-    { id: 3, title: "Montra Electric Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/montraelectricposter.png" }
+    { id: 1, title: "Montra e-SCV Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/montrascvposter.webp" },
+    { id: 2, title: "Ampere Scooter Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/ampereposter.webp" },
+    { id: 3, title: "Montra Electric Poster", desc: "Hyperlocal campaign creative", bg: "#09090b", posterSrc: "/assets/images/montraelectricposter.webp" }
 ];
 
 const techStackCategories = [
@@ -894,6 +894,29 @@ export default function App() {
         }, stepTime);
     };
 
+    const handleSkipIntro = () => {
+        setIsInitialized(true);
+        setIsInitializing(false);
+        // Enable scroll
+        document.body.style.overflow = '';
+        if (window.lenis) {
+            window.lenis.start();
+            setTimeout(() => {
+                window.lenis.resize();
+            }, 150);
+        }
+        // Scroll to Creative Systems after boot-up completes
+        setTimeout(() => {
+            const capSection = document.getElementById('capabilities');
+            if (capSection) {
+                capSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            if (window.ScrollTrigger) {
+                window.ScrollTrigger.refresh();
+            }
+        }, 100);
+    };
+
     useEffect(() => {
         initPortfolio();
         const interval = setInterval(() => {
@@ -981,7 +1004,7 @@ export default function App() {
                         <a href="#contact">Contact</a>
                     </div>
                     <div className="nav-actions">
-                        <a href="#" className="resume-btn" download>Resume</a>
+                        <a href="/Karthik_G_Raj_Resume.pdf" className="resume-btn" target="_blank" rel="noopener noreferrer">Resume</a>
                         <button className="menu-toggle" aria-label="Toggle Menu">
                             <span></span>
                             <span></span>
@@ -1016,26 +1039,65 @@ export default function App() {
                                     <p className="hero-sub hero-reveal-text">
                                         AI, directed with human intent.
                                     </p>
-                                    <div className="hero-cta hero-reveal-item desktop-only-cta">
-                                        <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
-                                            <span className="init-btn-glow"></span>
-                                            <span className="init-btn-sweep"></span>
-                                            <span className="init-btn-loading-bar"></span>
-                                            <span className="init-btn-status-node"></span>
-                                            <span className="init-btn-text">ACCESS PORTFOLIO</span>
-                                        </button>
+                                    <div className="hero-cta hero-reveal-item desktop-only-cta" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '32px' }}>
+                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: 'max-content' }}>
+                                            <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
+                                                <span className="init-btn-glow"></span>
+                                                <span className="init-btn-sweep"></span>
+                                                <span className="init-btn-loading-bar"></span>
+                                                <span className="init-btn-status-node"></span>
+                                                <span className="init-btn-text">ACCESS PORTFOLIO</span>
+                                            </button>
+                                            <button 
+                                                onClick={handleSkipIntro}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: 'rgba(255, 255, 255, 0.45)',
+                                                    fontSize: '0.78rem',
+                                                    fontWeight: '600',
+                                                    letterSpacing: '1.2px',
+                                                    textTransform: 'uppercase',
+                                                    cursor: 'pointer',
+                                                    transition: 'color 0.2s, transform 0.2s',
+                                                    textDecoration: 'underline',
+                                                    textUnderlineOffset: '4px'
+                                                }}
+                                                onMouseEnter={(e) => { e.currentTarget.style.color = '#3B82F6'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                                                onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.45)'; e.currentTarget.style.transform = 'none'; }}
+                                            >
+                                                Skip Intro
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="hero-avatar-wrapper">
                                     <ProfileCard videoSrc="/assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
                                 </div>
-                                <div className="hero-cta hero-reveal-item mobile-only-cta">
+                                <div className="hero-cta hero-reveal-item mobile-only-cta" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' }}>
                                     <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
                                         <span className="init-btn-glow"></span>
                                         <span className="init-btn-sweep"></span>
                                         <span className="init-btn-loading-bar"></span>
                                         <span className="init-btn-status-node"></span>
                                         <span className="init-btn-text">ACCESS PORTFOLIO</span>
+                                    </button>
+                                    <button 
+                                        onClick={handleSkipIntro}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'rgba(255, 255, 255, 0.45)',
+                                            fontSize: '0.78rem',
+                                            fontWeight: '600',
+                                            letterSpacing: '1.2px',
+                                            textTransform: 'uppercase',
+                                            cursor: 'pointer',
+                                            textDecoration: 'underline',
+                                            textUnderlineOffset: '4px'
+                                        }}
+                                    >
+                                        Skip Intro
                                     </button>
                                 </div>
                             </div>
@@ -1114,7 +1176,7 @@ export default function App() {
                                             <span className="cap-dot-indicator pulse-blue"></span>
                                             <span className="cap-num">01</span>
                                         </div>
-                                        <img className="cap-color-image" src="assets/images/capdirector.png" alt="AI Creative Direction" />
+                                        <img className="cap-color-image" src="assets/images/capdirector.webp" alt="AI Creative Direction" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1134,7 +1196,7 @@ export default function App() {
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">02</span>
                                         </div>
-                                        <img className="cap-color-image" src="assets/images/capstoryboarding.png" alt="Content Research & Styling" />
+                                        <img className="cap-color-image" src="assets/images/capstoryboarding.webp" alt="Content Research & Styling" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1154,7 +1216,7 @@ export default function App() {
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">03</span>
                                         </div>
-                                        <img className="cap-color-image" src="assets/images/capcharbuilding.png" alt="Character Building" />
+                                        <img className="cap-color-image" src="assets/images/capcharbuilding.webp" alt="Character Building" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1174,7 +1236,7 @@ export default function App() {
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">04</span>
                                         </div>
-                                        <img className="cap-color-image" src="assets/images/storyboarding.png" alt="Storyboarding & Pre-Visuals" />
+                                        <img className="cap-color-image" src="assets/images/storyboarding.webp" alt="Storyboarding & Pre-Visuals" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1214,7 +1276,7 @@ export default function App() {
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">06</span>
                                         </div>
-                                        <img className="cap-color-image" src="assets/images/capaudio.png" alt="AI Audio & Narration Design" />
+                                        <img className="cap-color-image" src="assets/images/capaudio.webp" alt="AI Audio & Narration Design" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1234,7 +1296,7 @@ export default function App() {
                                             <span className="cap-dot-indicator"></span>
                                             <span className="cap-num">07</span>
                                         </div>
-                                        <img className="cap-color-image" src="assets/images/capvideo.png" alt="Cinematic Video Editing" />
+                                        <img className="cap-color-image" src="assets/images/capvideo.webp" alt="Cinematic Video Editing" />
                                     </div>
 
                                     <div className="cap-card-body">
@@ -1327,7 +1389,7 @@ export default function App() {
                                 <div className="prompting-card-wrapper">
                                     <div className="cinema-card" data-glow="#8B5CF6" style={{ width: '100%' }}>
                                         <div className="cinema-video-wrapper">
-                                            <img className="cinema-video" src="assets/images/midjouneycinematic.png" alt="Midjourney Cinematic Prompting" style={{ objectPosition: 'center' }} />
+                                            <img className="cinema-video" src="assets/images/midjouneycinematic.webp" alt="Midjourney Cinematic Prompting" style={{ objectPosition: 'center' }} />
                                             <div className="cinema-overlay">
                                                 <span className="cinema-badge">
                                                     <span className="badge-dot" style={{ background: '#8B5CF6', boxShadow: '0 0 8px #8B5CF6' }}></span>
@@ -1420,7 +1482,7 @@ export default function App() {
                                 <div className="visual-item reveal-item">
                                     {/* Top: Large Ultrawide Shot 1 */}
                                     <div className="visual-media" style={{ marginBottom: '24px' }}>
-                                        <img src="assets/images/n1.png" alt="Neural Frontiers - Shot 1" className="visual-image" />
+                                        <img src="assets/images/n1.webp" alt="Neural Frontiers - Shot 1" className="visual-image" />
                                     </div>
 
                                     {/* Bottom: Redesigned row with details on the left and n2.png smaller on the right */}
@@ -1452,7 +1514,7 @@ export default function App() {
                                             margin: 0,
                                             boxShadow: '0 20px 45px rgba(0, 0, 0, 0.5)'
                                         }}>
-                                            <img src="assets/images/n2.png" alt="Neural Frontiers - Shot 2" className="visual-image" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                            <img src="assets/images/n2.webp" alt="Neural Frontiers - Shot 2" className="visual-image" style={{ width: '100%', height: 'auto', display: 'block' }} />
                                         </div>
                                     </div>
                                 </div>
@@ -3103,12 +3165,12 @@ export default function App() {
                                             <h4>AI Essentials</h4>
                                         </div>
                                         <div className="cert-footer">
-                                            <a href="https://coursera.org/verify/professional-cert/FYMT0W2FGSDM" target="_blank"
+                                            <a href="https://coursera.org/verify/professional-cert/FYMT0W2FGSDM" target="_blank" rel="noopener noreferrer"
                                                 className="cert-btn">View Credential ↗</a>
                                         </div>
                                     </div>
                                     <div className="cert-bg-preview">
-                                        <img src="assets/images/cert-google.png" alt="Google Certificate Preview" />
+                                        <img src="assets/images/cert-google.webp" alt="Google Certificate Preview" />
                                     </div>
                                 </div>
 
@@ -3125,11 +3187,11 @@ export default function App() {
                                             <h4>AI Basics and Tools for Creativity</h4>
                                         </div>
                                         <div className="cert-footer">
-                                            <a href="https://coursera.org/verify/O0S4GJF3H4BS" target="_blank" className="cert-btn">View Credential ↗</a>
+                                            <a href="https://coursera.org/verify/O0S4GJF3H4BS" target="_blank" rel="noopener noreferrer" className="cert-btn">View Credential ↗</a>
                                         </div>
                                     </div>
                                     <div className="cert-bg-preview">
-                                        <img src="assets/images/cert-michigan.png" alt="U-Michigan Certificate Preview" />
+                                        <img src="assets/images/cert-michigan.webp" alt="U-Michigan Certificate Preview" />
                                     </div>
                                 </div>
                             </div>
