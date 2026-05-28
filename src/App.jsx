@@ -3004,7 +3004,16 @@ export default function App() {
                                                             <div className="tech-stack-tile-icon">
                                                                 {renderToolIcon(tool, 24)}
                                                             </div>
-                                                            <span className="category-skill-tile-name">{tool.name.toUpperCase()}</span>
+                                                            <span className="category-skill-tile-name">
+                                                                {tool.name === "Storyboarding" ? (
+                                                                    <>
+                                                                        <span className="hide-on-mobile">STORYBOARDING</span>
+                                                                        <span className="show-on-mobile">STORYBOARD</span>
+                                                                    </>
+                                                                ) : (
+                                                                    tool.name.toUpperCase()
+                                                                )}
+                                                            </span>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -3054,7 +3063,16 @@ export default function App() {
                                                             <div className="tech-stack-tile-icon">
                                                                 {renderToolIcon(tool, 24)}
                                                             </div>
-                                                            <span className="category-skill-tile-name">{tool.name.toUpperCase()}</span>
+                                                            <span className="category-skill-tile-name">
+                                                                {tool.name === "Storyboarding" ? (
+                                                                    <>
+                                                                        <span className="hide-on-mobile">STORYBOARDING</span>
+                                                                        <span className="show-on-mobile">STORYBOARD</span>
+                                                                    </>
+                                                                ) : (
+                                                                    tool.name.toUpperCase()
+                                                                )}
+                                                            </span>
                                                         </div>
                                                     ))}
                                                 </div>

@@ -7534,12 +7534,11 @@ nav.nav-standby .menu-toggle {
     .tech-stack-row.row-3 {
         max-width: 100% !important;
     }
-    /* Center the 3rd card (Level 07) in row-3 on mobile views for perfect 2-column layout symmetry */
+    /* Expand the 3rd card (Level 07) in row-3 fully horizontally on mobile views */
     .tech-stack-row.row-3 .tech-stack-card:nth-child(3) {
         grid-column: 1 / -1 !important;
-        justify-self: center !important;
         width: 100% !important;
-        max-width: calc(50% - 6px) !important;
+        max-width: 100% !important;
     }
     .tech-stack-card {
         height: auto !important;
@@ -7759,5 +7758,20 @@ nav.nav-standby .menu-toggle {
         flex-shrink: 1 !important;
     }
 }
+
+/* Visibility Utilities for Mobile Text Adjustments */
+.show-on-mobile {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+    .show-on-mobile {
+        display: inline !important;
+    }
+}
+
 
 
