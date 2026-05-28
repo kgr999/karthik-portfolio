@@ -7267,10 +7267,8 @@ nav.nav-standby .menu-toggle {
 
     .aero-hero-robot.stage-move,
     .aero-hero-robot.stage-idle {
-        left: calc(50% - 152px) !important;
-        /* Overlaps perfectly on the bottom-left curve of the ACCESS button */
-        bottom: 16px !important;
-        /* Overlaps on top, pointing exactly up at the pulsating status LED dot */
+        left: calc(50% - 138px) !important; /* Floats perfectly to the left of the scroll indicator */
+        bottom: 12px !important; /* Positions Aero in alignment with the text, pointing down/right */
         opacity: 0.95 !important;
         transform: scale(0.62) !important;
     }
@@ -7281,6 +7279,24 @@ nav.nav-standby .menu-toggle {
 
     .aero-hero-robot.stage-point-look .aero-arm-left {
         transform: rotate(0deg);
+    }
+
+    .scroll-hint-text {
+        animation: pulseText 2s infinite ease-in-out;
+    }
+
+    .scroll-hint-arrow {
+        animation: bounceIndicator 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseText {
+        0%, 100% { opacity: 0.55; }
+        50% { opacity: 1; }
+    }
+
+    @keyframes bounceIndicator {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(5px); }
     }
 }
 

@@ -931,14 +931,16 @@ export default function App() {
         if (!isInitialized) {
             if (isMobile) {
                 document.body.style.overflow = 'auto';
+                document.documentElement.style.overflow = 'auto';
             } else {
                 document.body.style.overflow = 'hidden';
             }
-            if (window.lenis) {
+            if (window.lenis && !isMobile) {
                 window.lenis.stop();
             }
         } else {
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
             if (window.lenis) {
                 window.lenis.start();
                 // Push recalculation to next render frame to allow height shifts to commit
@@ -948,6 +950,73 @@ export default function App() {
             }
         }
     }, [isInitialized]);
+
+    useEffect(() => {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) return;
+
+        let touchStartY = 0;
+
+        const handleTouchStart = (e) => {
+            if (e.touches && e.touches[0]) {
+                touchStartY = e.touches[0].clientY;
+            }
+        };
+
+        const handleTouchMove = (e) => {
+            if (e.touches && e.touches[0]) {
+                const currentY = e.touches[0].clientY;
+                const diffY = touchStartY - currentY; // positive means swipe up (scroll down)
+                if (!isInitialized && diffY > 15) {
+                    handleSkipIntro();
+                }
+            }
+        };
+
+        const handleWheel = (e) => {
+            if (e.deltaY > 5 && !isInitialized) {
+                handleSkipIntro();
+            }
+        };
+
+        const handleScroll = () => {
+            if (window.scrollY > 30 && !isInitialized && !isInitializing) {
+                handleSkipIntro();
+            } else if (window.scrollY < 15 && isInitialized) {
+                // User scrolled back to the very top, restore landing page states!
+                setIsInitialized(false);
+                setIsInitializing(false);
+                setRobotState('stage-spawn');
+                
+                // Restart Aero's futuristic introduction timeline
+                const t1 = setTimeout(() => setRobotState('stage-wave'), 500);
+                const t2 = setTimeout(() => setRobotState('stage-blink'), 2000);
+                const t3 = setTimeout(() => setRobotState('stage-point-look'), 3000);
+                const t4 = setTimeout(() => setRobotState('stage-point-look stage-move'), 3800);
+                const t5 = setTimeout(() => {
+                    setCloneStatus('active');
+                    setRobotState('stage-idle');
+                }, 5600);
+
+                window.aeroTimers = [t1, t2, t3, t4, t5];
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('touchstart', handleTouchStart, { passive: true });
+        window.addEventListener('touchmove', handleTouchMove, { passive: true });
+        window.addEventListener('wheel', handleWheel, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('touchstart', handleTouchStart);
+            window.removeEventListener('touchmove', handleTouchMove);
+            window.removeEventListener('wheel', handleWheel);
+            if (window.aeroTimers) {
+                window.aeroTimers.forEach(t => clearTimeout(t));
+            }
+        };
+    }, [isInitialized, isInitializing]);
 
     useEffect(() => {
         if (isInitialized) {
@@ -1030,9 +1099,18 @@ export default function App() {
             </div>
 
             <main className={isInitializing ? 'bg-grayscale' : ''}>
-                {/* 1. Hero Section — only shown before initialization */}
-                {!isInitialized && (
-                    <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
+                {(!isInitialized || window.innerWidth <= 768) && (
+                    <section 
+                        id="hero" 
+                        style={{ 
+                            position: 'relative', 
+                            overflow: window.innerWidth <= 768 ? 'visible' : 'hidden',
+                            opacity: window.innerWidth <= 768 && isInitialized ? 0 : 1,
+                            visibility: window.innerWidth <= 768 && isInitialized ? 'hidden' : 'visible',
+                            transition: 'opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s cubic-bezier(0.25, 1, 0.5, 1)',
+                            pointerEvents: window.innerWidth <= 768 && isInitialized ? 'none' : 'auto'
+                        }}
+                    >
                         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                              <div className="hero-grid">
                                 <div className="hero-content">
@@ -1079,36 +1157,50 @@ export default function App() {
                                 <div className="hero-avatar-wrapper">
                                     <ProfileCard videoSrc="/assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
                                 </div>
-                                <div className="hero-cta hero-reveal-item mobile-only-cta" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' }}>
-                                    <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
-                                        <span className="init-btn-glow"></span>
-                                        <span className="init-btn-sweep"></span>
-                                        <span className="init-btn-loading-bar"></span>
-                                        <span className="init-btn-status-node"></span>
-                                        <span className="init-btn-text">ACCESS PORTFOLIO</span>
-                                    </button>
-                                    <button 
-                                        onClick={handleSkipIntro}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: 'rgba(255, 255, 255, 0.45)',
-                                            fontSize: '0.78rem',
-                                            fontWeight: '600',
-                                            letterSpacing: '1.2px',
+                                <div className="hero-cta hero-reveal-item mobile-only-cta" style={{ 
+                                     display: 'flex', 
+                                     flexDirection: 'column', 
+                                     alignItems: 'center', 
+                                     gap: '8px', 
+                                     width: '100%', 
+                                     maxWidth: '280px', 
+                                     margin: '0 auto',
+                                     opacity: isInitialized ? 0 : 1,
+                                     visibility: isInitialized ? 'hidden' : 'visible',
+                                     transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
+                                 }}>
+                                    <div className="scroll-hint-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', marginTop: '10px' }}>
+                                        <span className="scroll-hint-text" style={{
+                                            fontSize: '0.72rem',
+                                            fontWeight: '700',
+                                            letterSpacing: '3px',
+                                            color: '#3b82f6',
                                             textTransform: 'uppercase',
-                                            cursor: 'pointer',
-                                            textDecoration: 'underline',
-                                            textUnderlineOffset: '4px'
-                                        }}
-                                    >
-                                        Skip Intro
-                                    </button>
+                                            opacity: 0.85
+                                        }}>
+                                            SCROLL TO ENTER
+                                        </span>
+                                        <div className="scroll-hint-arrow" style={{
+                                            width: '20px',
+                                            height: '20px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center'
+                                        }}>
+                                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+                                                <path d="M1 1L7 7L13 1" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Hero AI Assistant Robot Aero */}
-                            <div className={`aero-hero-robot ${robotState}`}>
+                            <div className={`aero-hero-robot ${robotState}`} style={{
+                                opacity: window.innerWidth <= 768 && isInitialized ? 0 : '',
+                                visibility: window.innerWidth <= 768 && isInitialized ? 'hidden' : '',
+                                transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
+                            }}>
                                 <div className="aero-body-wrapper">
                                     {/* Waving/Pointing Arm (Right Arm) */}
                                     <div className="aero-arm-right">
@@ -1165,7 +1257,7 @@ export default function App() {
                     </section>
                 )}
 
-                <div className={`portfolio-sections-wrapper ${isInitialized ? 'revealed' : 'veiled'}`}>
+                <div className={`portfolio-sections-wrapper ${isInitialized || window.innerWidth <= 768 ? 'revealed' : 'veiled'}`}>
                     {/* 4. Creative Capabilities */}
                     <section id="capabilities" className="capabilities-section">
                         <div className="container">
