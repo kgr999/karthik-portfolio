@@ -905,16 +905,25 @@ export default function App() {
                 window.lenis.resize();
             }, 150);
         }
-        // Scroll to Creative Systems after boot-up completes
-        setTimeout(() => {
-            const capSection = document.getElementById('capabilities');
-            if (capSection) {
-                capSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            if (window.ScrollTrigger) {
-                window.ScrollTrigger.refresh();
-            }
-        }, 100);
+        // Scroll to Creative Systems after boot-up completes (desktop/laptop only to avoid touch lag on mobile)
+        if (window.innerWidth > 768) {
+            setTimeout(() => {
+                const capSection = document.getElementById('capabilities');
+                if (capSection) {
+                    capSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                if (window.ScrollTrigger) {
+                    window.ScrollTrigger.refresh();
+                }
+            }, 100);
+        } else {
+            // Mobile only refresh after content renders
+            setTimeout(() => {
+                if (window.ScrollTrigger) {
+                    window.ScrollTrigger.refresh();
+                }
+            }, 200);
+        }
     };
 
     useEffect(() => {
@@ -1196,11 +1205,11 @@ export default function App() {
                             </div>
 
                             {/* Hero AI Assistant Robot Aero */}
-                            <div className={`aero-hero-robot ${robotState}`} style={{
-                                opacity: window.innerWidth <= 768 && isInitialized ? 0 : '',
-                                visibility: window.innerWidth <= 768 && isInitialized ? 'hidden' : '',
+                            <div className={`aero-hero-robot ${robotState}`} style={window.innerWidth <= 768 ? {
+                                opacity: isInitialized ? 0 : '',
+                                visibility: isInitialized ? 'hidden' : '',
                                 transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
-                            }}>
+                            } : {}}>
                                 <div className="aero-body-wrapper">
                                     {/* Waving/Pointing Arm (Right Arm) */}
                                     <div className="aero-arm-right">
