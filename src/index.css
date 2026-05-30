@@ -105,6 +105,33 @@
     /* Electric blue glow */
 }
 
+/* Accessibility: Skip to Main Content Link */
+.skip-to-content {
+    position: fixed;
+    top: -100px;
+    left: 20px;
+    background: #000;
+    color: #4DA3FF;
+    padding: 10px 20px;
+    z-index: 10000;
+    transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(77, 163, 255, 0.3);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(77, 163, 255, 0.15);
+}
+
+.skip-to-content:focus {
+    top: 20px;
+    outline: none;
+    border-color: #4DA3FF;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6940,7 +6967,8 @@ nav.nav-standby .menu-toggle {
     transform: translateY(0);
 }
 
-.aero-hero-robot.stage-wave .aero-arm-left {
+.aero-hero-robot.stage-wave .aero-arm-left,
+.aero-toast-robot.stage-wave .aero-arm-left {
     animation: aero-left-arm-wave 0.4s ease-in-out infinite;
 }
 
@@ -8036,5 +8064,112 @@ nav.nav-standby .menu-toggle {
 
     .show-on-mobile {
         display: inline !important;
+    }
+}
+
+/* Premium Resume Download Toast Alert Container with smooth enter/exit animations */
+.download-toast-container {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translate(-50%, 20px) scale(0.95);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.download-toast-container.toast-visible {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+}
+
+.download-toast {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    transform: none !important;
+    background: rgba(13, 13, 13, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(77, 163, 255, 0.35);
+    border-radius: 8px;
+    padding: 11px 20px;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 15px rgba(77, 163, 255, 0.15);
+    pointer-events: auto;
+}
+
+/* Waving/Floating Aero robot directly above the toast with dual arm excitement */
+.aero-toast-robot {
+    pointer-events: auto;
+    opacity: 1 !important;
+    transform: scale(0.8) !important;
+    margin-bottom: -15px; /* Offset spacing to overlay cleanly */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+/* Excited Radial Glow under Aero */
+.aero-toast-robot.stage-excited::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(77, 163, 255, 0.22) 0%, rgba(77, 163, 255, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+    animation: excited-glow-pulse 1.8s infinite alternate ease-in-out;
+}
+
+
+
+@keyframes excited-glow-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.85);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* Mobile responsive popup small and centered cleanly */
+@media (max-width: 768px) {
+    .download-toast-container {
+        bottom: 20px;
+        gap: 8px;
+    }
+    
+    .download-toast {
+        padding: 8px 14px !important;
+        font-size: 0.73rem !important;
+        border-radius: 6px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 12px rgba(77, 163, 255, 0.12) !important;
+    }
+    
+    .aero-toast-robot {
+        transform: scale(0.6) !important;
+        margin-bottom: -22px !important;
+    }
+    
+    .aero-toast-robot.stage-excited::before {
+        width: 100px;
+        height: 100px;
     }
 }

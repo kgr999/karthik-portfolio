@@ -1,3 +1,13 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+
+// Register plugin and expose globally for index.html or older scripts
+gsap.registerPlugin(ScrollTrigger);
+window.gsap = gsap;
+window.ScrollTrigger = ScrollTrigger;
+window.Lenis = Lenis;
+
 export function initPortfolio() {
     if (window.portfolioInitialized) {
         console.log("Portfolio logic already initialized");
@@ -21,7 +31,7 @@ export function initPortfolio() {
     requestAnimationFrame(raf);
 
     // 2. GSAP Animations Setup
-    gsap.registerPlugin(ScrollTrigger);
+    // ScrollTrigger is registered globally above
 
     // Hero Entrance Animations (Immediate, bypasses ScrollTrigger locks)
     gsap.to('.hero-reveal-text', {
@@ -70,6 +80,49 @@ export function initPortfolio() {
             ease: 'expo.out'
         });
     });
+
+    // 2.5. Premium Capabilities Cards Float Stagger
+    const capCardsV2 = gsap.utils.toArray('.cap-card-v2');
+    if (capCardsV2.length > 0) {
+        gsap.fromTo(capCardsV2, 
+            { opacity: 0, y: 80 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                stagger: 0.15,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '#capabilities',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+    }
+
+
+
+    // 3D Stagger Entrance for Tech Stack Cards
+    const techStackCards = gsap.utils.toArray('.tech-stack-card');
+    if (techStackCards.length > 0) {
+        gsap.fromTo(techStackCards,
+            { opacity: 0, scale: 0.93, rotationX: -15, transformPerspective: 1000 },
+            {
+                opacity: 1,
+                scale: 1,
+                rotationX: 0,
+                duration: 1.0,
+                stagger: 0.06,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '#tech-stack',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+    }
 
     // 3. Advanced Custom Cursor Logic
     const cursor = document.getElementById('cursor');
@@ -395,23 +448,64 @@ export function initPortfolio() {
 
     if (xpSection && xpWindows.length > 0) {
         
-        // Parallax and fade for individual windows
-        xpWindows.forEach((win) => {
-            gsap.fromTo(win, 
-                { opacity: 0, y: 50 },
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    duration: 0.8,
-                    ease: "power2.out",
+        // Alternating premium slide-in transitions for Experience windows (optimized for mobile viewport width)
+        const isMobileScreen = window.innerWidth < 768;
+        const offsetX = isMobileScreen ? 35 : 80;
+
+        const falWindow = document.querySelector('.xp-window-fal');
+        const davinciWindow = document.querySelector('.xp-window-davinci');
+        const lensWindow = document.querySelector('.xp-window-lens');
+
+        if (falWindow) {
+            gsap.fromTo(falWindow,
+                { opacity: 0, x: -offsetX },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
                     scrollTrigger: {
-                        trigger: win,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
+                        trigger: falWindow,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
                     }
                 }
             );
-        });
+        }
+
+        if (davinciWindow) {
+            gsap.fromTo(davinciWindow,
+                { opacity: 0, x: offsetX },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: davinciWindow,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        }
+
+        if (lensWindow) {
+            gsap.fromTo(lensWindow,
+                { opacity: 0, x: -offsetX },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: lensWindow,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        }
 
         // ── Ambient Particle System ──
         const pCanvas = document.getElementById('xp-particles');
