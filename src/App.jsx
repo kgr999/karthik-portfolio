@@ -964,40 +964,71 @@ export default function App() {
         const isMobile = window.innerWidth <= 768;
         if (!isMobile) return;
 
+        let isTransitioning = false; // Guard to prevent re-entrant calls during animation
+        let rafId = null;
         let touchStartY = 0;
 
-        const handleTouchStart = (e) => {
-            if (e.touches && e.touches[0]) {
-                touchStartY = e.touches[0].clientY;
-            }
-        };
+        const smoothScrollTo = (targetY, duration = 600) => {
+            const startY = window.scrollY;
+            const diff = targetY - startY;
+            if (Math.abs(diff) < 2) return;
+            const startTime = performance.now();
 
-        const handleTouchMove = (e) => {
-            if (e.touches && e.touches[0]) {
-                const currentY = e.touches[0].clientY;
-                const diffY = touchStartY - currentY; // positive means swipe up (scroll down)
-                if (!isInitialized && diffY > 15) {
-                    handleSkipIntro();
+            const step = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Smooth ease-out cubic
+                const ease = 1 - Math.pow(1 - progress, 3);
+                window.scrollTo(0, startY + diff * ease);
+                if (progress < 1) {
+                    requestAnimationFrame(step);
                 }
-            }
+            };
+            requestAnimationFrame(step);
         };
 
-        const handleWheel = (e) => {
-            if (e.deltaY > 5 && !isInitialized) {
-                handleSkipIntro();
-            }
+        const enterPortfolio = () => {
+            if (isTransitioning || isInitialized) return;
+            isTransitioning = true;
+
+            setIsInitialized(true);
+            setIsInitializing(false);
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+
+            // After React re-renders and the hero fades, smoothly scroll to capabilities
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    const capSection = document.getElementById('capabilities');
+                    if (capSection) {
+                        const targetY = capSection.offsetTop;
+                        smoothScrollTo(targetY, 700);
+                    }
+                    if (window.ScrollTrigger) {
+                        window.ScrollTrigger.refresh();
+                    }
+                    // Release the guard after the scroll animation completes
+                    setTimeout(() => { isTransitioning = false; }, 750);
+                }, 100);
+            });
         };
 
-        const handleScroll = () => {
-            if (window.scrollY > 30 && !isInitialized && !isInitializing) {
-                handleSkipIntro();
-            } else if (window.scrollY < 15 && isInitialized) {
-                // User scrolled back to the very top, restore landing page states!
+        const returnToLanding = () => {
+            if (isTransitioning || !isInitialized) return;
+            isTransitioning = true;
+
+            // Smooth scroll to top first, then restore state
+            smoothScrollTo(0, 500);
+
+            setTimeout(() => {
                 setIsInitialized(false);
                 setIsInitializing(false);
                 setRobotState('stage-spawn');
-                
+
                 // Restart Aero's futuristic introduction timeline
+                if (window.aeroTimers) {
+                    window.aeroTimers.forEach(t => clearTimeout(t));
+                }
                 const t1 = setTimeout(() => setRobotState('stage-wave'), 500);
                 const t2 = setTimeout(() => setRobotState('stage-blink'), 2000);
                 const t3 = setTimeout(() => setRobotState('stage-point-look'), 3000);
@@ -1006,9 +1037,49 @@ export default function App() {
                     setCloneStatus('active');
                     setRobotState('stage-idle');
                 }, 5600);
-
                 window.aeroTimers = [t1, t2, t3, t4, t5];
+
+                // Release the guard after landing page has fully restored
+                setTimeout(() => { isTransitioning = false; }, 600);
+            }, 550);
+        };
+
+        const handleTouchStart = (e) => {
+            if (e.touches && e.touches[0]) {
+                touchStartY = e.touches[0].clientY;
             }
+        };
+
+        const handleTouchMove = (e) => {
+            if (isTransitioning) return;
+            if (e.touches && e.touches[0]) {
+                const diffY = touchStartY - e.touches[0].clientY;
+                if (!isInitialized && diffY > 30) {
+                    enterPortfolio();
+                } else if (isInitialized && diffY < -40 && window.scrollY < 80) {
+                    returnToLanding();
+                }
+            }
+        };
+
+        const handleWheel = (e) => {
+            if (isTransitioning) return;
+            if (e.deltaY > 15 && !isInitialized) {
+                enterPortfolio();
+            } else if (e.deltaY < -15 && isInitialized && window.scrollY < 80) {
+                returnToLanding();
+            }
+        };
+
+        const handleScroll = () => {
+            if (isTransitioning) return;
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+                rafId = null;
+                if (!isInitialized && window.scrollY > 50) {
+                    enterPortfolio();
+                }
+            });
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -1021,6 +1092,7 @@ export default function App() {
             window.removeEventListener('touchstart', handleTouchStart);
             window.removeEventListener('touchmove', handleTouchMove);
             window.removeEventListener('wheel', handleWheel);
+            if (rafId) cancelAnimationFrame(rafId);
             if (window.aeroTimers) {
                 window.aeroTimers.forEach(t => clearTimeout(t));
             }
@@ -1087,7 +1159,7 @@ export default function App() {
                         <a href="#contact">Contact</a>
                     </div>
                     <div className="nav-actions">
-                        <a href="/Karthik_G_Raj_Resume.pdf" className="resume-btn" target="_blank" rel="noopener noreferrer">Resume</a>
+                        <a href="/KarthikGRaj_AI_Creative_Resume.pdf" className="resume-btn" target="_blank" rel="noopener noreferrer">Resume</a>
                         <button className="menu-toggle" aria-label="Toggle Menu">
                             <span></span>
                             <span></span>

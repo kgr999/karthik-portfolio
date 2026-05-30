@@ -7949,6 +7949,8 @@ nav.nav-standby .menu-toggle {
         align-items: center !important;
         justify-content: center !important;
         box-sizing: border-box !important;
+        will-change: opacity, visibility;
+        transform: translateZ(0); /* GPU compositing layer promotion */
     }
 
     #hero .container {
