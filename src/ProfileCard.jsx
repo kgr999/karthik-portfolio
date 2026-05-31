@@ -1,31 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './ProfileCard.css';
 
-export default function ProfileCard({ videoSrc, cloneStatus = 'active' }) {
-    const videoRef = useRef(null);
+export default function ProfileCard({ 
+    imgSrc = '/assets/images/karthik_avatar.webp',
+    cloneStatus = 'active'
+}) {
     const cardRef = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(true);
-
-    const togglePlay = () => {
-        if (!videoRef.current) return;
-        if (isPlaying) { 
-            videoRef.current.pause(); 
-        } else { 
-            videoRef.current.play(); 
-        }
-        setIsPlaying(!isPlaying);
-    };
-
-    const handleCardClick = (e) => {
-        if (!videoRef.current) return;
-        togglePlay();
-    };
 
     const handleMouseMove = (e) => {
         if (!cardRef.current) return;
         const rect = cardRef.current.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
+        
+        // Calculate relative coordinates for a subtle and elegant 3D parallax hover effect
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
         cardRef.current.style.transform = `perspective(800px) rotateY(${x}deg) rotateX(${y}deg)`;
     };
 
@@ -35,27 +23,33 @@ export default function ProfileCard({ videoSrc, cloneStatus = 'active' }) {
     };
 
     return (
-        <div className="avatar-card-outer" ref={cardRef}
-            onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-            <div className="avatar-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
-                {/* Holographic grid and scanline effect */}
-                <div className="avatar-hologram" />
+        <div 
+            className="avatar-card-outer" 
+            ref={cardRef}
+            onMouseMove={handleMouseMove} 
+            onMouseLeave={handleMouseLeave}
+        >
+            <div className="avatar-card">
+                {/* Elegant overlay gradient to ensure high text contrast and visual depth */}
+                <div className="avatar-overlay" />
                 
-                {/* HUD Framing Corner Brackets */}
-                <div className="avatar-corner avatar-corner-tl" />
-                <div className="avatar-corner avatar-corner-tr" />
-                <div className="avatar-corner avatar-corner-bl" />
-                <div className="avatar-corner avatar-corner-br" />
+                {/* Clean Profile Portrait */}
+                <img 
+                    className="avatar-image" 
+                    src={imgSrc} 
+                    alt="Karthik G Raj" 
+                />
 
-                <video ref={videoRef} className="avatar-video" src={videoSrc}
-                    autoPlay loop muted playsInline />
-
-                {/* Minimal HUD overlay */}
-                <div className="avatar-hud-top">
-                    <span className="avatar-status-dot status-loading" />
-                    <span className="avatar-status-text">
-                        LOADING AVATAR..
-                    </span>
+                {/* Minimalist & Premium Info Panel */}
+                <div className="avatar-info-panel">
+                    <h3 className="avatar-name">Karthik G Raj</h3>
+                    <p className="avatar-location">
+                        <svg className="location-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        bengaluru
+                    </p>
                 </div>
             </div>
         </div>

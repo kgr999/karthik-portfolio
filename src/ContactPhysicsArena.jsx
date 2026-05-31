@@ -58,6 +58,12 @@ export default function ContactPhysicsArena() {
     const dragOffset = useRef({ x: 0, y: 0 });
     const prevMousePos = useRef({ x: 0, y: 0, t: 0 });
 
+    // Interactive mouse tracking and automatic shooting system refs
+    const cursorPositionRef = useRef({ x: 0, y: 0 });
+    const isCursorInsideRef = useRef(false);
+    const shotProjectilesState = useRef([]);
+    const shootTimer = useRef(0);
+
     useEffect(() => {
         if (!arenaRef.current) return;
 
@@ -82,6 +88,34 @@ export default function ContactPhysicsArena() {
                     decay: 0.018 + Math.random() * 0.012
                 });
             }
+        };
+
+        const shootOpportunitiesBall = (startX, startY) => {
+            if (!heartsContainerRef.current) return;
+            
+            // Choose a random skills icon from the tool list
+            const tool = LOGO_BALLS_DATA[Math.floor(Math.random() * LOGO_BALLS_DATA.length)];
+            
+            const ballEl = document.createElement('div');
+            ballEl.className = 'physics-skills-projectile';
+            ballEl.style.setProperty('--projectile-glow', tool.color);
+            
+            const imgEl = document.createElement('img');
+            imgEl.src = tool.logo;
+            imgEl.className = `projectile-logo-img ${tool.name === 'ChatGPT' || tool.name === 'Fal AI' ? 'logo-invert' : ''}`;
+            imgEl.alt = tool.name;
+            
+            ballEl.appendChild(imgEl);
+            heartsContainerRef.current.appendChild(ballEl);
+
+            shotProjectilesState.current.push({
+                id: Math.random(),
+                el: ballEl,
+                startX: startX,
+                startY: startY,
+                progress: 0,
+                speed: 0.016 + Math.random() * 0.006 // Buttery-smooth trajectory flight
+            });
         };
 
         // 1. Initialize balls state with dynamic radius and coordinates
@@ -367,13 +401,21 @@ export default function ContactPhysicsArena() {
             }
 
             // ── B. UPDATE INDIVIDUAL BALLS & WALL REBOUNDS ──
+            const isLaptop = arenaW >= 768;
+
             balls.forEach(b => {
                 if (b.id === isDragging.current || b.id === aero.heldBallId) return; // Skip updating physics for item being dragged or held
 
-                // Apply a gentle floating microgravity drift (greatly reduced ambient float force per request)
-                const floatTime = Date.now() * 0.0004 + b.id * 1.5;
-                b.vx += Math.sin(floatTime) * 0.0012;
-                b.vy += Math.cos(floatTime * 0.8) * 0.0012 - 0.0002;
+                if (isLaptop) {
+                    // Laptop View: Apply constant downward gravity force so the balls fall to the bottom
+                    const gravity = 0.32;
+                    b.vy += gravity;
+                } else {
+                    // 📱 Mobile View: Apply gentle floating microgravity drift (floating and bouncing like before)
+                    const floatTime = Date.now() * 0.0004 + b.id * 1.5;
+                    b.vx += Math.sin(floatTime) * 0.0012;
+                    b.vy += Math.cos(floatTime * 0.8) * 0.0012 - 0.0002;
+                }
 
                 // Apply velocity
                 b.x += b.vx;
@@ -436,7 +478,14 @@ export default function ContactPhysicsArena() {
                     b.vy = -b.vy * elasticity;
                 } else if (b.y + b.radius > arenaH) {
                     b.y = arenaH - b.radius;
-                    b.vy = -b.vy * elasticity;
+                    if (isLaptop) {
+                        b.vy = -b.vy * 0.40; // Absorb vertical impact so it doesn't float
+                        b.vx *= 0.88;        // Apply floor rolling friction
+                        if (Math.abs(b.vy) < 0.28) b.vy = 0; // Stop micro-bouncing tremors
+                    } else {
+                        // 📱 Mobile View: Standard elastic bounce so they float forever!
+                        b.vy = -b.vy * elasticity;
+                    }
                 }
             });
 
@@ -498,166 +547,180 @@ export default function ContactPhysicsArena() {
                 }
             }
 
-            // ── D. AUTOMATED AERO ROBOT SUCTION, DELIVER & DODGE STATE MACHINE ──
-            if (!aero.state) aero.state = 'chase';
+            // ── D. INTERACTIVE AERO CURSOR TRACKING OR PLAYFUL MOBILE SUCTION STATE MACHINE ──
 
-            if (aero.state === 'chase') {
-                // Find or validate the current target ball
-                let targetBall = balls.find(b => b.id === aero.targetBallId && !b.hidden && b.id !== isDragging.current);
+            if (isLaptop && isCursorInsideRef.current) {
+                // Laptop View (with cursor active): Smooth mouse trailing & manual tap/shoot
+                const targetX = cursorPositionRef.current.x;
+                const targetY = cursorPositionRef.current.y + 85; 
 
-                // If no target ball is locked, or it became invalid, select a new random target!
-                if (!targetBall) {
-                    const activeBalls = balls.filter(b => !b.hidden && b.id !== isDragging.current);
-                    if (activeBalls.length > 0) {
-                        // Filter out recently picked balls to guarantee a diverse, randomized rotation!
-                        const recent = aero.recentlyPicked || [];
-                        const freshBalls = activeBalls.filter(b => !recent.includes(b.id));
-                        const candidates = freshBalls.length > 0 ? freshBalls : activeBalls;
-                        
-                        // Select one candidate completely at random!
-                        const selectedBall = candidates[Math.floor(Math.random() * candidates.length)];
-                        aero.targetBallId = selectedBall.id;
-                        targetBall = selectedBall;
-                    }
+                aero.vx = (targetX - aero.x) * 0.08;
+                aero.vy = (targetY - aero.y) * 0.08;
+                aero.state = 'chase';
+
+                // Automatically shoot opportunities replica skills balls at interval
+                shootTimer.current = (shootTimer.current || 0) + 1;
+                if (shootTimer.current % 120 === 0) {
+                    shootOpportunitiesBall(aero.x, aero.y - aero.radius);
                 }
+            } else if (!isLaptop) {
+                // 📱 MOBILE VIEW: Full Playful Automated Suction, Carry, and Emoji Throwing State Machine!
+                if (!aero.state) aero.state = 'chase';
 
-                if (targetBall && !aero.hoverActive) {
-                    // Steer the head suction cup directly under the ball
-                    const targetX = targetBall.x;
-                    const targetY = targetBall.y + targetBall.radius + aero.radius - 8;
+                if (aero.state === 'chase') {
+                    // Lock onto a random active ball
+                    let targetBall = balls.find(b => b.id === aero.targetBallId && !b.hidden && b.id !== isDragging.current);
 
-                    const dx = targetX - aero.x;
-                    const dy = targetY - aero.y;
-
-                    // Glide towards target coordinates
-                    aero.vx += dx * 0.0035;
-                    aero.vy += dy * 0.0035;
-
-                    // Check for suction capture zone
-                    const cupX = aero.x;
-                    const cupY = aero.y - aero.radius;
-                    const distToCup = Math.sqrt(Math.pow(targetBall.x - cupX, 2) + Math.pow(targetBall.y - cupY, 2));
-
-                    const isMobile = dimensions.current.width < 768;
-                    const captureThreshold = isMobile ? 34 : 46;
-                    if (distToCup < captureThreshold) {
-                        // Activate vacuum lock!
-                        aero.state = 'hold';
-                        aero.heldBallId = targetBall.id;
-                        aero.targetBallId = null; // Explicitly clear target on capture!
-                        aero.lastPickedId = targetBall.id; // Record as last picked!
-                        
-                        // Add to recently picked history list to prevent back-to-back repetitive cycles
-                        if (!aero.recentlyPicked) aero.recentlyPicked = [];
-                        aero.recentlyPicked.push(targetBall.id);
-                        if (aero.recentlyPicked.length > 2) {
-                            aero.recentlyPicked.shift();
+                    if (!targetBall) {
+                        const activeBalls = balls.filter(b => !b.hidden && b.id !== isDragging.current);
+                        if (activeBalls.length > 0) {
+                            const recent = aero.recentlyPicked || [];
+                            const freshBalls = activeBalls.filter(b => !recent.includes(b.id));
+                            const candidates = freshBalls.length > 0 ? freshBalls : activeBalls;
+                            
+                            const selectedBall = candidates[Math.floor(Math.random() * candidates.length)];
+                            aero.targetBallId = selectedBall.id;
+                            targetBall = selectedBall;
                         }
-                        
-                        aero.holdTimer = Date.now() + 1200; // 1.2s lock timer
-                        targetBall.vx = 0;
-                        targetBall.vy = 0;
-                        targetBall.scale = 1;
-                    }
-                } else if (!targetBall) {
-                    // No target ball available: wander slowly around center
-                    const targetX = arenaW * 0.5;
-                    const targetY = arenaH - 120;
-                    aero.vx += (targetX - aero.x) * 0.001;
-                    aero.vy += (targetY - aero.y) * 0.001;
-                }
-            } else if (aero.state === 'hold') {
-                // Lock held ball's position relative to Aero's top gravity cup
-                const heldBall = balls.find(b => b.id === aero.heldBallId);
-
-                // If user forces drag on held ball, interrupt suction immediately
-                if (!heldBall || heldBall.id === isDragging.current) {
-                    aero.state = 'dodge';
-                    aero.dodgeTimer = Date.now() + 2500;
-                    aero.heldBallId = null;
-                    aero.targetBallId = null; // Explicitly clear target on interruption!
-                } else {
-                    heldBall.x = aero.x;
-                    heldBall.y = aero.y - aero.radius - heldBall.radius + 4;
-                    heldBall.vx = aero.vx;
-                    heldBall.vy = aero.vy;
-
-                    // Dynamically animate the ball scaling down as if sucked in!
-                    const elapsed = Date.now() - (aero.holdTimer - 1200);
-                    if (elapsed > 900) {
-                        // Shrink in the final 300ms
-                        heldBall.scale = Math.max(0, 1 - (elapsed - 900) / 300);
-                    } else {
-                        heldBall.scale = 1;
                     }
 
-                    // Hover stabilization deceleration
-                    aero.vx *= 0.88;
-                    aero.vy *= 0.88;
+                    if (targetBall && !aero.hoverActive) {
+                        // Guide head directly underneath the target ball
+                        const targetX = targetBall.x;
+                        const targetY = targetBall.y + targetBall.radius + aero.radius - 8;
 
-                    // Check if holding timer has elapsed
-                    if (Date.now() >= aero.holdTimer) {
-                        // Determine emoji gift output based on tool category mapping
-                        let emoji = '🎁';
-                        if (heldBall.id === 2) emoji = '💬'; // ChatGPT -> Text msg
-                        else if (heldBall.id === 3) emoji = '🎵'; // HeyGen -> Music
-                        else if (heldBall.id === 5) emoji = '🎨'; // Fal AI -> Art
-                        else if (heldBall.id === 6) emoji = '📸'; // Kling -> Photo/Video
+                        const dx = targetX - aero.x;
+                        const dy = targetY - aero.y;
 
-                        // Consume/hide this ball and schedule a delayed respawn from top
-                        heldBall.hidden = true;
-                        heldBall.scale = 1;
-                        const respawnId = heldBall.id;
-                        setTimeout(() => {
-                            const b = ballsState.current.find(ball => ball.id === respawnId);
-                            if (b) {
-                                b.x = 100 + Math.random() * (dimensions.current.width - 200);
-                                b.y = dimensions.current.height + 35;
-                                b.vx = (Math.random() - 0.5) * 3;
-                                b.vy = -3 - Math.random() * 2;
-                                b.scale = 1;
-                                b.hidden = false;
+                        aero.vx += dx * 0.0035;
+                        aero.vy += dy * 0.0035;
+
+                        // Capture check
+                        const cupX = aero.x;
+                        const cupY = aero.y - aero.radius;
+                        const distToCup = Math.sqrt(Math.pow(targetBall.x - cupX, 2) + Math.pow(targetBall.y - cupY, 2));
+
+                        if (distToCup < 46) {
+                            aero.state = 'hold';
+                            aero.heldBallId = targetBall.id;
+                            aero.targetBallId = null;
+                            aero.lastPickedId = targetBall.id;
+                            
+                            if (!aero.recentlyPicked) aero.recentlyPicked = [];
+                            aero.recentlyPicked.push(targetBall.id);
+                            if (aero.recentlyPicked.length > 2) {
+                                aero.recentlyPicked.shift();
                             }
-                        }, 3500);
+                            
+                            aero.holdTimer = Date.now() + 1200;
+                            targetBall.vx = 0;
+                            targetBall.vy = 0;
+                            targetBall.scale = 1;
+                        }
+                    } else if (!targetBall) {
+                        // Ambient float
+                        const targetX = arenaW * 0.5;
+                        const targetY = arenaH - 120;
+                        aero.vx += (targetX - aero.x) * 0.001;
+                        aero.vy += (targetY - aero.y) * 0.001;
+                    }
+                } else if (aero.state === 'hold') {
+                    // Carry ball
+                    const heldBall = balls.find(b => b.id === aero.heldBallId);
 
-                        // Trigger floating gift emoji particle directly from where the ball was sucked in
-                        aero.giftActive = true;
-                        aero.giftEmoji = emoji;
-                        aero.giftStartX = aero.x;
-                        aero.giftStartY = aero.y - aero.radius - 18;
-                        aero.giftX = aero.giftStartX;
-                        aero.giftY = aero.giftStartY;
-                        aero.giftProgress = 0;
-                        aero.giftStep = 'fly';
-
-                        // Transition Aero immediately to recoil/dodge (surprised recoil)
+                    if (!heldBall || heldBall.id === isDragging.current) {
                         aero.state = 'dodge';
                         aero.dodgeTimer = Date.now() + 2500;
-                        aero.targetBallId = null;
                         aero.heldBallId = null;
+                        aero.targetBallId = null;
+                    } else {
+                        heldBall.x = aero.x;
+                        heldBall.y = aero.y - aero.radius - heldBall.radius + 4;
+                        heldBall.vx = aero.vx;
+                        heldBall.vy = aero.vy;
+
+                        // Animate suck-in scale down in the final 300ms
+                        const elapsed = Date.now() - (aero.holdTimer - 1200);
+                        if (elapsed > 900) {
+                            heldBall.scale = Math.max(0, 1 - (elapsed - 900) / 300);
+                        } else {
+                            heldBall.scale = 1;
+                        }
+
+                        aero.vx *= 0.88;
+                        aero.vy *= 0.88;
+
+                        if (Date.now() >= aero.holdTimer) {
+                            // Sucked in! Choose an emoji
+                            let emoji = '🎁';
+                            if (heldBall.id === 2) emoji = '💬'; 
+                            else if (heldBall.id === 3) emoji = '🎵'; 
+                            else if (heldBall.id === 5) emoji = '🎨'; 
+                            else if (heldBall.id === 6) emoji = '📸'; 
+
+                            heldBall.hidden = true;
+                            heldBall.scale = 1;
+                            const respawnId = heldBall.id;
+
+                            // Respawn ball from the bottom later (shoot upwards spectacularly)
+                            setTimeout(() => {
+                                const b = ballsState.current.find(ball => ball.id === respawnId);
+                                if (b) {
+                                    b.x = 100 + Math.random() * (dimensions.current.width - 200);
+                                    b.y = dimensions.current.height + 35;
+                                    b.vx = (Math.random() - 0.5) * 3;
+                                    b.vy = -8 - Math.random() * 4;
+                                    b.scale = 1;
+                                    b.hidden = false;
+                                }
+                            }, 3500);
+
+                            // Trigger floating gift emoji
+                            aero.giftActive = true;
+                            aero.giftEmoji = emoji;
+                            aero.giftStartX = aero.x;
+                            aero.giftStartY = aero.y - aero.radius - 18;
+                            aero.giftX = aero.giftStartX;
+                            aero.giftY = aero.giftStartY;
+                            aero.giftProgress = 0;
+                            aero.giftStep = 'fly';
+
+                            // Enter dodge/recoil
+                            aero.state = 'dodge';
+                            aero.dodgeTimer = Date.now() + 2500;
+                            aero.targetBallId = null;
+                            aero.heldBallId = null;
+                        }
+                    }
+                } else if (aero.state === 'dodge') {
+                    // Repel away from other active balls to create dynamic motion
+                    balls.forEach(b => {
+                        if (b.id === isDragging.current || b.hidden) return;
+                        const dx = aero.x - b.x;
+                        const dy = aero.y - b.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < 160) {
+                            const force = (160 - dist) / 160;
+                            aero.vx += (dx / (dist || 1)) * force * 0.95;
+                            aero.vy += (dy / (dist || 1)) * force * 0.95;
+                        }
+                    });
+
+                    if (Date.now() >= aero.dodgeTimer) {
+                        aero.state = 'chase';
+                        aero.targetBallId = null;
                     }
                 }
-            } else if (aero.state === 'dodge') {
-                // Evade active balls and stay away from Aera
-                balls.forEach(b => {
-                    if (b.id === isDragging.current || b.hidden) return;
-                    const dx = aero.x - b.x;
-                    const dy = aero.y - b.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+            } else {
+                // Laptop view (Mouse out): Hover statically on the anchor point
+                const floatTime = Date.now() * 0.0015;
+                const targetX = arenaW * 0.3;
+                const targetY = arenaH - 100 + Math.sin(floatTime) * 10;
 
-                    if (dist < 160) {
-                        const force = (160 - dist) / 160;
-                        aero.vx += (dx / (dist || 1)) * force * 0.95;
-                        aero.vy += (dy / (dist || 1)) * force * 0.95;
-                    }
-                });
-
-
-
-                if (Date.now() >= aero.dodgeTimer) {
-                    aero.state = 'chase';
-                    aero.targetBallId = null; // Guarantee selection of a fresh target!
-                }
+                aero.vx = (targetX - aero.x) * 0.06;
+                aero.vy = (targetY - aero.y) * 0.06;
+                aero.state = 'chase';
             }
 
             // Sync Aero DOM data-state attribute
@@ -692,18 +755,25 @@ export default function ContactPhysicsArena() {
                 aero.vy = -aero.vy * 0.5;
             }
 
-
-
             // ── E. COLLISION RESOLUTIONS (AERO & AERA COLLIDERS) ──
             balls.forEach(b => {
                 if (b.id === aero.heldBallId || b.hidden) return; // Skip if ball is held or consumed
 
-                // 1. Aero Bounces
                 const dx1 = b.x - aero.x;
                 const dy1 = b.y - aero.y;
                 const dist1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
-                const collisionDist1 = b.radius + aero.radius - 6;
 
+                // 1. Proximity repulsion: as Aero sweeps close, apply kinetic rolling force before actual collision!
+                const proximityRange = aero.radius + b.radius + 35;
+                if (dist1 < proximityRange && b.id !== isDragging.current) {
+                    const angle = Math.atan2(dy1, dx1);
+                    const force = (proximityRange - dist1) * 0.12;
+                    b.vx += Math.cos(angle) * force;
+                    b.vy += Math.sin(angle) * force - 0.15; // Gentle upward drift
+                }
+
+                // 2. Solid physical contact: launch resting balls into a high-energy interactive bounce!
+                const collisionDist1 = b.radius + aero.radius - 6;
                 if (dist1 < collisionDist1) {
                     const angle = Math.atan2(dy1, dx1);
                     
@@ -711,20 +781,19 @@ export default function ContactPhysicsArena() {
                         b.x = aero.x + Math.cos(angle) * (collisionDist1 + 2);
                         b.y = aero.y + Math.sin(angle) * (collisionDist1 + 2);
 
+                        // High-velocity dynamic popping speed (explosive up-pop!)
                         const speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
-                        const pushPower = Math.max(speed * 0.6, 7.5);
-                        b.vx = Math.cos(angle) * pushPower;
-                        b.vy = Math.sin(angle) * pushPower;
+                        const pushPower = Math.max(speed * 0.8, 12.0) + Math.random() * 4.0;
+                        b.vx = Math.cos(angle) * pushPower * 1.1;
+                        b.vy = Math.sin(angle) * pushPower - 7.5; // Always launch strongly upwards into the air!
 
-                        aero.vx -= Math.cos(angle) * 3.5;
-                        aero.vy -= Math.sin(angle) * 3.5;
+                        aero.vx -= Math.cos(angle) * 4.0;
+                        aero.vy -= Math.sin(angle) * 4.0;
 
                         setAeroWink(true);
                         setTimeout(() => setAeroWink(false), 800);
                     }
                 }
-
-
             });
 
             // ── F. UPDATE HEARTS & GIPH EMOJI TRAJECTORIES ──
@@ -783,6 +852,49 @@ export default function ContactPhysicsArena() {
                 }
             }
 
+            // ── G. UPDATE ACTIVE SHOT PROJECTILES ──
+            const projectiles = shotProjectilesState.current;
+            for (let i = projectiles.length - 1; i >= 0; i--) {
+                const p = projectiles[i];
+                p.progress += p.speed;
+                
+                if (p.progress >= 1) {
+                    const rects = contactElementsRects.current;
+                    
+                    // Trigger beautiful star splash on impact!
+                    spawnStars(5, rects.opportunities.x, rects.opportunities.y);
+                    
+                    // Make opportunities badge scale pop!
+                    const opportunitiesEl = document.querySelector('.status-badge');
+                    if (opportunitiesEl) {
+                        opportunitiesEl.style.transform = 'scale(1.12)';
+                        opportunitiesEl.style.transition = 'transform 0.08s ease';
+                        setTimeout(() => {
+                            opportunitiesEl.style.transform = '';
+                            opportunitiesEl.style.transition = 'transform 0.25s ease';
+                        }, 90);
+                    }
+                    
+                    if (p.el && p.el.parentNode) {
+                        p.el.parentNode.removeChild(p.el);
+                    }
+                    projectiles.splice(i, 1);
+                } else {
+                    const rects = contactElementsRects.current;
+                    const t = p.progress;
+                    const startX = p.startX;
+                    const startY = p.startY;
+                    const endX = rects.opportunities.x;
+                    const endY = rects.opportunities.y;
+                    
+                    const arcHeight = -120; // Beautiful parabolic arch
+                    const curX = startX + (endX - startX) * t;
+                    const curY = startY + (endY - startY) * t + Math.sin(t * Math.PI) * arcHeight;
+                    
+                    p.el.style.transform = `translate3d(${curX - 6}px, ${curY - 6}px, 0) scale(${1 - t * 0.3})`;
+                }
+            }
+
             // ── G. WRITE DIRECT TRANSLATE TRANSFORMS FOR MAXIMUM PERFORMANCE ──
             balls.forEach((b, idx) => {
                 const ballEl = ballsRef.current[idx];
@@ -811,11 +923,110 @@ export default function ContactPhysicsArena() {
             animationFrameId = requestAnimationFrame(updatePhysics);
         };
 
+        const handleArenaMouseMove = (e) => {
+            if (!arenaRef.current) return;
+            const rect = arenaRef.current.getBoundingClientRect();
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            const mouseX = clientX - rect.left;
+            const mouseY = clientY - rect.top;
+
+            cursorPositionRef.current = { x: mouseX, y: mouseY };
+            isCursorInsideRef.current = true;
+
+            if (isDragging.current !== null) {
+                const ball = ballsState.current.find(b => b.id === isDragging.current);
+                if (ball) {
+                    ball.x = Math.max(ball.radius, Math.min(dimensions.current.width - ball.radius, mouseX - dragOffset.current.x));
+                    ball.y = Math.max(ball.radius, Math.min(dimensions.current.height - ball.radius, mouseY - dragOffset.current.y));
+
+                    const now = Date.now();
+                    const dt = now - prevMousePos.current.t;
+                    if (dt > 10) {
+                        const dx = mouseX - prevMousePos.current.x;
+                        const dy = mouseY - prevMousePos.current.y;
+                        ball.vx = (dx / dt) * 16;
+                        ball.vy = (dy / dt) * 16;
+
+                        prevMousePos.current = {
+                            x: mouseX,
+                            y: mouseY,
+                            t: now
+                        };
+                    }
+                }
+            }
+        };
+
+        const handleArenaMouseLeave = () => {
+            isCursorInsideRef.current = false;
+        };
+
+        const handleArenaTouchMove = (e) => {
+            if (!arenaRef.current || e.touches.length === 0) return;
+            const rect = arenaRef.current.getBoundingClientRect();
+            const touchX = e.touches[0].clientX - rect.left;
+            const touchY = e.touches[0].clientY - rect.top;
+
+            cursorPositionRef.current = { x: touchX, y: touchY };
+            isCursorInsideRef.current = true;
+
+            if (isDragging.current !== null) {
+                const ball = ballsState.current.find(b => b.id === isDragging.current);
+                if (ball) {
+                    ball.x = Math.max(ball.radius, Math.min(dimensions.current.width - ball.radius, touchX - dragOffset.current.x));
+                    ball.y = Math.max(ball.radius, Math.min(dimensions.current.height - ball.radius, touchY - dragOffset.current.y));
+
+                    const now = Date.now();
+                    const dt = now - prevMousePos.current.t;
+                    if (dt > 10) {
+                        const dx = touchX - prevMousePos.current.x;
+                        const dy = touchY - prevMousePos.current.y;
+                        ball.vx = (dx / dt) * 16;
+                        ball.vy = (dy / dt) * 16;
+
+                        prevMousePos.current = {
+                            x: touchX,
+                            y: touchY,
+                            t: now
+                        };
+                    }
+                }
+            }
+        };
+
+        const handleWindowMouseUp = () => {
+            isDragging.current = null;
+        };
+
+        const contactSection = document.getElementById('contact') || arenaRef.current;
+        if (contactSection) {
+            contactSection.addEventListener('mousemove', handleArenaMouseMove);
+            contactSection.addEventListener('mouseleave', handleArenaMouseLeave);
+            contactSection.addEventListener('touchmove', handleArenaTouchMove);
+        }
+        window.addEventListener('mouseup', handleWindowMouseUp);
+        window.addEventListener('touchend', handleWindowMouseUp);
+
         animationFrameId = requestAnimationFrame(updatePhysics);
 
         return () => {
             window.removeEventListener('resize', updateDimensions);
             cancelAnimationFrame(animationFrameId);
+            const contactSection = document.getElementById('contact') || arenaRef.current;
+            if (contactSection) {
+                contactSection.removeEventListener('mousemove', handleArenaMouseMove);
+                contactSection.removeEventListener('mouseleave', handleArenaMouseLeave);
+                contactSection.removeEventListener('touchmove', handleArenaTouchMove);
+            }
+            window.removeEventListener('mouseup', handleWindowMouseUp);
+            window.removeEventListener('touchend', handleWindowMouseUp);
+            // Clean up projectile DOM elements
+            shotProjectilesState.current.forEach(p => {
+                if (p.el && p.el.parentNode) {
+                    p.el.parentNode.removeChild(p.el);
+                }
+            });
         };
     }, []);
 
@@ -845,35 +1056,40 @@ export default function ContactPhysicsArena() {
     };
 
     const handleMouseMove = (e) => {
-        if (isDragging.current === null) return;
-        
         const clientX = e.clientX || (e.touches && e.touches[0].clientX);
         const clientY = e.clientY || (e.touches && e.touches[0].clientY);
 
-        const arenaRect = arenaRef.current.getBoundingClientRect();
-        const mouseX = clientX - arenaRect.left;
-        const mouseY = clientY - arenaRect.top;
+        if (arenaRef.current) {
+            const arenaRect = arenaRef.current.getBoundingClientRect();
+            const mouseX = clientX - arenaRect.left;
+            const mouseY = clientY - arenaRect.top;
+            
+            cursorPositionRef.current = { x: mouseX, y: mouseY };
+            isCursorInsideRef.current = true;
 
-        const ball = ballsState.current.find(b => b.id === isDragging.current);
-        if (ball) {
-            // Update drag position
-            ball.x = Math.max(ball.radius, Math.min(dimensions.current.width - ball.radius, mouseX - dragOffset.current.x));
-            ball.y = Math.max(ball.radius, Math.min(dimensions.current.height - ball.radius, mouseY - dragOffset.current.y));
+            if (isDragging.current !== null) {
+                const ball = ballsState.current.find(b => b.id === isDragging.current);
+                if (ball) {
+                    // Update drag position
+                    ball.x = Math.max(ball.radius, Math.min(dimensions.current.width - ball.radius, mouseX - dragOffset.current.x));
+                    ball.y = Math.max(ball.radius, Math.min(dimensions.current.height - ball.radius, mouseY - dragOffset.current.y));
 
-            // Record trajectory speeds for release flick velocity
-            const now = Date.now();
-            const dt = now - prevMousePos.current.t;
-            if (dt > 10) {
-                const dx = mouseX - prevMousePos.current.x;
-                const dy = mouseY - prevMousePos.current.y;
-                ball.vx = (dx / dt) * 16;
-                ball.vy = (dy / dt) * 16;
+                    // Record trajectory speeds for release flick velocity
+                    const now = Date.now();
+                    const dt = now - prevMousePos.current.t;
+                    if (dt > 10) {
+                        const dx = mouseX - prevMousePos.current.x;
+                        const dy = mouseY - prevMousePos.current.y;
+                        ball.vx = (dx / dt) * 16;
+                        ball.vy = (dy / dt) * 16;
 
-                prevMousePos.current = {
-                    x: mouseX,
-                    y: mouseY,
-                    t: now
-                };
+                        prevMousePos.current = {
+                            x: mouseX,
+                            y: mouseY,
+                            t: now
+                        };
+                    }
+                }
             }
         }
     };
@@ -919,6 +1135,11 @@ export default function ContactPhysicsArena() {
                 data-state="chase"
                 onMouseEnter={handleAeroMouseEnter}
                 onMouseLeave={handleAeroMouseLeave}
+                onClick={() => {
+                    shootOpportunitiesBall(aeroState.current.x, aeroState.current.y - aeroState.current.radius);
+                    setAeroWink(true);
+                    setTimeout(() => setAeroWink(false), 600);
+                }}
             >
                 <div className="aero-body-wrapper" style={{ transform: 'none', animation: 'none' }}>
                     {/* Waving/Pointing Arm (Right Arm) */}

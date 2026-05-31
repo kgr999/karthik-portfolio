@@ -7,14 +7,13 @@ export default function HeroSection({
     isInitializing,
     robotState,
     cloneStatus,
-    handleInitialize,
-    handleSkipIntro
+    handleInitialize
 }) {
     return (
-        <section 
-            id="hero" 
-            style={{ 
-                position: 'relative', 
+        <section
+            id="hero"
+            style={{
+                position: 'relative',
                 overflow: isMobile ? 'visible' : 'hidden',
                 opacity: isMobile && isInitialized ? 0 : 1,
                 visibility: isMobile && isInitialized ? 'hidden' : 'visible',
@@ -23,17 +22,34 @@ export default function HeroSection({
             }}
         >
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                 <div className="hero-grid">
+                <div className="hero-grid">
                     <div className="hero-content">
                         <p className="hero-label hero-reveal-text">Gen AI Creative Associate</p>
                         <h1 className="hero-reveal-text">
                             <span className="hero-word">Engineering</span><br />
                             <span className="hero-word">Human</span> <span className="hero-word"><span>Attention.</span></span>
                         </h1>
-                        <p className="hero-sub hero-reveal-text">
-                            AI, directed with human intent.
-                        </p>
-                        <div className="hero-cta hero-reveal-item desktop-only-cta" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '32px' }}>
+                        {/* Glassmorphic About Me Dossier Panel */}
+                        <div className="hero-dossier-card hero-reveal-item" style={{ marginTop: '24px' }}>
+                            <p className="hero-sub" style={{ margin: 0, marginTop: 0, maxWidth: 'none', color: 'rgba(255, 255, 255, 0.95)', fontSize: 'clamp(1.25rem, 1.65vw, 1.45rem)', lineHeight: '1.45' }}>
+                                I use Generative AI to build high impact videos and content from cinematic brand campaigns to viral UGC
+                            </p>
+
+                            <div className="dossier-actions" style={{ marginTop: '16px' }}>
+                                <a
+                                    href="/KarthikGRaj_AI_Creative_Resume.pdf"
+                                    download="KarthikGRaj_AI_Creative_Resume.pdf"
+                                    className="dossier-resume-btn"
+                                >
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '6px' }}>
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                                    </svg>
+                                    DOWNLOAD RESUME
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className="hero-cta hero-reveal-item desktop-only-cta" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '24px' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: 'max-content' }}>
                                 <button className={`init-btn ${robotState === 'stage-idle' && !isInitializing && !isInitialized ? 'shimmering' : ''}`} onClick={handleInitialize}>
                                     <span className="init-btn-glow"></span>
@@ -42,44 +58,24 @@ export default function HeroSection({
                                     <span className="init-btn-status-node"></span>
                                     <span className="init-btn-text">ACCESS PORTFOLIO</span>
                                 </button>
-                                <button 
-                                    onClick={handleSkipIntro}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'rgba(255, 255, 255, 0.45)',
-                                        fontSize: '0.78rem',
-                                        fontWeight: '600',
-                                        letterSpacing: '1.2px',
-                                        textTransform: 'uppercase',
-                                        cursor: 'pointer',
-                                        transition: 'color 0.2s, transform 0.2s',
-                                        textDecoration: 'underline',
-                                        textUnderlineOffset: '4px'
-                                    }}
-                                    onMouseEnter={(e) => { e.currentTarget.style.color = '#3B82F6'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.45)'; e.currentTarget.style.transform = 'none'; }}
-                                >
-                                    Skip Intro
-                                </button>
                             </div>
                         </div>
                     </div>
                     <div className="hero-avatar-wrapper">
-                        <ProfileCard videoSrc="/assets/videos/0kar-avatar.mov" cloneStatus={cloneStatus} />
+                        <ProfileCard imgSrc="/assets/images/karthik_avatar.webp" cloneStatus={cloneStatus} />
                     </div>
-                    <div className="hero-cta hero-reveal-item mobile-only-cta" style={{ 
-                         display: 'flex', 
-                         flexDirection: 'column', 
-                         alignItems: 'center', 
-                         gap: '8px', 
-                         width: '100%', 
-                         maxWidth: '280px', 
-                         margin: '0 auto',
-                         opacity: isInitialized ? 0 : 1,
-                         visibility: isInitialized ? 'hidden' : 'visible',
-                         transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
-                     }}>
+                    <div className="hero-cta hero-reveal-item mobile-only-cta" style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '8px',
+                        width: '100%',
+                        maxWidth: '280px',
+                        margin: '0 auto',
+                        opacity: isInitialized ? 0 : 1,
+                        visibility: isInitialized ? 'hidden' : 'visible',
+                        transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
+                    }}>
                         <div className="scroll-hint-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', marginTop: '10px' }}>
                             <span className="scroll-hint-text" style={{
                                 fontSize: '0.72rem',
@@ -99,7 +95,7 @@ export default function HeroSection({
                                 justifyContent: 'center'
                             }}>
                                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
-                                    <path d="M1 1L7 7L13 1" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M1 1L7 7L13 1" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
                         </div>

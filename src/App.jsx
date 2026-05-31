@@ -9,6 +9,7 @@ const ContactPhysicsArena = lazy(() => import('./ContactPhysicsArena'));
 // Custom split components
 import HeroSection from './components/HeroSection';
 import CapabilitiesSection from './components/CapabilitiesSection';
+import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import PosterShowcase from './components/PosterShowcase';
 import ExperienceJourney from './components/ExperienceJourney';
@@ -78,7 +79,7 @@ const techStackCategories = [
             { name: "ElevenLabs", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
             { name: "VN", customBadge: "VN", color: "#ffffff", bg: "#000000", glow: "#ffffff", level: "92%" },
             { name: "Topaz", logo: "https://www.ai-stat.ru/icons/png/dark/topazlabs.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
-            { name: "DaVinci Resolve", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/DaVinci_Resolve_Studio.png/250px-DaVinci_Resolve_Studio.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail", glow: "#ff6f3c", level: "90%", learning: true }
+            { name: "DaVinci Resolve", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/DaVinci_Resolve_Studio.png/250px-DaVinci_Resolve_Studio.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail", glow: "#05FF99", level: "90%", learning: true }
         ]
     }
 ];
@@ -359,6 +360,7 @@ export default function App() {
 
     // OS Initialization States
     const [isInitialized, setIsInitialized] = useState(false);
+    const [swipeState, setSwipeState] = useState('idle'); // 'idle', 'swiping-up', 'swiping-down'
     const [isInitializing, setIsInitializing] = useState(false);
     const [initProgress, setInitProgress] = useState(0);
 
@@ -434,74 +436,43 @@ export default function App() {
     }, []);
 
     const handleInitialize = () => {
-        if (isInitializing || isInitialized) return;
-        setIsInitializing(true);
-        setInitProgress(0);
+        if (isInitialized || swipeState !== 'idle') return;
+        
+        // Trigger the Valorant swipe-up phase immediately
+        setSwipeState('swiping-up');
 
-        let currentProgress = 0;
-        const totalDuration = 2200; // Fast, clean, sleek 2.2 seconds loading
-        const stepTime = 30; // ms
-        const steps = totalDuration / stepTime;
-        const increment = 100 / steps;
-
-        const interval = setInterval(() => {
-            currentProgress += increment;
-            if (currentProgress >= 100) {
-                currentProgress = 100;
-                clearInterval(interval);
-
-                setInitProgress(100);
-
+        // At 500ms (when screen is completely covered), execute layout switch
+        setTimeout(() => {
+            setIsInitialized(true);
+            setIsInitializing(false);
+            setSwipeState('swiping-down');
+            
+            // Enable scroll and start Lenis
+            document.body.style.overflow = '';
+            if (window.lenis) {
+                window.lenis.start();
                 setTimeout(() => {
-                    setIsInitialized(true);
-                    setIsInitializing(false);
-                    // Scroll to Creative Systems after boot-up completes
-                    setTimeout(() => {
-                        const capSection = document.getElementById('capabilities');
-                        if (capSection) {
-                            capSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                        if (window.ScrollTrigger) {
-                            window.ScrollTrigger.refresh();
-                        }
-                    }, 400);
-                }, 800);
-            } else {
-                setInitProgress(Math.floor(currentProgress));
+                    window.lenis.resize();
+                }, 150);
             }
-        }, stepTime);
-    };
 
-    const handleSkipIntro = () => {
-        setIsInitialized(true);
-        setIsInitializing(false);
-        // Enable scroll
-        document.body.style.overflow = '';
-        if (window.lenis) {
-            window.lenis.start();
-            setTimeout(() => {
-                window.lenis.resize();
-            }, 150);
-        }
-        // Scroll to Creative Systems after boot-up completes
-        if (!isMobile) {
-            setTimeout(() => {
-                const capSection = document.getElementById('capabilities');
-                if (capSection) {
-                    capSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-                if (window.ScrollTrigger) {
-                    window.ScrollTrigger.refresh();
-                }
-            }, 100);
-        } else {
-            // Mobile only refresh after content renders
-            setTimeout(() => {
-                if (window.ScrollTrigger) {
-                    window.ScrollTrigger.refresh();
-                }
-            }, 200);
-        }
+            // Instantly position page to capabilities
+            const capSection = document.getElementById('capabilities');
+            if (capSection) {
+                capSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+            if (window.ScrollTrigger) {
+                window.ScrollTrigger.refresh();
+            }
+        }, 500);
+
+        // At 1050ms (when swipe panel slides off the top), reset state
+        setTimeout(() => {
+            setSwipeState('idle');
+            if (window.ScrollTrigger) {
+                window.ScrollTrigger.refresh();
+            }
+        }, 1050);
     };
 
     useEffect(() => {
@@ -701,13 +672,22 @@ export default function App() {
                 />
             </div>
 
-            <nav className={`${isInitialized ? '' : 'nav-standby'} ${isInitializing ? 'bg-grayscale' : ''}`}>
+            <nav 
+                className={`${isInitialized ? '' : 'nav-standby'} ${isInitializing ? 'bg-grayscale' : ''}`}
+                style={{
+                    opacity: isInitialized ? 1 : 0,
+                    visibility: isInitialized ? 'visible' : 'hidden',
+                    transform: isInitialized ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-20px)',
+                    transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s',
+                    pointerEvents: isInitialized ? 'auto' : 'none'
+                }}
+            >
                 <div className="nav-inner">
                     <div className="logo-wrapper">
                         <a href="#" className="logo-text">KARTHIK G RAJ</a>
                     </div>
                     <div className="nav-links">
-                        <a href="#self-visuals">Visuals</a>
+                        <a href="#featured-projects">Projects</a>
                         <a href="#experience-journey">Experience</a>
                         <a href="#tech-stack">Skills</a>
                         <a href="#contact">Contact</a>
@@ -733,7 +713,7 @@ export default function App() {
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
-                    <a href="#self-visuals" className="mobile-menu-link">Visuals</a>
+                    <a href="#featured-projects" className="mobile-menu-link">Projects</a>
                     <a href="#experience-journey" className="mobile-menu-link">Experience</a>
                     <a href="#tech-stack" className="mobile-menu-link">Skills</a>
                     <a href="#contact" className="mobile-menu-link">Contact</a>
@@ -749,12 +729,12 @@ export default function App() {
                         robotState={robotState}
                         cloneStatus={cloneStatus}
                         handleInitialize={handleInitialize}
-                        handleSkipIntro={handleSkipIntro}
                     />
                 )}
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
                     <CapabilitiesSection />
+                    <FeaturedProjects />
                     <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}
                         setMidjourneyExpanded={setMidjourneyExpanded}
@@ -966,34 +946,14 @@ export default function App() {
                 </div>
             </main>
 
-            {/* Immersive Cinematic Storytelling Neural Initializer Overlay */}
-            {isInitializing && (
-                <div className={`system-init-overlay ${initProgress === 100 ? 'fade-out' : ''}`}>
-                    <div className="init-grid"></div>
-                    <div className="init-hud-card">
-                        <div className="hud-body">
-                            {/* Counter-Rotating Concentric Scanner Ring Loader */}
-                            <div className="hud-scanner-section">
-                                <div className="hud-concentric-scanner">
-                                    <div className="hud-ring ring-1"></div>
-                                    <div className="hud-ring ring-2"></div>
-                                    <div className="hud-ring ring-3"></div>
-                                    <div className="hud-scanner-glow"></div>
-                                </div>
-                            </div>
-
-                            <div className="console-progress-section">
-                                <div className="progress-label">LOADING... {initProgress}%</div>
-                                <div className="progress-bar-track">
-                                    <div className="progress-bar-fill" style={{ width: `${initProgress}%` }}>
-                                        <div className="progress-bar-glow"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            {/* Valorant-Style Tactical Transition Overlay */}
+            <div className={`valorant-transition-overlay ${swipeState}`}>
+                <div className="valorant-swipe-panel secondary-panel"></div>
+                <div className="valorant-swipe-panel primary-panel"></div>
+                <div className="valorant-transition-logo">
+                    Loading...
                 </div>
-            )}
+            </div>
             
             {toastActive && (
                 <div className={`download-toast-container ${toastVisible ? 'toast-visible' : ''}`}>
