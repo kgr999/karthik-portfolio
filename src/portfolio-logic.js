@@ -17,12 +17,15 @@ export function initPortfolio() {
 
     // 1. Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
-        duration: 1.2,
+        duration: 1.4, // Heavier, more luxurious inertia scrolling (Apple-style)
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        touchMultiplier: 2
+        touchMultiplier: 1.8
     });
     window.lenis = lenis;
+
+    // Connect Lenis to GSAP ScrollTrigger for flawless scroll sync with zero micro-stutter
+    lenis.on('scroll', ScrollTrigger.update);
 
     function raf(time) {
         lenis.raf(time);
@@ -33,95 +36,137 @@ export function initPortfolio() {
     // 2. GSAP Animations Setup
     // ScrollTrigger is registered globally above
 
-    // Hero Entrance Animations (Immediate, bypasses ScrollTrigger locks)
-    gsap.to('.hero-reveal-text', {
-        opacity: 1,
-        y: 0,
-        duration: 1.0,
-        stagger: 0.15,
-        ease: 'power3.out'
-    });
-
-    gsap.to('.hero-reveal-item', {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        stagger: 0.1,
-        ease: 'expo.out',
-        delay: 0.3
-    });
-
-    // Reveal Text Animation
-    gsap.utils.toArray('.reveal-text').forEach((text) => {
-        gsap.to(text, {
-            scrollTrigger: {
-                trigger: text,
-                start: 'top 90%',
-                toggleActions: 'play none none none'
-            },
+    // Hero Entrance Animations (Apple Fluid Reveal)
+    gsap.fromTo('.hero-reveal-text', 
+        { opacity: 0, y: 40, filter: 'blur(4px)', scale: 0.98 },
+        {
             opacity: 1,
             y: 0,
+            filter: 'blur(0px)',
+            scale: 1,
             duration: 1.2,
+            stagger: 0.12,
             ease: 'power4.out'
-        });
-    });
+        }
+    );
 
-    // Reveal Items Animation
-    gsap.utils.toArray('.reveal-item').forEach((item) => {
-        gsap.to(item, {
-            scrollTrigger: {
-                trigger: item,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
+    gsap.fromTo('.hero-reveal-item', 
+        { opacity: 0, y: 30, filter: 'blur(3px)' },
+        {
             opacity: 1,
             y: 0,
-            duration: 1.5,
-            ease: 'expo.out'
-        });
+            filter: 'blur(0px)',
+            duration: 1.4,
+            stagger: 0.08,
+            ease: 'power3.out',
+            delay: 0.25
+        }
+    );
+
+    // Reveal Text Animation (Apple Scroll-Scrubbed Text Reveal)
+    gsap.utils.toArray('.reveal-text').forEach((text) => {
+        gsap.fromTo(text, 
+            { opacity: 0.15, y: 30, filter: 'brightness(0.5) blur(1px)' },
+            {
+                scrollTrigger: {
+                    trigger: text,
+                    start: 'top 92%',
+                    end: 'top 65%',
+                    scrub: 1
+                },
+                opacity: 1,
+                y: 0,
+                filter: 'brightness(1) blur(0px)',
+                ease: 'power2.out'
+            }
+        );
     });
 
-    // 2.5. Premium Capabilities Cards Float Stagger
+    // Reveal Items Animation (Apple Spatial Reveal)
+    gsap.utils.toArray('.reveal-item').forEach((item) => {
+        gsap.fromTo(item, 
+            { opacity: 0, y: 40, scale: 0.97, filter: 'blur(3px)' },
+            {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: 'blur(0px)',
+                duration: 1.5,
+                ease: 'power4.out'
+            }
+        );
+    });
+
+    // 2.5. Premium Capabilities Cards Float Stagger (Apple Spatial Reveal)
     const capCardsV2 = gsap.utils.toArray('.cap-card-v2');
     if (capCardsV2.length > 0) {
         gsap.fromTo(capCardsV2, 
-            { opacity: 0, y: 80 },
+            { opacity: 0, y: 50, scale: 0.96, filter: 'blur(3px)' },
             {
                 opacity: 1,
                 y: 0,
-                duration: 1.2,
-                stagger: 0.15,
-                ease: 'power3.out',
+                scale: 1,
+                filter: 'blur(0px)',
+                duration: 1.4,
+                stagger: 0.1,
+                ease: 'power4.out',
                 scrollTrigger: {
                     trigger: '#capabilities',
-                    start: 'top 80%',
+                    start: 'top 82%',
                     toggleActions: 'play none none none'
                 }
             }
         );
     }
 
-
-
-    // 3D Stagger Entrance for Tech Stack Cards
+    // 3D Stagger Entrance for Tech Stack Cards (Apple Refinement)
     const techStackCards = gsap.utils.toArray('.tech-stack-card');
     if (techStackCards.length > 0) {
         gsap.fromTo(techStackCards,
-            { opacity: 0, scale: 0.93, rotationX: -15, transformPerspective: 1000 },
+            { opacity: 0, scale: 0.94, rotationX: -18, filter: 'blur(2px)', transformPerspective: 1000 },
             {
                 opacity: 1,
                 scale: 1,
                 rotationX: 0,
-                duration: 1.0,
-                stagger: 0.06,
+                filter: 'blur(0px)',
+                duration: 1.2,
+                stagger: 0.05,
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: '#tech-stack',
-                    start: 'top 80%',
+                    start: 'top 82%',
                     toggleActions: 'play none none none'
                 }
             }
         );
+    }
+
+    // Apple-style Cinematic Cards Zoom Reveal
+    const cinemaCards = gsap.utils.toArray('.cinema-card');
+    if (cinemaCards.length > 0) {
+        cinemaCards.forEach((card) => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 50, scale: 1.04, filter: 'blur(4px)' },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    filter: 'blur(0px)',
+                    duration: 1.6,
+                    ease: 'power4.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
     }
 
     // 3. Advanced Custom Cursor Logic

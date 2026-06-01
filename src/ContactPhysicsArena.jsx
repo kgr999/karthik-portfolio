@@ -58,11 +58,9 @@ export default function ContactPhysicsArena() {
     const dragOffset = useRef({ x: 0, y: 0 });
     const prevMousePos = useRef({ x: 0, y: 0, t: 0 });
 
-    // Interactive mouse tracking and automatic shooting system refs
+    // Interactive mouse tracking refs
     const cursorPositionRef = useRef({ x: 0, y: 0 });
     const isCursorInsideRef = useRef(false);
-    const shotProjectilesState = useRef([]);
-    const shootTimer = useRef(0);
 
     useEffect(() => {
         if (!arenaRef.current) return;
@@ -90,33 +88,7 @@ export default function ContactPhysicsArena() {
             }
         };
 
-        const shootOpportunitiesBall = (startX, startY) => {
-            if (!heartsContainerRef.current) return;
-            
-            // Choose a random skills icon from the tool list
-            const tool = LOGO_BALLS_DATA[Math.floor(Math.random() * LOGO_BALLS_DATA.length)];
-            
-            const ballEl = document.createElement('div');
-            ballEl.className = 'physics-skills-projectile';
-            ballEl.style.setProperty('--projectile-glow', tool.color);
-            
-            const imgEl = document.createElement('img');
-            imgEl.src = tool.logo;
-            imgEl.className = `projectile-logo-img ${tool.name === 'ChatGPT' || tool.name === 'Fal AI' ? 'logo-invert' : ''}`;
-            imgEl.alt = tool.name;
-            
-            ballEl.appendChild(imgEl);
-            heartsContainerRef.current.appendChild(ballEl);
 
-            shotProjectilesState.current.push({
-                id: Math.random(),
-                el: ballEl,
-                startX: startX,
-                startY: startY,
-                progress: 0,
-                speed: 0.016 + Math.random() * 0.006 // Buttery-smooth trajectory flight
-            });
-        };
 
         // 1. Initialize balls state with dynamic radius and coordinates
         const initW = arenaRef.current ? arenaRef.current.getBoundingClientRect().width : 800;
@@ -550,19 +522,13 @@ export default function ContactPhysicsArena() {
             // ── D. INTERACTIVE AERO CURSOR TRACKING OR PLAYFUL MOBILE SUCTION STATE MACHINE ──
 
             if (isLaptop && isCursorInsideRef.current) {
-                // Laptop View (with cursor active): Smooth mouse trailing & manual tap/shoot
+                // Laptop View (with cursor active): Smooth mouse trailing
                 const targetX = cursorPositionRef.current.x;
                 const targetY = cursorPositionRef.current.y + 85; 
 
                 aero.vx = (targetX - aero.x) * 0.08;
                 aero.vy = (targetY - aero.y) * 0.08;
                 aero.state = 'chase';
-
-                // Automatically shoot opportunities replica skills balls at interval
-                shootTimer.current = (shootTimer.current || 0) + 1;
-                if (shootTimer.current % 120 === 0) {
-                    shootOpportunitiesBall(aero.x, aero.y - aero.radius);
-                }
             } else if (!isLaptop) {
                 // 📱 MOBILE VIEW: Full Playful Automated Suction, Carry, and Emoji Throwing State Machine!
                 if (!aero.state) aero.state = 'chase';
@@ -738,21 +704,24 @@ export default function ContactPhysicsArena() {
             aero.x += aero.vx;
             aero.y += aero.vy;
 
-            // Restrict Aero inside borders
-            if (aero.x - aero.radius < 20) {
-                aero.x = aero.radius + 20;
-                aero.vx = -aero.vx * 0.5;
-            } else if (aero.x + aero.radius > arenaW - 20) {
-                aero.x = arenaW - aero.radius - 20;
-                aero.vx = -aero.vx * 0.5;
+
+
+            // Restrict Aero inside borders (seamlessly let him slide to the very edges without jittery rebounds!)
+            const edgeThreshold = 5;
+            if (aero.x - aero.radius < edgeThreshold) {
+                aero.x = aero.radius + edgeThreshold;
+                aero.vx = 0;
+            } else if (aero.x + aero.radius > arenaW - edgeThreshold) {
+                aero.x = arenaW - aero.radius - edgeThreshold;
+                aero.vx = 0;
             }
 
-            if (aero.y - aero.radius < 20) {
-                aero.y = aero.radius + 20;
-                aero.vy = -aero.vy * 0.5;
-            } else if (aero.y + aero.radius > arenaH - 20) {
-                aero.y = arenaH - aero.radius - 20;
-                aero.vy = -aero.vy * 0.5;
+            if (aero.y - aero.radius < edgeThreshold) {
+                aero.y = aero.radius + edgeThreshold;
+                aero.vy = 0;
+            } else if (aero.y + aero.radius > arenaH - edgeThreshold) {
+                aero.y = arenaH - aero.radius - edgeThreshold;
+                aero.vy = 0;
             }
 
             // ── E. COLLISION RESOLUTIONS (AERO & AERA COLLIDERS) ──
@@ -787,8 +756,7 @@ export default function ContactPhysicsArena() {
                         b.vx = Math.cos(angle) * pushPower * 1.1;
                         b.vy = Math.sin(angle) * pushPower - 7.5; // Always launch strongly upwards into the air!
 
-                        aero.vx -= Math.cos(angle) * 4.0;
-                        aero.vy -= Math.sin(angle) * 4.0;
+                        // No dynamic recoil on Aero so he continues to track the cursor seamlessly without getting blocked or knocked back by balls!
 
                         setAeroWink(true);
                         setTimeout(() => setAeroWink(false), 800);
@@ -852,48 +820,7 @@ export default function ContactPhysicsArena() {
                 }
             }
 
-            // ── G. UPDATE ACTIVE SHOT PROJECTILES ──
-            const projectiles = shotProjectilesState.current;
-            for (let i = projectiles.length - 1; i >= 0; i--) {
-                const p = projectiles[i];
-                p.progress += p.speed;
-                
-                if (p.progress >= 1) {
-                    const rects = contactElementsRects.current;
-                    
-                    // Trigger beautiful star splash on impact!
-                    spawnStars(5, rects.opportunities.x, rects.opportunities.y);
-                    
-                    // Make opportunities badge scale pop!
-                    const opportunitiesEl = document.querySelector('.status-badge');
-                    if (opportunitiesEl) {
-                        opportunitiesEl.style.transform = 'scale(1.12)';
-                        opportunitiesEl.style.transition = 'transform 0.08s ease';
-                        setTimeout(() => {
-                            opportunitiesEl.style.transform = '';
-                            opportunitiesEl.style.transition = 'transform 0.25s ease';
-                        }, 90);
-                    }
-                    
-                    if (p.el && p.el.parentNode) {
-                        p.el.parentNode.removeChild(p.el);
-                    }
-                    projectiles.splice(i, 1);
-                } else {
-                    const rects = contactElementsRects.current;
-                    const t = p.progress;
-                    const startX = p.startX;
-                    const startY = p.startY;
-                    const endX = rects.opportunities.x;
-                    const endY = rects.opportunities.y;
-                    
-                    const arcHeight = -120; // Beautiful parabolic arch
-                    const curX = startX + (endX - startX) * t;
-                    const curY = startY + (endY - startY) * t + Math.sin(t * Math.PI) * arcHeight;
-                    
-                    p.el.style.transform = `translate3d(${curX - 6}px, ${curY - 6}px, 0) scale(${1 - t * 0.3})`;
-                }
-            }
+
 
             // ── G. WRITE DIRECT TRANSLATE TRANSFORMS FOR MAXIMUM PERFORMANCE ──
             balls.forEach((b, idx) => {
@@ -928,6 +855,19 @@ export default function ContactPhysicsArena() {
             const rect = arenaRef.current.getBoundingClientRect();
             const clientX = e.clientX || (e.touches && e.touches[0].clientX);
             const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+            // To ensure Aero doesn't drift outside the canvas bounds if user moves cursor off the contact section
+            const padding = 100;
+            if (
+                clientY < rect.top - padding || 
+                clientY > rect.bottom + padding || 
+                clientX < rect.left - padding || 
+                clientX > rect.right + padding
+            ) {
+                isCursorInsideRef.current = false;
+                return;
+            }
+
             const mouseX = clientX - rect.left;
             const mouseY = clientY - rect.top;
 
@@ -965,8 +905,23 @@ export default function ContactPhysicsArena() {
         const handleArenaTouchMove = (e) => {
             if (!arenaRef.current || e.touches.length === 0) return;
             const rect = arenaRef.current.getBoundingClientRect();
-            const touchX = e.touches[0].clientX - rect.left;
-            const touchY = e.touches[0].clientY - rect.top;
+            const clientX = e.touches[0].clientX;
+            const clientY = e.touches[0].clientY;
+
+            // To ensure Aero doesn't drift outside the canvas bounds if user moves cursor off the contact section
+            const padding = 100;
+            if (
+                clientY < rect.top - padding || 
+                clientY > rect.bottom + padding || 
+                clientX < rect.left - padding || 
+                clientX > rect.right + padding
+            ) {
+                isCursorInsideRef.current = false;
+                return;
+            }
+
+            const touchX = clientX - rect.left;
+            const touchY = clientY - rect.top;
 
             cursorPositionRef.current = { x: touchX, y: touchY };
             isCursorInsideRef.current = true;
@@ -1001,10 +956,10 @@ export default function ContactPhysicsArena() {
 
         const contactSection = document.getElementById('contact') || arenaRef.current;
         if (contactSection) {
-            contactSection.addEventListener('mousemove', handleArenaMouseMove);
             contactSection.addEventListener('mouseleave', handleArenaMouseLeave);
-            contactSection.addEventListener('touchmove', handleArenaTouchMove);
         }
+        window.addEventListener('mousemove', handleArenaMouseMove);
+        window.addEventListener('touchmove', handleArenaTouchMove);
         window.addEventListener('mouseup', handleWindowMouseUp);
         window.addEventListener('touchend', handleWindowMouseUp);
 
@@ -1015,18 +970,12 @@ export default function ContactPhysicsArena() {
             cancelAnimationFrame(animationFrameId);
             const contactSection = document.getElementById('contact') || arenaRef.current;
             if (contactSection) {
-                contactSection.removeEventListener('mousemove', handleArenaMouseMove);
                 contactSection.removeEventListener('mouseleave', handleArenaMouseLeave);
-                contactSection.removeEventListener('touchmove', handleArenaTouchMove);
             }
+            window.removeEventListener('mousemove', handleArenaMouseMove);
+            window.removeEventListener('touchmove', handleArenaTouchMove);
             window.removeEventListener('mouseup', handleWindowMouseUp);
             window.removeEventListener('touchend', handleWindowMouseUp);
-            // Clean up projectile DOM elements
-            shotProjectilesState.current.forEach(p => {
-                if (p.el && p.el.parentNode) {
-                    p.el.parentNode.removeChild(p.el);
-                }
-            });
         };
     }, []);
 
@@ -1099,6 +1048,21 @@ export default function ContactPhysicsArena() {
         isDragging.current = null;
     };
 
+    // Arena-wide global click handler to trigger winking
+    const handleArenaClick = (e) => {
+        if (
+            e.target.closest('a') || 
+            e.target.closest('button') || 
+            e.target.closest('.physics-logo-ball') ||
+            isDragging.current !== null
+        ) {
+            return;
+        }
+
+        setAeroWink(true);
+        setTimeout(() => setAeroWink(false), 600);
+    };
+
     // Aero mouse over effect (Cute recoil pop!)
     const handleAeroMouseEnter = () => {
         aeroState.current.hoverActive = true;
@@ -1121,6 +1085,7 @@ export default function ContactPhysicsArena() {
             onMouseUp={handleMouseUp}
             onTouchEnd={handleMouseUp}
             onMouseLeave={handleMouseUp}
+            onClick={handleArenaClick}
         >
             {/* Hearts Particle Overlay */}
             <div className="hearts-container" ref={heartsContainerRef}></div>
@@ -1133,13 +1098,6 @@ export default function ContactPhysicsArena() {
                 className={`aero-contact-robot ${aeroWink ? 'contact-wink-active' : ''}`} 
                 ref={aeroRef}
                 data-state="chase"
-                onMouseEnter={handleAeroMouseEnter}
-                onMouseLeave={handleAeroMouseLeave}
-                onClick={() => {
-                    shootOpportunitiesBall(aeroState.current.x, aeroState.current.y - aeroState.current.radius);
-                    setAeroWink(true);
-                    setTimeout(() => setAeroWink(false), 600);
-                }}
             >
                 <div className="aero-body-wrapper" style={{ transform: 'none', animation: 'none' }}>
                     {/* Waving/Pointing Arm (Right Arm) */}

@@ -653,6 +653,8 @@ export default function App() {
         };
     }, [isInitialized, isMobile]);
 
+
+
     return (
         <>
             <div className={isInitializing ? 'bg-grayscale' : ''} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
@@ -677,8 +679,8 @@ export default function App() {
                 style={{
                     opacity: isInitialized ? 1 : 0,
                     visibility: isInitialized ? 'visible' : 'hidden',
-                    transform: isInitialized ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-20px)',
-                    transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s',
+                    transform: 'translateX(-50%)',
+                    transition: 'none',
                     pointerEvents: isInitialized ? 'auto' : 'none'
                 }}
             >

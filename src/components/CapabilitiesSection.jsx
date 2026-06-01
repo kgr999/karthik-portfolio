@@ -57,7 +57,7 @@ export default function CapabilitiesSection() {
                                 <span className="cap-dot-indicator"></span>
                                 <span className="cap-num">03</span>
                             </div>
-                            <img className="cap-color-image" src="assets/images/capcharbuilding.webp" alt="Character Building" loading="lazy" />
+                            <img className="cap-color-image" src="assets/images/capcharbuild.png" alt="Character Building" loading="lazy" />
                         </div>
 
                         <div className="cap-card-body">
@@ -71,7 +71,7 @@ export default function CapabilitiesSection() {
 
                     {/* 4. Storyboarding & Pre-Visuals */}
                     <div className="cap-card-v2">
-                        <div className="cap-image-wrapper natural-fit">
+                        <div className="cap-image-wrapper aspect-16-9">
                             {/* Floating Numbering Badge */}
                             <div className="cap-media-badge-left">
                                 <span className="cap-dot-indicator"></span>
@@ -104,7 +104,7 @@ export default function CapabilitiesSection() {
                             <h3 className="cap-title">Visual Storytelling</h3>
                             <div className="cap-focus-tags">
                                 <span className="cap-focus-tag">Composition</span>
-                                <span className="cap-focus-tag">Dramatic lighting and pacing</span>
+                                <span className="cap-focus-tag">Lighting & Pacing</span>
                             </div>
                         </div>
                     </div>

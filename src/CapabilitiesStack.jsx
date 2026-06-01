@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import './CapabilitiesStack.css';
+import LazyVideo from './components/LazyVideo';
 
 // High-fidelity capabilities data representing your creative director capabilities
 const capabilities = [
@@ -211,7 +212,7 @@ function SwipeCard({ item, depth, onSwipe }) {
 
                 {/* Main Asset Display (Supports clean landscape image and active looping video) */}
                 {item.video ? (
-                    <video 
+                    <LazyVideo 
                         src={item.video} 
                         className="w-full h-full object-cover opacity-85" 
                         loop 
