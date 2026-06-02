@@ -9957,3 +9957,139 @@ nav.nav-standby .menu-toggle {
     border-color: rgba(255, 0, 127, 0.8) !important;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 0, 127, 0.25) !important;
 }
+
+/* ── SEXY INSTAGRAM VIRAL REELS SECTION UPGRADES ── */
+.fp-speculative-reel-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255, 0, 127, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Glass HUD Widget styling */
+.glass-hud {
+    background: rgba(255, 0, 127, 0.02) !important;
+    border: 1px solid rgba(255, 0, 127, 0.12) !important;
+    border-radius: 12px !important;
+    padding: 12px 14px !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.glass-hud:hover {
+    background: rgba(255, 0, 127, 0.08) !important;
+    border-color: rgba(255, 0, 127, 0.35) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 0, 127, 0.15), 0 0 15px rgba(255, 0, 127, 0.05);
+}
+
+/* iPhone/Phone Simulator Mockup */
+.sim-phone-container {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 8;
+}
+
+.sim-phone-mockup {
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.sim-phone-mockup:hover {
+    transform: rotateY(-12deg) rotateX(10deg) translateY(-8px) scale(1.04) !important;
+    border-color: #ff007f !important;
+    box-shadow: 
+        0 25px 50px rgba(255, 0, 127, 0.35), 
+        0 15px 35px rgba(0, 0, 0, 0.8), 
+        0 0 30px rgba(255, 0, 127, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Gloss reflection on phone glass */
+.sim-phone-container::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: calc(50% - 82px); /* centered matching phone width */
+    width: 165px;
+    height: 293px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 12;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sim-phone-container:hover::after {
+    transform: rotateY(-12deg) rotateX(10deg) translateY(-8px) scale(1.04);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* Spinning Vinyl disc animation */
+@keyframes spinDisc {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.spinning-disc-icon {
+    animation: spinDisc 3s linear infinite;
+    background-image: radial-gradient(circle, #555 10%, #111 20%, #111 60%, #555 70%, #111 80%);
+    position: relative;
+}
+.spinning-disc-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ff007f;
+}
+
+/* Laser sweep scanline on the regional translation banner */
+.multilanguage-banner-card::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, transparent 5%, #ff007f 30%, #a855f7 50%, #ff007f 70%, transparent 95%);
+    box-shadow: 0 0 10px #ff007f, 0 0 18px #a855f7;
+    opacity: 0;
+    animation: laserScan 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes laserScan {
+    0% { top: -5%; opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { top: 105%; opacity: 0; }
+}
+
+/* Responsive tweaks for phone card on narrow screen viewports */
+@media (max-width: 480px) {
+    .sim-phone-mockup {
+        width: 145px !important;
+        height: 258px !important;
+        border-radius: 24px !important;
+    }
+    .sim-phone-container::after {
+        width: 145px !important;
+        height: 258px !important;
+        left: calc(50% - 72px) !important;
+        border-radius: 24px !important;
+    }
+    .fp-lang-pills {
+        justify-content: center;
+    }
+}
