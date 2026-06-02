@@ -32,7 +32,7 @@ export default function HeroSection({
                         {/* Glassmorphic About Me Dossier Panel */}
                         <div className="hero-dossier-card hero-reveal-item" style={{ marginTop: '24px' }}>
                             <p className="hero-sub" style={{ margin: 0, marginTop: 0, maxWidth: 'none', color: 'rgba(255, 255, 255, 0.95)', fontSize: 'clamp(1.25rem, 1.65vw, 1.45rem)', lineHeight: '1.45' }}>
-                                I use Generative AI to build high impact videos and content from cinematic brand campaigns to viral UGC
+                                I use Generative AI to build high impact videos and content from narrative driven ads to performance focused formats
                             </p>
 
                             <div className="dossier-actions" style={{ marginTop: '16px' }}>

@@ -67,7 +67,7 @@ export default function FeaturedProjects() {
                     <span className="section-subtitle" style={{ display: 'block', fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.4)', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px' }}>[ SELECTED COMMERCIAL CASES ]</span>
                     <h2 className="section-heading reveal-text" style={{ marginBottom: '15px' }}>Featured Projects</h2>
                     <p className="section-desc" style={{ maxWidth: '600px', margin: '0 auto 45px auto', fontSize: '0.92rem', color: 'rgba(255, 255, 255, 0.5)', lineHeight: '1.5' }}>
-                        Deep dives into commercial video productions, demonstrating advanced AI pipelines, rapid sprint execution, and high-fidelity output for enterprise brands.
+                        Produced by AdMitra for their clients. All visual assets, trademarks, and final video content are the intellectual property of AdMitra and other clients. Shared in this portfolio strictly as a demonstration of my professional role as a Gen AI Creative.
                     </p>
                 </div>
 
@@ -86,7 +86,7 @@ export default function FeaturedProjects() {
                             {/* Visual Thumbnail Background & Overlay */}
                             <div 
                                 className="fp-pod-thumbnail-bg" 
-                                style={{ backgroundImage: 'url(assets/images/montra_eviator_launch.png)' }}
+                                style={{ backgroundImage: 'url(/assets/images/eviatorlaunchphoto.png)' }}
                             ></div>
                             <div className="fp-pod-gradient-overlay"></div>
 
@@ -153,7 +153,7 @@ export default function FeaturedProjects() {
                             {/* Visual Thumbnail Background & Overlay */}
                             <div 
                                 className="fp-pod-thumbnail-bg" 
-                                style={{ backgroundImage: 'url(assets/images/lincoln_pharma_launch.png)' }}
+                                style={{ backgroundImage: 'url(/assets/images/lincolnpharmaphoto.png)' }}
                             ></div>
                             <div className="fp-pod-gradient-overlay"></div>
 
@@ -203,96 +203,6 @@ export default function FeaturedProjects() {
                                     <span className="fp-pod-action-btn" style={{ '--btn-theme': '#05FF99' }}>
                                         INSPECT CASE STUDY <span className="fp-pod-arrow">➔</span>
                                      </span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {/* Launcher Pod 3: Speculative Viral Reel Campaign (Full Width!) */}
-                        <div 
-                            className="fp-launcher-pod premium-pod full-width-pod"
-                            style={{ 
-                                '--pod-theme': '#ff007f', 
-                                '--pod-theme-glow': 'rgba(255, 0, 127, 0.15)'
-                            }}
-                            onClick={() => setReelModalOpen(true)}
-                        >
-                            {/* Visual Thumbnail Background & Overlay */}
-                            <div 
-                                className="fp-pod-thumbnail-bg" 
-                                style={{ 
-                                    backgroundImage: 'url(assets/images/montraelectricposter.webp)',
-                                    opacity: 0.15,
-                                    transform: 'scale(1.05)',
-                                    backgroundPosition: 'center 30%'
-                                }}
-                            ></div>
-                            <div className="fp-pod-gradient-overlay" style={{ background: 'linear-gradient(to right, rgba(10,10,12,0.95) 40%, rgba(10,10,12,0.4) 100%)' }}></div>
-
-                            {/* Left Column: Pod Content */}
-                            <div className="fp-pod-content" style={{ zIndex: 5, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', gap: '12px' }}>
-                                <div className="fp-pod-header" style={{ marginBottom: '4px' }}>
-                                    <div className="fp-pod-header-left">
-                                        <span className="fp-pod-num" style={{ color: '#ff007f' }}>03</span>
-                                        <span className="fp-pod-category-badge" style={{ '--badge-theme': '#ff007f' }}>[ INSTAGRAM VIRAL CAMPAIGN ]</span>
-                                    </div>
-                                </div>
-
-                                <div className="fp-pod-body" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                                    <h3 className="fp-pod-title" style={{ fontSize: '1.6rem', fontWeight: '900', letterSpacing: '-0.5px', margin: '0' }}>The "Diesel Drama" Viral Reel</h3>
-                                    <span className="fp-pod-role-pill" style={{ '--role-theme': '#ff007f', display: 'inline-block', alignSelf: 'flex-start' }}>AI Video Specialist & Storyteller</span>
-                                    <p className="fp-pod-desc" style={{ fontSize: '0.86rem', lineHeight: '1.45', opacity: 0.8, margin: '6px 0 12px 0' }}>
-                                        Single-handedly translated, dubbed, and edited the keynote launch reveal in 7 regional Indian languages. Tailored distinct visual cut sequences for North and South Indian campaigns based on regional preferences, posted on the official @montraelectricscv page.
-                                    </p>
-
-                                    {/* Stats HUD Panel */}
-                                    <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(255, 0, 127, 0.15)', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
-                                        <div className="fp-pod-hud-col">
-                                            <span className="fp-pod-hud-lbl">VIRAL METRIC</span>
-                                            <span className="fp-pod-hud-val" style={{ color: '#00FF80', fontWeight: '900' }}>1.2M+ Views</span>
-                                        </div>
-                                        <div className="fp-pod-hud-col">
-                                            <span className="fp-pod-hud-lbl">ENGAGEMENT</span>
-                                            <span className="fp-pod-hud-val" style={{ color: '#00FF80' }}>45K+ Likes</span>
-                                        </div>
-                                        <div className="fp-pod-hud-col">
-                                            <span className="fp-pod-hud-lbl">RATIO FORMAT</span>
-                                            <span className="fp-pod-hud-val">9:16 Vertical</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Right Column: Visual Preview Deck with custom frame */}
-                            <div style={{ zIndex: 5, position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <div 
-                                    className="cinema-card play-trigger-card" 
-                                    data-glow="#ff007f" 
-                                    style={{ 
-                                        width: '170px', 
-                                        height: '270px', 
-                                        borderRadius: '16px',
-                                        border: '2px solid rgba(255, 0, 127, 0.3)',
-                                        boxShadow: '0 10px 30px rgba(255, 0, 127, 0.2)',
-                                        cursor: 'pointer',
-                                        overflow: 'hidden',
-                                        position: 'relative'
-                                    }}
-                                >
-                                    <div className="cinema-video-wrapper" style={{ width: '100%', height: '100%', position: 'relative' }}>
-                                        <img
-                                            src="assets/images/montraelectricposter.webp"
-                                            alt="Diesel Drama Instagram Reel"
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            loading="lazy"
-                                        />
-                                        <div className="fp-play-overlay" style={{ background: 'rgba(0,0,0,0.45)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
-                                            <div className="fp-play-button-ring" style={{ '--ring-accent': '#ff007f', '--ring-glow': 'rgba(255, 0, 127, 0.5)', width: '34px', height: '34px', minWidth: '34px' }}>
-                                                <span className="fp-play-icon" style={{ fontSize: '0.75rem', transform: 'translateX(1px)' }}>▶</span>
-                                            </div>
-                                            <span className="fp-play-label" style={{ '--label-accent': '#ff007f', fontSize: '0.58rem', letterSpacing: '1px' }}>PLAY REEL</span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -358,7 +268,7 @@ export default function FeaturedProjects() {
                                                 <div className="cinema-video-wrapper">
                                                     <img
                                                         className="cinema-video"
-                                                        src="assets/images/montra_eviator_launch.png"
+                                                        src="/assets/images/eviatorlaunchphoto.png"
                                                         alt="Montra Electric Eviator Launch Video Production"
                                                         style={{ objectPosition: 'center' }}
                                                         loading="lazy"
@@ -498,97 +408,6 @@ export default function FeaturedProjects() {
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* Instagram "Diesel Drama" Reel Card BELOW Eviator container */}
-                                <div 
-                                    className="fp-launcher-pod premium-pod full-width-pod animated-fade-in"
-                                    style={{ 
-                                        '--pod-theme': '#ff007f', 
-                                        '--pod-theme-glow': 'rgba(255, 0, 127, 0.15)',
-                                        marginTop: '30px',
-                                        cursor: 'pointer'
-                                    }}
-                                    onClick={() => setReelModalOpen(true)}
-                                >
-                                    {/* Visual Thumbnail Background & Overlay */}
-                                    <div 
-                                        className="fp-pod-thumbnail-bg" 
-                                        style={{ 
-                                            backgroundImage: 'url(assets/images/montraelectricposter.webp)',
-                                            opacity: 0.15,
-                                            transform: 'scale(1.05)',
-                                            backgroundPosition: 'center 30%'
-                                        }}
-                                    ></div>
-                                    <div className="fp-pod-gradient-overlay" style={{ background: 'linear-gradient(to right, rgba(10,10,12,0.95) 40%, rgba(10,10,12,0.4) 100%)' }}></div>
-
-                                    {/* Left Column: Pod Content */}
-                                    <div className="fp-pod-content" style={{ zIndex: 5, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', gap: '12px' }}>
-                                        <div className="fp-pod-header" style={{ marginBottom: '4px' }}>
-                                            <div className="fp-pod-header-left">
-                                                <span className="fp-pod-num" style={{ color: '#ff007f' }}>03</span>
-                                                <span className="fp-pod-category-badge" style={{ '--badge-theme': '#ff007f' }}>[ INSTAGRAM VIRAL CAMPAIGN ]</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="fp-pod-body" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                                            <h3 className="fp-pod-title" style={{ fontSize: '1.6rem', fontWeight: '900', letterSpacing: '-0.5px', margin: '0' }}>The "Diesel Drama" Viral Reel</h3>
-                                            <span className="fp-pod-role-pill" style={{ '--role-theme': '#ff007f', display: 'inline-block', alignSelf: 'flex-start' }}>AI Video Specialist & Storyteller</span>
-                                            <p className="fp-pod-desc" style={{ fontSize: '0.86rem', lineHeight: '1.45', opacity: 0.8, margin: '6px 0 12px 0' }}>
-                                                Single-handedly translated, dubbed, and edited the keynote launch reveal in 7 regional Indian languages. Tailored distinct visual cut sequences for North and South Indian campaigns based on regional preferences, posted on the official @montraelectricscv page.
-                                            </p>
-
-                                            {/* Stats HUD Panel */}
-                                            <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(255, 0, 127, 0.15)', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
-                                                <div className="fp-pod-hud-col">
-                                                    <span className="fp-pod-hud-lbl">VIRAL METRIC</span>
-                                                    <span className="fp-pod-hud-val" style={{ color: '#00FF80', fontWeight: '900' }}>1.2M+ Views</span>
-                                                </div>
-                                                <div className="fp-pod-hud-col">
-                                                    <span className="fp-pod-hud-lbl">ENGAGEMENT</span>
-                                                    <span className="fp-pod-hud-val" style={{ color: '#00FF80' }}>45K+ Likes</span>
-                                                </div>
-                                                <div className="fp-pod-hud-col">
-                                                    <span className="fp-pod-hud-lbl">RATIO FORMAT</span>
-                                                    <span className="fp-pod-hud-val">9:16 Vertical</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Right Column: Visual Preview Deck with custom frame */}
-                                    <div style={{ zIndex: 5, position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                        <div 
-                                            className="cinema-card play-trigger-card" 
-                                            data-glow="#ff007f" 
-                                            style={{ 
-                                                width: '170px', 
-                                                height: '270px', 
-                                                borderRadius: '16px',
-                                                border: '2px solid rgba(255, 0, 127, 0.3)',
-                                                boxShadow: '0 10px 30px rgba(255, 0, 127, 0.2)',
-                                                cursor: 'pointer',
-                                                overflow: 'hidden',
-                                                position: 'relative'
-                                            }}
-                                        >
-                                            <div className="cinema-video-wrapper" style={{ width: '100%', height: '100%', position: 'relative' }}>
-                                                <img
-                                                    src="assets/images/montraelectricposter.webp"
-                                                    alt="Diesel Drama Instagram Reel"
-                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                                    loading="lazy"
-                                                />
-                                                <div className="fp-play-overlay" style={{ background: 'rgba(0,0,0,0.45)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
-                                                    <div className="fp-play-button-ring" style={{ '--ring-accent': '#ff007f', '--ring-glow': 'rgba(255, 0, 127, 0.5)', width: '34px', height: '34px', minWidth: '34px' }}>
-                                                        <span className="fp-play-icon" style={{ fontSize: '0.75rem', transform: 'translateX(1px)' }}>▶</span>
-                                                    </div>
-                                                    <span className="fp-play-label" style={{ '--label-accent': '#ff007f', fontSize: '0.58rem', letterSpacing: '1px' }}>PLAY REEL</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </>
                             ) : (
                                 <div 
@@ -719,7 +538,7 @@ export default function FeaturedProjects() {
                                             <div className="cinema-video-wrapper">
                                                 <img
                                                     className="cinema-video"
-                                                    src="assets/images/lincoln_pharma_launch.png"
+                                                    src="/assets/images/lincolnpharmaphoto.png"
                                                     alt="Lincoln Pharma Pa12 Launch Drama"
                                                     style={{ objectPosition: 'center' }}
                                                     loading="lazy"
@@ -746,6 +565,171 @@ export default function FeaturedProjects() {
                         </div>
                     </div>
                 )}
+
+                {/* 3. SPECULATIVE INSTAGRAM VIRAL CAMPAIGN SECTION (Renders below projects at all times) */}
+                <div 
+                    className="fp-speculative-reel-section" 
+                    style={{ 
+                        marginTop: '80px',
+                        position: 'relative',
+                        zIndex: 10
+                    }}
+                >
+                    {/* section header for this standalone block */}
+                    <div className="section-header text-center" style={{ marginBottom: '40px' }}>
+                        <span className="section-subtitle" style={{ display: 'block', fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.4)', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px' }}>[ SPECULATIVE CAMPAIGN ]</span>
+                        <h2 className="section-heading reveal-text" style={{ fontSize: '2.0rem', marginBottom: '15px', color: '#ff007f', textShadow: '0 0 15px rgba(255, 0, 127, 0.15)' }}>Instagram Viral Reels</h2>
+                    </div>
+
+                    <div className="fp-launcher-pod-group" style={{ margin: '0 auto', maxWidth: '900px' }}>
+                        <div 
+                            className="fp-launcher-pod premium-pod full-width-pod"
+                            style={{ 
+                                '--pod-theme': '#ff007f', 
+                                '--pod-theme-glow': 'rgba(255, 0, 127, 0.15)',
+                                borderBottomLeftRadius: '0px',
+                                borderBottomRightRadius: '0px',
+                                cursor: 'pointer'
+                            }}
+                            onClick={() => setReelModalOpen(true)}
+                        >
+                            {/* Visual Thumbnail Background & Overlay */}
+                            <div 
+                                className="fp-pod-thumbnail-bg" 
+                                style={{ 
+                                    backgroundImage: 'url(/assets/images/instaviral.png)',
+                                    opacity: 0.15,
+                                    transform: 'scale(1.05)',
+                                    backgroundPosition: 'center 30%'
+                                }}
+                            ></div>
+                            <div className="fp-pod-gradient-overlay" style={{ background: 'linear-gradient(to right, rgba(10,10,12,0.95) 40%, rgba(10,10,12,0.4) 100%)' }}></div>
+
+                            {/* Left Column: Pod Content */}
+                            <div className="fp-pod-content" style={{ zIndex: 5, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', gap: '12px' }}>
+                                <div className="fp-pod-header" style={{ marginBottom: '4px' }}>
+                                    <div className="fp-pod-header-left">
+                                        <span className="fp-pod-num" style={{ color: '#ff007f' }}>03</span>
+                                        <span className="fp-pod-category-badge" style={{ '--badge-theme': '#ff007f' }}>[ INSTAGRAM VIRAL CAMPAIGN ]</span>
+                                    </div>
+                                </div>
+
+                                <div className="fp-pod-body" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                    <h3 className="fp-pod-title" style={{ fontSize: '1.6rem', fontWeight: '900', letterSpacing: '-0.5px', margin: '0' }}>The "Diesel Drama" Viral Reel</h3>
+                                    <span className="fp-pod-role-pill" style={{ '--role-theme': '#ff007f', display: 'inline-block', alignSelf: 'flex-start' }}>AI Video Specialist & Storyteller</span>
+                                    <p className="fp-pod-desc" style={{ fontSize: '0.86rem', lineHeight: '1.45', opacity: 0.8, margin: '6px 0 12px 0' }}>
+                                        Single-handedly translated, dubbed, and edited the keynote launch reveal in 7 regional Indian languages. Tailored distinct visual cut sequences for North and South Indian campaigns based on regional preferences, posted on the official @montraelectricscv page.
+                                    </p>
+
+                                    {/* Stats HUD Panel */}
+                                    <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(255, 0, 127, 0.15)', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
+                                        <div className="fp-pod-hud-col">
+                                            <span className="fp-pod-hud-lbl">VIRAL METRIC</span>
+                                            <span className="fp-pod-hud-val" style={{ color: '#00FF80', fontWeight: '900' }}>1.2M+ Views</span>
+                                        </div>
+                                        <div className="fp-pod-hud-col">
+                                            <span className="fp-pod-hud-lbl">ENGAGEMENT</span>
+                                            <span className="fp-pod-hud-val" style={{ color: '#00FF80' }}>33k+ Likes</span>
+                                        </div>
+                                        <div className="fp-pod-hud-col">
+                                            <span className="fp-pod-hud-lbl">RATIO FORMAT</span>
+                                            <span className="fp-pod-hud-val">9:16 Vertical</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right Column: Standalone 9:16 Preview Card */}
+                            <div style={{ zIndex: 5, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <a 
+                                    className="cinema-card play-trigger-card" 
+                                    data-glow="#ff007f" 
+                                    href="https://www.instagram.com/reel/DYPaSyiKxhg/?igsh=MTZyaXQ4ajRpcW93Zg=="
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ 
+                                        width: '150px', 
+                                        aspectRatio: '9/16',
+                                        borderRadius: '16px',
+                                        border: '2px solid rgba(255, 0, 127, 0.35)',
+                                        boxShadow: '0 12px 36px rgba(255, 0, 127, 0.2), 0 8px 24px rgba(0, 0, 0, 0.6)',
+                                        cursor: 'pointer',
+                                        overflow: 'hidden',
+                                        transition: 'all 0.3s cubic-bezier(0.25, 1, 0.5, 1)',
+                                        position: 'relative',
+                                        display: 'block'
+                                    }}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1.05) translateY(-4px)';
+                                        e.currentTarget.style.borderColor = 'rgba(255, 0, 127, 0.7)';
+                                        e.currentTarget.style.boxShadow = '0 16px 40px rgba(255, 0, 127, 0.35), 0 12px 30px rgba(0, 0, 0, 0.8)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'none';
+                                        e.currentTarget.style.borderColor = 'rgba(255, 0, 127, 0.35)';
+                                        e.currentTarget.style.boxShadow = '0 12px 36px rgba(255, 0, 127, 0.2), 0 8px 24px rgba(0, 0, 0, 0.6)';
+                                    }}
+                                >
+                                    <div className="cinema-video-wrapper" style={{ width: '100%', height: '100%', position: 'relative', paddingTop: 0 }}>
+                                        <img
+                                            src="/assets/images/instaviral.png"
+                                            alt="Diesel Drama Instagram Reel"
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            loading="lazy"
+                                        />
+                                        <div className="fp-play-overlay" style={{ background: 'rgba(0,0,0,0.45)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
+                                            <div className="fp-play-button-ring" style={{ '--ring-accent': '#ff007f', '--ring-glow': 'rgba(255, 0, 127, 0.5)', width: '36px', height: '36px', minWidth: '36px' }}>
+                                                <span className="fp-play-icon" style={{ fontSize: '0.8rem', transform: 'translateY(-1px)' }}>🔗</span>
+                                            </div>
+                                            <span className="fp-play-label" style={{ '--label-accent': '#ff007f', fontSize: '0.6rem', letterSpacing: '0.5px' }}>VIEW REEL</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Multilanguage separate banner image attached below as extension */}
+                        <div 
+                            className="multilanguage-banner-card"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                window.open("https://www.instagram.com/reel/DYPaSyiKxhg/?igsh=MTZyaXQ4ajRpcW93Zg==", "_blank");
+                            }}
+                        >
+                            <div style={{ position: 'relative', width: '100%' }}>
+                                <img
+                                    src="/assets/images/multilanguage.png"
+                                    alt="Multilanguage Regional Showcase"
+                                    style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                                    loading="lazy"
+                                />
+                                <div 
+                                    className="multilanguage-overlay" 
+                                    style={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        width: '100%',
+                                        height: '100%',
+                                        background: 'linear-gradient(to top, rgba(10,10,12,0.6) 0%, rgba(10,10,12,0) 60%)',
+                                        display: 'flex',
+                                        alignItems: 'flex-end',
+                                        justifyContent: 'center',
+                                        padding: '12px',
+                                        pointerEvents: 'none'
+                                    }}
+                                >
+                                    <span style={{ color: '#ff007f', fontSize: '0.72rem', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+                                        🔗 VIEW INSTAGRAM REEL SHOWCASE
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Premium Full-screen Video Modal - Montra Eviator */}
