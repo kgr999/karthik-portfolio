@@ -207,7 +207,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
                                                 <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                                    Led end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>AI-powered creative operations</strong> for hyperlocal advertising campaigns across video and poster formats at scale. Translated brand strategy into structured storyboards, localized narratives, and <strong style={{ color: '#3B82F6', fontWeight: '600' }}>multi-language AI-generated campaign assets</strong>.
+                                                    Directed end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>multimodal AI content production</strong> for hyperlocal advertising campaigns across video and poster formats at scale. Translated brand strategy into structured storyboards, localized narratives, and <strong style={{ color: '#3B82F6', fontWeight: '600' }}>multi-language AI-generated campaign assets</strong> while developing <strong style={{ color: '#3B82F6', fontWeight: '600' }}>content policies and responsible AI guardrails</strong>.
                                                 </p>
                                             </div>
 
@@ -228,7 +228,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
                                                 <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                                    Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>. Collaborated directly with founders and brand stakeholders to <strong style={{ color: '#3B82F6', fontWeight: '600' }}>streamline campaign execution</strong>.
+                                                    Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>. Worked closely with <strong style={{ color: '#3B82F6', fontWeight: '600' }}>technical teams to bring more AI capabilities</strong> into multimodal content generation workflows and <strong style={{ color: '#3B82F6', fontWeight: '600' }}>streamline campaign execution</strong>.
                                                 </p>
                                             </div>
                                         </div>

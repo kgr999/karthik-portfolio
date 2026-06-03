@@ -24,7 +24,7 @@ export default function HeroSection({
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="hero-grid">
                     <div className="hero-content">
-                        <p className="hero-label hero-reveal-text">Gen AI Creative Associate</p>
+                        <p className="hero-label hero-reveal-text">AI Creative Director & Storyteller</p>
                         <h1 className="hero-reveal-text">
                             <span className="hero-word">Engineering</span><br />
                             <span className="hero-word">Human</span> <span className="hero-word"><span>Attention.</span></span>
@@ -32,7 +32,7 @@ export default function HeroSection({
                         {/* Glassmorphic About Me Dossier Panel */}
                         <div className="hero-dossier-card hero-reveal-item" style={{ marginTop: '24px' }}>
                             <p className="hero-sub" style={{ margin: 0, marginTop: 0, maxWidth: 'none', color: 'rgba(255, 255, 255, 0.95)', fontSize: 'clamp(1.25rem, 1.65vw, 1.45rem)', lineHeight: '1.45' }}>
-                                I use Generative AI to build high impact videos and content from narrative driven ads to performance focused formats
+                                I direct and produce multimodal AI content from microdramas to narrative driven ads using state-of-the-art generative AI platforms
                             </p>
 
                             <div className="dossier-actions" style={{ marginTop: '16px' }}>

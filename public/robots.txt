@@ -1,5 +1,14 @@
 User-agent: *
 Allow: /
+Disallow: /assets/videos/
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
 
 User-agent: GPTBot
 Allow: /
@@ -11,3 +20,4 @@ User-agent: PerplexityBot
 Allow: /
 
 Sitemap: https://karthikgraj.in/sitemap.xml
+Host: https://karthikgraj.in

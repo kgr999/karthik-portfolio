@@ -13,6 +13,8 @@ import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import PosterShowcase from './components/PosterShowcase';
 import ExperienceJourney from './components/ExperienceJourney';
+import ActiveProjects from './components/ActiveProjects';
+import CurrentLearning from './components/CurrentLearning';
 const techStackCategories = [
     {
         num: "01",
@@ -25,12 +27,12 @@ const techStackCategories = [
     },
     {
         num: "02",
-        name: "CREATIVE DIRECTION",
+        name: "CREATIVE PIPELINE",
         tools: [
             { name: "Storyboarding", svg: "storyboard", glow: "#faff00", level: "92%" },
             { name: "Narrative Design", svg: "narrative", glow: "#faff00", level: "95%" },
-            { name: "Visual Storytelling", svg: "visual", glow: "#faff00", level: "94%" },
-            { name: "Concept Development", svg: "concept", glow: "#faff00", level: "90%" }
+            { name: "Custom API Workflows", svg: "apiworkflow", glow: "#a78bfa", level: "85%" },
+            { name: "Proprietary Platforms", svg: "proprietary", glow: "#f59e0b", level: "88%" }
         ]
     },
     {
@@ -210,6 +212,20 @@ const renderToolIcon = (tool, size = 16) => {
                     />
                 </svg>
             );
+        case 'apiworkflow':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+            );
+        case 'proprietary':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+            );
         case 'seedance':
             return (
                 <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
@@ -301,6 +317,7 @@ const renderCategoryIcon = (num) => {
                 </svg>
             );
 
+
         default:
             return (
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -309,6 +326,31 @@ const renderCategoryIcon = (num) => {
                     <line x1="8" y1="12" x2="16" y2="12" />
                 </svg>
             );
+    }
+};
+
+// Extended SVG icons for Platform Adaptability tools
+const renderPlatformToolIcon = (tool, size = 16) => {
+    if (tool.logo) {
+        return renderToolIcon(tool, size);
+    }
+    switch (tool.svg) {
+        case 'apiworkflow':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+            );
+        case 'proprietary':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tool-logo-svg">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+            );
+        default:
+            return <span className="tool-logo-icon" style={{ fontSize: '8px' }}>🛠️</span>;
     }
 };
 import CertificationsSection from './components/CertificationsSection';
@@ -456,10 +498,10 @@ export default function App() {
                 }, 150);
             }
 
-            // Instantly position page to capabilities
-            const capSection = document.getElementById('capabilities');
-            if (capSection) {
-                capSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+            // Instantly position page to active projects
+            const activeProjectsSection = document.getElementById('active-projects');
+            if (activeProjectsSection) {
+                activeProjectsSection.scrollIntoView({ behavior: 'auto', block: 'start' });
             }
             if (window.ScrollTrigger) {
                 window.ScrollTrigger.refresh();
@@ -549,12 +591,12 @@ export default function App() {
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
 
-            // After React re-renders and the hero fades, smoothly scroll to capabilities
+            // After React re-renders and the hero fades, smoothly scroll to active projects
             requestAnimationFrame(() => {
                 setTimeout(() => {
-                    const capSection = document.getElementById('capabilities');
-                    if (capSection) {
-                        const targetY = capSection.offsetTop;
+                    const activeProjectsSection = document.getElementById('active-projects');
+                    if (activeProjectsSection) {
+                        const targetY = activeProjectsSection.offsetTop;
                         smoothScrollTo(targetY, 700);
                     }
                     if (window.ScrollTrigger) {
@@ -735,16 +777,9 @@ export default function App() {
                 )}
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
+                    <ActiveProjects revealed={isInitialized || isMobile} />
                     <CapabilitiesSection />
                     <FeaturedProjects />
-                    <CinematicVisuals
-                        midjourneyExpanded={midjourneyExpanded}
-                        setMidjourneyExpanded={setMidjourneyExpanded}
-                        seedanceExpanded={seedanceExpanded}
-                        setSeedanceExpanded={setSeedanceExpanded}
-                    />
-                    <PosterShowcase />
-                    <ExperienceJourney locIdx={locIdx} simTime={simTime} />
                     {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
                     <section id="tech-stack" className="workflow-router-section">
                         <div className="container">
@@ -878,6 +913,15 @@ export default function App() {
                             </div>
                         </div>
                     </section>
+                    <CinematicVisuals
+                        midjourneyExpanded={midjourneyExpanded}
+                        setMidjourneyExpanded={setMidjourneyExpanded}
+                        seedanceExpanded={seedanceExpanded}
+                        setSeedanceExpanded={setSeedanceExpanded}
+                    />
+                    <PosterShowcase />
+                    <ExperienceJourney locIdx={locIdx} simTime={simTime} />
+                    <CurrentLearning />
                     <CertificationsSection />
 
                     {/* Contact Section */}
@@ -940,7 +984,7 @@ export default function App() {
 
                             <footer style={{ borderTop: 'none', padding: '10px 0 20px 0', zIndex: 5, pointerEvents: 'auto' }}>
                                 <div className="footer-content" style={{ padding: 0, minHeight: 'auto', display: 'flex', justifyContent: 'center' }}>
-                                    <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // GEN AI CREATIVE ASSOCIATE</p>
+                                    <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // AI CREATIVE DIRECTOR & STORYTELLER</p>
                                 </div>
                             </footer>
                         </div>

@@ -57,7 +57,7 @@ export default function CapabilitiesSection() {
                                 <span className="cap-dot-indicator"></span>
                                 <span className="cap-num">03</span>
                             </div>
-                            <img className="cap-color-image" src="assets/images/capcharbuild.png" alt="Character Building" loading="lazy" />
+                            <img className="cap-color-image" src="assets/images/capcharbuild.webp" alt="Character Building" loading="lazy" />
                         </div>
 
                         <div className="cap-card-body">
@@ -146,6 +146,55 @@ export default function CapabilitiesSection() {
                                 <span className="cap-focus-tag">Pacing & Rhythm</span>
                                 <span className="cap-focus-tag">Narrative Flow</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Minimalist Editorial Responsible AI Panel */}
+                <div className="ap-governance-box reveal-item">
+                    <div className="ap-governance-header">
+                        <div className="ap-governance-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M12 8v8"/>
+                                <path d="M9 11h6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div className="ap-governance-header-row">
+                                <h3 className="ap-governance-title">Responsible AI & Content Governance</h3>
+                                <span className="ap-governance-badge">Ethical Standards</span>
+                            </div>
+                            <p className="ap-governance-desc">
+                                In an AI-augmented landscape, content integrity is paramount. I enforce strict safety guardrails, demographic bias checks, and intellectual property filters throughout my multimodal production pipeline to ensure all synthetic outputs remain compliant, safe, and authentically representative.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="ap-governance-grid">
+                        <div className="ap-governance-item">
+                            <span className="ap-governance-lbl">Demographic Bias</span>
+                            <span className="ap-governance-val">
+                                <span className="ap-governance-dot"></span> Active Mitigation
+                            </span>
+                        </div>
+                        <div className="ap-governance-item">
+                            <span className="ap-governance-lbl">IP & Trademark Compliance</span>
+                            <span className="ap-governance-val">
+                                <span className="ap-governance-dot"></span> Secure Filtering
+                            </span>
+                        </div>
+                        <div className="ap-governance-item">
+                            <span className="ap-governance-lbl">Generative Provenance</span>
+                            <span className="ap-governance-val">
+                                <span className="ap-governance-dot"></span> Verified Metadata
+                            </span>
+                        </div>
+                        <div className="ap-governance-item">
+                            <span className="ap-governance-lbl">Content Safety Audits</span>
+                            <span className="ap-governance-val">
+                                <span className="ap-governance-dot"></span> Continuous Loop
+                            </span>
                         </div>
                     </div>
                 </div>
