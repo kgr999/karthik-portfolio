@@ -4504,6 +4504,161 @@ footer {
     backdrop-filter: blur(5px);
 }
 
+/* ─── Hyperlocal Marquee ─── */
+.hyperlocal-marquee-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    background: rgba(6, 6, 8, 0.55);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hyperlocal-marquee-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.hyperlocal-marquee-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 10px #10B981;
+    animation: pulse 1.5s infinite;
+}
+
+.hyperlocal-marquee-title {
+    color: #3B82F6;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hyperlocal-marquee-subtitle {
+    text-align: center;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.hyperlocal-marquee-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    padding: 8px 0;
+}
+
+.hyperlocal-marquee-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    animation: hyperlocal-scroll 30s linear infinite;
+}
+
+.hyperlocal-marquee-track.track-reverse {
+    animation-name: hyperlocal-scroll-reverse;
+}
+
+.hyperlocal-marquee-viewport:hover .hyperlocal-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes hyperlocal-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes hyperlocal-scroll-reverse {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.hyperlocal-marquee-card {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.3s ease;
+}
+
+.hyperlocal-marquee-card:hover {
+    transform: scale(1.04);
+}
+
+.marquee-card-bezel {
+    width: 110px;
+    aspect-ratio: 9 / 16;
+    border-radius: 14px;
+    border: 2.5px solid #1c1c24;
+    background: #09090b;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-card-bezel.poster-bezel {
+    aspect-ratio: 4 / 5;
+    border-radius: 10px;
+    width: 120px;
+}
+
+.marquee-card-format-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    color: #3B82F6;
+    font-size: 0.52rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.marquee-card-label {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+    text-align: center;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hyperlocal-marquee-locations {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 14px;
+}
+
 .xp-panel-line {
     margin-bottom: 4px;
 }
@@ -7861,28 +8016,36 @@ nav.nav-standby .menu-toggle {
         display: block !important;
     }
 
-    /* Center the Hyperlocal Engine / viewport panel */
-    .xp-window-fal .xp-window-main>div:last-child {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 0 !important;
+    /* Hyperlocal Marquee mobile styles */
+    .hyperlocal-marquee-wrapper {
+        padding: 14px 10px;
+        gap: 10px;
+        border: none;
+        background: rgba(6, 6, 8, 0.4);
     }
 
-    .xp-window-fal .xp-floating-panel {
-        position: relative !important;
-        bottom: auto !important;
-        left: auto !important;
-        right: auto !important;
-        max-width: 320px !important;
-        margin: 0 auto !important;
-        width: 100% !important;
+    .hyperlocal-marquee-track {
+        animation-duration: 20s;
     }
 
-    /* Center the device viewport (phone simulator) */
-    .sim-device-viewport {
-        margin: 0 auto !important;
+    .marquee-card-bezel {
+        width: 90px;
+        border-radius: 12px;
+    }
+
+    .marquee-card-bezel.poster-bezel {
+        width: 100px;
+        border-radius: 8px;
+    }
+
+    .marquee-card-label {
+        font-size: 0.52rem;
+        max-width: 100px;
+    }
+
+    .hyperlocal-marquee-locations {
+        gap: 12px;
+        padding-top: 10px;
     }
 
     /* Hide overlay text strings on mobile viewports */
@@ -7911,38 +8074,23 @@ nav.nav-standby .menu-toggle {
         font-size: 0.75rem !important;
     }
 
-    .xp-window-fal .xp-floating-panel {
-        max-width: 290px !important;
-        padding: 16px !important;
+    .marquee-card-bezel {
+        width: 80px;
+        border-radius: 10px;
     }
 
-    .sim-device-viewport {
-        width: 160px !important;
+    .marquee-card-bezel.poster-bezel {
+        width: 88px;
     }
 
-    /* Prevent status bar time and notch overlap in scaled down 160px phone viewport */
-    .sim-device-header {
-        height: 22px !important;
-        padding: 0 8px !important;
+    .hyperlocal-marquee-track {
+        gap: 10px;
+        animation-duration: 18s;
     }
 
-    .sim-status-bar-left {
-        font-weight: 700 !important;
-        font-size: 0.5rem !important;
-        letter-spacing: -0.1px !important;
-    }
-
-    .sim-device-notch {
-        width: 32px !important;
-        height: 8px !important;
-        top: 5px !important;
-        border-radius: 6px !important;
-    }
-
-    .sim-status-bar-right {
-        scale: 0.75 !important;
-        transform-origin: right center !important;
-        gap: 3px !important;
+    .marquee-card-label {
+        font-size: 0.48rem;
+        max-width: 85px;
     }
 }
 

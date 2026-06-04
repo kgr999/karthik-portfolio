@@ -3,12 +3,6 @@ import { mockVideos, mockPosters, locations } from '../data/portfolioData';
 import LazyVideo from './LazyVideo';
 
 export default function ExperienceJourney({ locIdx, simTime }) {
-    const [creativeType, setCreativeType] = useState('video');
-    const [creativeIdx, setCreativeIdx] = useState(0);
-    const [likedCreatives, setLikedCreatives] = useState({});
-    const [heartPulse, setHeartPulse] = useState(false);
-    const [isVideoMuted, setIsVideoMuted] = useState(true);
-
     // DaVinci Timeline Scrubber controls
     const [dvrPlaying, setDvrPlaying] = useState(true);
     const [scrubberKey, setScrubberKey] = useState(0);
@@ -337,507 +331,123 @@ export default function ExperienceJourney({ locIdx, simTime }) {
 
                                 </div>
 
-                                {/* Right Side: High-fidelity Hyperlocal Targeting telemetry */}
-                                <div style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', padding: '20px' }}>
-                                    <div className="xp-floating-panel" style={{
-                                        width: '100%',
-                                        maxWidth: '340px',
-                                        background: 'rgba(6, 6, 8, 0.65)',
-                                        backdropFilter: 'blur(20px)',
-                                        border: '1px solid rgba(59, 130, 246, 0.25)',
-                                        borderRadius: '12px',
-                                        padding: '24px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: '20px',
-                                        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
-                                        position: 'relative',
-                                        overflow: 'hidden'
-                                    }}>
-                                        {/* Header / Telemetry scanner active status */}
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <div style={{ color: '#3B82F6', fontWeight: '800', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '1px', textTransform: 'uppercase' }}>
-                                                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 10px #10B981', animation: 'pulse 1.5s infinite' }}></span>
-                                                Hyperlocal Engine
-                                            </div>
-                                        </div>
+                                {/* Right Side: Auto-scrolling Hyperlocal Creative Marquee */}
+                                <div className="hyperlocal-marquee-wrapper">
+                                    {/* Header */}
+                                    <div className="hyperlocal-marquee-header">
+                                        <span className="hyperlocal-marquee-dot"></span>
+                                        <span className="hyperlocal-marquee-title">Hyperlocal Engine</span>
+                                    </div>
 
-                                        {/* Toggle buttons for Videos / Posters */}
-                                        <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
-                                            <button
-                                                onClick={() => { setCreativeType('video'); setCreativeIdx(0); }}
-                                                style={{
-                                                    flex: 1,
-                                                    background: creativeType === 'video' ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
-                                                    border: creativeType === 'video' ? '1px solid #3B82F6' : '1px solid rgba(255,255,255,0.1)',
-                                                    borderRadius: '6px',
-                                                    padding: '6px 12px',
-                                                    color: '#fff',
-                                                    fontSize: '0.7rem',
-                                                    fontWeight: '600',
-                                                    cursor: 'pointer',
-                                                    transition: 'all 0.3s ease',
-                                                    boxShadow: creativeType === 'video' ? '0 0 10px rgba(59, 130, 246, 0.3)' : 'none'
-                                                }}
-                                            >
-                                                Video Ads (9:16)
-                                            </button>
-                                            <button
-                                                onClick={() => { setCreativeType('poster'); setCreativeIdx(0); }}
-                                                style={{
-                                                    flex: 1,
-                                                    background: creativeType === 'poster' ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
-                                                    border: creativeType === 'poster' ? '1px solid #3B82F6' : '1px solid rgba(255,255,255,0.1)',
-                                                    borderRadius: '6px',
-                                                    padding: '6px 12px',
-                                                    color: '#fff',
-                                                    fontSize: '0.7rem',
-                                                    fontWeight: '600',
-                                                    cursor: 'pointer',
-                                                    transition: 'all 0.3s ease',
-                                                    boxShadow: creativeType === 'poster' ? '0 0 10px rgba(59, 130, 246, 0.3)' : 'none'
-                                                }}
-                                            >
-                                                Poster Ads (4:5)
-                                            </button>
-                                        </div>
+                                    {/* Subtitle */}
+                                    <p className="hyperlocal-marquee-subtitle">
+                                        AI-generated video ads & posters, localized for {locations.length} regional markets
+                                    </p>
 
-                                        {/* Interactive Creative Previewer Viewport */}
-                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}>
-                                            {(() => {
-                                                const currentCreative = creativeType === 'video' ? mockVideos[creativeIdx] : mockPosters[creativeIdx];
-                                                const key = `${creativeType}-${creativeIdx}`;
-                                                const isLiked = !!likedCreatives[key];
-                                                const handleDoubleTap = () => {
-                                                    setLikedCreatives(prev => ({
-                                                        ...prev,
-                                                        [key]: true
-                                                    }));
-                                                    setHeartPulse(true);
-                                                    setTimeout(() => {
-                                                        setHeartPulse(false);
-                                                    }, 700);
-                                                };
-                                                const handleLikeClick = (e) => {
-                                                    e.stopPropagation();
-                                                    setLikedCreatives(prev => ({
-                                                        ...prev,
-                                                        [key]: !prev[key]
-                                                    }));
-                                                };
-                                                return (
-                                                    <>
-                                                        {/* Horizontal layout: Prev Button | Viewport | Next Button */}
-                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', width: '100%' }}>
-                                                            {/* Previous Button */}
-                                                            <button
-                                                                onClick={() => setCreativeIdx((prev) => (prev - 1 + 3) % 3)}
-                                                                aria-label="Previous Creative"
-                                                                className="xp-arrow-nav-btn prev-btn"
-                                                            >
-                                                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                                            </button>
-
-                                                            {/* High-Fidelity Device Simulator Viewport */}
-                                                            <div
-                                                                className="sim-device-viewport"
-                                                                onDoubleClick={handleDoubleTap}
-                                                                style={{
-                                                                    width: '185px',
-                                                                    aspectRatio: '9/16',
-                                                                    background: '#09090b',
-                                                                    borderRadius: '24px',
-                                                                    border: '3px solid #222228',
-                                                                    boxShadow: '0 20px 45px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05)',
-                                                                    position: 'relative',
-                                                                    overflow: 'hidden',
-                                                                    display: 'flex',
-                                                                    flexDirection: 'column',
-                                                                    justifyContent: 'flex-start',
-                                                                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                                                                    flexShrink: 0
-                                                                }}
-                                                            >
-                                                                {/* Anti-bleed internal background gradient layer */}
-                                                                <div
-                                                                    style={{
-                                                                        position: 'absolute',
-                                                                        inset: '0px',
-                                                                        background: creativeType === 'video' ? currentCreative.bg : '#09090b',
-                                                                        borderRadius: '21px',
-                                                                        zIndex: 0,
-                                                                        pointerEvents: 'none'
-                                                                    }}
-                                                                />
-                                                                {/* Status Bar */}
-                                                                <div className="sim-device-header">
-                                                                    <div className="sim-status-bar-left">{simTime}</div>
-                                                                    <div className="sim-device-notch"></div>
-                                                                    <div className="sim-status-bar-right">
-                                                                        {/* Telemetry Status Bar Icons */}
-                                                                        <svg width="11" height="8" viewBox="0 0 17 11" fill="currentColor" className="sim-status-icon">
-                                                                            <rect x="0" y="8" width="2" height="3" rx="0.5" />
-                                                                            <rect x="4" y="6" width="2" height="5" rx="0.5" />
-                                                                            <rect x="8" y="4" width="2" height="7" rx="0.5" />
-                                                                            <rect x="12" y="2" width="2" height="9" rx="0.5" />
-                                                                            <rect x="16" y="0" width="2" height="11" rx="0.5" />
-                                                                        </svg>
-                                                                        <svg width="15" height="8" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ marginLeft: '1px' }}>
-                                                                            <rect x="1" y="1" width="18" height="10" rx="3" ry="3" />
-                                                                            <line x1="21" y1="4" x2="21" y2="8" strokeLinecap="round" />
-                                                                            <rect x="3" y="3" width="12" height="6" rx="1" fill="currentColor" />
-                                                                        </svg>
-                                                                    </div>
-                                                                </div>
-
-                                                                {/* Heart overlay pulse */}
-                                                                {heartPulse && (
-                                                                    <div
-                                                                        style={{
-                                                                            position: 'absolute',
-                                                                            inset: 0,
-                                                                            display: 'flex',
-                                                                            alignItems: 'center',
-                                                                            justifyContent: 'center',
-                                                                            zIndex: 10,
-                                                                            pointerEvents: 'none',
-                                                                            animation: 'simHeartPulse 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards'
-                                                                        }}
-                                                                    >
-                                                                        <svg viewBox="0 0 24 24" width="60" height="60" fill="#ff3b30" stroke="#ff3b30" strokeWidth="1" style={{ filter: 'drop-shadow(0 0 15px rgba(255,59,48,0.85))' }}>
-                                                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                                                        </svg>
-                                                                    </div>
-                                                                )}
-
-                                                                {creativeType === 'video' ? (
-                                                                    <>
-                                                                        {/* Video elements or background previews */}
-                                                                        {mockVideos.map((video, idx) => (
-                                                                            <LazyVideo
-                                                                                key={video.id}
-                                                                                src={video.videoSrc}
-                                                                                autoPlay
-                                                                                loop
-                                                                                muted={isVideoMuted || creativeIdx !== idx}
-                                                                                playsInline
-                                                                                style={{
-                                                                                    position: 'absolute',
-                                                                                    inset: 0,
-                                                                                    width: '100%',
-                                                                                    height: '100%',
-                                                                                    objectFit: 'cover',
-                                                                                    zIndex: 1,
-                                                                                    opacity: creativeIdx === idx ? 1 : 0,
-                                                                                    pointerEvents: creativeIdx === idx ? 'auto' : 'none',
-                                                                                    transition: 'opacity 0.3s ease'
-                                                                                }}
-                                                                            />
-                                                                        ))}
- 
-                                                                        {/* Instagram-Inspired Floating Action Drawer */}
-                                                                        <div className="sim-social-actions" style={{ zIndex: 5 }}>
-                                                                            {/* Heart / Like */}
-                                                                            <div
-                                                                                className={`sim-action-btn ${isLiked ? 'liked' : ''}`}
-                                                                                onClick={handleLikeClick}
-                                                                                style={{ cursor: 'pointer' }}
-                                                                                tabIndex={0}
-                                                                                role="button"
-                                                                                aria-label={isLiked ? "Unlike video" : "Like video"}
-                                                                                onKeyDown={(e) => {
-                                                                                    if (e.key === 'Enter' || e.key === ' ') {
-                                                                                        e.preventDefault();
-                                                                                        handleLikeClick(e);
-                                                                                    }
-                                                                                }}
-                                                                            >
-                                                                                <div className="sim-action-icon-wrapper heart" style={{ color: isLiked ? '#ff3b30' : 'inherit' }}>
-                                                                                    <svg viewBox="0 0 24 24" width="10" height="10" fill={isLiked ? 'currentColor' : 'none'} stroke={isLiked ? '#ff3b30' : 'currentColor'} strokeWidth="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                                                                </div>
-                                                                            </div>
- 
-                                                                            {/* Share */}
-                                                                            <div className="sim-action-btn" tabIndex={0} role="button" aria-label="Share video">
-                                                                                <div className="sim-action-icon-wrapper share">
-                                                                                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
-                                                                                </div>
-                                                                            </div>
- 
-                                                                            {/* Mute/Unmute Audio Toggle */}
-                                                                            <div
-                                                                                className="sim-action-btn speaker-btn"
-                                                                                onClick={(e) => {
-                                                                                    e.stopPropagation();
-                                                                                    setIsVideoMuted(prev => !prev);
-                                                                                }}
-                                                                                style={{ cursor: 'pointer', marginTop: '4px' }}
-                                                                                title={isVideoMuted ? "Unmute video" : "Mute video"}
-                                                                                tabIndex={0}
-                                                                                role="button"
-                                                                                aria-label={isVideoMuted ? "Unmute video" : "Mute video"}
-                                                                                onKeyDown={(e) => {
-                                                                                    if (e.key === 'Enter' || e.key === ' ') {
-                                                                                        e.preventDefault();
-                                                                                        e.stopPropagation();
-                                                                                        setIsVideoMuted(prev => !prev);
-                                                                                    }
-                                                                                }}
-                                                                            >
-                                                                                <div className="sim-action-icon-wrapper speaker" style={{
-                                                                                    background: isVideoMuted ? 'rgba(255,255,255,0.15)' : 'rgba(16, 185, 129, 0.25)',
-                                                                                    borderColor: isVideoMuted ? 'rgba(255,255,255,0.45)' : 'rgba(16, 185, 129, 0.6)'
-                                                                                }}>
-                                                                                    {isVideoMuted ? (
-                                                                                        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                                                                            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                                                                                            <line x1="23" y1="9" x2="17" y2="15"></line>
-                                                                                            <line x1="17" y1="9" x2="23" y2="15"></line>
-                                                                                        </svg>
-                                                                                    ) : (
-                                                                                        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#10B981" strokeWidth="2.5">
-                                                                                            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                                                                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                                                                        </svg>
-                                                                                    )}
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        {/* Video metadata and details */}
-                                                                        <div className="sim-reels-details" style={{ paddingBottom: '12px', zIndex: 4 }}>
-                                                                            <h5 style={{ color: '#fff', fontSize: '0.65rem', fontWeight: '800', margin: '0 0 2px 0', textShadow: '0 2px 4px rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', gap: '3px' }}>
-                                                                                @{creativeIdx === 0 ? 'montra_escv' : creativeIdx === 1 ? 'ampere_ev' : 'montra_electric'}
-                                                                                <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
-                                                                            </h5>
-                                                                            <p className="sim-hide-mobile" style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.58rem', fontWeight: '700', margin: '0 0 2px 0', textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
-                                                                                {currentCreative.title}
-                                                                            </p>
-                                                                            <p className="sim-hide-mobile" style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.5rem', margin: '0 0 6px 0', textShadow: '0 1px 2px rgba(0,0,0,0.8)', lineHeight: '1.2' }}>
-                                                                                {currentCreative.subtitle}
-                                                                            </p>
-
-                                                                            {/* Audio line */}
-                                                                            <div className="sim-hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'rgba(255,255,255,0.9)', fontSize: '0.48rem', margin: 0, textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
-                                                                                <svg viewBox="0 0 24 24" width="8" height="8" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" /></svg>
-                                                                                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100px' }}>original audio - admitra.in</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </>
-                                                                ) : (
-                                                                    <>
-                                                                        {/* Instagram Post sponsored header */}
-                                                                        <div className="sim-sponsored-header" style={{ top: '32px' }}>
-                                                                            <div className="sim-sponsored-user">
-                                                                                <div className="sim-sponsored-info" style={{ marginLeft: 0 }}>
-                                                                                    <span className="sim-sponsored-name">
-                                                                                        {creativeIdx === 0 ? 'Montra e-SCV' : creativeIdx === 1 ? 'Ampere' : 'Montra Electric'}
-                                                                                        <svg viewBox="0 0 24 24" width="9" height="9" fill="#3897f0" style={{ marginLeft: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}><path d="M12.002 2.005c-5.522 0-10 4.477-10 10s4.478 10 10 10 10-4.477 10-10-4.478-10-10-10zm-1.25 13.75l-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6z" /></svg>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2.5"><circle cx="12" cy="5" r="1.5" fill="currentColor" /><circle cx="12" cy="12" r="1.5" fill="currentColor" /><circle cx="12" cy="19" r="1.5" fill="currentColor" /></svg>
-                                                                        </div>
-
-                                                                        {/* 4:5 Poster Media card */}
-                                                                        <div
-                                                                            className="sim-poster-media"
-                                                                            style={{
-                                                                                width: '100%',
-                                                                                height: '175px',
-                                                                                background: currentCreative.bg,
-                                                                                marginTop: '66px',
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column',
-                                                                                justifyContent: 'center',
-                                                                                alignItems: 'center',
-                                                                                padding: 0,
-                                                                                position: 'relative',
-                                                                                boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)'
-                                                                            }}
-                                                                        >
-                                                                            {mockPosters.map((poster, idx) => (
-                                                                                poster.posterSrc ? (
-                                                                                    <img
-                                                                                        key={poster.id}
-                                                                                        src={poster.posterSrc}
-                                                                                        alt={poster.title}
-                                                                                        style={{
-                                                                                            position: 'absolute',
-                                                                                            inset: 0,
-                                                                                            width: '100%',
-                                                                                            height: '100%',
-                                                                                            objectFit: 'contain',
-                                                                                            zIndex: 1,
-                                                                                            opacity: creativeIdx === idx ? 1 : 0,
-                                                                                            pointerEvents: creativeIdx === idx ? 'auto' : 'none',
-                                                                                            transition: 'opacity 0.3s ease'
-                                                                                        }}
-                                                                                        loading="lazy"
-                                                                                    />
-                                                                                ) : null
-                                                                            ))}
-                                                                        </div>
-
-                                                                        {/* Instagram Post Action Bar */}
-                                                                        <div className="sim-poster-actions" style={{
-                                                                            width: '100%',
-                                                                            padding: '6px 10px',
-                                                                            display: 'flex',
-                                                                            alignItems: 'center',
-                                                                            justifyContent: 'space-between',
-                                                                            background: 'transparent'
-                                                                        }}>
-                                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                                                <span
-                                                                                    className="sim-action-btn-post heart"
-                                                                                    onClick={handleLikeClick}
-                                                                                    style={{ color: isLiked ? '#ff3b30' : '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-                                                                                    tabIndex={0}
-                                                                                    role="button"
-                                                                                    aria-label={isLiked ? "Unlike photo" : "Like photo"}
-                                                                                    onKeyDown={(e) => {
-                                                                                        if (e.key === 'Enter' || e.key === ' ') {
-                                                                                            e.preventDefault();
-                                                                                            handleLikeClick(e);
-                                                                                        }
-                                                                                    }}
-                                                                                >
-                                                                                    <svg viewBox="0 0 24 24" width="10" height="10" fill={isLiked ? 'currentColor' : 'none'} stroke={isLiked ? '#ff3b30' : 'currentColor'} strokeWidth="2.2" className="post-heart-svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                                                                </span>
-                                                                                <span className="sim-action-btn-post share" style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }} tabIndex={0} role="button" aria-label="Share photo">
-                                                                                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-share-svg"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
-                                                                                </span>
-                                                                            </div>
-                                                                            <span className="sim-action-btn-post bookmark" style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }} tabIndex={0} role="button" aria-label="Bookmark photo">
-                                                                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.2" className="post-bookmark-svg"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-                                                                            </span>
-                                                                        </div>
-
-                                                                        {/* Instagram Likes line */}
-                                                                        <div className="sim-hide-mobile" style={{
-                                                                            padding: '0 10px',
-                                                                            textAlign: 'left',
-                                                                            fontSize: '0.52rem',
-                                                                            fontWeight: 'bold',
-                                                                            color: '#fff',
-                                                                            marginBottom: '2px',
-                                                                            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif'
-                                                                        }}>
-                                                                            Liked by <span style={{ color: '#fff', fontWeight: '800' }}>under25</span> and {isLiked ? '1,843' : '1,842'} others
-                                                                        </div>
-
-                                                                        {/* Instagram Caption */}
-                                                                        <div className="sim-hide-mobile" style={{
-                                                                            padding: '0 10px',
-                                                                            textAlign: 'left',
-                                                                            fontSize: '0.52rem',
-                                                                            lineHeight: '1.25',
-                                                                            color: 'rgba(255,255,255,0.9)',
-                                                                            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
-                                                                            maxHeight: '38px',
-                                                                            overflow: 'hidden',
-                                                                            textOverflow: 'ellipsis',
-                                                                            display: '-webkit-box',
-                                                                            WebkitLineClamp: 2,
-                                                                            WebkitBoxOrient: 'vertical'
-                                                                        }}>
-                                                                            <strong style={{ color: '#fff', fontWeight: '800', marginRight: '5px' }}>
-                                                                                {creativeIdx === 0 ? 'montraelectric' : creativeIdx === 1 ? 'ampere_ev' : 'lincolnpharma'}
-                                                                            </strong>
-                                                                            {currentCreative.desc}
-                                                                        </div>
- 
-                                                                        {/* View comments & quick comment input */}
-                                                                        <div className="sim-hide-mobile" style={{
-                                                                            padding: '0 10px',
-                                                                            textAlign: 'left',
-                                                                            fontSize: '0.46rem',
-                                                                            color: 'rgba(255,255,255,0.4)',
-                                                                            marginTop: '2px',
-                                                                            cursor: 'pointer',
-                                                                            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif'
-                                                                        }} onClick={() => alert('View all 42 comments!')}
-                                                                           tabIndex={0}
-                                                                           role="button"
-                                                                           onKeyDown={(e) => {
-                                                                               if (e.key === 'Enter' || e.key === ' ') {
-                                                                                   e.preventDefault();
-                                                                                   alert('View all 42 comments!');
-                                                                               }
-                                                                           }}
-                                                                        >
-                                                                            View all 42 comments
-                                                                        </div>
- 
-                                                                    </>
-                                                                )}
-                                                            </div>
- 
-                                                            {/* Next Button */}
-                                                            <button
-                                                                onClick={() => setCreativeIdx((prev) => (prev + 1) % 3)}
-                                                                aria-label="Next Creative"
-                                                                className="xp-arrow-nav-btn next-btn"
-                                                            >
-                                                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                                            </button>
-                                                        </div>
- 
-                                                        {/* Glowing Pagination Dots */}
-                                                        <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center', marginTop: '6px' }}>
-                                                            {[0, 1, 2].map((idx) => {
-                                                                const isActive = creativeIdx === idx;
-                                                                return (
-                                                                    <div
-                                                                        key={idx}
-                                                                        onClick={() => setCreativeIdx(idx)}
-                                                                        tabIndex={0}
-                                                                        role="button"
-                                                                        aria-label={`Switch to slide ${idx + 1}`}
-                                                                        onKeyDown={(e) => {
-                                                                            if (e.key === 'Enter' || e.key === ' ') {
-                                                                                e.preventDefault();
-                                                                                setCreativeIdx(idx);
-                                                                            }
-                                                                        }}
-                                                                        style={{
-                                                                            width: isActive ? '18px' : '6px',
-                                                                            height: '6px',
-                                                                            borderRadius: '3px',
-                                                                            background: isActive ? '#3B82F6' : 'rgba(255, 255, 255, 0.2)',
-                                                                            boxShadow: isActive ? '0 0 8px #3B82F6' : 'none',
-                                                                            cursor: 'pointer',
-                                                                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                                                                        }}
-                                                                    />
-                                                                );
-                                                            })}
-                                                        </div>
-                                                    </>
-                                                );
-                                            })()}
-                                        </div>
-
-                                        {/* Location & Language Grid */}
-                                        <div style={{
-                                            display: 'grid',
-                                            gridTemplateColumns: '1.2fr 0.8fr',
-                                            gap: '16px',
-                                            borderTop: '1px solid rgba(255,255,255,0.08)',
-                                            paddingTop: '16px'
-                                        }}>
-                                            <div>
-                                                <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Target Location</span>
-                                                <span style={{ fontSize: '1rem', color: '#FFF', fontWeight: '700', display: 'block' }}>{locations[locIdx].city}</span>
-                                            </div>
-                                            <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
-                                                <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Local Dialect</span>
-                                                <span style={{ fontSize: '1rem', color: '#3B82F6', fontWeight: '800', display: 'block' }}>{locations[locIdx].lang}</span>
-                                            </div>
+                                    {/* Auto-scrolling Marquee Track 1 (Videos - Right to Left) */}
+                                    <div className="hyperlocal-marquee-viewport">
+                                        <div className="hyperlocal-marquee-track">
+                                            {/* First set of items */}
+                                            {mockVideos.map((video, idx) => (
+                                                <div className="hyperlocal-marquee-card video-card" key={`v-${video.id}`}>
+                                                    <div className="marquee-card-bezel">
+                                                        <LazyVideo
+                                                            src={video.videoSrc}
+                                                            autoPlay
+                                                            loop
+                                                            muted
+                                                            playsInline
+                                                            style={{
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                objectFit: 'cover',
+                                                                borderRadius: '10px'
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <span className="marquee-card-label">{video.title}</span>
+                                                </div>
+                                            ))}
+                                            {/* Duplicate set for seamless loop */}
+                                            {mockVideos.map((video, idx) => (
+                                                <div className="hyperlocal-marquee-card video-card" key={`v2-${video.id}`}>
+                                                    <div className="marquee-card-bezel">
+                                                        <LazyVideo
+                                                            src={video.videoSrc}
+                                                            autoPlay
+                                                            loop
+                                                            muted
+                                                            playsInline
+                                                            style={{
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                objectFit: 'cover',
+                                                                borderRadius: '10px'
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <span className="marquee-card-label">{video.title}</span>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
 
+                                    {/* Auto-scrolling Marquee Track 2 (Posters - Left to Right) */}
+                                    <div className="hyperlocal-marquee-viewport" style={{ marginTop: '10px' }}>
+                                        <div className="hyperlocal-marquee-track track-reverse">
+                                            {/* First set of items */}
+                                            {mockPosters.map((poster, idx) => (
+                                                <div className="hyperlocal-marquee-card poster-card" key={`p-${poster.id}`}>
+                                                    <div className="marquee-card-bezel poster-bezel">
+                                                        <img
+                                                            src={poster.posterSrc}
+                                                            alt={poster.title}
+                                                            loading="lazy"
+                                                            style={{
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                objectFit: 'cover',
+                                                                borderRadius: '8px'
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <span className="marquee-card-label">{poster.title}</span>
+                                                </div>
+                                            ))}
+                                            {/* Duplicate set for seamless loop */}
+                                            {mockPosters.map((poster, idx) => (
+                                                <div className="hyperlocal-marquee-card poster-card" key={`p2-${poster.id}`}>
+                                                    <div className="marquee-card-bezel poster-bezel">
+                                                        <img
+                                                            src={poster.posterSrc}
+                                                            alt={poster.title}
+                                                            loading="lazy"
+                                                            style={{
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                objectFit: 'cover',
+                                                                borderRadius: '8px'
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <span className="marquee-card-label">{poster.title}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Location & Language Grid */}
+                                    <div className="hyperlocal-marquee-locations">
+                                        <div>
+                                            <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Target Location</span>
+                                            <span style={{ fontSize: '1rem', color: '#FFF', fontWeight: '700', display: 'block' }}>{locations[locIdx].city}</span>
+                                        </div>
+                                        <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
+                                            <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Local Dialect</span>
+                                            <span style={{ fontSize: '1rem', color: '#3B82F6', fontWeight: '800', display: 'block' }}>{locations[locIdx].lang}</span>
+                                        </div>
+                                    </div>
+                                </div>
                                     {/* Key Campaign Clients block relocated after viewport */}
                                     <div className="xp-client-brands xp-clients-mobile" style={{ width: '100%', maxWidth: '340px', marginTop: '0px', paddingTop: '15px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                                         <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
@@ -941,7 +551,6 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     {/* ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── */}
                     <div className="xp-interface-window xp-window-davinci" data-theme="video">
