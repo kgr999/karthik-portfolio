@@ -472,7 +472,7 @@ export function initPortfolio() {
         });
     });
 
-    // Dynamic Navbar Shrink on Scroll
+    // Dynamic Navbar Shrink on Scroll & ScrollSpy Logic
     const nav = document.querySelector('nav');
     if (nav) {
         window.addEventListener('scroll', () => {
@@ -482,6 +482,51 @@ export function initPortfolio() {
                 nav.classList.remove('scrolled');
             }
         });
+
+        // ScrollSpy implementation (desktop/sidebar active highlights)
+        const spySections = [
+            { id: 'hero', selector: '#hero', linkSelector: 'nav .nav-link-item[href="#"]' },
+            { id: 'featured-projects', selector: '#featured-projects', linkSelector: 'nav .nav-link-item[href="#featured-projects"]' },
+            { id: 'experience-journey', selector: '#experience-journey', linkSelector: 'nav .nav-link-item[href="#experience-journey"]' },
+            { id: 'tech-stack', selector: '#tech-stack', linkSelector: 'nav .nav-link-item[href="#tech-stack"]' },
+            { id: 'contact', selector: '#contact', linkSelector: 'nav .nav-link-item[href="#contact"]' }
+        ];
+
+        function updateActiveLink() {
+            let activeLink = null;
+            const scrollPos = window.scrollY;
+
+            // Find current active section
+            for (let i = spySections.length - 1; i >= 0; i--) {
+                const sec = spySections[i];
+                const el = document.querySelector(sec.selector);
+                if (el) {
+                    const top = el.getBoundingClientRect().top + window.scrollY;
+                    // Trigger section active highlight if scrolled past the top (with a 200px threshold offset)
+                    if (scrollPos >= top - 200) {
+                        activeLink = document.querySelector(sec.linkSelector);
+                        break;
+                    }
+                }
+            }
+
+            // Fallback default: if at top, Home is active
+            if (!activeLink || scrollPos < 100) {
+                activeLink = document.querySelector('nav .nav-link-item[href="#"]');
+            }
+
+            if (activeLink) {
+                document.querySelectorAll('nav .nav-link-item').forEach(item => {
+                    item.classList.remove('active-link');
+                });
+                activeLink.classList.add('active-link');
+            }
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        window.addEventListener('resize', updateActiveLink);
+        // Run immediately after brief delay to let page settle
+        setTimeout(updateActiveLink, 250);
     }
 
     // ═══════════════════════════════════════════════════════════
