@@ -642,7 +642,7 @@ export default function FeaturedProjects() {
                                     <h3 className="fp-pod-title" style={{ fontSize: '1.8rem', fontWeight: '900', letterSpacing: '-0.5px', margin: '0', color: '#FFF' }}>The "Diesel Drama" Viral Reel</h3>
                                     <span className="fp-pod-role-pill" style={{ '--role-theme': '#ff007f', display: 'inline-block', alignSelf: 'flex-start', fontSize: '0.72rem', letterSpacing: '1px' }}>AI Video Specialist & Storyteller</span>
                                     <p className="fp-pod-desc" style={{ fontSize: '0.86rem', lineHeight: '1.45', opacity: 0.8, margin: '4px 0 8px 0' }}>
-                                        Single-handedly translated, dubbed, and edited the keynote launch reveal in 7 regional Indian languages. Tailored distinct visual cut sequences for North and South Indian campaigns based on regional preferences, posted on the official @montraelectricscv page.
+                                        Designed and produced the viral reel campaign to maximize organic regional engagement. Engineered high-impact visual hooks, dynamic pacing, and custom narrative layouts, driving over 1.2 million views and high user interaction.
                                     </p>
 
                                     {/* Interactive Translation Spectrum Widget */}
