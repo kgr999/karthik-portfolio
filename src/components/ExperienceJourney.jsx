@@ -178,7 +178,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     />
                                                 </div>
                                             </div>
-                                            <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Generative AI Intern</h3>
+                                            <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Creative Head</h3>
                                             <p style={{ fontSize: '0.85rem', color: '#3B82F6', fontFamily: 'monospace', fontWeight: '600' }}>
                                                 Bengaluru · AdMitra Pvt. Ltd. &nbsp;&nbsp; <span className="xp-date-shimmer">February 2026 – May 2026</span>
                                             </p>
@@ -201,7 +201,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
                                                 <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                                    Directed end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>multimodal AI content production</strong> for hyperlocal advertising campaigns across video and poster formats at scale. Translated brand strategy into structured storyboards, localized narratives, and <strong style={{ color: '#3B82F6', fontWeight: '600' }}>multi-language AI-generated campaign assets</strong> while developing <strong style={{ color: '#3B82F6', fontWeight: '600' }}>content policies and responsible AI guardrails</strong>.
+                                                    Led end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>AI-powered creative operations</strong> for hyperlocal advertising campaigns across video and poster formats at scale, translating brand strategy into structured storyboards and localized narratives.
                                                 </p>
                                             </div>
 
@@ -222,7 +222,28 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
                                                 <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                                    Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>. Worked closely with <strong style={{ color: '#3B82F6', fontWeight: '600' }}>technical teams to bring more AI capabilities</strong> into multimodal content generation workflows and <strong style={{ color: '#3B82F6', fontWeight: '600' }}>streamline campaign execution</strong>.
+                                                    Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>, collaborating directly with founders and brand stakeholders to streamline campaign execution.
+                                                </p>
+                                            </div>
+
+                                            <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                                <div style={{
+                                                    background: 'rgba(59, 130, 246, 0.1)',
+                                                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                                                    borderRadius: '50%',
+                                                    width: '22px',
+                                                    height: '22px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    flexShrink: 0,
+                                                    marginTop: '2px',
+                                                    boxShadow: '0 0 10px rgba(59, 130, 246, 0.15)'
+                                                }}>
+                                                    <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                </div>
+                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                                                    Collaborated closely with <strong style={{ color: '#3B82F6', fontWeight: '600' }}>technical and engineering team</strong> to integrate advanced AI creation tools, streamlining workflows and accelerating project delivery times.
                                                 </p>
                                             </div>
                                         </div>
@@ -302,28 +323,28 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     </div>
                                                     <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
                                                 </div>
-                                                <div className="xp-brand-logo-btn xp-brand-ekotejas">
+                                                <div className="xp-brand-logo-btn xp-brand-prismara">
                                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                         <img
-                                                            src="https://ekotejas.in/wp-content/uploads/2023/06/Group-1941.png"
+                                                            src="https://media.licdn.com/dms/image/v2/D560BAQERAGOWIeST7A/company-logo_200_200/B56ZyZEB9vGwAI-/0/1772094497178/prismarajewels_logo?e=2147483647&v=beta&t=mLLSJn1qN6PzFsOhFcQ9XNZumI49NYMv_sVxLhOOZ0A"
                                                             onError={(e) => {
                                                                 if (!e.target.dataset.triedFallback) {
                                                                     e.target.dataset.triedFallback = 'true';
-                                                                    e.target.src = "https://www.google.com/s2/favicons?domain=ekotejas.com&sz=128";
+                                                                    e.target.src = "https://www.google.com/s2/favicons?domain=prismara.com&sz=128";
                                                                 } else {
                                                                     e.target.style.display = 'none';
                                                                     if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
                                                                 }
                                                             }}
                                                             className="xp-brand-logo-btn-icon"
-                                                            alt="EkoTejas"
+                                                            alt="Prismara"
                                                             style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
                                                         />
-                                                        <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#3B82F6', zIndex: 1 }}>
-                                                            E
+                                                        <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FFB6C1', zIndex: 1 }}>
+                                                            P
                                                         </div>
                                                     </div>
-                                                    <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>EkoTejas</span>
+                                                    <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Prismara</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -523,28 +544,28 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 </div>
                                                 <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
                                             </div>
-                                            <div className="xp-brand-logo-btn xp-brand-ekotejas">
+                                            <div className="xp-brand-logo-btn xp-brand-prismara">
                                                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                     <img
-                                                        src="https://ekotejas.in/wp-content/uploads/2023/06/Group-1941.png"
+                                                        src="https://media.licdn.com/dms/image/v2/D560BAQERAGOWIeST7A/company-logo_200_200/B56ZyZEB9vGwAI-/0/1772094497178/prismarajewels_logo?e=2147483647&v=beta&t=mLLSJn1qN6PzFsOhFcQ9XNZumI49NYMv_sVxLhOOZ0A"
                                                         onError={(e) => {
                                                             if (!e.target.dataset.triedFallback) {
                                                                 e.target.dataset.triedFallback = 'true';
-                                                                e.target.src = "https://www.google.com/s2/favicons?domain=ekotejas.com&sz=128";
+                                                                e.target.src = "https://www.google.com/s2/favicons?domain=prismara.com&sz=128";
                                                             } else {
                                                                 e.target.style.display = 'none';
                                                                 if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
                                                             }
                                                         }}
                                                         className="xp-brand-logo-btn-icon"
-                                                        alt="EkoTejas"
+                                                        alt="Prismara"
                                                         style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
                                                     />
-                                                    <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#3B82F6', zIndex: 1 }}>
-                                                        E
+                                                    <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FFB6C1', zIndex: 1 }}>
+                                                        P
                                                     </div>
                                                 </div>
-                                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>EkoTejas</span>
+                                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Prismara</span>
                                             </div>
                                         </div>
                                     </div>

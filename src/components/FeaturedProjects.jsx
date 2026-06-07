@@ -642,7 +642,7 @@ export default function FeaturedProjects() {
                                     <h3 className="fp-pod-title" style={{ fontSize: '1.8rem', fontWeight: '900', letterSpacing: '-0.5px', margin: '0', color: '#FFF' }}>The "Diesel Drama" Viral Reel</h3>
                                     <span className="fp-pod-role-pill" style={{ '--role-theme': '#ff007f', display: 'inline-block', alignSelf: 'flex-start', fontSize: '0.72rem', letterSpacing: '1px' }}>AI Video Specialist & Storyteller</span>
                                     <p className="fp-pod-desc" style={{ fontSize: '0.86rem', lineHeight: '1.45', opacity: 0.8, margin: '4px 0 8px 0' }}>
-                                        Designed and produced the viral reel campaign to maximize organic regional engagement. Engineered high-impact visual hooks, dynamic pacing, and custom narrative layouts, driving over 1.2 million views and high user interaction.
+                                        Designed and produced the viral reel campaign to maximize organic regional engagement. Engineered high-impact visual hooks, dynamic pacing, and custom narrative layouts, driving over 2.5 million views and high user interaction.
                                     </p>
 
                                     {/* Interactive Translation Spectrum Widget */}
@@ -687,14 +687,14 @@ export default function FeaturedProjects() {
                                             <span className="fp-pod-hud-lbl" style={{ fontSize: '0.55rem', letterSpacing: '0.5px', color: 'rgba(255,255,255,0.45)', textTransform: 'none', marginBottom: '2px', display: 'block' }}>Views</span>
                                             <span className="fp-pod-hud-val" style={{ color: '#00FF80', fontWeight: '900', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
                                                 <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', background: '#00FF80', boxShadow: '0 0 6px #00FF80' }}></span>
-                                                1.2M+
+                                                2.5M+
                                             </span>
                                         </div>
                                         <div className="fp-pod-hud-col glass-hud">
                                             <span className="fp-pod-hud-lbl" style={{ fontSize: '0.55rem', letterSpacing: '0.5px', color: 'rgba(255,255,255,0.45)', textTransform: 'none', marginBottom: '2px', display: 'block' }}>Likes</span>
                                             <span className="fp-pod-hud-val" style={{ color: '#ff007f', fontWeight: '900', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
                                                 <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" style={{ filter: 'drop-shadow(0 0 3px rgba(255,0,127,0.6))' }}><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                                                33k+
+                                                36k+
                                             </span>
                                         </div>
                                         <div className="fp-pod-hud-col glass-hud">
@@ -795,7 +795,7 @@ export default function FeaturedProjects() {
                                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', color: '#fff' }}>
                                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5px' }}>
                                                         <svg viewBox="0 0 24 24" width="9" height="9" fill="currentColor" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.8))' }}><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                                                        <span style={{ fontSize: '0.34rem', fontWeight: '800', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>33k</span>
+                                                        <span style={{ fontSize: '0.34rem', fontWeight: '800', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>36k</span>
                                                     </div>
                                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5px' }}>
                                                         <svg viewBox="0 0 24 24" width="9" height="9" fill="currentColor" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.8))' }}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>

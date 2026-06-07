@@ -3,7 +3,7 @@ export const mockVideos = [
     { id: 2, title: "Ampere Nexus", subtitle: "Product Showdown", bg: "#000", videoSrc: "/assets/videos/amperemob.mp4" },
     { id: 3, title: "Super Auto", subtitle: "Emotive Storytelling", bg: "#000", videoSrc: "/assets/videos/montraelectricmob.mp4" },
     { id: 4, title: "Diesel Drama", subtitle: "Lincoln Pharma", bg: "#000", videoSrc: "/assets/videos/dieseldrama_comp.mp4" },
-    { id: 5, title: "Eko Girl", subtitle: "EkoTejas Campaign", bg: "#000", videoSrc: "/assets/videos/empower.mp4" },
+    { id: 5, title: "Eko Girl", subtitle: "Prismara Campaign", bg: "#000", videoSrc: "/assets/videos/empower.mp4" },
     { id: 6, title: "Sky Man", subtitle: "AR Campaign", bg: "#000", videoSrc: "/assets/videos/aerialworkplatform.mp4" },
     { id: 7, title: "Trusted By Many", subtitle: "Brand Trust Campaign", bg: "#000", videoSrc: "/assets/videos/trustedbymany_comp.mp4" }
 ];

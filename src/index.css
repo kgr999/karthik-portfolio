@@ -445,23 +445,23 @@ nav.scrolled {
         padding: 24px 0;
         border-radius: 0;
         border: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
         background: rgba(8, 8, 10, 0.45);
         backdrop-filter: blur(24px) saturate(190%);
         -webkit-backdrop-filter: blur(24px) saturate(190%);
-        box-shadow: 15px 0 35px rgba(0, 0, 0, 0.3);
+        box-shadow: none;
         transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         display: flex;
         flex-direction: column;
+        mask-image: linear-gradient(to right, black 0%, black calc(100% - 24px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 24px), transparent 100%);
     }
 
     nav:hover {
         width: 240px;
         background: rgba(8, 8, 10, 0.85);
-        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(77, 163, 255, 0.05);
-        border-right: 1px solid rgba(77, 163, 255, 0.2);
+        border: none;
+        box-shadow: none;
     }
 
     nav.scrolled {
@@ -472,16 +472,15 @@ nav.scrolled {
         padding: 24px 0;
         background: rgba(8, 8, 10, 0.45);
         border-radius: 0;
-        border-color: transparent;
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 15px 0 35px rgba(0, 0, 0, 0.3);
+        border: none;
+        box-shadow: none;
     }
 
     nav.scrolled:hover {
         width: 240px;
         background: rgba(8, 8, 10, 0.85);
-        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(77, 163, 255, 0.05);
-        border-right: 1px solid rgba(77, 163, 255, 0.2);
+        border: none;
+        box-shadow: none;
     }
 
     .nav-inner {
@@ -512,17 +511,23 @@ nav.scrolled {
         width: 36px;
         height: 36px;
         background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-        border-radius: 8px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: 'Outfit', sans-serif;
         font-weight: 900;
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         color: #ffffff;
         flex-shrink: 0;
         box-shadow: 0 0 15px rgba(77, 163, 255, 0.3);
         border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    nav:hover .logo-badge {
+        transform: scale(1.08) rotate(4deg);
+        box-shadow: 0 0 25px rgba(77, 163, 255, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.2);
     }
 
     .logo-text {
@@ -565,12 +570,13 @@ nav.scrolled {
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         box-sizing: border-box;
         padding: 12px 0 12px 16px;
+        position: relative;
     }
 
     .nav-links a.nav-link-item svg {
         flex-shrink: 0;
         stroke-width: 1.5;
-        transition: stroke 0.4s ease, transform 0.4s ease;
+        transition: stroke 0.4s ease, transform 0.4s ease, color 0.4s ease, filter 0.4s ease;
         color: inherit;
     }
 
@@ -598,28 +604,30 @@ nav.scrolled {
 
     .nav-links a.nav-link-item:hover {
         color: #ffffff;
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(255, 255, 255, 0.05);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        transform: translateX(6px);
     }
 
     .nav-links a.nav-link-item:hover svg {
-        transform: scale(1.1);
-        color: var(--accent);
+        transform: scale(1.15) rotate(-3deg);
+        color: #ffffff;
+        filter: drop-shadow(0 0 6px var(--accent));
     }
 
     .nav-links a.nav-link-item.active-link {
-        color: var(--accent);
-        background: rgba(77, 163, 255, 0.08);
-        border-color: rgba(77, 163, 255, 0.15);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(77, 163, 255, 0.1);
+        color: #ffffff;
+        background: linear-gradient(135deg, rgba(77, 163, 255, 0.15) 0%, rgba(168, 85, 247, 0.08) 100%);
+        border-color: rgba(77, 163, 255, 0.25);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 15px rgba(77, 163, 255, 0.15), inset 0 1px 0 rgba(77, 163, 255, 0.15);
         font-weight: 600;
     }
 
     .nav-links a.nav-link-item.active-link svg {
-        color: var(--accent);
+        color: #ffffff;
         stroke-width: 2.2;
-        filter: drop-shadow(0 0 8px rgba(77, 163, 255, 0.4));
+        filter: drop-shadow(0 0 8px rgba(77, 163, 255, 0.5));
     }
 
     /* Active Link Slide-in Indicator */
@@ -629,10 +637,10 @@ nav.scrolled {
         left: 0;
         top: 25%;
         height: 50%;
-        width: 3px;
-        background: var(--accent);
-        border-radius: 0 4px 4px 0;
-        box-shadow: 0 0 8px var(--accent);
+        width: 4px;
+        background: linear-gradient(to bottom, #4da3ff, #a855f7);
+        border-radius: 0 10px 10px 0;
+        box-shadow: 0 0 12px #4da3ff, 0 0 20px #a855f7;
         opacity: 0;
         transform: scaleY(0);
         transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
@@ -655,13 +663,13 @@ nav.scrolled {
 
     @keyframes glow-white-to-gold {
         0%, 100% {
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.85);
         }
         50% {
-            border-color: rgba(255, 215, 0, 0.55);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 215, 0, 0.45);
+            box-shadow: 0 4px 18px rgba(255, 215, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.02);
             color: #ffd700;
         }
     }
@@ -678,6 +686,24 @@ nav.scrolled {
         overflow: hidden;
         padding: 12px 0 12px 16px;
         animation: glow-white-to-gold 5s infinite ease-in-out;
+        position: relative;
+    }
+
+    .resume-btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+        transform: skewX(-25deg);
+        transition: left 0.6s ease;
+    }
+
+    .resume-btn:hover::after {
+        left: 150%;
+        transition: left 0.8s ease;
     }
 
     .resume-btn svg.resume-icon {
@@ -712,18 +738,19 @@ nav.scrolled {
     .resume-btn:hover {
         animation: none;
         border-color: rgba(255, 215, 0, 0.85);
-        background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 165, 0, 0.12) 100%);
-        color: #ffffff;
-        box-shadow: 0 4px 25px rgba(255, 215, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%) !important;
+        color: #000000 !important;
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px) scale(1.02);
     }
 
     .resume-btn:hover svg.resume-icon {
         transform: translateY(-2px);
-        color: #ffffff;
+        color: #000000 !important;
     }
 
     .resume-btn:hover .resume-label {
-        color: #ffffff;
+        color: #000000 !important;
     }
 
     .menu-toggle {
@@ -4063,7 +4090,7 @@ footer {
     }
 
     .xp-brand-logo-btn.xp-brand-lincoln-pharma,
-    .xp-brand-logo-btn.xp-brand-ekotejas {
+    .xp-brand-logo-btn.xp-brand-prismara {
         /* Handled by stretch flex */
     }
 
@@ -5015,7 +5042,7 @@ footer {
 }
 
 .xp-brand-logo-btn.xp-brand-lincoln-pharma,
-.xp-brand-logo-btn.xp-brand-ekotejas {
+.xp-brand-logo-btn.xp-brand-prismara {
     /* Flow naturally in flex layout */
 }
 
@@ -5063,10 +5090,10 @@ footer {
     box-shadow: 0 0 20px rgba(74, 222, 128, 0.3) !important;
 }
 
-.xp-brand-logo-btn.xp-brand-ekotejas:hover {
-    background: rgba(59, 130, 246, 0.08) !important;
-    border-color: rgba(59, 130, 246, 0.45) !important;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3) !important;
+.xp-brand-logo-btn.xp-brand-prismara:hover {
+    background: rgba(255, 182, 193, 0.08) !important;
+    border-color: rgba(255, 182, 193, 0.45) !important;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.3) !important;
 }
 
 /* Monospace circular prefix badges */
@@ -5104,10 +5131,10 @@ footer {
     border-color: rgba(74, 222, 128, 0.3) !important;
 }
 
-.xp-brand-ekotejas:hover .xp-brand-badge {
-    background: rgba(59, 130, 246, 0.2) !important;
-    color: #3b82f6 !important;
-    border-color: rgba(59, 130, 246, 0.3) !important;
+.xp-brand-prismara:hover .xp-brand-badge {
+    background: rgba(255, 182, 193, 0.2) !important;
+    color: #FFB6C1 !important;
+    border-color: rgba(255, 182, 193, 0.3) !important;
 }
 
 .xp-brand-logo-btn-icon {
