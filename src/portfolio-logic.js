@@ -780,7 +780,39 @@ export function initPortfolio() {
         });
     }
 
+    // ═══════════════════════════════════════════════════════════
+    // 16. SCROLL PROGRESS BAR & HEADING UNDERLINE REVEALS
+    // ═══════════════════════════════════════════════════════════
 
+    // Scroll Progress Bar Animation (reflects scroll depth via ScrollTrigger)
+    const progressBar = document.querySelector('.scroll-progress-bar');
+    if (progressBar) {
+        gsap.to(progressBar, {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: document.documentElement,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: true
+            }
+        });
+    }
+
+    // Section Heading Underline Animations (stretches center-out using CSS custom property)
+    const headings = gsap.utils.toArray('.section-heading');
+    headings.forEach((heading) => {
+        gsap.to(heading, {
+            '--underline-scale': 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: heading,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
 
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
 

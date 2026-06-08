@@ -699,6 +699,7 @@ export default function App() {
 
     return (
         <>
+            <div className={`scroll-progress-bar ${isInitialized || isMobile ? 'visible' : ''}`}></div>
             <div className={isInitializing ? 'bg-grayscale' : ''} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
                 <LightRays
                     raysOrigin="top-center"
