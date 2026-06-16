@@ -28,7 +28,7 @@
 
 /* Live signal pulse dot animations */
 .pulse-glow {
-    box-shadow: 0 0 8px rgba(77, 163, 255, 0.6);
+    box-shadow: 0 0 8px rgba(229, 9, 20, 0.6);
     animation: signalPulse 2.5s infinite ease-in-out;
 }
 
@@ -40,6 +40,6 @@
     50% {
         opacity: 1;
         transform: scale(1.1);
-        box-shadow: 0 0 12px rgba(77, 163, 255, 0.9);
+        box-shadow: 0 0 12px rgba(229, 9, 20, 0.9);
     }
 }

@@ -15,6 +15,7 @@ import PosterShowcase from './components/PosterShowcase';
 import ExperienceJourney from './components/ExperienceJourney';
 import ActiveProjects from './components/ActiveProjects';
 import CurrentLearning from './components/CurrentLearning';
+import CreativeRider from './components/CreativeRider';
 const techStackCategories = [
     {
         num: "01",
@@ -357,32 +358,6 @@ import CertificationsSection from './components/CertificationsSection';
 
 export default function App() {
     const isMobile = useIsMobile();
-    const [toastActive, setToastActive] = useState(false);
-    const [toastVisible, setToastVisible] = useState(false);
-    const toastTimersRef = React.useRef([]);
-
-    const handleResumeClick = (e) => {
-        // Clear any active timers to prevent animation overlaps
-        toastTimersRef.current.forEach(t => clearTimeout(t));
-        toastTimersRef.current = [];
-
-        setToastActive(true);
-        setToastVisible(false); // Reset to base state to restart animation if clicked rapidly
-
-        const t1 = setTimeout(() => {
-            setToastVisible(true);
-        }, 50);
-
-        const t2 = setTimeout(() => {
-            setToastVisible(false);
-        }, 3100);
-
-        const t3 = setTimeout(() => {
-            setToastActive(false);
-        }, 3500);
-
-        toastTimersRef.current = [t1, t2, t3];
-    };
 
     const isMountReadyRef = React.useRef(false);
     useEffect(() => {
@@ -405,6 +380,84 @@ export default function App() {
     const [swipeState, setSwipeState] = useState('idle'); // 'idle', 'swiping-up', 'swiping-down'
     const [isInitializing, setIsInitializing] = useState(false);
     const [initProgress, setInitProgress] = useState(0);
+
+    // Theme Switcher State (Locked to Netflix Crimson Mode)
+    const theme = 'cyber';
+
+    useEffect(() => {
+        document.body.classList.remove('theme-cyber', 'theme-kuku');
+        document.body.classList.add('theme-cyber');
+    }, []);
+
+    // Creative Rider Overlay State
+    const [isRiderOpen, setIsRiderOpen] = useState(false);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                setIsRiderOpen(false);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
+    // Cinematic Clapper Slate states
+    const [showClapper, setShowClapper] = useState(false);
+    const [isClapping, setIsClapping] = useState(false);
+    const [clapperDate, setClapperDate] = useState('');
+    const [clapperTime, setClapperTime] = useState('');
+
+    const playClapSound = () => {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            const ctx = new AudioContext();
+            
+            // Noise burst for clack high-end crunch
+            const bufferSize = ctx.sampleRate * 0.08;
+            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            
+            const noise = ctx.createBufferSource();
+            noise.buffer = buffer;
+            const noiseFilter = ctx.createBiquadFilter();
+            noiseFilter.type = 'bandpass';
+            noiseFilter.frequency.value = 1200;
+            noiseFilter.Q.value = 3;
+            
+            const noiseGain = ctx.createGain();
+            noiseGain.gain.setValueAtTime(0.35, ctx.currentTime);
+            noiseGain.gain.exponentialRampToValueAtTime(0.005, ctx.currentTime + 0.06);
+            
+            noise.connect(noiseFilter);
+            noiseFilter.connect(noiseGain);
+            noiseGain.connect(ctx.destination);
+            
+            // Low-freq resonator oscillator for hollow wood snap
+            const osc = ctx.createOscillator();
+            const oscGain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(160, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(70, ctx.currentTime + 0.04);
+            
+            oscGain.gain.setValueAtTime(0.7, ctx.currentTime);
+            oscGain.gain.exponentialRampToValueAtTime(0.005, ctx.currentTime + 0.05);
+            
+            osc.connect(oscGain);
+            oscGain.connect(ctx.destination);
+            
+            noise.start();
+            osc.start();
+            noise.stop(ctx.currentTime + 0.08);
+            osc.stop(ctx.currentTime + 0.08);
+        } catch (e) {
+            console.error("Audio clack error:", e);
+        }
+    };
 
     // Hero AI Assistant Robot (Aero) states
     const [robotState, setRobotState] = useState('stage-spawn'); // 'stage-spawn', 'stage-wave', 'stage-blink', 'stage-point-look', 'stage-move', 'stage-idle'
@@ -478,15 +531,34 @@ export default function App() {
     }, []);
 
     const handleInitialize = () => {
-        if (isInitialized || swipeState !== 'idle') return;
+        if (isInitialized || swipeState !== 'idle' || showClapper) return;
         
-        // Trigger the Valorant swipe-up phase immediately
-        setSwipeState('swiping-up');
+        // Capture exact click date and time
+        const clickDate = new Date();
+        const formattedDate = clickDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).toUpperCase();
+        const formattedTime = clickDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).toUpperCase();
+        setClapperDate(formattedDate);
+        setClapperTime(formattedTime);
+        
+        setShowClapper(true);
+        setIsClapping(false);
+        
+        // Step 1: Hinge slaps shut (claps) and plays sound at 300ms
+        const clapTimer = setTimeout(() => {
+            setIsClapping(true);
+            playClapSound();
+        }, 300);
 
-        // At 500ms (when screen is completely covered), execute layout switch
-        setTimeout(() => {
+        // Step 2: At 800ms, slide up the tactical cover panel
+        const swipeUpTimer = setTimeout(() => {
+            setSwipeState('swiping-up');
+        }, 800);
+
+        // Step 3: At 1300ms (covered), execute layout switch and reset clapper overlay
+        const initTimer = setTimeout(() => {
             setIsInitialized(true);
             setIsInitializing(false);
+            setShowClapper(false);
             setSwipeState('swiping-down');
             
             // Enable scroll and start Lenis
@@ -506,15 +578,15 @@ export default function App() {
             if (window.ScrollTrigger) {
                 window.ScrollTrigger.refresh();
             }
-        }, 500);
+        }, 1300);
 
-        // At 1050ms (when swipe panel slides off the top), reset state
-        setTimeout(() => {
+        // Step 4: At 1850ms (swiped down off top), reset swipe state to idle
+        const swipeResetTimer = setTimeout(() => {
             setSwipeState('idle');
             if (window.ScrollTrigger) {
                 window.ScrollTrigger.refresh();
             }
-        }, 1050);
+        }, 1850);
     };
 
     useEffect(() => {
@@ -532,15 +604,15 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        // Prevent scroll until system is fully initialized on desktop, but allow mobile scroll fallback
-        if (!isInitialized) {
-            if (isMobile) {
+        // Prevent scroll until system is fully initialized on desktop, but allow mobile scroll fallback, or when Rider is open
+        if (!isInitialized || isRiderOpen) {
+            if (isMobile && !isRiderOpen) {
                 document.body.style.overflow = 'auto';
                 document.documentElement.style.overflow = 'auto';
             } else {
                 document.body.style.overflow = 'hidden';
             }
-            if (window.lenis && !isMobile) {
+            if (window.lenis) {
                 window.lenis.stop();
             }
         } else {
@@ -554,7 +626,7 @@ export default function App() {
                 }, 150);
             }
         }
-    }, [isInitialized, isMobile]);
+    }, [isInitialized, isMobile, isRiderOpen]);
 
     useEffect(() => {
         if (!isMobile) return;
@@ -703,7 +775,7 @@ export default function App() {
             <div className={isInitializing ? 'bg-grayscale' : ''} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
                 <LightRays
                     raysOrigin="top-center"
-                    raysColor="#0084ff"
+                    raysColor={theme === 'kuku' ? '#B20710' : '#E50914'}
                     raysSpeed={1.7}
                     lightSpread={2.2}
                     rayLength={1.8}
@@ -726,50 +798,35 @@ export default function App() {
                 }}
             >
                 <div className="nav-inner">
-                    <div className="logo-wrapper">
-                        <a href="#" className="logo-link">
-                            <div className="logo-badge">K</div>
-                            <span className="logo-text">KARTHIK G RAJ</span>
-                        </a>
-                    </div>
+                    <a href="#" className="logo-link">
+                        <span className="logo-text">KGR</span>
+                    </a>
+
                     <div className="nav-links">
-                        <a href="#" className="nav-link-item active-link">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
-                            <span className="link-label">Home</span>
-                        </a>
-                        <a href="#featured-projects" className="nav-link-item">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
-                            <span className="link-label">Projects</span>
-                        </a>
-                        <a href="#experience-journey" className="nav-link-item">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg>
-                            <span className="link-label">Experience</span>
-                        </a>
-                        <a href="#tech-stack" className="nav-link-item">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></svg>
-                            <span className="link-label">Skills</span>
-                        </a>
-                        <a href="#contact" className="nav-link-item">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
-                            <span className="link-label">Contact</span>
-                        </a>
+                        <a href="#" className="nav-link-item active-link">Home</a>
+                        <a href="#featured-projects" className="nav-link-item">Projects</a>
+                        <a href="#experience-journey" className="nav-link-item">Experience</a>
+                        <a href="#tech-stack" className="nav-link-item">Skills</a>
+                        <a href="#contact" className="nav-link-item">Contact</a>
                     </div>
-                    <div className="nav-actions">
-                        <a 
-                            href="/KarthikGRaj_AI_Creative_Resume.pdf" 
-                            download="KarthikGRaj_AI_Creative_Resume.pdf" 
-                            className="resume-btn" 
-                            onClick={handleResumeClick}
-                        >
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="resume-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><line x1="10" y1="9" x2="8" y2="9" /></svg>
-                            <span className="resume-label">Resume</span>
-                        </a>
-                        <button className="menu-toggle" aria-label="Toggle Menu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div>
+
+                    <a 
+                        href="#work-with-me" 
+                        className="nav-cta-btn"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setIsRiderOpen(true);
+                        }}
+                    >
+                        <span className="nav-cta-dot"></span>
+                        Hire Me
+                    </a>
+
+                    <button className="menu-toggle" aria-label="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </nav>
 
@@ -780,6 +837,22 @@ export default function App() {
                     <a href="#experience-journey" className="mobile-menu-link">Experience</a>
                     <a href="#tech-stack" className="mobile-menu-link">Skills</a>
                     <a href="#contact" className="mobile-menu-link">Contact</a>
+                    <a 
+                        href="#work-with-me" 
+                        className="mobile-menu-link"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setIsRiderOpen(true);
+                            // Explicitly collapse the mobile menu
+                            const menuToggle = document.querySelector('.menu-toggle');
+                            const mobileMenu = document.querySelector('.mobile-menu');
+                            if (menuToggle && mobileMenu) {
+                                menuToggle.classList.remove('active');
+                                mobileMenu.classList.remove('active');
+                            }
+                        }}
+                    >Work With Me</a>
                 </div>
             </div>
 
@@ -792,6 +865,7 @@ export default function App() {
                         robotState={robotState}
                         cloneStatus={cloneStatus}
                         handleInitialize={handleInitialize}
+                        theme={theme}
                     />
                 )}
 
@@ -1003,7 +1077,7 @@ export default function App() {
 
                             <footer style={{ borderTop: 'none', padding: '10px 0 20px 0', zIndex: 5, pointerEvents: 'auto' }}>
                                 <div className="footer-content" style={{ padding: 0, minHeight: 'auto', display: 'flex', justifyContent: 'center' }}>
-                                    <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // AI CREATIVE DIRECTOR & STORYTELLER</p>
+                                    <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // AI CREATIVE PRODUCER</p>
                                 </div>
                             </footer>
                         </div>
@@ -1015,75 +1089,87 @@ export default function App() {
             <div className={`valorant-transition-overlay ${swipeState}`}>
                 <div className="valorant-swipe-panel secondary-panel"></div>
                 <div className="valorant-swipe-panel primary-panel"></div>
-                <div className="valorant-transition-logo">
-                    Loading...
+                <div className="valorant-swipe-panel accent-bar"></div>
+                
+                {/* Cinematic camera viewfinder HUD */}
+                <div className="viewfinder-hud">
+                    <div className="viewfinder-corner top-left"></div>
+                    <div className="viewfinder-corner top-right"></div>
+                    <div className="viewfinder-corner bottom-left"></div>
+                    <div className="viewfinder-corner bottom-right"></div>
+                    <div className="viewfinder-status">
+                        <span className="rec-dot"></span>
+                    </div>
                 </div>
             </div>
-            
-            {toastActive && (
-                <div className={`download-toast-container ${toastVisible ? 'toast-visible' : ''}`}>
-                    {/* Waving Happy Aero robot directly above the toast! */}
-                    <div className="aero-toast-robot stage-excited">
-                        <div className="aero-body-wrapper">
-                            {/* Waving Arm (Right Arm) */}
-                            <div className="aero-arm-right">
-                                <svg viewBox="0 0 40 100" className="aero-arm-svg">
-                                    <path d="M15,12 L15,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
-                                    <circle cx="15" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
-                                    <circle cx="15" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
-                                    <g className="aero-hand-group">
-                                        <path d="M11,66 C7,70 8,78 13,82 C18,80 19,72 16,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
-                                        <circle cx="13" cy="74" r="2" fill="var(--accent)" />
-                                    </g>
-                                </svg>
-                            </div>
 
-                            {/* Torso & Core */}
-                            <div className="aero-torso">
-                                <div className="aero-chest">
-                                    <div className="aero-core-pulse"></div>
-                                    <div className="aero-core"></div>
+            {/* Cinematic Film Slate Clapper Overlay */}
+            {showClapper && (
+                <div className={`clapper-overlay ${isClapping ? 'clapped' : ''}`}>
+                    {/* Snappy white screen flash synchronized with wood slap */}
+                    <div className={`clapper-flash ${isClapping ? 'flash-active' : ''}`} />
+                    
+                    <div className="clapper-board">
+                        {/* Top Hinge Bar */}
+                        <div className="clapper-top">
+                            <div className="clapper-bar"></div>
+                        </div>
+                        {/* Base Board */}
+                        <div className="clapper-bottom">
+                            <div className="clapper-bar"></div>
+                            <div className="clapper-details">
+                                <div className="clapper-field">
+                                    <span className="clapper-label">PRODUCTION</span>
+                                    <span className="clapper-val">KARTHIK G RAJ</span>
                                 </div>
-                            </div>
-
-                            {/* Head & Face Visor */}
-                            <div className="aero-head">
-                                <div className="aero-antenna">
-                                    <div className="aero-antenna-line"></div>
-                                    <div className="aero-antenna-tip"></div>
+                                <div className="clapper-row">
+                                    <div className="clapper-field">
+                                        <span className="clapper-label">SCENE</span>
+                                        <span className="clapper-val">01</span>
+                                    </div>
+                                    <div className="clapper-field">
+                                        <span className="clapper-label">TAKE</span>
+                                        <span className="clapper-val">AI</span>
+                                    </div>
                                 </div>
-                                <div className="aero-visor">
-                                    <div className="aero-eye left"></div>
-                                    <div className="aero-eye right"></div>
+                                <div className="clapper-row">
+                                    <div className="clapper-field">
+                                        <span className="clapper-label">DATE</span>
+                                        <span className="clapper-val">{clapperDate}</span>
+                                    </div>
+                                    <div className="clapper-field">
+                                        <span className="clapper-label">TIME</span>
+                                        <span className="clapper-val">{clapperTime}</span>
+                                    </div>
                                 </div>
-                                <div className="aero-ears">
-                                    <div className="aero-ear left"></div>
-                                    <div className="aero-ear right"></div>
-                                </div>
-                            </div>
-
-                            {/* Left Arm (This one waves in stage-excited class!) */}
-                            <div className="aero-arm-left">
-                                <svg viewBox="0 0 40 100" className="aero-arm-svg">
-                                    <path d="M25,12 L25,62" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="round" />
-                                    <circle cx="25" cy="12" r="5.5" fill="#151518" stroke="var(--accent)" strokeWidth="2" />
-                                    <circle cx="25" cy="62" r="3.5" fill="#151518" stroke="var(--accent)" strokeWidth="1.5" />
-                                    <g className="aero-hand-group">
-                                        <path d="M29,66 C33,70 32,78 27,82 C22,80 21,72 24,67" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
-                                        <circle cx="27" cy="74" r="2" fill="var(--accent)" />
-                                    </g>
-                                </svg>
                             </div>
                         </div>
                     </div>
-
-                    {/* Center-aligned Download Toast Alert */}
-                    <div className="download-toast">
-                        <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 10px #10B981' }}></span>
-                        Resume Downloaded!
-                    </div>
                 </div>
             )}
+            
+
+            <button 
+                className={`floating-work-btn ${isInitialized ? 'visible' : ''}`}
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsRiderOpen(true);
+                }}
+                aria-label="Work with me"
+            >
+                <div className="floating-work-btn-glow"></div>
+                <div className="floating-work-btn-pulse"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="8.5" cy="7" r="4" />
+                    <line x1="20" y1="8" x2="20" y2="14" />
+                    <line x1="23" y1="11" x2="17" y2="11" />
+                </svg>
+                <span className="floating-work-btn-label">Work With Me</span>
+            </button>
+
+            <CreativeRider isOpen={isRiderOpen} onClose={() => setIsRiderOpen(false)} theme={theme} />
         </>
     );
 }

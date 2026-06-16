@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import './CapabilitiesStack.css';
 import LazyVideo from './components/LazyVideo';
 
-// High-fidelity capabilities data representing your creative director capabilities
+// High-fidelity capabilities data representing your AI Creative Producer capabilities
 const capabilities = [
     {
         id: '01',
@@ -95,7 +95,7 @@ export default function CapabilitiesStack() {
             
             {/* Header telemetry info */}
             <div className="text-center mb-6">
-                <span className="text-[10px] uppercase tracking-[3px] font-mono text-blue-400">Tactile Touch System</span>
+                <span className="text-[10px] uppercase tracking-[3px] font-mono text-red-600">Tactile Touch System</span>
                 <h3 className="text-xl font-bold text-white tracking-tight mt-1">Capabilities Deck</h3>
                 <p className="text-xs font-mono text-zinc-500 mt-1">Swipe left or right to explore stack</p>
             </div>
@@ -122,7 +122,7 @@ export default function CapabilitiesStack() {
                         onClick={() => setCurrentIndex(index)}
                         className={`h-1.5 rounded-full transition-all duration-300 ${
                             index === currentIndex 
-                            ? 'w-6 bg-blue-400 shadow-[0_0_8px_rgba(77,163,255,0.4)]' 
+                            ? 'w-6 bg-red-600 shadow-[0_0_8px_rgba(229,9,20,0.4)]' 
                             : 'w-1.5 bg-zinc-700 hover:bg-zinc-600'
                         }`}
                         aria-label={`Go to slide ${index + 1}`}
@@ -201,8 +201,8 @@ function SwipeCard({ item, depth, onSwipe }) {
             <div className="relative w-full aspect-[16/10] bg-black/40 rounded-xl overflow-hidden border border-white/5 flex items-center justify-center">
                 {/* Floating Glass Numbering Badge */}
                 <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-md border border-white/10 rounded px-2 py-0.5 flex items-center gap-1.5 z-10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 pulse-glow"></span>
-                    <span className="font-mono text-[9px] font-bold text-blue-400 tracking-wider">{item.id}</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 pulse-glow"></span>
+                    <span className="font-mono text-[9px] font-bold text-red-600 tracking-wider">{item.id}</span>
                 </div>
 
                 {/* Telemetry Active Line Tag */}
@@ -269,8 +269,8 @@ function SwipeCard({ item, depth, onSwipe }) {
             {/* Custom Telemetry CSS animations */}
             <style dangerouslySetInnerHTML={{__html: `
                 @keyframes pulseGlow {
-                    0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 1px #60a5fa); }
-                    50% { opacity: 1; filter: drop-shadow(0 0 4px #60a5fa); }
+                    0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 1px #e50914); }
+                    50% { opacity: 1; filter: drop-shadow(0 0 4px #e50914); }
                 }
                 .pulse-glow {
                     animation: pulseGlow 2s infinite ease-in-out;
