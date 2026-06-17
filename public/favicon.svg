@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#050505"/>
+  <rect width="512" height="512" fill="#000000"/>
   <defs>
     <filter id="glow">
       <feGaussianBlur stdDeviation="8" result="blur"/>
@@ -9,5 +9,5 @@
       </feMerge>
     </filter>
   </defs>
-  <text x="256" y="380" text-anchor="middle" font-family="Inter, Outfit, -apple-system, sans-serif" font-weight="800" font-size="420" fill="#4DA3FF" filter="url(#glow)">K</text>
+  <text x="256" y="380" text-anchor="middle" font-family="Inter, Outfit, -apple-system, sans-serif" font-weight="900" font-size="420" fill="#E50914" filter="url(#glow)">K</text>
 </svg>

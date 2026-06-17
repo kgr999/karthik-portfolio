@@ -85,7 +85,7 @@ export default function HeroSection({
                                     <span className="init-btn-sweep"></span>
                                     <span className="init-btn-loading-bar"></span>
                                     <span className="init-btn-status-node"></span>
-                                    <span className="init-btn-text">ALL-ACCESS PASS</span>
+                                    <span className="init-btn-text">View Portfolio</span>
                                 </button>
                             </div>
                         </div>
@@ -132,77 +132,75 @@ export default function HeroSection({
                 </div>
 
                 {/* Hero AI Studio Spotlight */}
-                <div className={`aero-hero-robot ${robotState}`} style={isMobile ? {
-                    opacity: isInitialized ? 0 : '',
-                    visibility: isInitialized ? 'hidden' : '',
-                    transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
-                } : {}}>
-                    <div className="studio-light-wrapper" style={{ width: '80px', height: '100px', overflow: 'visible' }}>
-                        {/* Stand (Stationary at the bottom) */}
-                        <div className="spotlight-stand">
-                            <svg viewBox="0 0 80 60" width="100%" height="100%">
-                                <path d="M 25 55 L 40 40 L 55 55" stroke="#aa771c" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                                <path d="M 40 40 L 40 25" stroke="#b38728" strokeWidth="3" strokeLinecap="round" fill="none" />
-                                <path d="M 20 20 C 20 40, 60 40, 60 20" stroke="#e5c060" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                            </svg>
-                        </div>
-
-                        {/* Sweeping Group (Head + Beams rotate together) */}
-                        <div className="spotlight-sweeping-group">
-                            {/* Golden Light Beam Cone & Ray Shafts */}
-                            <div className="studio-beams">
-                                <svg viewBox="0 0 350 350" className="studio-beams-svg">
-                                    <defs>
-                                        <linearGradient id="gold-beam-grad" x1="0.5" y1="1" x2="0.5" y2="0">
-                                            <stop offset="0%" stopColor="#FCF6BA" stopOpacity="0.4" />
-                                            <stop offset="25%" stopColor="#b38728" stopOpacity="0.22" />
-                                            <stop offset="65%" stopColor="#aa771c" stopOpacity="0.05" />
-                                            <stop offset="100%" stopColor="#aa771c" stopOpacity="0" />
-                                        </linearGradient>
-                                    </defs>
-                                    {/* Cone representing the main volume of light beam pointing straight up from lens */}
-                                    <path d="M 175 350 L 50 20 A 180 180 0 0 1 300 20 Z" fill="url(#gold-beam-grad)" className="beam-cone-vol" />
-                                    
-                                    {/* Sharp golden rays pulsing/shimmering inside the beam */}
-                                    <line x1="175" y1="350" x2="70" y2="40" stroke="#FCF6BA" strokeWidth="2" opacity="0.15" className="beam-ray ray-1" />
-                                    <line x1="175" y1="350" x2="130" y2="15" stroke="#FCF6BA" strokeWidth="3" opacity="0.12" className="beam-ray ray-2" />
-                                    <line x1="175" y1="350" x2="220" y2="15" stroke="#b38728" strokeWidth="2" opacity="0.22" className="beam-ray ray-3" />
-                                    <line x1="175" y1="350" x2="280" y2="40" stroke="#FCF6BA" strokeWidth="1.5" opacity="0.15" className="beam-ray ray-4" />
+                {!isMobile && (
+                    <div className={`aero-hero-robot ${robotState}`}>
+                        <div className="studio-light-wrapper" style={{ width: '80px', height: '100px', overflow: 'visible' }}>
+                            {/* Stand (Stationary at the bottom) */}
+                            <div className="spotlight-stand">
+                                <svg viewBox="0 0 80 60" width="100%" height="100%">
+                                    <path d="M 25 55 L 40 40 L 55 55" stroke="#aa771c" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                                    <path d="M 40 40 L 40 25" stroke="#b38728" strokeWidth="3" strokeLinecap="round" fill="none" />
+                                    <path d="M 20 20 C 20 40, 60 40, 60 20" stroke="#e5c060" strokeWidth="2.5" strokeLinecap="round" fill="none" />
                                 </svg>
                             </div>
 
-                            {/* Spotlight Head/Casing */}
-                            <div className="spotlight-head">
-                                <svg viewBox="0 0 80 80" width="100%" height="100%">
-                                    <g>
-                                        {/* Handle at back */}
-                                        <path d="M 40 68 C 32 68, 32 76, 40 76" fill="none" stroke="#7a5813" strokeWidth="2" />
-                                        {/* Casing */}
-                                        <rect x="25" y="27" width="30" height="36" rx="5" fill="#141414" stroke="#e5c060" strokeWidth="2" />
-                                        {/* Lens collar */}
-                                        <rect x="21" y="20" width="38" height="7" rx="1.5" fill="#aa771c" />
-                                        {/* Lens glass surface */}
-                                        <ellipse cx="40" cy="20" rx="19" ry="3.5" fill="#FCF6BA" />
+                            {/* Sweeping Group (Head + Beams rotate together) */}
+                            <div className="spotlight-sweeping-group">
+                                {/* Golden Light Beam Cone & Ray Shafts */}
+                                <div className="studio-beams">
+                                    <svg viewBox="0 0 350 350" className="studio-beams-svg">
+                                        <defs>
+                                            <linearGradient id="gold-beam-grad" x1="0.5" y1="1" x2="0.5" y2="0">
+                                                <stop offset="0%" stopColor="#FCF6BA" stopOpacity="0.4" />
+                                                <stop offset="25%" stopColor="#b38728" stopOpacity="0.22" />
+                                                <stop offset="65%" stopColor="#aa771c" stopOpacity="0.05" />
+                                                <stop offset="100%" stopColor="#aa771c" stopOpacity="0" />
+                                            </linearGradient>
+                                        </defs>
+                                        {/* Cone representing the main volume of light beam pointing straight up from lens */}
+                                        <path d="M 175 350 L 50 20 A 180 180 0 0 1 300 20 Z" fill="url(#gold-beam-grad)" className="beam-cone-vol" />
                                         
-                                        {/* Cooling fins details */}
-                                        <line x1="30" y1="33" x2="30" y2="58" stroke="#7a5813" strokeWidth="1.2" />
-                                        <line x1="40" y1="33" x2="40" y2="58" stroke="#7a5813" strokeWidth="1.2" />
-                                        <line x1="50" y1="33" x2="50" y2="58" stroke="#7a5813" strokeWidth="1.2" />
-                                        
-                                        {/* Barn doors (tilted panels open wide) */}
-                                        {/* Left door */}
-                                        <path d="M 21 20 L 3 5 L 10 -3 L 25 20" fill="#141414" stroke="#b38728" strokeWidth="1.2" />
-                                        {/* Right door */}
-                                        <path d="M 59 20 L 77 5 L 70 -3 L 55 20" fill="#141414" stroke="#b38728" strokeWidth="1.2" />
-                                        
-                                        {/* Bulb core glow */}
-                                        <circle cx="40" cy="20" r="7" fill="#ffffff" filter="drop-shadow(0 0 6px #FCF6BA)" />
-                                    </g>
-                                </svg>
+                                        {/* Sharp golden rays pulsing/shimmering inside the beam */}
+                                        <line x1="175" y1="350" x2="70" y2="40" stroke="#FCF6BA" strokeWidth="2" opacity="0.15" className="beam-ray ray-1" />
+                                        <line x1="175" y1="350" x2="130" y2="15" stroke="#FCF6BA" strokeWidth="3" opacity="0.12" className="beam-ray ray-2" />
+                                        <line x1="175" y1="350" x2="220" y2="15" stroke="#b38728" strokeWidth="2" opacity="0.22" className="beam-ray ray-3" />
+                                        <line x1="175" y1="350" x2="280" y2="40" stroke="#FCF6BA" strokeWidth="1.5" opacity="0.15" className="beam-ray ray-4" />
+                                    </svg>
+                                </div>
+
+                                {/* Spotlight Head/Casing */}
+                                <div className="spotlight-head">
+                                    <svg viewBox="0 0 80 80" width="100%" height="100%">
+                                        <g>
+                                            {/* Handle at back */}
+                                            <path d="M 40 68 C 32 68, 32 76, 40 76" fill="none" stroke="#7a5813" strokeWidth="2" />
+                                            {/* Casing */}
+                                            <rect x="25" y="27" width="30" height="36" rx="5" fill="#141414" stroke="#e5c060" strokeWidth="2" />
+                                            {/* Lens collar */}
+                                            <rect x="21" y="20" width="38" height="7" rx="1.5" fill="#aa771c" />
+                                            {/* Lens glass surface */}
+                                            <ellipse cx="40" cy="20" rx="19" ry="3.5" fill="#FCF6BA" />
+                                            
+                                            {/* Cooling fins details */}
+                                            <line x1="30" y1="33" x2="30" y2="58" stroke="#7a5813" strokeWidth="1.2" />
+                                            <line x1="40" y1="33" x2="40" y2="58" stroke="#7a5813" strokeWidth="1.2" />
+                                            <line x1="50" y1="33" x2="50" y2="58" stroke="#7a5813" strokeWidth="1.2" />
+                                            
+                                            {/* Barn doors (tilted panels open wide) */}
+                                            {/* Left door */}
+                                            <path d="M 21 20 L 3 5 L 10 -3 L 25 20" fill="#141414" stroke="#b38728" strokeWidth="1.2" />
+                                            {/* Right door */}
+                                            <path d="M 59 20 L 77 5 L 70 -3 L 55 20" fill="#141414" stroke="#b38728" strokeWidth="1.2" />
+                                            
+                                            {/* Bulb core glow */}
+                                            <circle cx="40" cy="20" r="7" fill="#ffffff" filter="drop-shadow(0 0 6px #FCF6BA)" />
+                                        </g>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         </section>
     );

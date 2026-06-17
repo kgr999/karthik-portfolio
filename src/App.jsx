@@ -405,6 +405,7 @@ export default function App() {
     // Cinematic Clapper Slate states
     const [showClapper, setShowClapper] = useState(false);
     const [isClapping, setIsClapping] = useState(false);
+    const [isImpact, setIsImpact] = useState(false);
     const [clapperDate, setClapperDate] = useState('');
     const [clapperTime, setClapperTime] = useState('');
 
@@ -542,19 +543,25 @@ export default function App() {
         
         setShowClapper(true);
         setIsClapping(false);
+        setIsImpact(false);
         
-        // Step 1: Hinge slaps shut (claps) and plays sound at 300ms
+        // Step 1: Start smooth hinge clap at 300ms (hinge starts rotating down)
         const clapTimer = setTimeout(() => {
             setIsClapping(true);
-            playClapSound();
         }, 300);
 
-        // Step 2: At 800ms, slide up the tactical cover panel
+        // Step 2: Impact at 700ms (hinge finishes rotating, plays sound, triggers drop & flash)
+        const impactTimer = setTimeout(() => {
+            setIsImpact(true);
+            playClapSound();
+        }, 700);
+
+        // Step 3: At 1100ms, slide up the tactical cover panel
         const swipeUpTimer = setTimeout(() => {
             setSwipeState('swiping-up');
-        }, 800);
+        }, 1100);
 
-        // Step 3: At 1300ms (covered), execute layout switch and reset clapper overlay
+        // Step 4: At 1600ms (covered), execute layout switch and reset clapper overlay
         const initTimer = setTimeout(() => {
             setIsInitialized(true);
             setIsInitializing(false);
@@ -788,7 +795,6 @@ export default function App() {
                     saturation={2}
                 />
             </div>
-
             <nav 
                 className={`${isInitialized ? '' : 'nav-standby'} ${isInitializing ? 'bg-grayscale' : ''}`}
                 style={{
@@ -798,10 +804,6 @@ export default function App() {
                 }}
             >
                 <div className="nav-inner">
-                    <a href="#" className="logo-link">
-                        <span className="logo-text">KGR</span>
-                    </a>
-
                     <div className="nav-links">
                         <a href="#" className="nav-link-item active-link">Home</a>
                         <a href="#featured-projects" className="nav-link-item">Projects</a>
@@ -810,25 +812,25 @@ export default function App() {
                         <a href="#contact" className="nav-link-item">Contact</a>
                     </div>
 
-                    <a 
-                        href="#work-with-me" 
-                        className="nav-cta-btn"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setIsRiderOpen(true);
-                        }}
-                    >
-                        <span className="nav-cta-dot"></span>
-                        Hire Me
-                    </a>
-
                     <button className="menu-toggle" aria-label="Toggle Menu">
+                        <span></span>
                         <span></span>
                         <span></span>
                     </button>
                 </div>
             </nav>
+
+            <a 
+                href="#" 
+                className="logo-link-standalone"
+                style={{
+                    opacity: isInitialized ? 1 : 0,
+                    visibility: isInitialized ? 'visible' : 'hidden',
+                    pointerEvents: isInitialized ? 'auto' : 'none'
+                }}
+            >
+                <span className="logo-text-standalone">KARTHIK G RAJ<span className="logo-dot-standalone">.</span></span>
+            </a>
 
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
@@ -1105,10 +1107,7 @@ export default function App() {
 
             {/* Cinematic Film Slate Clapper Overlay */}
             {showClapper && (
-                <div className={`clapper-overlay ${isClapping ? 'clapped' : ''}`}>
-                    {/* Snappy white screen flash synchronized with wood slap */}
-                    <div className={`clapper-flash ${isClapping ? 'flash-active' : ''}`} />
-                    
+                <div className={`clapper-overlay ${isClapping ? 'clapped' : ''} ${isImpact ? 'impacted' : ''}`}>
                     <div className="clapper-board">
                         {/* Top Hinge Bar */}
                         <div className="clapper-top">

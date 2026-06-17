@@ -256,191 +256,229 @@ body::after {
    ═══════════════════════════════════════════════════ */
 nav {
     position: fixed;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    max-width: 780px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
     z-index: 2500;
-    padding: 0 6px;
-    height: 48px;
+    padding: 0 4%;
+    height: 72px; /* Compact default height for 1.52rem logo */
     display: flex;
     align-items: center;
-    background: rgba(12, 12, 14, 0.6);
-    backdrop-filter: blur(24px) saturate(1.8);
-    -webkit-backdrop-filter: blur(24px) saturate(1.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 100px;
-    box-shadow:
-        0 4px 24px rgba(0, 0, 0, 0.4),
-        0 0 0 0.5px rgba(255, 255, 255, 0.04) inset;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    box-shadow: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-sizing: border-box;
 }
 
 nav:hover {
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.5),
-        0 0 0 0.5px rgba(255, 255, 255, 0.06) inset;
+    border-bottom-color: transparent;
 }
 
 nav.scrolled {
-    top: 12px;
-    height: 44px;
-    background: rgba(8, 8, 10, 0.82);
-    border-color: rgba(255, 255, 255, 0.06);
-    box-shadow:
-        0 8px 40px rgba(0, 0, 0, 0.55),
-        0 0 0 0.5px rgba(255, 255, 255, 0.03) inset;
+    height: 56px;
+    background: rgba(8, 8, 10, 0.85);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
 }
 
-/* Inner flex container */
+/* Inner flex container - logo-less nav is aligned right */
 .nav-inner {
     display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: flex-end;
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 0;
-    margin: 0;
     box-sizing: border-box;
 }
 
-/* ── Logo Monogram ── */
-.logo-wrapper {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.logo-badge {
-    display: none;
-}
-
-.logo-link {
+/* ── Standalone Logo Casing & Placement ── */
+.logo-link-standalone {
+    position: fixed;
+    top: 24px;
+    left: 60px;
+    z-index: 99999; /* Below covers but above page content */
     text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto;
 }
 
-.logo-text {
+.logo-text-standalone {
     font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 900;
-    font-size: 0.72rem;
+    font-size: 1.52rem; /* Exactly 0.95x of the baseline 1.6rem */
     text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: #ffffff !important;
-    background: #E50914;
-    padding: 6px 12px;
-    border-radius: 100px;
     line-height: 1;
     white-space: nowrap;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    text-shadow: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
-.logo-text:hover {
-    background: #ff1a27;
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
-    transform: scale(1.04);
-    letter-spacing: 3.5px;
-    color: #ffffff !important;
-    text-shadow: none;
+.logo-dot-standalone {
+    color: #E50914; /* Netflix Red */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Scrolled Nav overrides logo-link-standalone */
+nav.scrolled ~ .logo-link-standalone {
+    top: 16px;
+    left: 60px;
+}
+
+nav.scrolled ~ .logo-link-standalone .logo-text-standalone {
+    font-size: 1.28rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo-text-standalone:hover {
+    transform: scale(1.02);
+    text-shadow: 0 0 30px rgba(229, 9, 20, 0.85), 0 0 50px rgba(229, 9, 20, 0.4);
+}
+
+.logo-text-standalone:hover .logo-dot-standalone {
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff;
+}
+
+/* Responsive Standalone Logo Sizing */
+@media (max-width: 1024px) {
+    nav {
+        padding: 0 32px;
+        height: 68px;
+    }
+    .logo-link-standalone {
+        top: 22px;
+        left: 32px;
+    }
+    .logo-text-standalone {
+        font-size: 1.4rem;
+    }
+    nav.scrolled ~ .logo-link-standalone {
+        top: 16px;
+        left: 32px;
+    }
+    nav.scrolled ~ .logo-link-standalone .logo-text-standalone {
+        font-size: 1.22rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0 24px;
+        height: 60px;
+    }
+    .logo-link-standalone {
+        top: 18px;
+        left: 24px;
+    }
+    .logo-text-standalone {
+        font-size: 1.3rem;
+    }
+    nav.scrolled ~ .logo-link-standalone {
+        top: 14px;
+        left: 24px;
+    }
+    nav.scrolled ~ .logo-link-standalone .logo-text-standalone {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 0 20px;
+        height: 56px;
+    }
+    .logo-link-standalone {
+        top: 18px; /* Perfectly centered within the 56px navbar */
+        left: 20px;
+    }
+    .logo-text-standalone {
+        font-size: 1.2rem; /* Clean, highly legible brand text size */
+        letter-spacing: 1.5px;
+    }
+    nav.scrolled ~ .logo-link-standalone {
+        top: 19px; /* Re-centered for the smaller scrolled text */
+        left: 20px;
+    }
+    nav.scrolled ~ .logo-link-standalone .logo-text-standalone {
+        font-size: 1.1rem;
+        letter-spacing: 1.2px;
+    }
+    .menu-toggle {
+        gap: 5px;
+    }
+    .menu-toggle span {
+        width: 20px;
+    }
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+    }
 }
 
 /* ── Navigation Links ── */
 .nav-links {
     display: flex;
-    gap: 2px;
+    gap: 8px;
     align-items: center;
-    padding: 0 4px;
+    padding: 0;
 }
 
 .nav-links a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.5);
     font-family: 'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-    padding: 7px 13px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 16px;
     position: relative;
     background: transparent;
     border: none;
-    border-radius: 100px;
-    box-shadow: none;
-    transition: color 0.2s ease, background 0.2s ease;
+    transition: color 0.3s ease;
     white-space: nowrap;
     cursor: pointer;
 }
 
 .nav-links a.active-link {
     color: #ffffff !important;
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.08);
 }
 
 .nav-links a:hover {
-    color: rgba(255, 255, 255, 0.9) !important;
-    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff !important;
 }
 
-/* Remove all ::after underlines — the pill highlight IS the indicator */
+/* Elegant expanding underline */
 .nav-links a::after {
-    display: none;
-}
-
-/* ── Hire Me CTA ── */
-.nav-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    text-decoration: none;
-    font-family: 'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.6px;
-    color: #ffffff;
-    background: rgba(229, 9, 20, 0.12);
-    border: 1px solid rgba(229, 9, 20, 0.3);
-    padding: 7px 16px;
-    border-radius: 100px;
-    white-space: nowrap;
-    flex-shrink: 0;
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #E50914; /* Netflix Red */
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
+    transform: translateX(-50%);
 }
 
-.nav-cta-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #E50914;
-    box-shadow: 0 0 8px #E50914;
-    animation: ctaDotPulse 2s infinite ease-in-out;
-    flex-shrink: 0;
-}
-
-@keyframes ctaDotPulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 6px #E50914; }
-    50% { opacity: 0.5; box-shadow: 0 0 12px #E50914, 0 0 24px rgba(229, 9, 20, 0.3); }
-}
-
-.nav-cta-btn:hover {
-    background: #E50914;
-    border-color: #E50914;
-    color: #ffffff;
-    box-shadow: 0 0 24px rgba(229, 9, 20, 0.4), 0 4px 12px rgba(229, 9, 20, 0.2);
-    transform: translateY(-1px);
-}
-
-.nav-cta-btn:hover .nav-cta-dot {
-    background: #ffffff;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-    animation: none;
+.nav-links a:hover::after,
+.nav-links a.active-link::after {
+    width: 60%;
 }
 
 /* ── Nav Actions — hidden on desktop, shows hamburger on mobile ── */
@@ -2967,31 +3005,31 @@ footer {
     nav {
         top: 0;
         width: 100%;
-        padding: 0 24px;
-        height: 56px;
         border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     nav.scrolled {
         top: 0;
-        padding: 0 24px;
-        height: 52px;
     }
 
     .nav-inner {
         padding: 0;
     }
 
-    .menu-toggle {
-        display: flex;
-    }
-
-    .nav-actions {
+    nav .menu-toggle {
         display: flex;
     }
 
     .nav-links {
         display: none;
+    }
+
+    @media (max-width: 480px) {
+        .logo-text {
+            font-size: 1.25rem !important;
+            letter-spacing: 1.5px !important;
+        }
     }
 
     /* Layout */
@@ -3153,14 +3191,10 @@ footer {
 
     /* Navigation */
     nav {
-        top: 12px;
-        width: 94%;
-        padding: 10px 18px;
+        border-radius: 0;
     }
 
     nav.scrolled {
-        top: 10px;
-        padding: 8px 14px;
     }
 
     .nav-inner {
@@ -12864,8 +12898,8 @@ nav.nav-standby .menu-toggle {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
-    color: var(--accent);
-    filter: drop-shadow(0 0 6px var(--accent-dim));
+    color: #e5c060; /* Brand gold */
+    filter: drop-shadow(0 0 6px rgba(229, 192, 96, 0.3));
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -12887,9 +12921,9 @@ nav.nav-standby .menu-toggle {
     padding-left: 20px;
     padding-right: 22px;
     gap: 10px;
-    border-color: var(--accent);
+    border-color: #e5c060;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
-                0 0 20px var(--accent-dim), 
+                0 0 20px rgba(229, 192, 96, 0.35), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
@@ -12901,8 +12935,8 @@ nav.nav-standby .menu-toggle {
 
 .floating-work-btn:hover svg {
     transform: scale(1.1) rotate(-8deg);
-    color: #ffffff;
-    filter: drop-shadow(0 0 8px var(--accent));
+    color: #FCF6BA; /* Bright gold */
+    filter: drop-shadow(0 0 8px #e5c060);
 }
 
 /* Pulsing background ripple to catch attention */
@@ -12911,7 +12945,7 @@ nav.nav-standby .menu-toggle {
     position: absolute;
     inset: 0;
     border-radius: 50px;
-    border: 1px solid var(--accent);
+    border: 1px solid #e5c060;
     opacity: 0;
     pointer-events: none;
     transform: scale(1);
@@ -12934,7 +12968,7 @@ nav.nav-standby .menu-toggle {
     inset: 0;
     border-radius: 50px;
     pointer-events: none;
-    border: 1px solid var(--accent);
+    border: 1px solid #e5c060;
     animation: pulse-ring 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
@@ -12945,7 +12979,7 @@ nav.nav-standby .menu-toggle {
     left: 50%;
     width: 60px;
     height: 60px;
-    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    background: radial-gradient(circle, #e5c060 0%, transparent 70%);
     opacity: 0.15;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -13190,7 +13224,7 @@ nav.nav-standby .menu-toggle {
 .clapper-top {
     transform-origin: left bottom;
     transform: rotate(-28deg);
-    transition: transform 0.12s cubic-bezier(0.7, 0, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     margin-bottom: 4px;
     position: relative;
     z-index: 10;
@@ -13198,6 +13232,47 @@ nav.nav-standby .menu-toggle {
 
 .clapped .clapper-top {
     transform: rotate(0deg);
+}
+
+.impacted .clapper-board {
+    animation: clapper-drop-down 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+@keyframes clapper-drop-down {
+    0% {
+        transform: scale(1) translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    15% {
+        transform: scale(1.03) translateY(-12px) rotate(-1deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.9) translateY(750px) rotate(14deg);
+        opacity: 0;
+    }
+}
+
+.clapper-overlay.impacted {
+    animation: clapper-flash 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes clapper-flash {
+    0% {
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+    }
+    20% {
+        background: rgba(229, 9, 20, 0.4); /* Netflix Red glow bleed */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    100% {
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
 }
 
 .clapper-bottom {
