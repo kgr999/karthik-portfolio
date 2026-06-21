@@ -61,7 +61,7 @@ const capabilities = [
     },
     {
         id: '07',
-        title: 'Video Editing (Intermediate)',
+        title: 'Video Editing',
         desc: 'Fine-tuning visual rhythm, sequence transitions, and cinematic narrative flows in production pipelines.',
         image: 'assets/images/capvideo.png',
         tags: ['Pacing & Rhythm', 'Narrative Flow'],

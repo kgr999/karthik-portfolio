@@ -312,9 +312,9 @@ nav.scrolled {
 .nav-logo-text {
     font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 900;
-    font-size: 1.35rem; /* Perfectly sized for navbar */
+    font-size: 1.2rem; /* Stable size for navbar */
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     color: #ffffff !important;
     line-height: 1;
     white-space: nowrap;
@@ -335,11 +335,6 @@ nav.scrolled {
 .nav-logo-text:hover .nav-logo-dot {
     color: #ffffff;
     text-shadow: 0 0 10px #ffffff;
-}
-
-nav.scrolled .nav-logo-text {
-    font-size: 1.15rem;
-    letter-spacing: 1.5px;
 }
 
 /* ── HUD Navigation Action buttons ── */
@@ -392,15 +387,16 @@ nav.scrolled .nav-logo-text {
     transform: scale(1.1);
 }
 
-@media (max-width: 580px) {
-    .nav-work-btn {
-        padding: 8px;
-        border-radius: 50%;
-    }
-    .nav-work-btn-label {
-        display: none;
-    }
+.nav-work-btn.nav-icon-only {
+    padding: 9px;
+    border-radius: 50%;
+    gap: 0;
 }
+
+.nav-mail-btn {
+    text-decoration: none;
+}
+
 
 /* ── Standalone Logo Casing & Placement ── */
 .logo-link-standalone {
@@ -1647,11 +1643,11 @@ section {
 
 @media (hover: hover) {
     .cap-card-v2:hover .cap-title {
-        color: var(--accent);
+        color: #e5c060;
     }
 
     .hero-cap-card:hover .cap-title {
-        color: var(--accent);
+        color: #e5c060;
     }
 }
 
@@ -2142,6 +2138,14 @@ section {
     -webkit-text-fill-color: transparent;
     display: inline-block;
     text-shadow: 0 0 20px rgba(77, 163, 255, 0.08);
+}
+
+@media (min-width: 1025px) {
+    #self-visuals .section-heading,
+    #featured-projects .section-heading,
+    #cinematic-prompting .section-heading {
+        white-space: nowrap;
+    }
 }
 
 .tech-stack-dashboard {
@@ -4815,9 +4819,24 @@ footer {
     transition: transform 0.3s ease;
 }
 
+/* Prevent marquee video cards from inheriting bento grid video card styling */
+.hyperlocal-marquee-card.video-card {
+    background: transparent !important;
+    border: none !important;
+    overflow: visible !important;
+    z-index: auto !important;
+    transition: transform 0.3s ease !important;
+}
+
 @media (hover: hover) {
     .hyperlocal-marquee-card:hover {
         transform: scale(1.04);
+    }
+    .hyperlocal-marquee-card.video-card:hover {
+        border-color: transparent !important;
+        box-shadow: none !important;
+        transform: scale(1.04) !important;
+        z-index: auto !important;
     }
 }
 
@@ -5105,7 +5124,7 @@ footer {
 }
 
 .xp-monitor-controls svg:hover {
-    color: #FFB464;
+    color: #ffffff;
 }
 
 .xp-monitor-inner {
@@ -5120,7 +5139,7 @@ footer {
 }
 
 .xp-monitor-inner p {
-    color: #FFB464;
+    color: #ffffff;
     font-size: 0.9rem;
     margin-bottom: 20px;
 }
@@ -5132,9 +5151,9 @@ footer {
     font-weight: 600;
     letter-spacing: 0.5px;
     background: linear-gradient(to right,
-            #FFB464 20%,
+            #8a8a8a 20%,
             #FFF 50%,
-            #FFB464 80%);
+            #8a8a8a 80%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -5383,7 +5402,7 @@ footer {
 }
 
 .xp-slider-reset:hover {
-    color: #FFB464;
+    color: #ffffff;
     transform: rotate(-45deg);
 }
 
@@ -5406,8 +5425,8 @@ footer {
     height: 100%;
     position: relative;
     border-radius: 2px;
-    background: linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%) !important;
-    box-shadow: 0 0 8px rgba(255, 180, 100, 0.25);
+    background: linear-gradient(90deg, #ffffff 0%, #a1a1aa 100%) !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
     transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -5421,8 +5440,8 @@ footer {
     height: 8px;
     border-radius: 50%;
     background: #ffffff;
-    border: 1.5px solid #FF8F3D;
-    box-shadow: 0 0 4px rgba(255, 143, 61, 0.8);
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease;
 }
 
@@ -5432,7 +5451,7 @@ footer {
 
 .xp-slider-group:hover .xp-slider-thumb {
     transform: translateY(-50%) scale(1.25);
-    background: #FFB464;
+    background: #ffffff;
     border-color: #ffffff;
 }
 
@@ -5475,8 +5494,8 @@ footer {
 }
 
 .xp-dvr-tabs span.active {
-    color: #FFB464;
-    border-bottom-color: #FFB464;
+    color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
 }
 
 .xp-dvr-tabs span:hover {
@@ -5851,10 +5870,10 @@ footer {
     position: relative;
     overflow: hidden;
     display: inline-block;
-    background: rgba(255, 180, 100, 0.1) !important;
-    color: #FFB464 !important;
-    border: 1px solid rgba(255, 180, 100, 0.25) !important;
-    box-shadow: 0 0 10px rgba(255, 180, 100, 0.05);
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
     font-size: 0.65rem;
     padding: 4px 10px;
     border-radius: 12px;
@@ -8512,13 +8531,13 @@ nav.nav-standby .menu-toggle {
 
     .xp-mob-transport-btn:active {
         transform: scale(0.9) !important;
-        background: rgba(255, 143, 61, 0.1) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
     }
 
     .xp-mob-transport-btn.play-btn {
         background: transparent !important;
         border: none !important;
-        color: #FF8F3D !important;
+        color: #ffffff !important;
         width: 26px !important;
         height: 26px !important;
     }
@@ -8949,9 +8968,9 @@ nav.nav-standby .menu-toggle {
 
 .fp-launcher-deck {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 40px auto 0 auto;
     position: relative;
     z-index: 10;
@@ -14035,4 +14054,62 @@ nav.nav-standby .menu-toggle {
         line-height: 1.35 !important;
         gap: 8px !important;
     }
+}
+
+/* ─── Capabilities Infinite Marquee ─── */
+.capabilities-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    margin-top: 30px;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.capabilities-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: capabilities-marquee-scroll 35s linear infinite;
+}
+
+
+.capabilities-marquee-group {
+    display: flex;
+    gap: 20px;
+    padding-right: 20px;
+}
+
+@keyframes capabilities-marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Specific overrides for capabilities cards in the marquee */
+.capabilities-marquee-group .cap-card-v2 {
+    width: 300px !important;
+    flex-shrink: 0 !important;
+    grid-column: auto !important;
+    min-height: 250px !important;
+    height: auto !important;
+    position: relative !important;
+    box-shadow: none !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.015) !important;
+    border: 1px solid rgba(255, 255, 255, 0.035) !important;
+    margin: 0 !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+}
+
+.capabilities-marquee-group .cap-card-v2 .cap-image-wrapper {
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
 }

@@ -486,8 +486,8 @@ export function initPortfolio() {
         // ScrollSpy implementation (desktop/sidebar active highlights)
         const spySections = [
             { id: 'hero', selector: '#hero', linkSelector: 'nav .nav-link-item[href="#"]' },
-            { id: 'featured-projects', selector: '#featured-projects', linkSelector: 'nav .nav-link-item[href="#featured-projects"]' },
             { id: 'experience-journey', selector: '#experience-journey', linkSelector: 'nav .nav-link-item[href="#experience-journey"]' },
+            { id: 'featured-projects', selector: '#featured-projects', linkSelector: 'nav .nav-link-item[href="#featured-projects"]' },
             { id: 'tech-stack', selector: '#tech-stack', linkSelector: 'nav .nav-link-item[href="#tech-stack"]' },
             { id: 'contact', selector: '#contact', linkSelector: 'nav .nav-link-item[href="#contact"]' }
         ];

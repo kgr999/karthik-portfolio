@@ -579,8 +579,8 @@ export default function App() {
                 }, 150);
             }
 
-            // Instantly position page to active projects
-            const activeProjectsSection = document.getElementById('active-projects');
+            // Instantly position page to active projects or fallback
+            const activeProjectsSection = document.getElementById('active-projects') || document.getElementById('capabilities');
             if (activeProjectsSection) {
                 activeProjectsSection.scrollIntoView({ behavior: 'auto', block: 'start' });
             }
@@ -672,10 +672,10 @@ export default function App() {
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
 
-            // After React re-renders and the hero fades, smoothly scroll to active projects
+            // After React re-renders and the hero fades, smoothly scroll to active projects or fallback
             requestAnimationFrame(() => {
                 setTimeout(() => {
-                    const activeProjectsSection = document.getElementById('active-projects');
+                    const activeProjectsSection = document.getElementById('active-projects') || document.getElementById('capabilities');
                     if (activeProjectsSection) {
                         const targetY = activeProjectsSection.offsetTop;
                         smoothScrollTo(targetY, 700);
@@ -815,8 +815,8 @@ export default function App() {
                     {/* Center Column: Links */}
                     <div className="nav-links">
                         <a href="#" className="nav-link-item active-link">Home</a>
-                        <a href="#featured-projects" className="nav-link-item">Projects</a>
                         <a href="#experience-journey" className="nav-link-item">Experience</a>
+                        <a href="#featured-projects" className="nav-link-item">Projects</a>
                         <a href="#tech-stack" className="nav-link-item">Skills</a>
                         <a href="#contact" className="nav-link-item">Contact</a>
                     </div>
@@ -824,7 +824,7 @@ export default function App() {
                     {/* Right Column: Work With Me and Menu Toggle */}
                     <div className="nav-right-container">
                         <button 
-                            className="nav-work-btn"
+                            className="nav-work-btn nav-icon-only"
                             onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -838,8 +838,18 @@ export default function App() {
                                 <line x1="20" y1="8" x2="20" y2="14" />
                                 <line x1="23" y1="11" x2="17" y2="11" />
                             </svg>
-                            <span className="nav-work-btn-label">Work With Me</span>
                         </button>
+
+                        <a 
+                            href="mailto:hello@karthikgraj.in"
+                            className="nav-work-btn nav-icon-only nav-mail-btn"
+                            aria-label="Send email"
+                        >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-work-btn-icon">
+                                <path d="M22 2L11 13" />
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                            </svg>
+                        </a>
 
                         <button className="menu-toggle" aria-label="Toggle Menu">
                             <span></span>
@@ -853,8 +863,8 @@ export default function App() {
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
-                    <a href="#featured-projects" className="mobile-menu-link">Projects</a>
                     <a href="#experience-journey" className="mobile-menu-link">Experience</a>
+                    <a href="#featured-projects" className="mobile-menu-link">Projects</a>
                     <a href="#tech-stack" className="mobile-menu-link">Skills</a>
                     <a href="#contact" className="mobile-menu-link">Contact</a>
                     <a 
@@ -890,10 +900,10 @@ export default function App() {
                 )}
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
-                    <ActiveProjects revealed={isInitialized || isMobile} />
+                    {/* <ActiveProjects revealed={isInitialized || isMobile} /> */}
                     <CapabilitiesSection />
-                    <FeaturedProjects />
                     <ExperienceJourney locIdx={locIdx} simTime={simTime} />
+                    <FeaturedProjects />
                     <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}
                         setMidjourneyExpanded={setMidjourneyExpanded}
@@ -1034,7 +1044,7 @@ export default function App() {
                             </div>
                         </div>
                     </section>
-                    <CurrentLearning />
+                    {/* <CurrentLearning /> */}
                     <CertificationsSection />
 
                     {/* Contact Section */}

@@ -551,9 +551,9 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     outline: 'none'
                                                 }}
                                                 onMouseEnter={(e) => {
-                                                    e.currentTarget.style.borderColor = '#FF8F3D';
+                                                    e.currentTarget.style.borderColor = '#ffffff';
                                                     e.currentTarget.style.color = '#fff';
-                                                    e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)';
+                                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                                                 }}
                                                 onMouseLeave={(e) => {
                                                     e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
@@ -593,8 +593,8 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         <div className="xp-monitor-desc" style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'left', marginTop: '16px' }}>
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                                 <div style={{
-                                                    background: 'rgba(255, 180, 100, 0.1)',
-                                                    border: '1px solid rgba(255, 180, 100, 0.3)',
+                                                    background: 'rgba(255, 255, 255, 0.08)',
+                                                    border: '1px solid rgba(255, 255, 255, 0.2)',
                                                     borderRadius: '50%',
                                                     width: '22px',
                                                     height: '22px',
@@ -603,19 +603,19 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     justifyContent: 'center',
                                                     flexShrink: 0,
                                                     marginTop: '2px',
-                                                    boxShadow: '0 0 10px rgba(255, 180, 100, 0.15)'
+                                                    boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)'
                                                 }}>
-                                                    <span style={{ color: '#FFB464', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                    <span style={{ color: '#FFFFFF', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
                                                 <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                                                    Collaborated with <strong style={{ color: '#FFB464', fontWeight: '600' }}>regional tech creators</strong> to produce <strong style={{ color: '#FFB464', fontWeight: '600' }}>high-retention content</strong>.
+                                                    Collaborated with <strong style={{ color: '#FFFFFF', fontWeight: '600' }}>regional tech creators</strong> to produce <strong style={{ color: '#FFFFFF', fontWeight: '600' }}>high-retention content</strong>.
                                                 </p>
                                             </div>
 
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                                 <div style={{
-                                                    background: 'rgba(255, 180, 100, 0.1)',
-                                                    border: '1px solid rgba(255, 180, 100, 0.3)',
+                                                    background: 'rgba(255, 255, 255, 0.08)',
+                                                    border: '1px solid rgba(255, 255, 255, 0.2)',
                                                     borderRadius: '50%',
                                                     width: '22px',
                                                     height: '22px',
@@ -624,12 +624,12 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     justifyContent: 'center',
                                                     flexShrink: 0,
                                                     marginTop: '2px',
-                                                    boxShadow: '0 0 10px rgba(255, 180, 100, 0.15)'
+                                                    boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)'
                                                 }}>
-                                                    <span style={{ color: '#FFB464', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                                    <span style={{ color: '#FFFFFF', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
                                                 <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                                                    Delivered <strong style={{ color: '#FFB464', fontWeight: '600' }}>strategy and editing</strong> that boosted <strong style={{ color: '#FFB464', fontWeight: '600' }}>engagement and localized reach</strong>.
+                                                    Delivered <strong style={{ color: '#FFFFFF', fontWeight: '600' }}>strategy and editing</strong> that boosted <strong style={{ color: '#FFFFFF', fontWeight: '600' }}>engagement and localized reach</strong>.
                                                 </p>
                                             </div>
                                         </div>
@@ -637,61 +637,61 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 </div>
                                 <div className="xp-inspector" style={{ display: 'flex', flexDirection: 'column', gap: '10px', padding: '12px 10px', background: '#121215', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
                                     <h4 style={{ fontSize: '0.72rem', fontWeight: '700', color: '#FFF', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '6px', marginBottom: '2px', letterSpacing: '1.2px', display: 'flex', alignItems: 'center' }}>
-                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="#FF8F3D" strokeWidth="2.5" fill="none" style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }}><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="#FFFFFF" strokeWidth="2.5" fill="none" style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }}><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
                                         Skills
                                     </h4>
 
                                     {/* Skill 1 */}
-                                    <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,143,61,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
+                                    <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
                                         <div className="xp-slider-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                                <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FF8F3D', boxShadow: '0 0 6px #FF8F3D', display: 'inline-block' }}></span>
+                                                <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FFFFFF', boxShadow: '0 0 6px #FFFFFF', display: 'inline-block' }}></span>
                                                 <span style={{ fontSize: '0.66rem', color: '#FFF', fontWeight: '600', letterSpacing: '0.2px' }}>Personalized AI B-Rolls</span>
                                             </div>
-                                            <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF8F3D'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
+                                            <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
                                                 <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                             </div>
                                         </div>
                                         <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
-                                            <div className="xp-slider-fill" style={{ width: '80%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
+                                            <div className="xp-slider-fill" style={{ width: '80%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFFFFF 0%, #E4E4E7 100%)', boxShadow: '0 0 8px rgba(255, 255, 255, 0.15)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FFFFFF', boxShadow: '0 0 4px rgba(255, 255, 255, 0.6)', transition: 'transform 0.2s' }}></div>
                                             </div>
                                         </div>
                                     </div>
 
 
                                     {/* Skill 4 */}
-                                    <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,143,61,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
+                                    <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
                                         <div className="xp-slider-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                                <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FF8F3D', boxShadow: '0 0 6px #FF8F3D', display: 'inline-block' }}></span>
+                                                <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FFFFFF', boxShadow: '0 0 6px #FFFFFF', display: 'inline-block' }}></span>
                                                 <span style={{ fontSize: '0.66rem', color: '#FFF', fontWeight: '600', letterSpacing: '0.2px' }}>Video Pacing & Sound Design</span>
                                             </div>
-                                            <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF8F3D'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
+                                            <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
                                                 <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                             </div>
                                         </div>
                                         <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
-                                            <div className="xp-slider-fill" style={{ width: '70%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
+                                            <div className="xp-slider-fill" style={{ width: '70%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFFFFF 0%, #E4E4E7 100%)', boxShadow: '0 0 8px rgba(255, 255, 255, 0.15)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FFFFFF', boxShadow: '0 0 4px rgba(255, 255, 255, 0.6)', transition: 'transform 0.2s' }}></div>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Skill 5 */}
-                                    <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,143,61,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
+                                    <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
                                         <div className="xp-slider-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                                <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FF8F3D', boxShadow: '0 0 6px #FF8F3D', display: 'inline-block' }}></span>
+                                                <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FFFFFF', boxShadow: '0 0 6px #FFFFFF', display: 'inline-block' }}></span>
                                                 <span style={{ fontSize: '0.66rem', color: '#FFF', fontWeight: '600', letterSpacing: '0.2px' }}>Content Research & Strategy</span>
                                             </div>
-                                            <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF8F3D'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
+                                            <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
                                                 <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                             </div>
                                         </div>
                                         <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
-                                            <div className="xp-slider-fill" style={{ width: '75%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
+                                            <div className="xp-slider-fill" style={{ width: '75%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFFFFF 0%, #E4E4E7 100%)', boxShadow: '0 0 8px rgba(255, 255, 255, 0.15)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FFFFFF', boxShadow: '0 0 4px rgba(255, 255, 255, 0.6)', transition: 'transform 0.2s' }}></div>
                                             </div>
                                         </div>
                                     </div>
@@ -732,7 +732,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 transition: 'all 0.2s ease',
                                                 outline: 'none'
                                             }}
-                                            onMouseEnter={(e) => { e.currentTarget.style.color = '#FF8F3D'; e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)'; }}
+                                            onMouseEnter={(e) => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'; }}
                                             onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.45)'; e.currentTarget.style.background = 'transparent'; }}
                                             title="Return to Start"
                                         >
@@ -745,7 +745,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                             style={{
                                                 background: 'transparent',
                                                 border: 'none',
-                                                color: '#FF8F3D',
+                                                color: '#ffffff',
                                                 cursor: 'pointer',
                                                 display: 'flex',
                                                 alignItems: 'center',
@@ -755,7 +755,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 transition: 'all 0.2s ease',
                                                 outline: 'none'
                                             }}
-                                            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)'; }}
+                                            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'; }}
                                             onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                                             title={dvrPlaying ? "Pause Timeline" : "Play Timeline"}
                                         >
@@ -785,7 +785,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 transition: 'all 0.2s ease',
                                                 outline: 'none'
                                             }}
-                                            onMouseEnter={(e) => { e.currentTarget.style.color = '#FF8F3D'; e.currentTarget.style.background = 'rgba(255, 143, 61, 0.1)'; }}
+                                            onMouseEnter={(e) => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'; }}
                                             onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.45)'; e.currentTarget.style.background = 'transparent'; }}
                                             title="Skip to End"
                                         >
@@ -794,7 +794,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     </div>
 
                                     <div className="xp-dvr-tabs">
-                                        <span>Media</span><span className="active">Edit</span><span>Color</span><span>Fairlight</span><span>Deliver</span>
+                                        <span>Media</span><span className="active">Edit</span><span>Color</span>
                                     </div>
                                 </div>
                                 <div className="xp-dvr-tracks">
@@ -856,7 +856,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     <button
                                         onClick={() => setDvrPlaying(!dvrPlaying)}
                                         className="xp-mob-transport-btn play-btn"
-                                        style={{ color: '#FF8F3D' }}
+                                        style={{ color: '#FFFFFF' }}
                                         aria-label="Play or Pause"
                                     >
                                         {dvrPlaying ? (
