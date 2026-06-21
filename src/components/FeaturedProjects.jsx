@@ -734,12 +734,6 @@ export default function FeaturedProjects() {
 
                                 {/* Card Content Wrapper */}
                                 <div className="fp-pod-content">
-                                    <div className="fp-pod-header">
-                                        <div className="fp-pod-header-left">
-                                            <span className="fp-pod-num">01</span>
-                                            <span className="fp-pod-category-badge" style={{ '--badge-theme': '#D4A574' }}>Launch Video Production</span>
-                                        </div>
-                                    </div>
 
                                     <div className="fp-pod-body">
                                         <h3 className="fp-pod-title">Montra Electric Eviator</h3>
@@ -791,12 +785,6 @@ export default function FeaturedProjects() {
 
                                 {/* Card Content Wrapper */}
                                 <div className="fp-pod-content">
-                                    <div className="fp-pod-header">
-                                        <div className="fp-pod-header-left">
-                                            <span className="fp-pod-num">02</span>
-                                            <span className="fp-pod-category-badge" style={{ '--badge-theme': '#8B9DC3' }}>Rapid Sprint Production</span>
-                                        </div>
-                                    </div>
 
                                     <div className="fp-pod-body">
                                         <h3 className="fp-pod-title">Lincoln Pharma Pa12</h3>
@@ -848,15 +836,9 @@ export default function FeaturedProjects() {
 
                                 {/* Card Content Wrapper */}
                                 <div className="fp-pod-content">
-                                    <div className="fp-pod-header">
-                                        <div className="fp-pod-header-left">
-                                            <span className="fp-pod-num">03</span>
-                                            <span className="fp-pod-category-badge" style={{ '--badge-theme': '#C47D7D' }}>Viral Distribution</span>
-                                        </div>
-                                    </div>
 
                                     <div className="fp-pod-body">
-                                        <h3 className="fp-pod-title">Diesel Drama Reel</h3>
+                                        <h3 className="fp-pod-title">Montra e-SCV</h3>
                                         <span className="fp-pod-role-pill" style={{ '--role-theme': '#C47D7D' }}>Diesel Drama</span>
                                         <p className="fp-pod-desc">
                                             I crafted this social campaign to connect with audiences through quick, relatable visual storytelling. By mixing high-impact hooks with a fast narrative pace, the reel went viral, drawing in over 2.5 million views completely organically.

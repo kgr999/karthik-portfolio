@@ -10027,7 +10027,7 @@ nav.nav-standby .menu-toggle {
 /* Premium Interactive Pod Launcher Cards */
 .fp-launcher-pod.premium-pod {
     padding: 0 !important; /* Force override */
-    height: 500px; /* Elevated height for rich metrics and tools display */
+    height: 420px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     background: rgba(10, 10, 12, 0.6);
     display: flex;
@@ -10089,13 +10089,13 @@ nav.nav-standby .menu-toggle {
 .fp-pod-content {
     position: relative;
     z-index: 5;
-    padding: 30px;
+    padding: 22px;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    gap: 15px;
+    gap: 10px;
 }
 
 .fp-pod-header {
