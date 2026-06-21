@@ -1,862 +1,86 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ContactPhysicsArena.css';
 
-const LOGO_BALLS_DATA = [
-    { id: 2, name: "ChatGPT", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", color: "#10a37f" },
-    { id: 3, name: "HeyGen", logo: "https://www.google.com/s2/favicons?domain=heygen.com&sz=128", color: "#06b6d4" },
-    { id: 5, name: "Fal AI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg", color: "#ff4154" },
-    { id: 6, name: "Kling", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", color: "#3b82f6" }
+const BASE_FRAMES = [
+    { text: "AI MICRODRAMA", subtitle: "CREATIVE DIRECTION" },
+    { text: "CINEMATOGRAPHY", subtitle: "GENERATIVE PRODUCTION" },
+    { text: "PROMPT ENGINEERING", subtitle: "AGENTIC WORKFLOWS" },
+    { text: "AI ADVERTISING", subtitle: "COMMERCIAL CAMPAIGNS" },
+    { text: "POST-PRODUCTION", subtitle: "SOUND DESIGN & VFX" },
+    { text: "DIGITAL ART", subtitle: "STORYBOARDING & LORAS" }
 ];
+
+// Duplicate the array to create a long scrollable track
+const FILM_FRAMES = [...BASE_FRAMES, ...BASE_FRAMES, ...BASE_FRAMES];
 
 export default function ContactPhysicsArena() {
     const arenaRef = useRef(null);
     const aeroRef = useRef(null);
-    const giftRef = useRef(null);
-    const heartsContainerRef = useRef(null);
-    const ballsRef = useRef([]);
-    const [aeroWink, setAeroWink] = useState(false);
+    const stripRef = useRef(null);
+    const reelRef = useRef(null);
+    const leftEyeRef = useRef(null);
+    const rightEyeRef = useRef(null);
+    
+    const [aeroExpression, setAeroExpression] = useState('idle');
 
-    // Bounding coordinates of text/link elements to calculate bouncing rebounds
-    const contactElementsRects = useRef({
-        mail: { left: 0, right: 0, top: 0, bottom: 0 },
-        linkedin: { left: 0, right: 0, top: 0, bottom: 0 },
-        instagram: { left: 0, right: 0, top: 0, bottom: 0 },
-        opportunities: { left: 0, right: 0, top: 0, bottom: 0, x: 0, y: 0 }
-    });
-
-    // Keep track of interactive dimensions & state variables in refs for 60fps physics
-    const dimensions = useRef({ width: 0, height: 0 });
-    const ballsState = useRef([]);
-    const aeroState = useRef({
-        x: 0,
-        y: 0,
-        vx: 0,
-        vy: 0,
-        radius: 40,
-        state: 'chase',
-        targetBallId: null,
-        heldBallId: null,
-        lastPickedId: null,
-        recentlyPicked: [],
-        holdTimer: 0,
-        dodgeTimer: 0,
-        hoverActive: false,
-        giftActive: false,
-        giftEmoji: '',
-        giftX: 0,
-        giftY: 0,
-        giftProgress: 0,
-        giftStep: 'carry'
-    });
-
-
-
-    const heartsState = useRef([]);
-    const frameCount = useRef(0);
-
-    const isDragging = useRef(null); // id of ball being dragged
-    const dragOffset = useRef({ x: 0, y: 0 });
-    const prevMousePos = useRef({ x: 0, y: 0, t: 0 });
-
-    // Interactive mouse tracking refs
+    // Dynamic state trackers
     const cursorPositionRef = useRef({ x: 0, y: 0 });
     const isCursorInsideRef = useRef(false);
+    const aeroState = useRef({ x: 150, y: 200 });
+    
+    // Scroll tracking refs
+    const lastScrollY = useRef(window.scrollY);
+    const rotationRef = useRef(0);
 
     useEffect(() => {
         if (!arenaRef.current) return;
 
-        const spawnStars = (count, startX, startY) => {
-            if (!heartsContainerRef.current) return;
-            for (let i = 0; i < count; i++) {
-                const starEl = document.createElement('div');
-                starEl.className = 'physics-star-particle';
-                starEl.innerHTML = ['⭐', '✨'][Math.floor(Math.random() * 2)];
-                heartsContainerRef.current.appendChild(starEl);
-
-                heartsState.current.push({
-                    id: Math.random() + i,
-                    el: starEl,
-                    x: startX + (Math.random() - 0.5) * 18,
-                    y: startY - 8,
-                    vx: (Math.random() - 0.5) * 2.0,
-                    vy: -1.5 - Math.random() * 2.0,
-                    scale: 0.4 + Math.random() * 0.45,
-                    opacity: 1,
-                    rotation: (Math.random() - 0.5) * 45,
-                    decay: 0.018 + Math.random() * 0.012
-                });
-            }
-        };
-
-
-
-        // 1. Initialize balls state with dynamic radius and coordinates
-        const initW = arenaRef.current ? arenaRef.current.getBoundingClientRect().width : 800;
-        const initH = arenaRef.current ? arenaRef.current.getBoundingClientRect().height : 400;
-
-        const isMobileInit = initW < 768;
-        const initBallRadius = isMobileInit ? 18 : 24;
-        const initAeroRadius = isMobileInit ? 28 : 40;
-
-        ballsState.current = LOGO_BALLS_DATA.map((b, idx) => ({
-            ...b,
-            x: 100 + idx * ((initW - 200) / (LOGO_BALLS_DATA.length - 1 || 4)),
-            y: initH - 60 - Math.random() * 60,
-            vx: (Math.random() - 0.5) * 4,
-            vy: -2 - Math.random() * 3,
-            radius: initBallRadius,
-            mass: 1,
-            scale: 1,
-            hidden: false
-        }));
-
-        // Initialize Aero (Blue Bot) bottom left-center
-        aeroState.current.x = initW * 0.3;
-        aeroState.current.y = initH - 100;
-        aeroState.current.radius = initAeroRadius;
-
-        // 2. Calculate parent layout sizes & dynamically set radii
-        const updateDimensions = () => {
-            if (!arenaRef.current) return;
-            const rect = arenaRef.current.getBoundingClientRect();
-            dimensions.current = {
-                width: rect.width,
-                height: rect.height
-            };
-
-            const isMobile = rect.width < 768;
-            const ballRadius = isMobile ? 18 : 24;
-            const aeroRadius = isMobile ? 28 : 40;
-
-            if (aeroState.current) {
-                aeroState.current.radius = aeroRadius;
-            }
-
-            if (ballsState.current) {
-                ballsState.current.forEach(b => {
-                    b.radius = ballRadius;
-                });
-            }
-
-            // Recalculate contact elements relative positions for rebounding collisions
-            const mailEl = document.querySelector('.contact-mail');
-            const linkedinEl = document.querySelector('.social-dock-btn.linkedin');
-            const instagramEl = document.querySelector('.social-dock-btn.instagram');
-            const opportunitiesEl = document.querySelector('.status-badge');
-            const aRect = rect; // Arena bounding rect
-            
-            if (mailEl) {
-                const mRect = mailEl.getBoundingClientRect();
-                contactElementsRects.current.mail = {
-                    left: mRect.left - aRect.left,
-                    right: mRect.right - aRect.left,
-                    top: mRect.top - aRect.top,
-                    bottom: mRect.bottom - aRect.top
-                };
-            }
-            if (linkedinEl) {
-                const lRect = linkedinEl.getBoundingClientRect();
-                contactElementsRects.current.linkedin = {
-                    left: lRect.left - aRect.left,
-                    right: lRect.right - aRect.left,
-                    top: lRect.top - aRect.top,
-                    bottom: lRect.bottom - aRect.top
-                };
-            }
-            if (instagramEl) {
-                const iRect = instagramEl.getBoundingClientRect();
-                contactElementsRects.current.instagram = {
-                    left: iRect.left - aRect.left,
-                    right: iRect.right - aRect.left,
-                    top: iRect.top - aRect.top,
-                    bottom: iRect.bottom - aRect.top
-                };
-            }
-            if (opportunitiesEl) {
-                const oRect = opportunitiesEl.getBoundingClientRect();
-                contactElementsRects.current.opportunities = {
-                    left: oRect.left - aRect.left,
-                    right: oRect.right - aRect.left,
-                    top: oRect.top - aRect.top,
-                    bottom: oRect.bottom - aRect.top,
-                    x: (oRect.left + oRect.right) / 2 - aRect.left,
-                    y: (oRect.top + oRect.bottom) / 2 - aRect.top
-                };
-            } else {
-                contactElementsRects.current.opportunities = {
-                    left: rect.width / 2 - 100,
-                    right: rect.width / 2 + 100,
-                    top: 20,
-                    bottom: 50,
-                    x: rect.width / 2,
-                    y: 35
-                };
-            }
-        };
-
-        updateDimensions();
-        window.addEventListener('resize', updateDimensions);
-
-        // 3. High framerate physics loop
-        let animationFrameId;
-        const elasticity = 0.85;
-        const friction = 0.99;
-
-        const updatePhysics = () => {
-            frameCount.current = (frameCount.current || 0) + 1;
-            if (frameCount.current % 60 === 0) {
-                updateDimensions();
-            }
-
-            let arenaW = dimensions.current.width;
-            let arenaH = dimensions.current.height;
-            if (arenaW === 0 || arenaH === 0) {
-                if (arenaRef.current) {
-                    const rect = arenaRef.current.getBoundingClientRect();
-                    if (rect.width > 0 && rect.height > 0) {
-                        dimensions.current = {
-                            width: rect.width,
-                            height: rect.height
-                        };
-                        arenaW = rect.width;
-                        arenaH = rect.height;
-
-                        // Properly position elements inside new non-zero bounds!
-                        aeroState.current.x = rect.width * 0.3;
-                        aeroState.current.y = rect.height - 100;
-
-                        // Spread balls across the actual non-zero width!
-                        const balls = ballsState.current;
-                        balls.forEach((b, idx) => {
-                            b.x = 100 + idx * ((rect.width - 200) / (balls.length - 1 || 4));
-                            b.y = 50 + Math.random() * 80;
-                        });
-
-                        // Recalculate contact elements relative positions
-                        const mailEl = document.querySelector('.contact-mail');
-                        const linkedinEl = document.querySelector('.social-dock-btn.linkedin');
-                        const instagramEl = document.querySelector('.social-dock-btn.instagram');
-                        const opportunitiesEl = document.querySelector('.status-badge');
-                        
-                        if (mailEl) {
-                            const mRect = mailEl.getBoundingClientRect();
-                            contactElementsRects.current.mail = {
-                                left: mRect.left - rect.left,
-                                right: mRect.right - rect.left,
-                                top: mRect.top - rect.top,
-                                bottom: mRect.bottom - rect.top
-                            };
-                        }
-                        if (linkedinEl) {
-                            const lRect = linkedinEl.getBoundingClientRect();
-                            contactElementsRects.current.linkedin = {
-                                left: lRect.left - rect.left,
-                                right: lRect.right - rect.left,
-                                top: lRect.top - rect.top,
-                                bottom: lRect.bottom - rect.top
-                            };
-                        }
-                        if (instagramEl) {
-                            const iRect = instagramEl.getBoundingClientRect();
-                            contactElementsRects.current.instagram = {
-                                left: iRect.left - rect.left,
-                                right: iRect.right - rect.left,
-                                top: iRect.top - rect.top,
-                                bottom: iRect.bottom - rect.top
-                            };
-                        }
-                        if (opportunitiesEl) {
-                            const oRect = opportunitiesEl.getBoundingClientRect();
-                            contactElementsRects.current.opportunities = {
-                                left: oRect.left - rect.left,
-                                right: oRect.right - rect.left,
-                                top: oRect.top - rect.top,
-                                bottom: oRect.bottom - rect.top,
-                                x: (oRect.left + oRect.right) / 2 - rect.left,
-                                y: (oRect.top + oRect.bottom) / 2 - rect.top
-                            };
-                        } else {
-                            contactElementsRects.current.opportunities = {
-                                left: rect.width / 2 - 100,
-                                right: rect.width / 2 + 100,
-                                top: 20,
-                                bottom: 50,
-                                x: rect.width / 2,
-                                y: 35
-                            };
-                        }
-                    }
-                }
-
-                if (arenaW === 0 || arenaH === 0) {
-                    animationFrameId = requestAnimationFrame(updatePhysics);
-                    return;
-                }
-            }
-
-            const balls = ballsState.current;
-            const aero = aeroState.current;
-
-            // ── PREFERS REDUCED MOTION INTERCEPT ──
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReducedMotion) {
-                // Keep balls statically positioned in a beautiful horizontal row
-                balls.forEach((b, idx) => {
-                    b.vx = 0;
-                    b.vy = 0;
-                    if (isDragging.current === b.id) {
-                        // Allow dragging interaction if active
-                    } else {
-                        // Spaced evenly across the screen
-                        const totalBalls = balls.length;
-                        b.x = 100 + idx * ((arenaW - 200) / (totalBalls - 1 || 3));
-                        b.y = arenaH * 0.45; // Centered vertically in the upper-mid area
-                    }
-                });
-
-                // Hold robot stably in its anchor location without hovering or actions
-                aero.x = arenaW * 0.3;
-                aero.y = arenaH - 100;
-                aero.vx = 0;
-                aero.vy = 0;
-                aero.state = 'chase';
-                aero.heldBallId = null;
-                aero.targetBallId = null;
-                aero.giftActive = false;
-
-                // 1. Render ball positions to DOM
-                balls.forEach((b, idx) => {
-                    const ballEl = ballsRef.current[idx];
-                    if (ballEl) {
-                        ballEl.style.display = b.hidden ? 'none' : 'flex';
-                        const scale = b.scale !== undefined ? b.scale : 1;
-                        ballEl.style.transform = `translate3d(${b.x - b.radius}px, ${b.y - b.radius}px, 0) scale(${scale})`;
-                    }
-                });
-
-                // 2. Render Aero positions to DOM
-                if (aeroRef.current) {
-                    aeroRef.current.style.transform = `translate3d(${aero.x - aero.radius}px, ${aero.y - aero.radius}px, 0) rotate(0deg)`;
-                }
-
-                // Hide gift emoji
-                if (giftRef.current) {
-                    giftRef.current.style.display = 'none';
-                }
-
-                // Clear active heart particles
-                const hearts = heartsState.current;
-                while (hearts.length > 0) {
-                    const h = hearts.pop();
-                    if (h.el && h.el.parentNode) {
-                        h.el.parentNode.removeChild(h.el);
-                    }
-                }
-
-                animationFrameId = requestAnimationFrame(updatePhysics);
+        // Ambient mobile expressions timer
+        let expressionTimeout;
+        const triggerRandomExpression = () => {
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) {
+                setAeroExpression('idle');
+                expressionTimeout = setTimeout(triggerRandomExpression, 3000);
                 return;
             }
 
-            // ── A. UPDATE DRAGGED BALL ──
-            if (isDragging.current !== null) {
-                const draggedBall = balls.find(b => b.id === isDragging.current);
-                if (draggedBall) {
-                    // Velocity is calculated from mouse throw speed, but decays if user holds it still
-                    const timeSinceLastMove = Date.now() - prevMousePos.current.t;
-                    if (timeSinceLastMove > 80) {
-                        draggedBall.vx *= 0.65;
-                        draggedBall.vy *= 0.65;
-                        if (Math.abs(draggedBall.vx) < 0.1) draggedBall.vx = 0;
-                        if (Math.abs(draggedBall.vy) < 0.1) draggedBall.vy = 0;
-                    }
-                }
-            }
+            const expressions = ['look-left', 'look-right', 'wink', 'double-blink', 'idle'];
+            const randomExpr = expressions[Math.floor(Math.random() * expressions.length)];
 
-            // ── B. UPDATE INDIVIDUAL BALLS & WALL REBOUNDS ──
-            const isLaptop = arenaW >= 768;
-
-            balls.forEach(b => {
-                if (b.id === isDragging.current || b.id === aero.heldBallId) return; // Skip updating physics for item being dragged or held
-
-                if (isLaptop) {
-                    // Laptop View: Apply constant downward gravity force so the balls fall to the bottom
-                    const gravity = 0.32;
-                    b.vy += gravity;
-                } else {
-                    // 📱 Mobile View: Apply gentle floating microgravity drift (floating and bouncing like before)
-                    const floatTime = Date.now() * 0.0004 + b.id * 1.5;
-                    b.vx += Math.sin(floatTime) * 0.0012;
-                    b.vy += Math.cos(floatTime * 0.8) * 0.0012 - 0.0002;
-                }
-
-                // Apply velocity
-                b.x += b.vx;
-                b.y += b.vy;
-
-                // Apply drag/friction
-                b.vx *= friction;
-                b.vy *= friction;
-
-                // Rebound off contact text/link elements (Email, LinkedIn, Instagram buttons individually)
-                const rects = contactElementsRects.current;
-                const collideWithRect = (r) => {
-                    if (!r || r.right === 0) return;
-                    const closestX = Math.max(r.left, Math.min(b.x, r.right));
-                    const closestY = Math.max(r.top, Math.min(b.y, r.bottom));
-                    const dx = b.x - closestX;
-                    const dy = b.y - closestY;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < b.radius) {
-                        const overlap = b.radius - dist;
-                        let pushX = 0;
-                        let pushY = 0;
-                        if (dist > 0) {
-                            pushX = dx / dist;
-                            pushY = dy / dist;
-                        } else {
-                            const dLeft = b.x - r.left;
-                            const dRight = r.right - b.x;
-                            const dTop = b.y - r.top;
-                            const dBottom = r.bottom - b.y;
-                            const minD = Math.min(dLeft, dRight, dTop, dBottom);
-                            if (minD === dLeft) pushX = -1;
-                            else if (minD === dRight) pushX = 1;
-                            else if (minD === dTop) pushY = -1;
-                            else pushY = 1;
-                        }
-                        b.x += pushX * (overlap + 2);
-                        b.y += pushY * (overlap + 2);
-                        if (pushX !== 0) b.vx = Math.abs(b.vx) * pushX * elasticity;
-                        if (pushY !== 0) b.vy = Math.abs(b.vy) * pushY * elasticity;
-                    }
-                };
-                collideWithRect(rects.mail);
-                collideWithRect(rects.linkedin);
-                collideWithRect(rects.instagram);
-
-                // Bounce off left/right borders
-                if (b.x - b.radius < 0) {
-                    b.x = b.radius;
-                    b.vx = -b.vx * elasticity;
-                } else if (b.x + b.radius > arenaW) {
-                    b.x = arenaW - b.radius;
-                    b.vx = -b.vx * elasticity;
-                }
-
-                // Bounce off top/bottom borders
-                if (b.y - b.radius < 0) {
-                    b.y = b.radius;
-                    b.vy = -b.vy * elasticity;
-                } else if (b.y + b.radius > arenaH) {
-                    b.y = arenaH - b.radius;
-                    if (isLaptop) {
-                        b.vy = -b.vy * 0.40; // Absorb vertical impact so it doesn't float
-                        b.vx *= 0.88;        // Apply floor rolling friction
-                        if (Math.abs(b.vy) < 0.28) b.vy = 0; // Stop micro-bouncing tremors
-                    } else {
-                        // 📱 Mobile View: Standard elastic bounce so they float forever!
-                        b.vy = -b.vy * elasticity;
-                    }
-                }
-            });
-
-            // ── C. BALL-TO-BALL ELASTIC COLLISIONS ──
-            for (let i = 0; i < balls.length; i++) {
-                for (let j = i + 1; j < balls.length; j++) {
-                    const b1 = balls[i];
-                    const b2 = balls[j];
-
-                    if (b1.id === aero.heldBallId || b2.id === aero.heldBallId) continue;
-
-                    const dx = b2.x - b1.x;
-                    const dy = b2.y - b1.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    const minDist = b1.radius + b2.radius;
-
-                    if (dist < minDist) {
-                        // Dynamic vector overlap resolution
-                        const overlap = minDist - dist;
-                        const angle = Math.atan2(dy, dx);
-
-                        if (b1.id !== isDragging.current && b2.id !== isDragging.current) {
-                            b1.x -= Math.cos(angle) * overlap * 0.5;
-                            b1.y -= Math.sin(angle) * overlap * 0.5;
-                            b2.x += Math.cos(angle) * overlap * 0.5;
-                            b2.y += Math.sin(angle) * overlap * 0.5;
-
-                            // Elastic velocity vector exchanges
-                            const nx = dx / dist;
-                            const ny = dy / dist;
-                            const kx = b1.vx - b2.vx;
-                            const ky = b1.vy - b2.vy;
-                            const p = 2 * (nx * kx + ny * ky) / 2;
-
-                            b1.vx -= p * nx * elasticity;
-                            b1.vy -= p * ny * elasticity;
-                            b2.vx += p * nx * elasticity;
-                            b2.vy += p * ny * elasticity;
-                        } else if (b1.id === isDragging.current && b2.id !== isDragging.current) {
-                            // b1 is being dragged, push b2 away and apply velocity
-                            b2.x += Math.cos(angle) * overlap;
-                            b2.y += Math.sin(angle) * overlap;
-
-                            // Apply dynamic push velocity based on b1's current drag speed
-                            const pushSpeed = Math.max(Math.sqrt(b1.vx * b1.vx + b1.vy * b1.vy) * 0.8, 8);
-                            b2.vx = Math.cos(angle) * pushSpeed;
-                            b2.vy = Math.sin(angle) * pushSpeed;
-                        } else if (b2.id === isDragging.current && b1.id !== isDragging.current) {
-                            // b2 is being dragged, push b1 away and apply velocity
-                            b1.x -= Math.cos(angle) * overlap;
-                            b1.y -= Math.sin(angle) * overlap;
-
-                            // Apply dynamic push velocity based on b2's current drag speed
-                            const pushSpeed = Math.max(Math.sqrt(b2.vx * b2.vx + b2.vy * b2.vy) * 0.8, 8);
-                            b1.vx = -Math.cos(angle) * pushSpeed;
-                            b1.vy = -Math.sin(angle) * pushSpeed;
-                        }
-                    }
-                }
-            }
-
-            // ── D. INTERACTIVE AERO CURSOR TRACKING OR PLAYFUL MOBILE SUCTION STATE MACHINE ──
-
-            if (isLaptop && isCursorInsideRef.current) {
-                // Laptop View (with cursor active): Smooth mouse trailing
-                const targetX = cursorPositionRef.current.x;
-                const targetY = cursorPositionRef.current.y + 85; 
-
-                aero.vx = (targetX - aero.x) * 0.08;
-                aero.vy = (targetY - aero.y) * 0.08;
-                aero.state = 'chase';
-            } else if (!isLaptop) {
-                // 📱 MOBILE VIEW: Full Playful Automated Suction, Carry, and Emoji Throwing State Machine!
-                if (!aero.state) aero.state = 'chase';
-
-                if (aero.state === 'chase') {
-                    // Lock onto a random active ball
-                    let targetBall = balls.find(b => b.id === aero.targetBallId && !b.hidden && b.id !== isDragging.current);
-
-                    if (!targetBall) {
-                        const activeBalls = balls.filter(b => !b.hidden && b.id !== isDragging.current);
-                        if (activeBalls.length > 0) {
-                            const recent = aero.recentlyPicked || [];
-                            const freshBalls = activeBalls.filter(b => !recent.includes(b.id));
-                            const candidates = freshBalls.length > 0 ? freshBalls : activeBalls;
-                            
-                            const selectedBall = candidates[Math.floor(Math.random() * candidates.length)];
-                            aero.targetBallId = selectedBall.id;
-                            targetBall = selectedBall;
-                        }
-                    }
-
-                    if (targetBall && !aero.hoverActive) {
-                        // Guide head directly underneath the target ball
-                        const targetX = targetBall.x;
-                        const targetY = targetBall.y + targetBall.radius + aero.radius - 8;
-
-                        const dx = targetX - aero.x;
-                        const dy = targetY - aero.y;
-
-                        aero.vx += dx * 0.0035;
-                        aero.vy += dy * 0.0035;
-
-                        // Capture check
-                        const cupX = aero.x;
-                        const cupY = aero.y - aero.radius;
-                        const distToCup = Math.sqrt(Math.pow(targetBall.x - cupX, 2) + Math.pow(targetBall.y - cupY, 2));
-
-                        if (distToCup < 46) {
-                            aero.state = 'hold';
-                            aero.heldBallId = targetBall.id;
-                            aero.targetBallId = null;
-                            aero.lastPickedId = targetBall.id;
-                            
-                            if (!aero.recentlyPicked) aero.recentlyPicked = [];
-                            aero.recentlyPicked.push(targetBall.id);
-                            if (aero.recentlyPicked.length > 2) {
-                                aero.recentlyPicked.shift();
-                            }
-                            
-                            aero.holdTimer = Date.now() + 1200;
-                            targetBall.vx = 0;
-                            targetBall.vy = 0;
-                            targetBall.scale = 1;
-                        }
-                    } else if (!targetBall) {
-                        // Ambient float
-                        const targetX = arenaW * 0.5;
-                        const targetY = arenaH - 120;
-                        aero.vx += (targetX - aero.x) * 0.001;
-                        aero.vy += (targetY - aero.y) * 0.001;
-                    }
-                } else if (aero.state === 'hold') {
-                    // Carry ball
-                    const heldBall = balls.find(b => b.id === aero.heldBallId);
-
-                    if (!heldBall || heldBall.id === isDragging.current) {
-                        aero.state = 'dodge';
-                        aero.dodgeTimer = Date.now() + 2500;
-                        aero.heldBallId = null;
-                        aero.targetBallId = null;
-                    } else {
-                        heldBall.x = aero.x;
-                        heldBall.y = aero.y - aero.radius - heldBall.radius + 4;
-                        heldBall.vx = aero.vx;
-                        heldBall.vy = aero.vy;
-
-                        // Animate suck-in scale down in the final 300ms
-                        const elapsed = Date.now() - (aero.holdTimer - 1200);
-                        if (elapsed > 900) {
-                            heldBall.scale = Math.max(0, 1 - (elapsed - 900) / 300);
-                        } else {
-                            heldBall.scale = 1;
-                        }
-
-                        aero.vx *= 0.88;
-                        aero.vy *= 0.88;
-
-                        if (Date.now() >= aero.holdTimer) {
-                            // Sucked in! Choose an emoji
-                            let emoji = '🎁';
-                            if (heldBall.id === 2) emoji = '💬'; 
-                            else if (heldBall.id === 3) emoji = '🎵'; 
-                            else if (heldBall.id === 5) emoji = '🎨'; 
-                            else if (heldBall.id === 6) emoji = '📸'; 
-
-                            heldBall.hidden = true;
-                            heldBall.scale = 1;
-                            const respawnId = heldBall.id;
-
-                            // Respawn ball from the bottom later (shoot upwards spectacularly)
-                            setTimeout(() => {
-                                const b = ballsState.current.find(ball => ball.id === respawnId);
-                                if (b) {
-                                    b.x = 100 + Math.random() * (dimensions.current.width - 200);
-                                    b.y = dimensions.current.height + 35;
-                                    b.vx = (Math.random() - 0.5) * 3;
-                                    b.vy = -8 - Math.random() * 4;
-                                    b.scale = 1;
-                                    b.hidden = false;
-                                }
-                            }, 3500);
-
-                            // Trigger floating gift emoji
-                            aero.giftActive = true;
-                            aero.giftEmoji = emoji;
-                            aero.giftStartX = aero.x;
-                            aero.giftStartY = aero.y - aero.radius - 18;
-                            aero.giftX = aero.giftStartX;
-                            aero.giftY = aero.giftStartY;
-                            aero.giftProgress = 0;
-                            aero.giftStep = 'fly';
-
-                            // Enter dodge/recoil
-                            aero.state = 'dodge';
-                            aero.dodgeTimer = Date.now() + 2500;
-                            aero.targetBallId = null;
-                            aero.heldBallId = null;
-                        }
-                    }
-                } else if (aero.state === 'dodge') {
-                    // Repel away from other active balls to create dynamic motion
-                    balls.forEach(b => {
-                        if (b.id === isDragging.current || b.hidden) return;
-                        const dx = aero.x - b.x;
-                        const dy = aero.y - b.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-
-                        if (dist < 160) {
-                            const force = (160 - dist) / 160;
-                            aero.vx += (dx / (dist || 1)) * force * 0.95;
-                            aero.vy += (dy / (dist || 1)) * force * 0.95;
-                        }
-                    });
-
-                    if (Date.now() >= aero.dodgeTimer) {
-                        aero.state = 'chase';
-                        aero.targetBallId = null;
-                    }
-                }
+            if (randomExpr === 'wink') {
+                setAeroExpression('wink');
+                setTimeout(() => setAeroExpression('idle'), 800);
+            } else if (randomExpr === 'double-blink') {
+                setAeroExpression('blink');
+                setTimeout(() => {
+                    setAeroExpression('idle');
+                    setTimeout(() => {
+                        setAeroExpression('blink');
+                        setTimeout(() => setAeroExpression('idle'), 150);
+                    }, 100);
+                }, 150);
+            } else if (randomExpr === 'look-left' || randomExpr === 'look-right') {
+                setAeroExpression(randomExpr);
+                setTimeout(() => setAeroExpression('idle'), 1200);
             } else {
-                // Laptop view (Mouse out): Hover statically on the anchor point
-                const floatTime = Date.now() * 0.0015;
-                const targetX = arenaW * 0.3;
-                const targetY = arenaH - 100 + Math.sin(floatTime) * 10;
-
-                aero.vx = (targetX - aero.x) * 0.06;
-                aero.vy = (targetY - aero.y) * 0.06;
-                aero.state = 'chase';
+                setAeroExpression('idle');
             }
 
-            // Sync Aero DOM data-state attribute
-            if (aeroRef.current) {
-                if (aeroRef.current.getAttribute('data-state') !== aero.state) {
-                    aeroRef.current.setAttribute('data-state', aero.state);
-                }
-            }
-
-            // Apply friction to Aero's drift velocity
-            aero.vx *= 0.93;
-            aero.vy *= 0.93;
-
-            // Update Aero position
-            aero.x += aero.vx;
-            aero.y += aero.vy;
-
-
-
-            // Restrict Aero inside borders (seamlessly let him slide to the very edges without jittery rebounds!)
-            const edgeThreshold = 5;
-            if (aero.x - aero.radius < edgeThreshold) {
-                aero.x = aero.radius + edgeThreshold;
-                aero.vx = 0;
-            } else if (aero.x + aero.radius > arenaW - edgeThreshold) {
-                aero.x = arenaW - aero.radius - edgeThreshold;
-                aero.vx = 0;
-            }
-
-            if (aero.y - aero.radius < edgeThreshold) {
-                aero.y = aero.radius + edgeThreshold;
-                aero.vy = 0;
-            } else if (aero.y + aero.radius > arenaH - edgeThreshold) {
-                aero.y = arenaH - aero.radius - edgeThreshold;
-                aero.vy = 0;
-            }
-
-            // ── E. COLLISION RESOLUTIONS (AERO & AERA COLLIDERS) ──
-            balls.forEach(b => {
-                if (b.id === aero.heldBallId || b.hidden) return; // Skip if ball is held or consumed
-
-                const dx1 = b.x - aero.x;
-                const dy1 = b.y - aero.y;
-                const dist1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
-
-                // 1. Proximity repulsion: as Aero sweeps close, apply kinetic rolling force before actual collision!
-                const proximityRange = aero.radius + b.radius + 35;
-                if (dist1 < proximityRange && b.id !== isDragging.current) {
-                    const angle = Math.atan2(dy1, dx1);
-                    const force = (proximityRange - dist1) * 0.12;
-                    b.vx += Math.cos(angle) * force;
-                    b.vy += Math.sin(angle) * force - 0.15; // Gentle upward drift
-                }
-
-                // 2. Solid physical contact: launch resting balls into a high-energy interactive bounce!
-                const collisionDist1 = b.radius + aero.radius - 6;
-                if (dist1 < collisionDist1) {
-                    const angle = Math.atan2(dy1, dx1);
-                    
-                    if (b.id !== isDragging.current) {
-                        b.x = aero.x + Math.cos(angle) * (collisionDist1 + 2);
-                        b.y = aero.y + Math.sin(angle) * (collisionDist1 + 2);
-
-                        // High-velocity dynamic popping speed (explosive up-pop!)
-                        const speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
-                        const pushPower = Math.max(speed * 0.8, 12.0) + Math.random() * 4.0;
-                        b.vx = Math.cos(angle) * pushPower * 1.1;
-                        b.vy = Math.sin(angle) * pushPower - 7.5; // Always launch strongly upwards into the air!
-
-                        // No dynamic recoil on Aero so he continues to track the cursor seamlessly without getting blocked or knocked back by balls!
-
-                        setAeroWink(true);
-                        setTimeout(() => setAeroWink(false), 800);
-                    }
-                }
-            });
-
-            // ── F. UPDATE HEARTS & GIPH EMOJI TRAJECTORIES ──
-            const hearts = heartsState.current;
-            for (let i = hearts.length - 1; i >= 0; i--) {
-                const h = hearts[i];
-                h.y += h.vy;
-                h.x += h.vx;
-                h.x += Math.sin(Date.now() * 0.01 + h.id) * 0.5; // gentle swaying
-                h.vy *= 0.98;
-                h.vx *= 0.98;
-                h.opacity -= h.decay;
-                h.rotation += h.vx * 2;
-
-                if (h.opacity <= 0) {
-                    if (h.el && h.el.parentNode) {
-                        h.el.parentNode.removeChild(h.el);
-                    }
-                    hearts.splice(i, 1);
-                } else {
-                    h.el.style.transform = `translate3d(${h.x - 10}px, ${h.y - 10}px, 0) scale(${h.scale}) rotate(${h.rotation}deg)`;
-                    h.el.style.opacity = h.opacity;
-                }
-            }
-
-            // Update flight trajectory of the shot gift emoji independently
-            if (aero.giftActive && aero.giftStep === 'fly') {
-                aero.giftProgress += 0.035; // Smooth flight speed (approx. 30 frames)
-                if (aero.giftProgress >= 1) {
-                    aero.giftActive = false;
-                    aero.giftStep = 'carry';
-                    const rects = contactElementsRects.current;
-                    spawnStars(4, rects.opportunities.x, rects.opportunities.y);
-                } else {
-                    const rects = contactElementsRects.current;
-                    const t = aero.giftProgress;
-                    const startX = aero.giftStartX !== undefined ? aero.giftStartX : aero.x;
-                    const startY = aero.giftStartY !== undefined ? aero.giftStartY : (aero.y - aero.radius - 18);
-                    const endX = rects.opportunities.x;
-                    const endY = rects.opportunities.y;
-                    
-                    const arcHeight = -65; // Elegant arc flight
-                    aero.giftX = startX + (endX - startX) * t;
-                    aero.giftY = startY + (endY - startY) * t + Math.sin(t * Math.PI) * arcHeight;
-                }
-            }
-
-            if (giftRef.current) {
-                if (aero.giftActive) {
-                    giftRef.current.style.display = 'block';
-                    const scale = aero.giftStep === 'fly' ? 1 - aero.giftProgress * 0.4 : 1;
-                    giftRef.current.style.transform = `translate3d(${aero.giftX - 12}px, ${aero.giftY - 12}px, 0) scale(${scale})`;
-                    giftRef.current.textContent = aero.giftEmoji;
-                } else {
-                    giftRef.current.style.display = 'none';
-                }
-            }
-
-
-
-            // ── G. WRITE DIRECT TRANSLATE TRANSFORMS FOR MAXIMUM PERFORMANCE ──
-            balls.forEach((b, idx) => {
-                const ballEl = ballsRef.current[idx];
-                if (ballEl) {
-                    if (b.hidden) {
-                        ballEl.style.display = 'none';
-                    } else {
-                        ballEl.style.display = 'flex';
-                        const isMobile = dimensions.current.width < 768;
-                        const viewportScale = isMobile ? 0.75 : 1.0;
-                        const scale = (b.scale !== undefined ? b.scale : 1) * viewportScale;
-                        ballEl.style.transform = `translate3d(${b.x - b.radius}px, ${b.y - b.radius}px, 0) scale(${scale})`;
-                    }
-                }
-            });
-
-            if (aeroRef.current) {
-                const tilt = Math.min(Math.max(aero.vx * 1.8, -12), 12);
-                const isMobile = dimensions.current.width < 768;
-                const scale = isMobile ? 0.7 : 1.0;
-                aeroRef.current.style.transform = `translate3d(${aero.x - aero.radius}px, ${aero.y - aero.radius}px, 0) rotate(${tilt}deg) scale(${scale})`;
-            }
-
-
-
-            animationFrameId = requestAnimationFrame(updatePhysics);
+            const nextDelay = 4000 + Math.random() * 4000;
+            expressionTimeout = setTimeout(triggerRandomExpression, nextDelay);
         };
 
-        const handleArenaMouseMove = (e) => {
+        expressionTimeout = setTimeout(triggerRandomExpression, 3000);
+
+        // 1. Mouse/Touch Move Listeners to trail cursor
+        const handleMouseMove = (e) => {
             if (!arenaRef.current) return;
             const rect = arenaRef.current.getBoundingClientRect();
             const clientX = e.clientX || (e.touches && e.touches[0].clientX);
             const clientY = e.clientY || (e.touches && e.touches[0].clientY);
 
-            // To ensure Aero doesn't drift outside the canvas bounds if user moves cursor off the contact section
+            // Out-of-bounds check (add padding to allow edge tracking)
             const padding = 100;
             if (
                 clientY < rect.top - padding || 
@@ -873,233 +97,299 @@ export default function ContactPhysicsArena() {
 
             cursorPositionRef.current = { x: mouseX, y: mouseY };
             isCursorInsideRef.current = true;
-
-            if (isDragging.current !== null) {
-                const ball = ballsState.current.find(b => b.id === isDragging.current);
-                if (ball) {
-                    ball.x = Math.max(ball.radius, Math.min(dimensions.current.width - ball.radius, mouseX - dragOffset.current.x));
-                    ball.y = Math.max(ball.radius, Math.min(dimensions.current.height - ball.radius, mouseY - dragOffset.current.y));
-
-                    const now = Date.now();
-                    const dt = now - prevMousePos.current.t;
-                    if (dt > 10) {
-                        const dx = mouseX - prevMousePos.current.x;
-                        const dy = mouseY - prevMousePos.current.y;
-                        ball.vx = (dx / dt) * 16;
-                        ball.vy = (dy / dt) * 16;
-
-                        prevMousePos.current = {
-                            x: mouseX,
-                            y: mouseY,
-                            t: now
-                        };
-                    }
-                }
-            }
         };
 
-        const handleArenaMouseLeave = () => {
+        const handleMouseLeave = () => {
             isCursorInsideRef.current = false;
         };
 
-        const handleArenaTouchMove = (e) => {
-            if (!arenaRef.current || e.touches.length === 0) return;
+        // 2. Scroll Parallax & Reel Rotation Event Handler
+        const handleScroll = () => {
+            if (!arenaRef.current) return;
             const rect = arenaRef.current.getBoundingClientRect();
-            const clientX = e.touches[0].clientX;
-            const clientY = e.touches[0].clientY;
+            const viewportH = window.innerHeight;
 
-            // To ensure Aero doesn't drift outside the canvas bounds if user moves cursor off the contact section
-            const padding = 100;
-            if (
-                clientY < rect.top - padding || 
-                clientY > rect.bottom + padding || 
-                clientX < rect.left - padding || 
-                clientX > rect.right + padding
-            ) {
-                isCursorInsideRef.current = false;
-                return;
-            }
+            // Only run transitions when the contact section is on-screen
+            const entry = rect.top - viewportH;
+            const exit = rect.bottom;
 
-            const touchX = clientX - rect.left;
-            const touchY = clientY - rect.top;
+            if (entry < 0 && exit > 0) {
+                const scrollProgress = -entry / (rect.height + viewportH);
 
-            cursorPositionRef.current = { x: touchX, y: touchY };
-            isCursorInsideRef.current = true;
-
-            if (isDragging.current !== null) {
-                const ball = ballsState.current.find(b => b.id === isDragging.current);
-                if (ball) {
-                    ball.x = Math.max(ball.radius, Math.min(dimensions.current.width - ball.radius, touchX - dragOffset.current.x));
-                    ball.y = Math.max(ball.radius, Math.min(dimensions.current.height - ball.radius, touchY - dragOffset.current.y));
-
-                    const now = Date.now();
-                    const dt = now - prevMousePos.current.t;
-                    if (dt > 10) {
-                        const dx = touchX - prevMousePos.current.x;
-                        const dy = touchY - prevMousePos.current.y;
-                        ball.vx = (dx / dt) * 16;
-                        ball.vy = (dy / dt) * 16;
-
-                        prevMousePos.current = {
-                            x: touchX,
-                            y: touchY,
-                            t: now
-                        };
+                // Horizontal translation of the film strip (parallax) - Desktop only
+                if (stripRef.current) {
+                    const isMobile = window.innerWidth <= 768;
+                    if (!isMobile) {
+                        const maxTranslation = 800; // max slide in pixels
+                        const translation = (scrollProgress * 2 - 1) * maxTranslation;
+                        stripRef.current.style.transform = `translate3d(${translation}px, 0, 0)`;
+                    } else {
+                        // Clear inline styles on mobile to let CSS infinite marquee run
+                        stripRef.current.style.transform = '';
                     }
+                }
+
+                // Dynamic speed-up for movie reel spin on scroll
+                if (reelRef.current) {
+                    const currentScroll = window.scrollY;
+                    const diff = Math.abs(currentScroll - lastScrollY.current);
+                    lastScrollY.current = currentScroll;
+
+                    // Add scroll impulse to rotation
+                    rotationRef.current += diff * 0.35;
                 }
             }
         };
 
-        const handleWindowMouseUp = () => {
-            isDragging.current = null;
-        };
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        window.addEventListener('touchmove', handleMouseMove, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         const contactSection = document.getElementById('contact') || arenaRef.current;
         if (contactSection) {
-            contactSection.addEventListener('mouseleave', handleArenaMouseLeave);
+            contactSection.addEventListener('mouseleave', handleMouseLeave, { passive: true });
         }
-        window.addEventListener('mousemove', handleArenaMouseMove);
-        window.addEventListener('touchmove', handleArenaTouchMove);
-        window.addEventListener('mouseup', handleWindowMouseUp);
-        window.addEventListener('touchend', handleWindowMouseUp);
 
-        animationFrameId = requestAnimationFrame(updatePhysics);
+        // 3. High framerate animation loop for Aero and movie reel
+        let animationFrameId;
+
+        const loop = () => {
+            const arenaW = arenaRef.current ? arenaRef.current.getBoundingClientRect().width : 800;
+            const arenaH = arenaRef.current ? arenaRef.current.getBoundingClientRect().height : 400;
+
+            if (arenaW > 0 && arenaH > 0) {
+                const prevX = aeroState.current.x;
+                // Aero LERP movement
+                if (isCursorInsideRef.current) {
+                    const targetX = cursorPositionRef.current.x;
+                    const targetY = cursorPositionRef.current.y + 35; // Center slightly below cursor
+                    aeroState.current.x += (targetX - aeroState.current.x) * 0.08;
+                    aeroState.current.y += (targetY - aeroState.current.y) * 0.08;
+                } else {
+                    const isMobile = window.innerWidth <= 768;
+                    const time = Date.now() * 0.0008; // slightly slower for elegant motion
+                    let targetX, targetY;
+                    if (isMobile) {
+                        // Dynamic wide floating loop for mobile view
+                        targetX = arenaW * 0.5 + Math.sin(time) * (arenaW * 0.35);
+                        targetY = arenaH * 0.5 + Math.cos(time * 1.5) * (arenaH * 0.22);
+                    } else {
+                        // Desktop resting floating loop
+                        targetX = arenaW * 0.25 + Math.sin(time * 1.25) * 45;
+                        targetY = arenaH * 0.5 + Math.sin(time * 2.5) * 20;
+                    }
+                    aeroState.current.x += (targetX - aeroState.current.x) * 0.04;
+                    aeroState.current.y += (targetY - aeroState.current.y) * 0.04;
+                }
+
+                // Apply constraints to keep Aero inside bounds
+                const isMobile = window.innerWidth <= 768;
+                const limit = isMobile ? 30 : 45;
+                aeroState.current.x = Math.max(limit, Math.min(arenaW - limit, aeroState.current.x));
+                aeroState.current.y = Math.max(limit, Math.min(arenaH - limit, aeroState.current.y));
+
+                // Translate & rotate Aero based on slide velocity with scaling for mobile
+                if (aeroRef.current) {
+                    const vx = aeroState.current.x - prevX;
+                    const tilt = Math.min(Math.max(vx * 1.8, -12), 12);
+                    
+                    let scaleVal = 1;
+                    if (window.innerWidth <= 480) {
+                        scaleVal = 0.55;
+                    } else if (window.innerWidth <= 768) {
+                        scaleVal = 0.70;
+                    }
+                    const scaleStr = scaleVal !== 1 ? ` scale(${scaleVal})` : '';
+                    
+                    aeroRef.current.style.transform = `translate3d(${aeroState.current.x - 40}px, ${aeroState.current.y - 45}px, 0) rotate(${tilt}deg)${scaleStr}`;
+                }
+
+                // Resolve eye containers dynamically inside loop to avoid frozen null closures
+                if (!leftEyeRef.current && aeroRef.current) {
+                    leftEyeRef.current = aeroRef.current.querySelector('.aero-eye-container.left');
+                }
+                if (!rightEyeRef.current && aeroRef.current) {
+                    rightEyeRef.current = aeroRef.current.querySelector('.aero-eye-container.right');
+                }
+
+                const leftEye = leftEyeRef.current;
+                const rightEye = rightEyeRef.current;
+
+                // Apply interactive cursor tracking to eyes dynamically (charming display look)
+                if (leftEye && rightEye) {
+                    const hasActiveExpr = aeroRef.current.className.includes('contact-expr-') && 
+                                         !aeroRef.current.className.includes('contact-expr-idle');
+                    if (hasActiveExpr) {
+                        leftEye.style.transform = '';
+                        rightEye.style.transform = '';
+                    } else if (isCursorInsideRef.current) {
+                        const diffX = cursorPositionRef.current.x - aeroState.current.x;
+                        const diffY = (cursorPositionRef.current.y + 35) - aeroState.current.y;
+                        // Map displacement to subtle visual offset
+                        const eyeX = Math.min(Math.max(diffX * 0.05, -2.5), 2.5);
+                        const eyeY = Math.min(Math.max(diffY * 0.05, -2), 2);
+                        leftEye.style.transform = `translate3d(${eyeX}px, ${eyeY}px, 0)`;
+                        rightEye.style.transform = `translate3d(${eyeX}px, ${eyeY}px, 0)`;
+                    } else {
+                        leftEye.style.transform = 'translate3d(0, 0, 0)';
+                        rightEye.style.transform = 'translate3d(0, 0, 0)';
+                    }
+                }
+
+                // Update movie reel slow ambient spin + scroll inertia decay
+                if (reelRef.current) {
+                    // Decay the scroll rotation momentum slowly (inertia friction)
+                    rotationRef.current *= 0.94;
+                    
+                    const timeSpin = (Date.now() * 0.015) % 360; // slow ambient spin
+                    const totalRotation = (timeSpin + rotationRef.current) % 360;
+                    reelRef.current.style.transform = `rotate(${totalRotation}deg)`;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(loop);
+        };
+
+        animationFrameId = requestAnimationFrame(loop);
 
         return () => {
-            window.removeEventListener('resize', updateDimensions);
-            cancelAnimationFrame(animationFrameId);
-            const contactSection = document.getElementById('contact') || arenaRef.current;
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('touchmove', handleMouseMove);
+            window.removeEventListener('scroll', handleScroll);
             if (contactSection) {
-                contactSection.removeEventListener('mouseleave', handleArenaMouseLeave);
+                contactSection.removeEventListener('mouseleave', handleMouseLeave);
             }
-            window.removeEventListener('mousemove', handleArenaMouseMove);
-            window.removeEventListener('touchmove', handleArenaTouchMove);
-            window.removeEventListener('mouseup', handleWindowMouseUp);
-            window.removeEventListener('touchend', handleWindowMouseUp);
+            cancelAnimationFrame(animationFrameId);
+            clearTimeout(expressionTimeout);
         };
     }, []);
 
-    // ── G. MOUSE/TOUCH INTERACTION AND FLICK DRAGGING LOGIC ──
-    const handleMouseDown = (ballId, e) => {
-        e.preventDefault();
-        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-
-        const arenaRect = arenaRef.current.getBoundingClientRect();
-        const mouseX = clientX - arenaRect.left;
-        const mouseY = clientY - arenaRect.top;
-
-        const ball = ballsState.current.find(b => b.id === ballId);
-        if (ball) {
-            isDragging.current = ballId;
-            dragOffset.current = {
-                x: mouseX - ball.x,
-                y: mouseY - ball.y
-            };
-            prevMousePos.current = {
-                x: mouseX,
-                y: mouseY,
-                t: Date.now()
-            };
-        }
-    };
-
-    const handleMouseMove = (e) => {
-        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-
-        if (arenaRef.current) {
-            const arenaRect = arenaRef.current.getBoundingClientRect();
-            const mouseX = clientX - arenaRect.left;
-            const mouseY = clientY - arenaRect.top;
-            
-            cursorPositionRef.current = { x: mouseX, y: mouseY };
-            isCursorInsideRef.current = true;
-
-            if (isDragging.current !== null) {
-                const ball = ballsState.current.find(b => b.id === isDragging.current);
-                if (ball) {
-                    // Update drag position
-                    ball.x = Math.max(ball.radius, Math.min(dimensions.current.width - ball.radius, mouseX - dragOffset.current.x));
-                    ball.y = Math.max(ball.radius, Math.min(dimensions.current.height - ball.radius, mouseY - dragOffset.current.y));
-
-                    // Record trajectory speeds for release flick velocity
-                    const now = Date.now();
-                    const dt = now - prevMousePos.current.t;
-                    if (dt > 10) {
-                        const dx = mouseX - prevMousePos.current.x;
-                        const dy = mouseY - prevMousePos.current.y;
-                        ball.vx = (dx / dt) * 16;
-                        ball.vy = (dy / dt) * 16;
-
-                        prevMousePos.current = {
-                            x: mouseX,
-                            y: mouseY,
-                            t: now
-                        };
-                    }
-                }
-            }
-        }
-    };
-
-    const handleMouseUp = () => {
-        if (isDragging.current === null) return;
-        isDragging.current = null;
-    };
-
-    // Arena-wide global click handler to trigger winking
     const handleArenaClick = (e) => {
-        if (
-            e.target.closest('a') || 
-            e.target.closest('button') || 
-            e.target.closest('.physics-logo-ball') ||
-            isDragging.current !== null
-        ) {
-            return;
-        }
+        // Prevent click events on anchors/buttons from triggering wink
+        if (e.target.closest('a') || e.target.closest('button')) return;
 
-        setAeroWink(true);
-        setTimeout(() => setAeroWink(false), 600);
+        setAeroExpression('wink');
+        setTimeout(() => setAeroExpression('idle'), 600);
     };
 
-    // Aero mouse over effect (Cute recoil pop!)
     const handleAeroMouseEnter = () => {
-        aeroState.current.hoverActive = true;
-        aeroState.current.vx = (Math.random() - 0.5) * 10;
-        aeroState.current.vy = (Math.random() - 0.5) * 10;
-        setAeroWink(true);
-        setTimeout(() => setAeroWink(false), 800);
-    };
-
-    const handleAeroMouseLeave = () => {
-        aeroState.current.hoverActive = false;
+        setAeroExpression('wink');
+        setTimeout(() => setAeroExpression('idle'), 800);
     };
 
     return (
         <div 
             className="contact-physics-arena" 
             ref={arenaRef}
-            onMouseMove={handleMouseMove}
-            onTouchMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onTouchEnd={handleMouseUp}
-            onMouseLeave={handleMouseUp}
             onClick={handleArenaClick}
         >
-            {/* Hearts Particle Overlay */}
-            <div className="hearts-container" ref={heartsContainerRef}></div>
+            {/* Spinning Vintage Movie Reel Background */}
+            <div className="cinematic-reel-bg" ref={reelRef}>
+                <svg viewBox="0 0 200 200" width="100%" height="100%">
+                    {/* Outer rim */}
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255, 255, 255, 0.07)" strokeWidth="6" />
+                    <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(255, 255, 255, 0.03)" strokeWidth="1.5" />
+                    
+                    {/* Center spindle cap */}
+                    <circle cx="100" cy="100" r="22" fill="none" stroke="rgba(255, 255, 255, 0.07)" strokeWidth="4" />
+                    <circle cx="100" cy="100" r="7" fill="rgba(255, 255, 255, 0.07)" />
+                    
+                    {/* Spool hollow cutouts */}
+                    <circle cx="100" cy="52" r="16" fill="none" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    <circle cx="146" cy="85" r="16" fill="none" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    <circle cx="128" cy="138" r="16" fill="none" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    <circle cx="72" cy="138" r="16" fill="none" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    <circle cx="54" cy="85" r="16" fill="none" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    
+                    {/* Spoke support bars */}
+                    <line x1="100" y1="100" x2="100" y2="5" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    <line x1="100" y1="100" x2="195" y2="100" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    <line x1="100" y1="100" x2="100" y2="195" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                    <line x1="100" y1="100" x2="5" y2="100" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="3" />
+                </svg>
+            </div>
 
-            {/* Gift Delivery Emoji Element */}
-            <div className="physics-gift-emoji" ref={giftRef}>🎁</div>
+            {/* Horizontal Rolling Film Strip */}
+            <div className="cinematic-film-strip-container">
+                {/* Premium Cybernetic Running Robot (Active only on Mobile) */}
+                <div className="aero-running-robot">
+                    <div className="run-bot-body-wrapper">
+                        {/* Head & visor */}
+                        <div className="run-bot-head">
+                            <div className="run-bot-visor">
+                                <div className="run-bot-eye"></div>
+                            </div>
+                            <div className="run-bot-antenna"></div>
+                        </div>
+                        {/* Torso & Core */}
+                        <div className="run-bot-torso">
+                            <div className="run-bot-chest-core"></div>
+                        </div>
+                        {/* Dual-joint Arms */}
+                        <div className="run-bot-arm left">
+                            <div className="run-bot-forearm"></div>
+                        </div>
+                        <div className="run-bot-arm right">
+                            <div className="run-bot-forearm"></div>
+                        </div>
+                        {/* Dual-joint Legs */}
+                        <div className="run-bot-leg left">
+                            <div className="run-bot-calf"></div>
+                        </div>
+                        <div className="run-bot-leg right">
+                            <div className="run-bot-calf"></div>
+                        </div>
+                    </div>
+                </div>
 
-            {/* Redesigned Premium Cybernetic Hover Assistant Aero (Blue Bot) */}
+                <div className="cinematic-film-strip" ref={stripRef}>
+                    {/* Sprocket Holes on top */}
+                    <div className="sprocket-holes-row top"></div>
+
+                    {/* Frame Contents Track */}
+                    <div className="film-frames-track">
+                        <div className="film-frames-group">
+                            {FILM_FRAMES.map((frame, index) => (
+                                <div key={`frame-1-${index}`} className="film-frame">
+                                    <div className="film-frame-header">
+                                        <span className="frame-num">SCN {String((index % BASE_FRAMES.length) + 1).padStart(2, '0')}</span>
+                                        <span className="frame-perf">KGR 35MM</span>
+                                    </div>
+                                    <div className="film-frame-content">
+                                        <span className="frame-text">{frame.text}</span>
+                                        <span className="frame-subtitle">{frame.subtitle}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="film-frames-group">
+                            {FILM_FRAMES.map((frame, index) => (
+                                <div key={`frame-2-${index}`} className="film-frame">
+                                    <div className="film-frame-header">
+                                        <span className="frame-num">SCN {String((index % BASE_FRAMES.length) + 1).padStart(2, '0')}</span>
+                                        <span className="frame-perf">KGR 35MM</span>
+                                    </div>
+                                    <div className="film-frame-content">
+                                        <span className="frame-text">{frame.text}</span>
+                                        <span className="frame-subtitle">{frame.subtitle}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Sprocket Holes on bottom */}
+                    <div className="sprocket-holes-row bottom"></div>
+                </div>
+            </div>
+
+            {/* Premium Cybernetic Assistant Bot Aero */}
             <div 
-                className={`aero-contact-robot ${aeroWink ? 'contact-wink-active' : ''}`} 
+                className={`aero-contact-robot contact-expr-${aeroExpression}`} 
                 ref={aeroRef}
-                data-state="chase"
+                onMouseEnter={handleAeroMouseEnter}
             >
-                <div className="aero-body-wrapper" style={{ transform: 'none', animation: 'none' }}>
+                <div className="aero-body-wrapper">
                     {/* Waving/Pointing Arm (Right Arm) */}
                     <div className="aero-arm-right">
                         <svg viewBox="0 0 40 100" className="aero-arm-svg">
@@ -1123,14 +413,17 @@ export default function ContactPhysicsArena() {
 
                     {/* Head & Face Visor */}
                     <div className="aero-head">
-                        <div className="suction-cone"></div>
                         <div className="aero-antenna">
                             <div className="aero-antenna-line"></div>
                             <div className="aero-antenna-tip"></div>
                         </div>
                         <div className="aero-visor">
-                            <div className="aero-eye left"></div>
-                            <div className="aero-eye right"></div>
+                            <div className="aero-eye-container left">
+                                <div className="aero-eye left"></div>
+                            </div>
+                            <div className="aero-eye-container right">
+                                <div className="aero-eye right"></div>
+                            </div>
                         </div>
                         <div className="aero-ears">
                             <div className="aero-ear left"></div>
@@ -1152,33 +445,6 @@ export default function ContactPhysicsArena() {
                     </div>
                 </div>
             </div>
-
-
-
-            {/* Dynamic Colored Logo Balls */}
-            {LOGO_BALLS_DATA.map((ball, idx) => (
-                <div
-                    key={ball.id}
-                    className="physics-logo-ball"
-                    ref={el => ballsRef.current[idx] = el}
-                    style={{
-                        '--ball-glow': ball.color,
-                        cursor: 'grab'
-                    }}
-                    onMouseDown={(e) => handleMouseDown(ball.id, e)}
-                    onTouchStart={(e) => handleMouseDown(ball.id, e)}
-                >
-                    <div className="ball-inner-shield">
-                        <img 
-                            src={ball.logo} 
-                            alt={ball.name} 
-                            className={`ball-logo-img ${ball.name === 'Midjourney' || ball.name === 'ChatGPT' ? 'logo-invert' : ''}`}
-                            draggable="false"
-                        />
-                    </div>
-                    <div className="ball-tooltip">{ball.name}</div>
-                </div>
-            ))}
         </div>
     );
 }

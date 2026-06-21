@@ -150,17 +150,17 @@ export default function CapabilitiesSection() {
                     </div>
                 </div>
 
-                {/* Minimalist Editorial Responsible AI Panel */}
+                {/* Minimalist Responsible AI Panel (Crimson Theme matched) */}
                 <div className="ap-governance-box reveal-item">
                     <div className="ap-governance-header">
                         <div className="ap-governance-icon">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                                 <path d="M12 8v8"/>
                                 <path d="M9 11h6"/>
                             </svg>
                         </div>
-                        <div>
+                        <div className="ap-governance-header-info">
                             <div className="ap-governance-header-row">
                                 <h3 className="ap-governance-title">Responsible AI & Content Governance</h3>
                                 <span className="ap-governance-badge">Ethical Standards</span>

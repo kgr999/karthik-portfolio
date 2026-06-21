@@ -538,65 +538,6 @@ export function initPortfolio() {
 
     if (xpSection && xpWindows.length > 0) {
         
-        // Alternating premium slide-in transitions for Experience windows (optimized for mobile viewport width)
-        const isMobileScreen = window.innerWidth < 768;
-        const offsetX = isMobileScreen ? 35 : 80;
-
-        const falWindow = document.querySelector('.xp-window-fal');
-        const davinciWindow = document.querySelector('.xp-window-davinci');
-        const lensWindow = document.querySelector('.xp-window-lens');
-
-        if (falWindow) {
-            gsap.fromTo(falWindow,
-                { opacity: 0, x: -offsetX },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: falWindow,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none'
-                    }
-                }
-            );
-        }
-
-        if (davinciWindow) {
-            gsap.fromTo(davinciWindow,
-                { opacity: 0, x: offsetX },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: davinciWindow,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none'
-                    }
-                }
-            );
-        }
-
-        if (lensWindow) {
-            gsap.fromTo(lensWindow,
-                { opacity: 0, x: -offsetX },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: lensWindow,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none'
-                    }
-                }
-            );
-        }
-
         // ── Ambient Particle System ──
         const pCanvas = document.getElementById('xp-particles');
         if (pCanvas) {
@@ -783,21 +724,6 @@ export function initPortfolio() {
     // ═══════════════════════════════════════════════════════════
     // 16. SCROLL PROGRESS BAR & HEADING UNDERLINE REVEALS
     // ═══════════════════════════════════════════════════════════
-
-    // Scroll Progress Bar Animation (reflects scroll depth via ScrollTrigger)
-    const progressBar = document.querySelector('.scroll-progress-bar');
-    if (progressBar) {
-        gsap.to(progressBar, {
-            scaleX: 1,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: document.documentElement,
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: true
-            }
-        });
-    }
 
     // Section Heading Underline Animations (stretches center-out using CSS custom property)
     const headings = gsap.utils.toArray('.section-heading');

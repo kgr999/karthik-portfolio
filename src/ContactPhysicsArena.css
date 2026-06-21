@@ -11,81 +11,128 @@
     overflow: hidden;
     z-index: 1;
     user-select: none;
-    touch-action: auto;
-    pointer-events: auto;
 }
 
-/* ── INTERACTIVE COLLISION BALLS ── */
-.physics-logo-ball {
+/* ── CINEMATIC REEL BACKGROUND ── */
+.cinematic-reel-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 48px;
-    height: 48px;
-    z-index: 4;
+    bottom: -60px;
+    right: 40px;
+    width: 320px;
+    height: 320px;
+    pointer-events: none;
+    opacity: 0.08;
+    z-index: 0;
     will-change: transform;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(15, 15, 18, 0.85);
-    border: 1.5px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 
-         0 8px 20px rgba(0, 0, 0, 0.5),
-         0 0 15px var(--ball-glow),
-         inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
-    touch-action: none;
 }
 
-.physics-logo-ball:hover {
-    border-color: var(--ball-glow);
-    box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.6),
-        0 0 25px var(--ball-glow),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.physics-logo-ball:active {
-    cursor: grabbing !important;
-    transform: scale(0.95);
-}
-
-.ball-inner-shield {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Diagonal glass shine across the ball */
-.ball-inner-shield::after {
-    content: '';
+/* ── HORIZONTAL FILM STRIP ── */
+.cinematic-film-strip-container {
     position: absolute;
     top: 0;
+    transform: none;
     left: 0;
     width: 100%;
-    height: 50%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+    height: 120px;
+    overflow: visible;
     pointer-events: none;
+    z-index: 1;
 }
 
-.ball-logo-img {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-    pointer-events: none;
+.cinematic-film-strip {
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    width: max-content;
+    background: rgba(10, 10, 12, 0.85);
+    border-top: 2.5px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 2.5px solid rgba(255, 255, 255, 0.12);
+    position: relative;
+    will-change: transform;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.logo-invert {
-    filter: invert(1);
+.sprocket-holes-row {
+    width: 100%;
+    height: 14px;
+    background-color: rgba(0, 0, 0, 0.95);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='14'><rect x='8' y='2.5' width='9' height='9' rx='1.5' ry='1.5' fill='black' stroke='rgba(255,255,255,0.08)' stroke-width='1'/></svg>");
+    background-repeat: repeat-x;
+    box-sizing: border-box;
 }
 
-/* ── AERO CONTACT ROBOT (MATCHES LANDING PAGE EXACTLY) ── */
+.sprocket-holes-row.top {
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.sprocket-holes-row.bottom {
+    border-top: 1.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.film-frames-track {
+    display: flex;
+    align-items: center;
+    height: 82px;
+    background: rgba(6, 6, 8, 0.9);
+    border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    width: max-content;
+}
+
+.film-frames-group {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.film-frame {
+    flex-shrink: 0;
+    width: 320px;
+    height: 100%;
+    border-right: 2px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 18px;
+    box-sizing: border-box;
+}
+
+.film-frame-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 0.58rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.film-frame-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+}
+
+.frame-text {
+    font-family: 'Space Grotesk', 'Outfit', -apple-system, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #e5c060; /* Premium Gold */
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 10px rgba(229, 192, 96, 0.3);
+}
+
+.frame-subtitle {
+    font-family: monospace;
+    font-size: 0.58rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ── AERO ASSISTANT BOT (SIMPLIFIED FOR HIGHEST PERFORMANCE) ── */
 .aero-contact-robot {
     position: absolute;
     top: 0;
@@ -95,10 +142,9 @@
     z-index: 10 !important;
     will-change: transform;
     pointer-events: none;
-    touch-action: none;
 }
 
-/* Active gold vector thruster plasma plume */
+/* Plasma thruster plume details */
 .aero-contact-robot .aero-torso::after {
     content: '';
     position: absolute;
@@ -115,15 +161,23 @@
     box-shadow: 0 0 10px #FFD700;
 }
 
-/* ── BALL COLLISION ACTIVE WINKING & RECOIL DYNAMICS ── */
-.aero-contact-robot.contact-wink-active .aero-head {
+@keyframes aero-plasma-plume {
+    0% { height: 12px; opacity: 0.65; }
+    100% { height: 18px; opacity: 1; }
+}
+
+/* Winking visual feedback */
+.aero-contact-robot.contact-expr-wink .aero-head {
     transform: rotate(-10deg) scale(1.08);
     border-color: #FFD700;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
-/* Left eye happy arch, right eye line wink */
-.aero-contact-robot.contact-wink-active .aero-eye.left {
+.aero-contact-robot.contact-expr-wink .aero-eye {
+    animation: none; /* Disable ambient blink cycle during active expression */
+}
+
+.aero-contact-robot.contact-expr-wink .aero-eye.left {
     width: 8px;
     height: 4px;
     border-radius: 8px 8px 0 0;
@@ -131,7 +185,7 @@
     box-shadow: 0 -1.5px 8px #FFD700;
 }
 
-.aero-contact-robot.contact-wink-active .aero-eye.right {
+.aero-contact-robot.contact-expr-wink .aero-eye.right {
     width: 8px;
     height: 2px;
     border-radius: 2px;
@@ -140,248 +194,50 @@
     box-shadow: 0 0 6px #FFD700;
 }
 
-.aero-contact-robot.contact-wink-active .aero-core {
+.aero-contact-robot.contact-expr-wink .aero-core {
     background: #FFD700;
     box-shadow: 0 0 12px #FFD700;
 }
 
-.aero-contact-robot.contact-wink-active .aero-core-pulse {
+.aero-contact-robot.contact-expr-wink .aero-core-pulse {
     border-color: #FFD700;
     animation-duration: 0.5s;
 }
 
-.aero-contact-robot.contact-wink-active .aero-torso::after {
-    background: linear-gradient(to bottom, #FFD700 0%, rgba(255, 215, 0, 0.6) 40%, transparent 100%);
-    box-shadow: 0 0 12px #FFD700;
-    height: 22px;
-}
-
-/* Cute kick-back recoil swinging arm animations on ball impact */
-.aero-contact-robot.contact-wink-active .aero-arm-left {
-    transform: rotate(35deg);
-}
-
-.aero-contact-robot.contact-wink-active .aero-arm-right {
-    transform: rotate(-35deg);
-}
-
-/* ── FUTURISTIC CONCAVE PHYSICAL GRAVITY SUCTION DISH & CORES ── */
-.aero-contact-robot .aero-antenna {
-    top: -8px;
-    width: 32px;
-    height: 12px;
-    background: #121215;
-    border: 2px solid #FFD700;
-    border-radius: 16px 16px 4px 4px;
-    box-shadow: 
-        0 0 10px rgba(255, 215, 0, 0.3), 
-        inset 0 2px 4px rgba(255, 215, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Hide original thin antenna rod */
-.aero-contact-robot .aero-antenna-line {
-    display: none;
-}
-
-/* Tip becomes the central vacuum focal plasma node */
-.aero-contact-robot .aero-antenna-tip {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 14px;
-    height: 6px;
-    background: #FFD700;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #FFD700;
-    animation: suction-node-glow 0.8s infinite alternate ease-in-out;
-}
-
-@keyframes suction-node-glow {
-    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-}
-
-/* Gravity capture cone fields */
-.aero-contact-robot .suction-cone {
-    position: absolute;
-    top: -55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 48px;
-    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.15), transparent);
-    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, background 0.3s ease, top 0.3s ease;
-    z-index: -1;
-}
-
-.aero-contact-robot[data-state="chase"] .suction-cone {
-    opacity: 0.65;
-    animation: cone-pulse 1.2s infinite alternate ease-in-out;
-}
-
-@keyframes cone-pulse {
-    0% { opacity: 0.3; transform: translateX(-50%) scaleX(0.95); }
-    100% { opacity: 0.7; transform: translateX(-50%) scaleX(1.05); }
-}
-
-/* ── STATE MECHANICS ── */
-
-/* 1. HOLD STATE (Vacuum Lock) */
-.aero-contact-robot[data-state="hold"] .aero-antenna {
-    transform: translateX(-50%) scale(1.3, 0.75); /* Pressure squish compression! */
-    border-color: #00ff80;
-    box-shadow: 
-        0 0 18px rgba(0, 255, 128, 0.6), 
-        inset 0 2px 4px rgba(0, 255, 128, 0.4);
-}
-
-.aero-contact-robot[data-state="hold"] .aero-antenna-tip {
-    background: #00ff80;
-    box-shadow: 0 0 14px #00ff80;
-}
-
-.aero-contact-robot[data-state="hold"] .suction-cone {
-    background: linear-gradient(to bottom, rgba(0, 255, 128, 0.25), transparent);
-    opacity: 0.85;
-    top: -50px;
-    height: 44px;
-}
-
-/* Morph Eyes into green horizontal scanner laser lines */
-.aero-contact-robot[data-state="hold"] .aero-eye {
-    width: 13px;
-    height: 2px;
+/* Ambient facial expressions (mobile-focused) */
+.aero-contact-robot.contact-expr-blink .aero-eye {
+    height: 1.5px;
     border-radius: 2px;
-    background: #00ff80;
-    box-shadow: 0 0 8px #00ff80;
-    animation: scan-flicker 0.1s infinite alternate !important; /* Tech slot scan flicker */
+    transform: scaleY(0.5);
+    box-shadow: 0 0 4px #FFD700;
 }
 
-@keyframes scan-flicker {
-    0% { opacity: 0.75; }
-    100% { opacity: 1; }
+.aero-contact-robot.contact-expr-blink .aero-eye::after {
+    opacity: 0;
 }
 
-/* Accelerate chest reactor core green pulse */
-.aero-contact-robot[data-state="hold"] .aero-core {
-    background: #00ff80;
-    box-shadow: 0 0 14px #00ff80;
+.aero-contact-robot.contact-expr-look-left .aero-eye-container {
+    transform: translateX(-2.5px);
 }
 
-.aero-contact-robot[data-state="hold"] .aero-core-pulse {
-    border-color: #00ff80;
-    animation: core-pulsate-fast 0.3s infinite linear;
+.aero-contact-robot.contact-expr-look-left .aero-eye::after {
+    transform: translate(-1.2px, -0.2px) scale(0.9);
 }
 
-@keyframes core-pulsate-fast {
-    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.95; }
-    100% { transform: translate(-50%, -50%) scale(1.65); opacity: 0; }
+.aero-contact-robot.contact-expr-look-right .aero-eye-container {
+    transform: translateX(2.5px);
 }
 
-/* 2. DODGE STATE (Alert Evade) */
-.aero-contact-robot[data-state="dodge"] .aero-antenna {
-    border-color: #ff4d4d;
-    box-shadow: 
-        0 0 12px rgba(255, 77, 77, 0.4), 
-        inset 0 1px 3px rgba(255, 77, 77, 0.2);
+.aero-contact-robot.contact-expr-look-right .aero-eye::after {
+    transform: translate(1.2px, -0.2px) scale(0.9);
 }
 
-.aero-contact-robot[data-state="dodge"] .aero-antenna-tip {
-    background: #ff4d4d;
-    box-shadow: 0 0 10px #ff4d4d;
+/* during fully closed winking, hide right eye highlight */
+.aero-contact-robot.contact-expr-wink .aero-eye.right::after {
+    opacity: 0;
 }
 
-/* Worried concerned small circular blinking eyes */
-.aero-contact-robot[data-state="dodge"] .aero-eye {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ff4d4d;
-    box-shadow: 0 0 12px #ff4d4d;
-    animation: eye-shake 0.12s infinite alternate !important;
-}
-
-@keyframes eye-shake {
-    0% { transform: translateY(-0.8px) translateX(0.5px); }
-    100% { transform: translateY(0.8px) translateX(-0.5px); }
-}
-
-/* Torso Thrusters turn red distressed alert style */
-.aero-contact-robot[data-state="dodge"] .aero-core {
-    background: #ff4d4d;
-    box-shadow: 0 0 12px #ff4d4d;
-}
-
-.aero-contact-robot[data-state="dodge"] .aero-core-pulse {
-    border-color: #ff4d4d;
-    animation: core-pulsate-fast 0.45s infinite linear;
-}
-
-.aero-contact-robot[data-state="dodge"] .aero-torso::after {
-    background: linear-gradient(to bottom, #ff4d4d 0%, rgba(255, 77, 77, 0.3) 40%, transparent 100%);
-    box-shadow: 0 0 12px #ff4d4d;
-}
-
-/* Arms react in panic! */
-.aero-contact-robot[data-state="dodge"] .aero-arm-left {
-    transform: rotate(20deg);
-}
-
-.aero-contact-robot[data-state="dodge"] .aero-arm-right {
-    transform: rotate(-20deg);
-}
-
-
-
-
-
-/* ── INTERACTIVE GIFT EMOJI & HEART PARTICLES ── */
-.physics-gift-emoji {
-    position: absolute;
-    font-size: 26px;
-    pointer-events: none;
-    z-index: 5;
-    text-shadow: 
-        0 0 10px rgba(255, 255, 255, 0.4), 
-        0 0 20px rgba(255, 215, 0, 0.2);
-    will-change: transform;
-    display: none;
-}
-
-.hearts-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 4;
-    overflow: hidden;
-}
-
-.physics-star-particle {
-    position: absolute;
-    font-size: 20px;
-    pointer-events: none;
-    will-change: transform, opacity;
-    z-index: 4;
-    text-shadow: 
-        0 0 8px rgba(255, 210, 50, 0.95), 
-        0 0 16px rgba(255, 170, 0, 0.5);
-}
-
-/* ── ULTRA-PREMIUM ROBOTIC AESTHETICS OVERRIDES ── */
-
-/* Glossy sweep shimmer animation across visor */
+/* Visor reflection shimmer */
 .aero-contact-robot .aero-visor::after {
     content: '';
     position: absolute;
@@ -401,151 +257,534 @@
     30%, 100% { transform: translateX(120%) skewX(-25deg); }
 }
 
-/* 3D Metallic Head Plate Enhancements */
-.aero-contact-robot .aero-head {
-    border-color: rgba(255, 215, 0, 0.25) !important;
-    box-shadow: 
-        0 8px 24px rgba(0, 0, 0, 0.6),
-        0 0 15px rgba(255, 215, 0, 0.15),
-        inset 0 1.5px 0 rgba(255, 255, 255, 0.2),
-        inset 0 -4px 10px rgba(0, 0, 0, 0.8) !important;
+/* Core Robot Components */
+.aero-body-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: aero-levitate-soothing 2.5s ease-in-out infinite alternate;
 }
 
-/* Chest Core Gradient Glows */
-.aero-contact-robot .aero-core {
-    background: radial-gradient(circle, #FFD700 30%, #DAA520 100%) !important;
-    box-shadow: 
-        0 0 12px #FFD700, 
-        0 0 24px rgba(255, 215, 0, 0.5),
-        inset 0 0 4px rgba(255, 255, 255, 0.5) !important;
+@keyframes aero-levitate-soothing {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
 }
 
-/* Thicker dynamic arm stroke lines */
-.aero-contact-robot .aero-arm-svg path {
-    stroke-width: 5px !important;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)) !important;
-}
-
-/* Cybernetic stabilizer ear-node glows */
-.aero-contact-robot .aero-ear {
-    border-color: rgba(255, 215, 0, 0.4) !important;
-}
-
-
-
-/* ── BALL HOVER TOOLTIP STYLING ── */
-.ball-tooltip {
+.aero-head {
     position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) translateY(6px) scale(0.9);
-    background: rgba(10, 10, 12, 0.95);
-    border: 1.5px solid rgba(255, 255, 255, 0.12);
-    color: #ffffff;
-    font-family: monospace;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 5px 10px;
-    border-radius: 6px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 255, 255, 0.05);
-    z-index: 100;
-}
-
-.ball-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    border-width: 4px;
-    border-style: solid;
-    border-color: rgba(10, 10, 12, 0.95) transparent transparent transparent;
-}
-
-.physics-logo-ball:hover .ball-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-    border-color: var(--ball-glow);
+    width: 48px;
+    height: 38px;
+    background: #111113;
+    border: 2px solid rgba(255, 215, 0, 0.25);
+    border-radius: 12px;
     box-shadow: 
-        0 6px 15px rgba(0, 0, 0, 0.6),
-        0 0 10px var(--ball-glow);
+        0 6px 18px rgba(0, 0, 0, 0.65),
+        0 0 10px rgba(255, 215, 0, 0.1),
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    transition: all 0.3s ease;
 }
 
-/* ── PREFERS REDUCED MOTION INTERCEPT ── */
-@media (prefers-reduced-motion: reduce) {
-    .physics-logo-ball,
-    .aero-contact-robot,
-    .aero-body-wrapper,
-    .aero-antenna-tip,
-    .aero-thruster-fire,
-    .aero-suction-node,
-    .aero-visor,
-    .aero-eye,
-    .aero-core-pulse,
-    .aero-chest,
-    .aero-arm-right,
-    .aero-arm-left,
-    .physics-gift-emoji,
-    .physics-star-particle,
-    .aero-plasma-plume,
-    .scan-flicker,
-    .cone-pulse,
-    .suction-node-glow,
-    .cyber-visor-shimmer {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-/* Mobile scale optimization for Aero contact robot and interactive items */
-@media (max-width: 768px) {
-    .ball-logo-img {
-        width: 18px !important;
-        height: 18px !important;
-    }
-}
-
-/* Flying mini skills ball replica projectile */
-.physics-skills-projectile {
+.aero-antenna {
     position: absolute;
-    width: 28px;
-    height: 28px;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 6px;
+    background: #18181b;
+    border: 2px solid #FFD700;
+    border-radius: 8px 8px 2px 2px;
+}
+
+.aero-antenna-tip {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #FFD700;
     border-radius: 50%;
-    background: rgba(15, 15, 18, 0.95);
-    border: 1.5px solid var(--projectile-glow);
-    box-shadow: 
-        0 0 12px var(--projectile-glow), 
-        0 0 24px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 8px #FFD700;
+}
+
+.aero-visor {
+    position: absolute;
+    top: 10px;
+    left: 6px;
+    right: 6px;
+    height: 16px;
+    background: #000000;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 4px;
+}
+
+.aero-eye-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
-    z-index: 10;
-    will-change: transform;
-    overflow: hidden;
+    width: 14px;
+    height: 100%;
+    position: relative;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.physics-skills-projectile::after {
+.aero-eye {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FFD700;
+    box-shadow: 0 0 8px #FFD700;
+    animation: blink-loop 4s infinite alternate ease-in-out;
+    position: relative;
+    overflow: visible;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s, height 0.2s, border-radius 0.2s, box-shadow 0.2s;
+}
+
+/* Cybernetic shiny highlight/reflection */
+.aero-eye::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    top: 1.5px;
+    left: 1.5px;
+    width: 2.2px;
+    height: 2.2px;
     border-radius: 50%;
+    background: #ffffff;
+    opacity: 0.9;
+    box-shadow: 0 0 2px #ffffff;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s;
 }
 
-.projectile-logo-img {
+@keyframes blink-loop {
+    0%, 95%, 100% { transform: scaleY(1); }
+    98% { transform: scaleY(0); }
+}
+
+.aero-ears {
+    position: absolute;
+    top: 12px;
+    left: -4px;
+    right: -4px;
+    bottom: 12px;
+    z-index: -1;
+}
+
+.aero-ear {
+    position: absolute;
+    width: 4px;
+    height: 12px;
+    background: #1e1e24;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 2px;
+}
+
+.aero-ear.left { left: 0; }
+.aero-ear.right { right: 0; }
+
+.aero-torso {
+    position: absolute;
+    top: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 28px;
+    background: #141416;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 6px 6px 14px 14px;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    z-index: 2;
+}
+
+.aero-chest {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 14px;
     height: 14px;
-    object-fit: contain;
+    border-radius: 50%;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.aero-core {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFD700 30%, #DAA520 100%);
+    box-shadow: 0 0 8px #FFD700;
+}
 
+.aero-core-pulse {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    animation: core-pulsate 1.5s infinite linear;
+}
 
+@keyframes core-pulsate {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
 
+/* Arms styling */
+.aero-arm-left, .aero-arm-right {
+    position: absolute;
+    top: 40px;
+    width: 14px;
+    height: 35px;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
 
+.aero-arm-left { left: 8px; transform-origin: top right; }
+.aero-arm-right { right: 8px; transform-origin: top left; }
+
+.aero-arm-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.aero-arm-svg path {
+    stroke-width: 4.5px !important;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+}
+
+/* ── RESPONSIVE MOBILE OPTIMIZATIONS ── */
+@media (max-width: 1024px) {
+    .cinematic-reel-bg {
+        width: 260px;
+        height: 260px;
+        bottom: -40px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cinematic-film-strip-container {
+        top: 0;
+        transform: none;
+        height: 100px;
+        overflow: visible; /* Let the running robot stand on top without getting cropped */
+    }
+    .cinematic-film-strip {
+        height: 90px;
+        width: max-content;
+        animation: film-strip-marquee 65s linear infinite;
+    }
+    .sprocket-holes-row {
+        height: 12px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='19' height='12'><rect x='6' y='2.5' width='7' height='7' rx='1.5' ry='1.5' fill='black' stroke='rgba(255,255,255,0.08)' stroke-width='1'/></svg>");
+        padding: 0;
+    }
+    .film-frames-track {
+        height: 66px;
+    }
+    .film-frame {
+        width: 240px;
+        padding: 6px 12px;
+    }
+    .frame-text {
+        font-size: 0.7rem;
+    }
+    .frame-subtitle {
+        font-size: 0.5rem;
+    }
+    .cinematic-reel-bg {
+        width: 200px;
+        height: 200px;
+        bottom: -20px;
+        right: 10px;
+        opacity: 0.05;
+    }
+    .aero-contact-robot {
+        display: none !important; /* Hide floating robot on tablet/mobile */
+    }
+    .aero-running-robot {
+        display: block;
+        left: 20%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cinematic-film-strip-container {
+        top: 0;
+        transform: none;
+        height: 86px;
+    }
+    .cinematic-film-strip {
+        height: 78px;
+        animation-duration: 55s; /* Slowed down to feel extremely premium and smooth */
+    }
+    .sprocket-holes-row {
+        height: 10px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10'><rect x='4' y='2' width='6' height='6' rx='1.2' ry='1.2' fill='black' stroke='rgba(255,255,255,0.08)' stroke-width='1'/></svg>");
+        padding: 0;
+    }
+    .film-frames-track {
+        height: 58px;
+    }
+    .film-frame {
+        width: 190px;
+        padding: 4px 8px;
+        border-right-width: 1.5px;
+    }
+    .film-frame-header {
+        font-size: 0.48rem;
+        letter-spacing: 0.8px;
+    }
+    .frame-text {
+        font-size: 0.6rem;
+        letter-spacing: 0.8px;
+    }
+    .frame-subtitle {
+        font-size: 0.48rem;
+    }
+    .cinematic-reel-bg {
+        width: 160px;
+        height: 160px;
+        bottom: -10px;
+        right: 5px;
+    }
+    .aero-running-robot {
+        left: 15%;
+        transform: scale(0.85);
+        transform-origin: bottom center;
+    }
+}
+
+/* ── MARQUEE INFINITE FILM ROLL ── */
+@keyframes film-strip-marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ── CYBERNETIC RUNNING ROBOT (MOBILE ONLY) ── */
+.aero-running-robot {
+    position: absolute;
+    top: -55px; /* Sits precisely on the top edge of the film strip divider */
+    left: 20%;
+    width: 50px;
+    height: 60px;
+    z-index: 10;
+    pointer-events: none;
+    display: none;
+}
+
+.run-bot-body-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: run-bot-bobbing 0.6s infinite ease-in-out alternate; /* Bobbing slowed down to match slower run speed */
+}
+
+/* Bouncing/leaning torso running movement */
+@keyframes run-bot-bobbing {
+    0% { transform: translateY(0) rotate(5deg); }
+    100% { transform: translateY(-4px) rotate(8deg); }
+}
+
+/* Head */
+.run-bot-head {
+    position: absolute;
+    top: 0;
+    left: 16px;
+    width: 20px;
+    height: 18px;
+    background: #111113;
+    border: 1.5px solid rgba(255, 215, 0, 0.35);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    z-index: 5;
+}
+
+.run-bot-visor {
+    position: absolute;
+    top: 5px;
+    right: -1px;
+    width: 10px;
+    height: 5px;
+    background: #000;
+    border-radius: 2px;
+    border: 0.5px solid rgba(255, 215, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1px;
+}
+
+.run-bot-eye {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #FFD700;
+    box-shadow: 0 0 4px #FFD700;
+}
+
+.run-bot-antenna {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.5px;
+    height: 4px;
+    background: #FFD700;
+}
+
+/* Torso */
+.run-bot-torso {
+    position: absolute;
+    top: 18px;
+    left: 14px;
+    width: 22px;
+    height: 20px;
+    background: #141416;
+    border: 1.5px solid rgba(255, 215, 0, 0.25);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+}
+
+.run-bot-chest-core {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FFD700;
+    box-shadow: 0 0 6px #FFD700;
+    animation: core-glow-pulse 0.6s infinite alternate ease-in-out;
+}
+
+@keyframes core-glow-pulse {
+    0% { opacity: 0.5; box-shadow: 0 0 3px #FFD700; }
+    100% { opacity: 1; box-shadow: 0 0 8px #FFD700; }
+}
+
+/* Limbs Shared Setup */
+.run-bot-leg, .run-bot-arm {
+    position: absolute;
+    width: 4px;
+    background: #27272a;
+    border-radius: 2px;
+    transform-origin: top center;
+}
+
+/* Dual-joint Arms Swing */
+.run-bot-arm {
+    top: 20px;
+    height: 12px;
+}
+
+.run-bot-arm.left {
+    left: 12px;
+    background: #18181b;
+    z-index: -1;
+    animation: run-arm-left 1.2s infinite ease-in-out;
+}
+
+.run-bot-arm.right {
+    left: 26px;
+    background: #3f3f46;
+    border: 0.5px solid rgba(255, 215, 0, 0.25);
+    z-index: 2;
+    animation: run-arm-left 1.2s infinite ease-in-out;
+    animation-delay: -0.6s;
+}
+
+.run-bot-forearm {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 4px;
+    height: 10px;
+    background: inherit;
+    border-radius: 2px;
+    transform-origin: top center;
+    animation: run-forearm-left 1.2s infinite ease-in-out;
+}
+
+.run-bot-arm.right .run-bot-forearm {
+    animation-delay: -0.6s;
+}
+
+/* Dual-joint Legs Stride */
+.run-bot-leg {
+    top: 36px;
+    height: 14px;
+}
+
+.run-bot-leg.left {
+    left: 17px;
+    background: #18181b;
+    z-index: -2;
+    animation: run-thigh-left 1.2s infinite linear;
+}
+
+.run-bot-leg.right {
+    left: 23px;
+    background: #3f3f46;
+    border: 0.5px solid rgba(255, 215, 0, 0.25);
+    z-index: 1;
+    animation: run-thigh-left 1.2s infinite linear;
+    animation-delay: -0.6s;
+}
+
+.run-bot-calf {
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 4px;
+    height: 12px;
+    background: inherit;
+    border-radius: 2px;
+    transform-origin: top center;
+    animation: run-calf-left 1.2s infinite linear;
+}
+
+.run-bot-leg.right .run-bot-calf {
+    animation-delay: -0.6s;
+}
+
+/* ── RUNNING CYCLE ANIMATION KEYFRAMES ── */
+@keyframes run-thigh-left {
+    0%, 100% { transform: rotate(45deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(-45deg); }
+    75% { transform: rotate(0deg); }
+}
+
+@keyframes run-calf-left {
+    0%, 100% { transform: rotate(15deg); }
+    25% { transform: rotate(55deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(40deg); }
+}
+
+@keyframes run-arm-left {
+    0%, 100% { transform: rotate(-40deg); }
+    50% { transform: rotate(45deg); }
+}
+
+@keyframes run-forearm-left {
+    0%, 100% { transform: rotate(60deg); }
+    50% { transform: rotate(95deg); }
+}

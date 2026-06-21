@@ -402,6 +402,8 @@ export default function App() {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
+    // Dynamic 24fps Timecode State & Loop
+
     // Cinematic Clapper Slate states
     const [showClapper, setShowClapper] = useState(false);
     const [isClapping, setIsClapping] = useState(false);
@@ -778,7 +780,6 @@ export default function App() {
 
     return (
         <>
-            <div className={`scroll-progress-bar ${isInitialized || isMobile ? 'visible' : ''}`}></div>
             <div className={isInitializing ? 'bg-grayscale' : ''} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
                 <LightRays
                     raysOrigin="top-center"
@@ -804,6 +805,14 @@ export default function App() {
                 }}
             >
                 <div className="nav-inner">
+                    {/* Left Column: Logo */}
+                    <div className="nav-hud-left">
+                        <a href="#" className="nav-logo-link">
+                            <span className="nav-logo-text">KARTHIK G RAJ<span className="nav-logo-dot">.</span></span>
+                        </a>
+                    </div>
+
+                    {/* Center Column: Links */}
                     <div className="nav-links">
                         <a href="#" className="nav-link-item active-link">Home</a>
                         <a href="#featured-projects" className="nav-link-item">Projects</a>
@@ -812,25 +821,34 @@ export default function App() {
                         <a href="#contact" className="nav-link-item">Contact</a>
                     </div>
 
-                    <button className="menu-toggle" aria-label="Toggle Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                    {/* Right Column: Work With Me and Menu Toggle */}
+                    <div className="nav-right-container">
+                        <button 
+                            className="nav-work-btn"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setIsRiderOpen(true);
+                            }}
+                            aria-label="Work with me"
+                        >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="nav-work-btn-icon">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="8.5" cy="7" r="4" />
+                                <line x1="20" y1="8" x2="20" y2="14" />
+                                <line x1="23" y1="11" x2="17" y2="11" />
+                            </svg>
+                            <span className="nav-work-btn-label">Work With Me</span>
+                        </button>
+
+                        <button className="menu-toggle" aria-label="Toggle Menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
                 </div>
             </nav>
-
-            <a 
-                href="#" 
-                className="logo-link-standalone"
-                style={{
-                    opacity: isInitialized ? 1 : 0,
-                    visibility: isInitialized ? 'visible' : 'hidden',
-                    pointerEvents: isInitialized ? 'auto' : 'none'
-                }}
-            >
-                <span className="logo-text-standalone">KARTHIK G RAJ<span className="logo-dot-standalone">.</span></span>
-            </a>
 
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
@@ -875,6 +893,14 @@ export default function App() {
                     <ActiveProjects revealed={isInitialized || isMobile} />
                     <CapabilitiesSection />
                     <FeaturedProjects />
+                    <ExperienceJourney locIdx={locIdx} simTime={simTime} />
+                    <CinematicVisuals
+                        midjourneyExpanded={midjourneyExpanded}
+                        setMidjourneyExpanded={setMidjourneyExpanded}
+                        seedanceExpanded={seedanceExpanded}
+                        setSeedanceExpanded={setSeedanceExpanded}
+                    />
+                    <PosterShowcase />
                     {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
                     <section id="tech-stack" className="workflow-router-section">
                         <div className="container">
@@ -1008,14 +1034,6 @@ export default function App() {
                             </div>
                         </div>
                     </section>
-                    <CinematicVisuals
-                        midjourneyExpanded={midjourneyExpanded}
-                        setMidjourneyExpanded={setMidjourneyExpanded}
-                        seedanceExpanded={seedanceExpanded}
-                        setSeedanceExpanded={setSeedanceExpanded}
-                    />
-                    <PosterShowcase />
-                    <ExperienceJourney locIdx={locIdx} simTime={simTime} />
                     <CurrentLearning />
                     <CertificationsSection />
 
@@ -1148,25 +1166,7 @@ export default function App() {
             )}
             
 
-            <button 
-                className={`floating-work-btn ${isInitialized ? 'visible' : ''}`}
-                onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsRiderOpen(true);
-                }}
-                aria-label="Work with me"
-            >
-                <div className="floating-work-btn-glow"></div>
-                <div className="floating-work-btn-pulse"></div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="8.5" cy="7" r="4" />
-                    <line x1="20" y1="8" x2="20" y2="14" />
-                    <line x1="23" y1="11" x2="17" y2="11" />
-                </svg>
-                <span className="floating-work-btn-label">Work With Me</span>
-            </button>
+
 
             <CreativeRider isOpen={isRiderOpen} onClose={() => setIsRiderOpen(false)} theme={theme} />
         </>

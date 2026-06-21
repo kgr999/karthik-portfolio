@@ -46,6 +46,118 @@ export default function ExperienceJourney({ locIdx, simTime }) {
 
                 <div className="xp-windows-container">
 
+                    {/* ─── WINDOW 0: Kuku TV (Streaming Interface Inspired) ─── */}
+                    <div className="xp-interface-window xp-window-kuku" data-theme="kuku">
+                        <div className="xp-window-header">
+                            <div className="xp-window-controls">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div className="xp-window-title">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14V8l4 4-4 4z"></path></svg>
+                                www.kuku.tv
+                            </div>
+                        </div>
+
+                        {/* Kuku TV Mockup Layout */}
+                        <div className="xp-window-body" style={{ flexDirection: 'column', background: '#050506', position: 'relative', overflow: 'hidden' }}>
+                            {/* Background Video — covers entire section */}
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    objectPosition: 'center 20%',
+                                    zIndex: 0
+                                }}
+                            >
+                                <source src="/assets/videos/storyboardingoutput.mp4" type="video/mp4" />
+                            </video>
+                            {/* Gradient Overlay */}
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                background: 'linear-gradient(to right, #050506 35%, rgba(5, 5, 6, 0.6) 60%, rgba(5, 5, 6, 0) 100%)',
+                                zIndex: 1
+                            }}></div>
+
+                            {/* Kuku TV Nav Bar */}
+                            <div className="kuku-tv-nav" style={{ position: 'relative', zIndex: 2 }}>
+                                <div className="kuku-tv-nav-left">
+                                    {/* Kuku TV Logos */}
+                                    <img
+                                        src="/assets/images/kukutv-logo.png"
+                                        alt="Kuku TV Logo"
+                                        style={{ height: '39px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
+                                    />
+                                    <img
+                                        src="/assets/images/kukutv-icon.png"
+                                        alt="Wow TV Logo"
+                                        style={{ height: '70px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
+                                    />
+                                </div>
+                                <div className="kuku-tv-nav-right">
+                                    {/* Language drop */}
+                                    <div className="kuku-tv-lang" style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.08)', padding: '4px 8px', borderRadius: '15px', fontSize: '0.7rem', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }}>
+                                        <span>ಕನ್ನಡ</span>
+                                        <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+
+                                    {/* Log In btn */}
+                                    <button className="kuku-tv-login-btn" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '0.72rem', fontWeight: '600', padding: '5px 12px', borderRadius: '15px', cursor: 'pointer' }}>
+                                        Log In
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Hero Section */}
+                            <div className="kuku-tv-hero" style={{ position: 'relative', zIndex: 2 }}>
+                                <div className="kuku-tv-hero-content">
+                                    <h2 className="kuku-tv-show-title">AI Video Producer</h2>
+                                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace', marginTop: '-8px' }}>
+                                        Bengaluru · kuku &nbsp;&nbsp; <span className="xp-date-shimmer" style={{ color: '#E50914' }}>June 2026 – Present</span>
+                                    </p>
+
+                                    {/* Custom Job Tags */}
+                                    <div className="kuku-tv-tags">
+                                        <span className="kuku-tv-tag">AI Microdrama Production</span>
+                                        <span className="kuku-tv-tag">Script-to-Video Pipelines</span>
+                                        <span className="kuku-tv-tag">Visual Consistency</span>
+                                    </div>
+
+                                    {/* Description cards */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.45', maxWidth: '520px' }}>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>01</span>
+                                            <p style={{ margin: 0 }}>Own the full script-to-screen pipeline. Read a script, break it into shots and scenes, then use AI tools to generate video content for Kuku's microdrama format.</p>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>02</span>
+                                            <p style={{ margin: 0 }}>Obsess over continuity. Make sure characters, wardrobe, and settings stay consistent shot-to-shot through careful prompting and reference-driven workflows.</p>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>03</span>
+                                            <p style={{ margin: 0 }}>Helped build the AI production playbook from day one. Stitching together Higgsfield and ElevenLabs into a repeatable process, with post-production on Premiere Pro.</p>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>04</span>
+                                            <p style={{ margin: 0 }}>Work closely with editors and the creative team to shape the final output, iterating fast in a 0→1 startup environment building for Indian audiences at scale.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* ─── WINDOW 1: AdMitra (Fal.ai Inspired) ─── */}
                     <div className="xp-interface-window xp-window-fal" data-theme="ai">
                         <div className="xp-window-header">
@@ -58,118 +170,14 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                             </div>
                         </div>
                         <div className="xp-window-body">
-                            {/* AdMitra Navigation Sidebar */}
-                            <div className="xp-window-sidebar" style={{ width: '240px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '20px', background: 'rgba(6, 6, 8, 0.85)' }}>
-                                <div className="xp-sidebar-brand" style={{ paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <div style={{ width: '130px', height: '34px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <img
-                                            src="/assets/images/admitra.png"
-                                            alt="AdMitra Logo"
-                                            style={{ width: '130px', height: '130px', objectFit: 'contain', display: 'block', opacity: 0.95 }}
-                                        />
-                                    </div>
-                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="2.5" fill="none" style={{ cursor: 'pointer', marginRight: '4px', transition: 'stroke 0.2s' }} onMouseEnter={(e) => e.currentTarget.setAttribute('stroke', '#fff')} onMouseLeave={(e) => e.currentTarget.setAttribute('stroke', 'rgba(255, 255, 255, 0.4)')}>
-                                        <polyline points="15 18 9 12 15 6"></polyline>
-                                    </svg>
-                                </div>
-                                <div className="xp-sidebar-nav" style={{ overflowY: 'auto', flex: '1', display: 'flex', flexDirection: 'column', gap: '4px', paddingRight: '4px' }}>
-
-                                    {/* 1. Storyboard to Videos */}
-                                    <div className="xp-nav-item active" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: '#3B82F6', background: 'rgba(59, 130, 246, 0.12)', fontWeight: '600', cursor: 'pointer' }}>
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" /></svg>
-                                        Storyboard to Videos
-                                    </div>
-
-                                    {/* 2. Storyboard to Posters */}
-                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.28 2.72-1.62-1.95L6.5 17h11l-3.94-4.19z" /></svg>
-                                        Storyboard to Posters
-                                    </div>
-
-                                    {/* 3. Partner Marketing (Expanded Header) */}
-                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px 4px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.85)', fontWeight: '600', cursor: 'pointer' }}>
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
-                                        Partner Marketing
-                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ marginLeft: 'auto', opacity: 0.6 }}><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                    </div>
-
-                                    {/* Submenu Group for Partner Marketing */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', paddingLeft: '24px', marginBottom: '4px' }}>
-                                        {/* Campaigns */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
-                                            Campaigns
-                                        </div>
-                                        {/* Analytics */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
-                                            Analytics
-                                        </div>
-                                    </div>
-
-                                    {/* 4. Meta Marketing */}
-                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style={{ color: 'inherit' }}><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" /></svg>
-                                        Meta Marketing
-                                    </div>
-
-                                    {/* 5. Projects */}
-                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="13" height="13" rx="2" ry="2" /><rect x="8" y="8" width="13" height="13" rx="2" ry="2" opacity="0.6" /></svg>
-                                        Projects
-                                    </div>
-
-                                    {/* 6. Your Brand (Header) */}
-                                    <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px 4px 12px', borderRadius: '6px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.85)', fontWeight: '600', marginTop: '8px' }}>
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2" /><line x1="9" y1="22" x2="9" y2="16" /><line x1="15" y1="22" x2="15" y2="16" /><line x1="9" y1="16" x2="15" y2="16" /><path d="M8 6h2v2H8V6zm4 0h2v2h-2V6zm-4 4h2v2H8v-2zm4 0h2v2h-2v-2z" /></svg>
-                                        Your Brand
-                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ marginLeft: 'auto', opacity: 0.6 }}><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                    </div>
-
-                                    {/* Submenu Group for Your Brand */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', paddingLeft: '24px' }}>
-                                        {/* Products */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="16" rx="2" ry="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="3" y1="14" x2="21" y2="14" /><rect x="9" y="6" width="6" height="2" rx="0.5" /></svg>
-                                            Products
-                                        </div>
-                                        {/* Target Audience */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-                                            Target Audience
-                                        </div>
-                                        {/* Brand Kits */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" /></svg>
-                                            Brand Kits
-                                        </div>
-                                        {/* Environments */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="3 20 9 10 13 16 16 11 21 20 3 20" /></svg>
-                                            Environments
-                                        </div>
-                                        {/* Avatars */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></svg>
-                                            Avatars
-                                        </div>
-                                        {/* Voices */}
-                                        <div className="xp-nav-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: '5px', fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
-                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" /><path d="M19 10v1a7 7 0 0 1-14 0v-1" /><line x1="12" y1="18" x2="12" y2="22" /></svg>
-                                            Voices
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             {/* AdMitra Workspace Main Dashboard */}
                             <div className="xp-window-main">
                                 {/* Left Side: Professional Experience Details & Clients */}
                                 <div className="xp-left-pane">
                                     <div>
                                         <div className="xp-main-header" style={{ marginBottom: '16px' }}>
-                                            {/* Mobile-only inline logo (visible when sidebar hidden) */}
-                                            <div className="xp-mobile-logo" style={{ display: 'none', justifyContent: 'center', marginBottom: '12px' }}>
+                                            {/* Inline logo */}
+                                            <div className="xp-admitra-logo" style={{ marginBottom: '12px' }}>
                                                 <div style={{ width: '120px', height: '32px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                     <img
                                                         src="/assets/images/admitra.png"
@@ -183,7 +191,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 Bengaluru · AdMitra Pvt. Ltd. &nbsp;&nbsp; <span className="xp-date-shimmer">February 2026 – May 2026</span>
                                             </p>
                                         </div>
-                                        <div className="xp-main-desc" style={{ fontSize: '0.9rem', lineHeight: '1.6', color: 'rgba(255,255,255,0.75)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                                        <div className="xp-main-desc" style={{ fontSize: '0.82rem', lineHeight: '1.45', color: 'rgba(255,255,255,0.75)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                                 <div style={{
                                                     background: 'rgba(59, 130, 246, 0.1)',
@@ -200,7 +208,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 }}>
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem', lineHeight: '1.4' }}>
                                                     Led end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>AI-powered creative operations</strong> for hyperlocal advertising campaigns across video and poster formats at scale, translating brand strategy into structured storyboards and localized narratives.
                                                 </p>
                                             </div>
@@ -221,7 +229,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 }}>
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem', lineHeight: '1.4' }}>
                                                     Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>, collaborating directly with founders and brand stakeholders to streamline campaign execution.
                                                 </p>
                                             </div>
@@ -242,7 +250,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 }}>
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem', lineHeight: '1.4' }}>
                                                     Collaborated closely with <strong style={{ color: '#3B82F6', fontWeight: '600' }}>technical and engineering team</strong> to integrate advanced AI creation tools, streamlining workflows and accelerating project delivery times.
                                                 </p>
                                             </div>
@@ -469,109 +477,109 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         </div>
                                     </div>
                                 </div>
-                                    {/* Key Campaign Clients block relocated after viewport */}
-                                    <div className="xp-client-brands xp-clients-mobile" style={{ width: '100%', maxWidth: '340px', marginTop: '0px', paddingTop: '15px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                                        <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
-                                            KEY CAMPAIGN CLIENTS
-                                        </p>
-                                        <div className="xp-brands-logos">
-                                            <div className="xp-brand-logo-btn xp-brand-montra">
-                                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                    <img
-                                                        src="/assets/images/montra_logo.png"
-                                                        onError={(e) => {
-                                                            if (!e.target.dataset.triedFallback) {
-                                                                    e.target.dataset.triedFallback = 'true';
-                                                                    e.target.src = "https://www.google.com/s2/favicons?domain=montraelectric.com&sz=128";
-                                                            } else {
-                                                                e.target.style.display = 'none';
-                                                                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                            }
-                                                        }}
-                                                        className="xp-brand-logo-btn-icon"
-                                                        alt="Montra Electric"
-                                                        style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                    />
-                                                    <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF334B', zIndex: 1 }}>
-                                                        M
-                                                    </div>
+                                {/* Key Campaign Clients block relocated after viewport */}
+                                <div className="xp-client-brands xp-clients-mobile" style={{ width: '100%', maxWidth: '340px', marginTop: '0px', paddingTop: '15px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                                    <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
+                                        KEY CAMPAIGN CLIENTS
+                                    </p>
+                                    <div className="xp-brands-logos">
+                                        <div className="xp-brand-logo-btn xp-brand-montra">
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                <img
+                                                    src="/assets/images/montra_logo.png"
+                                                    onError={(e) => {
+                                                        if (!e.target.dataset.triedFallback) {
+                                                            e.target.dataset.triedFallback = 'true';
+                                                            e.target.src = "https://www.google.com/s2/favicons?domain=montraelectric.com&sz=128";
+                                                        } else {
+                                                            e.target.style.display = 'none';
+                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                        }
+                                                    }}
+                                                    className="xp-brand-logo-btn-icon"
+                                                    alt="Montra Electric"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                />
+                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF334B', zIndex: 1 }}>
+                                                    M
                                                 </div>
-                                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
                                             </div>
-                                            <div className="xp-brand-logo-btn xp-brand-ampere">
-                                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                    <img
-                                                        src="/assets/images/ampere_logo.png"
-                                                        onError={(e) => {
-                                                            if (!e.target.dataset.triedFallback) {
-                                                                e.target.dataset.triedFallback = 'true';
-                                                                e.target.src = "https://www.google.com/s2/favicons?domain=amperevehicles.com&sz=128";
-                                                            } else {
-                                                                e.target.style.display = 'none';
-                                                                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                            }
-                                                        }}
-                                                        className="xp-brand-logo-btn-icon"
-                                                        alt="Ampere"
-                                                        style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                    />
-                                                    <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#00FFF0', zIndex: 1 }}>
-                                                        A
-                                                    </div>
+                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
+                                        </div>
+                                        <div className="xp-brand-logo-btn xp-brand-ampere">
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                <img
+                                                    src="/assets/images/ampere_logo.png"
+                                                    onError={(e) => {
+                                                        if (!e.target.dataset.triedFallback) {
+                                                            e.target.dataset.triedFallback = 'true';
+                                                            e.target.src = "https://www.google.com/s2/favicons?domain=amperevehicles.com&sz=128";
+                                                        } else {
+                                                            e.target.style.display = 'none';
+                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                        }
+                                                    }}
+                                                    className="xp-brand-logo-btn-icon"
+                                                    alt="Ampere"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                />
+                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#00FFF0', zIndex: 1 }}>
+                                                    A
                                                 </div>
-                                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere</span>
                                             </div>
-                                            <div className="xp-brand-logo-btn xp-brand-lincoln-pharma">
-                                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                    <img
-                                                        src="/assets/images/lincoln_logo.png"
-                                                        onError={(e) => {
-                                                            if (!e.target.dataset.triedFallback) {
-                                                                e.target.dataset.triedFallback = 'true';
-                                                                e.target.src = "https://www.google.com/s2/favicons?domain=lincolnpharma.com&sz=128";
-                                                            } else {
-                                                                e.target.style.display = 'none';
-                                                                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                            }
-                                                        }}
-                                                        className="xp-brand-logo-btn-icon"
-                                                        alt="Lincoln Pharma"
-                                                        style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                    />
-                                                    <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#4ade80', zIndex: 1 }}>
-                                                        L
-                                                    </div>
+                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere</span>
+                                        </div>
+                                        <div className="xp-brand-logo-btn xp-brand-lincoln-pharma">
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                <img
+                                                    src="/assets/images/lincoln_logo.png"
+                                                    onError={(e) => {
+                                                        if (!e.target.dataset.triedFallback) {
+                                                            e.target.dataset.triedFallback = 'true';
+                                                            e.target.src = "https://www.google.com/s2/favicons?domain=lincolnpharma.com&sz=128";
+                                                        } else {
+                                                            e.target.style.display = 'none';
+                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                        }
+                                                    }}
+                                                    className="xp-brand-logo-btn-icon"
+                                                    alt="Lincoln Pharma"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                />
+                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#4ade80', zIndex: 1 }}>
+                                                    L
                                                 </div>
-                                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
                                             </div>
-                                            <div className="xp-brand-logo-btn xp-brand-prismara">
-                                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                    <img
-                                                        src="https://media.licdn.com/dms/image/v2/D560BAQERAGOWIeST7A/company-logo_200_200/B56ZyZEB9vGwAI-/0/1772094497178/prismarajewels_logo?e=2147483647&v=beta&t=mLLSJn1qN6PzFsOhFcQ9XNZumI49NYMv_sVxLhOOZ0A"
-                                                        onError={(e) => {
-                                                            if (!e.target.dataset.triedFallback) {
-                                                                e.target.dataset.triedFallback = 'true';
-                                                                e.target.src = "https://www.google.com/s2/favicons?domain=prismara.com&sz=128";
-                                                            } else {
-                                                                e.target.style.display = 'none';
-                                                                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                            }
-                                                        }}
-                                                        className="xp-brand-logo-btn-icon"
-                                                        alt="Prismara"
-                                                        style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                    />
-                                                    <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FFB6C1', zIndex: 1 }}>
-                                                        P
-                                                    </div>
+                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
+                                        </div>
+                                        <div className="xp-brand-logo-btn xp-brand-prismara">
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
+                                                <img
+                                                    src="https://media.licdn.com/dms/image/v2/D560BAQERAGOWIeST7A/company-logo_200_200/B56ZyZEB9vGwAI-/0/1772094497178/prismarajewels_logo?e=2147483647&v=beta&t=mLLSJn1qN6PzFsOhFcQ9XNZumI49NYMv_sVxLhOOZ0A"
+                                                    onError={(e) => {
+                                                        if (!e.target.dataset.triedFallback) {
+                                                            e.target.dataset.triedFallback = 'true';
+                                                            e.target.src = "https://www.google.com/s2/favicons?domain=prismara.com&sz=128";
+                                                        } else {
+                                                            e.target.style.display = 'none';
+                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                        }
+                                                    }}
+                                                    className="xp-brand-logo-btn-icon"
+                                                    alt="Prismara"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
+                                                />
+                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FFB6C1', zIndex: 1 }}>
+                                                    P
                                                 </div>
-                                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Prismara</span>
                                             </div>
+                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Prismara</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     {/* ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── */}
                     <div className="xp-interface-window xp-window-davinci" data-theme="video">
