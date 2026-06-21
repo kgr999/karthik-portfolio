@@ -11,27 +11,68 @@ window.Lenis = Lenis;
 export function initPortfolio() {
     if (window.portfolioInitialized) {
         console.log("Portfolio logic already initialized");
-        return;
+        return () => {};
     }
     window.portfolioInitialized = true;
 
+    // Track all event listeners and animation frames for proper cleanup
+    const listeners = [];
+    const nodeCanvasRafs = [];
+    let followerRaf;
+    let particlesRaf;
+    let activeLinkRaf;
+
+    function addManagedListener(element, type, handler, options = {}) {
+        if (!element) return;
+        element.addEventListener(type, handler, options);
+        listeners.push({ element, type, handler });
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     // 1. Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
-        duration: 1.4, // Heavier, more luxurious inertia scrolling (Apple-style)
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        lerp: 0.08, // Premium Apple-style easing transition (luxurious smooth interpolation)
         smoothWheel: true,
-        touchMultiplier: 1.8
+        syncTouch: true // Smooth touch scroll
     });
     window.lenis = lenis;
 
     // Connect Lenis to GSAP ScrollTrigger for flawless scroll sync with zero micro-stutter
     lenis.on('scroll', ScrollTrigger.update);
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    // Synchronize Lenis scrolling inside GSAP's optimized requestAnimationFrame loop
+    const lenisTicker = (time) => {
+        lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(lenisTicker);
+
+    // Disable lag smoothing in GSAP to keep tick calculations aligned perfectly
+    gsap.ticker.lagSmoothing(0);
+
+    // Global contextmenu & dragstart security block to prevent downloading images/videos
+    addManagedListener(window, 'contextmenu', (e) => {
+        const tag = e.target.tagName;
+        if (tag === 'IMG' || tag === 'VIDEO' || e.target.closest('.cinema-video-wrapper') || e.target.closest('.visual-media') || e.target.closest('.kuku-tv-card') || e.target.closest('.xp-window-body') || e.target.closest('.cap-image-wrapper') || e.target.closest('.visual-item')) {
+            e.preventDefault();
+        }
+    });
+    addManagedListener(window, 'dragstart', (e) => {
+        const tag = e.target.tagName;
+        if (tag === 'IMG' || tag === 'VIDEO') {
+            e.preventDefault();
+        }
+    });
 
     // 2. GSAP Animations Setup
     // ScrollTrigger is registered globally above
@@ -175,7 +216,7 @@ export function initPortfolio() {
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
 
-    document.addEventListener('mousemove', (e) => {
+    addManagedListener(document, 'mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
@@ -197,12 +238,12 @@ export function initPortfolio() {
             follower.style.transform = `translate(-50%, -50%)`;
         }
 
-        requestAnimationFrame(animateFollower);
+        followerRaf = requestAnimationFrame(animateFollower);
     }
     animateFollower();
 
     // Pixel Particle Burst on Click
-    document.addEventListener('click', (e) => {
+    addManagedListener(document, 'click', (e) => {
         createParticles(e.clientX, e.clientY);
     });
 
@@ -232,7 +273,9 @@ export function initPortfolio() {
                 opacity: 0,
                 duration: 0.6,
                 onComplete: () => {
-                    document.body.removeChild(particle);
+                    if (particle.parentNode) {
+                        document.body.removeChild(particle);
+                    }
                 }
             });
         }
@@ -242,7 +285,7 @@ export function initPortfolio() {
     const interactiveElements = document.querySelectorAll('a, button, .video-card, .gallery-item, .cap-card, .cap-card-v2, .cert-card, .presence-card, .step, .avatar-card-outer');
 
     interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
+        addManagedListener(el, 'mouseenter', () => {
             if (follower) {
                 gsap.to(follower, {
                     width: 60,
@@ -260,7 +303,7 @@ export function initPortfolio() {
             }
         });
 
-        el.addEventListener('mouseleave', () => {
+        addManagedListener(el, 'mouseleave', () => {
             if (follower) {
                 gsap.to(follower, {
                     width: 40,
@@ -282,9 +325,10 @@ export function initPortfolio() {
 
     // 5. Marquee Loop Logic
     const marquees = document.querySelectorAll('.marquee-content');
-    marquees.forEach(m => {
-        const content = m.innerHTML;
-        m.innerHTML = content + content + content;
+    const originalMarqueeHTML = [];
+    marquees.forEach((m, idx) => {
+        originalMarqueeHTML[idx] = m.innerHTML;
+        m.innerHTML = m.innerHTML + m.innerHTML + m.innerHTML;
     });
 
     // 5.5. Capability Cards Progress Animation
@@ -306,19 +350,21 @@ export function initPortfolio() {
 
             // Activate target card
             const targetCard = capCards[index];
-            targetCard.classList.add('active');
-            
-            const progressFill = targetCard.querySelector('.card-progress-fill');
-            if (progressFill) {
-                cardTimeline = gsap.to(progressFill, {
-                    width: "100%",
-                    duration: 4, // 4 seconds per card
-                    ease: "linear",
-                    onComplete: () => {
-                        currentCardIndex = (currentCardIndex + 1) % capCards.length;
-                        animateCard(currentCardIndex);
-                    }
-                });
+            if (targetCard) {
+                targetCard.classList.add('active');
+                
+                const progressFill = targetCard.querySelector('.card-progress-fill');
+                if (progressFill) {
+                    cardTimeline = gsap.to(progressFill, {
+                        width: "100%",
+                        duration: 4, // 4 seconds per card
+                        ease: "linear",
+                        onComplete: () => {
+                            currentCardIndex = (currentCardIndex + 1) % capCards.length;
+                            animateCard(currentCardIndex);
+                        }
+                    });
+                }
             }
         }
 
@@ -327,15 +373,15 @@ export function initPortfolio() {
         
         // Pause on hover, resume on leave, allow manual click switch
         capCards.forEach((card, idx) => {
-            card.addEventListener('mouseenter', () => {
+            addManagedListener(card, 'mouseenter', () => {
                 if (cardTimeline) cardTimeline.pause();
             });
-            card.addEventListener('mouseleave', () => {
+            addManagedListener(card, 'mouseleave', () => {
                 if (cardTimeline) cardTimeline.resume();
             });
             
             // Allow manual click to switch
-            card.addEventListener('click', () => {
+            addManagedListener(card, 'click', () => {
                 if (currentCardIndex !== idx) {
                     currentCardIndex = idx;
                     animateCard(currentCardIndex);
@@ -346,7 +392,7 @@ export function initPortfolio() {
 
     // 6. Section Specific Interactions (Parallax/Glow)
     document.querySelectorAll('section').forEach(section => {
-        section.addEventListener('mousemove', (e) => {
+        addManagedListener(section, 'mousemove', (e) => {
             const { clientX: x, clientY: y } = e;
             const { left, top, width, height } = section.getBoundingClientRect();
             const xPos = (x - left) / width;
@@ -363,7 +409,7 @@ export function initPortfolio() {
     const mobileLinks = document.querySelectorAll('.mobile-menu-inner a');
 
     if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
+        addManagedListener(menuToggle, 'click', () => {
             menuToggle.classList.toggle('active');
             mobileMenu.classList.toggle('active');
 
@@ -373,7 +419,7 @@ export function initPortfolio() {
 
         // Close menu when a link is clicked
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            addManagedListener(link, 'click', () => {
                 menuToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = 'auto';
@@ -386,32 +432,32 @@ export function initPortfolio() {
         const glowColor = chip.getAttribute('data-glow');
         chip.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
         
-        chip.addEventListener('mouseenter', () => {
+        addManagedListener(chip, 'mouseenter', () => {
             chip.style.setProperty('--glow-color', glowColor + '26'); // 15% in hex is 26
         });
         
-        chip.addEventListener('mouseleave', () => {
+        addManagedListener(chip, 'mouseleave', () => {
             chip.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
         });
     });
 
     // 10. Luxury Microinteraction: 3D Tilt on Category Cards
     document.querySelectorAll('.eco-category').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
+        addManagedListener(card, 'mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
             card.style.transform = `perspective(1000px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg) translateY(-2px)`;
         });
         
-        card.addEventListener('mouseleave', () => {
+        addManagedListener(card, 'mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
         });
     });
 
     // 10.5. Luxury Microinteraction: 3D Tilt & Mouse-Tracking Glow on Capability Cards
     document.querySelectorAll('.cap-card-v2').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
+        addManagedListener(card, 'mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -426,7 +472,7 @@ export function initPortfolio() {
             card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
         });
         
-        card.addEventListener('mouseleave', () => {
+        addManagedListener(card, 'mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
             card.style.setProperty('--mx', '50%');
             card.style.setProperty('--my', '50%');
@@ -438,11 +484,11 @@ export function initPortfolio() {
         const glowColor = item.getAttribute('data-glow');
         item.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
         
-        item.addEventListener('mouseenter', () => {
+        addManagedListener(item, 'mouseenter', () => {
             item.style.setProperty('--glow-color', glowColor + '26'); // 15% opacity glow
         });
         
-        item.addEventListener('mouseleave', () => {
+        addManagedListener(item, 'mouseleave', () => {
             item.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.04)');
         });
     });
@@ -452,7 +498,7 @@ export function initPortfolio() {
         const glowColor = card.getAttribute('data-glow');
         card.style.setProperty('--glow-color', 'rgba(77, 163, 255, 0.1)'); // Default electric blue glow
         
-        card.addEventListener('mousemove', (e) => {
+        addManagedListener(card, 'mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -466,7 +512,7 @@ export function initPortfolio() {
             }
         });
         
-        card.addEventListener('mouseleave', () => {
+        addManagedListener(card, 'mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
             card.style.setProperty('--glow-color', 'rgba(77, 163, 255, 0.1)');
         });
@@ -475,7 +521,7 @@ export function initPortfolio() {
     // Dynamic Navbar Shrink on Scroll & ScrollSpy Logic
     const nav = document.querySelector('nav');
     if (nav) {
-        window.addEventListener('scroll', () => {
+        addManagedListener(window, 'scroll', () => {
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
@@ -491,6 +537,16 @@ export function initPortfolio() {
             { id: 'tech-stack', selector: '#tech-stack', linkSelector: 'nav .nav-link-item[href="#tech-stack"]' },
             { id: 'contact', selector: '#contact', linkSelector: 'nav .nav-link-item[href="#contact"]' }
         ];
+
+        let isThrottled = false;
+        function updateActiveLinkThrottled() {
+            if (isThrottled) return;
+            isThrottled = true;
+            activeLinkRaf = requestAnimationFrame(() => {
+                updateActiveLink();
+                setTimeout(() => { isThrottled = false; }, 80);
+            });
+        }
 
         function updateActiveLink() {
             let activeLink = null;
@@ -523,8 +579,8 @@ export function initPortfolio() {
             }
         }
 
-        window.addEventListener('scroll', updateActiveLink);
-        window.addEventListener('resize', updateActiveLink);
+        addManagedListener(window, 'scroll', updateActiveLinkThrottled);
+        addManagedListener(window, 'resize', updateActiveLinkThrottled);
         // Run immediately after brief delay to let page settle
         setTimeout(updateActiveLink, 250);
     }
@@ -535,6 +591,7 @@ export function initPortfolio() {
 
     const xpSection = document.getElementById('experience-journey');
     const xpWindows = document.querySelectorAll('.xp-interface-window');
+    const observers = [];
 
     if (xpSection && xpWindows.length > 0) {
         
@@ -543,14 +600,14 @@ export function initPortfolio() {
         if (pCanvas) {
             const pCtx = pCanvas.getContext('2d');
             let particles = [];
-            const PARTICLE_COUNT = 50;
+            const PARTICLE_COUNT = 30; // Reduced from 50 to optimize rendering overhead
 
             function resizeParticleCanvas() {
                 pCanvas.width = xpSection.offsetWidth;
                 pCanvas.height = xpSection.offsetHeight;
             }
             resizeParticleCanvas();
-            window.addEventListener('resize', resizeParticleCanvas);
+            addManagedListener(window, 'resize', debounce(resizeParticleCanvas, 150));
 
             class Particle {
                 constructor() {
@@ -587,12 +644,27 @@ export function initPortfolio() {
                 particles.push(new Particle());
             }
 
+            let isXpVisible = false;
             function animateParticles() {
+                if (!isXpVisible) return;
                 pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
                 particles.forEach(p => { p.update(); p.draw(); });
-                requestAnimationFrame(animateParticles);
+                particlesRaf = requestAnimationFrame(animateParticles);
             }
-            animateParticles();
+
+            // IntersectionObserver to pause loop when offscreen
+            const xpObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isXpVisible = entry.isIntersecting;
+                    if (isXpVisible) {
+                        animateParticles();
+                    } else {
+                        cancelAnimationFrame(particlesRaf);
+                    }
+                });
+            }, { threshold: 0.02 });
+            xpObserver.observe(xpSection);
+            observers.push(xpObserver);
         }
 
         // ── Per-Node Themed Canvas Animations ──
@@ -600,14 +672,18 @@ export function initPortfolio() {
             const ctx = canvas.getContext('2d');
             const theme = canvas.dataset.theme;
             let animId;
+            let isCanvasVisible = false;
+            let drawFn = null;
 
             function resizeNodeCanvas() {
                 const parent = canvas.parentElement;
-                canvas.width = parent.offsetWidth;
-                canvas.height = parent.offsetHeight;
+                if (parent) {
+                    canvas.width = parent.offsetWidth;
+                    canvas.height = parent.offsetHeight;
+                }
             }
             resizeNodeCanvas();
-            window.addEventListener('resize', resizeNodeCanvas);
+            addManagedListener(window, 'resize', debounce(resizeNodeCanvas, 150));
 
             // AI Workflow — connected floating nodes
             if (theme === 'ai-workflow') {
@@ -621,7 +697,8 @@ export function initPortfolio() {
                         r: Math.random() * 3 + 2
                     });
                 }
-                (function drawAI() {
+                drawFn = function drawAI() {
+                    if (!isCanvasVisible) return;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     const w = canvas.width, h = canvas.height;
                     // connections
@@ -656,16 +733,15 @@ export function initPortfolio() {
                         ctx.fill();
                     });
                     animId = requestAnimationFrame(drawAI);
-                })();
+                    nodeCanvasRafs.push(animId);
+                };
             }
-
-
 
             // AR Holographic — floating wireframe face mesh + neon particles
             if (theme === 'ar-holographic') {
                 let frame = 0;
                 const arParticles = [];
-                for (let i = 0; i < 30; i++) {
+                for (let i = 0; i < 20; i++) { // Reduced from 30 to optimize overhead
                     arParticles.push({
                         x: Math.random(), y: Math.random(),
                         vx: (Math.random() - 0.5) * 0.002,
@@ -673,7 +749,8 @@ export function initPortfolio() {
                         size: Math.random() * 2 + 1
                     });
                 }
-                (function drawAR() {
+                drawFn = function drawAR() {
+                    if (!isCanvasVisible) return;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     const w = canvas.width, h = canvas.height;
                     const cx = w * 0.7, cy = h * 0.4;
@@ -716,16 +793,28 @@ export function initPortfolio() {
                     });
                     frame++;
                     animId = requestAnimationFrame(drawAR);
-                })();
+                    nodeCanvasRafs.push(animId);
+                };
+            }
+
+            if (drawFn) {
+                const canvasObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        isCanvasVisible = entry.isIntersecting;
+                        if (isCanvasVisible) {
+                            drawFn();
+                        } else {
+                            cancelAnimationFrame(animId);
+                        }
+                    });
+                }, { threshold: 0.02 });
+                canvasObserver.observe(canvas);
+                observers.push(canvasObserver);
             }
         });
     }
 
-    // ═══════════════════════════════════════════════════════════
     // 16. SCROLL PROGRESS BAR & HEADING UNDERLINE REVEALS
-    // ═══════════════════════════════════════════════════════════
-
-    // Section Heading Underline Animations (stretches center-out using CSS custom property)
     const headings = gsap.utils.toArray('.section-heading');
     headings.forEach((heading) => {
         gsap.to(heading, {
@@ -742,4 +831,39 @@ export function initPortfolio() {
 
     console.log("%c CINEMATIC DIGITAL IDENTITY ACTIVE ", "background: #050505; color: #F5F5F5; font-weight: bold; padding: 10px; border: 1px solid rgba(255,255,255,0.1);");
 
+    // Comprehensive cleanup returned to the React wrapper
+    return () => {
+        // Remove all managed event listeners
+        listeners.forEach(({ element, type, handler }) => {
+            if (element) {
+                element.removeEventListener(type, handler);
+            }
+        });
+
+        // Disconnect all observers
+        observers.forEach(obs => obs.disconnect());
+
+        // Cancel all animation loop requestAnimationFrames
+        cancelAnimationFrame(followerRaf);
+        cancelAnimationFrame(particlesRaf);
+        cancelAnimationFrame(activeLinkRaf);
+        nodeCanvasRafs.forEach(id => cancelAnimationFrame(id));
+
+        // Reset marquees to their original content to avoid double multiplication on hot-reload
+        marquees.forEach((m, idx) => {
+            if (originalMarqueeHTML[idx]) {
+                m.innerHTML = originalMarqueeHTML[idx];
+            }
+        });
+
+        // Kill all GSAP timelines, tweens and ScrollTriggers registered during this init
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        gsap.killTweensOf('*');
+
+        // Unsubscribe from GSAP ticker loop
+        gsap.ticker.remove(lenisTicker);
+
+        // Reset initialization token
+        window.portfolioInitialized = false;
+    };
 }

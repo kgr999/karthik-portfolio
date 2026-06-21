@@ -175,6 +175,27 @@ html {
     /* Lenis handles this */
 }
 
+/* Lenis smooth scroll helper styles */
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
 body {
     background-color: var(--bg);
     color: var(--text);
@@ -1160,7 +1181,7 @@ section {
 
 .cap-card-v2 {
     position: relative;
-    background: rgba(255, 255, 255, 0.015);
+    background: rgba(10, 10, 10, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.035);
     border-radius: 10px;
     padding: 12px 12px 16px 12px; /* Compressed from 16px 16px 20px 16px */
@@ -1168,13 +1189,16 @@ section {
     flex-direction: column;
     justify-content: space-between;
     min-height: 160px; /* Compressed from 180px */
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
     overflow: hidden;
     grid-column: span 12;
     --mx: 50%;
     --my: 50%;
+    will-change: transform, opacity, box-shadow;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
 }
 
 .cap-image-wrapper {
@@ -2274,15 +2298,18 @@ section {
 }
 
 .tech-stack-card {
-    background: rgba(6, 6, 12, 0.45);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    background: rgba(10, 10, 10, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     padding: 18px 14px;
     transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
+    will-change: transform, opacity, box-shadow;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
 }
 
 .tech-stack-card.active-card {
@@ -2986,7 +3013,7 @@ section {
     display: inline-block;
     width: 20px;
     height: 1px;
-    background: rgba(59, 130, 246, 0.3);
+    background: rgba(229, 192, 96, 0.3);
 }
 
 .social-dock-wrapper {
@@ -3007,7 +3034,7 @@ section {
     box-shadow:
         inset 0 1px 1px rgba(255, 255, 255, 0.1),
         0 20px 50px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(59, 130, 246, 0.03);
+        0 0 40px rgba(229, 192, 96, 0.08);
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -3018,7 +3045,7 @@ section {
     box-shadow:
         inset 0 1px 1px rgba(255, 255, 255, 0.15),
         0 25px 60px rgba(0, 0, 0, 0.5),
-        0 0 50px rgba(59, 130, 246, 0.05);
+        0 0 50px rgba(229, 192, 96, 0.15);
 }
 
 .social-dock-btn {
@@ -4002,16 +4029,19 @@ footer {
 }
 
 .cinema-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(10, 10, 10, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     overflow: hidden;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     position: relative;
     display: flex;
     flex-direction: column;
+    will-change: transform, opacity, box-shadow;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
 }
 
 .cinema-video-wrapper {
@@ -11324,28 +11354,85 @@ nav.nav-standby .menu-toggle {
 
 /* ── Minimalist Editorial AI Governance Console ── */
 .ap-governance-box {
-    background: rgba(255, 255, 255, 0.02);
+    background: radial-gradient(circle at 50% 50%, rgba(229, 192, 96, 0.015) 0%, transparent 80%), rgba(10, 10, 10, 0.45);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
-    padding: 36px 40px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    margin-top: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    padding: 32px 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    margin-top: 40px;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     overflow: hidden;
 }
 
+/* Dynamic scanline or tech grid */
+.ap-governance-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* HUD corner bezels */
+.ap-governance-bezel {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: rgba(229, 192, 96, 0.35);
+    border-style: solid;
+    pointer-events: none;
+    z-index: 2;
+}
+.ap-governance-bezel.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+.ap-governance-bezel.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+.ap-governance-bezel.bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+.ap-governance-bezel.br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+.ap-governance-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+}
+
+@media (min-width: 992px) {
+    .ap-governance-container {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 36px;
+        align-items: stretch;
+    }
+}
+
 .ap-governance-header {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     align-items: flex-start;
-    margin-bottom: 28px;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+@media (min-width: 769px) {
+    .ap-governance-header {
+        flex-direction: row;
+    }
 }
 
 .ap-governance-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
     background: rgba(229, 192, 96, 0.03);
     border: 1px solid rgba(229, 192, 96, 0.2);
     display: flex;
@@ -11356,6 +11443,10 @@ nav.nav-standby .menu-toggle {
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(229, 192, 96, 0.05);
 }
+.ap-governance-icon svg {
+    width: 22px;
+    height: 22px;
+}
 
 .ap-governance-box:hover .ap-governance-icon {
     color: #fff;
@@ -11364,17 +11455,27 @@ nav.nav-standby .menu-toggle {
     box-shadow: 0 0 20px rgba(229, 192, 96, 0.2);
 }
 
+.ap-governance-meta {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.55rem;
+    color: #e5c060;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
 .ap-governance-header-row {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     margin-bottom: 8px;
     flex-wrap: wrap;
 }
 
 .ap-governance-title {
     font-family: var(--font-heading);
-    font-size: 1.45rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: #fff;
     margin: 0;
@@ -11382,117 +11483,203 @@ nav.nav-standby .menu-toggle {
 }
 
 .ap-governance-badge {
-    font-size: 0.58rem;
+    font-size: 0.55rem;
     font-weight: 700;
     text-transform: uppercase;
     color: #e5c060;
     background: rgba(229, 192, 96, 0.04);
     border: 1px solid rgba(229, 192, 96, 0.2);
-    padding: 3px 10px;
+    padding: 2px 8px;
     border-radius: 100px;
     letter-spacing: 0.8px;
     box-shadow: 0 0 10px rgba(229, 192, 96, 0.05);
 }
 
 .ap-governance-desc {
-    font-size: 0.96rem;
+    font-size: 0.88rem;
     color: rgba(255, 255, 255, 0.65);
-    line-height: 1.65;
+    line-height: 1.6;
     margin: 0;
-    max-width: 800px;
 }
 
 .ap-governance-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
 }
 
 .ap-governance-item {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 16px 20px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.01);
+    will-change: transform, opacity, box-shadow;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.ap-governance-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.025);
+    border-color: rgba(229, 192, 96, 0.25);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(229, 192, 96, 0.05),
+        inset 0 0 8px rgba(255, 255, 255, 0.02);
+}
+
+.ap-governance-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.ap-governance-code {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.45rem;
+    color: rgba(229, 192, 96, 0.4);
+    letter-spacing: 0.2px;
+    font-weight: 700;
+}
+
+.ap-governance-item:hover .ap-governance-code {
+    color: rgba(229, 192, 96, 0.85);
 }
 
 .ap-governance-lbl {
-    font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.35);
     font-weight: 800;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.6px;
     text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.ap-governance-item:hover .ap-governance-lbl {
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .ap-governance-val {
-    font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+.ap-governance-item:hover .ap-governance-val {
+    color: #fff;
 }
 
 .ap-governance-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: #05FF99;
-    box-shadow: 0 0 8px rgba(5, 255, 153, 0.6);
+    box-shadow: 0 0 6px rgba(5, 255, 153, 0.6);
+    display: inline-block;
+    animation: ap-pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes ap-pulse-dot {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 6px rgba(5, 255, 153, 0.6);
+    }
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 10px rgba(5, 255, 153, 0.9);
+    }
+}
+
+.ap-governance-bar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 1px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.ap-governance-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e5c060, #ffffff);
+    border-radius: 1px;
+    box-shadow: 0 0 4px rgba(229, 192, 96, 0.5);
+    transition: all 0.6s ease;
+}
+
+.ap-governance-item:hover .ap-governance-bar-fill {
+    box-shadow: 0 0 8px rgba(229, 192, 96, 0.8);
+}
+
+@media (max-width: 991px) {
+    .ap-governance-box {
+        padding: 24px 28px;
+        margin-top: 30px;
+    }
+    .ap-governance-header {
+        align-items: stretch;
+    }
+    .ap-governance-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    .ap-governance-item {
+        padding: 14px 18px;
+    }
 }
 
 @media (max-width: 768px) {
     .ap-governance-box {
         padding: 20px 16px;
-        margin-top: 30px;
+        margin-top: 24px;
     }
-    
-    .ap-governance-icon {
-        width: 50px;
-        height: 50px;
+    .ap-governance-bezel {
+        width: 8px;
+        height: 8px;
     }
-    .ap-governance-icon svg {
-        width: 22px !important;
-        height: 22px !important;
-    }
-    
+    .ap-governance-bezel.tl { top: 8px; left: 8px; }
+    .ap-governance-bezel.tr { top: 8px; right: 8px; }
+    .ap-governance-bezel.bl { bottom: 8px; left: 8px; }
+    .ap-governance-bezel.br { bottom: 8px; right: 8px; }
     .ap-governance-header {
-        flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 15px;
-        margin-bottom: 20px;
     }
-    
+    .ap-governance-meta {
+        font-size: 0.55rem;
+        margin-bottom: 6px;
+    }
     .ap-governance-header-row {
         justify-content: center;
-        gap: 10px;
     }
-
-    .ap-governance-title {
-        font-size: 1.15rem;
-    }
-    
-    .ap-governance-desc {
-        font-size: 0.84rem;
-        line-height: 1.5;
-    }
-
     .ap-governance-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px 10px;
-        padding-top: 16px;
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
-
-    .ap-governance-lbl {
-        font-size: 0.52rem;
-    }
-
-    .ap-governance-val {
-        font-size: 0.76rem;
-        gap: 6px;
+    .ap-governance-item {
+        padding: 12px 16px;
     }
 }
+
+@media (max-width: 480px) {
+    .ap-governance-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 
 /* ── Current Learning Section ── */
 #current-learning {
@@ -13613,7 +13800,7 @@ nav.nav-standby .menu-toggle {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 24px;
+    padding: 12px 40px;
     background: transparent;
     border-bottom: none;
     height: 54px;
@@ -13813,10 +14000,14 @@ nav.nav-standby .menu-toggle {
         display: none !important;
     }
 
+    .kuku-tv-nav {
+        padding: 12px 28px !important;
+    }
+
     .kuku-tv-hero {
         background: linear-gradient(to top, #050506 50%, rgba(5, 5, 6, 0.4) 100%), var(--hero-bg) !important;
         height: auto !important;
-        padding: 20px !important;
+        padding: 20px 28px !important;
     }
 
     .kuku-tv-hero-content {
@@ -13866,8 +14057,11 @@ nav.nav-standby .menu-toggle {
     .xp-window-kuku .kuku-tv-login-btn {
         display: none !important;
     }
+    .xp-window-kuku .kuku-tv-nav {
+        padding: 12px 40px !important;
+    }
     .xp-window-kuku .kuku-tv-hero {
-        padding: 12px 20px !important;
+        padding: 12px 40px !important;
         flex: 1 !important;
         height: auto !important;
         display: flex !important;
@@ -13899,7 +14093,7 @@ nav.nav-standby .menu-toggle {
         font-size: 0.7rem !important;
     }
     .xp-window-kuku .kuku-tv-shows-row {
-        padding: 8px 20px !important;
+        padding: 8px 40px !important;
         gap: 6px !important;
     }
     .xp-window-kuku .kuku-tv-card {
@@ -14112,4 +14306,25 @@ nav.nav-standby .menu-toggle {
 .capabilities-marquee-group .cap-card-v2 .cap-image-wrapper {
     height: auto !important;
     aspect-ratio: 16 / 9 !important;
+}
+
+/* Media Security Overrides - prevent saving/dragging images and videos */
+img, video {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+    pointer-events: none; /* Passes mouse click/drag through to parents to prevent direct downloading */
+}
+
+/* Ensure interactive media wrappers remain responsive to cursor style definitions */
+.cinema-card,
+.visual-media,
+.kuku-tv-card,
+.xp-window-body,
+.cap-image-wrapper {
+    user-select: none !important;
+    -webkit-user-select: none !important;
 }

@@ -9,21 +9,20 @@ const ContactPhysicsArena = lazy(() => import('./ContactPhysicsArena'));
 // Custom split components
 import HeroSection from './components/HeroSection';
 import CapabilitiesSection from './components/CapabilitiesSection';
+
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import PosterShowcase from './components/PosterShowcase';
 import ExperienceJourney from './components/ExperienceJourney';
-import ActiveProjects from './components/ActiveProjects';
-import CurrentLearning from './components/CurrentLearning';
-import CreativeRider from './components/CreativeRider';
+const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
     {
         num: "01",
         name: "CREATIVE INTELLIGENCE",
         tools: [
-            { name: "ChatGPT", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", glow: "#10a37f", level: "98%" },
-            { name: "Claude", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/claude-color.svg", glow: "#d97757", level: "95%" },
-            { name: "Gemini", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/gemini-color.svg", glow: "#4285f4", level: "90%" }
+            { name: "ChatGPT", logo: "/assets/logos/openai.svg", glow: "#10a37f", level: "98%" },
+            { name: "Claude", logo: "/assets/logos/claude.svg", glow: "#d97757", level: "95%" },
+            { name: "Gemini", logo: "/assets/logos/gemini.svg", glow: "#4285f4", level: "90%" }
         ]
     },
     {
@@ -40,49 +39,49 @@ const techStackCategories = [
         num: "03",
         name: "PLATFORMS & WORKFLOWS",
         tools: [
-            { name: "Fal AI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg", glow: "#ff4154", level: "88%" },
-            { name: "Higgsfield AI", logo: "https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128", glow: "#a855f7", level: "82%" },
-            { name: "Runway", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc", level: "94%" },
-            { name: "ComfyUI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg", glow: "#4ade80", level: "90%", learning: true }
+            { name: "Fal AI", logo: "/assets/logos/fal.svg", glow: "#ff4154", level: "88%" },
+            { name: "Higgsfield AI", logo: "/assets/logos/higgsfield.png", glow: "#a855f7", level: "82%" },
+            { name: "Runway", logo: "/assets/logos/runway.svg", glow: "#c084fc", level: "94%" },
+            { name: "ComfyUI", logo: "/assets/logos/comfyui.svg", glow: "#4ade80", level: "90%", learning: true }
         ]
     },
     {
         num: "04",
         name: "IMAGE GENERATION",
         tools: [
-            { name: "GPT Image", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", glow: "#10a37f", level: "95%" },
-            { name: "NanoBanana", logo: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/nanobanana-color.png", svg: "nanobanana", glow: "#eab308", level: "80%" },
-            { name: "Midjourney", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/midjourney.svg", glow: "#ffffff", level: "96%" }
+            { name: "GPT Image", logo: "/assets/logos/openai.svg", glow: "#10a37f", level: "95%" },
+            { name: "NanoBanana", logo: "/assets/logos/nanobanana.png", svg: "nanobanana", glow: "#eab308", level: "80%" },
+            { name: "Midjourney", logo: "/assets/logos/midjourney.svg", glow: "#ffffff", level: "96%" }
         ]
     },
     {
         num: "05",
         name: "VIDEO GENERATION",
         tools: [
-            { name: "Kling", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "92%" },
-            { name: "Veo", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/google-color.svg", glow: "#4285f4", level: "90%" },
-            { name: "Gen-4 Turbo", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc", level: "95%" },
-            { name: "Seedance", logo: "https://mixhubai.com/ModelsLogos/seedance_logo.webp", svg: "seedance", glow: "#06b6d4", level: "85%" }
+            { name: "Kling", logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "92%" },
+            { name: "Veo", logo: "/assets/logos/veo.svg", glow: "#4285f4", level: "90%" },
+            { name: "Gen-4 Turbo", logo: "/assets/logos/runway.svg", glow: "#c084fc", level: "95%" },
+            { name: "Seedance", logo: "/assets/logos/seedance.webp", svg: "seedance", glow: "#06b6d4", level: "85%" }
         ]
     },
     {
         num: "06",
         name: "AI AVATAR & DESIGN",
         tools: [
-            { name: "HeyGen", logo: "https://www.google.com/s2/favicons?domain=heygen.com&sz=128", glow: "#06b6d4", level: "90%" },
-            { name: "Kling AI Avatar", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "88%" },
-            { name: "Canva", logo: "https://www.google.com/s2/favicons?domain=canva.com&sz=128", glow: "#00c4cc", level: "95%" },
-            { name: "Adobe Express", logo: "https://www.google.com/s2/favicons?domain=adobe.com&sz=128", glow: "#ff3c00", level: "90%" }
+            { name: "HeyGen", logo: "/assets/logos/heygen.png", glow: "#06b6d4", level: "90%" },
+            { name: "Kling AI Avatar", logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "88%" },
+            { name: "Canva", logo: "/assets/logos/canva.png", glow: "#00c4cc", level: "95%" },
+            { name: "Adobe Express", logo: "/assets/logos/adobeexpress.png", glow: "#ff3c00", level: "90%" }
         ]
     },
     {
         num: "07",
         name: "POST PRODUCTION & AUDIO",
         tools: [
-            { name: "ElevenLabs", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
+            { name: "ElevenLabs", logo: "/assets/logos/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
             { name: "VN", customBadge: "VN", color: "#ffffff", bg: "#000000", glow: "#ffffff", level: "92%" },
-            { name: "Topaz", logo: "https://www.ai-stat.ru/icons/png/dark/topazlabs.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
-            { name: "DaVinci Resolve", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/DaVinci_Resolve_Studio.png/250px-DaVinci_Resolve_Studio.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail", glow: "#05FF99", level: "90%", learning: true }
+            { name: "Topaz", logo: "/assets/logos/topaz.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
+            { name: "DaVinci Resolve", logo: "/assets/logos/davinci.png", glow: "#05FF99", level: "90%", learning: true }
         ]
     }
 ];
@@ -605,11 +604,14 @@ export default function App() {
         }
         window.scrollTo(0, 0);
 
-        initPortfolio();
+        const cleanup = initPortfolio();
         const interval = setInterval(() => {
             setLocIdx((prev) => (prev + 1) % locations.length);
         }, 1500);
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            if (cleanup) cleanup();
+        };
     }, []);
 
     useEffect(() => {
@@ -1051,7 +1053,7 @@ export default function App() {
                     <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
                         <Suspense fallback={
                             <div style={{ height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.85rem', fontFamily: 'var(--font-primary)', letterSpacing: '1px' }}>
-                                <span className="status-dot animate-ping" style={{ background: '#3b82f6', width: '8px', height: '8px', borderRadius: '50%', marginRight: '10px' }}></span>
+                                <span className="status-dot animate-ping" style={{ background: '#e5c060', width: '8px', height: '8px', borderRadius: '50%', marginRight: '10px' }}></span>
                                 LOADING CREATIVE SANDBOX...
                             </div>
                         }>
@@ -1178,7 +1180,9 @@ export default function App() {
 
 
 
-            <CreativeRider isOpen={isRiderOpen} onClose={() => setIsRiderOpen(false)} theme={theme} />
+            <Suspense fallback={null}>
+                <CreativeRider isOpen={isRiderOpen} onClose={() => setIsRiderOpen(false)} theme={theme} />
+            </Suspense>
         </>
     );
 }

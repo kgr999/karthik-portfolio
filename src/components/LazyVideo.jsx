@@ -86,6 +86,11 @@ export default function LazyVideo({
             playsInline={playsInline}
             style={style}
             preload="none"
+            controlsList="nodownload"
+            disablePictureInPicture
+            disableRemotePlayback
+            onContextMenu={(e) => e.preventDefault()}
+            onDragStart={(e) => e.preventDefault()}
             {...props}
         />
     );

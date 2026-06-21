@@ -51,7 +51,8 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                         {/* Kuku TV Mockup Layout */}
                         <div className="xp-window-body" style={{ flexDirection: 'column', background: '#050506', position: 'relative', overflow: 'hidden' }}>
                             {/* Background Video — covers entire section */}
-                            <video
+                            <LazyVideo
+                                src="/assets/videos/storyboardingoutput.mp4"
                                 autoPlay
                                 loop
                                 muted
@@ -66,9 +67,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     objectPosition: 'center 20%',
                                     zIndex: 0
                                 }}
-                            >
-                                <source src="/assets/videos/storyboardingoutput.mp4" type="video/mp4" />
-                            </video>
+                            />
                             {/* Gradient Overlay */}
                             <div style={{
                                 position: 'absolute',
