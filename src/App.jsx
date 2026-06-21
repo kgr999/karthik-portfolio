@@ -378,6 +378,15 @@ export default function App() {
     const [isInitialized, setIsInitialized] = useState(false);
     const [swipeState, setSwipeState] = useState('idle'); // 'idle', 'swiping-up', 'swiping-down'
     const [isInitializing, setIsInitializing] = useState(false);
+
+    // Email Copying State & Handler
+    const [emailCopied, setEmailCopied] = useState(false);
+    const copyEmailToClipboard = (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText("hello@karthikgraj.in");
+        setEmailCopied(true);
+        setTimeout(() => setEmailCopied(false), 2000);
+    };
     const [initProgress, setInitProgress] = useState(0);
 
     // Theme Switcher State (Locked to Netflix Crimson Mode)
@@ -542,6 +551,7 @@ export default function App() {
         setClapperDate(formattedDate);
         setClapperTime(formattedTime);
         
+        setIsInitializing(true);
         setShowClapper(true);
         setIsClapping(false);
         setIsImpact(false);
@@ -557,12 +567,12 @@ export default function App() {
             playClapSound();
         }, 700);
 
-        // Step 3: At 1100ms, slide up the tactical cover panel
+        // Step 3: Wait for clapper board action to complete, then slide up red panels at 1000ms
         const swipeUpTimer = setTimeout(() => {
             setSwipeState('swiping-up');
-        }, 1100);
+        }, 1000);
 
-        // Step 4: At 1600ms (covered), execute layout switch and reset clapper overlay
+        // Step 4: At 1500ms (panels fully cover clapper & viewport), execute layout switch and reset clapper overlay
         const initTimer = setTimeout(() => {
             setIsInitialized(true);
             setIsInitializing(false);
@@ -586,15 +596,15 @@ export default function App() {
             if (window.ScrollTrigger) {
                 window.ScrollTrigger.refresh();
             }
-        }, 1300);
+        }, 1500);
 
-        // Step 4: At 1850ms (swiped down off top), reset swipe state to idle
+        // Step 5: At 2050ms (swiped down off top), reset swipe state to idle
         const swipeResetTimer = setTimeout(() => {
             setSwipeState('idle');
             if (window.ScrollTrigger) {
                 window.ScrollTrigger.refresh();
             }
-        }, 1850);
+        }, 2050);
     };
 
     useEffect(() => {
@@ -782,7 +792,7 @@ export default function App() {
 
     return (
         <>
-            <div className={isInitializing ? 'bg-grayscale' : ''} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
+            <div className={`transition-filter-base ${isInitializing ? 'bg-grayscale' : ''}`} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
                 <LightRays
                     raysOrigin="top-center"
                     raysColor={theme === 'kuku' ? '#B20710' : '#E50914'}
@@ -888,7 +898,7 @@ export default function App() {
                 </div>
             </div>
 
-            <main className={isInitializing ? 'bg-grayscale' : ''}>
+            <main className={`transition-filter-base ${isInitializing ? 'bg-grayscale' : ''}`}>
                 {(!isInitialized || isMobile) && (
                     <HeroSection
                         isMobile={isMobile}
@@ -1062,14 +1072,38 @@ export default function App() {
 
                         <div className="container" style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                             <div className="status-badge-container reveal-text">
-                                <div className="status-badge">
+                                <div className="status-badge" style={{ pointerEvents: 'auto' }}>
+                                    <div className="status-badge-shimmer"></div>
                                     <span className="status-dot"></span>
                                     <span className="status-text">Open for Creative Opportunities</span>
                                 </div>
                             </div>
 
                             <div className="contact-center-group">
-                                <a href="mailto:hello@karthikgraj.in" className="contact-mail reveal-text" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>hello@karthikgraj.in</a>
+                                <div className="contact-mail-container" style={{ position: 'relative', zIndex: 5, pointerEvents: 'auto' }}>
+                                    <a 
+                                        href="#" 
+                                        onClick={copyEmailToClipboard} 
+                                        className={`contact-mail reveal-text ${emailCopied ? 'copied' : ''}`}
+                                    >
+                                        hello@karthikgraj.in
+                                        <span className="contact-mail-copy-icon">
+                                            {emailCopied ? (
+                                                <svg className="copy-check-icon animate-bounce" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#00ff80" strokeWidth="2.5">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            ) : (
+                                                <svg className="copy-svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            )}
+                                        </span>
+                                    </a>
+                                    <div className={`contact-mail-tooltip ${emailCopied ? 'show' : ''}`}>
+                                        {emailCopied ? 'Copied to Clipboard!' : (isMobile ? 'Tap to Copy Email' : 'Click to Copy Email')}
+                                    </div>
+                                </div>
 
                                 {/* Interactive Social Media Dock */}
                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

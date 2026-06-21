@@ -72,23 +72,23 @@ export default function FeaturedProjects() {
     ];
     // Bullet points for clipboard copy
     const montraAllBullets = [
-        "Produced the keynote launch video for Montra Electric's Eviator Range, managing the project from storyboard to big-screen delivery.",
-        "Generated high-fidelity AI video assets using Kling and Seedance 2.0, ensuring a realistic and bold presentation of two new vehicle variants.",
-        "Integrated realistic audio narration by creating and pacing AI-generated voiceovers using ElevenLabs.",
-        "Executed professional post-production in DaVinci Resolve, handling color grading, pacing, and seamless visual flow.",
-        "Upscaled and enhanced final video quality using Topaz Video AI to guarantee sharp, high-resolution output for large-venue event screens."
+        "I directed and produced the keynote launch video for Montra Electric's Eviator Range, managing the creative process from initial storyboard to big-screen delivery.",
+        "I generated realistic AI video assets using Kling and Seedance 2.0 to display the two vehicle variants in action.",
+        "I integrated custom voiceovers using ElevenLabs, keeping the narration perfectly paced and natural.",
+        "I polished the visual flow, pacing, and color grading in DaVinci Resolve.",
+        "I upscaled the final render using Topaz Video AI to ensure it looked crisp and sharp on large event screens."
     ];
 
     const lincolnAllBullets = [
-        "Generated AI avatar videos using HeyGen to create realistic, lip-synced characters tailored for specific regional target markets.",
-        "Produced action sequences and b-roll using Kling to handle dynamic video movements and narrative pacing.",
-        "Created AI voiceovers and narration using ElevenLabs, ensuring high-quality audio that perfectly synced with the visual avatars.",
-        "Delivered a 15-minute long-form video under an aggressive 2-day deadline, successfully pivoting a live event into a digital launch."
+        "I generated regional AI avatar presenters with HeyGen, ensuring realistic lip-syncing for local target audiences.",
+        "I crafted dynamic b-roll sequences using Kling to elevate the narrative energy and pacing.",
+        "I synced multi-character ElevenLabs narration to give each avatar a distinct, high-quality voice.",
+        "I delivered the full 15-minute launch campaign in a 48-hour sprint, pivoting a live venue launch into a digital experience."
     ];
 
-    const montraFullText = `Project: Montra Electric Eviator Launch Video Production\nRole: AI Video Producer & Editor\nTools: Kling V3 Pro, Seedance 2.0, ElevenLabs, DaVinci Resolve, Topaz Video AI\n\nKey Contribution: Successfully delivered a premium product reveal video for a major EV brand's keynote event. Handled end-to-end production—from generating raw AI video and syncing voiceovers to editing, color grading, and upscaling assets for high-resolution large-screen projection.\n\nProduction Deliverables:\n${montraAllBullets.map(b => '• ' + b).join('\n')}`;
+    const montraFullText = `Project: Montra Electric Eviator Launch Video Production\nRole: Launch Video\nTools: Kling V3 Pro, Seedance 2.0, ElevenLabs, DaVinci Resolve, Topaz Video AI\n\nKey Contribution: I brought Montra Electric's new EV range to life, producing a premium reveal video for their keynote event. I led the end-to-end creative production—generating AI video scenes, directing localized voiceovers, and upscaling the final edit for a massive large-venue projection.\n\nProduction Deliverables:\n${montraAllBullets.map(b => '• ' + b).join('\n')}`;
 
-    const lincolnFullText = `Project: Lincoln Pharma Pa12 Launch Drama\nRole: AI Video & Audio Specialist\nTools: HeyGen, Kling, ElevenLabs\n\nKey Contribution: Co-created a 15-minute product launch video for an international pharmaceutical campaign under a tight 2-day deadline. Responsible for generating realistic lip-synced avatars (HeyGen), directing video action sequences (Kling), and syncing multi-character voiceovers (ElevenLabs).\n\nProduction Deliverables:\n${lincolnAllBullets.map(b => '• ' + b).join('\n')}`;
+    const lincolnFullText = `Project: Lincoln Pharma Pa12 Launch Drama\nRole: Presentation Drama\nTools: HeyGen, Kling, ElevenLabs\n\nKey Contribution: I stepped up to co-create a 15-minute product launch video for an international pharmaceutical campaign in just two days. Under this tight deadline, I was responsible for generating realistic lip-synced avatars, directing video action scenes, and aligning multi-character voiceovers.\n\nProduction Deliverables:\n${lincolnAllBullets.map(b => '• ' + b).join('\n')}`;
 
     // Helper Render functions for DRY card definitions
     const renderMontraCard = () => (
@@ -135,11 +135,11 @@ export default function FeaturedProjects() {
                     <div className="fp-header-meta">
                         <h3 className="fp-project-title">Montra Electric Eviator Launch</h3>
                     </div>
-                    <span className="fp-role-tag" style={{ '--role-accent': '#D4A574' }}>AI Video Producer & Editor</span>
+                    <span className="fp-role-tag" style={{ '--role-accent': '#D4A574' }}>Launch Video</span>
                 </div>
 
                 <p className="fp-contribution-pitch">
-                    Successfully delivered a premium product reveal video for a major EV brand's keynote event. Managed end-to-end production—from storyboarding to upscaling final assets for large-venue screens.
+                    I had the privilege of bringing Montra Electric's new EV range to life, producing a premium reveal video for their keynote event. I led the creative journey from initial storyboarding to upscaling the final cut for massive venue screens.
                 </p>
 
                 <div className="fp-hud-metadata" style={{ '--hud-accent': '#D4A574' }}>
@@ -295,11 +295,11 @@ export default function FeaturedProjects() {
                     <div className="fp-header-meta">
                         <h3 className="fp-project-title">Lincoln Pharma Pa12 Launch</h3>
                     </div>
-                    <span className="fp-role-tag" style={{ '--role-accent': '#8B9DC3' }}>AI Video & Audio Specialist</span>
+                    <span className="fp-role-tag" style={{ '--role-accent': '#8B9DC3' }}>Presentation Drama</span>
                 </div>
 
                 <p className="fp-contribution-pitch">
-                    Co-created a 15-minute product launch video for an international campaign under an aggressive 2-day deadline. Managed narrative pacing, avatar directorship, and multi-voice alignment.
+                    When a major international launch needed a 15-minute product campaign in just 48 hours, I stepped up to co-create it. I shaped the narrative pacing, directed the AI-generated regional avatars, and aligned multi-character voiceovers to deliver under pressure.
                 </p>
 
                 <div className="fp-hud-metadata" style={{ '--hud-accent': '#8B9DC3' }}>
@@ -538,11 +538,11 @@ export default function FeaturedProjects() {
                     <div className="fp-header-meta">
                         <h3 className="fp-project-title">The "Diesel Drama" Reel</h3>
                     </div>
-                    <span className="fp-role-tag" style={{ '--role-accent': '#C47D7D' }}>AI Video Specialist & Storyteller</span>
+                    <span className="fp-role-tag" style={{ '--role-accent': '#C47D7D' }}>Diesel Drama</span>
                 </div>
 
                 <p className="fp-contribution-pitch">
-                    Designed and produced the viral reel campaign to maximize organic regional engagement. Engineered high-impact visual hooks, dynamic pacing, and custom narrative layouts.
+                    I crafted this high-impact reel campaign to connect with audiences through organic, relatable storytelling. By pacing the visual hooks just right and designing dynamic narrative layouts, we sparked viral engagement that drew over 2.5 million views.
                 </p>
 
                 <div className="fp-hud-metadata" style={{ '--hud-accent': '#C47D7D' }}>
@@ -701,7 +701,7 @@ export default function FeaturedProjects() {
                 <div className="section-header text-center">
                     <h2 className="section-heading reveal-text" style={{ marginBottom: '15px' }}>Commercial Projects</h2>
                     <p className="section-desc" style={{ maxWidth: '600px', margin: '0 auto 30px auto', fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.4)', lineHeight: '1.45' }}>
-                        Produced by AdMitra. All visual assets and final video content are the intellectual property of AdMitra and their respective clients. Shared strictly as a professional role demonstration.
+                        Produced by AdMitra. All assets are IP of AdMitra and respective clients. Shared strictly for professional demonstration.
                     </p>
                 </div>
 
@@ -743,9 +743,9 @@ export default function FeaturedProjects() {
 
                                     <div className="fp-pod-body">
                                         <h3 className="fp-pod-title">Montra Electric Eviator</h3>
-                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#D4A574' }}>AI Video Producer & Editor</span>
+                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#D4A574' }}>Launch Video</span>
                                         <p className="fp-pod-desc">
-                                            Produced the official reveal video for Montra Electric's Eviator range. Managed the entire pipeline—from generating Kling V3 AI scenes to post-production, upscaling, and final large-screen projection.
+                                            Brought Montra Electric's new EV range to life with a high-energy reveal video for their keynote launch. I directed the AI visual generation and managed the final edits, upscaling every frame to look stunning on the stadium-sized screen.
                                         </p>
 
                                         {/* Stats HUD Panel */}
@@ -766,12 +766,6 @@ export default function FeaturedProjects() {
                                     </div>
 
                                     <div className="fp-pod-footer">
-                                        <div className="fp-pod-mini-tools">
-                                            <span className="fp-pod-tool-capsule">Kling V3</span>
-                                            <span className="fp-pod-tool-capsule">Seedance 2.0</span>
-                                            <span className="fp-pod-tool-capsule">DaVinci Resolve</span>
-                                            <span className="fp-pod-tool-capsule">+2 More</span>
-                                        </div>
                                         <span className="fp-pod-action-btn" style={{ '--btn-theme': '#D4A574' }}>
                                             Inspect Case Study <span className="fp-pod-arrow">➔</span>
                                         </span>
@@ -806,9 +800,9 @@ export default function FeaturedProjects() {
 
                                     <div className="fp-pod-body">
                                         <h3 className="fp-pod-title">Lincoln Pharma Pa12</h3>
-                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#8B9DC3' }}>AI Video & Audio Specialist</span>
+                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#8B9DC3' }}>Presentation Drama</span>
                                         <p className="fp-pod-desc">
-                                            Produced a 15-minute regional launch presentation drama within an aggressive 2-day timeline, managing AI-synthesized regional avatars, Kling AI b-roll, and ElevenLabs audio narration.
+                                            When Lincoln Pharma needed a 15-minute campaign video in just 48 hours, I stepped in to make it happen. I directed the AI avatars, staged the virtual scenes, and synced localized voiceovers to deliver a polished product launch drama right on time.
                                         </p>
 
                                         {/* Stats HUD Panel */}
@@ -829,11 +823,6 @@ export default function FeaturedProjects() {
                                     </div>
 
                                     <div className="fp-pod-footer">
-                                        <div className="fp-pod-mini-tools">
-                                            <span className="fp-pod-tool-capsule">HeyGen Avatars</span>
-                                            <span className="fp-pod-tool-capsule">Kling AI</span>
-                                            <span className="fp-pod-tool-capsule">ElevenLabs</span>
-                                        </div>
                                         <span className="fp-pod-action-btn" style={{ '--btn-theme': '#8B9DC3' }}>
                                             Inspect Case Study <span className="fp-pod-arrow">➔</span>
                                         </span>
@@ -868,9 +857,9 @@ export default function FeaturedProjects() {
 
                                     <div className="fp-pod-body">
                                         <h3 className="fp-pod-title">Diesel Drama Reel</h3>
-                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#C47D7D' }}>AI Video Specialist & Storyteller</span>
+                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#C47D7D' }}>Diesel Drama</span>
                                         <p className="fp-pod-desc">
-                                            Designed and produced the viral reel campaign to maximize organic regional engagement. Engineered high-impact visual hooks, dynamic pacing, and custom narrative layouts, driving over 2.5 million views.
+                                            I crafted this social campaign to connect with audiences through quick, relatable visual storytelling. By mixing high-impact hooks with a fast narrative pace, the reel went viral, drawing in over 2.5 million views completely organically.
                                         </p>
 
                                         {/* Stats HUD Panel */}
@@ -891,11 +880,6 @@ export default function FeaturedProjects() {
                                     </div>
 
                                     <div className="fp-pod-footer">
-                                        <div className="fp-pod-mini-tools">
-                                            <span className="fp-pod-tool-capsule">DaVinci Resolve</span>
-                                            <span className="fp-pod-tool-capsule">ElevenLabs</span>
-                                            <span className="fp-pod-tool-capsule">CapCut</span>
-                                        </div>
                                         <span className="fp-pod-action-btn" style={{ '--btn-theme': '#C47D7D' }}>
                                             Inspect Case Study <span className="fp-pod-arrow">➔</span>
                                         </span>

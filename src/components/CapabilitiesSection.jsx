@@ -125,61 +125,11 @@ export default function CapabilitiesSection() {
                                     <span className="ap-governance-badge">Ethical Standards</span>
                                 </div>
                                 <p className="ap-governance-desc">
-                                    In generative AI filmmaking, creative control must walk hand-in-hand with ethical responsibility. I adhere to a rigorous Responsible AI framework, utilizing licensed foundation models, auditing synthetic assets for demographic bias, and ensuring proper creative attribution. By combining advanced video generation with strict ethical guidelines, I protect artistic integrity while producing inclusive, safe, and transparent cinematic content.
+                                    Great AI filmmaking runs on trust and responsibility. I build every project using ethically trained, licensed tools, ensuring respect for copyrights and diverse representation. By combining cutting-edge tech with safe practices, I create transparent and inclusive stories that respect both artists and audiences.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="ap-governance-grid">
-                            <div className="ap-governance-item">
-                                <div className="ap-governance-item-header">
-                                    <span className="ap-governance-lbl">Responsible AI Framework</span>
-                                    <span className="ap-governance-code">[SYS.01]</span>
-                                </div>
-                                <span className="ap-governance-val">
-                                    <span className="ap-governance-dot"></span> Ethically Trained Models
-                                </span>
-                                <div className="ap-governance-bar">
-                                    <div className="ap-governance-bar-fill" style={{ width: '100%' }}></div>
-                                </div>
-                            </div>
-                            <div className="ap-governance-item">
-                                <div className="ap-governance-item-header">
-                                    <span className="ap-governance-lbl">Representation & Diversity</span>
-                                    <span className="ap-governance-code">[SYS.02]</span>
-                                </div>
-                                <span className="ap-governance-val">
-                                    <span className="ap-governance-dot"></span> Demographic Bias Scans
-                                </span>
-                                <div className="ap-governance-bar">
-                                    <div className="ap-governance-bar-fill" style={{ width: '100%' }}></div>
-                                </div>
-                            </div>
-                            <div className="ap-governance-item">
-                                <div className="ap-governance-item-header">
-                                    <span className="ap-governance-lbl">Attribution & Creative IP</span>
-                                    <span className="ap-governance-code">[SYS.03]</span>
-                                </div>
-                                <span className="ap-governance-val">
-                                    <span className="ap-governance-dot"></span> Respectful Synthesis Loops
-                                </span>
-                                <div className="ap-governance-bar">
-                                    <div className="ap-governance-bar-fill" style={{ width: '100%' }}></div>
-                                </div>
-                            </div>
-                            <div className="ap-governance-item">
-                                <div className="ap-governance-item-header">
-                                    <span className="ap-governance-lbl">Cinematic Safety & Ethics</span>
-                                    <span className="ap-governance-code">[SYS.04]</span>
-                                </div>
-                                <span className="ap-governance-val">
-                                    <span className="ap-governance-dot"></span> Content Integrity Audits
-                                </span>
-                                <div className="ap-governance-bar">
-                                    <div className="ap-governance-bar-fill" style={{ width: '100%' }}></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
