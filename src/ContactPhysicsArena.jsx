@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import './ContactPhysicsArena.css';
 
 const BASE_FRAMES = [
-    { text: "AI MICRODRAMA", subtitle: "CREATIVE DIRECTION" },
-    { text: "CINEMATOGRAPHY", subtitle: "GENERATIVE PRODUCTION" },
-    { text: "PROMPT ENGINEERING", subtitle: "AGENTIC WORKFLOWS" },
-    { text: "AI ADVERTISING", subtitle: "COMMERCIAL CAMPAIGNS" },
-    { text: "POST-PRODUCTION", subtitle: "SOUND DESIGN & VFX" },
-    { text: "DIGITAL ART", subtitle: "STORYBOARDING & LORAS" }
+    { image: "assets/images/capdirector.webp" },
+    { image: "assets/images/capcharbuild.webp" },
+    { image: "assets/images/storyboarding.webp" },
+    { image: "assets/images/instaviral.webp" },
+    { image: "assets/images/capaudio.webp" },
+    { image: "assets/images/capvideo.webp" }
 ];
 
 // Duplicate the array to create a long scrollable track
@@ -349,32 +349,26 @@ export default function ContactPhysicsArena() {
                     {/* Frame Contents Track */}
                     <div className="film-frames-track">
                         <div className="film-frames-group">
-                            {FILM_FRAMES.map((frame, index) => (
-                                <div key={`frame-1-${index}`} className="film-frame">
-                                    <div className="film-frame-header">
-                                        <span className="frame-num">SCN {String((index % BASE_FRAMES.length) + 1).padStart(2, '0')}</span>
-                                        <span className="frame-perf">KGR 35MM</span>
-                                    </div>
-                                    <div className="film-frame-content">
-                                        <span className="frame-text">{frame.text}</span>
-                                        <span className="frame-subtitle">{frame.subtitle}</span>
-                                    </div>
-                                </div>
-                            ))}
+                             {FILM_FRAMES.map((frame, index) => (
+                                 <div key={`frame-1-${index}`} className="film-frame">
+                                     <div className="film-frame-image" style={{ backgroundImage: `url(${frame.image})` }}></div>
+                                     <div className="film-frame-header">
+                                         <span className="frame-num">SCN {String((index % BASE_FRAMES.length) + 1).padStart(2, '0')}</span>
+                                         <span className="frame-perf">KGR 35MM</span>
+                                     </div>
+                                 </div>
+                             ))}
                         </div>
                         <div className="film-frames-group">
-                            {FILM_FRAMES.map((frame, index) => (
-                                <div key={`frame-2-${index}`} className="film-frame">
-                                    <div className="film-frame-header">
-                                        <span className="frame-num">SCN {String((index % BASE_FRAMES.length) + 1).padStart(2, '0')}</span>
-                                        <span className="frame-perf">KGR 35MM</span>
-                                    </div>
-                                    <div className="film-frame-content">
-                                        <span className="frame-text">{frame.text}</span>
-                                        <span className="frame-subtitle">{frame.subtitle}</span>
-                                    </div>
-                                </div>
-                            ))}
+                             {FILM_FRAMES.map((frame, index) => (
+                                 <div key={`frame-2-${index}`} className="film-frame">
+                                     <div className="film-frame-image" style={{ backgroundImage: `url(${frame.image})` }}></div>
+                                     <div className="film-frame-header">
+                                         <span className="frame-num">SCN {String((index % BASE_FRAMES.length) + 1).padStart(2, '0')}</span>
+                                         <span className="frame-perf">KGR 35MM</span>
+                                     </div>
+                                 </div>
+                             ))}
                         </div>
                     </div>
 
