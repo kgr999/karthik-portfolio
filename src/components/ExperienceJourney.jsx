@@ -113,15 +113,14 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                             <div className="kuku-tv-hero" style={{ position: 'relative', zIndex: 2 }}>
                                 <div className="kuku-tv-hero-content">
                                     <h2 className="kuku-tv-show-title">AI Video Producer</h2>
-                                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace', marginTop: '-8px' }}>
-                                        Bengaluru · kuku &nbsp;&nbsp; <span className="xp-date-shimmer" style={{ color: '#E50914' }}>June 2026 – Present</span>
+                                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace', marginTop: '-8px', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
+                                        <span>Bengaluru · kuku</span>
+                                        <span className="xp-date-shimmer kuku-date-accent" style={{ marginTop: '2px' }}>June 2026 – Present</span>
                                     </p>
 
                                     {/* Custom Job Tags */}
                                     <div className="kuku-tv-tags">
                                         <span className="kuku-tv-tag">AI Microdrama Production</span>
-                                        <span className="kuku-tv-tag">Script-to-Video Pipelines</span>
-                                        <span className="kuku-tv-tag">Visual Consistency</span>
                                     </div>
 
                                     {/* Description cards */}
