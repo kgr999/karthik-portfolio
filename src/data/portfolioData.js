@@ -15,14 +15,14 @@ export const mockPosters = [
 ];
 
 export const locations = [
-    { city: "Bengaluru", lang: "Kannada" },
-    { city: "Delhi", lang: "Hindi" },
-    { city: "Mumbai", lang: "Marathi" },
-    { city: "Chennai", lang: "Tamil" },
-    { city: "Assam", lang: "Assamese" },
-    { city: "Kerala", lang: "Malayalam" },
-    { city: "Telangana", lang: "Telugu" },
-    { city: "West Bengal", lang: "Bengali" }
+    { city: "Bengaluru", lang: "ಕನ್ನಡ" },
+    { city: "Delhi", lang: "हिंदी" },
+    { city: "Mumbai", lang: "मराठी" },
+    { city: "Chennai", lang: "தமிழ்" },
+    { city: "Assam", lang: "অসমীয়া" },
+    { city: "Kerala", lang: "മലയാളം" },
+    { city: "Telangana", lang: "తెలుగు" },
+    { city: "West Bengal", lang: "বাংলা" }
 ];
 
 export const techStackCategories = [

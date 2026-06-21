@@ -48,16 +48,6 @@ export default function ExperienceJourney({ locIdx, simTime }) {
 
                     {/* ─── WINDOW 0: Kuku TV (Streaming Interface Inspired) ─── */}
                     <div className="xp-interface-window xp-window-kuku" data-theme="kuku">
-                        <div className="xp-window-header">
-                            <div className="xp-window-controls">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div className="xp-window-title">
-                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14V8l4 4-4 4z"></path></svg>
-                                www.kuku.tv
-                            </div>
-                        </div>
-
                         {/* Kuku TV Mockup Layout */}
                         <div className="xp-window-body" style={{ flexDirection: 'column', background: '#050506', position: 'relative', overflow: 'hidden' }}>
                             {/* Background Video — covers entire section */}
@@ -108,7 +98,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 <div className="kuku-tv-nav-right">
                                     {/* Language drop */}
                                     <div className="kuku-tv-lang" style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.08)', padding: '4px 8px', borderRadius: '15px', fontSize: '0.7rem', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }}>
-                                        <span>ಕನ್ನಡ</span>
+                                        <span>हिंदी</span>
                                         <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
 
@@ -136,20 +126,76 @@ export default function ExperienceJourney({ locIdx, simTime }) {
 
                                     {/* Description cards */}
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.45', maxWidth: '520px' }}>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>01</span>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <div style={{
+                                                background: 'rgba(229, 9, 20, 0.15)',
+                                                border: '1px solid rgba(229, 9, 20, 0.3)',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                flexShrink: 0,
+                                                marginTop: '1px',
+                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
+                                            }}>
+                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                            </div>
                                             <p style={{ margin: 0 }}>Own the full script-to-screen pipeline. Read a script, break it into shots and scenes, then use AI tools to generate video content for Kuku's microdrama format.</p>
                                         </div>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>02</span>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <div style={{
+                                                background: 'rgba(229, 9, 20, 0.15)',
+                                                border: '1px solid rgba(229, 9, 20, 0.3)',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                flexShrink: 0,
+                                                marginTop: '1px',
+                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
+                                            }}>
+                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                            </div>
                                             <p style={{ margin: 0 }}>Obsess over continuity. Make sure characters, wardrobe, and settings stay consistent shot-to-shot through careful prompting and reference-driven workflows.</p>
                                         </div>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>03</span>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <div style={{
+                                                background: 'rgba(229, 9, 20, 0.15)',
+                                                border: '1px solid rgba(229, 9, 20, 0.3)',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                flexShrink: 0,
+                                                marginTop: '1px',
+                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
+                                            }}>
+                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                            </div>
                                             <p style={{ margin: 0 }}>Helped build the AI production playbook from day one. Stitching together Higgsfield and ElevenLabs into a repeatable process, with post-production on Premiere Pro.</p>
                                         </div>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <span style={{ color: '#E50914', fontWeight: '800', fontSize: '1.1rem', lineHeight: '1.2', flexShrink: 0, opacity: 0.7 }}>04</span>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
+                                            <div style={{
+                                                background: 'rgba(229, 9, 20, 0.15)',
+                                                border: '1px solid rgba(229, 9, 20, 0.3)',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                flexShrink: 0,
+                                                marginTop: '1px',
+                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
+                                            }}>
+                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                            </div>
                                             <p style={{ margin: 0 }}>Work closely with editors and the creative team to shape the final output, iterating fast in a 0→1 startup environment building for Indian audiences at scale.</p>
                                         </div>
                                     </div>
@@ -160,15 +206,6 @@ export default function ExperienceJourney({ locIdx, simTime }) {
 
                     {/* ─── WINDOW 1: AdMitra (Fal.ai Inspired) ─── */}
                     <div className="xp-interface-window xp-window-fal" data-theme="ai">
-                        <div className="xp-window-header">
-                            <div className="xp-window-controls">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div className="xp-window-title">
-                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                                www.admitra.in
-                            </div>
-                        </div>
                         <div className="xp-window-body">
                             {/* AdMitra Workspace Main Dashboard */}
                             <div className="xp-window-main">
@@ -477,119 +514,13 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         </div>
                                     </div>
                                 </div>
-                                {/* Key Campaign Clients block relocated after viewport */}
-                                <div className="xp-client-brands xp-clients-mobile" style={{ width: '100%', maxWidth: '340px', marginTop: '0px', paddingTop: '15px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                                    <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
-                                        KEY CAMPAIGN CLIENTS
-                                    </p>
-                                    <div className="xp-brands-logos">
-                                        <div className="xp-brand-logo-btn xp-brand-montra">
-                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                <img
-                                                    src="/assets/images/montra_logo.png"
-                                                    onError={(e) => {
-                                                        if (!e.target.dataset.triedFallback) {
-                                                            e.target.dataset.triedFallback = 'true';
-                                                            e.target.src = "https://www.google.com/s2/favicons?domain=montraelectric.com&sz=128";
-                                                        } else {
-                                                            e.target.style.display = 'none';
-                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                        }
-                                                    }}
-                                                    className="xp-brand-logo-btn-icon"
-                                                    alt="Montra Electric"
-                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                />
-                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FF334B', zIndex: 1 }}>
-                                                    M
-                                                </div>
-                                            </div>
-                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Montra Electric</span>
-                                        </div>
-                                        <div className="xp-brand-logo-btn xp-brand-ampere">
-                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                <img
-                                                    src="/assets/images/ampere_logo.png"
-                                                    onError={(e) => {
-                                                        if (!e.target.dataset.triedFallback) {
-                                                            e.target.dataset.triedFallback = 'true';
-                                                            e.target.src = "https://www.google.com/s2/favicons?domain=amperevehicles.com&sz=128";
-                                                        } else {
-                                                            e.target.style.display = 'none';
-                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                        }
-                                                    }}
-                                                    className="xp-brand-logo-btn-icon"
-                                                    alt="Ampere"
-                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                />
-                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#00FFF0', zIndex: 1 }}>
-                                                    A
-                                                </div>
-                                            </div>
-                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Ampere</span>
-                                        </div>
-                                        <div className="xp-brand-logo-btn xp-brand-lincoln-pharma">
-                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                <img
-                                                    src="/assets/images/lincoln_logo.png"
-                                                    onError={(e) => {
-                                                        if (!e.target.dataset.triedFallback) {
-                                                            e.target.dataset.triedFallback = 'true';
-                                                            e.target.src = "https://www.google.com/s2/favicons?domain=lincolnpharma.com&sz=128";
-                                                        } else {
-                                                            e.target.style.display = 'none';
-                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                        }
-                                                    }}
-                                                    className="xp-brand-logo-btn-icon"
-                                                    alt="Lincoln Pharma"
-                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                />
-                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#4ade80', zIndex: 1 }}>
-                                                    L
-                                                </div>
-                                            </div>
-                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Lincoln Pharma</span>
-                                        </div>
-                                        <div className="xp-brand-logo-btn xp-brand-prismara">
-                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
-                                                <img
-                                                    src="https://media.licdn.com/dms/image/v2/D560BAQERAGOWIeST7A/company-logo_200_200/B56ZyZEB9vGwAI-/0/1772094497178/prismarajewels_logo?e=2147483647&v=beta&t=mLLSJn1qN6PzFsOhFcQ9XNZumI49NYMv_sVxLhOOZ0A"
-                                                    onError={(e) => {
-                                                        if (!e.target.dataset.triedFallback) {
-                                                            e.target.dataset.triedFallback = 'true';
-                                                            e.target.src = "https://www.google.com/s2/favicons?domain=prismara.com&sz=128";
-                                                        } else {
-                                                            e.target.style.display = 'none';
-                                                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                                        }
-                                                    }}
-                                                    className="xp-brand-logo-btn-icon"
-                                                    alt="Prismara"
-                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 2 }}
-                                                />
-                                                <div className="xp-logo-fallback-text" style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: '#FFB6C1', zIndex: 1 }}>
-                                                    P
-                                                </div>
-                                            </div>
-                                            <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Prismara</span>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
 
                     {/* ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── */}
                     <div className="xp-interface-window xp-window-davinci" data-theme="video">
-                        <div className="xp-window-header">
-                            <div className="xp-window-controls"><span></span><span></span><span></span></div>
-                            <div className="xp-window-title">
-                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                                Freelance_Edits.drp
-                            </div>
-                        </div>
                         <div className="xp-window-body">
                             <div className="xp-window-top">
                                 <div className="xp-media-pool">
@@ -637,9 +568,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     </div>
 
                                     {/* Platform Nav Buttons */}
-                                    <div className="xp-pool-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '6px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '16px', alignItems: 'center' }}>
-                                        <p style={{ fontSize: '0.62rem', color: 'rgba(255, 255, 255, 0.35)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: '600', textAlign: 'center' }}>Platform Deliverables</p>
-
+                                    <div className="xp-pool-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '6px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '16px', alignItems: 'stretch' }}>
                                         <div className="xp-platform-btn xp-btn-youtube">
                                             <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
                                             <span>YouTube Videos</span>
@@ -731,23 +660,6 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         </div>
                                     </div>
 
-                                    {/* Skill 3 */}
-                                    <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,143,61,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
-                                        <div className="xp-slider-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                                <span style={{ width: '6px', height: '6px', borderRadius: '1px', background: '#FF8F3D', boxShadow: '0 0 6px #FF8F3D', display: 'inline-block' }}></span>
-                                                <span style={{ fontSize: '0.66rem', color: '#FFF', fontWeight: '600', letterSpacing: '0.2px' }}>Motion Graphics (Basic)</span>
-                                            </div>
-                                            <div className="xp-slider-reset" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF8F3D'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
-                                                <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                                            </div>
-                                        </div>
-                                        <div className="xp-slider" style={{ height: '4px', background: 'rgba(0,0,0,0.4)', borderRadius: '2px', position: 'relative', overflow: 'visible', cursor: 'pointer', margin: '4px 0' }}>
-                                            <div className="xp-slider-fill" style={{ width: '55%', height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #FFB464 0%, #FF8F3D 100%)', boxShadow: '0 0 8px rgba(255, 143, 61, 0.2)', transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                                                <div className="xp-slider-thumb" style={{ position: 'absolute', right: '-4px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: '#FFF', border: '1.5px solid #FF8F3D', boxShadow: '0 0 4px rgba(255, 143, 61, 0.8)', transition: 'transform 0.2s' }}></div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     {/* Skill 4 */}
                                     <div className="xp-slider-group" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '6px', padding: '8px', gap: '6px', display: 'flex', flexDirection: 'column', transition: 'all 0.25s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,143,61,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.015)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.03)'; }}>
@@ -1002,15 +914,6 @@ export default function ExperienceJourney({ locIdx, simTime }) {
 
                     {/* ─── WINDOW 3: Snap AR (Lens Studio Inspired) ─── */}
                     <div className="xp-interface-window xp-window-lens" data-theme="ar">
-                        <div className="xp-window-header">
-                            <div className="xp-window-controls">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div className="xp-window-title">
-                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19c0-2.21 2.239-4 5-4s5 1.79 5 4v1.662"></path></svg>
-                                Snap_AR_Creator.lsproj
-                            </div>
-                        </div>
                         <div className="xp-window-body">
                             <div className="xp-window-sidebar xp-hierarchy">
                                 <div className="xp-snap-brand" style={{ marginBottom: '16px' }}>
