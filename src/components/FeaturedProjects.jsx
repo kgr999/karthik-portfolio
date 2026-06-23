@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 export default function FeaturedProjects() {
     // Console tab state (null at start, 'montra', or 'lincoln')
     const [activeProject, setActiveProject] = useState(null);
+    const [flippedCard, setFlippedCard] = useState(null);
 
     // Responsive view state
     const [isMobile, setIsMobile] = useState(false);
@@ -138,9 +139,11 @@ export default function FeaturedProjects() {
                     <span className="fp-role-tag" style={{ '--role-accent': '#D4A574' }}>Launch Video</span>
                 </div>
 
-                <p className="fp-contribution-pitch">
-                    I had the privilege of bringing Montra Electric's new EV range to life, producing a premium reveal video for their keynote event. I led the creative journey from initial storyboarding to upscaling the final cut for massive venue screens.
-                </p>
+                {!isMobile && (
+                    <p className="fp-contribution-pitch">
+                        I had the privilege of bringing Montra Electric's new EV range to life, producing a premium reveal video for their keynote event. I led the creative journey from initial storyboarding to upscaling the final cut for massive venue screens.
+                    </p>
+                )}
 
                 <div className="fp-hud-metadata" style={{ '--hud-accent': '#D4A574' }}>
                     <div className="fp-hud-item">
@@ -228,16 +231,7 @@ export default function FeaturedProjects() {
                     )}
                 </div>
 
-                <div className="fp-tech-row">
-                    <span className="fp-tech-label">TOOLS UTILIZED:</span>
-                    <div className="fp-tools-grid">
-                        {montraTools.map((tool, i) => (
-                            <span key={i} className="fp-tool-capsule-v2" style={{ '--tool-glow': tool.glow }}>
-                                {tool.name}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+
 
                 <div className="fp-action-row">
                     <button 
@@ -298,9 +292,11 @@ export default function FeaturedProjects() {
                     <span className="fp-role-tag" style={{ '--role-accent': '#8B9DC3' }}>Presentation Drama</span>
                 </div>
 
-                <p className="fp-contribution-pitch">
-                    When a major international launch needed a 15-minute product campaign in just 48 hours, I stepped up to co-create it. I shaped the narrative pacing, directed the AI-generated regional avatars, and aligned multi-character voiceovers to deliver under pressure.
-                </p>
+                {!isMobile && (
+                    <p className="fp-contribution-pitch">
+                        When a major international launch needed a 15-minute product campaign in just 48 hours, I stepped up to co-create it. I shaped the narrative pacing, directed the AI-generated regional avatars, and aligned multi-character voiceovers to deliver under pressure.
+                    </p>
+                )}
 
                 <div className="fp-hud-metadata" style={{ '--hud-accent': '#8B9DC3' }}>
                     <div className="fp-hud-item">
@@ -384,16 +380,7 @@ export default function FeaturedProjects() {
                     )}
                 </div>
 
-                <div className="fp-tech-row">
-                    <span className="fp-tech-label">TOOLS UTILIZED:</span>
-                    <div className="fp-tools-grid">
-                        {lincolnTools.map((tool, i) => (
-                            <span key={i} className="fp-tool-capsule-v2" style={{ '--tool-glow': tool.glow }}>
-                                {tool.name}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+
 
                 <div className="fp-action-row">
                     <button 
@@ -541,9 +528,11 @@ export default function FeaturedProjects() {
                     <span className="fp-role-tag" style={{ '--role-accent': '#C47D7D' }}>Diesel Drama</span>
                 </div>
 
-                <p className="fp-contribution-pitch">
-                    I crafted this high-impact reel campaign to connect with audiences through organic, relatable storytelling. By pacing the visual hooks just right and designing dynamic narrative layouts, we sparked viral engagement that drew over 2.5 million views.
-                </p>
+                {!isMobile && (
+                    <p className="fp-contribution-pitch">
+                        I crafted this high-impact reel campaign to connect with audiences through organic, relatable storytelling. By pacing the visual hooks just right and designing dynamic narrative layouts, we sparked viral engagement that drew over 2.5 million views.
+                    </p>
+                )}
 
                 <div className="fp-hud-metadata" style={{ '--hud-accent': '#C47D7D' }}>
                     <div className="fp-hud-item">
@@ -659,16 +648,7 @@ export default function FeaturedProjects() {
                     )}
                 </div>
 
-                <div className="fp-tech-row">
-                    <span className="fp-tech-label">TOOLS UTILIZED:</span>
-                    <div className="fp-tools-grid">
-                        {dieselTools.map((tool, i) => (
-                            <span key={i} className="fp-tool-capsule-v2" style={{ '--tool-glow': tool.glow }}>
-                                {tool.name}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+
 
                 <div className="fp-action-row">
                     <button 
@@ -716,155 +696,158 @@ export default function FeaturedProjects() {
                     /* Interactive Console Viewport for Desktop viewports */
                     activeProject === null ? (
                         <div className="fp-launcher-deck animated-fade-in">
-                            {/* Launcher Pod 1: Montra Electric (Cyan Theme) */}
-                            <div 
-                                className="fp-launcher-pod premium-pod"
-                                style={{ 
-                                    '--pod-theme': '#D4A574', 
-                                    '--pod-theme-glow': 'rgba(212, 165, 116, 0.15)'
-                                }}
-                                onClick={() => setActiveProject('montra')}
-                            >
-                                {/* Visual Thumbnail Background & Overlay */}
-                                <div 
-                                    className="fp-pod-thumbnail-bg" 
-                                    style={{ backgroundImage: 'url(/assets/images/eviatorlaunchphoto.webp)' }}
-                                ></div>
-                                <div className="fp-pod-gradient-overlay"></div>
-
-                                {/* Card Content Wrapper */}
-                                <div className="fp-pod-content">
-
-                                    <div className="fp-pod-body">
-                                        <h3 className="fp-pod-title">Montra Electric Eviator</h3>
-                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#D4A574' }}>Launch Video</span>
-                                        <p className="fp-pod-desc">
-                                            Brought Montra Electric's new EV range to life with a high-energy reveal video for their keynote launch. I directed the AI visual generation and managed the final edits, upscaling every frame to look stunning on the stadium-sized screen.
-                                        </p>
-
-                                        {/* Stats HUD Panel */}
-                                        <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(212, 165, 116, 0.15)' }}>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Project Scope</span>
-                                                <span className="fp-pod-hud-val">Premium EV Reveal</span>
+                            {/* Launcher Pod 1: Montra Electric */}
+                            <div className={`fp-flip-card${flippedCard === 'montra' ? ' flipped' : ''}`}>
+                                <div className="fp-flip-card-inner">
+                                    {/* FRONT */}
+                                    <div className="fp-flip-card-front fp-launcher-pod premium-pod" style={{ '--pod-theme': '#D4A574', '--pod-theme-glow': 'rgba(212, 165, 116, 0.15)' }}>
+                                        <div className="fp-pod-thumbnail-bg" style={{ backgroundImage: 'url(/assets/images/eviatorlaunchphoto.webp)' }}></div>
+                                        <div className="fp-pod-gradient-overlay"></div>
+                                        <div className="fp-pod-content">
+                                            <div className="fp-pod-body">
+                                                <h3 className="fp-pod-title">Montra Electric Eviator</h3>
+                                                <span className="fp-pod-role-pill" style={{ '--role-theme': '#D4A574' }}>Launch Video</span>
+                                                <p className="fp-pod-desc">
+                                                    Brought Montra Electric's new EV range to life with a high-energy reveal video for their keynote launch. I directed the AI visual generation and managed the final edits, upscaling every frame to look stunning on the stadium-sized screen.
+                                                </p>
+                                                <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(212, 165, 116, 0.15)' }}>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Project Scope</span>
+                                                        <span className="fp-pod-hud-val">Premium EV Reveal</span>
+                                                    </div>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Deliverable</span>
+                                                        <span className="fp-pod-hud-val">Keynote Event Screen</span>
+                                                    </div>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Narration</span>
+                                                        <span className="fp-pod-hud-val">7 Regional Languages</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Deliverable</span>
-                                                <span className="fp-pod-hud-val">Keynote Event Screen</span>
-                                            </div>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Narration</span>
-                                                <span className="fp-pod-hud-val">7 Regional Languages</span>
+                                            <div className="fp-pod-footer">
+                                                <span className="fp-pod-action-btn" style={{ '--btn-theme': '#D4A574' }} onClick={(e) => { e.stopPropagation(); setFlippedCard('montra'); }}>
+                                                    Inspect Case Study <span className="fp-pod-arrow">➔</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="fp-pod-footer">
-                                        <span className="fp-pod-action-btn" style={{ '--btn-theme': '#D4A574' }}>
-                                            Inspect Case Study <span className="fp-pod-arrow">➔</span>
-                                        </span>
+                                    {/* BACK */}
+                                    <div className="fp-flip-card-back" style={{ '--pod-theme': '#D4A574' }}>
+                                        <div className="fp-pod-thumbnail-bg" style={{ backgroundImage: 'url(/assets/images/eviatorlaunchphoto.webp)' }}></div>
+                                        <div className="fp-flip-back-overlay"></div>
+                                        <div className="fp-flip-back-content">
+                                            <h4 className="fp-flip-back-title">Montra Electric Eviator</h4>
+                                            <div className="fp-flip-play-ring" onClick={() => window.open('https://drive.google.com/file/d/1VA9r9yJDKCBJL8w8rgXPP3wsYS2S_VYO/view?usp=sharing', '_blank')}>
+                                                <span className="fp-flip-play-icon">▶</span>
+                                            </div>
+                                            <span className="fp-flip-play-label">Watch in New Tab ↗</span>
+                                            <span className="fp-flip-back-btn" onClick={(e) => { e.stopPropagation(); setFlippedCard(null); }}>✕ Back</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Launcher Pod 2: Lincoln Pharma (Light Green Theme) */}
-                            <div 
-                                className="fp-launcher-pod premium-pod"
-                                style={{ 
-                                    '--pod-theme': '#8B9DC3', 
-                                    '--pod-theme-glow': 'rgba(139, 157, 195, 0.15)'
-                                }}
-                                onClick={() => setActiveProject('lincoln')}
-                            >
-                                {/* Visual Thumbnail Background & Overlay */}
-                                <div 
-                                    className="fp-pod-thumbnail-bg" 
-                                    style={{ backgroundImage: 'url(/assets/images/lincolnpharmaphoto.webp)' }}
-                                ></div>
-                                <div className="fp-pod-gradient-overlay"></div>
-
-                                {/* Card Content Wrapper */}
-                                <div className="fp-pod-content">
-
-                                    <div className="fp-pod-body">
-                                        <h3 className="fp-pod-title">Lincoln Pharma Pa12</h3>
-                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#8B9DC3' }}>Presentation Drama</span>
-                                        <p className="fp-pod-desc">
-                                            When Lincoln Pharma needed a 15-minute campaign video in just 48 hours, I stepped in to make it happen. I directed the AI avatars, staged the virtual scenes, and synced localized voiceovers to deliver a polished product launch drama right on time.
-                                        </p>
-
-                                        {/* Stats HUD Panel */}
-                                        <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(139, 157, 195, 0.15)' }}>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Project Scope</span>
-                                                <span className="fp-pod-hud-val">Pharma Campaign</span>
+                            {/* Launcher Pod 2: Lincoln Pharma */}
+                            <div className={`fp-flip-card${flippedCard === 'lincoln' ? ' flipped' : ''}`}>
+                                <div className="fp-flip-card-inner">
+                                    {/* FRONT */}
+                                    <div className="fp-flip-card-front fp-launcher-pod premium-pod" style={{ '--pod-theme': '#8B9DC3', '--pod-theme-glow': 'rgba(139, 157, 195, 0.15)' }}>
+                                        <div className="fp-pod-thumbnail-bg" style={{ backgroundImage: 'url(/assets/images/lincolnpharmaphoto.webp)' }}></div>
+                                        <div className="fp-pod-gradient-overlay"></div>
+                                        <div className="fp-pod-content">
+                                            <div className="fp-pod-body">
+                                                <h3 className="fp-pod-title">Lincoln Pharma Pa12</h3>
+                                                <span className="fp-pod-role-pill" style={{ '--role-theme': '#8B9DC3' }}>Presentation Drama</span>
+                                                <p className="fp-pod-desc">
+                                                    When Lincoln Pharma needed a 15-minute campaign video in just 48 hours, I stepped in to make it happen. I directed the AI avatars, staged the virtual scenes, and synced localized voiceovers to deliver a polished product launch drama right on time.
+                                                </p>
+                                                <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(139, 157, 195, 0.15)' }}>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Project Scope</span>
+                                                        <span className="fp-pod-hud-val">Pharma Campaign</span>
+                                                    </div>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Timeline</span>
+                                                        <span className="fp-pod-hud-val">48-Hour Sprint</span>
+                                                    </div>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Deliverable</span>
+                                                        <span className="fp-pod-hud-val">15-Min Launch Video</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Timeline</span>
-                                                <span className="fp-pod-hud-val">48-Hour Sprint</span>
-                                            </div>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Deliverable</span>
-                                                <span className="fp-pod-hud-val">15-Min Launch Video</span>
+                                            <div className="fp-pod-footer">
+                                                <span className="fp-pod-action-btn" style={{ '--btn-theme': '#8B9DC3' }} onClick={(e) => { e.stopPropagation(); setFlippedCard('lincoln'); }}>
+                                                    Inspect Case Study <span className="fp-pod-arrow">➔</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="fp-pod-footer">
-                                        <span className="fp-pod-action-btn" style={{ '--btn-theme': '#8B9DC3' }}>
-                                            Inspect Case Study <span className="fp-pod-arrow">➔</span>
-                                        </span>
+                                    {/* BACK */}
+                                    <div className="fp-flip-card-back" style={{ '--pod-theme': '#8B9DC3' }}>
+                                        <div className="fp-pod-thumbnail-bg" style={{ backgroundImage: 'url(/assets/images/lincolnpharmaphoto.webp)' }}></div>
+                                        <div className="fp-flip-back-overlay"></div>
+                                        <div className="fp-flip-back-content">
+                                            <h4 className="fp-flip-back-title">Lincoln Pharma Pa12</h4>
+                                            <div className="fp-flip-play-ring" onClick={() => window.open('https://drive.google.com/file/d/1hdDxSZyTSEW6ctVFJLjQhcH185_DUWbl/view?usp=sharing', '_blank')}>
+                                                <span className="fp-flip-play-icon">▶</span>
+                                            </div>
+                                            <span className="fp-flip-play-label">Watch in New Tab ↗</span>
+                                            <span className="fp-flip-back-btn" onClick={(e) => { e.stopPropagation(); setFlippedCard(null); }}>✕ Back</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Launcher Pod 3: Diesel Drama (Pink/Magenta Theme) */}
-                            <div 
-                                className="fp-launcher-pod premium-pod"
-                                style={{ 
-                                    '--pod-theme': '#C47D7D', 
-                                    '--pod-theme-glow': 'rgba(196, 125, 125, 0.15)'
-                                }}
-                                onClick={() => setActiveProject('diesel')}
-                            >
-                                {/* Visual Thumbnail Background & Overlay */}
-                                <div 
-                                    className="fp-pod-thumbnail-bg" 
-                                    style={{ backgroundImage: 'url(/assets/images/instaviral.webp)' }}
-                                ></div>
-                                <div className="fp-pod-gradient-overlay"></div>
-
-                                {/* Card Content Wrapper */}
-                                <div className="fp-pod-content">
-
-                                    <div className="fp-pod-body">
-                                        <h3 className="fp-pod-title">Montra e-SCV</h3>
-                                        <span className="fp-pod-role-pill" style={{ '--role-theme': '#C47D7D' }}>Diesel Drama</span>
-                                        <p className="fp-pod-desc">
-                                            I crafted this social campaign to connect with audiences through quick, relatable visual storytelling. By mixing high-impact hooks with a fast narrative pace, the reel went viral, drawing in over 2.5 million views completely organically.
-                                        </p>
-
-                                        {/* Stats HUD Panel */}
-                                        <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(196, 125, 125, 0.15)' }}>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Views</span>
-                                                <span className="fp-pod-hud-val">2.5M+ Views</span>
+                            {/* Launcher Pod 3: Montra e-SCV */}
+                            <div className={`fp-flip-card${flippedCard === 'diesel' ? ' flipped' : ''}`}>
+                                <div className="fp-flip-card-inner">
+                                    {/* FRONT */}
+                                    <div className="fp-flip-card-front fp-launcher-pod premium-pod" style={{ '--pod-theme': '#C47D7D', '--pod-theme-glow': 'rgba(196, 125, 125, 0.15)' }}>
+                                        <div className="fp-pod-thumbnail-bg" style={{ backgroundImage: 'url(/assets/images/instaviral.webp)' }}></div>
+                                        <div className="fp-pod-gradient-overlay"></div>
+                                        <div className="fp-pod-content">
+                                            <div className="fp-pod-body">
+                                                <h3 className="fp-pod-title">Montra e-SCV</h3>
+                                                <span className="fp-pod-role-pill" style={{ '--role-theme': '#C47D7D' }}>Diesel Drama</span>
+                                                <p className="fp-pod-desc">
+                                                    I crafted this social campaign to connect with audiences through quick, relatable visual storytelling. By mixing high-impact hooks with a fast narrative pace, the reel went viral, drawing in over 2.5 million views completely organically.
+                                                </p>
+                                                <div className="fp-pod-stats-hud" style={{ '--hud-border': 'rgba(196, 125, 125, 0.15)' }}>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Views</span>
+                                                        <span className="fp-pod-hud-val">2.5M+ Views</span>
+                                                    </div>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Likes</span>
+                                                        <span className="fp-pod-hud-val">36k+ Likes</span>
+                                                    </div>
+                                                    <div className="fp-pod-hud-col">
+                                                        <span className="fp-pod-hud-lbl">Format</span>
+                                                        <span className="fp-pod-hud-val">9:16 Vertical</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Likes</span>
-                                                <span className="fp-pod-hud-val">36k+ Likes</span>
-                                            </div>
-                                            <div className="fp-pod-hud-col">
-                                                <span className="fp-pod-hud-lbl">Format</span>
-                                                <span className="fp-pod-hud-val">9:16 Vertical</span>
+                                            <div className="fp-pod-footer">
+                                                <span className="fp-pod-action-btn" style={{ '--btn-theme': '#C47D7D' }} onClick={(e) => { e.stopPropagation(); setFlippedCard('diesel'); }}>
+                                                    Inspect Case Study <span className="fp-pod-arrow">➔</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="fp-pod-footer">
-                                        <span className="fp-pod-action-btn" style={{ '--btn-theme': '#C47D7D' }}>
-                                            Inspect Case Study <span className="fp-pod-arrow">➔</span>
-                                        </span>
+                                    {/* BACK */}
+                                    <div className="fp-flip-card-back" style={{ '--pod-theme': '#C47D7D' }}>
+                                        <div className="fp-pod-thumbnail-bg" style={{ backgroundImage: 'url(/assets/images/instaviral.webp)' }}></div>
+                                        <div className="fp-flip-back-overlay"></div>
+                                        <div className="fp-flip-back-content">
+                                            <h4 className="fp-flip-back-title">Montra e-SCV</h4>
+                                            <div className="fp-flip-play-ring" onClick={() => window.open('https://www.instagram.com/reel/DYPaSyiKxhg/?igsh=MTZyaXQ4ajRpcW93Zg==', '_blank')}>
+                                                <span className="fp-flip-play-icon">▶</span>
+                                            </div>
+                                            <span className="fp-flip-play-label">Watch on Instagram ↗</span>
+                                            <span className="fp-flip-back-btn" onClick={(e) => { e.stopPropagation(); setFlippedCard(null); }}>✕ Back</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

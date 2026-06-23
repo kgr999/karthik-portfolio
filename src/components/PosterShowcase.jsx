@@ -25,15 +25,42 @@ export default function PosterShowcase() {
                         }}>
                             {/* Parallel Left: Campaign Details */}
                             <div className="visual-info" style={{ flex: '1.2', minWidth: '320px' }}>
-                                <span className="visual-tag" style={{ fontSize: '0.85rem', color: 'var(--accent)', letterSpacing: '2px', textTransform: 'uppercase' }}>
-                                    CAMPAIGN 01 / Concept Product - Nandini Masala Majjige
+                                <span style={{ 
+                                    display: 'inline-block',
+                                    fontSize: '0.72rem', 
+                                    fontWeight: '700',
+                                    letterSpacing: '3px', 
+                                    textTransform: 'uppercase',
+                                    color: '#2E8B57',
+                                    fontFamily: 'monospace',
+                                    marginBottom: '8px',
+                                    textShadow: '0 0 12px rgba(46, 139, 87, 0.25)'
+                                }}>
+                                    Nandini Masala Majjige
                                 </span>
-                                <h3 className="visual-title" style={{ fontSize: '2.25rem', fontWeight: '800', margin: '12px 0', color: '#FFF' }}>
-                                    BEAT THE HEAT
+                                <h3 className="visual-title" style={{ 
+                                    fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', 
+                                    fontWeight: '900', 
+                                    margin: '0 0 16px 0', 
+                                    color: '#FFF',
+                                    letterSpacing: '-2px',
+                                    lineHeight: '0.95'
+                                }}>
+                                    BEAT THE<br />HEAT
                                 </h3>
-                                <p className="visual-description" style={{ fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text-muted)' }}>
-                                    A localized commercial concept modernizing a regional favorite: Spiced Buttermilk. The visuals feature Bengaluru's transit and civic workers sharing moments of genuine relief in the peak of a Bengaluru summer.
+                                <p className="visual-description" style={{ fontSize: '0.95rem', lineHeight: '1.65', color: 'rgba(255, 255, 255, 0.5)', marginBottom: '18px' }}>
+                                    I wanted to give Karnataka's favorite spiced buttermilk its own cinematic moment. Picture this: Bengaluru in peak summer, and the city's bus drivers, traffic cops, and construction workers all finding a second of cool relief with one cold sip. I designed the can, built out the campaign visuals, and brought the whole concept to life from scratch.
                                 </p>
+                                <span style={{
+                                    fontSize: '0.7rem',
+                                    fontFamily: 'monospace',
+                                    color: 'rgba(255, 255, 255, 0.3)',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                    <span style={{ color: '#D4C478' }}>▸</span>{' '}
+                                    Image Model:{' '}
+                                    <span style={{ color: '#D4C478', fontWeight: '700' }}>NanoBanana 2</span>
+                                </span>
                             </div>
 
                             {/* Parallel Right: n2.png (smaller in size) */}

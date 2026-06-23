@@ -8,6 +8,21 @@ export default function ExperienceJourney({ locIdx, simTime }) {
     const [scrubberKey, setScrubberKey] = useState(0);
     const [dvrTime, setDvrTime] = useState({ hours: 1, minutes: 0, seconds: 39, frames: 2 });
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        const handleMatch = (e) => setIsMobile(e.matches);
+        setIsMobile(mediaQuery.matches);
+        if (mediaQuery.addEventListener) {
+            mediaQuery.addEventListener('change', handleMatch);
+            return () => mediaQuery.removeEventListener('change', handleMatch);
+        } else {
+            mediaQuery.addListener(handleMatch);
+            return () => mediaQuery.removeListener(handleMatch);
+        }
+    }, []);
+
     useEffect(() => {
         if (!dvrPlaying) return;
 
@@ -566,20 +581,27 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     </div>
 
                                     {/* Platform Nav Buttons */}
-                                    <div className="xp-pool-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '6px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '16px', alignItems: 'stretch' }}>
-                                        <div className="xp-platform-btn xp-btn-youtube">
+                                    <div className="xp-pool-buttons" style={{
+                                        display: 'flex',
+                                        flexDirection: isMobile ? 'row' : 'column',
+                                        gap: '6px',
+                                        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                                        paddingTop: '16px',
+                                        alignItems: 'stretch'
+                                    }}>
+                                        <div className="xp-platform-btn xp-btn-youtube" style={isMobile ? { flex: 1, width: 'auto', padding: '5px 4px', fontSize: '0.58rem' } : {}}>
                                             <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
-                                            <span>YouTube Videos</span>
+                                            <span>{isMobile ? 'YouTube' : 'YouTube Videos'}</span>
                                         </div>
 
-                                        <div className="xp-platform-btn xp-btn-instagram">
-                                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="xp-btn-icon"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                            <span>Instagram Reels</span>
+                                        <div className="xp-platform-btn xp-btn-instagram" style={isMobile ? { flex: 1, width: 'auto', padding: '5px 4px', fontSize: '0.58rem' } : {}}>
+                                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="xp-btn-icon"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                            <span>{isMobile ? 'Reels' : 'Instagram Reels'}</span>
                                         </div>
 
-                                        <div className="xp-platform-btn xp-btn-shorts">
+                                        <div className="xp-platform-btn xp-btn-shorts" style={isMobile ? { flex: 1, width: 'auto', padding: '5px 4px', fontSize: '0.58rem' } : {}}>
                                             <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" className="xp-btn-icon"><path d="M17.771 9.771l-1.771-1.011 1.771-1.011c1.474-.842 1.979-2.726 1.137-4.2-.842-1.474-2.726-1.979-4.2-1.137l-9.143 5.223C4.246 8.358 3.5 9.777 3.5 11.314c0 1.537.746 2.956 2.065 3.679l1.771 1.011-1.771 1.011c-1.474.842-1.979 2.726-1.137 4.2.842 1.474 2.726 1.979 4.2 1.137l9.143-5.223c1.319-.723 2.065-2.142 2.065-3.679.001-1.537-.745-2.956-2.064-3.679zM9.5 15.5v-7l6 3.5-6 3.5z" /></svg>
-                                            <span>YouTube Shorts</span>
+                                            <span>{isMobile ? 'Shorts' : 'YouTube Shorts'}</span>
                                         </div>
                                     </div>
                                 </div>

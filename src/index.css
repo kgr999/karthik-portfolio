@@ -8921,29 +8921,7 @@ nav.nav-standby .menu-toggle {
     }
 }
 
-/* 4. Side-by-Side Let's Connect Social Dock Horizontally */
-@media (max-width: 768px) {
-    .social-dock {
-        flex-direction: row !important;
-        border-radius: 40px !important;
-        padding: 6px 12px !important;
-        width: auto !important;
-        max-width: none !important;
-        gap: 12px !important;
-    }
 
-    .social-dock-btn {
-        width: auto !important;
-        padding: 8px 16px !important;
-    }
-
-    .dock-divider {
-        width: 1px !important;
-        height: 20px !important;
-        background: rgba(255, 255, 255, 0.08) !important;
-        margin: 0 4px !important;
-    }
-}
 
 /* Conflicting mobile overrides for Aero removed to ensure styling integrity */
 
@@ -14596,4 +14574,224 @@ img, video {
 .cap-image-wrapper {
     user-select: none !important;
     -webkit-user-select: none !important;
+}
+
+/* ============================================================
+   FLIP CARD — Featured Projects 3D flip interaction
+   ============================================================ */
+
+.fp-flip-card {
+    perspective: 1200px;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.fp-flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.fp-flip-card.flipped .fp-flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front face — the original launcher pod */
+.fp-flip-card-front {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Back face — cinematic video preview */
+.fp-flip-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    border: 1px solid rgba(var(--pod-theme, 255,255,255), 0.2);
+    box-shadow:
+        0 0 40px rgba(0,0,0,0.6),
+        inset 0 0 60px rgba(0,0,0,0.3);
+}
+
+/* Blurred thumbnail behind the back face */
+.fp-flip-card-back .fp-pod-thumbnail-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px) brightness(0.35) saturate(1.4);
+    transform: scale(1.08);
+    z-index: 0;
+}
+
+/* Dark vignette overlay */
+.fp-flip-back-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.75) 100%);
+    z-index: 1;
+}
+
+/* Content wrapper on back face */
+.fp-flip-back-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Project name on back */
+.fp-flip-back-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Pulsing play button ring */
+.fp-flip-play-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid var(--pod-theme, #fff);
+    box-shadow:
+        0 0 0 0 color-mix(in srgb, var(--pod-theme, #fff) 40%, transparent),
+        0 0 24px color-mix(in srgb, var(--pod-theme, #fff) 30%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    animation: fp-play-pulse 2.2s ease-in-out infinite;
+}
+
+.fp-flip-play-ring:hover {
+    transform: scale(1.12);
+    background: rgba(255,255,255,0.18);
+    box-shadow:
+        0 0 0 10px color-mix(in srgb, var(--pod-theme, #fff) 0%, transparent),
+        0 0 36px color-mix(in srgb, var(--pod-theme, #fff) 50%, transparent);
+    animation: none;
+}
+
+@keyframes fp-play-pulse {
+    0%, 100% {
+        box-shadow:
+            0 0 0 0 color-mix(in srgb, var(--pod-theme, #fff) 40%, transparent),
+            0 0 20px color-mix(in srgb, var(--pod-theme, #fff) 25%, transparent);
+    }
+    50% {
+        box-shadow:
+            0 0 0 14px color-mix(in srgb, var(--pod-theme, #fff) 0%, transparent),
+            0 0 36px color-mix(in srgb, var(--pod-theme, #fff) 45%, transparent);
+    }
+}
+
+/* Play triangle icon */
+.fp-flip-play-icon {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-left: 4px; /* optical center for triangle */
+    line-height: 1;
+}
+
+/* "Play Preview" caption */
+.fp-flip-play-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+}
+
+/* "✕ Back" button */
+.fp-flip-back-btn {
+    margin-top: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 5px 14px;
+    border-radius: 30px;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.fp-flip-back-btn:hover {
+    color: rgba(255,255,255,0.85);
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.06);
+}
+
+/* ---- Inline video iframe ---- */
+.fp-flip-video-iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+    background: #000;
+    z-index: 3;
+}
+
+/* Instagram reel: portrait crop centred inside the card */
+.fp-flip-video-iframe--reel {
+    width: 60%;
+    height: 90%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 14px;
+}
+
+/* Floating ✕ Close button over the playing iframe */
+.fp-flip-stop-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.fp-flip-stop-btn:hover {
+    color: #fff;
+    background: rgba(255, 60, 60, 0.35);
+    border-color: rgba(255, 60, 60, 0.5);
 }
