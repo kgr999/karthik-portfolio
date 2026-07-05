@@ -1,5 +1,4 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
-import LightRays from './LightRays';
 import { initPortfolio } from './portfolio-logic';
 import useIsMobile from './hooks/useIsMobile';
 import { locations } from './data/portfolioData';
@@ -791,22 +790,7 @@ export default function App() {
 
     return (
         <>
-            <div className={`transition-filter-base ${isInitializing ? 'bg-grayscale' : ''}`} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
-                <LightRays
-                    raysOrigin="top-center"
-                    raysColor={theme === 'kuku' ? '#B20710' : '#E50914'}
-                    raysSpeed={1.7}
-                    lightSpread={2.2}
-                    rayLength={1.8}
-                    followMouse={true}
-                    mouseInfluence={0.4}
-                    noiseAmount={0.23}
-                    distortion={0.05}
-                    className="custom-rays"
-                    pulsating
-                    saturation={2}
-                />
-            </div>
+
             <nav 
                 className={`${isInitialized ? '' : 'nav-standby'} ${isInitializing ? 'bg-grayscale' : ''}`}
                 style={{
