@@ -9,10 +9,23 @@ export default function LazyVideo({
     muted = true,
     playsInline = true,
     style = {},
+    forcePause = false,
     ...props
 }) {
     const [isIntersecting, setIsIntersecting] = useState(false);
     const videoRef = useRef(null);
+
+    // Dynamically pause/play when forcePause updates
+    useEffect(() => {
+        const videoEl = videoRef.current;
+        if (!videoEl) return;
+
+        if (forcePause) {
+            videoEl.pause();
+        } else if (isIntersecting && autoPlay && videoEl.paused) {
+            videoEl.play().catch(() => {});
+        }
+    }, [forcePause, isIntersecting, autoPlay]);
 
     useEffect(() => {
         const videoEl = videoRef.current;
@@ -75,6 +88,8 @@ export default function LazyVideo({
         };
     }, [isIntersecting, autoPlay]);
 
+    const [isLoaded, setIsLoaded] = useState(false);
+
     return (
         <video
             ref={videoRef}
@@ -84,11 +99,16 @@ export default function LazyVideo({
             loop={loop}
             muted={muted}
             playsInline={playsInline}
-            style={style}
-            preload="none"
+            style={{
+                ...style,
+                opacity: isLoaded ? 1 : 0,
+                transition: 'opacity 0.5s ease',
+            }}
+            preload="metadata"
             controlsList="nodownload"
             disablePictureInPicture
             disableRemotePlayback
+            onLoadedData={() => setIsLoaded(true)}
             onContextMenu={(e) => e.preventDefault()}
             onDragStart={(e) => e.preventDefault()}
             {...props}

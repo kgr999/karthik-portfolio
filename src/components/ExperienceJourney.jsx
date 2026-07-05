@@ -99,12 +99,12 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 <div className="kuku-tv-nav-left">
                                     {/* Kuku TV Logos */}
                                     <img
-                                        src="/assets/images/kukutv-logo.png"
+                                        src="/assets/images/kukutv-logo.webp"
                                         alt="Kuku TV Logo"
                                         style={{ height: '39px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
                                     <img
-                                        src="/assets/images/kukutv-icon.png"
+                                        src="/assets/images/kukutv-icon.webp"
                                         alt="Wow TV Logo"
                                         style={{ height: '70px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
@@ -225,7 +225,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                             <div className="xp-admitra-logo" style={{ marginBottom: '12px' }}>
                                                 <div style={{ width: '120px', height: '32px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                     <img
-                                                        src="/assets/images/admitra.png"
+                                                        src="/assets/images/admitra.webp"
                                                         alt="AdMitra Logo"
                                                         style={{ width: '120px', height: '120px', objectFit: 'contain', display: 'block', opacity: 0.95 }}
                                                     />
@@ -535,7 +535,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     <h4><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" strokeWidth="2" fill="none" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg> Media Pool</h4>
                                     <div className="xp-pool-grid" style={{ marginBottom: '16px' }}>
                                         <div className="xp-pool-item"><img src="/assets/images/da.avif" alt="DaVinci Resolve - Cinematic Video Editing Project" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" /></div>
-                                        <div className="xp-pool-item"><img src="/assets/images/da1.png" alt="DaVinci Resolve - Post Production Audio Timeline" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" /></div>
+                                        <div className="xp-pool-item"><img src="/assets/images/da1.webp" alt="DaVinci Resolve - Post Production Audio Timeline" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" /></div>
                                         <div style={{
                                             gridColumn: 'span 2',
                                             display: 'flex',
@@ -967,7 +967,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     <div className="xp-snap-camera-frame">
                                         <div className="xp-snap-camera-inner" style={{ position: 'relative' }}>
                                             <LazyVideo
-                                                src="/assets/videos/snaps.MP4"
+                                                src="/assets/videos/snaps.mp4"
                                                 autoPlay
                                                 loop
                                                 muted

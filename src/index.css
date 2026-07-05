@@ -1,3 +1,20 @@
+/* ─── Performance Optimization: Global Backdrop Filter Control ─── */
+* {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Whitelist primary overlays to preserve high-fidelity glass design */
+.navbar,
+nav.scrolled,
+.rider-overlay,
+.mobile-menu,
+.floating-work-btn,
+.fp-video-modal {
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+}
+
 /* Mobile Menu & Toggle */
 .menu-toggle {
     display: none;
@@ -2121,7 +2138,7 @@ section {
 
 .workflow-router-section {
     padding: 120px 0;
-    background: #030307;
+    background: var(--bg);
     position: relative;
     overflow: hidden;
 }
@@ -2333,23 +2350,23 @@ section {
 }
 
 .tech-stack-card.active-card {
-    border-color: rgba(77, 163, 255, 0.25);
-    background: rgba(8, 9, 20, 0.6);
+    border-color: rgba(180, 180, 180, 0.3);
+    background: rgba(20, 20, 22, 0.6);
     box-shadow:
         0 16px 36px rgba(0, 0, 0, 0.65),
         inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 0 30px rgba(77, 163, 255, 0.04);
+        0 0 30px rgba(180, 180, 180, 0.06);
     transform: translateY(-2px);
 }
 
 @media (hover: hover) {
     .tech-stack-card:hover {
-        border-color: rgba(77, 163, 255, 0.25);
-        background: rgba(8, 9, 20, 0.6);
+        border-color: rgba(180, 180, 180, 0.3);
+        background: rgba(20, 20, 22, 0.6);
         box-shadow:
             0 16px 36px rgba(0, 0, 0, 0.65),
             inset 0 1px 0 rgba(255, 255, 255, 0.08),
-            0 0 30px rgba(77, 163, 255, 0.04);
+            0 0 30px rgba(180, 180, 180, 0.06);
         transform: translateY(-2px);
     }
 }
@@ -2370,7 +2387,7 @@ section {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
-    color: #4da3ff;
+    color: #cccccc;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -2383,13 +2400,13 @@ section {
 
 .tech-stack-card.active-card .category-icon-box svg {
     stroke: #ffffff;
-    filter: drop-shadow(0 0 6px #4da3ff);
+    filter: drop-shadow(0 0 6px #cccccc);
 }
 
 @media (hover: hover) {
     .tech-stack-card:hover .category-icon-box svg {
         stroke: #ffffff;
-        filter: drop-shadow(0 0 6px #4da3ff);
+        filter: drop-shadow(0 0 6px #cccccc);
     }
 }
 
@@ -4291,7 +4308,7 @@ footer {
 #visuals,
 #certs {
     padding: 120px 0;
-    background: #050505;
+    background: var(--bg);
     position: relative;
     overflow: hidden;
 }
@@ -4835,7 +4852,7 @@ footer {
 #experience-journey {
     position: relative;
     padding: 70px 0;
-    background: #020204;
+    background: var(--bg);
     overflow: hidden;
 }
 

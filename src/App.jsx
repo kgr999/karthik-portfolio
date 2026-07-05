@@ -834,7 +834,7 @@ export default function App() {
                     <div className="nav-links">
                         <a href="#" className="nav-link-item active-link">Home</a>
                         <a href="#experience-journey" className="nav-link-item">Experience</a>
-                        <a href="#featured-projects" className="nav-link-item">Projects</a>
+                        {/* <a href="#featured-projects" className="nav-link-item">Projects</a> */}
                         <a href="#tech-stack" className="nav-link-item">Skills</a>
                         <a href="#contact" className="nav-link-item">Contact</a>
                     </div>
@@ -883,7 +883,7 @@ export default function App() {
             <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
                     <a href="#experience-journey" className="mobile-menu-link">Experience</a>
-                    <a href="#featured-projects" className="mobile-menu-link">Projects</a>
+                    {/* <a href="#featured-projects" className="mobile-menu-link">Projects</a> */}
                     <a href="#tech-stack" className="mobile-menu-link">Skills</a>
                     <a href="#contact" className="mobile-menu-link">Contact</a>
                     <a 
@@ -928,7 +928,7 @@ export default function App() {
                         seedanceExpanded={seedanceExpanded}
                         setSeedanceExpanded={setSeedanceExpanded}
                     />
-                    <FeaturedProjects />
+                    {/* <FeaturedProjects /> */}
                     {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
                     <section id="tech-stack" className="workflow-router-section">
                         <div className="container">

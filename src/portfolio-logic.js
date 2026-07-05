@@ -114,11 +114,10 @@ export function initPortfolio() {
 
     // Hero Entrance Animations (Apple Fluid Reveal)
     gsap.fromTo('.hero-reveal-text', 
-        { opacity: 0, y: 40, filter: 'blur(4px)', scale: 0.98 },
+        { opacity: 0, y: 40, scale: 0.98 },
         {
             opacity: 1,
             y: 0,
-            filter: 'blur(0px)',
             scale: 1,
             duration: 1.2,
             stagger: 0.12,
@@ -127,11 +126,10 @@ export function initPortfolio() {
     );
 
     gsap.fromTo('.hero-reveal-item', 
-        { opacity: 0, y: 30, filter: 'blur(3px)' },
+        { opacity: 0, y: 30 },
         {
             opacity: 1,
             y: 0,
-            filter: 'blur(0px)',
             duration: 1.4,
             stagger: 0.08,
             ease: 'power3.out',
@@ -142,7 +140,7 @@ export function initPortfolio() {
     // Reveal Text Animation (Apple Scroll-Scrubbed Text Reveal)
     gsap.utils.toArray('.reveal-text').forEach((text) => {
         gsap.fromTo(text, 
-            { opacity: 0.15, y: 30, filter: 'brightness(0.5) blur(1px)' },
+            { opacity: 0.15, y: 30 },
             {
                 scrollTrigger: {
                     trigger: text,
@@ -152,7 +150,6 @@ export function initPortfolio() {
                 },
                 opacity: 1,
                 y: 0,
-                filter: 'brightness(1) blur(0px)',
                 ease: 'power2.out'
             }
         );
@@ -161,7 +158,7 @@ export function initPortfolio() {
     // Reveal Items Animation (Apple Spatial Reveal)
     gsap.utils.toArray('.reveal-item').forEach((item) => {
         gsap.fromTo(item, 
-            { opacity: 0, y: 40, scale: 0.97, filter: 'blur(3px)' },
+            { opacity: 0, y: 40, scale: 0.97 },
             {
                 scrollTrigger: {
                     trigger: item,
@@ -171,7 +168,6 @@ export function initPortfolio() {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                filter: 'blur(0px)',
                 duration: 1.5,
                 ease: 'power4.out'
             }
@@ -182,12 +178,11 @@ export function initPortfolio() {
     const capCardsV2 = gsap.utils.toArray('.cap-card-v2');
     if (capCardsV2.length > 0) {
         gsap.fromTo(capCardsV2, 
-            { opacity: 0, y: 50, scale: 0.96, filter: 'blur(3px)' },
+            { opacity: 0, y: 50, scale: 0.96 },
             {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                filter: 'blur(0px)',
                 duration: 1.4,
                 stagger: 0.1,
                 ease: 'power4.out',
@@ -204,12 +199,11 @@ export function initPortfolio() {
     const techStackCards = gsap.utils.toArray('.tech-stack-card');
     if (techStackCards.length > 0) {
         gsap.fromTo(techStackCards,
-            { opacity: 0, scale: 0.94, rotationX: -18, filter: 'blur(2px)', transformPerspective: 1000 },
+            { opacity: 0, scale: 0.94, rotationX: -18, transformPerspective: 1000 },
             {
                 opacity: 1,
                 scale: 1,
                 rotationX: 0,
-                filter: 'blur(0px)',
                 duration: 1.2,
                 stagger: 0.05,
                 ease: 'power3.out',
@@ -227,12 +221,11 @@ export function initPortfolio() {
     if (cinemaCards.length > 0) {
         cinemaCards.forEach((card) => {
             gsap.fromTo(card, 
-                { opacity: 0, y: 50, scale: 1.04, filter: 'blur(4px)' },
+                { opacity: 0, y: 50, scale: 1.04 },
                 {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    filter: 'blur(0px)',
                     duration: 1.6,
                     ease: 'power4.out',
                     scrollTrigger: {
@@ -273,9 +266,13 @@ export function initPortfolio() {
             follower.style.transform = `translate(-50%, -50%)`;
         }
 
-        followerRaf = requestAnimationFrame(animateFollower);
+        if (window.innerWidth > 900) {
+            followerRaf = requestAnimationFrame(animateFollower);
+        }
     }
-    animateFollower();
+    if (window.innerWidth > 900) {
+        animateFollower();
+    }
 
     // Pixel Particle Burst on Click
     addManagedListener(document, 'click', (e) => {
@@ -583,7 +580,7 @@ export function initPortfolio() {
         const spySections = [
             { id: 'hero', selector: '#hero', linkSelector: 'nav .nav-link-item[href="#"]' },
             { id: 'experience-journey', selector: '#experience-journey', linkSelector: 'nav .nav-link-item[href="#experience-journey"]' },
-            { id: 'featured-projects', selector: '#featured-projects', linkSelector: 'nav .nav-link-item[href="#featured-projects"]' },
+            // { id: 'featured-projects', selector: '#featured-projects', linkSelector: 'nav .nav-link-item[href="#featured-projects"]' },
             { id: 'tech-stack', selector: '#tech-stack', linkSelector: 'nav .nav-link-item[href="#tech-stack"]' },
             { id: 'contact', selector: '#contact', linkSelector: 'nav .nav-link-item[href="#contact"]' }
         ];
@@ -718,7 +715,7 @@ export function initPortfolio() {
         }
 
         // ── Per-Node Themed Canvas Animations ──
-        document.querySelectorAll('.xp-node-canvas').forEach(canvas => {
+        document.querySelectorAll('.xp-node-canvas').forEach((canvas, nodeIdx) => {
             const ctx = canvas.getContext('2d');
             const theme = canvas.dataset.theme;
             let animId;
@@ -783,7 +780,7 @@ export function initPortfolio() {
                         ctx.fill();
                     });
                     animId = requestAnimationFrame(drawAI);
-                    nodeCanvasRafs.push(animId);
+                    nodeCanvasRafs[nodeIdx] = animId;
                 };
             }
 
@@ -843,7 +840,7 @@ export function initPortfolio() {
                     });
                     frame++;
                     animId = requestAnimationFrame(drawAR);
-                    nodeCanvasRafs.push(animId);
+                    nodeCanvasRafs[nodeIdx] = animId;
                 };
             }
 

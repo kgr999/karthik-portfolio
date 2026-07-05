@@ -10,6 +10,7 @@ export default function CreativeRider({ isOpen, onClose, theme }) {
     const [submitted, setSubmitted] = useState(false);
     const [isTransmitting, setIsTransmitting] = useState(false);
     const [transmissionProgress, setTransmissionProgress] = useState(0);
+    const [error, setError] = useState(null);
 
     const handleCopyEmail = () => {
         navigator.clipboard.writeText('hello@karthikgraj.in');
@@ -38,16 +39,55 @@ export default function CreativeRider({ isOpen, onClose, theme }) {
         e.preventDefault();
         setIsTransmitting(true);
         setTransmissionProgress(0);
+        setError(null);
+
+        let apiResolved = false;
+        let apiError = false;
+
+        // Perform AJAX request to FormSubmit
+        fetch("https://formsubmit.co/ajax/hello@karthikgraj.in", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                services: selectedServices.join(", "),
+                brief,
+                _subject: `New Portfolio Collaboration Inquiry from ${name}`
+            })
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Network response error");
+            return res.json();
+        })
+        .then(() => {
+            apiResolved = true;
+        })
+        .catch(err => {
+            console.error("FormSubmit Error:", err);
+            apiResolved = true;
+            apiError = true;
+            setError(`Transmission failed (${err.message || "Unknown Error"}). Please copy hello@karthikgraj.in and email me directly.`);
+        });
 
         const interval = setInterval(() => {
             setTransmissionProgress((prev) => {
-                const next = prev + Math.floor(Math.random() * 10) + 5;
+                // If API hasn't resolved, cap the progress animation at 90%
+                if (!apiResolved && prev >= 90) {
+                    return 90;
+                }
+
+                const next = prev + Math.floor(Math.random() * 12) + 5;
                 if (next >= 100) {
                     clearInterval(interval);
                     setTimeout(() => {
                         setIsTransmitting(false);
-                        setSubmitted(true);
-                        console.log("Inquiry submitted:", { name, email, selectedServices, brief });
+                        if (!apiError) {
+                            setSubmitted(true);
+                        }
                     }, 300);
                     return 100;
                 }
@@ -63,6 +103,7 @@ export default function CreativeRider({ isOpen, onClose, theme }) {
         setSelectedServices([]);
         setBrief('');
         setTransmissionProgress(0);
+        setError(null);
     };
 
     const vcardData = `BEGIN:VCARD
@@ -76,7 +117,7 @@ URL;type=pref:https://karthikgraj.in
 END:VCARD`;
 
     const vcardHref = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcardData);
-    const isFormValid = name.trim() && email.trim() && selectedServices.length > 0 && brief.trim().length >= 5;
+    const isFormValid = name.trim() && email.trim() && selectedServices.length > 0 && brief.trim();
 
     return (
         <AnimatePresence>
@@ -244,6 +285,12 @@ END:VCARD`;
                                                 />
                                             </div>
                                         </div>
+
+                                        {error && (
+                                            <div className="rider-error-badge" style={{ color: 'var(--accent-secondary, #ff2e3b)', fontSize: '0.78rem', marginBottom: '15px', textAlign: 'left', background: 'rgba(255, 46, 59, 0.1)', padding: '10px 12px', borderRadius: '6px', border: '1px solid rgba(255, 46, 59, 0.2)' }}>
+                                                {error}
+                                            </div>
+                                        )}
 
                                         {/* Submit */}
                                         <button 
