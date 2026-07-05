@@ -31,8 +31,8 @@ export default function CinematicVisuals({
                     </div>
                     <div className="cinema-grid reveal-item" style={{ gap: '20px', marginTop: '40px' }}>
                         {showreelVideos.map((item) => {
-                            const isPaused = hoveredId !== null && hoveredId !== item.id;
-                            const isGrayscaled = hoveredId !== null && hoveredId !== item.id;
+                            const isPaused = hoveredId !== null;
+                            const isGrayscaled = hoveredId !== null;
                             return (
                                 <div 
                                     key={item.id} 
