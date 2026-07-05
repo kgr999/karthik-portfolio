@@ -49,7 +49,7 @@ export default function CinematicVisuals({
                                             className="cinema-video" 
                                             src={item.src} 
                                             loop 
-                                            muted 
+                                            muted={hoveredId !== item.id} 
                                             playsInline 
                                             autoPlay 
                                             forcePause={isPaused}

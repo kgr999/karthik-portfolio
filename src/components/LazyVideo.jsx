@@ -27,6 +27,13 @@ export default function LazyVideo({
         }
     }, [forcePause, isIntersecting, autoPlay]);
 
+    // Sync the muted DOM property directly to avoid React's muted attribute bug
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = muted;
+        }
+    }, [muted]);
+
     useEffect(() => {
         const videoEl = videoRef.current;
         if (!videoEl) return;
