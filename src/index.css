@@ -12977,6 +12977,10 @@ nav.nav-standby .menu-toggle {
         overflow: visible;
     }
 
+    .rider-pills {
+        grid-template-columns: 1fr;
+    }
+
     .rider-field-row {
         grid-template-columns: 1fr;
         gap: 18px;
@@ -13020,10 +13024,6 @@ nav.nav-standby .menu-toggle {
     .rider-pill {
         padding: 7px 12px;
         font-size: 0.74rem;
-    }
-
-    .rider-pills {
-        grid-template-columns: 1fr;
     }
 }
 
