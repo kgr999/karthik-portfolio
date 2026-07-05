@@ -115,11 +115,6 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         <span>हिंदी</span>
                                         <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
-
-                                    {/* Log In btn */}
-                                    <button className="kuku-tv-login-btn" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '0.72rem', fontWeight: '600', padding: '5px 12px', borderRadius: '15px', cursor: 'pointer' }}>
-                                        Log In
-                                    </button>
                                 </div>
                             </div>
 
@@ -523,7 +518,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         </div>
                                         <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
                                             <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Local Dialect</span>
-                                            <span style={{ fontSize: '1rem', color: '#3B82F6', fontWeight: '800', display: 'block' }}>{locations[locIdx].lang}</span>
+                                            <span style={{ fontSize: '1rem', color: '#FFD700', fontWeight: '800', display: 'block' }}>{locations[locIdx].lang}</span>
                                         </div>
                                     </div>
                                 </div>

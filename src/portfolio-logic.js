@@ -8,6 +8,41 @@ window.gsap = gsap;
 window.ScrollTrigger = ScrollTrigger;
 window.Lenis = Lenis;
 
+function playVideoAudio(videoEl) {
+    if (!videoEl) return;
+    if (window.innerWidth <= 900) return;
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    // Set volume to 0 before unmuting to avoid a loud audio pop
+    if (videoEl.muted) {
+        videoEl.volume = 0;
+        videoEl.muted = false;
+    }
+    
+    gsap.killTweensOf(videoEl, { volume: true });
+    
+    gsap.to(videoEl, {
+        volume: 0.25,
+        duration: 0.4,
+        ease: "power1.out"
+    });
+}
+
+function stopVideoAudio(videoEl) {
+    if (!videoEl) return;
+    
+    gsap.killTweensOf(videoEl, { volume: true });
+    
+    gsap.to(videoEl, {
+        volume: 0,
+        duration: 0.5,
+        ease: "power1.out",
+        onComplete: () => {
+            videoEl.muted = true;
+        }
+    });
+}
+
 export function initPortfolio() {
     if (window.portfolioInitialized) {
         console.log("Portfolio logic already initialized");
@@ -516,6 +551,21 @@ export function initPortfolio() {
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
             card.style.setProperty('--glow-color', 'rgba(77, 163, 255, 0.1)');
         });
+    });
+
+    // Sound Design on Hover (Procedural Sub-bass Drone) - Desktop Only
+    // Sound Design on Hover (Unmute & Fade Video Audio) - Desktop Only
+    document.querySelectorAll('#self-visuals .cinema-card, #key-art-showcase .cinema-card').forEach((card) => {
+        const videoEl = card.querySelector('video');
+        if (videoEl) {
+            addManagedListener(card, 'mouseenter', () => {
+                playVideoAudio(videoEl);
+            });
+            
+            addManagedListener(card, 'mouseleave', () => {
+                stopVideoAudio(videoEl);
+            });
+        }
     });
 
     // Dynamic Navbar Shrink on Scroll & ScrollSpy Logic

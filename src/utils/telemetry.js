@@ -170,13 +170,13 @@ export const getTelemetryLogs = (categoryName, toolName) => {
                     "• brand kit: Karthik Portfolio guidelines active",
                     "• status: Creative layout render online"
                 ];
-            case "Adobe Express":
+            case "Creative Cloud":
                 return [
-                    "🎨 DESIGN SUITE: ADOBE_EXPRESS",
-                    "• cloud assets: Adobe Stock integrations bound",
-                    "• quick actions: Background removal completed",
-                    "• visual effects: Glassmorphic layers applied",
-                    "• status: Frame rendering complete"
+                    "🎨 CREATIVE SUITE: ADOBE_CREATIVE_CLOUD",
+                    "• asset libraries: Universal cloud storage sync",
+                    "• dynamic link: Real-time application bridge",
+                    "• AI co-pilot: Firefly generative engine live",
+                    "• status: Full creative suite authenticated"
                 ];
             case "ElevenLabs":
                 return [
@@ -195,10 +195,10 @@ export const getTelemetryLogs = (categoryName, toolName) => {
                     "• grading nodes: Custom ambient blue highlight LUTs",
                     "• status: Real-time rendering active..."
                 ];
-            case "VN":
+            case "Premiere Pro":
                 return [
-                    "🖥️ NLE ORCHESTRATION: VN_EDITOR",
-                    "• template: Mobile vertical reels (9:16 layout)",
+                    "🖥️ NLE ORCHESTRATION: PREMIERE_PRO_CC",
+                    "• template: Premiere Pro timeline master (2026)",
                     "• keyframes: Sub-second algorithm sync edits",
                     "• transition: Dynamic kinetic split screen",
                     "• status: Rendered and packaged"
@@ -284,7 +284,7 @@ export const getTelemetryLogs = (categoryName, toolName) => {
         case "POST PRODUCTION":
             return [
                 "🎞️ NLE ORCHESTRATION CONVERGENCE...",
-                "• engines: Premiere Pro, DaVinci Resolve, VN",
+                "• engines: Premiere Pro, DaVinci Resolve",
                 "• master resolution: 4K UHD cinematic widescreen",
                 "• color profiling: Professional LUT color grades",
                 "• status: Hover over a tool to inspect cuts"

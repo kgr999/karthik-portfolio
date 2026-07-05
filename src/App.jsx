@@ -12,7 +12,6 @@ import CapabilitiesSection from './components/CapabilitiesSection';
 
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
-import PosterShowcase from './components/PosterShowcase';
 import ExperienceJourney from './components/ExperienceJourney';
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
@@ -71,7 +70,7 @@ const techStackCategories = [
             { name: "HeyGen", logo: "/assets/logos/heygen.png", glow: "#06b6d4", level: "90%" },
             { name: "Kling AI Avatar", logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "88%" },
             { name: "Canva", logo: "/assets/logos/canva.png", glow: "#00c4cc", level: "95%" },
-            { name: "Adobe Express", logo: "/assets/logos/adobeexpress.png", glow: "#ff3c00", level: "90%" }
+            { name: "Creative Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg", glow: "#ff0080", level: "90%" }
         ]
     },
     {
@@ -79,7 +78,7 @@ const techStackCategories = [
         name: "POST PRODUCTION & AUDIO",
         tools: [
             { name: "ElevenLabs", logo: "/assets/logos/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
-            { name: "VN", customBadge: "VN", color: "#ffffff", bg: "#000000", glow: "#ffffff", level: "92%" },
+            { name: "Premiere Pro", logo: "https://upload.wikimedia.org/wikipedia/commons/3/34/Adobe_Premiere_Pro_CC_2026_icon.svg", glow: "#ae8cfa", level: "92%" },
             { name: "Topaz", logo: "/assets/logos/topaz.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
             { name: "DaVinci Resolve", logo: "/assets/logos/davinci.png", glow: "#05FF99", level: "90%", learning: true }
         ]
@@ -819,7 +818,14 @@ export default function App() {
                 <div className="nav-inner">
                     {/* Left Column: Logo */}
                     <div className="nav-hud-left">
-                        <a href="#" className="nav-logo-link">
+                        <a 
+                            href="#" 
+                            className="nav-logo-link"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                window.location.reload();
+                            }}
+                        >
                             <span className="nav-logo-text">KARTHIK G RAJ<span className="nav-logo-dot">.</span></span>
                         </a>
                     </div>
@@ -836,7 +842,7 @@ export default function App() {
                     {/* Right Column: Work With Me and Menu Toggle */}
                     <div className="nav-right-container">
                         <button 
-                            className="nav-work-btn nav-icon-only"
+                            className="nav-work-btn"
                             onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -850,6 +856,7 @@ export default function App() {
                                 <line x1="20" y1="8" x2="20" y2="14" />
                                 <line x1="23" y1="11" x2="17" y2="11" />
                             </svg>
+                            <span className="nav-work-btn-text">Work with me</span>
                         </button>
 
                         <a 
@@ -915,14 +922,13 @@ export default function App() {
                     {/* <ActiveProjects revealed={isInitialized || isMobile} /> */}
                     <CapabilitiesSection />
                     <ExperienceJourney locIdx={locIdx} simTime={simTime} />
-                    <FeaturedProjects />
                     <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}
                         setMidjourneyExpanded={setMidjourneyExpanded}
                         seedanceExpanded={seedanceExpanded}
                         setSeedanceExpanded={setSeedanceExpanded}
                     />
-                    <PosterShowcase />
+                    <FeaturedProjects />
                     {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
                     <section id="tech-stack" className="workflow-router-section">
                         <div className="container">

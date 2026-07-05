@@ -44,9 +44,10 @@ export default function PosterShowcase() {
                                     margin: '0 0 16px 0', 
                                     color: '#FFF',
                                     letterSpacing: '-2px',
-                                    lineHeight: '0.95'
+                                    lineHeight: '0.95',
+                                    whiteSpace: 'nowrap'
                                 }}>
-                                    BEAT THE<br />HEAT
+                                    BEAT THE HEAT
                                 </h3>
                                 <p className="visual-description" style={{ fontSize: '0.95rem', lineHeight: '1.65', color: 'rgba(255, 255, 255, 0.5)', marginBottom: '18px' }}>
                                     I wanted to give Karnataka's favorite spiced buttermilk its own cinematic moment. Picture this: Bengaluru in peak summer, and the city's bus drivers, traffic cops, and construction workers all finding a second of cool relief with one cold sip. I designed the can, built out the campaign visuals, and brought the whole concept to life from scratch.

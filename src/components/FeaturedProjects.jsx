@@ -122,7 +122,11 @@ export default function FeaturedProjects() {
                         
                         <div className="fp-play-overlay">
                             <div className="fp-play-button-ring" style={{ '--ring-accent': '#D4A574', '--ring-glow': 'rgba(212, 165, 116, 0.4)' }}>
-                                <span className="fp-play-icon">▶</span>
+                                <span className="fp-play-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '0.9em', height: '0.9em' }}>
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </span>
                             </div>
                             <span className="fp-play-label" style={{ '--label-accent': '#D4A574' }}>Play Case Video</span>
                         </div>
@@ -275,7 +279,11 @@ export default function FeaturedProjects() {
                         
                         <div className="fp-play-overlay">
                             <div className="fp-play-button-ring" style={{ '--ring-accent': '#8B9DC3', '--ring-glow': 'rgba(139, 157, 195, 0.4)' }}>
-                                <span className="fp-play-icon">▶</span>
+                                <span className="fp-play-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '0.9em', height: '0.9em' }}>
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </span>
                             </div>
                             <span className="fp-play-label" style={{ '--label-accent': '#8B9DC3' }}>Play Case Video</span>
                         </div>
@@ -739,7 +747,11 @@ export default function FeaturedProjects() {
                                         <div className="fp-flip-back-content">
                                             <h4 className="fp-flip-back-title">Montra Electric Eviator</h4>
                                             <div className="fp-flip-play-ring" onClick={() => window.open('https://drive.google.com/file/d/1VA9r9yJDKCBJL8w8rgXPP3wsYS2S_VYO/view?usp=sharing', '_blank')}>
-                                                <span className="fp-flip-play-icon">▶</span>
+                                                <span className="fp-flip-play-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '0.9em', height: '0.9em' }}>
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                </span>
                                             </div>
                                             <span className="fp-flip-play-label">Watch in New Tab ↗</span>
                                             <span className="fp-flip-back-btn" onClick={(e) => { e.stopPropagation(); setFlippedCard(null); }}>✕ Back</span>
@@ -791,7 +803,11 @@ export default function FeaturedProjects() {
                                         <div className="fp-flip-back-content">
                                             <h4 className="fp-flip-back-title">Lincoln Pharma Pa12</h4>
                                             <div className="fp-flip-play-ring" onClick={() => window.open('https://drive.google.com/file/d/1hdDxSZyTSEW6ctVFJLjQhcH185_DUWbl/view?usp=sharing', '_blank')}>
-                                                <span className="fp-flip-play-icon">▶</span>
+                                                <span className="fp-flip-play-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '0.9em', height: '0.9em' }}>
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                </span>
                                             </div>
                                             <span className="fp-flip-play-label">Watch in New Tab ↗</span>
                                             <span className="fp-flip-back-btn" onClick={(e) => { e.stopPropagation(); setFlippedCard(null); }}>✕ Back</span>
@@ -843,7 +859,11 @@ export default function FeaturedProjects() {
                                         <div className="fp-flip-back-content">
                                             <h4 className="fp-flip-back-title">Montra e-SCV</h4>
                                             <div className="fp-flip-play-ring" onClick={() => window.open('https://www.instagram.com/reel/DYPaSyiKxhg/?igsh=MTZyaXQ4ajRpcW93Zg==', '_blank')}>
-                                                <span className="fp-flip-play-icon">▶</span>
+                                                <span className="fp-flip-play-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '0.9em', height: '0.9em' }}>
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                </span>
                                             </div>
                                             <span className="fp-flip-play-label">Watch on Instagram ↗</span>
                                             <span className="fp-flip-back-btn" onClick={(e) => { e.stopPropagation(); setFlippedCard(null); }}>✕ Back</span>
