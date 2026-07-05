@@ -4358,23 +4358,6 @@ footer {
     /* 21:9 Aspect Ratio */
 }
 
-.cinema-card.cinema-wide {
-    grid-column: 1 / -1;
-}
-
-@media (min-width: 641px) {
-    .cinema-card.cinema-wide {
-        grid-column: span 2;
-    }
-    .cinema-card.cinema-wide .cinema-video-wrapper {
-        padding-top: 42.85%; /* 21:9 Widescreen aspect ratio */
-    }
-}
-
-.cinema-card.cinema-normal .cinema-video-wrapper {
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-}
-
 
 .cinema-video {
     position: absolute;
@@ -4388,38 +4371,6 @@ footer {
 
 .cinema-card:hover .cinema-video {
     transform: scale(1.04);
-}
-
-.cinema-sound-badge {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(0, 0, 0, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 6px 10px;
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    z-index: 12;
-    pointer-events: none;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.sound-badge-icon {
-    width: 12px;
-    height: 12px;
-    animation: soundPulse 1.2s infinite ease-in-out;
-}
-
-@keyframes soundPulse {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.15); opacity: 1; }
 }
 
 .cinema-overlay {
@@ -14471,4 +14422,91 @@ img, video {
     border-radius: 12px;
     font-family: monospace;
     font-weight: 600;
+}
+
+/* --- Cinematic HUD Overlay --- */
+.cinema-hud-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cinema-hud-overlay.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cinema-hud-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cinema-hud-genre {
+    font-family: 'Space Grotesk', var(--font-heading);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--card-glow, var(--accent));
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.cinema-hud-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Audio Visualizer Animation */
+.cinema-hud-audio-visualizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+    padding-bottom: 2px;
+}
+
+.cinema-hud-audio-visualizer .bar {
+    width: 3px;
+    height: 4px;
+    background-color: var(--card-glow, var(--accent));
+    animation: bounce 0.8s ease-in-out infinite alternate;
+}
+
+.cinema-hud-audio-visualizer .bar-1 {
+    animation-delay: 0.1s;
+    animation-duration: 0.6s;
+}
+
+.cinema-hud-audio-visualizer .bar-2 {
+    animation-delay: 0.3s;
+    animation-duration: 0.9s;
+}
+
+.cinema-hud-audio-visualizer .bar-3 {
+    animation-delay: 0.2s;
+    animation-duration: 0.7s;
+}
+
+@keyframes bounce {
+    from {
+        height: 4px;
+    }
+    to {
+        height: 16px;
+    }
 }
