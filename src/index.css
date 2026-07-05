@@ -4373,25 +4373,6 @@ footer {
     transform: scale(1.04);
 }
 
-/* Center-floating preview player */
-.cinema-preview-window {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 850px;
-    max-width: 95%;
-    aspect-ratio: 16/9;
-    background: #000000;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 12px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px var(--glow-color);
-    z-index: 100;
-    pointer-events: none;
-    overflow: hidden;
-    will-change: transform, opacity;
-}
-
 .cinema-overlay {
     position: absolute;
     top: 16px;

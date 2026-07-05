@@ -95,6 +95,8 @@ export default function LazyVideo({
         };
     }, [isIntersecting, autoPlay]);
 
+    const [isLoaded, setIsLoaded] = useState(false);
+
     return (
         <video
             ref={videoRef}
@@ -104,11 +106,16 @@ export default function LazyVideo({
             loop={loop}
             muted={muted}
             playsInline={playsInline}
-            style={style}
+            style={{
+                ...style,
+                opacity: isLoaded ? 1 : 0,
+                transition: 'opacity 0.5s ease',
+            }}
             preload="metadata"
             controlsList="nodownload"
             disablePictureInPicture
             disableRemotePlayback
+            onLoadedData={() => setIsLoaded(true)}
             onContextMenu={(e) => e.preventDefault()}
             onDragStart={(e) => e.preventDefault()}
             {...props}

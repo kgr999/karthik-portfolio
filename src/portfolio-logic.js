@@ -522,12 +522,29 @@ export function initPortfolio() {
         });
     });
 
-    // 14. Cinematic Self-Visuals Cards - Glow Color Initialization
+    // 14. Cinematic Self-Visuals Cards - 3D Tilt & Hover Glow
     document.querySelectorAll('.cinema-card').forEach(card => {
         const glowColor = card.getAttribute('data-glow');
-        if (glowColor) {
-            card.style.setProperty('--glow-color', glowColor + '26'); // 15% opacity default glow
-        }
+        card.style.setProperty('--glow-color', 'rgba(77, 163, 255, 0.1)'); // Default electric blue glow
+        
+        addManagedListener(card, 'mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            // Highly elegant, subtle perspective tilt
+            card.style.transform = `perspective(1000px) rotateX(${-y * 2.5}deg) rotateY(${x * 2.5}deg) translateY(-4px)`;
+            
+            // Brighten glow on mouse movement
+            if (glowColor) {
+                card.style.setProperty('--glow-color', glowColor + '33'); // 20% opacity glow
+            }
+        });
+        
+        addManagedListener(card, 'mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+            card.style.setProperty('--glow-color', 'rgba(77, 163, 255, 0.1)');
+        });
     });
 
     // Sound Design on Hover (Procedural Sub-bass Drone) - Desktop Only
