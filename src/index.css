@@ -12954,17 +12954,11 @@ nav.nav-standby .menu-toggle {
         font-size: 1.8rem;
     }
 
-    .rider-subline {
-        font-size: 0.82rem;
-    }
-
-    .rider-stats-row {
-        gap: 14px;
-        padding: 12px 0;
-    }
-
-    .rider-stat-num {
-        font-size: 1.1rem;
+    .rider-philosophy {
+        font-size: 0.95rem;
+        margin: 20px 0 25px;
+        padding: 4px 0 4px 14px;
+        max-width: 100%;
     }
     
     .rider-right {
@@ -13002,6 +12996,12 @@ nav.nav-standby .menu-toggle {
 
     .rider-headline {
         font-size: 1.6rem;
+    }
+
+    .rider-philosophy {
+        font-size: 0.9rem;
+        margin: 16px 0 20px;
+        padding-left: 12px;
     }
 
     .rider-social-row {
