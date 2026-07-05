@@ -12,12 +12,12 @@ export default function CinematicVisuals({
     const [activeVideo, setActiveVideo] = useState(null); // Lightbox/Theater state
 
     const showreelVideos = [
-        { id: 1, src: "assets/videos/pfv1.mp4", glow: "#A78BFA", title: "Neon Dream", genre: "SCI-FI CINEMATIC" },
-        { id: 2, src: "assets/videos/pfv7.mp4", glow: "#00f0ff", title: "Cyber Runner", genre: "ACTION TRAILER" },
-        { id: 3, src: "assets/videos/pfv6.mp4", glow: "#34D399", title: "Prismara", genre: "FASHION EDITORIAL" },
-        { id: 4, src: "assets/videos/pfv2.mp4", glow: "#F87171", title: "Lost Realm", genre: "FANTASY WORLD" },
-        { id: 5, src: "assets/videos/pfv8.mp4", glow: "#93C5FD", title: "Echoes of Time", genre: "DRAMA NARRATIVE" },
-        { id: 6, src: "assets/videos/pfv5.mp4", glow: "#FBBF24", title: "Velocity", genre: "BRAND COMMERCIAL" }
+        { id: 1, src: "/assets/videos/pfv1.mp4", glow: "#A78BFA", title: "Neon Dream", genre: "SCI-FI CINEMATIC" },
+        { id: 2, src: "/assets/videos/pfv7.mp4", glow: "#00f0ff", title: "Cyber Runner", genre: "ACTION TRAILER" },
+        { id: 3, src: "/assets/videos/pfv6.mp4", glow: "#34D399", title: "Prismara", genre: "FASHION EDITORIAL" },
+        { id: 4, src: "/assets/videos/pfv2.mp4", glow: "#F87171", title: "Lost Realm", genre: "FANTASY WORLD" },
+        { id: 5, src: "/assets/videos/pfv8.mp4", glow: "#93C5FD", title: "Echoes of Time", genre: "DRAMA NARRATIVE" },
+        { id: 6, src: "/assets/videos/pfv5.mp4", glow: "#FBBF24", title: "Velocity", genre: "BRAND COMMERCIAL" }
     ];
 
     return (
