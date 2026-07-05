@@ -1071,6 +1071,7 @@ export default function App() {
                             <div className="status-badge-container reveal-text">
                                 <div className="status-badge" style={{ pointerEvents: 'auto' }}>
                                     <div className="status-badge-shimmer"></div>
+                                    <span className="status-dot"></span>
                                     <span className="status-text">Open for Creative Opportunities</span>
                                 </div>
                             </div>
