@@ -21,10 +21,8 @@ export default function CreativeRider({ isOpen, onClose, theme }) {
     const services = [
         { id: "ai-films", label: "AI Films & Microdramas", color: "#00f0ff" },
         { id: "ai-ads", label: "AI Ads & Commercials", color: "#ff007f" },
-        { id: "short-form", label: "Short-Form Editing", color: "#a855f7" },
-        { id: "web-dev", label: "Website Building", color: "#00ff66" },
-        { id: "social-mgmt", label: "Social Media", color: "#ffcc00" },
-        { id: "previs", label: "Research & Pre-Vis", color: "#ff6600" }
+        { id: "video-edit", label: "Video Editing", color: "#a855f7" },
+        { id: "short-form", label: "Short-Form Editing", color: "#00ff66" }
     ];
 
     const toggleService = (label) => {
