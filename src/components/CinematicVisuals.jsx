@@ -10,12 +10,12 @@ export default function CinematicVisuals({
     const [hoveredId, setHoveredId] = useState(null);
 
     const showreelVideos = [
-        { id: 1, src: "assets/videos/pfv1.mp4", glow: "#A78BFA" },
-        { id: 2, src: "assets/videos/pfv7.mp4", glow: "#00f0ff" },
-        { id: 3, src: "assets/videos/pfv6.mp4", glow: "#34D399" },
-        { id: 4, src: "assets/videos/pfv2.mp4", glow: "#F87171" },
-        { id: 5, src: "assets/videos/pfv8.mp4", glow: "#93C5FD" },
-        { id: 6, src: "assets/videos/pfv5.mp4", glow: "#FBBF24" }
+        { id: 1, src: "assets/videos/pfv1.mp4", glow: "#A78BFA", size: "normal" },
+        { id: 2, src: "assets/videos/pfv7.mp4", glow: "#00f0ff", size: "wide" },
+        { id: 3, src: "assets/videos/pfv6.mp4", glow: "#34D399", size: "wide" },
+        { id: 4, src: "assets/videos/pfv2.mp4", glow: "#F87171", size: "normal" },
+        { id: 5, src: "assets/videos/pfv8.mp4", glow: "#93C5FD", size: "normal" },
+        { id: 6, src: "assets/videos/pfv5.mp4", glow: "#FBBF24", size: "wide" }
     ];
 
     return (
@@ -33,7 +33,7 @@ export default function CinematicVisuals({
                             return (
                                 <div 
                                     key={item.id} 
-                                    className="cinema-card" 
+                                    className={`cinema-card ${item.size === 'wide' ? 'cinema-wide' : 'cinema-normal'}`} 
                                     data-glow={item.glow}
                                     onMouseEnter={() => setHoveredId(item.id)}
                                     onMouseLeave={() => setHoveredId(null)}
@@ -54,6 +54,15 @@ export default function CinematicVisuals({
                                             autoPlay 
                                             forcePause={isPaused}
                                         />
+                                        {hoveredId === item.id && (
+                                            <div className="cinema-sound-badge">
+                                                <svg className="sound-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                                                </svg>
+                                                <span>AUDIO ON</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             );
