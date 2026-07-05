@@ -12699,9 +12699,9 @@ nav.nav-standby .menu-toggle {
 
 /* ─── Service Pills ─── */
 .rider-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
 .rider-pill {
@@ -12737,15 +12737,15 @@ nav.nav-standby .menu-toggle {
 }
 
 .rider-pill.active {
-    background: color-mix(in srgb, var(--pill-accent) 10%, transparent);
-    border-color: color-mix(in srgb, var(--pill-accent) 60%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
     color: #ffffff;
-    box-shadow: 0 0 14px color-mix(in srgb, var(--pill-accent) 20%, transparent);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .rider-pill.active .rider-pill-indicator {
-    color: var(--pill-accent);
-    text-shadow: 0 0 4px var(--pill-accent);
+    color: var(--accent);
+    text-shadow: 0 0 4px var(--accent);
 }
 
 /* ─── Submit Button ─── */
@@ -12933,18 +12933,22 @@ nav.nav-standby .menu-toggle {
 
 /* ─── Responsive: Mobile — Stack vertically ─── */
 @media (max-width: 768px) {
+    .rider-overlay {
+        overflow-y: auto !important;
+    }
+
     .rider-split {
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
-        height: 100vh;
-        height: 100dvh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        grid-template-rows: auto auto;
+        height: auto;
+        min-height: 100%;
+        overflow: visible;
     }
     
     .rider-left {
         display: block;
         padding: 80px 28px 28px 28px;
+        height: auto;
     }
     
     .rider-left-content {
@@ -12968,6 +12972,7 @@ nav.nav-standby .menu-toggle {
         border-left: none;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         padding: 28px;
+        height: auto;
         max-height: none;
         overflow: visible;
     }
@@ -13015,6 +13020,10 @@ nav.nav-standby .menu-toggle {
     .rider-pill {
         padding: 7px 12px;
         font-size: 0.74rem;
+    }
+
+    .rider-pills {
+        grid-template-columns: 1fr;
     }
 }
 

@@ -19,10 +19,10 @@ export default function CreativeRider({ isOpen, onClose, theme }) {
     };
 
     const services = [
-        { id: "ai-films", label: "AI Films & Microdramas", color: "#00f0ff" },
-        { id: "ai-ads", label: "AI Ads & Commercials", color: "#ff007f" },
-        { id: "video-edit", label: "Video Editing", color: "#a855f7" },
-        { id: "short-form", label: "Short-Form Editing", color: "#00ff66" }
+        { id: "ai-films", label: "AI Films & Microdramas" },
+        { id: "ai-ads", label: "AI Ads & Commercials" },
+        { id: "video-edit", label: "Video Editing" },
+        { id: "website-design", label: "Website Design" }
     ];
 
     const toggleService = (label) => {
@@ -217,7 +217,6 @@ END:VCARD`;
                                                             key={srv.id}
                                                             type="button"
                                                             className={`rider-pill ${isSelected ? 'active' : ''}`}
-                                                            style={{ '--pill-accent': srv.color }}
                                                             onClick={() => toggleService(srv.label)}
                                                         >
                                                             <span className="rider-pill-indicator">{isSelected ? '✓' : '+'}</span>
