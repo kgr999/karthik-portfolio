@@ -13,7 +13,6 @@ export default function LazyVideo({
     ...props
 }) {
     const [isIntersecting, setIsIntersecting] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef(null);
 
     // Dynamically pause/play when forcePause updates
@@ -72,6 +71,7 @@ export default function LazyVideo({
                 if (entry.isIntersecting) {
                     if (autoPlay && videoEl.paused) {
                         videoEl.play().catch((err) => {
+                            // Autoplay could be blocked by browser policies
                             console.log('Autoplay check:', err);
                         });
                     }
@@ -96,44 +96,22 @@ export default function LazyVideo({
     }, [isIntersecting, autoPlay]);
 
     return (
-        <div 
-            className={`lazy-video-container ${className || ''}`}
-            style={{ 
-                position: 'relative', 
-                overflow: 'hidden',
-                background: '#000',
-                ...style 
-            }}
-        >
-            {isIntersecting && !isLoaded && (
-                <div className="lazy-video-loader">
-                    <span className="lazy-video-spinner"></span>
-                </div>
-            )}
-            <video
-                ref={videoRef}
-                src={isIntersecting ? src : undefined}
-                poster={poster}
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: style.objectFit || 'cover',
-                    opacity: isLoaded ? 1 : 0,
-                    transition: 'opacity 0.5s ease',
-                    display: 'block'
-                }}
-                loop={loop}
-                muted={muted}
-                playsInline={playsInline}
-                preload="metadata"
-                controlsList="nodownload"
-                disablePictureInPicture
-                disableRemotePlayback
-                onLoadedData={() => setIsLoaded(true)}
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                {...props}
-            />
-        </div>
+        <video
+            ref={videoRef}
+            src={isIntersecting ? src : undefined}
+            poster={poster}
+            className={className}
+            loop={loop}
+            muted={muted}
+            playsInline={playsInline}
+            style={style}
+            preload="metadata"
+            controlsList="nodownload"
+            disablePictureInPicture
+            disableRemotePlayback
+            onContextMenu={(e) => e.preventDefault()}
+            onDragStart={(e) => e.preventDefault()}
+            {...props}
+        />
     );
 }
