@@ -859,16 +859,7 @@ export default function App() {
                             <span className="nav-work-btn-text">Work with me</span>
                         </button>
 
-                        <a 
-                            href="mailto:hello@karthikgraj.in"
-                            className="nav-work-btn nav-icon-only nav-mail-btn"
-                            aria-label="Send email"
-                        >
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-work-btn-icon">
-                                <path d="M22 2L11 13" />
-                                <path d="M22 2L15 22L11 13L2 9L22 2Z" />
-                            </svg>
-                        </a>
+
 
                         <button className="menu-toggle" aria-label="Toggle Menu">
                             <span></span>
