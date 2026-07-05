@@ -14448,29 +14448,6 @@ img, video {
     transform: translateY(0);
 }
 
-.cinema-hud-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.cinema-hud-genre {
-    font-family: 'Space Grotesk', var(--font-heading);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: var(--card-glow, var(--accent));
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.cinema-hud-title {
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-}
-
 /* Audio Visualizer Animation */
 .cinema-hud-audio-visualizer {
     display: flex;
@@ -14484,6 +14461,7 @@ img, video {
     width: 3px;
     height: 4px;
     background-color: var(--card-glow, var(--accent));
+    box-shadow: 0 0 8px var(--card-glow, var(--accent));
     animation: bounce 0.8s ease-in-out infinite alternate;
 }
 

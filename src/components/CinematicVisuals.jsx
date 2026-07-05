@@ -25,7 +25,7 @@ export default function CinematicVisuals({
         const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
         
         card.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg) scale3d(1.03, 1.03, 1.03)`;
-        card.style.boxShadow = `0 15px 45px ${glowColor}40`; // 25% opacity glow
+        card.style.boxShadow = `0 15px 45px ${glowColor}80`; // 50% opacity glow to match video vibrantly
         card.style.borderColor = glowColor;
     };
 
@@ -76,11 +76,7 @@ export default function CinematicVisuals({
                                             forcePause={isPaused}
                                         />
                                         {/* Cinematic HUD Overlay */}
-                                        <div className={`cinema-hud-overlay ${hoveredId === item.id ? 'active' : ''}`}>
-                                            <div className="cinema-hud-info">
-                                                <span className="cinema-hud-genre">{item.genre}</span>
-                                                <h4 className="cinema-hud-title">{item.title}</h4>
-                                            </div>
+                                        <div className={`cinema-hud-overlay ${hoveredId === item.id ? 'active' : ''}`} style={{ justifyContent: 'flex-end' }}>
                                             {hoveredId === item.id && (
                                                 <div className="cinema-hud-audio-visualizer">
                                                     <div className="bar bar-1"></div>
