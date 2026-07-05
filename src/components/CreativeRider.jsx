@@ -154,26 +154,9 @@ END:VCARD`;
                                     <span className="rider-headline-accent">something epic.</span>
                                 </h2>
 
-                                <p className="rider-subline">
-                                    AI-powered cinematic content, viral campaigns, and premium websites — crafted with obsessive attention to detail.
+                                <p className="rider-philosophy">
+                                    I collaborate directly with brands, directors, and creators. No rigid corporate layers — just direct creative partnership to help bring your ideas to life.
                                 </p>
-
-                                <div className="rider-stats-row">
-                                    <div className="rider-stat">
-                                        <span className="rider-stat-num">50+</span>
-                                        <span className="rider-stat-label">Projects</span>
-                                    </div>
-                                    <div className="rider-stat-divider"></div>
-                                    <div className="rider-stat">
-                                        <span className="rider-stat-num">&lt;24h</span>
-                                        <span className="rider-stat-label">Response</span>
-                                    </div>
-                                    <div className="rider-stat-divider"></div>
-                                    <div className="rider-stat">
-                                        <span className="rider-stat-num">100%</span>
-                                        <span className="rider-stat-label">Dedication</span>
-                                    </div>
-                                </div>
 
                                 <div className="rider-left-links">
                                     <button className="rider-copy-btn" onClick={handleCopyEmail}>

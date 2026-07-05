@@ -12448,6 +12448,17 @@ nav.nav-standby .menu-toggle {
     max-width: 380px;
 }
 
+.rider-philosophy {
+    font-family: 'Space Grotesk', var(--font-heading);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 35px 0 45px;
+    padding: 6px 0 6px 20px;
+    max-width: 385px;
+    border-left: 2px solid var(--accent);
+}
+
 /* Stats Row */
 .rider-stats-row {
     display: flex;
