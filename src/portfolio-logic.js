@@ -248,10 +248,9 @@ export function initPortfolio() {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
-        // Fast cursor dot
+        // Fast cursor dot (hardware accelerated translate3d)
         if (cursor) {
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
+            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
         }
     });
 
@@ -261,9 +260,7 @@ export function initPortfolio() {
             followerX += (mouseX - followerX) * 0.15;
             followerY += (mouseY - followerY) * 0.15;
 
-            follower.style.left = followerX + 'px';
-            follower.style.top = followerY + 'px';
-            follower.style.transform = `translate(-50%, -50%)`;
+            follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
         }
 
         if (window.innerWidth > 900) {
