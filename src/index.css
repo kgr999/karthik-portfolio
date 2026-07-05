@@ -4373,6 +4373,25 @@ footer {
     transform: scale(1.04);
 }
 
+/* Center-floating preview player */
+.cinema-preview-window {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 620px;
+    max-width: 90%;
+    aspect-ratio: 16/9;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px var(--glow-color);
+    z-index: 100;
+    pointer-events: none;
+    overflow: hidden;
+    will-change: transform, opacity;
+}
+
 .cinema-overlay {
     position: absolute;
     top: 16px;
@@ -14421,190 +14440,5 @@ img, video {
     padding: 3px 8px;
     border-radius: 12px;
     font-family: monospace;
-    font-weight: 600;
-}
-
-/* --- Cinematic HUD Overlay --- */
-.cinema-hud-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-    z-index: 2;
-}
-
-.cinema-hud-overlay.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Audio Visualizer Animation */
-.cinema-hud-audio-visualizer {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 16px;
-    padding-bottom: 2px;
-}
-
-.cinema-hud-audio-visualizer .bar {
-    width: 3px;
-    height: 4px;
-    background-color: var(--card-glow, var(--accent));
-    box-shadow: 0 0 8px var(--card-glow, var(--accent));
-    animation: bounce 0.8s ease-in-out infinite alternate;
-}
-
-.cinema-hud-audio-visualizer .bar-1 {
-    animation-delay: 0.1s;
-    animation-duration: 0.6s;
-}
-
-.cinema-hud-audio-visualizer .bar-2 {
-    animation-delay: 0.3s;
-    animation-duration: 0.9s;
-}
-
-.cinema-hud-audio-visualizer .bar-3 {
-    animation-delay: 0.2s;
-    animation-duration: 0.7s;
-}
-
-@keyframes bounce {
-    from {
-        height: 4px;
-    }
-    to {
-        height: 16px;
-    }
-}
-
-/* --- Cinematic Theater Lightbox --- */
-.theater-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(3, 3, 5, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    box-sizing: border-box;
-}
-
-.theater-content {
-    width: 100%;
-    max-width: 1000px;
-    background: #08080c;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 30px 90px var(--theater-glow, rgba(255, 255, 255, 0.05));
-    display: flex;
-    flex-direction: column;
-}
-
-.theater-close-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.theater-close-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
-}
-
-.theater-video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    background: #000;
-    overflow: hidden;
-}
-
-.theater-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.theater-info-bar {
-    padding: 20px 24px;
-    background: #08080c;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.theater-info-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.theater-genre {
-    font-family: 'Space Grotesk', var(--font-heading);
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.theater-title {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-}
-
-.theater-audio-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 6px 12px;
-    border-radius: 20px;
-}
-
-.audio-label {
-    font-family: 'Space Grotesk', var(--font-heading);
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 1px;
     font-weight: 600;
 }
