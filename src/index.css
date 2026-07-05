@@ -12943,11 +12943,13 @@ nav.nav-standby .menu-toggle {
     }
     
     .rider-left {
+        display: block;
         padding: 80px 28px 28px 28px;
     }
     
     .rider-left-content {
         gap: 18px;
+        max-width: 100%;
     }
 
     .rider-headline {
@@ -12962,6 +12964,7 @@ nav.nav-standby .menu-toggle {
     }
     
     .rider-right {
+        display: block;
         border-left: none;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         padding: 28px;
