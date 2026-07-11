@@ -396,13 +396,25 @@ export default function App() {
         document.body.classList.add('theme-cyber');
     }, []);
 
-    // Creative Rider Overlay State
-    const [isRiderOpen, setIsRiderOpen] = useState(false);
+    // Creative Rider Overlay Routing State
+    const [route, setRoute] = useState(window.location.hash || '#/');
+
+    useEffect(() => {
+        const handleHashChange = () => {
+            setRoute(window.location.hash || '#/');
+        };
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
+    const isRiderOpen = route === '#/work-with-me';
 
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'Escape') {
-                setIsRiderOpen(false);
+                if (window.location.hash === '#/work-with-me') {
+                    window.location.hash = '#/';
+                }
             }
         };
         window.addEventListener('keydown', handleKeyDown);
@@ -846,7 +858,7 @@ export default function App() {
                             onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                setIsRiderOpen(true);
+                                window.location.hash = '#/work-with-me';
                             }}
                             aria-label="Work with me"
                         >
@@ -878,12 +890,9 @@ export default function App() {
                     <a href="#tech-stack" className="mobile-menu-link">Skills</a>
                     <a href="#contact" className="mobile-menu-link">Contact</a>
                     <a 
-                        href="#work-with-me" 
+                        href="#/work-with-me" 
                         className="mobile-menu-link"
                         onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setIsRiderOpen(true);
                             // Explicitly collapse the mobile menu
                             const menuToggle = document.querySelector('.menu-toggle');
                             const mobileMenu = document.querySelector('.mobile-menu');
@@ -1224,7 +1233,7 @@ export default function App() {
 
 
             <Suspense fallback={null}>
-                <CreativeRider isOpen={isRiderOpen} onClose={() => setIsRiderOpen(false)} theme={theme} />
+                <CreativeRider isOpen={isRiderOpen} onClose={() => { window.location.hash = '#/'; }} theme={theme} />
             </Suspense>
         </>
     );
