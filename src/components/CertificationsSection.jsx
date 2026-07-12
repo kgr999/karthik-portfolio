@@ -1,4 +1,5 @@
 import React from 'react';
+import AchievementsGallery from './AchievementsGallery';
 
 export default function CertificationsSection() {
     return (
@@ -51,6 +52,7 @@ export default function CertificationsSection() {
                         </div>
                     </div>
                 </div>
+                <AchievementsGallery />
             </div>
         </section>
     );

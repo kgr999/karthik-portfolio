@@ -1,0 +1,195 @@
+/* ==========================================================================
+   ACHIEVEMENTS GALLERY — CYBER-POLAROID GRID SYSTEM
+   ========================================================================== */
+
+.ach-section {
+    position: relative;
+    padding: 60px 0 100px 0;
+    background: transparent;
+}
+
+.ach-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Polaroid Scattered Grid */
+.ach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* Tactical Cyber-Polaroid Card Base */
+.ach-polaroid-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.015);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 16px 12px 18px 12px; /* Restored clean polaroid spacing */
+    border-radius: 8px;
+    width: 100%;
+    max-width: 250px; /* Reduced sizing to make them appear smaller */
+    justify-self: center;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Whiteboard pin tack effect */
+.ach-polaroid-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 13px;
+    height: 13px;
+    background: radial-gradient(circle at 35% 35%, #ff8e8e 0%, #e50914 60%, #5a0000 100%); /* 3D Spherical glossy red plastic head */
+    border-radius: 50%;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.45), 
+        0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    z-index: 4;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Metal pin shaft shaft piercing the card */
+.ach-polaroid-card::after {
+    content: '';
+    position: absolute;
+    top: -1px; /* Visible below the pin head */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 7px;
+    background: linear-gradient(to right, #d1d1d6, #8e8e93, #3a3a3c); /* Silver metallic pin shaft */
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    z-index: 3;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ach-polaroid-card:hover::before {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+.ach-polaroid-card:hover::after {
+    transform: translateX(-50%) scaleY(1.05);
+}
+
+/* Scattered rotation rules to look organic */
+.ach-polaroid-card.rotate-left-heavy {
+    transform: rotate(-4deg) translateY(4px);
+}
+
+.ach-polaroid-card.rotate-right-light {
+    transform: rotate(3deg) translateY(-6px);
+}
+
+.ach-polaroid-card.rotate-left-light {
+    transform: rotate(-2deg) translateY(2px);
+}
+
+/* Hover alignment state */
+.ach-polaroid-card:hover {
+    transform: scale(1.06) rotate(0deg) translateY(-10px) !important;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(229, 9, 20, 0.25); /* Glowing crimson neon */
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(229, 9, 20, 0.5);
+}
+
+/* 1:1 Square image holder inside the Polaroid */
+.ach-img-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #09090b;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ach-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: all 0.5s ease;
+}
+
+.ach-polaroid-card:hover .ach-img {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+/* Sci-fi scanner line glares */
+.ach-img-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Caption section matching handwritten ink */
+.ach-caption-box {
+    margin-top: 16px;
+    padding: 0 4px;
+    text-align: left; /* Swapped to standard align for better readability */
+}
+
+.ach-caption {
+    font-family: var(--font-heading);
+    font-size: 0.95rem; /* Tighter size for better proportions */
+    font-weight: 700;
+    color: #ffffff; /* Highly readable clean white text */
+    line-height: 1.35;
+    margin: 0;
+}
+
+.ach-date {
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45); /* Code stamp details */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 6px;
+    display: block;
+}
+
+/* Responsive queries */
+@media (max-width: 900px) {
+    .ach-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+    
+    .ach-polaroid-card {
+        max-width: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ach-grid {
+        display: none !important; /* Hide achievements polaroid gallery completely on mobile viewports */
+    }
+}

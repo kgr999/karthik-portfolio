@@ -12,6 +12,7 @@ import CapabilitiesSection from './components/CapabilitiesSection';
 
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
+import TheRiverborn from './components/TheRiverborn';
 import ExperienceJourney from './components/ExperienceJourney';
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
@@ -408,6 +409,53 @@ export default function App() {
     }, []);
 
     const isRiderOpen = route === '#/work-with-me';
+
+    // Dynamic SEO Metadata and Document Title Updates based on current Route
+    useEffect(() => {
+        const updateMeta = (name, content) => {
+            const el = document.querySelector(`meta[name="${name}"]`);
+            if (el) el.setAttribute('content', content);
+        };
+        const updateOgMeta = (property, content) => {
+            const el = document.querySelector(`meta[property="${property}"]`);
+            if (el) el.setAttribute('content', content);
+        };
+        const updateLink = (rel, href) => {
+            const el = document.querySelector(`link[rel="${rel}"]`);
+            if (el) el.setAttribute('href', href);
+        };
+
+        if (route === '#/work-with-me' || route === '#work-with-me') {
+            document.title = "Work With Me | Karthik G Raj | AI Creative Producer";
+            updateMeta('description', "Collaborate directly with Karthik G Raj, AI Creative Producer. Start an AI-driven film, commercial campaign, or custom video production pipeline.");
+            updateMeta('title', "Work With Me | Karthik G Raj | AI Creative Producer");
+            updateLink('canonical', "https://karthikgraj.in/#/work-with-me");
+            
+            // Open Graph (OG)
+            updateOgMeta('og:title', "Work With Me | Karthik G Raj | AI Creative Producer");
+            updateOgMeta('og:description', "Collaborate directly with Karthik G Raj, AI Creative Producer. Start an AI-driven film, commercial campaign, or custom video production pipeline.");
+            updateOgMeta('og:url', "https://karthikgraj.in/#/work-with-me");
+            
+            // Twitter
+            updateMeta('twitter:title', "Work With Me | Karthik G Raj | AI Creative Producer");
+            updateMeta('twitter:description', "Collaborate directly with Karthik G Raj, AI Creative Producer. Start an AI-driven film, commercial campaign, or custom video production pipeline.");
+        } else {
+            // Revert back to index.html original static values
+            document.title = "Karthik G Raj | AI Creative Producer";
+            updateMeta('description', "Karthik G Raj is an AI Creative Producer based in India. He specializes in multimodal generative AI content production — directing microdramas, web series, creator content, cinematic video campaigns, and responsible AI practices. View his projects, tech stack, and experience.");
+            updateMeta('title', "Karthik G Raj | AI Creative Producer");
+            updateLink('canonical', "https://karthikgraj.in/");
+            
+            // Open Graph (OG)
+            updateOgMeta('og:title', "Karthik G Raj | AI Creative Producer");
+            updateOgMeta('og:description', "Official portfolio of Karthik G Raj — AI Creative Producer. Explore his multimodal generative AI productions, microdramas, viral campaigns, creative tech stack, and professional experience.");
+            updateOgMeta('og:url', "https://karthikgraj.in/");
+            
+            // Twitter
+            updateMeta('twitter:title', "Karthik G Raj | AI Creative Producer");
+            updateMeta('twitter:description', "Official portfolio of Karthik G Raj — AI Creative Producer. Explore multimodal generative AI productions, cinematic campaigns, and creative tech workflows.");
+        }
+    }, [route]);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -919,7 +967,7 @@ export default function App() {
                 )}
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
-                    {/* <ActiveProjects revealed={isInitialized || isMobile} /> */}
+                    <TheRiverborn />
                     <CapabilitiesSection />
                     <ExperienceJourney locIdx={locIdx} simTime={simTime} />
                     <CinematicVisuals
@@ -1158,14 +1206,14 @@ export default function App() {
                                     </div>
                                 </div>
                             </div>
-
-                            <footer style={{ borderTop: 'none', padding: '10px 0 20px 0', zIndex: 5, pointerEvents: 'auto' }}>
-                                <div className="footer-content" style={{ padding: 0, minHeight: 'auto', display: 'flex', justifyContent: 'center' }}>
-                                    <p style={{ margin: 0 }}>© 2026 KARTHIK G RAJ // AI CREATIVE PRODUCER</p>
-                                </div>
-                            </footer>
                         </div>
                     </section>
+
+                    <footer style={{ borderTop: 'none', padding: '30px 0 40px 0', zIndex: 5, pointerEvents: 'auto', position: 'relative', background: 'var(--bg)' }}>
+                        <div className="footer-content" style={{ padding: 0, minHeight: 'auto', display: 'flex', justifyContent: 'center' }}>
+                            <p style={{ margin: 0, fontFamily: 'var(--font-primary)', fontSize: '0.8rem', letterSpacing: '1px', opacity: 0.5 }}>© 2026 KARTHIK G RAJ // AI CREATIVE PRODUCER</p>
+                        </div>
+                    </footer>
                 </div>
             </main>
 

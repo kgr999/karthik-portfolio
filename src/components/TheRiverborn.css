@@ -1,0 +1,665 @@
+/* ==========================================================================
+   THE RIVERBORN — CINE-DRAMA APP PREVIEW (KUKUTV/TADKA STYLE)
+   ========================================================================== */
+
+.rb-section {
+    position: relative;
+    padding: 100px 0;
+    background: var(--bg);
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Ambient glow matching the mythic mood */
+.rb-ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(50px);
+}
+
+.rb-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Inherits section title styling from global styles */
+
+/* 3-Column Grid Layout: Poster, Phone Player, Metadata & Playlist */
+.rb-grid {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Column 1: Portrait Movie Poster (Fully Seen) */
+.rb-poster-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rb-poster-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 330px; /* Reverted to width-based scaling, slightly larger than the original 280px */
+    aspect-ratio: 3712 / 4608; /* Perfect uncropped aspect ratio */
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(229, 9, 20, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rb-poster-wrapper:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(229, 9, 20, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(229, 9, 20, 0.15);
+}
+
+.rb-poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rb-poster-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(5, 5, 7, 0.95) 0%, rgba(5, 5, 7, 0) 100%);
+    padding: 24px 16px 16px;
+    text-align: center;
+}
+
+.rb-poster-status {
+    font-family: var(--font-primary);
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #e50914;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(229, 9, 20, 0.15);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    display: inline-block;
+}
+
+/* Column 2: Mobile App Preview Player (KukuTV/Tadka Style Mockup) */
+.rb-player-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rb-phone-mockup {
+    position: relative;
+    width: 290px;
+    height: 590px;
+    background: #000000;
+    border: 10px solid #1a1a1f;
+    border-radius: 44px;
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.8),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.05),
+        0 0 40px rgba(229, 9, 20, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Phone notch/island styling */
+.rb-phone-island {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 24px;
+    background: #000000;
+    border-radius: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rb-phone-camera {
+    width: 8px;
+    height: 8px;
+    background: #111116;
+    border-radius: 50%;
+}
+
+.rb-phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 34px;
+    overflow: hidden;
+    background: #050507;
+}
+
+.rb-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop vertical video to phone dimensions */
+}
+
+/* Phone screen controls overlays */
+.rb-phone-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 20px 24px;
+    box-sizing: border-box;
+    z-index: 5;
+    transition: opacity 0.3s ease;
+}
+
+.rb-phone-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rb-phone-overlay-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rb-overlay-badge {
+    background: rgba(229, 9, 20, 0.85);
+    color: #fff;
+    font-family: var(--font-primary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+.rb-mute-btn {
+    background: rgba(15, 15, 18, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.rb-mute-btn:hover {
+    background: rgba(229, 9, 20, 0.8);
+    border-color: transparent;
+}
+
+/* Big center play icon */
+.rb-center-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(229, 9, 20, 0.9);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+    z-index: 6;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: rb-pulse 2s infinite;
+}
+
+@keyframes rb-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(229, 9, 20, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
+}
+
+.rb-center-play:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: #ff0d1a;
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+}
+
+.rb-phone-overlay-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rb-episode-num {
+    font-family: var(--font-primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+}
+
+.rb-episode-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Custom slider styling (Netflix aesthetic) */
+.rb-phone-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #e50914 0%, #e50914 var(--slider-progress, 0%), rgba(255, 255, 255, 0.2) var(--slider-progress, 0%), rgba(255, 255, 255, 0.2) 100%);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    margin: 8px 0 0 0;
+    transition: height 0.1s ease;
+}
+
+.rb-phone-slider:hover {
+    height: 6px;
+}
+
+/* Chrome, Safari, Opera, Edge thumb styling */
+.rb-phone-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0; /* Hidden by default, like Netflix */
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.rb-phone-slider:hover::-webkit-slider-thumb,
+.rb-phone-slider:active::-webkit-slider-thumb {
+    opacity: 1; /* Revealed on hover/drag */
+}
+
+/* Firefox thumb styling */
+.rb-phone-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.rb-phone-slider:hover::-moz-range-thumb,
+.rb-phone-slider:active::-moz-range-thumb {
+    opacity: 1;
+}
+
+/* Column 3: Series Info & KukuTV Playlist Feed */
+.rb-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.rb-series-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.rb-tags-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.rb-tag {
+    font-family: var(--font-primary);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.rb-tag.accent-tag {
+    border-color: rgba(229, 9, 20, 0.2);
+    color: #ff4747;
+    background: rgba(229, 9, 20, 0.05);
+}
+
+.rb-desc {
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+}
+
+/* Playlist Feed Header */
+.rb-playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 12px;
+}
+
+.rb-playlist-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rb-playlist-count {
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 600;
+}
+
+/* Vertical Episodes Feed */
+.rb-episodes-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 290px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Custom Scrollbar for Episodes list */
+.rb-episodes-feed::-webkit-scrollbar {
+    width: 4px;
+}
+
+.rb-episodes-feed::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 2px;
+}
+
+.rb-episodes-feed::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.rb-episodes-feed::-webkit-scrollbar-thumb:hover {
+    background: rgba(229, 9, 20, 0.4);
+}
+
+/* Episode Card (KukuTV/Tadka Style) */
+.rb-ep-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rb-ep-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.rb-ep-card.active {
+    background: rgba(229, 9, 20, 0.08);
+    border-color: rgba(229, 9, 20, 0.3);
+}
+
+.rb-ep-thumb-box {
+    position: relative;
+    width: 64px;
+    height: 80px; /* Portrait thumbnail */
+    border-radius: 8px;
+    overflow: hidden;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.rb-ep-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rb-ep-thumb-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.rb-ep-card:hover .rb-ep-thumb-overlay {
+    opacity: 1;
+}
+
+.rb-ep-card.active .rb-ep-thumb-overlay {
+    opacity: 1;
+    background: rgba(229, 9, 20, 0.4);
+}
+
+.rb-ep-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rb-ep-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rb-ep-num-label {
+    font-family: var(--font-primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+}
+
+.rb-ep-card.active .rb-ep-num-label {
+    color: #ff4747;
+}
+
+.rb-ep-duration {
+    font-family: var(--font-primary);
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.rb-ep-title {
+    font-family: var(--font-heading);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.rb-ep-card.active .rb-ep-title {
+    color: #ffffff;
+}
+
+/* Locked Card State */
+.rb-ep-card.locked {
+    cursor: not-allowed;
+    opacity: 0.55;
+    border-color: transparent;
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.rb-ep-card.locked:hover {
+    background: rgba(255, 255, 255, 0.01);
+    transform: none;
+}
+
+.rb-lock-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.rb-badge {
+    font-family: var(--font-primary);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+
+.rb-badge.badge-playing {
+    color: #05ff99;
+    background: rgba(5, 255, 153, 0.1);
+    border-color: rgba(5, 255, 153, 0.2);
+}
+
+.rb-badge.badge-wip {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.rb-badge.badge-locked {
+    color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Responsive Stacking queries */
+@media (max-width: 1024px) {
+    .rb-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+    
+    .rb-poster-col {
+        display: none; /* Hide poster column on tablet and stack on mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .rb-section {
+        padding: 60px 0;
+    }
+    
+    .rb-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .rb-phone-mockup {
+        width: 260px;
+        height: 530px;
+        max-width: 100%;
+    }
+    
+    .rb-poster-wrapper {
+        width: 100%;
+        max-width: 260px; /* Aligned with phone mockup width for perfect symmetry and SE sizing */
+        height: auto;
+    }
+    
+    .rb-poster-col {
+        display: flex;
+    }
+    
+    .rb-heading {
+        font-size: 2rem;
+    }
+    
+    .rb-playlist-container {
+        display: none; /* Temporarily hidden on mobile viewports, will bring back later */
+    }
+}
+
+/* Buffering Loader Spinner */
+.rb-loading-spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rb-loading-spinner {
+    width: 44px;
+    height: 44px;
+    border: 3px solid rgba(229, 9, 20, 0.15);
+    border-top-color: #e50914;
+    border-radius: 50%;
+    animation: rb-spin 0.8s linear infinite;
+}
+
+@keyframes rb-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

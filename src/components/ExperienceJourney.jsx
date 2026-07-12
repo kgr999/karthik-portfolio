@@ -949,15 +949,15 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     <div className="xp-insights-list">
                                         <div className="xp-insights-card">
                                             <span className="xp-insights-label">Views</span>
-                                            <div className="xp-insights-value">1,56,77,70,215</div>
+                                            <div className="xp-insights-value">1,59,13,38,550</div>
                                         </div>
                                         <div className="xp-insights-card">
                                             <span className="xp-insights-label">Shares</span>
-                                            <div className="xp-insights-value">3,03,70,979</div>
+                                            <div className="xp-insights-value">3,08,48,325</div>
                                         </div>
                                         <div className="xp-insights-card">
                                             <span className="xp-insights-label">Plays</span>
-                                            <div className="xp-insights-value">92,08,77,446</div>
+                                            <div className="xp-insights-value">93,63,28,636</div>
                                         </div>
                                     </div>
                                 </div>
