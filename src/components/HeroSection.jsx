@@ -61,10 +61,10 @@ export default function HeroSection({
             style={{
                 position: 'relative',
                 overflow: isMobile ? 'visible' : 'hidden',
-                opacity: !isMobile && isInitialized ? 0 : 1,
-                visibility: !isMobile && isInitialized ? 'hidden' : 'visible',
+                opacity: isMobile && isInitialized ? 0 : 1,
+                visibility: isMobile && isInitialized ? 'hidden' : 'visible',
                 transition: 'opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s cubic-bezier(0.25, 1, 0.5, 1)',
-                pointerEvents: !isMobile && isInitialized ? 'none' : 'auto'
+                pointerEvents: isMobile && isInitialized ? 'none' : 'auto'
             }}
         >
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -114,7 +114,7 @@ export default function HeroSection({
                                 textTransform: 'uppercase',
                                 opacity: 0.85
                             }}>
-                                {theme === 'kuku' ? 'LOADING.. SCROLL UP' : 'SEE MY WORK'}
+                                {theme === 'kuku' ? 'LOADING.. SCROLL UP' : 'SCROLL TO ENTER'}
                             </span>
                             <div className="scroll-hint-arrow" style={{
                                 width: '20px',
