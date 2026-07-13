@@ -697,14 +697,19 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        // Prevent scroll until system is fully initialized on desktop, but allow mobile scroll fallback, or when Rider is open
-        if (!isInitialized || isRiderOpen) {
-            if (isMobile && !isRiderOpen) {
-                document.body.style.overflow = 'auto';
-                document.documentElement.style.overflow = 'auto';
-            } else {
-                document.body.style.overflow = 'hidden';
+        // Enforce natural, unlocked scrolling on mobile viewports
+        if (isMobile) {
+            document.body.style.overflow = 'auto';
+            document.documentElement.style.overflow = 'auto';
+            if (window.lenis) {
+                window.lenis.stop();
             }
+            return;
+        }
+
+        // Prevent scroll until system is fully initialized on desktop, or when Rider is open
+        if (!isInitialized || isRiderOpen) {
+            document.body.style.overflow = 'hidden';
             if (window.lenis) {
                 window.lenis.stop();
             }
@@ -811,28 +816,24 @@ export default function App() {
         };
 
         const handleTouchMove = (e) => {
-            if (isTransitioning) return;
+            if (isMobile || isTransitioning) return;
             if (e.touches && e.touches[0]) {
                 const diffY = touchStartY - e.touches[0].clientY;
                 if (!isInitialized && diffY > 30) {
                     enterPortfolio();
-                } else if (isInitialized && diffY < -40 && window.scrollY < 80) {
-                    returnToLanding();
                 }
             }
         };
 
         const handleWheel = (e) => {
-            if (isTransitioning) return;
+            if (isMobile || isTransitioning) return;
             if (e.deltaY > 15 && !isInitialized) {
                 enterPortfolio();
-            } else if (e.deltaY < -15 && isInitialized && window.scrollY < 80) {
-                returnToLanding();
             }
         };
 
         const handleScroll = () => {
-            if (!isMountReadyRef.current) return;
+            if (isMobile || !isMountReadyRef.current) return;
             if (isTransitioning) return;
             if (rafId) return;
             rafId = requestAnimationFrame(() => {
