@@ -33,7 +33,7 @@ export default function CertificationsSection() {
 
                     <div className="cert-card">
                         <div className="cert-logo-wrapper">
-                            <img src="/assets/logos/umich.svg"
+                            <img src="/assets/logos/umich.png"
                                 alt="U-Michigan Logo" className="cert-provider-logo"
                                 onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
                             <div className="logo-fallback" style={{ display: 'none' }}>M</div>
