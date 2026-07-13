@@ -593,14 +593,12 @@
 /* Responsive Stacking queries */
 @media (max-width: 1024px) {
     .rb-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 32px;
-        max-width: 680px;
-        margin: 0 auto;
     }
     
     .rb-poster-col {
-        display: none;
+        display: none; /* Hide poster column on tablet and stack on mobile */
     }
 }
 

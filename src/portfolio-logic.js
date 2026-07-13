@@ -343,29 +343,7 @@ export function initPortfolio() {
         });
     });
 
-    // 8. Mobile Menu Toggle Logic
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-menu-inner a');
-
-    if (menuToggle && mobileMenu) {
-        addManagedListener(menuToggle, 'click', () => {
-            menuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
-        });
-
-        // Close menu when a link is clicked
-        mobileLinks.forEach(link => {
-            addManagedListener(link, 'click', () => {
-                menuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
-    }
+    // 8. Mobile Menu Toggle Logic (Handled reactively in App component state)
 
     // 9. Creative Ecosystem — Premium Restrained Hover Glow
     document.querySelectorAll('.eco-chip[data-glow]').forEach(chip => {
@@ -540,6 +518,10 @@ export function initPortfolio() {
 
         addManagedListener(window, 'scroll', updateActiveLinkThrottled);
         addManagedListener(window, 'resize', updateActiveLinkThrottled);
+        // Also listen to Lenis smooth-scroll events so active link updates during smooth scrolling
+        if (lenis) {
+            lenis.on('scroll', updateActiveLinkThrottled);
+        }
         // Run immediately after brief delay to let page settle
         setTimeout(updateActiveLink, 250);
     }

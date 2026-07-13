@@ -399,16 +399,30 @@ export default function App() {
 
     // Creative Rider Overlay Routing State
     const [route, setRoute] = useState(window.location.hash || '#/');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    // ScrollSpy — tracks which nav section is active (React-driven, not imperative DOM)
+    const [activeSection, setActiveSection] = useState('#');
 
     useEffect(() => {
         const handleHashChange = () => {
             setRoute(window.location.hash || '#/');
+            setIsMobileMenuOpen(false);
         };
         window.addEventListener('hashchange', handleHashChange);
         return () => window.removeEventListener('hashchange', handleHashChange);
     }, []);
 
     const isRiderOpen = route === '#/work-with-me';
+
+    // Lock body scroll when mobile menu or creative rider is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else if (isInitialized && !isRiderOpen) {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isMobileMenuOpen, isInitialized, isRiderOpen]);
 
     // Dynamic SEO Metadata and Document Title Updates based on current Route
     useEffect(() => {
@@ -860,6 +874,43 @@ export default function App() {
         };
     }, [isInitialized, isMobile]);
 
+    // ScrollSpy — IntersectionObserver-driven active section tracking (works with Lenis)
+    useEffect(() => {
+        if (!isInitialized) return;
+
+        const sectionIds = ['experience-journey', 'tech-stack', 'contact'];
+        const sectionMap = {};
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    sectionMap[entry.target.id] = entry.isIntersecting;
+                });
+
+                // Pick the first visible section in DOM order
+                let found = false;
+                for (const id of sectionIds) {
+                    if (sectionMap[id]) {
+                        setActiveSection(`#${id}`);
+                        found = true;
+                        break;
+                    }
+                }
+                // If none visible, default to Home
+                if (!found) {
+                    setActiveSection('#');
+                }
+            },
+            { rootMargin: '-30% 0px -50% 0px', threshold: 0 }
+        );
+
+        sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, [isInitialized]);
 
 
     return (
@@ -907,11 +958,10 @@ export default function App() {
 
                     {/* Center Column: Links */}
                     <div className="nav-links">
-                        <a href="#" className="nav-link-item active-link">Home</a>
-                        <a href="#experience-journey" className="nav-link-item">Experience</a>
-                        {/* <a href="#featured-projects" className="nav-link-item">Projects</a> */}
-                        <a href="#tech-stack" className="nav-link-item">Skills</a>
-                        <a href="#contact" className="nav-link-item">Contact</a>
+                        <a href="#" className={`nav-link-item ${activeSection === '#' ? 'active-link' : ''}`}>Home</a>
+                        <a href="#experience-journey" className={`nav-link-item ${activeSection === '#experience-journey' ? 'active-link' : ''}`}>Experience</a>
+                        <a href="#tech-stack" className={`nav-link-item ${activeSection === '#tech-stack' ? 'active-link' : ''}`}>Skills</a>
+                        <a href="#contact" className={`nav-link-item ${activeSection === '#contact' ? 'active-link' : ''}`}>Contact</a>
                     </div>
 
                     {/* Right Column: Work With Me and Menu Toggle */}
@@ -936,7 +986,15 @@ export default function App() {
 
 
 
-                        <button className="menu-toggle" aria-label="Toggle Menu">
+                        <button 
+                            className={`menu-toggle ${isMobileMenuOpen ? 'active' : ''}`} 
+                            aria-label="Toggle Menu"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setIsMobileMenuOpen(prev => !prev);
+                            }}
+                        >
                             <span></span>
                             <span></span>
                             <span></span>
@@ -946,24 +1004,27 @@ export default function App() {
             </nav>
 
             {/* Mobile Menu Overlay */}
-            <div className={`mobile-menu ${isInitialized ? '' : 'mobile-menu-standby'}`}>
+            <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''} ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
-                    <a href="#experience-journey" className="mobile-menu-link">Experience</a>
-                    {/* <a href="#featured-projects" className="mobile-menu-link">Projects</a> */}
-                    <a href="#tech-stack" className="mobile-menu-link">Skills</a>
-                    <a href="#contact" className="mobile-menu-link">Contact</a>
+                    <a 
+                        href="#experience-journey" 
+                        className="mobile-menu-link"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >Experience</a>
+                    <a 
+                        href="#tech-stack" 
+                        className="mobile-menu-link"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >Skills</a>
+                    <a 
+                        href="#contact" 
+                        className="mobile-menu-link"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >Contact</a>
                     <a 
                         href="#/work-with-me" 
                         className="mobile-menu-link"
-                        onClick={(e) => {
-                            // Explicitly collapse the mobile menu
-                            const menuToggle = document.querySelector('.menu-toggle');
-                            const mobileMenu = document.querySelector('.mobile-menu');
-                            if (menuToggle && mobileMenu) {
-                                menuToggle.classList.remove('active');
-                                mobileMenu.classList.remove('active');
-                            }
-                        }}
+                        onClick={() => setIsMobileMenuOpen(false)}
                     >Work With Me</a>
                 </div>
             </div>

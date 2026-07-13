@@ -177,15 +177,14 @@
 }
 
 /* Responsive queries */
-@media (max-width: 1024px) and (min-width: 769px) {
+@media (max-width: 900px) {
     .ach-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
     }
     
     .ach-polaroid-card {
-        max-width: 210px;
+        max-width: 220px;
     }
 }
 

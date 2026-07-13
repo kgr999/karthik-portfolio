@@ -3980,9 +3980,11 @@ footer {
 
     /* Navigation */
     nav {
-        top: 8px;
-        width: 95%;
-        padding: 8px 14px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+        padding: 0 14px;
     }
 
     .nav-inner {
