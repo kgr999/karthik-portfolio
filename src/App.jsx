@@ -71,7 +71,7 @@ const techStackCategories = [
             { name: "HeyGen", logo: "/assets/logos/heygen.png", glow: "#06b6d4", level: "90%" },
             { name: "Kling AI Avatar", logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "88%" },
             { name: "Canva", logo: "/assets/logos/canva.png", glow: "#00c4cc", level: "95%" },
-            { name: "Creative Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg", glow: "#ff0080", level: "90%" }
+            { name: "Creative Cloud", logo: "/assets/logos/adobecc.svg", glow: "#ff0080", level: "90%" }
         ]
     },
     {
@@ -79,7 +79,7 @@ const techStackCategories = [
         name: "POST PRODUCTION & AUDIO",
         tools: [
             { name: "ElevenLabs", logo: "/assets/logos/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
-            { name: "Premiere Pro", logo: "https://upload.wikimedia.org/wikipedia/commons/3/34/Adobe_Premiere_Pro_CC_2026_icon.svg", glow: "#ae8cfa", level: "92%" },
+            { name: "Premiere Pro", logo: "/assets/logos/premiere.svg", glow: "#ae8cfa", level: "92%" },
             { name: "Topaz", logo: "/assets/logos/topaz.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
             { name: "DaVinci Resolve", logo: "/assets/logos/davinci.png", glow: "#05FF99", level: "90%", learning: true }
         ]

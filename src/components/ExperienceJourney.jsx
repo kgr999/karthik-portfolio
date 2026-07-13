@@ -932,7 +932,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                         <div className="xp-window-body">
                             <div className="xp-window-sidebar xp-hierarchy">
                                 <div className="xp-snap-brand" style={{ marginBottom: '16px' }}>
-                                    <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" alt="Snapchat" width="22" height="22" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }} />
+                                    <img src="/assets/logos/snapchat.svg" alt="Snapchat" width="22" height="22" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }} />
                                     <span className="xp-snap-brand-text">LENS STUDIO</span>
                                 </div>
 
@@ -1005,7 +1005,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         boxSizing: 'border-box'
                                     }}>
                                         <img
-                                            src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg"
+                                            src="/assets/logos/snapchat.svg"
                                             alt="Snapchat Logo"
                                             style={{ width: '12px', height: '12px' }}
                                         />

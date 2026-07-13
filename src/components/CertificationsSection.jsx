@@ -11,7 +11,7 @@ export default function CertificationsSection() {
                 <div className="cert-grid reveal-item">
                     <div className="cert-card">
                         <div className="cert-logo-wrapper">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                            <img src="/assets/logos/google.svg"
                                 alt="Google Logo" className="cert-provider-logo"
                                 onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
                             <div className="logo-fallback" style={{ display: 'none' }}>G</div>
@@ -33,7 +33,7 @@ export default function CertificationsSection() {
 
                     <div className="cert-card">
                         <div className="cert-logo-wrapper">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/University_of_Michigan_Logo.png"
+                            <img src="/assets/logos/umich.svg"
                                 alt="U-Michigan Logo" className="cert-provider-logo"
                                 onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
                             <div className="logo-fallback" style={{ display: 'none' }}>M</div>

@@ -81,17 +81,17 @@ export const techStackCategories = [
             { name: "HeyGen", logo: "https://www.google.com/s2/favicons?domain=heygen.com&sz=128", glow: "#06b6d4", level: "90%" },
             { name: "Kling AI Avatar", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "88%" },
             { name: "Canva", logo: "https://www.google.com/s2/favicons?domain=canva.com&sz=128", glow: "#00c4cc", level: "95%" },
-            { name: "Creative Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg", glow: "#ff0080", level: "90%" }
+            { name: "Creative Cloud", logo: "/assets/logos/adobecc.svg", glow: "#ff0080", level: "90%" }
         ]
     },
     {
         num: "07",
         name: "POST PRODUCTION & AUDIO",
         tools: [
-            { name: "ElevenLabs", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
-            { name: "Premiere Pro", logo: "https://upload.wikimedia.org/wikipedia/commons/3/34/Adobe_Premiere_Pro_CC_2026_icon.svg", glow: "#ae8cfa", level: "92%" },
-            { name: "Topaz", logo: "https://www.ai-stat.ru/icons/png/dark/topazlabs.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
-            { name: "DaVinci Resolve", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/DaVinci_Resolve_Studio.png/250px-DaVinci_Resolve_Studio.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail", glow: "#05FF99", level: "90%", learning: true }
+            { name: "ElevenLabs", logo: "/assets/logos/elevenlabs.svg", glow: "#fbbf24", level: "95%" },
+            { name: "Premiere Pro", logo: "/assets/logos/premiere.svg", glow: "#ae8cfa", level: "92%" },
+            { name: "Topaz", logo: "/assets/logos/topaz.png", customBadge: "Tp", color: "#00c3ff", bg: "#001e4e", glow: "#00c3ff", level: "90%" },
+            { name: "DaVinci Resolve", logo: "/assets/logos/davinci.png", glow: "#05FF99", level: "90%", learning: true }
         ]
     }
 ];
