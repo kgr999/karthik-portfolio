@@ -317,6 +317,7 @@ export default function TheRiverborn() {
                                         <input 
                                             type="range"
                                             className="rb-phone-slider"
+                                            aria-label="Episode playback progress"
                                             min="0"
                                             max="100"
                                             step="0.1"

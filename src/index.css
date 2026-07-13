@@ -769,7 +769,7 @@ nav .menu-toggle {
 .dossier-scan-indicator {
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 0.58rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 1px;
     display: flex;
     align-items: center;
@@ -849,7 +849,7 @@ nav .menu-toggle {
 .dossier-pill-title {
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 0.52rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.8px;
     font-weight: 600;
 }
@@ -1671,7 +1671,7 @@ section {
 .cap-label {
     font-family: monospace;
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -1740,7 +1740,7 @@ section {
 .meta-key {
     font-family: monospace;
     font-size: 0.68rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.55);
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
@@ -2062,7 +2062,7 @@ section {
 @media (hover: hover) {
     .client-item:hover {
         background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.5);
         transform: translateY(-2px) scale(1.02);
         box-shadow: 0 0 30px var(--glow-color, rgba(77, 163, 255, 0.15));
     }
@@ -2725,7 +2725,7 @@ section {
 .ts-console-latency {
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.5px;
 }
 
@@ -2780,7 +2780,7 @@ section {
 .ts-stat-label {
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 0.58rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.5px;
 }
 
@@ -3283,7 +3283,7 @@ section {
 }
 
 .social-dock:hover {
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
     box-shadow:
         inset 0 1px 1px rgba(255, 255, 255, 0.2),
         0 25px 60px rgba(0, 0, 0, 0.6),
@@ -3463,7 +3463,7 @@ footer {
     padding: 30px 0;
     border-top: none;
     text-align: center;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.8rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -4461,7 +4461,7 @@ footer {
 /* Hover effects with elegant custom data-glow */
 @media (hover: hover) {
     .cinema-card:hover {
-        border-color: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.5);
         transform: translateY(-5px);
         box-shadow: 0 15px 45px var(--glow-color, rgba(77, 163, 255, 0.1));
     }
@@ -4546,7 +4546,7 @@ footer {
 }
 
 .prompt-code-panel:hover {
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
     background: rgba(15, 15, 18, 0.8);
 }
 
@@ -4582,7 +4582,7 @@ footer {
 }
 
 .prompt-action-divider {
-    color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.7rem;
 }
 
@@ -4703,7 +4703,7 @@ footer {
     font-family: var(--font-heading);
     font-size: 0.72rem;
     letter-spacing: 5px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.55);
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 45px;
@@ -4745,7 +4745,7 @@ footer {
 
 .pillar-arrow {
     margin: 20px 0;
-    color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.5);
     width: 24px;
     height: 24px;
     animation: bounceArrow 2s infinite ease-in-out;
@@ -4761,7 +4761,7 @@ footer {
     0%,
     100% {
         transform: translateY(0);
-        color: rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.5);
     }
 
     50% {
@@ -4890,7 +4890,7 @@ footer {
 }
 
 .xp-interface-window:hover {
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .xp-window-header {
@@ -5306,7 +5306,7 @@ footer {
 
 .xp-brand-logo-btn.xp-brand-ampere:hover {
     background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(255, 255, 255, 0.35) !important;
+    border-color: rgba(255, 255, 255, 0.55) !important;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.25) !important;
 }
 
@@ -5424,7 +5424,7 @@ footer {
 
 .xp-pool-placeholder span {
     font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border: 1px dashed rgba(255, 255, 255, 0.1);
@@ -5726,7 +5726,7 @@ footer {
 }
 
 .xp-slider-reset {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -5820,7 +5820,7 @@ footer {
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     cursor: pointer;
     border-bottom: 2px solid transparent;
     transition: all 0.2s;
@@ -5855,7 +5855,7 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: 0.55rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     font-family: 'SF Mono', monospace;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
@@ -6302,7 +6302,7 @@ footer {
 
 .xp-insights-dropdown:hover {
     background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .xp-insights-dropdown svg {
@@ -6929,7 +6929,7 @@ nav.nav-standby .menu-toggle {
     width: 42px;
     height: 42px;
     border-top-color: #ffffff;
-    border-left-color: rgba(255, 255, 255, 0.25);
+    border-left-color: rgba(255, 255, 255, 0.5);
     animation: rotateClockwise 1.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     opacity: 0.8;
 }
@@ -9124,8 +9124,8 @@ nav.nav-standby .menu-toggle {
 
     /* Scale typography and padding down on smaller mobile card */
     .avatar-name {
-        font-size: 1.25rem !important;
-        letter-spacing: 1.5px !important;
+        font-size: 1.1rem !important;
+        letter-spacing: 1.2px !important;
     }
 
     .avatar-location {
@@ -9338,7 +9338,7 @@ nav.nav-standby .menu-toggle {
     font-size: 0.85rem;
     font-weight: 800;
     font-family: monospace;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .fp-pod-status {
@@ -9432,7 +9432,7 @@ nav.nav-standby .menu-toggle {
 }
 
 .fp-console-nav-item:hover {
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
     color: rgba(255, 255, 255, 0.85);
     transform: translateY(-1.5px);
 }
@@ -9708,7 +9708,7 @@ nav.nav-standby .menu-toggle {
 .fp-hud-lbl {
     font-size: 0.58rem;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 1px;
 }
 
@@ -9795,7 +9795,7 @@ nav.nav-standby .menu-toggle {
 .fp-tech-label {
     font-size: 0.65rem;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 1.2px;
 }
 
@@ -10176,7 +10176,7 @@ nav.nav-standby .menu-toggle {
 .fp-pod-hud-lbl {
     font-size: 0.54rem;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.8px;
     font-family: monospace;
 }
@@ -11415,7 +11415,7 @@ nav.nav-standby .menu-toggle {
     font-family: 'Courier New', 'SF Mono', monospace;
     font-size: 0.58rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 1px;
 }
 
@@ -11839,7 +11839,7 @@ nav.nav-standby .menu-toggle {
 
 .ap-governance-lbl {
     font-size: 0.55rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     font-weight: 800;
     letter-spacing: 0.6px;
     text-transform: uppercase;
@@ -12490,7 +12490,7 @@ nav.nav-standby .menu-toggle {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -12545,7 +12545,7 @@ nav.nav-standby .menu-toggle {
     font-family: var(--font-heading);
     font-size: 0.72rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -12688,7 +12688,7 @@ nav.nav-standby .menu-toggle {
 
 .rider-field input::placeholder,
 .rider-field textarea::placeholder {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .rider-field-row {
@@ -12726,7 +12726,7 @@ nav.nav-standby .menu-toggle {
     font-weight: 700;
     min-width: 12px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
 }
 
@@ -12785,7 +12785,7 @@ nav.nav-standby .menu-toggle {
 
 .rider-submit:disabled {
     background: rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.5);
     box-shadow: none;
     cursor: not-allowed;
 }
@@ -12913,7 +12913,7 @@ nav.nav-standby .menu-toggle {
 
 .rider-reset-btn:hover {
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
     background: rgba(255, 255, 255, 0.04);
 }
 
@@ -13265,7 +13265,7 @@ nav.nav-standby .menu-toggle {
 
 .form-back-btn:hover {
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
     background: rgba(255, 255, 255, 0.03);
     transform: translateY(-2px);
 }
@@ -13781,7 +13781,7 @@ nav.nav-standby .menu-toggle {
 
 .kuku-tv-card:hover {
     transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .kuku-tv-card img {

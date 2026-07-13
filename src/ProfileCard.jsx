@@ -37,7 +37,9 @@ export default function ProfileCard({
                 <img 
                     className="avatar-image" 
                     src={imgSrc} 
-                    alt="Karthik G Raj" 
+                    alt="Karthik G Raj"
+                    width="280"
+                    height="280"
                 />
 
                 {/* Minimalist & Premium Info Panel */}

@@ -128,7 +128,11 @@
 
 @media (max-width: 768px) {
     .avatar-card-outer {
-        max-width: 280px;
+        max-width: 240px;
+    }
+    .avatar-name {
+        font-size: 1.1rem;
+        letter-spacing: 1.2px;
     }
 }
 
@@ -137,13 +141,13 @@
         max-width: 185px;
     }
     .avatar-name {
-        font-size: 1.35rem;
-        letter-spacing: 1.5px;
+        font-size: 1.1rem;
+        letter-spacing: 1.2px;
     }
     .avatar-location {
         font-size: 0.75rem;
     }
     .avatar-info-panel {
-        padding: 16px 12px;
+        padding: 14px 10px;
     }
 }
