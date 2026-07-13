@@ -42,7 +42,7 @@ export default function ProfileCard({
 
                 {/* Minimalist & Premium Info Panel */}
                 <div className="avatar-info-panel">
-                    <h3 className="avatar-name">Karthik G Raj</h3>
+                    <p className="avatar-name">Karthik G Raj</p>
                     <p className="avatar-location">
                         <svg className="location-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />

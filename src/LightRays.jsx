@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { Renderer, Program, Triangle, Mesh } from 'ogl';
+// OGL is lazy-loaded via dynamic import() when the component becomes visible
 import './LightRays.css';
 
 const DEFAULT_COLOR = '#ffffff';
@@ -92,6 +92,8 @@ const LightRays = ({
       await new Promise(resolve => setTimeout(resolve, 10));
 
       if (!containerRef.current) return;
+
+      const { Renderer, Program, Triangle, Mesh } = await import('ogl');
 
       const renderer = new Renderer({
         dpr: Math.min(window.devicePixelRatio, 1.2),

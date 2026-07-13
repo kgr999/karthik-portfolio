@@ -13,7 +13,7 @@ import CapabilitiesSection from './components/CapabilitiesSection';
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import TheRiverborn from './components/TheRiverborn';
-import ExperienceJourney from './components/ExperienceJourney';
+const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
     {
@@ -353,7 +353,7 @@ const renderPlatformToolIcon = (tool, size = 16) => {
             return <span className="tool-logo-icon" style={{ fontSize: '8px' }}>🛠️</span>;
     }
 };
-import CertificationsSection from './components/CertificationsSection';
+const CertificationsSection = lazy(() => import('./components/CertificationsSection'));
 
 export default function App() {
     const isMobile = useIsMobile();
@@ -673,12 +673,21 @@ export default function App() {
         }
         window.scrollTo(0, 0);
 
-        const cleanup = initPortfolio();
+        // Defer heavy portfolio animations until after initial paint to reduce TBT
+        let cleanup;
+        const deferInit = typeof requestIdleCallback === 'function' ? requestIdleCallback : (cb) => setTimeout(cb, 1);
+        const deferHandle = deferInit(() => {
+            cleanup = initPortfolio();
+        });
         const interval = setInterval(() => {
             setLocIdx((prev) => (prev + 1) % locations.length);
         }, 1500);
         return () => {
             clearInterval(interval);
+            // Cancel deferred init if it hasn't run yet
+            if (typeof cancelIdleCallback === 'function' && deferHandle) {
+                cancelIdleCallback(deferHandle);
+            }
             if (cleanup) cleanup();
         };
     }, []);
@@ -969,7 +978,9 @@ export default function App() {
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
                     <TheRiverborn />
                     <CapabilitiesSection />
-                    <ExperienceJourney locIdx={locIdx} simTime={simTime} />
+                    <Suspense fallback={null}>
+                        <ExperienceJourney locIdx={locIdx} simTime={simTime} />
+                    </Suspense>
                     <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}
                         setMidjourneyExpanded={setMidjourneyExpanded}
@@ -1111,7 +1122,9 @@ export default function App() {
                         </div>
                     </section>
                     {/* <CurrentLearning /> */}
-                    <CertificationsSection />
+                    <Suspense fallback={null}>
+                        <CertificationsSection />
+                    </Suspense>
 
                     {/* Contact Section */}
                     <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>

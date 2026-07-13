@@ -150,12 +150,26 @@ export default function ContactPhysicsArena() {
             contactSection.addEventListener('mouseleave', handleMouseLeave, { passive: true });
         }
 
-        // 3. High framerate animation loop for Aero and movie reel
+        // 3. High framerate animation loop for Aero and movie reel (Optimized with IntersectionObserver to prevent off-screen CPU loops)
         let animationFrameId;
+        let isArenaVisible = false;
+
+        // Cache arena dimensions — avoid getBoundingClientRect() per frame (prevents forced reflows)
+        let cachedArenaW = arenaRef.current ? arenaRef.current.offsetWidth : 800;
+        let cachedArenaH = arenaRef.current ? arenaRef.current.offsetHeight : 400;
+        const updateArenaDims = () => {
+            if (arenaRef.current) {
+                cachedArenaW = arenaRef.current.offsetWidth;
+                cachedArenaH = arenaRef.current.offsetHeight;
+            }
+        };
+        window.addEventListener('resize', updateArenaDims, { passive: true });
 
         const loop = () => {
-            const arenaW = arenaRef.current ? arenaRef.current.getBoundingClientRect().width : 800;
-            const arenaH = arenaRef.current ? arenaRef.current.getBoundingClientRect().height : 400;
+            if (!isArenaVisible) return;
+
+            const arenaW = cachedArenaW;
+            const arenaH = cachedArenaH;
 
             if (arenaW > 0 && arenaH > 0) {
                 const prevX = aeroState.current.x;
@@ -250,7 +264,20 @@ export default function ContactPhysicsArena() {
             animationFrameId = requestAnimationFrame(loop);
         };
 
-        animationFrameId = requestAnimationFrame(loop);
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                isArenaVisible = entry.isIntersecting;
+                if (isArenaVisible) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = requestAnimationFrame(loop);
+                } else {
+                    cancelAnimationFrame(animationFrameId);
+                }
+            },
+            { threshold: 0.02 }
+        );
+
+        observer.observe(arenaRef.current || contactSection);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
@@ -259,7 +286,9 @@ export default function ContactPhysicsArena() {
             if (contactSection) {
                 contactSection.removeEventListener('mouseleave', handleMouseLeave);
             }
+            observer.disconnect();
             cancelAnimationFrame(animationFrameId);
+            window.removeEventListener('resize', updateArenaDims);
             clearTimeout(expressionTimeout);
         };
     }, []);
