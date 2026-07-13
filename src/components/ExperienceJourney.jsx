@@ -101,11 +101,19 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     <img
                                         src="/assets/images/kukutv-logo.webp"
                                         alt="Kuku TV Logo"
+                                        width="120"
+                                        height="39"
+                                        loading="lazy"
+                                        decoding="async"
                                         style={{ height: '39px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
                                     <img
                                         src="/assets/images/kukutv-icon.webp"
                                         alt="Wow TV Logo"
+                                        width="70"
+                                        height="70"
+                                        loading="lazy"
+                                        decoding="async"
                                         style={{ height: '70px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
                                 </div>
@@ -227,6 +235,10 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <img
                                                         src="/assets/images/admitra.webp"
                                                         alt="AdMitra Logo"
+                                                        width="120"
+                                                        height="120"
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         style={{ width: '120px', height: '120px', objectFit: 'contain', display: 'block', opacity: 0.95 }}
                                                     />
                                                 </div>
@@ -311,6 +323,10 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                         <img
                                                             src="/assets/images/montra_logo.png"
+                                                            width="24"
+                                                            height="24"
+                                                            loading="lazy"
+                                                            decoding="async"
                                                             onError={(e) => {
                                                                 if (!e.target.dataset.triedFallback) {
                                                                     e.target.dataset.triedFallback = 'true';
@@ -334,6 +350,10 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                         <img
                                                             src="/assets/images/ampere_logo.png"
+                                                            width="24"
+                                                            height="24"
+                                                            loading="lazy"
+                                                            decoding="async"
                                                             onError={(e) => {
                                                                 if (!e.target.dataset.triedFallback) {
                                                                     e.target.dataset.triedFallback = 'true';
@@ -357,6 +377,10 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                         <img
                                                             src="/assets/images/lincoln_logo.png"
+                                                            width="24"
+                                                            height="24"
+                                                            loading="lazy"
+                                                            decoding="async"
                                                             onError={(e) => {
                                                                 if (!e.target.dataset.triedFallback) {
                                                                     e.target.dataset.triedFallback = 'true';
@@ -476,7 +500,10 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                         <img
                                                             src={poster.posterSrc}
                                                             alt={poster.title}
+                                                            width="160"
+                                                            height="240"
                                                             loading="lazy"
+                                                            decoding="async"
                                                             style={{
                                                                 width: '100%',
                                                                 height: '100%',

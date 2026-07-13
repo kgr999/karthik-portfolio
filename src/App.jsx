@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
-import LightRays from './LightRays';
+const LightRays = lazy(() => import('./LightRays'));
 import { initPortfolio } from './portfolio-logic';
 import useIsMobile from './hooks/useIsMobile';
 import { locations } from './data/portfolioData';
@@ -673,6 +673,10 @@ export default function App() {
         }
         window.scrollTo(0, 0);
 
+        // Swap Google Fonts stylesheet from media="print" to media="all" on mount (non-render-blocking)
+        const gfontsEl = document.getElementById('gfonts-css');
+        if (gfontsEl) gfontsEl.media = 'all';
+
         // Defer heavy portfolio animations until after initial paint to reduce TBT
         let cleanup;
         const deferInit = typeof requestIdleCallback === 'function' ? requestIdleCallback : (cb) => setTimeout(cb, 1);
@@ -861,20 +865,22 @@ export default function App() {
     return (
         <>
             <div className={`transition-filter-base ${isInitializing ? 'bg-grayscale' : ''}`} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
-                <LightRays
-                    raysOrigin="top-center"
-                    raysColor={theme === 'kuku' ? '#B20710' : '#E50914'}
-                    raysSpeed={1.7}
-                    lightSpread={2.2}
-                    rayLength={1.8}
-                    followMouse={true}
-                    mouseInfluence={0.4}
-                    noiseAmount={0.23}
-                    distortion={0.05}
-                    className="custom-rays"
-                    pulsating
-                    saturation={2}
-                />
+                <Suspense fallback={null}>
+                    <LightRays
+                        raysOrigin="top-center"
+                        raysColor={theme === 'kuku' ? '#B20710' : '#E50914'}
+                        raysSpeed={1.7}
+                        lightSpread={2.2}
+                        rayLength={1.8}
+                        followMouse={true}
+                        mouseInfluence={0.4}
+                        noiseAmount={0.23}
+                        distortion={0.05}
+                        className="custom-rays"
+                        pulsating
+                        saturation={2}
+                    />
+                </Suspense>
             </div>
             <nav 
                 className={`${isInitialized ? '' : 'nav-standby'} ${isInitializing ? 'bg-grayscale' : ''}`}

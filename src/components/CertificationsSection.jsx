@@ -19,7 +19,7 @@ export default function CertificationsSection() {
                         <div className="cert-content">
                             <div className="cert-main">
                                 <span>Google</span>
-                                <h4>AI Essentials</h4>
+                                <h3>AI Essentials</h3>
                             </div>
                             <div className="cert-footer">
                                 <a href="https://coursera.org/verify/professional-cert/FYMT0W2FGSDM" target="_blank" rel="noopener noreferrer"
@@ -41,7 +41,7 @@ export default function CertificationsSection() {
                         <div className="cert-content">
                             <div className="cert-main">
                                 <span>University of Michigan</span>
-                                <h4>AI Basics and Tools for Creativity</h4>
+                                <h3>AI Basics and Tools for Creativity</h3>
                             </div>
                             <div className="cert-footer">
                                 <a href="https://coursera.org/verify/O0S4GJF3H4BS" target="_blank" rel="noopener noreferrer" className="cert-btn">View Credential ↗</a>

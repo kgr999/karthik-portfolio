@@ -73,10 +73,19 @@ export default function ContactPhysicsArena() {
 
         expressionTimeout = setTimeout(triggerRandomExpression, 3000);
 
+        // Cache rect to avoid forced reflows during scroll & mousemove handlers
+        let cachedRect = arenaRef.current ? arenaRef.current.getBoundingClientRect() : { top: 0, bottom: 0, left: 0, right: 0, height: 400 };
+        const updateRect = () => {
+            if (arenaRef.current) {
+                cachedRect = arenaRef.current.getBoundingClientRect();
+            }
+        };
+        window.addEventListener('resize', updateRect, { passive: true });
+
         // 1. Mouse/Touch Move Listeners to trail cursor
         const handleMouseMove = (e) => {
             if (!arenaRef.current) return;
-            const rect = arenaRef.current.getBoundingClientRect();
+            const rect = cachedRect;
             const clientX = e.clientX || (e.touches && e.touches[0].clientX);
             const clientY = e.clientY || (e.touches && e.touches[0].clientY);
 
@@ -106,7 +115,8 @@ export default function ContactPhysicsArena() {
         // 2. Scroll Parallax & Reel Rotation Event Handler
         const handleScroll = () => {
             if (!arenaRef.current) return;
-            const rect = arenaRef.current.getBoundingClientRect();
+            updateRect();
+            const rect = cachedRect;
             const viewportH = window.innerHeight;
 
             // Only run transitions when the contact section is on-screen

@@ -139,6 +139,10 @@ export default function ActiveProjects({ revealed = false }) {
                                     src={project.imageSrc}
                                     alt={project.title}
                                     className={`ap-preview-img ${showVideo ? 'ap-preview-fadeout' : ''}`}
+                                    width="600"
+                                    height="350"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
 
                                 {/* Video */}

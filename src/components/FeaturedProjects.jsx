@@ -117,7 +117,10 @@ export default function FeaturedProjects() {
                             src="/assets/images/eviatorlaunchphoto.webp"
                             alt="Montra Electric Eviator Launch Video Production"
                             style={{ objectPosition: 'center' }}
+                            width="600"
+                            height="350"
                             loading="lazy"
+                            decoding="async"
                         />
                         
                         <div className="fp-play-overlay">
@@ -274,7 +277,10 @@ export default function FeaturedProjects() {
                             src="/assets/images/lincolnpharmaphoto.webp"
                             alt="Lincoln Pharma Pa12 Launch Drama"
                             style={{ objectPosition: 'center' }}
+                            width="600"
+                            height="350"
                             loading="lazy"
+                            decoding="async"
                         />
                         
                         <div className="fp-play-overlay">
@@ -465,7 +471,10 @@ export default function FeaturedProjects() {
                                 src="/assets/images/instaviral.webp"
                                 alt="Diesel Drama Instagram Reel"
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                width="350"
+                                height="600"
                                 loading="lazy"
+                                decoding="async"
                             />
 
                             {/* Simulated Instagram overlay UI */}

@@ -1887,6 +1887,7 @@ section {
     border: 1px solid rgba(59, 130, 246, 0.15);
 }
 
+.cert-main h3,
 .cert-main h4 {
     font-family: var(--font-heading);
     font-size: 0.85rem;
@@ -1898,7 +1899,7 @@ section {
 }
 
 .cert-main p {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     max-width: 500px;
     font-weight: 300;
 }
@@ -2091,7 +2092,7 @@ section {
 
 .test-author-info span {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 
@@ -2417,7 +2418,7 @@ section {
     font-size: 0.58rem;
     font-weight: 700;
     letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
 }
 
@@ -4560,7 +4561,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     font-size: 0.68rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 8px;
     letter-spacing: 1px;
     font-weight: 700;
@@ -4951,7 +4952,7 @@ footer {
     transform: translate(-50%, -50%);
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.5px;
     display: inline-flex;
     align-items: center;
@@ -5014,7 +5015,7 @@ footer {
 }
 
 .xp-stat span {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     display: block;
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -5273,7 +5274,7 @@ footer {
 
 .xp-brands-title {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     letter-spacing: 1.5px;
     margin-bottom: 15px;
 }
@@ -5349,7 +5350,7 @@ footer {
     height: 20px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.65rem;
     font-family: 'Fira Code', monospace;
     font-weight: 700;
@@ -5366,7 +5367,7 @@ footer {
 .xp-brand-ampere:hover .xp-brand-badge {
     background: rgba(255, 255, 255, 0.2) !important;
     color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.55) !important;
 }
 
 .xp-brand-lincoln-pharma:hover .xp-brand-badge {
@@ -5413,7 +5414,7 @@ footer {
 .xp-inspector h4 {
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 8px;
     letter-spacing: 1px;
 }
@@ -5466,7 +5467,7 @@ footer {
     gap: 16px;
     align-items: center;
     margin-top: 16px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .xp-monitor-controls svg {
@@ -5710,7 +5711,7 @@ footer {
     gap: 6px;
     font-size: 0.72rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
     letter-spacing: 1.2px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -6093,7 +6094,7 @@ footer {
 .xp-window-lens .xp-window-sidebar h4 {
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 15px;
     letter-spacing: 1px;
 }
@@ -9442,7 +9443,7 @@ nav.nav-standby .menu-toggle {
     font-family: var(--font-heading);
     font-size: 0.85rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -9753,7 +9754,7 @@ nav.nav-standby .menu-toggle {
     font-family: var(--font-heading);
     font-size: 0.78rem; /* Sized down from 0.82rem */
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
@@ -11059,7 +11060,7 @@ nav.nav-standby .menu-toggle {
     font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 8px;
 }
 
@@ -11127,7 +11128,7 @@ nav.nav-standby .menu-toggle {
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 1.5px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
 }
 

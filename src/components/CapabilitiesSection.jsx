@@ -67,8 +67,11 @@ export default function CapabilitiesSection() {
                     <img 
                         className="cap-color-image" 
                         src={cap.src} 
-                        alt={cap.alt} 
-                        loading="lazy" 
+                        alt={cap.alt}
+                        width="400"
+                        height="250" 
+                        loading="lazy"
+                        decoding="async" 
                     />
                 )}
             </div>

@@ -401,7 +401,7 @@
 .rb-playlist-count {
     font-family: var(--font-primary);
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 600;
 }
 
@@ -516,7 +516,7 @@
     font-family: var(--font-primary);
     font-size: 0.72rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.5px;
 }
 
@@ -527,7 +527,7 @@
 .rb-ep-duration {
     font-family: var(--font-primary);
     font-size: 0.68rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .rb-ep-title {
@@ -585,7 +585,7 @@
 }
 
 .rb-badge.badge-locked {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.08);
 }
