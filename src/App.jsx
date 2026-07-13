@@ -687,10 +687,6 @@ export default function App() {
         }
         window.scrollTo(0, 0);
 
-        // Swap Google Fonts stylesheet from media="print" to media="all" on mount (non-render-blocking)
-        const gfontsEl = document.getElementById('gfonts-css');
-        if (gfontsEl) gfontsEl.media = 'all';
-
         // Defer heavy portfolio animations until after initial paint to reduce TBT
         let cleanup;
         const deferInit = typeof requestIdleCallback === 'function' ? requestIdleCallback : (cb) => setTimeout(cb, 1);
