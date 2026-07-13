@@ -12,6 +12,7 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes('node_modules')) {
             if (id.includes('gsap')) return 'vendor-gsap';
+            if (id.includes('lenis')) return 'vendor-lenis';
             if (id.includes('three') || id.includes('ogl')) return 'vendor-3d';
             return 'vendor-core';
           }

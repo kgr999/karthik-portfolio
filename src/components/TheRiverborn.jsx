@@ -235,8 +235,10 @@ export default function TheRiverborn() {
                         <div className="rb-poster-wrapper">
                             <img 
                                 src="/assets/images/rb_poster.webp" 
-                                alt="The Riverborn Official Poster" 
+                                alt="The Riverborn AI Microdrama Poster" 
                                 className="rb-poster-img"
+                                width="400"
+                                height="600"
                                 loading="lazy"
                             />
                             <div className="rb-poster-overlay">
@@ -397,7 +399,7 @@ export default function TheRiverborn() {
                                             onClick={() => setActiveEp(ep.id)}
                                         >
                                             <div className="rb-ep-thumb-box">
-                                                <img src={ep.thumbSrc} alt={ep.title} className="rb-ep-thumb" />
+                                                <img src={ep.thumbSrc} alt={ep.title} className="rb-ep-thumb" width="160" height="90" loading="lazy" />
                                                 <div className="rb-ep-thumb-overlay">
                                                     {isActive ? (
                                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

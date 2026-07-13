@@ -92,8 +92,8 @@ export function initPortfolio() {
     };
     gsap.ticker.add(lenisTicker);
 
-    // Disable lag smoothing in GSAP to keep tick calculations aligned perfectly
-    gsap.ticker.lagSmoothing(0);
+    // Enable GSAP lag smoothing to drop frame spikes gracefully on throttled devices
+    gsap.ticker.lagSmoothing(500, 33);
 
     // Global contextmenu & dragstart security block to prevent downloading images/videos
     addManagedListener(window, 'contextmenu', (e) => {
@@ -109,9 +109,7 @@ export function initPortfolio() {
         }
     });
 
-    // 2. GSAP Animations Setup
-    // ScrollTrigger is registered globally above
-
+    // 2. High-Performance Native Composited Animations (Zero JS CPU overhead during scroll)
     // Hero Entrance Animations (Apple Fluid Reveal)
     gsap.fromTo('.hero-reveal-text', 
         { opacity: 0, y: 40, scale: 0.98 },
@@ -137,106 +135,19 @@ export function initPortfolio() {
         }
     );
 
-    // Reveal Text Animation (Apple Scroll-Scrubbed Text Reveal)
-    gsap.utils.toArray('.reveal-text').forEach((text) => {
-        gsap.fromTo(text, 
-            { opacity: 0.15, y: 30 },
-            {
-                scrollTrigger: {
-                    trigger: text,
-                    start: 'top 92%',
-                    end: 'top 65%',
-                    scrub: 1
-                },
-                opacity: 1,
-                y: 0,
-                ease: 'power2.out'
+    // Native Hardware-Accelerated Observer for all scroll reveal elements
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
             }
-        );
-    });
-
-    // Reveal Items Animation (Apple Spatial Reveal)
-    gsap.utils.toArray('.reveal-item').forEach((item) => {
-        gsap.fromTo(item, 
-            { opacity: 0, y: 40, scale: 0.97 },
-            {
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 1.5,
-                ease: 'power4.out'
-            }
-        );
-    });
-
-    // 2.5. Premium Capabilities Cards Float Stagger (Apple Spatial Reveal)
-    const capCardsV2 = gsap.utils.toArray('.cap-card-v2');
-    if (capCardsV2.length > 0) {
-        gsap.fromTo(capCardsV2, 
-            { opacity: 0, y: 50, scale: 0.96 },
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 1.4,
-                stagger: 0.1,
-                ease: 'power4.out',
-                scrollTrigger: {
-                    trigger: '#capabilities',
-                    start: 'top 82%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    }
-
-    // 3D Stagger Entrance for Tech Stack Cards (Apple Refinement)
-    const techStackCards = gsap.utils.toArray('.tech-stack-card');
-    if (techStackCards.length > 0) {
-        gsap.fromTo(techStackCards,
-            { opacity: 0, scale: 0.94, rotationX: -18, transformPerspective: 1000 },
-            {
-                opacity: 1,
-                scale: 1,
-                rotationX: 0,
-                duration: 1.2,
-                stagger: 0.05,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '#tech-stack',
-                    start: 'top 82%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    }
-
-    // Apple-style Cinematic Cards Zoom Reveal
-    const cinemaCards = gsap.utils.toArray('.cinema-card');
-    if (cinemaCards.length > 0) {
-        cinemaCards.forEach((card) => {
-            gsap.fromTo(card, 
-                { opacity: 0, y: 50, scale: 1.04 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 1.6,
-                    ease: 'power4.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 88%',
-                        toggleActions: 'play none none none'
-                    }
-                }
-            );
         });
-    }
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    const revealElements = document.querySelectorAll('.reveal-text, .reveal-item');
+    revealElements.forEach((el) => revealObserver.observe(el));
+    observers.push(revealObserver);
 
     // 3. Advanced Custom Cursor Logic
     const cursor = document.getElementById('cursor');
@@ -565,13 +476,17 @@ export function initPortfolio() {
     // Dynamic Navbar Shrink on Scroll & ScrollSpy Logic
     const nav = document.querySelector('nav');
     if (nav) {
-        addManagedListener(window, 'scroll', () => {
-            if (window.scrollY > 50) {
+        const updateNavScroll = () => {
+            const scrollPos = window.scrollY || (lenis ? lenis.scroll : 0);
+            if (scrollPos > 30) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
-        });
+        };
+        addManagedListener(window, 'scroll', updateNavScroll);
+        lenis.on('scroll', updateNavScroll);
+        updateNavScroll();
 
         // ScrollSpy implementation (desktop/sidebar active highlights)
         const spySections = [

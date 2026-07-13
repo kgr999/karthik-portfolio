@@ -35,6 +35,8 @@ export default function AchievementsGallery() {
                             src={ach.image} 
                             alt={ach.title} 
                             className="ach-img" 
+                            width="250" 
+                            height="250" 
                             loading="lazy"
                         />
                         <div className="ach-img-glare"></div>

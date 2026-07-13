@@ -12,7 +12,7 @@ export default function CertificationsSection() {
                     <div className="cert-card">
                         <div className="cert-logo-wrapper">
                             <img src="/assets/logos/google.svg"
-                                alt="Google Logo" className="cert-provider-logo"
+                                alt="Google Logo" className="cert-provider-logo" width="32" height="32"
                                 onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
                             <div className="logo-fallback" style={{ display: 'none' }}>G</div>
                         </div>
@@ -27,14 +27,14 @@ export default function CertificationsSection() {
                             </div>
                         </div>
                         <div className="cert-bg-preview">
-                            <img src="assets/images/cert-google.webp" alt="Google Certificate Preview" loading="lazy" />
+                            <img src="assets/images/cert-google.webp" alt="Google Certificate Preview" width="480" height="360" loading="lazy" />
                         </div>
                     </div>
 
                     <div className="cert-card">
                         <div className="cert-logo-wrapper">
                             <img src="/assets/logos/umich.png"
-                                alt="U-Michigan Logo" className="cert-provider-logo"
+                                alt="U-Michigan Logo" className="cert-provider-logo" width="32" height="32"
                                 onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
                             <div className="logo-fallback" style={{ display: 'none' }}>M</div>
                         </div>
@@ -48,7 +48,7 @@ export default function CertificationsSection() {
                             </div>
                         </div>
                         <div className="cert-bg-preview">
-                            <img src="assets/images/cert-michigan.webp" alt="U-Michigan Certificate Preview" loading="lazy" />
+                            <img src="assets/images/cert-michigan.webp" alt="U-Michigan Certificate Preview" width="480" height="360" loading="lazy" />
                         </div>
                     </div>
                 </div>

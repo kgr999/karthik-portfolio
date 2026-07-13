@@ -307,24 +307,22 @@ nav {
     height: 72px; /* Compact default height for 1.52rem logo */
     display: flex;
     align-items: center;
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    box-shadow: none;
+    background: rgba(2, 2, 4, 0.92);
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-sizing: border-box;
 }
 
-nav:hover {
-    border-bottom-color: transparent;
-}
-
 nav.scrolled {
     height: 56px;
-    background: rgba(8, 8, 10, 0.85);
-    backdrop-filter: blur(20px) saturate(1.8);
-    -webkit-backdrop-filter: blur(20px) saturate(1.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+    background: rgba(1, 1, 2, 0.96);
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.85);
 }
 
 /* Inner flex container - logo-less nav is aligned right */
@@ -2906,11 +2904,18 @@ section {
 }
 
 
-/* GSAP States */
+/* High-Performance Native Composited Animations */
 .reveal-text,
 .reveal-item {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-text.is-visible,
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .hero-reveal-text,
@@ -4886,11 +4891,24 @@ footer {
     flex-direction: column;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 
-.xp-interface-window:hover {
-    border-color: rgba(255, 255, 255, 0.5);
+/* Ambient colored hover glows without border lines */
+.xp-window-kuku:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(229, 9, 20, 0.45) !important;
+}
+
+.xp-window-fal:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(59, 130, 246, 0.45) !important;
+}
+
+.xp-window-davinci:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(255, 255, 255, 0.3) !important;
+}
+
+.xp-window-lens:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(255, 234, 77, 0.45) !important;
 }
 
 .xp-window-header {
@@ -12208,7 +12226,11 @@ nav.nav-standby .menu-toggle {
 .section-heading {
     position: relative;
     padding-bottom: 14px;
-    --underline-scale: 0; /* Animated dynamically via GSAP on scroll reveal */
+    --underline-scale: 0; /* Animated dynamically via CSS transition on scroll reveal */
+}
+
+.section-heading.is-visible {
+    --underline-scale: 1;
 }
 
 /* Subtle background track of the underline */
@@ -12219,6 +12241,7 @@ nav.nav-standby .menu-toggle {
     left: 50%;
     transform: translateX(-50%) scaleX(var(--underline-scale, 0));
     transform-origin: center;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     width: 160px;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18) 20%, rgba(255, 255, 255, 0.18) 80%, transparent 100%);
@@ -12233,6 +12256,7 @@ nav.nav-standby .menu-toggle {
     left: 50%;
     transform: translateX(-50%) scaleX(var(--underline-scale, 0));
     transform-origin: center;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     width: 60px;
     height: 3px;
     background: linear-gradient(90deg, var(--accent) 0%, var(--accent-pink) 100%);
