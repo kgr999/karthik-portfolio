@@ -49,29 +49,29 @@ export default function CapabilitiesSection() {
     ];
 
     const renderCard = (cap, index, groupKey) => (
-        <div 
-            key={`${groupKey}-${index}`} 
+        <div
+            key={`${groupKey}-${index}`}
             className={`cap-card-v2 ${cap.isHero ? 'hero-cap-card' : ''}`}
         >
             <div className="cap-image-wrapper aspect-16-9">
                 {cap.type === 'video' ? (
-                    <LazyVideo 
-                        className="cap-color-image" 
-                        src={cap.src} 
-                        loop 
-                        muted 
-                        playsInline 
-                        autoPlay 
+                    <LazyVideo
+                        className="cap-color-image"
+                        src={cap.src}
+                        loop
+                        muted
+                        playsInline
+                        autoPlay
                     />
                 ) : (
-                    <img 
-                        className="cap-color-image" 
-                        src={cap.src} 
+                    <img
+                        className="cap-color-image"
+                        src={cap.src}
                         alt={cap.alt}
                         width="400"
-                        height="250" 
+                        height="250"
                         loading="lazy"
-                        decoding="async" 
+                        decoding="async"
                     />
                 )}
             </div>
@@ -93,7 +93,7 @@ export default function CapabilitiesSection() {
                 <div className="section-header text-center">
                     <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Creative Capabilities</h2>
                 </div>
-                
+
                 <div className="capabilities-marquee-container">
                     <div className="capabilities-marquee-track">
                         <div className="capabilities-marquee-group">
@@ -112,14 +112,14 @@ export default function CapabilitiesSection() {
                     <div className="ap-governance-bezel tr"></div>
                     <div className="ap-governance-bezel bl"></div>
                     <div className="ap-governance-bezel br"></div>
-                    
+
                     <div className="ap-governance-container">
                         <div className="ap-governance-header">
                             <div className="ap-governance-icon">
                                 <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                    <path d="M12 8v8"/>
-                                    <path d="M9 11h6"/>
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                    <path d="M12 8v8" />
+                                    <path d="M9 11h6" />
                                 </svg>
                             </div>
                             <div className="ap-governance-header-info">
