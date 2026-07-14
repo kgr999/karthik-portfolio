@@ -222,7 +222,7 @@ export default function TheRiverborn() {
             <div className="rb-container">
                 <div className="section-header text-center" style={{ marginBottom: '50px' }}>
                     <span className="section-subtitle" style={{ display: 'block', fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.5)', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px' }}>
-                        Personal AI Microdrama Series
+                        Independent AI Microdrama Series
                     </span>
                     <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>
                         The Riverborn
@@ -346,7 +346,7 @@ export default function TheRiverborn() {
                             </div>
                             
                             <p className="rb-desc">
-                                A personal 6-episode mytho-fiction microdrama series imagined and written by me. Produced entirely through generative AI video pipelines, the project is actively in production.
+                                An independent 6-episode mytho-fiction microdrama series imagined and written by me. Produced entirely through generative AI video pipelines, the project is actively in production.
                             </p>
                         </div>
 

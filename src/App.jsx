@@ -12,6 +12,7 @@ import CapabilitiesSection from './components/CapabilitiesSection';
 
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
+import CommercialAds from './components/CommercialAds';
 import TheRiverborn from './components/TheRiverborn';
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
@@ -874,7 +875,7 @@ export default function App() {
     useEffect(() => {
         if (!isInitialized) return;
 
-        const sectionIds = ['experience-journey', 'tech-stack', 'contact'];
+        const sectionIds = ['commercial-ads', 'experience-journey', 'tech-stack', 'contact'];
         const sectionMap = {};
 
         const observer = new IntersectionObserver(
@@ -911,7 +912,20 @@ export default function App() {
 
     return (
         <>
-            <div className={`transition-filter-base ${isInitializing ? 'bg-grayscale' : ''}`} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: -1, opacity: 0.45 }}>
+            <div 
+                className={`transition-filter-base ${isInitializing ? 'bg-grayscale' : ''}`} 
+                style={{ 
+                    position: 'fixed', 
+                    top: 0, 
+                    left: 0, 
+                    width: '100vw', 
+                    height: '100vh', 
+                    pointerEvents: 'none', 
+                    zIndex: -1, 
+                    opacity: activeSection === '#commercial-ads' ? 0 : 0.45,
+                    transition: 'opacity 0.5s ease'
+                }}
+            >
                 <Suspense fallback={null}>
                     <LightRays
                         raysOrigin="top-center"
@@ -955,6 +969,7 @@ export default function App() {
                     {/* Center Column: Links */}
                     <div className="nav-links">
                         <a href="#" className={`nav-link-item ${activeSection === '#' ? 'active-link' : ''}`}>Home</a>
+                        <a href="#commercial-ads" className={`nav-link-item ${activeSection === '#commercial-ads' ? 'active-link' : ''}`}>Commercials</a>
                         <a href="#experience-journey" className={`nav-link-item ${activeSection === '#experience-journey' ? 'active-link' : ''}`}>Experience</a>
                         <a href="#tech-stack" className={`nav-link-item ${activeSection === '#tech-stack' ? 'active-link' : ''}`}>Skills</a>
                         <a href="#contact" className={`nav-link-item ${activeSection === '#contact' ? 'active-link' : ''}`}>Contact</a>
@@ -1003,6 +1018,11 @@ export default function App() {
             <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''} ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
                     <a 
+                        href="#commercial-ads" 
+                        className="mobile-menu-link"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >Commercials</a>
+                    <a 
                         href="#experience-journey" 
                         className="mobile-menu-link"
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -1041,6 +1061,7 @@ export default function App() {
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
                     <TheRiverborn />
                     <CapabilitiesSection />
+                    <CommercialAds />
                     <Suspense fallback={null}>
                         <ExperienceJourney locIdx={locIdx} simTime={simTime} />
                     </Suspense>
