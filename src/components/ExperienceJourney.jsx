@@ -80,7 +80,9 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     height: '100%',
                                     objectFit: 'cover',
                                     objectPosition: 'center 20%',
-                                    zIndex: 0
+                                    zIndex: 0,
+                                    filter: 'blur(6px) brightness(0.25)',
+                                    opacity: 0.7
                                 }}
                             />
                             {/* Gradient Overlay */}
@@ -130,7 +132,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 </div>
                                 <div className="kuku-tv-nav-right">
                                     {/* Language drop */}
-                                    <div className="kuku-tv-lang" style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.08)', padding: '4px 8px', borderRadius: '15px', fontSize: '0.7rem', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }}>
+                                    <div className="kuku-tv-lang" style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(255,255,255,0.08)', padding: '4px 10px', borderRadius: '15px', fontSize: '0.75rem', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }}>
                                         <span>हिंदी</span>
                                         <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
@@ -143,87 +145,72 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     <h2 className="kuku-tv-show-title">AI Video Producer</h2>
                                     <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace', marginTop: '-8px', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
                                         <span>Bengaluru · kuku</span>
-                                        <span className="xp-date-shimmer kuku-date-accent" style={{ marginTop: '2px' }}>Present</span>
+                                        <span className="xp-date-shimmer kuku-date-accent" style={{ marginTop: '2px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                                            <span className="badge-dot" style={{ backgroundColor: '#E50914', boxShadow: '0 0 8px #E50914' }}></span>
+                                            Present
+                                        </span>
                                     </p>
 
-                                    {/* Custom Job Tags */}
-                                    <div className="kuku-tv-tags">
-                                        <span className="kuku-tv-tag">AI Microdrama Production</span>
+                                    {/* Primary Focus Banner */}
+                                    <div style={{
+                                        borderLeft: '4px solid #E50914',
+                                        background: 'linear-gradient(90deg, rgba(229, 9, 20, 0.15) 0%, rgba(229, 9, 20, 0) 100%)',
+                                        padding: '8px 16px',
+                                        borderRadius: '0 8px 8px 0',
+                                        marginTop: '16px',
+                                        marginBottom: '6px',
+                                        maxWidth: '520px'
+                                    }}>
+                                        <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: '800', color: '#ffffff', letterSpacing: '0.8px', textTransform: 'uppercase', fontFamily: 'monospace' }}>
+                                            Primary Focus: <span style={{ color: '#FF4D55', textShadow: '0 0 10px rgba(229, 9, 20, 0.4)' }}>AI Microdrama Production</span>
+                                        </p>
                                     </div>
 
-                                    {/* Description cards */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.45', maxWidth: '520px' }}>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <div style={{
-                                                background: 'rgba(229, 9, 20, 0.15)',
-                                                border: '1px solid rgba(229, 9, 20, 0.3)',
-                                                borderRadius: '50%',
-                                                width: '20px',
-                                                height: '20px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                flexShrink: 0,
-                                                marginTop: '1px',
-                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
-                                            }}>
-                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+                                    {/* Description Points (Clean & Presentable, no boxes) */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '520px', marginTop: '16px', fontSize: '0.86rem' }}>
+                                        {/* Point 1 */}
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                            <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
+                                            <div>
+                                                <p style={{ margin: 0, color: 'rgba(255,255,255,0.95)', lineHeight: '1.45' }}>
+                                                    <strong style={{ color: '#ffffff', fontWeight: '700' }}>Pipeline Scale:</strong> Producing end-to-end AI microdramas from script breakdown to final render, delivered across Kuku TV, Wow TV, and FreeDrama App.
+                                                </p>
+                                                <div style={{ display: 'flex', gap: '6px', marginTop: '4px', flexWrap: 'wrap' }}>
+                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#ScriptBreakdown</span>
+                                                    <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>•</span>
+                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#FullPipeline</span>
+                                                </div>
                                             </div>
-                                            <p style={{ margin: 0 }}>Own the full script-to-screen pipeline. Read a script, break it into shots and scenes, then use AI tools to generate video content for Kuku's microdrama format.</p>
                                         </div>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <div style={{
-                                                background: 'rgba(229, 9, 20, 0.15)',
-                                                border: '1px solid rgba(229, 9, 20, 0.3)',
-                                                borderRadius: '50%',
-                                                width: '20px',
-                                                height: '20px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                flexShrink: 0,
-                                                marginTop: '1px',
-                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
-                                            }}>
-                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+
+                                        {/* Point 2 */}
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                            <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
+                                            <div>
+                                                <p style={{ margin: 0, color: 'rgba(255,255,255,0.95)', lineHeight: '1.45' }}>
+                                                    <strong style={{ color: '#ffffff', fontWeight: '700' }}>Visual Continuity:</strong> Building node-based production workflows in Native AI Studio to maintain consistent characters, environments, and lighting styles.
+                                                </p>
+                                                <div style={{ display: 'flex', gap: '6px', marginTop: '4px', flexWrap: 'wrap' }}>
+                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#NativeAIStudio</span>
+                                                    <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>•</span>
+                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#StyleConsistency</span>
+                                                </div>
                                             </div>
-                                            <p style={{ margin: 0 }}>Obsess over continuity. Make sure characters, wardrobe, and settings stay consistent shot-to-shot through careful prompting and reference-driven workflows.</p>
                                         </div>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <div style={{
-                                                background: 'rgba(229, 9, 20, 0.15)',
-                                                border: '1px solid rgba(229, 9, 20, 0.3)',
-                                                borderRadius: '50%',
-                                                width: '20px',
-                                                height: '20px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                flexShrink: 0,
-                                                marginTop: '1px',
-                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
-                                            }}>
-                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
+
+                                        {/* Point 3 */}
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                            <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
+                                            <div>
+                                                <p style={{ margin: 0, color: 'rgba(255,255,255,0.95)', lineHeight: '1.45' }}>
+                                                    <strong style={{ color: '#ffffff', fontWeight: '700' }}>Emerging Workflows:</strong> Implementing cutting-edge tools like Higgsfield and ElevenLabs to drive creative quality and maximize production speed.
+                                                </p>
+                                                <div style={{ display: 'flex', gap: '6px', marginTop: '4px', flexWrap: 'wrap' }}>
+                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#Higgsfield</span>
+                                                    <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>•</span>
+                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#ElevenLabs</span>
+                                                </div>
                                             </div>
-                                            <p style={{ margin: 0 }}>Helped build the AI production playbook from day one. Stitching together Higgsfield and ElevenLabs into a repeatable process, with post-production on Premiere Pro.</p>
-                                        </div>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', background: 'rgba(229, 9, 20, 0.06)', borderLeft: '3px solid #E50914', borderRadius: '0 8px 8px 0', padding: '12px 14px', backdropFilter: 'blur(4px)' }}>
-                                            <div style={{
-                                                background: 'rgba(229, 9, 20, 0.15)',
-                                                border: '1px solid rgba(229, 9, 20, 0.3)',
-                                                borderRadius: '50%',
-                                                width: '20px',
-                                                height: '20px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                flexShrink: 0,
-                                                marginTop: '1px',
-                                                boxShadow: '0 0 10px rgba(229, 9, 20, 0.15)'
-                                            }}>
-                                                <span style={{ color: '#E50914', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
-                                            </div>
-                                            <p style={{ margin: 0 }}>Work closely with editors and the creative team to shape the final output, iterating fast in a 0→1 startup environment building for Indian audiences at scale.</p>
                                         </div>
                                     </div>
                                 </div>
