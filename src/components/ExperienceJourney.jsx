@@ -96,25 +96,36 @@ export default function ExperienceJourney({ locIdx, simTime }) {
 
                             {/* Kuku TV Nav Bar */}
                             <div className="kuku-tv-nav" style={{ position: 'relative', zIndex: 2 }}>
-                                <div className="kuku-tv-nav-left">
-                                    {/* Kuku TV Logos */}
+                                <div className="kuku-tv-nav-left" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginLeft: '-12px', paddingTop: '6px' }}>
+                                    {/* Kuku TV Logo */}
                                     <img
                                         src="/assets/images/kukutv-logo.webp"
                                         alt="Kuku TV Logo"
                                         width="120"
-                                        height="39"
+                                        height="32"
                                         loading="lazy"
                                         decoding="async"
-                                        style={{ height: '39px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
+                                        style={{ height: '32px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
+                                    {/* Wow TV Logo */}
                                     <img
                                         src="/assets/images/kukutv-icon.webp"
                                         alt="Wow TV Logo"
                                         width="70"
-                                        height="70"
+                                        height="68"
                                         loading="lazy"
                                         decoding="async"
-                                        style={{ height: '70px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
+                                        style={{ height: '68px', width: 'auto', objectFit: 'contain', flexShrink: 0, marginLeft: '-8px' }}
+                                    />
+                                    {/* Free Drama Logo */}
+                                    <img
+                                        src="/assets/images/freedrama.webp"
+                                        alt="Free Drama Logo"
+                                        width="25"
+                                        height="24"
+                                        loading="lazy"
+                                        decoding="async"
+                                        style={{ height: '24px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
                                 </div>
                                 <div className="kuku-tv-nav-right">
@@ -132,7 +143,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                     <h2 className="kuku-tv-show-title">AI Video Producer</h2>
                                     <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace', marginTop: '-8px', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
                                         <span>Bengaluru · kuku</span>
-                                        <span className="xp-date-shimmer kuku-date-accent" style={{ marginTop: '2px' }}>June 2026 – Present</span>
+                                        <span className="xp-date-shimmer kuku-date-accent" style={{ marginTop: '2px' }}>Present</span>
                                     </p>
 
                                     {/* Custom Job Tags */}
@@ -228,9 +239,9 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 {/* Left Side: Professional Experience Details & Clients */}
                                 <div className="xp-left-pane">
                                     <div>
-                                        <div className="xp-main-header" style={{ marginBottom: '16px' }}>
+                                        <div className="xp-main-header" style={{ marginBottom: '14px' }}>
                                             {/* Inline logo */}
-                                            <div className="xp-admitra-logo" style={{ marginBottom: '12px' }}>
+                                            <div className="xp-admitra-logo" style={{ marginBottom: '8px' }}>
                                                 <div style={{ width: '120px', height: '32px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                     <img
                                                         src="/assets/images/admitra.webp"
@@ -243,9 +254,9 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     />
                                                 </div>
                                             </div>
-                                            <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Creative Head</h3>
-                                            <p style={{ fontSize: '0.85rem', color: '#3B82F6', fontFamily: 'monospace', fontWeight: '600' }}>
-                                                Bengaluru · AdMitra Pvt. Ltd. &nbsp;&nbsp; <span className="xp-date-shimmer">February 2026 – May 2026</span>
+                                            <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '4px', paddingLeft: '8px' }}>Creative Head</h3>
+                                            <p style={{ fontSize: '0.85rem', color: '#3B82F6', fontFamily: 'monospace', fontWeight: '600', paddingLeft: '8px' }}>
+                                                Bengaluru · AdMitra Pvt. Ltd.
                                             </p>
                                         </div>
                                         <div className="xp-main-desc" style={{ fontSize: '0.82rem', lineHeight: '1.45', color: 'rgba(255,255,255,0.75)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -265,7 +276,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 }}>
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem', lineHeight: '1.4' }}>
+                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.82rem', lineHeight: '1.45' }}>
                                                     Led end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>AI-powered creative operations</strong> for hyperlocal advertising campaigns across video and poster formats at scale, translating brand strategy into structured storyboards and localized narratives.
                                                 </p>
                                             </div>
@@ -286,7 +297,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 }}>
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem', lineHeight: '1.4' }}>
+                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.82rem', lineHeight: '1.45' }}>
                                                     Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>, collaborating directly with founders and brand stakeholders to streamline campaign execution.
                                                 </p>
                                             </div>
@@ -307,14 +318,14 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 }}>
                                                     <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
                                                 </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem', lineHeight: '1.4' }}>
+                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.82rem', lineHeight: '1.45' }}>
                                                     Collaborated closely with <strong style={{ color: '#3B82F6', fontWeight: '600' }}>technical and engineering team</strong> to integrate advanced AI creation tools, streamlining workflows and accelerating project delivery times.
                                                 </p>
                                             </div>
                                         </div>
 
                                         {/* Key Campaign Clients block for desktop */}
-                                        <div className="xp-client-brands xp-clients-desktop" style={{ width: '100%', maxWidth: '340px', marginTop: '25px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                                        <div className="xp-client-brands xp-clients-desktop" style={{ width: '100%', maxWidth: '340px', marginTop: '18px', paddingTop: '14px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                                             <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
                                                 KEY CAMPAIGN CLIENTS
                                             </p>
@@ -430,20 +441,9 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 </div>
 
                                 {/* Right Side: Auto-scrolling Hyperlocal Creative Marquee */}
-                                <div className="hyperlocal-marquee-wrapper">
-                                    {/* Header */}
-                                    <div className="hyperlocal-marquee-header">
-                                        <span className="hyperlocal-marquee-dot"></span>
-                                        <span className="hyperlocal-marquee-title">Hyperlocal Engine</span>
-                                    </div>
-
-                                    {/* Subtitle */}
-                                    <p className="hyperlocal-marquee-subtitle">
-                                        AI-generated video ads & posters, localized for {locations.length} regional markets
-                                    </p>
-
+                                <div className="hyperlocal-marquee-wrapper" style={{ paddingTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                     {/* Auto-scrolling Marquee Track 1 (Videos - Right to Left) */}
-                                    <div className="hyperlocal-marquee-viewport">
+                                    <div className="hyperlocal-marquee-viewport" style={{ width: '100%' }}>
                                         <div className="hyperlocal-marquee-track">
                                             {/* First set of items */}
                                             {mockVideos.map((video, idx) => (
@@ -490,8 +490,16 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                         </div>
                                     </div>
 
+                                    {/* Header / Subtitle Centered with Blue Shimmer Badge (Placed in between Reels & Posters) */}
+                                    <div className="hyperlocal-marquee-header" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginTop: '10px', marginBottom: '24px' }}>
+                                        <span className="xp-blue-shimmer-badge">
+                                            <span style={{ color: '#ffffff' }}>Localized for </span>
+                                            <span style={{ color: '#3b82f6', fontWeight: '800' }}>{locations.length} regional markets</span>
+                                        </span>
+                                    </div>
+
                                     {/* Auto-scrolling Marquee Track 2 (Posters - Left to Right) */}
-                                    <div className="hyperlocal-marquee-viewport" style={{ marginTop: '10px' }}>
+                                    <div className="hyperlocal-marquee-viewport" style={{ width: '100%' }}>
                                         <div className="hyperlocal-marquee-track track-reverse">
                                             {/* First set of items */}
                                             {mockPosters.map((poster, idx) => (
@@ -534,18 +542,6 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                     <span className="marquee-card-label">{poster.title}</span>
                                                 </div>
                                             ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Location & Language Grid */}
-                                    <div className="hyperlocal-marquee-locations">
-                                        <div>
-                                            <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Target Location</span>
-                                            <span style={{ fontSize: '1rem', color: '#FFF', fontWeight: '700', display: 'block' }}>{locations[locIdx].city}</span>
-                                        </div>
-                                        <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
-                                            <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', display: 'block', letterSpacing: '0.8px', marginBottom: '4px' }}>Local Dialect</span>
-                                            <span style={{ fontSize: '1rem', color: '#FFD700', fontWeight: '800', display: 'block' }}>{locations[locIdx].lang}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1049,39 +1045,41 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                 </div>
 
                                 <div className="xp-viewport-overlay" style={{
-                                    top: '30px',
-                                    bottom: '30px',
-                                    left: '30px',
-                                    right: '220px',
+                                    top: '20px',
+                                    bottom: '20px',
+                                    left: '20px',
+                                    right: '200px',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    justifyContent: 'space-between',
-                                    padding: '24px',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    gap: '24px',
+                                    padding: '22px 26px',
                                     background: 'rgba(10, 10, 12, 0.85)',
                                     backdropFilter: 'blur(20px)',
                                     border: '1px solid rgba(255, 234, 77, 0.2)',
                                     borderRadius: '12px',
                                     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)'
                                 }}>
-                                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
-                                        <div>
-                                            <h3 style={{ margin: 0, fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>Snap AR Lens Creator</h3>
-                                            <p style={{ margin: '4px 0 0 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '600' }}>Snap Inc. · Creator Program</p>
+                                    <div style={{ textAlign: 'center', marginBottom: '16px', paddingTop: '0' }}>
+                                        <h3 style={{ margin: 0, fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>Snap AR Lens Creator</h3>
+                                        <p style={{ margin: '4px 0 8px 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '600' }}>Snap Inc. · Creator Program</p>
+                                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                            <span className="xp-shimmer-badge" style={{
+                                                fontSize: '0.65rem',
+                                                padding: '4px 10px',
+                                                borderRadius: '12px',
+                                                fontWeight: '700',
+                                                letterSpacing: '0.8px',
+                                                textTransform: 'uppercase'
+                                            }}>
+                                                featured by Snapchat India
+                                            </span>
                                         </div>
-                                        <span className="xp-shimmer-badge" style={{
-                                            fontSize: '0.65rem',
-                                            padding: '4px 10px',
-                                            borderRadius: '12px',
-                                            fontWeight: '700',
-                                            letterSpacing: '0.8px',
-                                            textTransform: 'uppercase'
-                                        }}>
-                                            featured by Snapchat India
-                                        </span>
                                     </div>
 
                                     {/* Bulleted points */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1, justifyContent: 'center', margin: '20px 0' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', margin: '12px 0' }}>
                                         <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                             <div style={{
                                                 background: 'rgba(255, 234, 77, 0.1)',
@@ -1123,34 +1121,35 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                                                 Hosted a <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Hyperlocal community workshop</strong> to share my knowledge of Augmented Reality and Basics of Lens Studio.
                                             </p>
                                         </div>
-                                    </div>
 
-                                    {/* Collaboration Info Container */}
-                                    <div style={{
-                                        display: 'flex',
-                                        gap: '10px',
-                                        alignItems: 'center',
-                                        background: 'rgba(255, 255, 255, 0.03)',
-                                        padding: '8px 12px',
-                                        borderRadius: '6px',
-                                        border: '1px solid rgba(255, 255, 255, 0.05)',
-                                        backdropFilter: 'blur(5px)',
-                                        width: 'fit-content'
-                                    }}>
-                                        <img
-                                            src="https://media.licdn.com/dms/image/v2/C560BAQGixHOmwquQXQ/company-logo_200_200/company-logo_200_200/0/1668519541906?e=2147483647&v=beta&t=6NYXwZcOGv4H2SgLnu_e36Wt8aBZMJ6U0ILowKguQoU"
-                                            alt="Under25 Logo"
-                                            style={{
-                                                width: '20px',
-                                                height: '20px',
-                                                borderRadius: '4px',
-                                                border: '1px solid rgba(255,255,255,0.1)',
-                                                objectFit: 'cover'
-                                            }}
-                                        />
-                                        <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
-                                            In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
-                                        </span>
+                                        {/* Collaboration Info Container — Sitting with spacing below bullet points */}
+                                        <div style={{
+                                            display: 'flex',
+                                            gap: '10px',
+                                            alignItems: 'center',
+                                            background: 'rgba(255, 255, 255, 0.03)',
+                                            padding: '8px 12px',
+                                            borderRadius: '6px',
+                                            border: '1px solid rgba(255, 255, 255, 0.05)',
+                                            backdropFilter: 'blur(5px)',
+                                            width: 'fit-content',
+                                            margin: '22px auto 0 auto'
+                                        }}>
+                                            <img
+                                                src="https://media.licdn.com/dms/image/v2/C560BAQGixHOmwquQXQ/company-logo_200_200/company-logo_200_200/0/1668519541906?e=2147483647&v=beta&t=6NYXwZcOGv4H2SgLnu_e36Wt8aBZMJ6U0ILowKguQoU"
+                                                alt="Under25 Logo"
+                                                style={{
+                                                    width: '20px',
+                                                    height: '20px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(255,255,255,0.1)',
+                                                    objectFit: 'cover'
+                                                }}
+                                            />
+                                            <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
+                                                In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

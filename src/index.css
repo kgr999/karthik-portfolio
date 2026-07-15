@@ -5195,7 +5195,7 @@ footer {
 }
 
 .marquee-card-bezel {
-    width: 110px;
+    width: 135px;
     aspect-ratio: 9 / 16;
     border-radius: 14px;
     border: 2.5px solid #1c1c24;
@@ -5208,7 +5208,7 @@ footer {
 .marquee-card-bezel.poster-bezel {
     aspect-ratio: 4 / 5;
     border-radius: 10px;
-    width: 120px;
+    width: 140px;
 }
 
 .marquee-card-format-badge {
@@ -6217,6 +6217,38 @@ footer {
     color: #FFEA4D !important;
     border: 1px solid rgba(255, 234, 77, 0.25) !important;
     box-shadow: 0 0 10px rgba(255, 234, 77, 0.05);
+}
+
+/* ── AdMitra Regional Blue Shimmering Badge ── */
+.xp-blue-shimmer-badge {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.12) !important;
+    color: #3B82F6 !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.15);
+    font-size: 0.65rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.xp-blue-shimmer-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.45),
+            transparent);
+    transform: skewX(-20deg);
+    animation: shimmer-sweep 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── DaVinci Remote Shimmering Badge ── */
@@ -13710,7 +13742,7 @@ nav.nav-standby .menu-toggle {
         justify-content: space-between !important;
     }
     .xp-window-fal .hyperlocal-marquee-wrapper {
-        width: 140px !important;
+        width: 220px !important;
         flex-shrink: 0 !important;
         padding: 8px !important;
         gap: 8px !important;
@@ -13720,18 +13752,27 @@ nav.nav-standby .menu-toggle {
     .xp-window-fal .hyperlocal-marquee-header {
         margin-bottom: 2px !important;
     }
+    .xp-window-fal .hyperlocal-marquee-title {
+        font-size: 1.05rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+        color: #ffffff !important;
+    }
     .xp-window-fal .hyperlocal-marquee-subtitle {
-        margin: 2px 0 4px 0 !important;
-        font-size: 0.62rem !important;
-        line-height: 1.25 !important;
+        margin: 4px 0 8px 0 !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        line-height: 1.35 !important;
+        color: rgba(255, 255, 255, 0.85) !important;
     }
     .xp-window-fal .xp-main-header h3 {
-        font-size: 1.15rem !important;
+        font-size: 1.25rem !important;
+        margin-bottom: 4px !important;
     }
     .xp-window-fal .xp-main-desc {
-        gap: 6px !important;
-        font-size: 0.74rem !important;
-        line-height: 1.25 !important;
+        gap: 10px !important;
+        font-size: 0.78rem !important;
+        line-height: 1.38 !important;
     }
     .xp-window-fal .xp-brands-logos {
         display: flex !important;

@@ -13,6 +13,7 @@ import CapabilitiesSection from './components/CapabilitiesSection';
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import CommercialAds from './components/CommercialAds';
+// import AIAnimationShowcase from './components/AIAnimationShowcase';
 import TheRiverborn from './components/TheRiverborn';
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
@@ -875,7 +876,7 @@ export default function App() {
     useEffect(() => {
         if (!isInitialized) return;
 
-        const sectionIds = ['commercial-ads', 'experience-journey', 'tech-stack', 'contact'];
+        const sectionIds = ['commercial-ads', 'experience-journey', 'ai-animations', 'tech-stack', 'contact'];
         const sectionMap = {};
 
         const observer = new IntersectionObserver(
@@ -971,6 +972,7 @@ export default function App() {
                         <a href="#" className={`nav-link-item ${activeSection === '#' ? 'active-link' : ''}`}>Home</a>
                         <a href="#commercial-ads" className={`nav-link-item ${activeSection === '#commercial-ads' ? 'active-link' : ''}`}>Commercials</a>
                         <a href="#experience-journey" className={`nav-link-item ${activeSection === '#experience-journey' ? 'active-link' : ''}`}>Experience</a>
+                        {/* <a href="#ai-animations" className={`nav-link-item ${activeSection === '#ai-animations' ? 'active-link' : ''}`}>AI Reel</a> */}
                         <a href="#tech-stack" className={`nav-link-item ${activeSection === '#tech-stack' ? 'active-link' : ''}`}>Skills</a>
                         <a href="#contact" className={`nav-link-item ${activeSection === '#contact' ? 'active-link' : ''}`}>Contact</a>
                     </div>
@@ -1027,6 +1029,11 @@ export default function App() {
                         className="mobile-menu-link"
                         onClick={() => setIsMobileMenuOpen(false)}
                     >Experience</a>
+                    {/* <a 
+                        href="#ai-animations" 
+                        className="mobile-menu-link"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >AI Reel</a> */}
                     <a 
                         href="#tech-stack" 
                         className="mobile-menu-link"
@@ -1065,6 +1072,7 @@ export default function App() {
                     <Suspense fallback={null}>
                         <ExperienceJourney locIdx={locIdx} simTime={simTime} />
                     </Suspense>
+                    {/* <AIAnimationShowcase /> */}
                     <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}
                         setMidjourneyExpanded={setMidjourneyExpanded}
