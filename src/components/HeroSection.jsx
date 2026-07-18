@@ -91,7 +91,7 @@ export default function HeroSection({
                         </div>
                     </div>
                     <div className="hero-avatar-wrapper">
-                        <ProfileCard imgSrc="/assets/images/portfolio_profile.webp" cloneStatus={cloneStatus} />
+                        <ProfileCard imgSrc="/assets/images/portfolio_profile.webp?v=1.1" cloneStatus={cloneStatus} />
                     </div>
                     <div className="hero-cta hero-reveal-item mobile-only-cta" style={{
                         display: 'flex',

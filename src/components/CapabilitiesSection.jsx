@@ -5,7 +5,7 @@ export default function CapabilitiesSection() {
     const capabilities = [
         {
             type: 'image',
-            src: 'assets/images/capdirector.webp',
+            src: 'assets/images/capdirector.webp?v=1.1',
             alt: 'AI Creative Direction',
             title: 'AI Creative Direction',
             tags: ['Multimodal AI', 'Cinematic Worldbuilding'],
@@ -13,35 +13,35 @@ export default function CapabilitiesSection() {
         },
         {
             type: 'image',
-            src: 'assets/images/capcharbuild.webp',
+            src: 'assets/images/capcharbuild.webp?v=1.1',
             alt: 'Character Building',
             title: 'Character Building',
             tags: ['Multi-Shot Continuity', 'Asset Locking']
         },
         {
             type: 'image',
-            src: 'assets/images/storyboarding.webp',
+            src: 'assets/images/storyboarding.webp?v=1.1',
             alt: 'Storyboarding & Pre-Visuals',
             title: 'Storyboarding & Pre-Visuals',
             tags: ['Sequenced Layouts', 'Shot Design']
         },
         {
             type: 'video',
-            src: 'assets/videos/storyboardingoutput.mp4',
+            src: 'assets/videos/storyboardingoutput.mp4?v=1.1',
             alt: 'Visual Storytelling',
             title: 'Visual Storytelling',
             tags: ['Composition', 'Lighting & Pacing']
         },
         {
             type: 'image',
-            src: 'assets/images/capaudio.webp',
+            src: 'assets/images/capaudio.webp?v=1.1',
             alt: 'AI Audio & Narration Design',
             title: 'AI Audio & Narration Design',
             tags: ['Voice Cloning', 'Sound FX Layer']
         },
         {
             type: 'image',
-            src: 'assets/images/capvideo.webp',
+            src: 'assets/images/capvideo.webp?v=1.1',
             alt: 'Cinematic Video Editing',
             title: 'Video Editing',
             tags: ['Pacing & Rhythm', 'Narrative Flow']
