@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import './ProfileCard.css';
 
 export default function ProfileCard({ 
-    imgSrc = '/assets/images/karthik_avatar.webp',
+    imgSrc = '/assets/images/portfolio_profile.webp',
     cloneStatus = 'active'
 }) {
     const cardRef = useRef(null);
