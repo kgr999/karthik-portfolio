@@ -15,6 +15,7 @@ import CinematicVisuals from './components/CinematicVisuals';
 import CommercialAds from './components/CommercialAds';
 // import AIAnimationShowcase from './components/AIAnimationShowcase';
 import TheRiverborn from './components/TheRiverborn';
+const DeadMansMap = lazy(() => import('./components/DeadMansMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
@@ -1067,11 +1068,17 @@ export default function App() {
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
                     <TheRiverborn />
+                    <div className="cinematic-divider" />
                     <CapabilitiesSection />
-                    <CommercialAds />
+                    <div className="cinematic-divider" />
                     <Suspense fallback={null}>
                         <ExperienceJourney locIdx={locIdx} simTime={simTime} />
                     </Suspense>
+                    <div className="cinematic-divider" />
+                    <Suspense fallback={null}>
+                        <DeadMansMap />
+                    </Suspense>
+                    <div className="cinematic-divider" />
                     {/* <AIAnimationShowcase /> */}
                     <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}
@@ -1079,6 +1086,9 @@ export default function App() {
                         seedanceExpanded={seedanceExpanded}
                         setSeedanceExpanded={setSeedanceExpanded}
                     />
+                    <div className="cinematic-divider" />
+                    <CommercialAds />
+                    <div className="cinematic-divider" />
                     {/* <FeaturedProjects /> */}
                     {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}
                     <section id="tech-stack" className="workflow-router-section">
@@ -1214,9 +1224,11 @@ export default function App() {
                         </div>
                     </section>
                     {/* <CurrentLearning /> */}
+                    <div className="cinematic-divider" />
                     <Suspense fallback={null}>
                         <CertificationsSection />
                     </Suspense>
+                    <div className="cinematic-divider" />
 
                     {/* Contact Section */}
                     <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>

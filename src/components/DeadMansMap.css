@@ -1,0 +1,666 @@
+/* ===================================================
+   🏴‍☠️ THE DEAD MAN'S MAP — Pirate Soulslike Showreel
+   A weathered nautical treasure map section
+   =================================================== */
+
+/* ── Google Fonts loaded in index.html ── */
+
+/* ── Section Container ── */
+.deadmans-map-section {
+    position: relative;
+    padding: 80px 0;
+    overflow: hidden;
+    background: var(--bg, #000000);
+}
+
+/* ── Parchment Map Container ── */
+.deadmans-parchment {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 520px;
+    border-radius: 6px;
+    overflow: hidden;
+
+    /* Multi-layered parchment texture using CSS gradients */
+    background:
+        /* Grain noise overlay */
+        repeating-conic-gradient(
+            rgba(139, 119, 85, 0.03) 0% 25%,
+            transparent 0% 50%
+        ) 0 0 / 4px 4px,
+        /* Warm parchment with stain blotches */
+        radial-gradient(ellipse at 20% 80%, rgba(101, 67, 33, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 30%, rgba(139, 90, 43, 0.2) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 50%, rgba(160, 120, 60, 0.1) 0%, transparent 60%),
+        /* Base parchment color */
+        linear-gradient(
+            165deg,
+            #2a2218 0%,
+            #1e1a14 25%,
+            #231e16 50%,
+            #1a1610 75%,
+            #2a2218 100%
+        );
+
+    border: 1px solid rgba(139, 119, 85, 0.15);
+    box-shadow:
+        0 0 60px rgba(0, 0, 0, 0.8),
+        inset 0 0 80px rgba(0, 0, 0, 0.5),
+        0 0 1px rgba(139, 119, 85, 0.3);
+}
+
+/* ── Burnt/aged edges overlay ── */
+.deadmans-parchment::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(10, 8, 4, 0.9) 0%, transparent 30%),
+        radial-gradient(ellipse at 100% 0%, rgba(10, 8, 4, 0.85) 0%, transparent 25%),
+        radial-gradient(ellipse at 0% 100%, rgba(10, 8, 4, 0.85) 0%, transparent 25%),
+        radial-gradient(ellipse at 100% 100%, rgba(10, 8, 4, 0.9) 0%, transparent 30%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* ── Fog Particle System ── */
+.deadmans-fog {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.deadmans-fog-wisp {
+    position: absolute;
+    width: 300px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(180, 160, 120, 0.06) 0%, transparent 70%);
+    filter: blur(20px);
+    animation: fog-drift 18s ease-in-out infinite;
+}
+
+.deadmans-fog-wisp:nth-child(1) {
+    top: 15%;
+    left: -10%;
+    width: 400px;
+    height: 100px;
+    animation-duration: 22s;
+}
+
+.deadmans-fog-wisp:nth-child(2) {
+    top: 55%;
+    left: 60%;
+    width: 350px;
+    animation-duration: 26s;
+    animation-delay: -8s;
+}
+
+.deadmans-fog-wisp:nth-child(3) {
+    top: 80%;
+    left: 20%;
+    width: 250px;
+    height: 60px;
+    animation-duration: 20s;
+    animation-delay: -4s;
+}
+
+@keyframes fog-drift {
+    0% {
+        transform: translateX(0) translateY(0) scale(1);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(120px) translateY(-20px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* ── Map Content Layout ── */
+.deadmans-map-content {
+    position: relative;
+    z-index: 4;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* ── Map Header ── */
+.deadmans-map-header {
+    text-align: center;
+    position: relative;
+}
+
+.deadmans-map-title {
+    font-family: 'Pirata One', 'Georgia', serif;
+    font-size: 2.4rem;
+    color: #c4a05a;
+    text-shadow:
+        0 0 20px rgba(196, 160, 90, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.8);
+    margin: 0 0 6px 0;
+    letter-spacing: 2px;
+}
+
+.deadmans-map-subtitle {
+    font-family: 'Barlow Condensed', var(--font-body), sans-serif;
+    font-size: 0.85rem;
+    color: rgba(180, 155, 110, 0.6);
+    font-style: italic;
+    letter-spacing: 2px;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* ── Decorative divider line ── */
+.deadmans-divider {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196, 160, 90, 0.3), transparent);
+    margin: 10px auto 0;
+}
+
+/* ── Compass Rose ── */
+.deadmans-compass {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    opacity: 0.15;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.deadmans-compass svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ── Route Line connecting markers ── */
+.deadmans-route-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 2px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.deadmans-route-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(196, 160, 90, 0.2) 0px,
+        rgba(196, 160, 90, 0.2) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+}
+
+/* ── Treasure Markers Grid ── */
+.deadmans-markers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    position: relative;
+}
+
+/* ── Individual Marker Card ── */
+.deadmans-marker {
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.deadmans-marker:hover {
+    transform: scale(1.02);
+}
+
+/* ── Marker Video Preview (visible on hover) ── */
+.deadmans-marker-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0d0b08;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(196, 160, 90, 0.1);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.6),
+        inset 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Parchment torn-open overlay on the preview */
+.deadmans-marker-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center, transparent 30%, rgba(26, 22, 16, 0.7) 100%);
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.deadmans-marker:hover .deadmans-marker-preview::before {
+    opacity: 0.3;
+}
+
+/* The X mark overlay on the preview */
+.deadmans-x-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    z-index: 5;
+    font-family: 'Pirata One', serif;
+    font-size: 4rem;
+    color: #8b2500;
+    text-shadow:
+        0 0 20px rgba(139, 37, 0, 0.5),
+        0 0 40px rgba(139, 37, 0, 0.2);
+    opacity: 0.9;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+    line-height: 1;
+}
+
+.deadmans-marker:hover .deadmans-x-mark {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1.4);
+    filter: blur(4px);
+}
+
+/* Pulsing glow behind the X */
+.deadmans-x-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 37, 0, 0.3) 0%, transparent 70%);
+    z-index: 4;
+    animation: x-pulse 2.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.deadmans-marker:hover .deadmans-x-glow {
+    opacity: 0;
+}
+
+@keyframes x-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.2;
+    }
+}
+
+/* Video element inside the preview */
+.deadmans-marker-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.3;
+    transition: opacity 0.6s ease;
+}
+
+.deadmans-marker:hover .deadmans-marker-video {
+    opacity: 0.85;
+}
+
+/* Play icon overlay */
+.deadmans-play-icon {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    z-index: 6;
+    width: 36px;
+    height: 36px;
+    background: rgba(139, 37, 0, 0.6);
+    border: 1px solid rgba(196, 160, 90, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(4px);
+}
+
+.deadmans-marker:hover .deadmans-play-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.deadmans-play-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: #c4a05a;
+    margin-left: 2px;
+}
+
+/* ── Marker Info Panel ── */
+.deadmans-marker-info {
+    padding: 16px 4px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.deadmans-marker-label {
+    font-family: 'Barlow Condensed', var(--font-body), sans-serif;
+    font-size: 0.72rem;
+    color: rgba(196, 160, 90, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.deadmans-marker-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #c4a05a;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    margin: 0;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.deadmans-marker:hover .deadmans-marker-title {
+    color: #dfc882;
+}
+
+.deadmans-marker-desc {
+    font-family: 'Outfit', var(--font-body), sans-serif;
+    font-size: 0.8rem;
+    color: rgba(180, 155, 110, 0.55);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* ── Marker Skill Tags ── */
+.deadmans-marker-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.deadmans-marker-tag {
+    font-family: 'Outfit', var(--font-body), sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(196, 160, 90, 0.5);
+    border: 1px solid rgba(196, 160, 90, 0.12);
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: rgba(196, 160, 90, 0.04);
+    letter-spacing: 0.5px;
+}
+
+/* ── Sea Creature Illustration ── */
+.deadmans-sea-creature {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 0.06;
+    pointer-events: none;
+    font-size: 4rem;
+    color: #8b7755;
+}
+
+/* ── Coordinate Annotations ── */
+.deadmans-coords {
+    position: absolute;
+    z-index: 5;
+    font-family: 'Barlow Condensed', monospace;
+    font-size: 0.6rem;
+    color: rgba(139, 119, 85, 0.2);
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    pointer-events: none;
+}
+
+.deadmans-coords.top-left {
+    top: 16px;
+    left: 20px;
+}
+
+.deadmans-coords.bottom-right {
+    bottom: 16px;
+    right: 20px;
+}
+
+/* ═══════════════════════════════════════════
+   FULLSCREEN CINEMATIC MODAL
+   ═══════════════════════════════════════════ */
+
+.deadmans-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.deadmans-modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Cinematic letterbox bars */
+.deadmans-modal-letterbox-top,
+.deadmans-modal-letterbox-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 8%;
+    background: #000;
+    z-index: 2;
+}
+
+.deadmans-modal-letterbox-top {
+    top: 0;
+}
+
+.deadmans-modal-letterbox-bottom {
+    bottom: 0;
+}
+
+/* Video container */
+.deadmans-modal-video-container {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(196, 160, 90, 0.15);
+    box-shadow:
+        0 0 80px rgba(139, 37, 0, 0.15),
+        0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.deadmans-modal-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Modal close button */
+.deadmans-modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(196, 160, 90, 0.2);
+    background: rgba(10, 8, 6, 0.8);
+    color: #c4a05a;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.deadmans-modal-close:hover {
+    background: rgba(139, 37, 0, 0.4);
+    border-color: rgba(196, 160, 90, 0.4);
+    transform: scale(1.1);
+}
+
+/* Modal title label */
+.deadmans-modal-title {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(196, 160, 90, 0.7);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    letter-spacing: 2px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.3s;
+}
+
+.deadmans-modal-overlay.active .deadmans-modal-title {
+    opacity: 1;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .deadmans-map-section {
+        padding: 50px 0;
+    }
+
+    .deadmans-parchment {
+        margin: 0 16px;
+        min-height: auto;
+    }
+
+    .deadmans-map-content {
+        padding: 30px 24px;
+        gap: 30px;
+    }
+
+    .deadmans-map-title {
+        font-size: 1.8rem;
+    }
+
+    .deadmans-markers-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .deadmans-compass {
+        width: 45px;
+        height: 45px;
+        top: 18px;
+        right: 20px;
+    }
+
+    .deadmans-route-line {
+        display: none;
+    }
+
+    /* Reduce fog for mobile performance */
+    .deadmans-fog-wisp {
+        display: none;
+    }
+
+    .deadmans-fog-wisp:nth-child(1) {
+        display: block;
+    }
+
+    .deadmans-x-mark {
+        font-size: 3rem;
+    }
+
+    .deadmans-modal-video-container {
+        width: 95%;
+    }
+
+    .deadmans-modal-title {
+        font-size: 1rem;
+    }
+
+    .deadmans-modal-close {
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .deadmans-map-content {
+        padding: 24px 18px;
+    }
+
+    .deadmans-map-title {
+        font-size: 1.5rem;
+    }
+
+    .deadmans-map-subtitle {
+        font-size: 0.78rem;
+    }
+
+    .deadmans-marker-title {
+        font-size: 1.15rem;
+    }
+
+    .deadmans-x-mark {
+        font-size: 2.5rem;
+    }
+}
