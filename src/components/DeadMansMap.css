@@ -141,6 +141,16 @@
     position: relative;
 }
 
+.deadmans-map-logo {
+    max-width: 240px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 12px;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(196, 160, 90, 0.25));
+    transition: transform 0.3s ease;
+}
+
 .deadmans-map-title {
     font-family: 'Pirata One', 'Georgia', serif;
     font-size: 2.4rem;
@@ -679,33 +689,45 @@
 
 @media (max-width: 768px) {
     .deadmans-map-section {
-        padding: 50px 0;
+        padding: 40px 0;
     }
 
     .deadmans-parchment {
-        margin: 0 16px;
+        margin: 0 12px;
+        border-radius: 8px;
         min-height: auto;
     }
 
     .deadmans-map-content {
-        padding: 30px 24px;
-        gap: 30px;
+        padding: 28px 20px;
+        gap: 28px;
+    }
+
+    .deadmans-map-logo {
+        max-width: 170px;
     }
 
     .deadmans-map-title {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
+        letter-spacing: 1.5px;
+    }
+
+    .deadmans-map-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 1.5px;
     }
 
     .deadmans-markers-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 28px;
     }
 
     .deadmans-compass {
-        width: 45px;
-        height: 45px;
-        top: 18px;
-        right: 20px;
+        width: 42px;
+        height: 42px;
+        top: 14px;
+        right: 16px;
+        opacity: 0.12;
     }
 
     .deadmans-route-line {
@@ -722,43 +744,119 @@
     }
 
     .deadmans-x-mark {
-        font-size: 3rem;
+        font-size: 3.2rem;
+        opacity: 0.85;
     }
 
-    .deadmans-modal-video-container {
-        width: 95%;
+    /* Mobile-optimized play button overlay */
+    .deadmans-play-btn-overlay {
+        padding: 10px 18px;
+        background: rgba(139, 37, 0, 0.85);
+        border: 1px solid rgba(223, 200, 130, 0.7);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(223, 200, 130, 0.2);
     }
 
-    .deadmans-modal-title {
-        font-size: 1rem;
+    .deadmans-play-icon {
+        width: 26px;
+        height: 26px;
+        background: rgba(255, 255, 255, 0.2);
     }
 
-    .deadmans-modal-close {
-        top: 16px;
-        right: 16px;
+    .deadmans-play-icon svg {
+        fill: #ffffff;
+    }
+
+    .deadmans-play-text {
+        color: #ffffff;
+        font-size: 0.72rem;
+    }
+
+    /* Mobile touch target for close button */
+    .deadmans-inline-close-btn {
+        top: 12px;
+        right: 12px;
         width: 36px;
         height: 36px;
-    }
-}
-
-@media (max-width: 480px) {
-    .deadmans-map-content {
-        padding: 24px 18px;
+        font-size: 1.1rem;
+        z-index: 20;
+        background: rgba(10, 8, 6, 0.9);
+        border-color: rgba(196, 160, 90, 0.6);
     }
 
-    .deadmans-map-title {
-        font-size: 1.5rem;
-    }
-
-    .deadmans-map-subtitle {
-        font-size: 0.78rem;
+    .deadmans-marker-info {
+        padding: 14px 2px 2px;
+        gap: 6px;
     }
 
     .deadmans-marker-title {
         font-size: 1.15rem;
     }
 
+    .deadmans-marker-desc {
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+
+    .deadmans-marker-tag {
+        font-size: 0.68rem;
+        padding: 3px 10px;
+        border-radius: 4px;
+    }
+
+    .deadmans-coords {
+        font-size: 0.55rem;
+    }
+
+    .deadmans-coords.top-left {
+        top: 10px;
+        left: 14px;
+    }
+
+    .deadmans-coords.bottom-right {
+        bottom: 10px;
+        right: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .deadmans-map-content {
+        padding: 22px 14px;
+        gap: 22px;
+    }
+
+    .deadmans-map-title {
+        font-size: 1.6rem;
+    }
+
+    .deadmans-map-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .deadmans-marker-title {
+        font-size: 1.08rem;
+    }
+
     .deadmans-x-mark {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
+    }
+
+    .deadmans-play-btn-overlay {
+        padding: 8px 16px;
+        gap: 8px;
+    }
+
+    .deadmans-play-text {
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+    }
+
+    .deadmans-marker-tags {
+        gap: 4px;
+    }
+
+    .deadmans-marker-tag {
+        font-size: 0.64rem;
+        padding: 2px 8px;
     }
 }

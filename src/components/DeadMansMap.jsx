@@ -7,25 +7,25 @@ export default function DeadMansMap() {
     const markers = [
         {
             id: 'pirate-real',
-            label: 'Showcase I',
-            title: 'GraveTide — Cinematic Teaser',
-            desc: 'Atmospheric Worldbuilding & Visual Effects — Real Footage & AI Art Direction',
-            videoSrc: '/assets/videos/piratereal_compressed.mp4',
+            label: 'Cinematic Sequence',
+            title: 'Creative Block',
+            desc: '',
+            videoSrc: '/assets/videos/piratereal.mp4',
             posterSrc: '/assets/images/piratereal_thumb.jpg',
-            tags: ['Cinematic Teaser', 'AI Art Direction', 'Atmospheric VFX', 'Worldbuilding'],
+            tags: ['1-Min Cinematic', 'Visual Storytelling', 'Mood & Lighting', 'Atmospheric FX'],
             coords: "12°34'N  45°67'W",
             aspectRatio: '16 / 9'
         },
         {
             id: 'pirate-game',
-            label: 'Showcase II',
-            title: 'GraveTide — Game Mechanics & World',
-            desc: 'Pirate Soulslike Gameplay — Combat Systems, Environment & HUD',
-            videoSrc: '/assets/videos/pirategame_compressed.mp4',
+            label: 'Game Action Trailer',
+            title: 'GraveTide',
+            desc: '',
+            videoSrc: '/assets/videos/pirategame.MP4',
             posterSrc: '/assets/images/pirategame_thumb.jpg',
-            tags: ['Game Development', 'Combat HUD', 'Soulslike Mechanics', 'Lighting & VFX'],
+            tags: ['World Building', 'Action Trailer', 'Soulslike Gameplay', 'Combat & HUD'],
             coords: "33°12'S  78°45'E",
-            aspectRatio: '1620 / 1080'
+            aspectRatio: '16 / 9'
         }
     ];
 
@@ -68,10 +68,6 @@ export default function DeadMansMap() {
                         </svg>
                     </div>
 
-                    {/* Coordinate Annotations */}
-                    <span className="deadmans-coords top-left">lat. 12°34'N · lon. 45°67'W</span>
-                    <span className="deadmans-coords bottom-right">— here be dragons —</span>
-
                     {/* Dotted route line between markers */}
                     <div className="deadmans-route-line"></div>
 
@@ -79,8 +75,12 @@ export default function DeadMansMap() {
                     <div className="deadmans-map-content">
                         {/* Map Header */}
                         <div className="deadmans-map-header">
-                            <h3 className="deadmans-map-title">GraveTide</h3>
-                            <p className="deadmans-map-subtitle">A Pirate Soulslike — Built with AI</p>
+                            <img 
+                                src="/assets/images/tidegravelogo.png" 
+                                alt="GraveTide" 
+                                className="deadmans-map-logo" 
+                            />
+                            <p className="deadmans-map-subtitle">Cinematic Sequence & Game Action Trailer with my character in it</p>
                             <div className="deadmans-divider"></div>
                         </div>
 
@@ -151,7 +151,7 @@ export default function DeadMansMap() {
                                     <div className="deadmans-marker-info">
                                         <p className="deadmans-marker-label">{marker.label}</p>
                                         <h4 className="deadmans-marker-title">{marker.title}</h4>
-                                        <p className="deadmans-marker-desc">{marker.desc}</p>
+                                        {marker.desc && <p className="deadmans-marker-desc">{marker.desc}</p>}
                                         <div className="deadmans-marker-tags">
                                             {marker.tags.map((tag, idx) => (
                                                 <span key={idx} className="deadmans-marker-tag">{tag}</span>
@@ -162,9 +162,6 @@ export default function DeadMansMap() {
                             ))}
                         </div>
                     </div>
-
-                    {/* Sea creature illustration */}
-                    <div className="deadmans-sea-creature">🐙</div>
                 </div>
             </div>
         </section>
