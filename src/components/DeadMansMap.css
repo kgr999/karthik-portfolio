@@ -321,50 +321,148 @@
     }
 }
 
-/* Video element inside the preview */
-.deadmans-marker-video {
+.deadmans-marker.is-playing {
+    transform: none !important;
+    cursor: default;
+}
+
+.deadmans-marker-preview.is-playing::before {
+    display: none;
+}
+
+/* Inline video inside grid card */
+.deadmans-inline-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.deadmans-grid-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+    background: #000;
+    pointer-events: auto !important;
+}
+
+.deadmans-inline-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(10, 8, 6, 0.85);
+    border: 1px solid rgba(196, 160, 90, 0.4);
+    color: #c4a05a;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+.deadmans-inline-close-btn:hover {
+    background: rgba(139, 37, 0, 0.9);
+    border-color: rgba(223, 200, 130, 0.8);
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Video element / Poster thumbnail inside the preview */
+.deadmans-marker-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    opacity: 0.3;
-    transition: opacity 0.6s ease;
+    opacity: 0.75;
+    filter: brightness(0.9) contrast(1.05);
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
 }
 
-.deadmans-marker:hover .deadmans-marker-video {
-    opacity: 0.85;
+.deadmans-marker:hover .deadmans-marker-thumbnail {
+    opacity: 0.95;
+    transform: scale(1.03);
+    filter: brightness(1) contrast(1.1);
 }
 
-/* Play icon overlay */
-.deadmans-play-icon {
+/* Play button overlay */
+.deadmans-play-btn-overlay {
     position: absolute;
-    bottom: 14px;
-    right: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 6;
-    width: 36px;
-    height: 36px;
-    background: rgba(139, 37, 0, 0.6);
-    border: 1px solid rgba(196, 160, 90, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(20, 16, 12, 0.85);
+    border: 1px solid rgba(196, 160, 90, 0.4);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(196, 160, 90, 0.15);
+}
+
+.deadmans-marker:hover .deadmans-play-btn-overlay {
+    background: rgba(139, 37, 0, 0.9);
+    border-color: rgba(223, 200, 130, 0.8);
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 0 30px rgba(139, 37, 0, 0.6), inset 0 0 20px rgba(223, 200, 130, 0.3);
+}
+
+.deadmans-play-icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(196, 160, 90, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    backdrop-filter: blur(4px);
+    transition: background 0.3s ease;
 }
 
 .deadmans-marker:hover .deadmans-play-icon {
-    opacity: 1;
-    transform: scale(1);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .deadmans-play-icon svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     fill: #c4a05a;
     margin-left: 2px;
+    transition: fill 0.3s ease;
+}
+
+.deadmans-marker:hover .deadmans-play-icon svg {
+    fill: #ffffff;
+}
+
+.deadmans-play-text {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #c4a05a;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.deadmans-marker:hover .deadmans-play-text {
+    color: #ffffff;
 }
 
 /* ── Marker Info Panel ── */
