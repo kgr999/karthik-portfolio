@@ -10,10 +10,13 @@ const SHOWS = [
         title: 'BrahmYodhha',
         badge: 'PRODUCED',
         badgeType: 'produced',
+        studioLabel: 'WOW TV',
+        logoSrc: '/assets/images/kukutv-logo.webp',
         cardBgSrc: '/assets/images/by_thumb.jpg',
         posterSrc: null,
+        totalCount: 45,
         tags: ['AI MICRODRAMA', 'PRODUCED END-TO-END'],
-        description: "BrahmYodhha follows Kashyap, a young man residing in a tranquil village near Kashmir, who discovers his extraordinary destiny after inheriting a mystical divine trident gifted by his father.\n\nEnd-to-end production handled across pre-production and post-production (excluding sound design) with Creative Producer approval for Kuku TV's WowTV unit.",
+        description: "BrahmYodhha follows Kashyap, a young man residing in a tranquil village near Kashmir, who discovers his extraordinary destiny after inheriting a mystical divine trident gifted by his father.\n\n I handled pre-production and post-production for most of the episodes (excluding sound design) with Creative Producer approval for Kuku's WowTV unit.",
         status: 'IN PRODUCTION',
         episodes: [
             {
@@ -33,6 +36,7 @@ const SHOWS = [
         title: 'The Riverborn',
         badge: 'INDEPENDENT',
         badgeType: 'independent',
+        studioLabel: 'INDEPENDENT',
         cardBgSrc: '/assets/images/rb_poster.webp',
         posterSrc: '/assets/images/rb_poster.webp',
         tags: ['AI MICRODRAMA', 'MYTHO FICTION', '1080x1920 PORTRAIT'],
@@ -96,10 +100,13 @@ const SHOWS = [
         title: 'Sarbadal',
         badge: 'PRODUCED',
         badgeType: 'produced',
+        studioLabel: 'KUKU TV',
+        logoSrc: '/assets/images/kukutv-logo.webp',
         cardBgSrc: '/assets/images/sb_thumb.jpg',
         posterSrc: null,
+        totalCount: 52,
         tags: ['AI MICRODRAMA', 'PRODUCED END-TO-END'],
-        description: 'A microdrama series produced end-to-end using AI-driven video production pipelines.',
+        description: "Sarbadal is an AI microdrama adaptation inspired by Thomas Mann’s classic German novella, \"The Transposed Heads\"\n\nHandled end-to-end production across pre-production and post-production (excluding sound design) under Creative Producer approval for Kuku TV",
         status: 'IN PRODUCTION',
         episodes: [
             {
@@ -353,7 +360,7 @@ export default function TheRiverborn() {
                         const isActive = show.id === activeShowId;
                         const showHasContent = show.episodes.some(ep => !ep.isLocked && ep.videoSrc);
                         const availableEps = show.episodes.filter(ep => !ep.isLocked).length;
-                        const totalEps = show.episodes.length;
+                        const totalEps = show.totalCount || show.episodes.length;
 
                         return (
                             <button
@@ -394,11 +401,31 @@ export default function TheRiverborn() {
                 {/* ═══ Show Content Area ═══ */}
                 <div className={`rb-show-content ${isTransitioning ? 'transitioning' : ''}`}>
                     {hasContent ? (
-                        /* ── Full Player Layout (existing) ── */
+                        /* ── Full Player Layout ── */
                         <div className={`rb-grid ${!activeShow.posterSrc ? 'no-poster' : ''}`}>
-                            {/* Column 1: Portrait Poster */}
+                            {/* Left Column: Story & Premise (for shows without a 3D poster) */}
+                            {!activeShow.posterSrc && (
+                                <div className="rb-story-col">
+                                    <div className="rb-side-card">
+                                        <div className="rb-card-header">
+                                            <span className="rb-card-accent-line"></span>
+                                            <span className="rb-card-category">STORY & PREMISE</span>
+                                        </div>
+                                        <div className="rb-tags-row" style={{ marginTop: '14px', marginBottom: '16px' }}>
+                                            {activeShow.tags.map((tag, i) => (
+                                                <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
+                                            ))}
+                                        </div>
+                                        <p className="rb-desc">
+                                            {activeShow.description.split('\n\n')[0]}
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Column 1: Portrait Poster (only for shows with a 3D poster like The Riverborn) */}
                             {activeShow.posterSrc && (
-                                <div className="rb-poster-col reveal-item">
+                                <div className="rb-poster-col">
                                     <div className="rb-poster-wrapper">
                                         <img
                                             src={activeShow.posterSrc}
@@ -415,8 +442,8 @@ export default function TheRiverborn() {
                                 </div>
                             )}
 
-                            {/* Column 2: Mobile App Player */}
-                            <div className="rb-player-col reveal-item">
+                            {/* Center Column: Mobile App Player */}
+                            <div className="rb-player-col">
                                 <div
                                     className="rb-phone-mockup"
                                     onMouseMove={handleMouseMove}
@@ -504,103 +531,134 @@ export default function TheRiverborn() {
                                 </div>
                             </div>
 
-                            {/* Column 3: Series Info & Episodes Playlist */}
-                            <div className="rb-info-col reveal-item">
-                                <div className="rb-series-details">
-                                    <div className="rb-tags-row">
-                                        {activeShow.tags.map((tag, i) => (
-                                            <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
-                                        ))}
+                            {/* Right Column: Production Scope (for no-poster shows) or Standard Info & Playlist (for poster shows) */}
+                            {!activeShow.posterSrc ? (
+                                <div className="rb-production-col">
+                                    <div className="rb-side-card">
+                                        <div className="rb-card-header">
+                                            <span className="rb-card-accent-line green-accent"></span>
+                                            <span className="rb-card-category">PRODUCTION SCOPE</span>
+                                        </div>
+                                        <div className="rb-badge-row" style={{ marginTop: '14px', marginBottom: '16px', display: 'flex', alignItems: 'center' }}>
+                                            {activeShow.logoSrc ? (
+                                                <img
+                                                    src={activeShow.logoSrc}
+                                                    alt={`${activeShow.studioLabel || activeShow.title} Logo`}
+                                                    style={{
+                                                        height: '42px',
+                                                        width: 'auto',
+                                                        objectFit: 'contain',
+                                                        filter: 'brightness(1.1) drop-shadow(0 2px 8px rgba(0,0,0,0.6))'
+                                                    }}
+                                                    loading="lazy"
+                                                />
+                                            ) : (
+                                                <span className="rb-show-badge produced" style={{ display: 'inline-block' }}>{activeShow.studioLabel || 'PRODUCED'}</span>
+                                            )}
+                                        </div>
+                                        <p className="rb-desc">
+                                            {activeShow.description.split('\n\n')[1] || activeShow.description}
+                                        </p>
                                     </div>
-
-                                    <p className="rb-desc" style={{ whiteSpace: 'pre-line' }}>
-                                        {activeShow.description}
-                                    </p>
                                 </div>
-
-                                {activeShow.episodes.length > 1 && (
-                                    <div className="rb-playlist-container">
-                                        <div className="rb-playlist-header">
-                                            <div className="rb-playlist-title">
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#e50914' }}>
-                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                                    <line x1="9" y1="3" x2="9" y2="21"></line>
-                                                    <line x1="15" y1="3" x2="15" y2="21"></line>
-                                                    <line x1="3" y1="9" x2="21" y2="9"></line>
-                                                    <line x1="3" y1="15" x2="21" y2="15"></line>
-                                                </svg>
-                                                <span>Episode Index</span>
-                                            </div>
-                                            <span className="rb-playlist-count">{activeShow.episodes.length} Episodes</span>
+                            ) : (
+                                <div className="rb-info-col">
+                                    <div className="rb-series-details">
+                                        <div className="rb-tags-row">
+                                            {activeShow.tags.map((tag, i) => (
+                                                <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
+                                            ))}
                                         </div>
 
-                                        <div className="rb-episodes-feed">
-                                            {activeShow.episodes.map((ep) => {
-                                                const isActive = activeEp === ep.id;
+                                        <p className="rb-desc" style={{ whiteSpace: 'pre-line' }}>
+                                            {activeShow.description}
+                                        </p>
+                                    </div>
 
-                                                if (ep.isLocked) {
+                                    {activeShow.episodes.length > 1 && (
+                                        <div className="rb-playlist-container">
+                                            <div className="rb-playlist-header">
+                                                <div className="rb-playlist-title">
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#e50914' }}>
+                                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                                                        <line x1="15" y1="3" x2="15" y2="21"></line>
+                                                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                                                        <line x1="3" y1="15" x2="21" y2="15"></line>
+                                                    </svg>
+                                                    <span>Episode Index</span>
+                                                </div>
+                                                <span className="rb-playlist-count">{activeShow.episodes.length} Episodes</span>
+                                            </div>
+
+                                            <div className="rb-episodes-feed">
+                                                {activeShow.episodes.map((ep) => {
+                                                    const isActive = activeEp === ep.id;
+
+                                                    if (ep.isLocked) {
+                                                        return (
+                                                            <div key={ep.id} className="rb-ep-card locked">
+                                                                <div className="rb-ep-thumb-box">
+                                                                    <div className="rb-ep-thumb" style={{ background: '#09090b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'rgba(255,255,255,0.15)' }}>
+                                                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="rb-ep-details">
+                                                                    <div className="rb-ep-header">
+                                                                        <span className="rb-ep-num-label">{ep.numLabel}</span>
+                                                                        <span className="rb-badge badge-locked">{ep.status}</span>
+                                                                    </div>
+                                                                    <span className="rb-ep-title">{ep.title}</span>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    }
+
                                                     return (
-                                                        <div key={ep.id} className="rb-ep-card locked">
+                                                        <div
+                                                            key={ep.id}
+                                                            className={`rb-ep-card ${isActive ? 'active' : ''}`}
+                                                            onClick={() => setActiveEp(ep.id)}
+                                                        >
                                                             <div className="rb-ep-thumb-box">
-                                                                <div className="rb-ep-thumb" style={{ background: '#09090b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'rgba(255,255,255,0.15)' }}>
-                                                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                                                    </svg>
+                                                                <img src={ep.thumbSrc} alt={ep.title} className="rb-ep-thumb" width="160" height="90" loading="lazy" />
+                                                                <div className="rb-ep-thumb-overlay">
+                                                                    {isActive ? (
+                                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                                            <rect x="6" y="4" width="4" height="16"></rect>
+                                                                            <rect x="14" y="4" width="4" height="16"></rect>
+                                                                        </svg>
+                                                                    ) : (
+                                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                                            <path d="M8 5v14l11-7z" />
+                                                                        </svg>
+                                                                    )}
                                                                 </div>
                                                             </div>
 
                                                             <div className="rb-ep-details">
                                                                 <div className="rb-ep-header">
                                                                     <span className="rb-ep-num-label">{ep.numLabel}</span>
-                                                                    <span className="rb-badge badge-locked">{ep.status}</span>
+                                                                    {isActive ? (
+                                                                        <span className="rb-badge badge-playing">PLAYING</span>
+                                                                    ) : (
+                                                                        <span className="rb-ep-duration">{ep.duration}</span>
+                                                                    )}
                                                                 </div>
                                                                 <span className="rb-ep-title">{ep.title}</span>
                                                             </div>
                                                         </div>
                                                     );
-                                                }
-
-                                                return (
-                                                    <div
-                                                        key={ep.id}
-                                                        className={`rb-ep-card ${isActive ? 'active' : ''}`}
-                                                        onClick={() => setActiveEp(ep.id)}
-                                                    >
-                                                        <div className="rb-ep-thumb-box">
-                                                            <img src={ep.thumbSrc} alt={ep.title} className="rb-ep-thumb" width="160" height="90" loading="lazy" />
-                                                            <div className="rb-ep-thumb-overlay">
-                                                                {isActive ? (
-                                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                                                        <rect x="6" y="4" width="4" height="16"></rect>
-                                                                        <rect x="14" y="4" width="4" height="16"></rect>
-                                                                    </svg>
-                                                                ) : (
-                                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                                                        <path d="M8 5v14l11-7z" />
-                                                                    </svg>
-                                                                )}
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="rb-ep-details">
-                                                            <div className="rb-ep-header">
-                                                                <span className="rb-ep-num-label">{ep.numLabel}</span>
-                                                                {isActive ? (
-                                                                    <span className="rb-badge badge-playing">PLAYING</span>
-                                                                ) : (
-                                                                    <span className="rb-ep-duration">{ep.duration}</span>
-                                                                )}
-                                                            </div>
-                                                            <span className="rb-ep-title">{ep.title}</span>
-                                                        </div>
-                                                    </div>
-                                                );
-                                            })}
+                                                })}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     ) : (
                         /* ── Coming Soon Placeholder ── */
