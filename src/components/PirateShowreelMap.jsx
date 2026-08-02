@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './DeadMansMap.css';
+import './PirateShowreelMap.css';
 
-export default function DeadMansMap() {
+export default function PirateShowreelMap() {
     const [playingId, setPlayingId] = useState(null);
 
     const markers = [
@@ -167,5 +167,3 @@ export default function DeadMansMap() {
         </section>
     );
 }
-
-

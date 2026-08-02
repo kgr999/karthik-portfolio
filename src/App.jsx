@@ -14,8 +14,8 @@ import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import CommercialAds from './components/CommercialAds';
 // import AIAnimationShowcase from './components/AIAnimationShowcase';
-import TheRiverborn from './components/TheRiverborn';
-const DeadMansMap = lazy(() => import('./components/DeadMansMap'));
+import AIMicrodramaShowcase from './components/AIMicrodramaShowcase';
+const PirateShowreelMap = lazy(() => import('./components/PirateShowreelMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
@@ -1067,7 +1067,7 @@ export default function App() {
                 )}
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
-                    <TheRiverborn />
+                    <AIMicrodramaShowcase />
                     <div className="cinematic-divider" />
                     <CapabilitiesSection />
                     <div className="cinematic-divider" />
@@ -1076,7 +1076,7 @@ export default function App() {
                     </Suspense>
                     <div className="cinematic-divider" />
                     <Suspense fallback={null}>
-                        <DeadMansMap />
+                        <PirateShowreelMap />
                     </Suspense>
                     <div className="cinematic-divider" />
                     {/* <AIAnimationShowcase /> */}

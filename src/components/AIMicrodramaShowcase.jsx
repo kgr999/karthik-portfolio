@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import './TheRiverborn.css';
+import './AIMicrodramaShowcase.css';
 
 /* ═══════════════════════════════════════════════════════════
    SHOW DATA — Add new shows or episodes by editing this array
@@ -123,7 +123,7 @@ const SHOWS = [
     }
 ];
 
-export default function TheRiverborn() {
+export default function AIMicrodramaShowcase() {
     const videoRef = useRef(null);
     const [activeShowId, setActiveShowId] = useState('the-riverborn');
     const [isPlaying, setIsPlaying] = useState(false);
@@ -158,7 +158,6 @@ export default function TheRiverborn() {
             setProgress(0);
             setShowControls(true);
             setIsBuffering(false);
-            // Force near-viewport true since user is already viewing this section
             setIsNearViewport(true);
             setTimeout(() => setIsTransitioning(false), 50);
         }, 250);
@@ -171,14 +170,12 @@ export default function TheRiverborn() {
             videoRef.current.pause();
             setIsPlaying(false);
         } else {
-            // Unmute and set volume on play
             videoRef.current.muted = false;
             videoRef.current.volume = 0.5;
             setIsMuted(false);
             videoRef.current.play().then(() => {
                 setIsPlaying(true);
             }).catch(err => {
-                // Fallback: if autoplay with sound is blocked, try muted
                 console.log("Play with sound failed, trying muted:", err);
                 videoRef.current.muted = true;
                 setIsMuted(true);
@@ -279,7 +276,6 @@ export default function TheRiverborn() {
 
     // Pause video when scrolled out of view
     useEffect(() => {
-        // Small delay to let the DOM settle after show switch
         const timeout = setTimeout(() => {
             const videoEl = videoRef.current;
             if (!videoEl) return;
@@ -295,7 +291,6 @@ export default function TheRiverborn() {
             );
 
             observer.observe(videoEl);
-            // Store cleanup ref
             videoRef._pauseObserver = { observer, el: videoEl };
         }, 100);
 
