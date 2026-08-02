@@ -13,7 +13,7 @@ const SHOWS = [
         cardBgSrc: '/assets/images/by_thumb.jpg',
         posterSrc: null,
         tags: ['AI MICRODRAMA', 'PRODUCED END-TO-END'],
-        description: 'A microdrama series produced end-to-end using AI-driven video production pipelines.',
+        description: "BrahmYodhha follows Kashyap, a young man residing in a tranquil village near Kashmir, who discovers his extraordinary destiny after inheriting a mystical divine trident gifted by his father.\n\nEnd-to-end production handled across pre-production and post-production (excluding sound design) with Creative Producer approval for Kuku TV's WowTV unit.",
         status: 'IN PRODUCTION',
         episodes: [
             {
@@ -513,7 +513,7 @@ export default function TheRiverborn() {
                                         ))}
                                     </div>
 
-                                    <p className="rb-desc">
+                                    <p className="rb-desc" style={{ whiteSpace: 'pre-line' }}>
                                         {activeShow.description}
                                     </p>
                                 </div>
