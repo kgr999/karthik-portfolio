@@ -971,7 +971,6 @@ export default function App() {
                     {/* Center Column: Links */}
                     <div className="nav-links">
                         <a href="#" className={`nav-link-item ${activeSection === '#' ? 'active-link' : ''}`}>Home</a>
-                        <a href="#commercial-ads" className={`nav-link-item ${activeSection === '#commercial-ads' ? 'active-link' : ''}`}>Commercials</a>
                         <a href="#experience-journey" className={`nav-link-item ${activeSection === '#experience-journey' ? 'active-link' : ''}`}>Experience</a>
                         {/* <a href="#ai-animations" className={`nav-link-item ${activeSection === '#ai-animations' ? 'active-link' : ''}`}>AI Reel</a> */}
                         <a href="#tech-stack" className={`nav-link-item ${activeSection === '#tech-stack' ? 'active-link' : ''}`}>Skills</a>
@@ -1020,11 +1019,6 @@ export default function App() {
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''} ${isInitialized ? '' : 'mobile-menu-standby'}`}>
                 <div className="mobile-menu-inner">
-                    <a 
-                        href="#commercial-ads" 
-                        className="mobile-menu-link"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    >Commercials</a>
                     <a 
                         href="#experience-journey" 
                         className="mobile-menu-link"
