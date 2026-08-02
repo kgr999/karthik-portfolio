@@ -5,6 +5,7 @@
 .rb-section {
     position: relative;
     padding: 100px 0;
+    scroll-margin-top: 100px;
     background: var(--bg);
     overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -984,7 +985,8 @@
 
 @media (max-width: 768px) {
     .rb-section {
-        padding: 45px 0;
+        padding: 85px 0 45px 0;
+        scroll-margin-top: 85px;
     }
 
     .rb-show-selector {
@@ -1033,7 +1035,8 @@
 
 @media (max-width: 480px) {
     .rb-section {
-        padding: 35px 0;
+        padding: 80px 0 35px 0;
+        scroll-margin-top: 80px;
     }
 
     .rb-container {
