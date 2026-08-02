@@ -1228,7 +1228,7 @@ export default function App() {
                     <Suspense fallback={null}>
                         <CertificationsSection />
                     </Suspense>
-                    <div className="cinematic-divider" />
+                    <div className="cinematic-divider cert-divider" />
 
                     {/* Contact Section */}
                     <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>

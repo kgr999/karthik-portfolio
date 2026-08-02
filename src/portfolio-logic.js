@@ -143,11 +143,28 @@ export function initPortfolio() {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
 
-    const revealElements = document.querySelectorAll('.reveal-text, .reveal-item');
-    revealElements.forEach((el) => revealObserver.observe(el));
+    const observeRevealElements = () => {
+        const revealElements = document.querySelectorAll('.reveal-text, .reveal-item');
+        revealElements.forEach((el) => {
+            if (!el.dataset.observed) {
+                el.dataset.observed = 'true';
+                revealObserver.observe(el);
+            }
+        });
+    };
+
+    observeRevealElements();
+
+    // Watch for dynamically loaded React components (Suspense / lazy loading)
+    const mutationObserver = new MutationObserver(() => {
+        observeRevealElements();
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
     observers.push(revealObserver);
+    observers.push(mutationObserver);
 
     // 3. Advanced Custom Cursor Logic
     const cursor = document.getElementById('cursor');

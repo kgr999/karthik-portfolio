@@ -1,5 +1,5 @@
 /* ==========================================================================
-   THE RIVERBORN — CINE-DRAMA APP PREVIEW (KUKUTV/TADKA STYLE)
+   MICRODRAMA SHOWCASE — Multi-Show Streaming Catalog
    ========================================================================== */
 
 .rb-section {
@@ -33,7 +33,261 @@
     padding: 0 24px;
 }
 
-/* Inherits section title styling from global styles */
+/* ═══════════════════════════════════════════
+   SHOW SELECTOR CARDS
+   ═══════════════════════════════════════════ */
+
+.rb-show-selector {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.rb-show-card {
+    position: relative;
+    width: 220px;
+    height: 120px;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    padding: 0;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+}
+
+.rb-show-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.rb-show-card.active {
+    border-color: rgba(229, 9, 20, 0.5);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(229, 9, 20, 0.1);
+}
+
+.rb-show-card.no-content {
+    opacity: 0.7;
+}
+
+.rb-show-card.no-content:hover {
+    opacity: 0.85;
+}
+
+/* Card Background Layer */
+.rb-show-card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.rb-show-card-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.77;
+    filter: brightness(0.75) saturate(1);
+    transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+}
+
+.rb-show-card:hover .rb-show-card-poster,
+.rb-show-card.active .rb-show-card-poster {
+    opacity: 0.92;
+    filter: brightness(0.9) saturate(1.08);
+    transform: scale(1.04);
+}
+
+.rb-show-card-gradient {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+}
+
+.rb-show-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(5, 5, 7, 0.95) 0%,
+        rgba(5, 5, 7, 0.6) 55%,
+        rgba(5, 5, 7, 0.35) 100%
+    );
+    pointer-events: none;
+}
+
+/* Card Content */
+.rb-show-card-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px 16px;
+    gap: 4px;
+}
+
+.rb-show-badge {
+    font-family: var(--font-primary);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    width: fit-content;
+}
+
+.rb-show-badge.independent {
+    color: #05ff99;
+    background: rgba(5, 255, 153, 0.12);
+    border: 1px solid rgba(5, 255, 153, 0.2);
+}
+
+.rb-show-badge.produced {
+    color: #7c8aff;
+    background: rgba(124, 138, 255, 0.1);
+    border: 1px solid rgba(124, 138, 255, 0.2);
+}
+
+.rb-show-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.rb-show-card-meta {
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Active Indicator Bar */
+.rb-show-active-bar {
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 3px;
+    background: linear-gradient(90deg, #e50914, #ff4747);
+    border-radius: 3px 3px 0 0;
+    z-index: 5;
+    animation: rb-bar-appear 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rb-bar-appear {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   SHOW CONTENT AREA
+   ═══════════════════════════════════════════ */
+
+.rb-show-content {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.rb-show-content.transitioning {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+/* ═══════════════════════════════════════════
+   COMING SOON PLACEHOLDER
+   ═══════════════════════════════════════════ */
+
+.rb-coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.rb-coming-soon-icon {
+    color: rgba(229, 9, 20, 0.4);
+    margin-bottom: 24px;
+    animation: rb-pulse-soft 3s ease-in-out infinite;
+}
+
+@keyframes rb-pulse-soft {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.rb-coming-soon-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 12px;
+}
+
+.rb-coming-soon-desc {
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin: 0 0 24px;
+    max-width: 500px;
+}
+
+.rb-coming-soon-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(229, 9, 20, 0.8);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.rb-coming-soon-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e50914;
+    animation: rb-dot-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes rb-dot-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ═══════════════════════════════════════════
+   EXISTING PLAYER LAYOUT (preserved)
+   ═══════════════════════════════════════════ */
 
 /* 3-Column Grid Layout: Poster, Phone Player, Metadata & Playlist */
 .rb-grid {
@@ -41,6 +295,14 @@
     grid-template-columns: auto auto 1fr;
     gap: 40px;
     align-items: center;
+}
+
+/* 2-Column layout when no poster is available */
+.rb-grid.no-poster {
+    grid-template-columns: auto 1fr;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* Column 1: Portrait Movie Poster (Fully Seen) */
@@ -53,8 +315,8 @@
 .rb-poster-wrapper {
     position: relative;
     width: 100%;
-    max-width: 330px; /* Reverted to width-based scaling, slightly larger than the original 280px */
-    aspect-ratio: 3712 / 4608; /* Perfect uncropped aspect ratio */
+    max-width: 330px;
+    aspect-ratio: 3712 / 4608;
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -98,7 +360,7 @@
     display: inline-block;
 }
 
-/* Column 2: Mobile App Preview Player (KukuTV/Tadka Style Mockup) */
+/* Column 2: Mobile App Preview Player */
 .rb-player-col {
     display: flex;
     justify-content: center;
@@ -156,7 +418,7 @@
 .rb-video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crop vertical video to phone dimensions */
+    object-fit: cover;
 }
 
 /* Phone screen controls overlays */
@@ -291,7 +553,6 @@
     height: 6px;
 }
 
-/* Chrome, Safari, Opera, Edge thumb styling */
 .rb-phone-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -301,16 +562,15 @@
     background: #ffffff;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    opacity: 0; /* Hidden by default, like Netflix */
+    opacity: 0;
     transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 .rb-phone-slider:hover::-webkit-slider-thumb,
 .rb-phone-slider:active::-webkit-slider-thumb {
-    opacity: 1; /* Revealed on hover/drag */
+    opacity: 1;
 }
 
-/* Firefox thumb styling */
 .rb-phone-slider::-moz-range-thumb {
     width: 12px;
     height: 12px;
@@ -434,7 +694,7 @@
     background: rgba(229, 9, 20, 0.4);
 }
 
-/* Episode Card (KukuTV/Tadka Style) */
+/* Episode Card */
 .rb-ep-card {
     display: flex;
     align-items: center;
@@ -461,7 +721,7 @@
 .rb-ep-thumb-box {
     position: relative;
     width: 64px;
-    height: 80px; /* Portrait thumbnail */
+    height: 80px;
     border-radius: 8px;
     overflow: hidden;
     background: #111;
@@ -590,7 +850,10 @@
     border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Responsive Stacking queries */
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ═══════════════════════════════════════════ */
+
 @media (max-width: 1024px) {
     .rb-grid {
         grid-template-columns: 1fr 1fr;
@@ -598,7 +861,17 @@
     }
     
     .rb-poster-col {
-        display: none; /* Hide poster column on tablet and stack on mobile */
+        display: flex;
+        justify-content: center;
+    }
+
+    .rb-poster-wrapper {
+        max-width: 240px;
+    }
+
+    .rb-show-card {
+        width: 180px;
+        height: 105px;
     }
 }
 
@@ -606,10 +879,48 @@
     .rb-section {
         padding: 60px 0;
     }
+
+    .rb-show-selector {
+        gap: 12px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 8px;
+        margin-bottom: 36px;
+    }
+
+    .rb-show-selector::-webkit-scrollbar {
+        display: none;
+    }
+
+    .rb-show-card {
+        width: 160px;
+        height: 95px;
+        border-radius: 12px;
+    }
+
+    .rb-show-card-title {
+        font-size: 0.92rem;
+    }
+
+    .rb-show-card-content {
+        padding: 10px 12px;
+    }
     
     .rb-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
+    }
+
+    .rb-grid.no-poster {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .rb-player-col {
+        order: -1;
     }
     
     .rb-phone-mockup {
@@ -620,7 +931,7 @@
     
     .rb-poster-wrapper {
         width: 100%;
-        max-width: 260px; /* Aligned with phone mockup width for perfect symmetry and SE sizing */
+        max-width: 260px;
         height: auto;
     }
     
@@ -633,7 +944,112 @@
     }
     
     .rb-playlist-container {
-        display: none; /* Temporarily hidden on mobile viewports, will bring back later */
+        display: none;
+    }
+
+    /* Show playlist for no-poster shows since there's more space */
+    .rb-grid.no-poster .rb-playlist-container {
+        display: block;
+    }
+
+    .rb-coming-soon {
+        padding: 50px 24px;
+    }
+
+    .rb-coming-soon-title {
+        font-size: 1.4rem;
+    }
+
+    .rb-coming-soon-desc {
+        font-size: 0.88rem;
+    }
+
+    .rb-series-details {
+        padding: 18px;
+    }
+
+    .rb-desc {
+        font-size: 0.88rem;
+    }
+
+    .rb-tags-row {
+        gap: 8px;
+    }
+
+    .rb-tag {
+        font-size: 0.62rem;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rb-section {
+        padding: 40px 0;
+    }
+
+    .rb-container {
+        padding: 0 16px;
+    }
+
+    .rb-show-selector {
+        gap: 10px;
+        margin-bottom: 28px;
+    }
+
+    .rb-show-card {
+        width: 140px;
+        height: 85px;
+        border-radius: 10px;
+    }
+
+    .rb-show-card-title {
+        font-size: 0.82rem;
+    }
+
+    .rb-show-badge {
+        font-size: 0.5rem;
+        padding: 1px 5px;
+    }
+
+    .rb-show-card-meta {
+        font-size: 0.62rem;
+    }
+
+    .rb-show-card-content {
+        padding: 8px 10px;
+        gap: 2px;
+    }
+
+    .rb-phone-mockup {
+        width: 230px;
+        height: 470px;
+    }
+
+    .rb-grid {
+        gap: 24px;
+    }
+
+    .rb-info-col {
+        gap: 20px;
+    }
+
+    .rb-series-details {
+        padding: 14px;
+        gap: 12px;
+        border-radius: 12px;
+    }
+
+    .rb-coming-soon {
+        padding: 40px 16px;
+        border-radius: 14px;
+    }
+
+    .rb-coming-soon-title {
+        font-size: 1.2rem;
+    }
+
+    .rb-coming-soon-desc {
+        font-size: 0.82rem;
     }
 }
 
