@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import './AIMicrodramaShowcase.css';
 
 /* ═══════════════════════════════════════════════════════════
-   SHOW DATA — Add new shows or episodes by editing this array
+   SHOW DATA — Multi-Show Streaming Catalog
    ═══════════════════════════════════════════════════════════ */
 const SHOWS = [
     {
@@ -11,7 +11,7 @@ const SHOWS = [
         badge: 'PRODUCED',
         badgeType: 'produced',
         studioLabel: 'WOW TV',
-        logoSrc: '/assets/images/kukutv-logo.webp',
+        logoSrc: '/assets/images/kukutv-icon.webp',
         cardBgSrc: '/assets/images/by_thumb.jpg',
         posterSrc: null,
         totalCount: 45,
@@ -125,7 +125,9 @@ const SHOWS = [
 
 export default function AIMicrodramaShowcase() {
     const videoRef = useRef(null);
-    const [activeShowId, setActiveShowId] = useState('the-riverborn');
+
+    // Initial state set to null — player opens only after clicking a show button
+    const [activeShowId, setActiveShowId] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -135,17 +137,27 @@ export default function AIMicrodramaShowcase() {
     const [isBuffering, setIsBuffering] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
-    const activeShow = SHOWS.find(s => s.id === activeShowId) || SHOWS[0];
-    const hasContent = activeShow.episodes.some(ep => !ep.isLocked && ep.videoSrc);
-    const currentEpisode = activeShow.episodes.find(ep => ep.id === activeEp) || activeShow.episodes[0];
+    const activeShow = SHOWS.find(s => s.id === activeShowId) || null;
+    const hasContent = activeShow ? activeShow.episodes.some(ep => !ep.isLocked && ep.videoSrc) : false;
+    const currentEpisode = activeShow ? (activeShow.episodes.find(ep => ep.id === activeEp) || activeShow.episodes[0]) : null;
 
-    // Switch show handler
+    // Switch show handler — opens the phone mockup & details when clicked
     const handleShowSwitch = (showId) => {
-        if (showId === activeShowId) return;
+        if (showId === activeShowId) {
+            if (videoRef.current) {
+                if (videoRef.current.paused) {
+                    togglePlay();
+                } else {
+                    videoRef.current.pause();
+                    setIsPlaying(false);
+                }
+            }
+            return;
+        }
+
         const targetShow = SHOWS.find(s => s.id === showId);
         if (!targetShow) return;
 
-        // Pause current video
         if (videoRef.current && !videoRef.current.paused) {
             videoRef.current.pause();
         }
@@ -154,16 +166,30 @@ export default function AIMicrodramaShowcase() {
         setTimeout(() => {
             setActiveShowId(showId);
             setActiveEp(1);
-            setIsPlaying(false);
             setProgress(0);
             setShowControls(true);
             setIsBuffering(false);
             setIsNearViewport(true);
-            setTimeout(() => setIsTransitioning(false), 50);
-        }, 250);
+
+            setTimeout(() => {
+                setIsTransitioning(false);
+                if (videoRef.current) {
+                    videoRef.current.play().then(() => {
+                        setIsPlaying(true);
+                    }).catch(err => {
+                        console.log("Autoplay on switch blocked, playing muted:", err);
+                        if (videoRef.current) {
+                            videoRef.current.muted = true;
+                            setIsMuted(true);
+                            videoRef.current.play().then(() => setIsPlaying(true)).catch(e => console.log(e));
+                        }
+                    });
+                }
+            }, 100);
+        }, 150);
     };
 
-    // Handle play/pause toggle
+    // Handle play/pause toggle in-page
     const togglePlay = () => {
         if (!videoRef.current) return;
         if (isPlaying) {
@@ -340,16 +366,16 @@ export default function AIMicrodramaShowcase() {
 
             <div className="rb-container">
                 {/* Section Header */}
-                <div className="section-header text-center" style={{ marginBottom: '50px' }}>
+                <div className="section-header text-center" style={{ marginBottom: '40px' }}>
                     <span className="section-subtitle" style={{ display: 'block', fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.5)', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px' }}>
                         AI Microdrama Productions
                     </span>
                     <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>
-                        {activeShow.title}
+                        {activeShow ? activeShow.title : 'Featured Showcase'}
                     </h2>
                 </div>
 
-                {/* ═══ Show Selector Cards ═══ */}
+                {/* ═══ Prominent Show Selector Navigation Cards ═══ */}
                 <div className="rb-show-selector">
                     {SHOWS.map((show) => {
                         const isActive = show.id === activeShowId;
@@ -371,12 +397,28 @@ export default function AIMicrodramaShowcase() {
                                     ) : (
                                         <div className="rb-show-card-gradient"></div>
                                     )}
+                                    <div className="rb-card-play-orb">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
                                     <div className="rb-show-card-overlay"></div>
                                 </div>
 
                                 {/* Card Content */}
                                 <div className="rb-show-card-content">
-                                    <span className={`rb-show-badge ${show.badgeType}`}>{show.badge}</span>
+                                    <div className="rb-show-badge-row">
+                                        {show.logoSrc ? (
+                                            <img
+                                                src={show.logoSrc}
+                                                alt={`${show.studioLabel || show.title} Logo`}
+                                                className={`rb-show-card-logo ${show.logoSrc.includes('kukutv-icon') ? 'icon-logo' : ''}`}
+                                                loading="lazy"
+                                            />
+                                        ) : (
+                                            <span className={`rb-show-badge ${show.badgeType}`}>{show.badge}</span>
+                                        )}
+                                    </div>
                                     <h3 className="rb-show-card-title">{show.title}</h3>
                                     <span className="rb-show-card-meta">
                                         {showHasContent
@@ -384,295 +426,301 @@ export default function AIMicrodramaShowcase() {
                                             : show.status
                                         }
                                     </span>
+                                    {!isActive && (
+                                        <span className="rb-show-card-cta">
+                                            ▶ TAP TO PREVIEW
+                                        </span>
+                                    )}
                                 </div>
 
-                                {/* Active Indicator */}
+                                {/* Active Indicator Bar */}
                                 {isActive && <div className="rb-show-active-bar"></div>}
                             </button>
                         );
                     })}
                 </div>
 
-                {/* ═══ Show Content Area ═══ */}
-                <div className={`rb-show-content ${isTransitioning ? 'transitioning' : ''}`}>
-                    {hasContent ? (
-                        /* ── Full Player Layout ── */
-                        <div className={`rb-grid ${!activeShow.posterSrc ? 'no-poster' : ''}`}>
-                            {/* Left Column: Story & Premise (for shows without a 3D poster) */}
-                            {!activeShow.posterSrc && (
-                                <div className="rb-story-col">
-                                    <div className="rb-side-card">
-                                        <div className="rb-card-header">
-                                            <span className="rb-card-accent-line"></span>
-                                            <span className="rb-card-category">STORY & PREMISE</span>
-                                        </div>
-                                        <div className="rb-tags-row" style={{ marginTop: '14px', marginBottom: '16px' }}>
-                                            {activeShow.tags.map((tag, i) => (
-                                                <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
-                                            ))}
-                                        </div>
-                                        <p className="rb-desc">
-                                            {activeShow.description.split('\n\n')[0]}
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Column 1: Portrait Poster (only for shows with a 3D poster like The Riverborn) */}
-                            {activeShow.posterSrc && (
-                                <div className="rb-poster-col">
-                                    <div className="rb-poster-wrapper">
-                                        <img
-                                            src={activeShow.posterSrc}
-                                            alt={`${activeShow.title} Poster`}
-                                            className="rb-poster-img"
-                                            width="400"
-                                            height="600"
-                                            loading="lazy"
-                                        />
-                                        <div className="rb-poster-overlay">
-                                            <span className="rb-poster-status">{activeShow.status}</span>
+                {/* ═══ Main Streaming Player Stage (Reveals when a show is tapped) ═══ */}
+                {activeShow ? (
+                    <div className={`rb-show-content ${isTransitioning ? 'transitioning' : ''}`}>
+                        {hasContent && currentEpisode ? (
+                            <div className={`rb-grid ${!activeShow.posterSrc ? 'no-poster' : ''}`}>
+                                {/* Left Column: Story & Premise (for BrahmYodhha & Sarbadal) */}
+                                {!activeShow.posterSrc && (
+                                    <div className="rb-story-col">
+                                        <div className="rb-side-card">
+                                            <div className="rb-card-header">
+                                                <span className="rb-card-accent-line"></span>
+                                                <span className="rb-card-category">STORY & PREMISE</span>
+                                            </div>
+                                            <div className="rb-tags-row" style={{ marginTop: '14px', marginBottom: '16px' }}>
+                                                {activeShow.tags.map((tag, i) => (
+                                                    <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
+                                                ))}
+                                            </div>
+                                            <p className="rb-desc">
+                                                {activeShow.description.split('\n\n')[0]}
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
 
-                            {/* Center Column: Mobile App Player */}
-                            <div className="rb-player-col">
-                                <div
-                                    className="rb-phone-mockup"
-                                    onMouseMove={handleMouseMove}
-                                    onMouseLeave={() => isPlaying && setShowControls(false)}
-                                    onClick={togglePlay}
-                                >
-                                    <div className="rb-phone-island">
-                                        <div className="rb-phone-camera"></div>
-                                    </div>
-
-                                    <div className="rb-phone-screen">
-                                        <video
-                                            ref={videoRef}
-                                            src={isNearViewport ? currentEpisode.videoSrc : undefined}
-                                            preload={isNearViewport ? "metadata" : "none"}
-                                            className="rb-video"
-                                            loop
-                                            muted={isMuted}
-                                            playsInline
-                                            onTimeUpdate={handleTimeUpdate}
-                                            onPlay={() => {
-                                                setIsPlaying(true);
-                                                setIsBuffering(false);
-                                            }}
-                                            onPause={() => setIsPlaying(false)}
-                                            onWaiting={() => setIsBuffering(true)}
-                                            onPlaying={() => setIsBuffering(false)}
-                                            onCanPlay={() => setIsBuffering(false)}
-                                        />
-
-                                        {/* Buffering Spinner */}
-                                        {isBuffering && (
-                                            <div className="rb-loading-spinner-container">
-                                                <div className="rb-loading-spinner"></div>
-                                            </div>
-                                        )}
-
-                                        {/* Center Play Button */}
-                                        {!isPlaying && !isBuffering && (
-                                            <div className="rb-center-play">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z" />
-                                                </svg>
-                                            </div>
-                                        )}
-
-                                        {/* Overlay Controls */}
-                                        <div className={`rb-phone-overlay ${showControls ? '' : 'hidden'}`}>
-                                            <div className="rb-phone-overlay-top" style={{ justifyContent: 'flex-end' }}>
-                                                <button className="rb-mute-btn" onClick={toggleMute} aria-label="Toggle sound">
-                                                    {isMuted ? (
-                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                            <line x1="1" y1="1" x2="23" y2="23"></line>
-                                                            <path d="M9 9v6a3 3 0 0 0 3 3h1.586l4.707 4.707A1 1 0 0 0 20 22V4a1 1 0 0 0-1.707-.707L13.586 8H12a3 3 0 0 0-3 1z"></path>
-                                                        </svg>
-                                                    ) : (
-                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                                        </svg>
-                                                    )}
-                                                </button>
-                                            </div>
-
-                                            <div className="rb-phone-overlay-bottom">
-                                                <span className="rb-episode-num">{currentEpisode.numLabel}</span>
-                                                <span className="rb-episode-name">{currentEpisode.title}</span>
-                                                <input
-                                                    type="range"
-                                                    className="rb-phone-slider"
-                                                    aria-label="Episode playback progress"
-                                                    min="0"
-                                                    max="100"
-                                                    step="0.1"
-                                                    value={progress}
-                                                    onChange={handleSliderChange}
-                                                    onClick={(e) => e.stopPropagation()}
-                                                    style={{
-                                                        '--slider-progress': `${progress}%`
-                                                    }}
-                                                />
+                                {/* Column 1: Portrait Poster (only for shows with a 3D poster like The Riverborn) */}
+                                {activeShow.posterSrc && (
+                                    <div className="rb-poster-col">
+                                        <div className="rb-poster-wrapper">
+                                            <img
+                                                src={activeShow.posterSrc}
+                                                alt={`${activeShow.title} Poster`}
+                                                className="rb-poster-img"
+                                                width="400"
+                                                height="600"
+                                                loading="lazy"
+                                            />
+                                            <div className="rb-poster-overlay">
+                                                <span className="rb-poster-status">{activeShow.status}</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                )}
 
-                            {/* Right Column: Production Scope (for no-poster shows) or Standard Info & Playlist (for poster shows) */}
-                            {!activeShow.posterSrc ? (
-                                <div className="rb-production-col">
-                                    <div className="rb-side-card">
-                                        <div className="rb-card-header">
-                                            <span className="rb-card-accent-line green-accent"></span>
-                                            <span className="rb-card-category">PRODUCTION SCOPE</span>
-                                        </div>
-                                        <div className="rb-badge-row" style={{ marginTop: '14px', marginBottom: '16px', display: 'flex', alignItems: 'center' }}>
-                                            {activeShow.logoSrc ? (
-                                                <img
-                                                    src={activeShow.logoSrc}
-                                                    alt={`${activeShow.studioLabel || activeShow.title} Logo`}
-                                                    style={{
-                                                        height: '42px',
-                                                        width: 'auto',
-                                                        objectFit: 'contain',
-                                                        filter: 'brightness(1.1) drop-shadow(0 2px 8px rgba(0,0,0,0.6))'
-                                                    }}
-                                                    loading="lazy"
-                                                />
-                                            ) : (
-                                                <span className="rb-show-badge produced" style={{ display: 'inline-block' }}>{activeShow.studioLabel || 'PRODUCED'}</span>
-                                            )}
-                                        </div>
-                                        <p className="rb-desc">
-                                            {activeShow.description.split('\n\n')[1] || activeShow.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="rb-info-col">
-                                    <div className="rb-series-details">
-                                        <div className="rb-tags-row">
-                                            {activeShow.tags.map((tag, i) => (
-                                                <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
-                                            ))}
+                                {/* Center Column: Mobile App Player */}
+                                <div className="rb-player-col">
+                                    <div
+                                        className="rb-phone-mockup"
+                                        onMouseMove={handleMouseMove}
+                                        onMouseLeave={() => isPlaying && setShowControls(false)}
+                                        onClick={togglePlay}
+                                    >
+                                        <div className="rb-phone-island">
+                                            <div className="rb-phone-camera"></div>
                                         </div>
 
-                                        <p className="rb-desc" style={{ whiteSpace: 'pre-line' }}>
-                                            {activeShow.description}
-                                        </p>
-                                    </div>
+                                        <div className="rb-phone-screen">
+                                            <video
+                                                ref={videoRef}
+                                                src={isNearViewport ? currentEpisode.videoSrc : undefined}
+                                                preload={isNearViewport ? "metadata" : "none"}
+                                                className="rb-video"
+                                                loop
+                                                muted={isMuted}
+                                                playsInline
+                                                onTimeUpdate={handleTimeUpdate}
+                                                onPlay={() => {
+                                                    setIsPlaying(true);
+                                                    setIsBuffering(false);
+                                                }}
+                                                onPause={() => setIsPlaying(false)}
+                                                onWaiting={() => setIsBuffering(true)}
+                                                onPlaying={() => setIsBuffering(false)}
+                                                onCanPlay={() => setIsBuffering(false)}
+                                            />
 
-                                    {activeShow.episodes.length > 1 && (
-                                        <div className="rb-playlist-container">
-                                            <div className="rb-playlist-header">
-                                                <div className="rb-playlist-title">
-                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#e50914' }}>
-                                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                                        <line x1="9" y1="3" x2="9" y2="21"></line>
-                                                        <line x1="15" y1="3" x2="15" y2="21"></line>
-                                                        <line x1="3" y1="9" x2="21" y2="9"></line>
-                                                        <line x1="3" y1="15" x2="21" y2="15"></line>
-                                                    </svg>
-                                                    <span>Episode Index</span>
+                                            {/* Buffering Spinner */}
+                                            {isBuffering && (
+                                                <div className="rb-loading-spinner-container">
+                                                    <div className="rb-loading-spinner"></div>
                                                 </div>
-                                                <span className="rb-playlist-count">{activeShow.episodes.length} Episodes</span>
+                                            )}
+
+                                            {/* Center Play Button */}
+                                            {!isPlaying && !isBuffering && (
+                                                <div className="rb-center-play">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                </div>
+                                            )}
+
+                                            {/* Overlay Controls */}
+                                            <div className={`rb-phone-overlay ${showControls ? '' : 'hidden'}`}>
+                                                <div className="rb-phone-overlay-top" style={{ justifyContent: 'flex-end' }}>
+                                                    <button className="rb-mute-btn" onClick={toggleMute} aria-label="Toggle sound">
+                                                        {isMuted ? (
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                                                                <path d="M9 9v6a3 3 0 0 0 3 3h1.586l4.707 4.707A1 1 0 0 0 20 22V4a1 1 0 0 0-1.707-.707L13.586 8H12a3 3 0 0 0-3 1z"></path>
+                                                            </svg>
+                                                        ) : (
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                                            </svg>
+                                                        )}
+                                                    </button>
+                                                </div>
+
+                                                <div className="rb-phone-overlay-bottom">
+                                                    <span className="rb-episode-num">{currentEpisode.numLabel}</span>
+                                                    <span className="rb-episode-name">{currentEpisode.title}</span>
+                                                    <input
+                                                        type="range"
+                                                        className="rb-phone-slider"
+                                                        aria-label="Episode playback progress"
+                                                        min="0"
+                                                        max="100"
+                                                        step="0.1"
+                                                        value={progress}
+                                                        onChange={handleSliderChange}
+                                                        onClick={(e) => e.stopPropagation()}
+                                                        style={{
+                                                            '--slider-progress': `${progress}%`
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Right Column: Production Scope (for BrahmYodhha & Sarbadal) or Standard Info & Playlist (for poster shows) */}
+                                {!activeShow.posterSrc ? (
+                                    <div className="rb-production-col">
+                                        <div className="rb-side-card">
+                                            <div className="rb-card-header">
+                                                <span className="rb-card-accent-line green-accent"></span>
+                                                <span className="rb-card-category">PRODUCTION SCOPE</span>
+                                            </div>
+                                            <div className="rb-badge-row" style={{ marginTop: '14px', marginBottom: '16px', display: 'flex', alignItems: 'center' }}>
+                                                {activeShow.logoSrc ? (
+                                                    <img
+                                                        src={activeShow.logoSrc}
+                                                        alt={`${activeShow.studioLabel || activeShow.title} Logo`}
+                                                        style={{
+                                                            height: activeShow.logoSrc.includes('kukutv-icon') ? '72px' : '42px',
+                                                            width: 'auto',
+                                                            objectFit: 'contain',
+                                                            filter: 'brightness(1.1) drop-shadow(0 2px 8px rgba(0,0,0,0.6))'
+                                                        }}
+                                                        loading="lazy"
+                                                    />
+                                                ) : (
+                                                    <span className="rb-show-badge produced" style={{ display: 'inline-block' }}>{activeShow.studioLabel || 'PRODUCED'}</span>
+                                                )}
+                                            </div>
+                                            <p className="rb-desc">
+                                                {activeShow.description.split('\n\n')[1] || activeShow.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="rb-info-col">
+                                        <div className="rb-series-details">
+                                            <div className="rb-tags-row">
+                                                {activeShow.tags.map((tag, i) => (
+                                                    <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
+                                                ))}
                                             </div>
 
-                                            <div className="rb-episodes-feed">
-                                                {activeShow.episodes.map((ep) => {
-                                                    const isActive = activeEp === ep.id;
+                                            <p className="rb-desc" style={{ whiteSpace: 'pre-line' }}>
+                                                {activeShow.description}
+                                            </p>
+                                        </div>
 
-                                                    if (ep.isLocked) {
+                                        {activeShow.episodes.length > 1 && (
+                                            <div className="rb-playlist-container">
+                                                <div className="rb-playlist-header">
+                                                    <div className="rb-playlist-title">
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#e50914' }}>
+                                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                                                            <line x1="15" y1="3" x2="15" y2="21"></line>
+                                                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                                                            <line x1="3" y1="15" x2="21" y2="15"></line>
+                                                        </svg>
+                                                        <span>Episode Index</span>
+                                                    </div>
+                                                    <span className="rb-playlist-count">{activeShow.episodes.length} Episodes</span>
+                                                </div>
+
+                                                <div className="rb-episodes-feed">
+                                                    {activeShow.episodes.map((ep) => {
+                                                        const isActive = activeEp === ep.id;
+
+                                                        if (ep.isLocked) {
+                                                            return (
+                                                                <div key={ep.id} className="rb-ep-card locked">
+                                                                    <div className="rb-ep-thumb-box">
+                                                                        <div className="rb-ep-thumb" style={{ background: '#09090b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'rgba(255,255,255,0.15)' }}>
+                                                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="rb-ep-details">
+                                                                        <div className="rb-ep-header">
+                                                                            <span className="rb-ep-num-label">{ep.numLabel}</span>
+                                                                            <span className="rb-badge badge-locked">{ep.status}</span>
+                                                                        </div>
+                                                                        <span className="rb-ep-title">{ep.title}</span>
+                                                                    </div>
+                                                                </div>
+                                                            );
+                                                        }
+
                                                         return (
-                                                            <div key={ep.id} className="rb-ep-card locked">
+                                                            <div
+                                                                key={ep.id}
+                                                                className={`rb-ep-card ${isActive ? 'active' : ''}`}
+                                                                onClick={() => setActiveEp(ep.id)}
+                                                            >
                                                                 <div className="rb-ep-thumb-box">
-                                                                    <div className="rb-ep-thumb" style={{ background: '#09090b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'rgba(255,255,255,0.15)' }}>
-                                                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                                                        </svg>
+                                                                    <img src={ep.thumbSrc} alt={ep.title} className="rb-ep-thumb" width="160" height="90" loading="lazy" />
+                                                                    <div className="rb-ep-thumb-overlay">
+                                                                        {isActive ? (
+                                                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                                                <rect x="6" y="4" width="4" height="16"></rect>
+                                                                                <rect x="14" y="4" width="4" height="16"></rect>
+                                                                            </svg>
+                                                                        ) : (
+                                                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                                                <path d="M8 5v14l11-7z" />
+                                                                            </svg>
+                                                                        )}
                                                                     </div>
                                                                 </div>
 
                                                                 <div className="rb-ep-details">
                                                                     <div className="rb-ep-header">
                                                                         <span className="rb-ep-num-label">{ep.numLabel}</span>
-                                                                        <span className="rb-badge badge-locked">{ep.status}</span>
+                                                                        {isActive ? (
+                                                                            <span className="rb-badge badge-playing">PLAYING</span>
+                                                                        ) : (
+                                                                            <span className="rb-ep-duration">{ep.duration}</span>
+                                                                        )}
                                                                     </div>
                                                                     <span className="rb-ep-title">{ep.title}</span>
                                                                 </div>
                                                             </div>
                                                         );
-                                                    }
-
-                                                    return (
-                                                        <div
-                                                            key={ep.id}
-                                                            className={`rb-ep-card ${isActive ? 'active' : ''}`}
-                                                            onClick={() => setActiveEp(ep.id)}
-                                                        >
-                                                            <div className="rb-ep-thumb-box">
-                                                                <img src={ep.thumbSrc} alt={ep.title} className="rb-ep-thumb" width="160" height="90" loading="lazy" />
-                                                                <div className="rb-ep-thumb-overlay">
-                                                                    {isActive ? (
-                                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                                                            <rect x="6" y="4" width="4" height="16"></rect>
-                                                                            <rect x="14" y="4" width="4" height="16"></rect>
-                                                                        </svg>
-                                                                    ) : (
-                                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                                                            <path d="M8 5v14l11-7z" />
-                                                                        </svg>
-                                                                    )}
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="rb-ep-details">
-                                                                <div className="rb-ep-header">
-                                                                    <span className="rb-ep-num-label">{ep.numLabel}</span>
-                                                                    {isActive ? (
-                                                                        <span className="rb-badge badge-playing">PLAYING</span>
-                                                                    ) : (
-                                                                        <span className="rb-ep-duration">{ep.duration}</span>
-                                                                    )}
-                                                                </div>
-                                                                <span className="rb-ep-title">{ep.title}</span>
-                                                            </div>
-                                                        </div>
-                                                    );
-                                                })}
+                                                    })}
+                                                </div>
                                             </div>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            /* ── Coming Soon Placeholder ── */
+                            <div className="rb-coming-soon">
+                                <div className="rb-coming-soon-icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                    </svg>
                                 </div>
-                            )}
-                        </div>
-                    ) : (
-                        /* ── Coming Soon Placeholder ── */
-                        <div className="rb-coming-soon">
-                            <div className="rb-coming-soon-icon">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                                </svg>
+                                <h3 className="rb-coming-soon-title">{activeShow.title}</h3>
+                                <p className="rb-coming-soon-desc">{activeShow.description}</p>
+                                <div className="rb-coming-soon-badge">
+                                    <span className="rb-coming-soon-dot"></span>
+                                    Episodes dropping soon
+                                </div>
                             </div>
-                            <h3 className="rb-coming-soon-title">{activeShow.title}</h3>
-                            <p className="rb-coming-soon-desc">{activeShow.description}</p>
-                            <div className="rb-coming-soon-badge">
-                                <span className="rb-coming-soon-dot"></span>
-                                Episodes dropping soon
-                            </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
+                ) : null}
             </div>
         </section>
     );

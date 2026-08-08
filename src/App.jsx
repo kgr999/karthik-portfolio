@@ -12,8 +12,6 @@ import CapabilitiesSection from './components/CapabilitiesSection';
 
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
-import CommercialAds from './components/CommercialAds';
-// import AIAnimationShowcase from './components/AIAnimationShowcase';
 import AIMicrodramaShowcase from './components/AIMicrodramaShowcase';
 const PirateShowreelMap = lazy(() => import('./components/PirateShowreelMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
@@ -1066,10 +1064,6 @@ export default function App() {
                     <CapabilitiesSection />
                     <div className="cinematic-divider" />
                     <Suspense fallback={null}>
-                        <ExperienceJourney locIdx={locIdx} simTime={simTime} />
-                    </Suspense>
-                    <div className="cinematic-divider" />
-                    <Suspense fallback={null}>
                         <PirateShowreelMap />
                     </Suspense>
                     <div className="cinematic-divider" />
@@ -1081,7 +1075,9 @@ export default function App() {
                         setSeedanceExpanded={setSeedanceExpanded}
                     />
                     <div className="cinematic-divider" />
-                    <CommercialAds />
+                    <Suspense fallback={null}>
+                        <ExperienceJourney locIdx={locIdx} simTime={simTime} />
+                    </Suspense>
                     <div className="cinematic-divider" />
                     {/* <FeaturedProjects /> */}
                     {/* 10. Creative Ecosystem — Cinematic Connected Neural Dashboard */}

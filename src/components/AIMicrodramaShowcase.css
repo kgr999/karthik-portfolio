@@ -4,8 +4,8 @@
 
 .rb-section {
     position: relative;
-    padding: 100px 0;
-    scroll-margin-top: 100px;
+    padding: 85px 0 35px 0;
+    scroll-margin-top: 85px;
     background: var(--bg);
     overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -41,37 +41,40 @@
 .rb-show-selector {
     display: flex;
     gap: 16px;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .rb-show-card {
     position: relative;
-    width: 220px;
-    height: 120px;
-    border-radius: 14px;
+    width: 240px;
+    height: 320px;
+    border-radius: 18px;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.14);
+    background: #0d0d14;
     padding: 0;
     text-align: left;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     flex-shrink: 0;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
 }
 
 .rb-show-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    transform: translateY(-8px) scale(1.035);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 22px 55px rgba(0, 0, 0, 0.85),
+        0 0 35px rgba(255, 255, 255, 0.18);
 }
 
 .rb-show-card.active {
-    border-color: rgba(255, 255, 255, 0.45);
+    border-color: #ffffff;
     box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.7),
-        0 0 25px rgba(255, 255, 255, 0.15);
+        0 20px 50px rgba(0, 0, 0, 0.9),
+        0 0 35px rgba(255, 255, 255, 0.3);
 }
 
 .rb-show-card.no-content {
@@ -93,16 +96,43 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.77;
-    filter: brightness(0.75) saturate(1);
-    transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+    opacity: 0.82;
+    filter: brightness(0.8) saturate(1.05);
+    transition: opacity 0.4s ease, filter 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .rb-show-card:hover .rb-show-card-poster,
 .rb-show-card.active .rb-show-card-poster {
-    opacity: 0.92;
-    filter: brightness(0.9) saturate(1.08);
-    transform: scale(1.04);
+    opacity: 0.96;
+    filter: brightness(0.95) contrast(1.05) saturate(1.15);
+    transform: scale(1.06);
+}
+
+.rb-card-play-orb {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 3;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.rb-show-card:hover .rb-card-play-orb {
+    background: #e50914;
+    border-color: #ffffff;
+    transform: scale(1.15);
+    box-shadow: 0 0 16px rgba(229, 9, 20, 0.85);
 }
 
 .rb-show-card-gradient {
@@ -116,9 +146,9 @@
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(5, 5, 7, 0.95) 0%,
-        rgba(5, 5, 7, 0.6) 55%,
-        rgba(5, 5, 7, 0.35) 100%
+        rgba(5, 5, 8, 0.98) 0%,
+        rgba(5, 5, 8, 0.65) 50%,
+        rgba(5, 5, 8, 0.15) 100%
     );
     pointer-events: none;
 }
@@ -131,8 +161,27 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 14px 16px;
-    gap: 4px;
+    padding: 20px 18px;
+    gap: 8px;
+}
+
+.rb-show-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+.rb-show-card-logo {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(1.15) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+}
+
+.rb-show-card-logo.icon-logo {
+    height: 56px;
+    margin-top: 16px;
 }
 
 .rb-show-badge {
@@ -144,6 +193,19 @@
     padding: 2px 7px;
     border-radius: 3px;
     width: fit-content;
+}
+
+.rb-show-studio-tag {
+    font-family: var(--font-primary);
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .rb-show-badge.independent {
@@ -160,20 +222,62 @@
 
 .rb-show-card-title {
     font-family: var(--font-heading);
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1.38rem;
+    font-weight: 800;
     color: #ffffff;
     margin: 0;
-    line-height: 1.2;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    line-height: 1.15;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+    letter-spacing: -0.2px;
 }
 
 .rb-show-card-meta {
     font-family: var(--font-primary);
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.75);
-    font-weight: 500;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin 0.3s ease;
+}
+
+.rb-show-card:hover .rb-show-card-meta,
+.rb-show-card.active .rb-show-card-meta {
+    max-height: 30px;
+    opacity: 1;
+    margin-top: 2px;
+}
+
+.rb-show-card-cta {
+    font-family: var(--font-primary);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.9), rgba(180, 0, 10, 0.95));
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-top: 4px;
+    box-shadow: 0 4px 14px rgba(229, 9, 20, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-transform: uppercase;
+    animation: rb-pulse-cta 2.2s infinite;
+}
+
+.rb-cta-play-icon {
+    font-size: 0.55rem;
+}
+
+@keyframes rb-pulse-cta {
+    0% { opacity: 0.85; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); }
+    100% { opacity: 0.85; transform: scale(1); }
 }
 
 /* Active Indicator Bar */
@@ -985,27 +1089,27 @@
 
 @media (max-width: 768px) {
     .rb-section {
-        padding: 85px 0 45px 0;
-        scroll-margin-top: 85px;
+        padding: 70px 0 25px 0;
+        scroll-margin-top: 70px;
     }
 
     .rb-show-selector {
         gap: 10px;
         justify-content: center;
         flex-wrap: wrap;
-        margin-bottom: 32px;
+        margin-bottom: 16px;
     }
 
     .rb-show-card {
         flex: 1;
-        min-width: 105px;
-        max-width: 160px;
-        height: 92px;
-        border-radius: 12px;
+        min-width: 170px;
+        max-width: 200px;
+        height: 250px;
+        border-radius: 14px;
     }
 
     .rb-show-card-title {
-        font-size: 0.88rem;
+        font-size: 1.15rem;
     }
 
     .rb-show-card-content {
@@ -1035,8 +1139,8 @@
 
 @media (max-width: 480px) {
     .rb-section {
-        padding: 80px 0 35px 0;
-        scroll-margin-top: 80px;
+        padding: 60px 0 20px 0;
+        scroll-margin-top: 60px;
     }
 
     .rb-container {
@@ -1045,18 +1149,18 @@
 
     .rb-show-selector {
         gap: 8px;
-        margin-bottom: 24px;
+        margin-bottom: 12px;
     }
 
     .rb-show-card {
-        min-width: 95px;
-        max-width: 110px;
-        height: 82px;
-        border-radius: 10px;
+        min-width: 135px;
+        max-width: 160px;
+        height: 200px;
+        border-radius: 12px;
     }
 
     .rb-show-card-title {
-        font-size: 0.78rem;
+        font-size: 1.02rem;
     }
 
     .rb-show-badge {
@@ -1117,4 +1221,16 @@
 @keyframes rb-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.rb-click-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px 20px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+    text-align: center;
 }
