@@ -55,7 +55,7 @@
 
 /* ── Section Header ── */
 .tadka-header {
-    margin-bottom: 40px;
+    margin-bottom: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,15 +87,9 @@
     color: #ffffff;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
-}
-
-.tadka-tagline {
-    font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.65);
-    margin: 0 0 20px 0;
-    max-width: 550px;
+    text-align: center;
 }
 
 .tadka-divider {
@@ -143,17 +137,34 @@
     overflow: hidden;
 }
 
-.tadka-preview-video {
+.tadka-preview-poster {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.85;
+    z-index: 1;
+    transition: transform 0.6s ease;
+}
+
+.tadka-preview-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    opacity: 0;
     transition: transform 0.6s ease, opacity 0.4s ease;
 }
 
+.tadka-card:hover .tadka-preview-poster,
 .tadka-card:hover .tadka-preview-video {
     transform: scale(1.05);
-    opacity: 1;
+}
+
+.tadka-card:hover .tadka-preview-video {
+    opacity: 0.95;
 }
 
 .tadka-preview-overlay {
@@ -166,40 +177,49 @@
         rgba(8, 7, 10, 0.4) 100%
     );
     pointer-events: none;
+    z-index: 3;
 }
 
 .tadka-badge {
     position: absolute;
-    top: 14px;
-    left: 14px;
-    z-index: 3;
-    font-size: 0.65rem;
+    bottom: 20px;
+    left: 20px;
+    top: auto;
+    z-index: 4;
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
     font-weight: 800;
-    letter-spacing: 1.2px;
+    letter-spacing: 2px;
     color: #ffffff;
-    background: rgba(14, 12, 18, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 120, 0, 0.4);
-    padding: 5px 12px;
-    border-radius: 20px;
+    background: transparent;
+    border: none;
+    padding: 0;
     text-transform: uppercase;
     pointer-events: none;
     display: flex;
     align-items: center;
-    gap: 6px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    gap: 10px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.tadka-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ff5500;
-    box-shadow: 0 0 8px #ff5500;
+.tadka-card:hover .tadka-badge {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* ── Play Button Overlay (Matching Pirate/TideGrave overlay button) ── */
+.tadka-badge-bar {
+    width: 3.5px;
+    height: 18px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #ff6600 0%, #e50914 100%);
+    box-shadow: 0 0 10px #ff5500, 0 0 18px rgba(255, 85, 0, 0.7);
+    flex-shrink: 0;
+}
+
+/* ── Play Button Overlay ── */
 .tadka-play-btn-overlay {
     position: absolute;
     top: 50%;
@@ -246,15 +266,18 @@
     justify-content: center;
     color: #ffffff;
     transition: background 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .tadka-play-glow-ring {
     position: absolute;
     inset: -3px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.75);
     animation: tadka-ring-pulse 2.2s infinite;
     pointer-events: none;
+    z-index: 1;
 }
 
 @keyframes tadka-ring-pulse {
@@ -270,9 +293,10 @@
     letter-spacing: 1.5px;
     color: #ffffff;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    white-space: nowrap;
 }
 
-/* ── Inline Player (Matching TideGrave 1:1) ── */
+/* ── Inline Player ── */
 .tadka-inline-video-wrapper {
     position: relative;
     width: 100%;
@@ -281,7 +305,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 18px;
     overflow: hidden;
     z-index: 10;
 }
@@ -291,7 +315,7 @@
     height: 100%;
     object-fit: contain;
     display: block;
-    border-radius: 12px;
+    border-radius: 18px;
     background: #000000;
     pointer-events: auto !important;
 }
@@ -322,103 +346,181 @@
     transform: scale(1.1);
 }
 
-/* ── Info Panel ── */
-.tadka-info {
-    padding: 22px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex-grow: 1;
-}
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (Mobile, Tablet, Desktop, Touch)
+   ========================================================================== */
 
-.tadka-info-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #ff7800;
-    text-transform: uppercase;
-}
-
-.tadka-info-title {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-}
-
-.tadka-info-desc {
-    font-size: 0.86rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.55;
-    margin: 0 0 8px 0;
-}
-
-.tadka-tags-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: auto;
-}
-
-.tadka-tag {
-    font-size: 0.64rem;
-    font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.tadka-tag.highlight-tag {
-    background: rgba(255, 85, 0, 0.12);
-    color: #ffaa00;
-    border-color: rgba(255, 85, 0, 0.25);
-}
-
-/* ── Responsive ── */
-@media (max-width: 992px) {
-    .tadka-grid {
-        grid-template-columns: 1fr;
+/* ── Large Desktop & 4K Displays ── */
+@media (min-width: 1400px) {
+    .tadka-stage {
+        max-width: 1200px;
+        padding: 56px 40px 48px;
     }
 }
 
+/* ── Laptops & Medium Screens ── */
+@media (max-width: 1024px) {
+    .tadka-stage {
+        padding: 40px 24px 34px;
+    }
+
+    .tadka-grid {
+        gap: 22px;
+    }
+}
+
+/* ── Tablets & Mobile Single Column Switch ── */
+@media (max-width: 992px) {
+    .tadka-grid {
+        grid-template-columns: 1fr;
+        max-width: 680px;
+        margin: 0 auto;
+    }
+}
+
+/* ── Mobile Screens (Phones <= 768px) ── */
 @media (max-width: 768px) {
     .tadka-section {
         padding: 25px 0 20px 0;
         scroll-margin-top: 25px;
     }
 
+    .tadka-ambient-glow {
+        width: 380px;
+        height: 380px;
+        filter: blur(50px);
+    }
+
     .tadka-stage {
-        padding: 32px 18px 28px;
+        padding: 28px 16px 24px;
         border-radius: 18px;
     }
 
+    .tadka-header {
+        margin-bottom: 24px;
+    }
+
     .tadka-logo-img {
-        height: 50px;
+        height: 48px;
     }
 
     .tadka-subtitle {
-        font-size: 0.98rem;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
     }
 
-    .tadka-info-title {
-        font-size: 1.1rem;
+    .tadka-badge {
+        bottom: 14px;
+        left: 14px;
+        top: auto;
+        font-size: 0.72rem;
+        letter-spacing: 1.5px;
+        padding: 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .tadka-badge-bar {
+        width: 3px;
+        height: 14px;
+    }
+
+    .tadka-play-btn-overlay {
+        padding: 8px 16px;
+        gap: 10px;
+    }
+
+    .tadka-play-icon-wrapper,
+    .tadka-play-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .tadka-play-text {
+        font-size: 0.65rem;
+        letter-spacing: 1.2px;
+    }
+
+    .tadka-inline-close-btn {
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.78rem;
     }
 }
 
+/* ── Small Mobile Screens (Phones <= 480px) ── */
 @media (max-width: 480px) {
     .tadka-section {
         padding: 20px 0 15px 0;
         scroll-margin-top: 20px;
     }
 
+    .tadka-ambient-glow {
+        width: 280px;
+        height: 280px;
+    }
+
+    .tadka-stage {
+        padding: 22px 12px 18px;
+        border-radius: 14px;
+    }
+
     .tadka-logo-img {
-        height: 42px;
+        height: 40px;
     }
 
     .tadka-subtitle {
-        font-size: 0.88rem;
+        font-size: 0.84rem;
+        letter-spacing: 0.8px;
+    }
+
+    .tadka-card {
+        border-radius: 14px;
+    }
+
+    .tadka-inline-video-wrapper,
+    .tadka-grid-video {
+        border-radius: 14px;
+    }
+
+    .tadka-play-btn-overlay {
+        padding: 7px 14px;
+        gap: 8px;
+    }
+
+    .tadka-play-icon-wrapper,
+    .tadka-play-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .tadka-play-text {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    .tadka-badge {
+        bottom: 12px;
+        left: 12px;
+        top: auto;
+        font-size: 0.65rem;
+        letter-spacing: 1.2px;
+        padding: 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Touch Screen Fallbacks (Mobile Safari / Chrome) ── */
+@media (hover: none) {
+    .tadka-preview-video {
+        opacity: 0;
+        display: none;
+    }
+
+    .tadka-preview-poster {
+        opacity: 1;
     }
 }

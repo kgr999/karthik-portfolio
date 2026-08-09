@@ -8,12 +8,14 @@ export default function TadkaShowcase() {
         {
             id: 'tadka-mp',
             label: 'Motion Poster',
-            videoSrc: '/assets/videos/tadkamp.mp4'
+            videoSrc: '/assets/videos/tadkamp.mp4',
+            posterSrc: '/assets/images/tadkamp_poster.jpg'
         },
         {
             id: 'tadka-promo',
             label: 'Spec Commercial Ad',
-            videoSrc: '/assets/videos/tadkapromo.mp4'
+            videoSrc: '/assets/videos/tadkapromo.mp4',
+            posterSrc: '/assets/images/tadkapromo_poster.jpg'
         }
     ];
 
@@ -66,6 +68,7 @@ export default function TadkaShowcase() {
                                                 <video
                                                     className="tadka-grid-video"
                                                     src={item.videoSrc}
+                                                    poster={item.posterSrc}
                                                     controls
                                                     autoPlay
                                                     playsInline
@@ -82,19 +85,29 @@ export default function TadkaShowcase() {
                                             </div>
                                         ) : (
                                             <>
+                                                {/* Instant Image Poster Thumbnail */}
+                                                <img
+                                                    src={item.posterSrc}
+                                                    alt={`${item.label} Thumbnail`}
+                                                    className="tadka-preview-poster"
+                                                    loading="eager"
+                                                />
+                                                {/* Video Preview on Hover */}
                                                 <video
                                                     src={item.videoSrc}
+                                                    poster={item.posterSrc}
                                                     className="tadka-preview-video"
                                                     muted
                                                     loop
                                                     playsInline
+                                                    preload="metadata"
                                                     onMouseEnter={(e) => e.target.play().catch(() => {})}
                                                     onMouseLeave={(e) => e.target.pause()}
                                                 />
                                                 <div className="tadka-preview-overlay"></div>
 
                                                 <span className="tadka-badge">
-                                                    <span className="tadka-badge-dot"></span>
+                                                    <span className="tadka-badge-bar"></span>
                                                     {item.label}
                                                 </span>
 
