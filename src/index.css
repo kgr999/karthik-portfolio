@@ -1194,9 +1194,9 @@ section {
 
 /* Creative Capabilities Redesign (Cinematic & Editorial) */
 .capabilities-section {
-    padding-top: calc(64px + 0.5in) !important; /* Scrolled floating navbar bottom (~64px) + exactly half an inch (0.5in = 48px) spacing */
-    padding-bottom: 90px !important; /* Tighter bottom padding to preserve one-screen vertical compact fit */
-    scroll-margin-top: calc(64px + 0.5in) !important; /* Ensure deep scrolls respect exactly half an inch below scrolled navbar */
+    padding-top: 35px !important;
+    padding-bottom: 35px !important;
+    scroll-margin-top: 35px !important;
     background: var(--bg);
     position: relative;
     overflow: visible;
@@ -1532,9 +1532,9 @@ section {
 /* Tablet Capabilities Grid Optimization */
 @media (min-width: 768px) and (max-width: 991px) {
     .capabilities-section {
-        padding-top: calc(42px + 0.5in) !important; /* Scrolled tablet navbar bottom (~42px) + exactly half an inch (0.5in = 48px) spacing */
-        padding-bottom: 60px !important;
-        scroll-margin-top: calc(42px + 0.5in) !important;
+        padding-top: 25px !important;
+        padding-bottom: 25px !important;
+        scroll-margin-top: 25px !important;
     }
 
     .capabilities-grid-v2 {
@@ -1557,9 +1557,9 @@ section {
 /* Mobile Capabilities Grid Optimization & Default View for Touch Screens */
 @media (max-width: 767px) {
     .capabilities-section {
-        padding-top: calc(48px + 0.5in) !important; /* Scrolled mobile navbar bottom (~48px) + exactly half an inch (0.5in = 48px) spacing */
-        padding-bottom: 50px !important;
-        scroll-margin-top: calc(48px + 0.5in) !important;
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+        scroll-margin-top: 20px !important;
     }
 
     .capabilities-grid-v2 {
@@ -2140,7 +2140,8 @@ section {
    ═══════════════════════════════════════════════════ */
 
 .workflow-router-section {
-    padding: 120px 0;
+    padding: 35px 0;
+    scroll-margin-top: 35px;
     background: var(--bg);
     position: relative;
     overflow: hidden;
@@ -2162,7 +2163,8 @@ section {
 
 /* Tech Stack Header Center Align & Premium Typography */
 #tech-stack.workflow-router-section {
-    padding: 60px 0;
+    padding: 35px 0;
+    scroll-margin-top: 35px;
 }
 
 #tech-stack .section-header {
@@ -4323,12 +4325,20 @@ footer {
 }
 
 /* Cinematic Self-Visuals Section */
-#self-visuals,
+#self-visuals {
+    padding: 85px 0;
+    scroll-margin-top: 85px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+}
+
 #featured-projects,
 #cinematic-prompting,
 #visuals,
 #certs {
-    padding: 120px 0;
+    padding: 35px 0;
+    scroll-margin-top: 35px;
     background: var(--bg);
     position: relative;
     overflow: hidden;
@@ -4872,7 +4882,8 @@ footer {
 
 #experience-journey {
     position: relative;
-    padding: 70px 0;
+    padding: 85px 0;
+    scroll-margin-top: 85px;
     background: var(--bg);
     overflow: hidden;
 }
@@ -14271,7 +14282,7 @@ img, video {
         rgba(255, 255, 255, 0.01) 85%, 
         transparent 100%
     );
-    margin: 50px 0;
+    margin: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;

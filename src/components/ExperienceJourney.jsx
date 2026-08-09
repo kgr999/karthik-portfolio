@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { mockVideos, mockPosters, locations } from '../data/portfolioData';
 import LazyVideo from './LazyVideo';
 
-export default function ExperienceJourney({ locIdx, simTime }) {
+export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
+    // Feature Toggles: Set to true whenever you want to bring Freelance or Snapchat back
+    const SHOW_FREELANCE = false;
+    const SHOW_SNAPCHAT = false;
     // DaVinci Timeline Scrubber controls
     const [dvrPlaying, setDvrPlaying] = useState(true);
     const [scrubberKey, setScrubberKey] = useState(0);
@@ -538,6 +541,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                     </div>
 
                     {/* ─── WINDOW 2: Freelance (DaVinci Resolve Inspired) ─── */}
+                    {SHOW_FREELANCE && (
                     <div className="xp-interface-window xp-window-davinci" data-theme="video">
                         <div className="xp-window-body">
                             <div className="xp-window-top">
@@ -936,8 +940,10 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                             </div>
                         </div>
                     </div>
+                    )}
 
                     {/* ─── WINDOW 3: Snap AR (Lens Studio Inspired) ─── */}
+                    {SHOW_SNAPCHAT && (
                     <div className="xp-interface-window xp-window-lens" data-theme="ar">
                         <div className="xp-window-body">
                             <div className="xp-window-sidebar xp-hierarchy">
@@ -1142,6 +1148,7 @@ export default function ExperienceJourney({ locIdx, simTime }) {
                             </div>
                         </div>
                     </div>
+                    )}
                 </div>
             </div>
         </section>

@@ -13,6 +13,7 @@ import CapabilitiesSection from './components/CapabilitiesSection';
 import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import AIMicrodramaShowcase from './components/AIMicrodramaShowcase';
+import TadkaShowcase from './components/TadkaShowcase';
 const PirateShowreelMap = lazy(() => import('./components/PirateShowreelMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
@@ -1060,6 +1061,8 @@ export default function App() {
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
                     <AIMicrodramaShowcase />
+                    <div className="cinematic-divider" />
+                    <TadkaShowcase />
                     <div className="cinematic-divider" />
                     <CapabilitiesSection />
                     <div className="cinematic-divider" />

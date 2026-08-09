@@ -1,0 +1,424 @@
+/* ==========================================================================
+   JIOHOTSTAR TADKA SHOWCASE — 100% Generative AI Section
+   ========================================================================== */
+
+.tadka-section {
+    position: relative;
+    padding: 35px 0 35px 0;
+    scroll-margin-top: 35px;
+    background: var(--bg, #000000);
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.tadka-ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.12) 0%, rgba(229, 9, 20, 0.06) 45%, transparent 70%);
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tadka-stage {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 32px 42px;
+    background: linear-gradient(155deg, rgba(22, 18, 14, 0.75) 0%, rgba(10, 8, 12, 0.95) 100%);
+    border: 1px solid rgba(255, 120, 30, 0.18);
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.12),
+        0 25px 60px rgba(0, 0, 0, 0.75);
+    overflow: hidden;
+}
+
+.tadka-stage-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff5500, #ff0055, transparent);
+    box-shadow: 0 0 20px #ff5500;
+}
+
+/* ── Section Header ── */
+.tadka-header {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tadka-logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.tadka-logo-img {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(1.1) drop-shadow(0 4px 16px rgba(255, 85, 0, 0.4));
+    transition: transform 0.4s ease;
+}
+
+.tadka-logo-img:hover {
+    transform: scale(1.05);
+}
+
+.tadka-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.tadka-tagline {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 20px 0;
+    max-width: 550px;
+}
+
+.tadka-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff5500, transparent);
+}
+
+/* ── Grid Layout ── */
+.tadka-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+.tadka-card {
+    background: rgba(14, 12, 18, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.tadka-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 85, 0, 0.35);
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(255, 85, 0, 0.15);
+}
+
+.tadka-card.is-playing {
+    border-color: rgba(255, 85, 0, 0.6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+/* ── Video Container ── */
+.tadka-video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000000;
+    overflow: hidden;
+}
+
+.tadka-preview-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+}
+
+.tadka-card:hover .tadka-preview-video {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.tadka-preview-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(8, 7, 10, 0.9) 0%,
+        rgba(8, 7, 10, 0.3) 50%,
+        rgba(8, 7, 10, 0.4) 100%
+    );
+    pointer-events: none;
+}
+
+.tadka-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 3;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #ffffff;
+    background: rgba(14, 12, 18, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 120, 0, 0.4);
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.tadka-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff5500;
+    box-shadow: 0 0 8px #ff5500;
+}
+
+/* ── Play Button Overlay (Matching Pirate/TideGrave overlay button) ── */
+.tadka-play-btn-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(14, 12, 18, 0.85);
+    border: 1.5px solid rgba(255, 85, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(255, 85, 0, 0.2);
+}
+
+.tadka-card:hover .tadka-play-btn-overlay {
+    background: linear-gradient(135deg, #ff5500, #d00000);
+    border-color: #ffffff;
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 0 30px rgba(255, 85, 0, 0.7);
+}
+
+.tadka-play-icon-wrapper {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tadka-play-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: background 0.3s ease;
+}
+
+.tadka-play-glow-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    animation: tadka-ring-pulse 2.2s infinite;
+    pointer-events: none;
+}
+
+@keyframes tadka-ring-pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.5); opacity: 0.1; }
+    100% { transform: scale(1); opacity: 0.9; }
+}
+
+.tadka-play-text {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* ── Inline Player (Matching TideGrave 1:1) ── */
+.tadka-inline-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.tadka-grid-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+    background: #000000;
+    pointer-events: auto !important;
+}
+
+.tadka-inline-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 20;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(14, 12, 18, 0.85);
+    border: 1px solid rgba(255, 85, 0, 0.5);
+    color: #ffffff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.tadka-inline-close-btn:hover {
+    background: #ff5500;
+    border-color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* ── Info Panel ── */
+.tadka-info {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.tadka-info-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #ff7800;
+    text-transform: uppercase;
+}
+
+.tadka-info-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.tadka-info-desc {
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.55;
+    margin: 0 0 8px 0;
+}
+
+.tadka-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.tadka-tag {
+    font-size: 0.64rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tadka-tag.highlight-tag {
+    background: rgba(255, 85, 0, 0.12);
+    color: #ffaa00;
+    border-color: rgba(255, 85, 0, 0.25);
+}
+
+/* ── Responsive ── */
+@media (max-width: 992px) {
+    .tadka-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .tadka-section {
+        padding: 25px 0 20px 0;
+        scroll-margin-top: 25px;
+    }
+
+    .tadka-stage {
+        padding: 32px 18px 28px;
+        border-radius: 18px;
+    }
+
+    .tadka-logo-img {
+        height: 50px;
+    }
+
+    .tadka-subtitle {
+        font-size: 0.98rem;
+    }
+
+    .tadka-info-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tadka-section {
+        padding: 20px 0 15px 0;
+        scroll-margin-top: 20px;
+    }
+
+    .tadka-logo-img {
+        height: 42px;
+    }
+
+    .tadka-subtitle {
+        font-size: 0.88rem;
+    }
+}

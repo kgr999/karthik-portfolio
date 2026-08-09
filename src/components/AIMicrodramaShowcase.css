@@ -4,8 +4,8 @@
 
 .rb-section {
     position: relative;
-    padding: 85px 0 35px 0;
-    scroll-margin-top: 85px;
+    padding: 110px 0 20px 0;
+    scroll-margin-top: 110px;
     background: var(--bg);
     overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, 0.03);
