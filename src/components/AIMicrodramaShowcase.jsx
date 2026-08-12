@@ -551,7 +551,7 @@ export default function AIMicrodramaShowcase() {
                                                 </div>
 
                                                 <div className="rb-phone-overlay-bottom">
-                                                    <span className="rb-episode-num">{currentEpisode.numLabel}</span>
+                                                    {activeShow.id !== 'the-riverborn' && <span className="rb-episode-num">{currentEpisode.numLabel}</span>}
                                                     <span className="rb-episode-name">{currentEpisode.title}</span>
                                                     <input
                                                         type="range"
@@ -617,7 +617,7 @@ export default function AIMicrodramaShowcase() {
                                             </p>
                                         </div>
 
-                                        {activeShow.episodes.length > 1 && (
+                                        {activeShow.episodes.length > 1 && activeShow.id !== 'the-riverborn' && (
                                             <div className="rb-playlist-container">
                                                 <div className="rb-playlist-header">
                                                     <div className="rb-playlist-title">

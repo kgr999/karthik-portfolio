@@ -15,6 +15,7 @@ import CinematicVisuals from './components/CinematicVisuals';
 import AIMicrodramaShowcase from './components/AIMicrodramaShowcase';
 import TadkaShowcase from './components/TadkaShowcase';
 const PirateShowreelMap = lazy(() => import('./components/PirateShowreelMap'));
+const CinematicShowreelMap = lazy(() => import('./components/CinematicShowreelMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
@@ -1063,6 +1064,10 @@ export default function App() {
                     <AIMicrodramaShowcase />
                     <div className="cinematic-divider" />
                     <TadkaShowcase />
+                    <div className="cinematic-divider" />
+                    <Suspense fallback={null}>
+                        <CinematicShowreelMap />
+                    </Suspense>
                     <div className="cinematic-divider" />
                     <CapabilitiesSection />
                     <div className="cinematic-divider" />
