@@ -14,6 +14,7 @@ import FeaturedProjects from './components/FeaturedProjects';
 import CinematicVisuals from './components/CinematicVisuals';
 import AIMicrodramaShowcase from './components/AIMicrodramaShowcase';
 import TadkaShowcase from './components/TadkaShowcase';
+import VintageCinemaShowcase from './components/VintageCinemaShowcase';
 const PirateShowreelMap = lazy(() => import('./components/PirateShowreelMap'));
 const CinematicShowreelMap = lazy(() => import('./components/CinematicShowreelMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
@@ -1064,6 +1065,8 @@ export default function App() {
                     <AIMicrodramaShowcase />
                     <div className="cinematic-divider" />
                     <TadkaShowcase />
+                    <div className="cinematic-divider" />
+                    <VintageCinemaShowcase />
                     <div className="cinematic-divider" />
                     <Suspense fallback={null}>
                         <CinematicShowreelMap />
