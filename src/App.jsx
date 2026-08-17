@@ -1078,14 +1078,13 @@ export default function App() {
                         <PirateShowreelMap />
                     </Suspense>
                     <div className="cinematic-divider" />
-                    {/* <AIAnimationShowcase /> */}
-                    <CinematicVisuals
+                    {/* <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}
                         setMidjourneyExpanded={setMidjourneyExpanded}
                         seedanceExpanded={seedanceExpanded}
                         setSeedanceExpanded={setSeedanceExpanded}
                     />
-                    <div className="cinematic-divider" />
+                    <div className="cinematic-divider" /> */}
                     <Suspense fallback={null}>
                         <ExperienceJourney locIdx={locIdx} simTime={simTime} />
                     </Suspense>
@@ -1225,11 +1224,10 @@ export default function App() {
                         </div>
                     </section>
                     {/* <CurrentLearning /> */}
-                    <div className="cinematic-divider" />
-                    <Suspense fallback={null}>
+                    {/* <Suspense fallback={null}>
                         <CertificationsSection />
                     </Suspense>
-                    <div className="cinematic-divider cert-divider" />
+                    <div className="cinematic-divider cert-divider" /> */}
 
                     {/* Contact Section */}
                     <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
