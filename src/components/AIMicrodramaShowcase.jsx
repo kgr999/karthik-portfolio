@@ -365,16 +365,6 @@ export default function AIMicrodramaShowcase() {
             <div className="rb-ambient-glow"></div>
 
             <div className="rb-container">
-                {/* Section Header */}
-                <div className="section-header text-center" style={{ marginBottom: '40px' }}>
-                    <span className="section-subtitle" style={{ display: 'block', fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.5)', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px' }}>
-                        AI Microdrama Productions
-                    </span>
-                    <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>
-                        {activeShow ? activeShow.title : 'Featured Showcase'}
-                    </h2>
-                </div>
-
                 {/* ═══ Prominent Show Selector Navigation Cards ═══ */}
                 <div className="rb-show-selector">
                     {SHOWS.map((show) => {

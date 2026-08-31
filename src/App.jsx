@@ -15,6 +15,8 @@ import CinematicVisuals from './components/CinematicVisuals';
 import AIMicrodramaShowcase from './components/AIMicrodramaShowcase';
 import TadkaShowcase from './components/TadkaShowcase';
 import VintageCinemaShowcase from './components/VintageCinemaShowcase';
+import PhoneMockupShowcase from './components/PhoneMockupShowcase';
+import ShowreelHub from './components/ShowreelHub';
 const PirateShowreelMap = lazy(() => import('./components/PirateShowreelMap'));
 const CinematicShowreelMap = lazy(() => import('./components/CinematicShowreelMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
@@ -1062,21 +1064,9 @@ export default function App() {
                 )}
 
                 <div className={`portfolio-sections-wrapper ${isInitialized || isMobile ? 'revealed' : 'veiled'}`}>
-                    <AIMicrodramaShowcase />
-                    <div className="cinematic-divider" />
-                    <TadkaShowcase />
-                    <div className="cinematic-divider" />
-                    <VintageCinemaShowcase />
-                    <div className="cinematic-divider" />
-                    <Suspense fallback={null}>
-                        <CinematicShowreelMap />
-                    </Suspense>
+                    <ShowreelHub />
                     <div className="cinematic-divider" />
                     <CapabilitiesSection />
-                    <div className="cinematic-divider" />
-                    <Suspense fallback={null}>
-                        <PirateShowreelMap />
-                    </Suspense>
                     <div className="cinematic-divider" />
                     {/* <CinematicVisuals
                         midjourneyExpanded={midjourneyExpanded}

@@ -1,0 +1,256 @@
+/* ==========================================================================
+   SHOWREEL HUB — Cyber-Glass Segmented Selection Bar
+   ========================================================================== */
+
+.showreel-hub-section {
+    position: relative;
+    padding: 110px 0 20px;
+    scroll-margin-top: 110px;
+    background: var(--bg, #000000);
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ── Section Header ── */
+.showreel-hub-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.showreel-hub-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+}
+
+/* ── Cyber-Glass Selection Bar Container ── */
+.showreel-tab-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 36px;
+    padding: 0 16px;
+}
+
+.showreel-tab-bar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(14, 16, 22, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 44px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.85),
+        inset 0 1px 1px rgba(255, 255, 255, 0.18),
+        0 0 30px rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.showreel-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 24px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    color: rgba(255, 255, 255, 0.55);
+    font-family: var(--font-heading);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.showreel-tab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.showreel-tab:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-1px);
+}
+
+.showreel-tab:hover .showreel-tab-icon {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* ── Category Accent Color Glowing States ── */
+
+/* Red (Microdramas) */
+.showreel-tab[data-accent="red"].is-active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.35) 0%, rgba(229, 9, 20, 0.1) 100%);
+    border-color: rgba(229, 9, 20, 0.6);
+    box-shadow:
+        0 8px 25px rgba(229, 9, 20, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(229, 9, 20, 0.25);
+}
+.showreel-tab[data-accent="red"].is-active .showreel-tab-icon { color: #ff4d55; }
+.showreel-tab[data-accent="red"] .showreel-tab-glow-pill { background: #e50914; box-shadow: 0 0 12px #e50914; }
+
+/* Purple (Multi-Genre) */
+.showreel-tab[data-accent="purple"].is-active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.35) 0%, rgba(167, 139, 250, 0.1) 100%);
+    border-color: rgba(167, 139, 250, 0.6);
+    box-shadow:
+        0 8px 25px rgba(167, 139, 250, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(167, 139, 250, 0.25);
+}
+.showreel-tab[data-accent="purple"].is-active .showreel-tab-icon { color: #a78bfa; }
+.showreel-tab[data-accent="purple"] .showreel-tab-glow-pill { background: #a78bfa; box-shadow: 0 0 12px #a78bfa; }
+
+/* Gold (Ad Films) */
+.showreel-tab[data-accent="gold"].is-active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.35) 0%, rgba(212, 175, 55, 0.1) 100%);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow:
+        0 8px 25px rgba(212, 175, 55, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(212, 175, 55, 0.25);
+}
+.showreel-tab[data-accent="gold"].is-active .showreel-tab-icon { color: #f4e8c1; }
+.showreel-tab[data-accent="gold"] .showreel-tab-glow-pill { background: #d4af37; box-shadow: 0 0 12px #d4af37; }
+
+/* Emerald (AI Cinema) */
+.showreel-tab[data-accent="emerald"].is-active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(0, 255, 135, 0.3) 0%, rgba(0, 255, 135, 0.08) 100%);
+    border-color: rgba(0, 255, 135, 0.55);
+    box-shadow:
+        0 8px 25px rgba(0, 255, 135, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(0, 255, 135, 0.2);
+}
+.showreel-tab[data-accent="emerald"].is-active .showreel-tab-icon { color: #00ff87; }
+.showreel-tab[data-accent="emerald"] .showreel-tab-glow-pill { background: #00ff87; box-shadow: 0 0 12px #00ff87; }
+
+/* Cyan (Reels) */
+.showreel-tab[data-accent="cyan"].is-active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(0, 223, 162, 0.3) 0%, rgba(0, 223, 162, 0.08) 100%);
+    border-color: rgba(0, 223, 162, 0.55);
+    box-shadow:
+        0 8px 25px rgba(0, 223, 162, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(0, 223, 162, 0.2);
+}
+.showreel-tab[data-accent="cyan"].is-active .showreel-tab-icon { color: #00dfa2; }
+.showreel-tab[data-accent="cyan"] .showreel-tab-glow-pill { background: #00dfa2; box-shadow: 0 0 12px #00dfa2; }
+
+/* Amber (VFX) */
+.showreel-tab[data-accent="amber"].is-active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.35) 0%, rgba(255, 140, 0, 0.1) 100%);
+    border-color: rgba(255, 140, 0, 0.6);
+    box-shadow:
+        0 8px 25px rgba(255, 140, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(255, 140, 0, 0.25);
+}
+.showreel-tab[data-accent="amber"].is-active .showreel-tab-icon { color: #ff8c00; }
+.showreel-tab[data-accent="amber"] .showreel-tab-glow-pill { background: #ff8c00; box-shadow: 0 0 12px #ff8c00; }
+
+.showreel-tab-glow-pill {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 2.5px;
+    border-radius: 2px;
+    animation: tab-pill-glow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tab-pill-glow {
+    0% { width: 0; opacity: 0; }
+    100% { width: 26px; opacity: 1; }
+}
+
+/* ── Content Area Fade ── */
+.showreel-tab-content {
+    animation: showreel-fade-in 0.4s ease;
+}
+
+@keyframes showreel-fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Remove duplicate section padding from child components inside hub */
+.showreel-tab-content .vintage-cinema-section,
+.showreel-tab-content .cinematic-map-section,
+.showreel-tab-content .phone-mockup-section,
+.showreel-tab-content .pirate-section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .showreel-hub-section {
+        padding: 90px 0 16px;
+    }
+
+    .showreel-tab-container {
+        margin-bottom: 24px;
+        padding: 0 12px;
+    }
+
+    .showreel-tab-bar {
+        gap: 4px;
+        padding: 5px;
+        border-radius: 32px;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .showreel-tab-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .showreel-tab {
+        padding: 9px 16px;
+        font-size: 0.74rem;
+        border-radius: 24px;
+    }
+
+    .showreel-tab-icon {
+        transform: scale(0.92);
+    }
+}
+
+@media (max-width: 480px) {
+    .showreel-tab {
+        padding: 8px 12px;
+        font-size: 0.68rem;
+    }
+}

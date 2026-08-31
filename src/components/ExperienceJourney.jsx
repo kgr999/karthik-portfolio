@@ -169,52 +169,30 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         </p>
                                     </div>
 
-                                    {/* Description Points (Clean & Presentable, no boxes) */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '520px', marginTop: '16px', fontSize: '0.86rem' }}>
-                                        {/* Point 1 */}
+                                    {/* Description Points — Clean & Human */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '520px', marginTop: '16px', fontSize: '0.86rem' }}>
+
                                         <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                             <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
-                                            <div>
-                                                <p style={{ margin: 0, color: 'rgba(255,255,255,0.95)', lineHeight: '1.45' }}>
-                                                    <strong style={{ color: '#ffffff', fontWeight: '700' }}>Pipeline Scale:</strong> Producing end-to-end AI microdramas from script breakdown to final render, delivered across Kuku TV, Wow TV, and FreeDrama App.
-                                                </p>
-                                                <div style={{ display: 'flex', gap: '6px', marginTop: '4px', flexWrap: 'wrap' }}>
-                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#ScriptBreakdown</span>
-                                                    <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>•</span>
-                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#FullPipeline</span>
-                                                </div>
-                                            </div>
+                                            <p style={{ margin: 0, color: 'rgba(255,255,255,0.88)', lineHeight: '1.55' }}>
+                                                I take a story from <strong style={{ color: '#FF4D55' }}>script to screen</strong>, handling everything from breaking down the narrative to delivering the final cut, all built using AI.
+                                            </p>
                                         </div>
 
-                                        {/* Point 2 */}
                                         <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                             <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
-                                            <div>
-                                                <p style={{ margin: 0, color: 'rgba(255,255,255,0.95)', lineHeight: '1.45' }}>
-                                                    <strong style={{ color: '#ffffff', fontWeight: '700' }}>Visual Continuity:</strong> Building node-based production workflows in Native AI Studio to maintain consistent characters, environments, and lighting styles.
-                                                </p>
-                                                <div style={{ display: 'flex', gap: '6px', marginTop: '4px', flexWrap: 'wrap' }}>
-                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#NativeAIStudio</span>
-                                                    <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>•</span>
-                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#StyleConsistency</span>
-                                                </div>
-                                            </div>
+                                            <p style={{ margin: 0, color: 'rgba(255,255,255,0.88)', lineHeight: '1.55' }}>
+                                                I work inside <strong style={{ color: '#FF4D55' }}>Native AI Studio</strong> to keep characters, locations, and lighting consistent across episodes, because visual continuity is what makes a show feel real.
+                                            </p>
                                         </div>
 
-                                        {/* Point 3 */}
                                         <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                             <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
-                                            <div>
-                                                <p style={{ margin: 0, color: 'rgba(255,255,255,0.95)', lineHeight: '1.45' }}>
-                                                    <strong style={{ color: '#ffffff', fontWeight: '700' }}>Emerging Workflows:</strong> Implementing cutting-edge tools like Higgsfield and ElevenLabs to drive creative quality and maximize production speed.
-                                                </p>
-                                                <div style={{ display: 'flex', gap: '6px', marginTop: '4px', flexWrap: 'wrap' }}>
-                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#Higgsfield</span>
-                                                    <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>•</span>
-                                                    <span style={{ fontSize: '0.72rem', color: '#FF4D55', fontWeight: '600', fontFamily: 'monospace' }}>#ElevenLabs</span>
-                                                </div>
-                                            </div>
+                                            <p style={{ margin: 0, color: 'rgba(255,255,255,0.88)', lineHeight: '1.55' }}>
+                                                I actively bring in new tools like <strong style={{ color: '#FF4D55' }}>Higgsfield</strong> for motion and <strong style={{ color: '#FF4D55' }}>ElevenLabs</strong> for voice, whenever they genuinely speed things up or make the output better.
+                                            </p>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -249,69 +227,29 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                                 Bengaluru · AdMitra Pvt. Ltd.
                                             </p>
                                         </div>
-                                        <div className="xp-main-desc" style={{ fontSize: '0.82rem', lineHeight: '1.45', color: 'rgba(255,255,255,0.75)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <div className="xp-main-desc" style={{ fontSize: '0.82rem', lineHeight: '1.55', color: 'rgba(255,255,255,0.85)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                                <div style={{
-                                                    background: 'rgba(59, 130, 246, 0.1)',
-                                                    border: '1px solid rgba(59, 130, 246, 0.3)',
-                                                    borderRadius: '50%',
-                                                    width: '22px',
-                                                    height: '22px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    flexShrink: 0,
-                                                    marginTop: '2px',
-                                                    boxShadow: '0 0 10px rgba(59, 130, 246, 0.15)'
-                                                }}>
-                                                    <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
-                                                </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.82rem', lineHeight: '1.45' }}>
-                                                    Led end-to-end <strong style={{ color: '#3B82F6', fontWeight: '600' }}>AI-powered creative operations</strong> for hyperlocal advertising campaigns across video and poster formats at scale, translating brand strategy into structured storyboards and localized narratives.
+                                                <span style={{ color: '#3B82F6', fontSize: '0.9rem', marginTop: '2px', flexShrink: 0 }}>✦</span>
+                                                <p style={{ margin: 0, lineHeight: '1.6' }}>
+                                                    I ran the <strong style={{ color: '#3B82F6' }}>full creative operation</strong>, turning brand briefs into video ads and posters for hyperlocal campaigns. AI let me move at a speed that would've taken a full team otherwise.
                                                 </p>
                                             </div>
 
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                                <div style={{
-                                                    background: 'rgba(59, 130, 246, 0.1)',
-                                                    border: '1px solid rgba(59, 130, 246, 0.3)',
-                                                    borderRadius: '50%',
-                                                    width: '22px',
-                                                    height: '22px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    flexShrink: 0,
-                                                    marginTop: '2px',
-                                                    boxShadow: '0 0 10px rgba(59, 130, 246, 0.15)'
-                                                }}>
-                                                    <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
-                                                </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.82rem', lineHeight: '1.45' }}>
-                                                    Managed high-volume creative production workflows delivering <strong style={{ color: '#3B82F6', fontWeight: '600' }}>100+ localized creatives monthly</strong>, collaborating directly with founders and brand stakeholders to streamline campaign execution.
+                                                <span style={{ color: '#3B82F6', fontSize: '0.9rem', marginTop: '2px', flexShrink: 0 }}>✦</span>
+                                                <p style={{ margin: 0, lineHeight: '1.6' }}>
+                                                    We were putting out <strong style={{ color: '#3B82F6' }}>100+ creatives a month</strong>. I worked directly with the founders to keep quality tight even at that volume, reviewing and iterating fast.
                                                 </p>
                                             </div>
 
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                                <div style={{
-                                                    background: 'rgba(59, 130, 246, 0.1)',
-                                                    border: '1px solid rgba(59, 130, 246, 0.3)',
-                                                    borderRadius: '50%',
-                                                    width: '22px',
-                                                    height: '22px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    flexShrink: 0,
-                                                    marginTop: '2px',
-                                                    boxShadow: '0 0 10px rgba(59, 130, 246, 0.15)'
-                                                }}>
-                                                    <span style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
-                                                </div>
-                                                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.82rem', lineHeight: '1.45' }}>
-                                                    Collaborated closely with <strong style={{ color: '#3B82F6', fontWeight: '600' }}>technical and engineering team</strong> to integrate advanced AI creation tools, streamlining workflows and accelerating project delivery times.
+                                                <span style={{ color: '#3B82F6', fontSize: '0.9rem', marginTop: '2px', flexShrink: 0 }}>✦</span>
+                                                <p style={{ margin: 0, lineHeight: '1.6' }}>
+                                                    I worked closely with the <strong style={{ color: '#3B82F6' }}>engineering team</strong> to bring new AI tools into our production workflow, not just exploring them but actually integrating them into daily execution.
                                                 </p>
                                             </div>
+
                                         </div>
 
                                         {/* Key Campaign Clients block for desktop */}

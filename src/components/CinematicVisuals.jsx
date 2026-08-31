@@ -20,13 +20,9 @@ export default function CinematicVisuals({
 
     return (
         <>
-            {/* Cinematic Self-Visuals Section */}
             <section id="self-visuals">
                 <div className="container">
-                    <div className="section-header text-center">
-                        <h2 className="section-heading reveal-text" style={{ marginBottom: '10px' }}>Multi-Genre Showreel</h2>
-                    </div>
-                    <div className="cinema-grid reveal-item" style={{ gap: '20px', marginTop: '40px' }}>
+                    <div className="cinema-grid reveal-item" style={{ gap: '20px', marginTop: '10px' }}>
                         {showreelVideos.map((item) => {
                             const isPaused = hoveredId !== null && hoveredId !== item.id;
                             const isGrayscaled = hoveredId !== null && hoveredId !== item.id;
