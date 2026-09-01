@@ -84,6 +84,19 @@ const tabs = [
 
 export default function ShowreelHub() {
     const [activeTab, setActiveTab] = useState('microdramas');
+    const tabRefs = React.useRef({});
+    const containerRef = React.useRef(null);
+
+    const handleTabClick = (tabId) => {
+        setActiveTab(tabId);
+        if (tabRefs.current[tabId]) {
+            tabRefs.current[tabId].scrollIntoView({
+                behavior: 'smooth',
+                inline: 'center',
+                block: 'nearest'
+            });
+        }
+    };
 
     const renderTabContent = () => {
         switch (activeTab) {
@@ -113,23 +126,28 @@ export default function ShowreelHub() {
 
     return (
         <section id="showreel-hub" className="showreel-hub-section">
-            <div className="container">
+            <div className="container showreel-container">
                 {/* Section Header */}
                 <div className="showreel-hub-header reveal-item">
                     <h2 className="showreel-hub-title">SELECTED WORK</h2>
                 </div>
 
                 {/* Cyber-Glass Segmented Selection Bar */}
-                <div className="showreel-tab-container reveal-item">
-                    <div className="showreel-tab-bar">
+                <div
+                    ref={containerRef}
+                    className="showreel-tab-container reveal-item"
+                    data-lenis-prevent
+                >
+                    <div className="showreel-tab-bar" data-lenis-prevent>
                         {tabs.map((tab) => {
                             const isActive = activeTab === tab.id;
                             return (
                                 <button
                                     key={tab.id}
+                                    ref={(el) => (tabRefs.current[tab.id] = el)}
                                     data-accent={tab.accent}
                                     className={`showreel-tab ${isActive ? 'is-active' : ''}`}
-                                    onClick={() => setActiveTab(tab.id)}
+                                    onClick={() => handleTabClick(tab.id)}
                                 >
                                     <span className="showreel-tab-icon">{tab.icon}</span>
                                     <span className="showreel-tab-label">{tab.label}</span>

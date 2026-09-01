@@ -366,7 +366,7 @@ export default function AIMicrodramaShowcase() {
 
             <div className="rb-container">
                 {/* ═══ Prominent Show Selector Navigation Cards ═══ */}
-                <div className="rb-show-selector">
+                <div className="rb-show-selector" data-lenis-prevent>
                     {SHOWS.map((show) => {
                         const isActive = show.id === activeShowId;
                         const showHasContent = show.episodes.some(ep => !ep.isLocked && ep.videoSrc);

@@ -58,7 +58,7 @@ export default function PhoneMockupShowcase() {
                 <div className="phone-mockup-wrapper reveal-item">
 
                     {/* ── Left: Thumbnail Reel Stack ── */}
-                    <div className="phone-reel-stack">
+                    <div className="phone-reel-stack" data-lenis-prevent>
                         {reels.map((reel, idx) => (
                             <button
                                 key={reel.id}
