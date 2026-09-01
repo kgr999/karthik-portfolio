@@ -4,12 +4,9 @@
 
 .rb-section {
     position: relative;
-    padding: 110px 0 20px 0;
-    scroll-margin-top: 110px;
-    background: var(--bg);
+    padding: 0 0 20px 0;
+    background: transparent;
     overflow: hidden;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 /* Ambient glow matching the mythic mood */
@@ -1089,8 +1086,7 @@
 
 @media (max-width: 768px) {
     .rb-section {
-        padding: 70px 0 25px 0;
-        scroll-margin-top: 70px;
+        padding: 0 0 20px 0;
     }
 
     .rb-show-selector {
@@ -1139,8 +1135,7 @@
 
 @media (max-width: 480px) {
     .rb-section {
-        padding: 60px 0 20px 0;
-        scroll-margin-top: 60px;
+        padding: 0 0 16px 0;
     }
 
     .rb-container {
