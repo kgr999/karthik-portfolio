@@ -50,7 +50,7 @@ const tabs = [
     },
     {
         id: 'adfilms',
-        label: 'Ad Films',
+        label: 'AI Ads',
         accent: 'gold',
         icon: (
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
