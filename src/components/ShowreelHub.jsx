@@ -1,21 +1,45 @@
 import React, { useState, lazy, Suspense } from 'react';
 import './ShowreelHub.css';
 
-// Eagerly loaded
-import AIMicrodramaShowcase from './AIMicrodramaShowcase';
-import TadkaShowcase from './TadkaShowcase';
-import VintageCinemaShowcase from './VintageCinemaShowcase';
-import PhoneMockupShowcase from './PhoneMockupShowcase';
-import CinematicVisuals from './CinematicVisuals';
-
-// Lazy loaded
+// Lazy-loaded showcase tabs — loads only the active tab component on demand
+const AIMicrodramaShowcase = lazy(() => import('./AIMicrodramaShowcase'));
+const TadkaShowcase = lazy(() => import('./TadkaShowcase'));
+const VintageCinemaShowcase = lazy(() => import('./VintageCinemaShowcase'));
+const PhoneMockupShowcase = lazy(() => import('./PhoneMockupShowcase'));
+const CinematicVisuals = lazy(() => import('./CinematicVisuals'));
 const CinematicShowreelMap = lazy(() => import('./CinematicShowreelMap'));
 const PirateShowreelMap = lazy(() => import('./PirateShowreelMap'));
+
+const TabLoadingFallback = () => (
+    <div style={{
+        minHeight: '400px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '14px',
+        color: 'rgba(255, 255, 255, 0.45)',
+        fontFamily: 'var(--font-heading)',
+        fontSize: '0.82rem',
+        letterSpacing: '2px',
+        textTransform: 'uppercase'
+    }}>
+        <div style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            border: '2px solid rgba(229, 9, 20, 0.2)',
+            borderTopColor: '#E50914',
+            animation: 'showreel-spin 0.8s linear infinite'
+        }} />
+        <span>LOADING SHOWCASE...</span>
+    </div>
+);
 
 const tabs = [
     {
         id: 'microdramas',
-        label: 'Microdramas',
+        label: 'AI Microdramas',
         accent: 'red',
         icon: (
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
@@ -48,7 +72,7 @@ const tabs = [
     },
     {
         id: 'reels',
-        label: 'Reels',
+        label: 'AI Reels',
         accent: 'cyan',
         icon: (
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
@@ -161,7 +185,9 @@ export default function ShowreelHub() {
 
             {/* Tab Content */}
             <div className="showreel-tab-content" key={activeTab}>
-                {renderTabContent()}
+                <Suspense fallback={<TabLoadingFallback />}>
+                    {renderTabContent()}
+                </Suspense>
             </div>
         </section>
     );

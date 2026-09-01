@@ -70,7 +70,8 @@ export default function VintageCinemaShowcase() {
                                         src={posterSrc}
                                         alt={title}
                                         className="vintage-poster-img"
-                                        loading="eager"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
 
                                     {/* Hover Video Preview */}
@@ -81,7 +82,7 @@ export default function VintageCinemaShowcase() {
                                         muted
                                         loop
                                         playsInline
-                                        preload="metadata"
+                                        preload="none"
                                         onMouseEnter={(e) => e.target.play().catch(() => { })}
                                         onMouseLeave={(e) => e.target.pause()}
                                     />

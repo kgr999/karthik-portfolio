@@ -90,7 +90,8 @@ export default function TadkaShowcase() {
                                                     src={item.posterSrc}
                                                     alt={`${item.label} Thumbnail`}
                                                     className="tadka-preview-poster"
-                                                    loading="eager"
+                                                    loading="lazy"
+                                                    decoding="async"
                                                 />
                                                 {/* Video Preview on Hover */}
                                                 <video
@@ -100,7 +101,7 @@ export default function TadkaShowcase() {
                                                     muted
                                                     loop
                                                     playsInline
-                                                    preload="metadata"
+                                                    preload="none"
                                                     onMouseEnter={(e) => e.target.play().catch(() => {})}
                                                     onMouseLeave={(e) => e.target.pause()}
                                                 />

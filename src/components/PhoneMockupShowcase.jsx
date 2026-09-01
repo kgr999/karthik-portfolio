@@ -3,7 +3,6 @@ import './PhoneMockupShowcase.css';
 
 const reels = [
     { id: 'tiger', src: '/assets/videos/tiger.MP4', poster: '/assets/images/tiger_poster.png' },
-    { id: 'toxic', src: '/assets/videos/toxic.MP4', poster: '/assets/images/toxic_poster.png' },
     { id: 'yaksha', src: '/assets/videos/yaksha.MP4', poster: '/assets/images/yaksha_poster.png' },
     { id: 'ap1', src: '/assets/videos/ap1.MP4', poster: '/assets/images/ap1_poster.png' },
     { id: 'ap2', src: '/assets/videos/ap2.MP4', poster: '/assets/images/ap2_poster.png' },
@@ -67,7 +66,7 @@ export default function PhoneMockupShowcase() {
                                 onClick={() => setActiveIdx(idx)}
                                 aria-label={`Play reel ${idx + 1}`}
                             >
-                                <img src={reel.poster} alt={`Reel ${idx + 1}`} loading="eager" />
+                                <img src={reel.poster} alt={`Reel ${idx + 1}`} loading="lazy" decoding="async" />
                                 <div className="phone-reel-thumb-overlay">
                                     <span className="phone-reel-num">{String(idx + 1).padStart(2, '0')}</span>
                                 </div>
@@ -92,6 +91,7 @@ export default function PhoneMockupShowcase() {
                                         key={active.src}
                                         src={active.src}
                                         poster={active.poster}
+                                        preload="none"
                                         playsInline
                                         loop={false}
                                         onEnded={handleVideoEnd}

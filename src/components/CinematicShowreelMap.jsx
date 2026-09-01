@@ -96,7 +96,8 @@ export default function CinematicShowreelMap() {
                                                         src={marker.posterSrc}
                                                         alt={marker.title}
                                                         className="cinematic-marker-thumbnail"
-                                                        loading="eager"
+                                                        loading="lazy"
+                                                        decoding="async"
                                                     />
 
                                                     {/* Hover Motion Video */}
@@ -107,7 +108,7 @@ export default function CinematicShowreelMap() {
                                                         muted
                                                         loop
                                                         playsInline
-                                                        preload="metadata"
+                                                        preload="none"
                                                         onMouseEnter={(e) => e.target.play().catch(() => { })}
                                                         onMouseLeave={(e) => e.target.pause()}
                                                     />

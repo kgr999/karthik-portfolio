@@ -9,16 +9,7 @@ const ContactPhysicsArena = lazy(() => import('./ContactPhysicsArena'));
 // Custom split components
 import HeroSection from './components/HeroSection';
 import CapabilitiesSection from './components/CapabilitiesSection';
-
-import FeaturedProjects from './components/FeaturedProjects';
-import CinematicVisuals from './components/CinematicVisuals';
-import AIMicrodramaShowcase from './components/AIMicrodramaShowcase';
-import TadkaShowcase from './components/TadkaShowcase';
-import VintageCinemaShowcase from './components/VintageCinemaShowcase';
-import PhoneMockupShowcase from './components/PhoneMockupShowcase';
 import ShowreelHub from './components/ShowreelHub';
-const PirateShowreelMap = lazy(() => import('./components/PirateShowreelMap'));
-const CinematicShowreelMap = lazy(() => import('./components/CinematicShowreelMap'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const CreativeRider = lazy(() => import('./components/CreativeRider'));
 const techStackCategories = [
