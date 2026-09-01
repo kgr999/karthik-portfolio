@@ -321,65 +321,132 @@
    RESPONSIVE BREAKPOINTS
    ========================================================================== */
 
+@media (max-width: 1024px) {
+    .phone-mockup-wrapper {
+        gap: 32px;
+    }
+
+    .phone-shell {
+        width: 270px;
+        height: 550px;
+    }
+}
+
 @media (max-width: 768px) {
     .phone-mockup-section {
-        padding: 40px 0 50px;
+        padding: 24px 0 36px;
     }
 
     .phone-mockup-wrapper {
         flex-direction: column;
-        gap: 28px;
+        gap: 20px;
+        width: 100%;
+        align-items: center;
     }
 
     .phone-reel-stack {
         flex-direction: row;
         gap: 10px;
         max-height: none;
-        max-width: min(92vw, 500px);
+        width: 100%;
+        max-width: min(94vw, 500px);
         overflow-x: auto;
         overflow-y: hidden;
-        padding: 6px 8px;
+        padding: 6px 10px;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
+        justify-content: flex-start;
+        box-sizing: border-box;
     }
 
     .phone-reel-stack::-webkit-scrollbar {
-        height: 4px;
+        height: 3px;
         width: auto;
     }
 
     .phone-reel-thumb {
-        width: 54px;
+        width: 58px;
+        border-radius: 8px;
     }
 
     .phone-shell {
-        width: 260px;
-        height: 530px;
+        width: clamp(240px, 68vw, 275px);
+        height: calc(clamp(240px, 68vw, 275px) * 2.03);
+        border-radius: 40px;
+    }
+
+    .phone-screen-bezel,
+    .phone-screen,
+    .phone-screen-video,
+    .phone-play-overlay,
+    .phone-pause-tap {
+        border-radius: 35px;
+    }
+
+    .phone-dynamic-island {
+        width: 72px;
+        height: 20px;
+        top: 8px;
     }
 
     .phone-dot-nav {
         flex-direction: row;
+        gap: 8px;
     }
 
     .phone-dot.is-active {
-        width: 28px;
-        height: 8px;
+        width: 24px;
+        height: 7px;
         border-radius: 4px;
     }
 }
 
 @media (max-width: 480px) {
+    .phone-mockup-section {
+        padding: 16px 0 28px;
+    }
+
+    .phone-mockup-wrapper {
+        gap: 16px;
+    }
+
+    .phone-reel-stack {
+        gap: 8px;
+        padding: 4px 6px;
+    }
+
     .phone-reel-thumb {
-        width: 46px;
+        width: 48px;
+        border-radius: 7px;
     }
 
     .phone-shell {
-        width: 230px;
-        height: 468px;
+        width: clamp(210px, 64vw, 245px);
+        height: calc(clamp(210px, 64vw, 245px) * 2.03);
+        border-radius: 34px;
+    }
+
+    .phone-screen-bezel,
+    .phone-screen,
+    .phone-screen-video,
+    .phone-play-overlay,
+    .phone-pause-tap {
+        border-radius: 29px;
+    }
+
+    .phone-dynamic-island {
+        width: 60px;
+        height: 18px;
+        top: 7px;
     }
 
     .phone-play-btn {
-        width: 46px;
-        height: 46px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .phone-play-btn svg {
+        width: 22px;
+        height: 22px;
     }
 }

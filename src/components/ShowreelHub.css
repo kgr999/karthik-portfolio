@@ -213,24 +213,58 @@
    RESPONSIVE BREAKPOINTS
    ========================================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .showreel-hub-section {
-        padding: 90px 0 16px;
-    }
-
-    .showreel-tab-container {
-        margin-bottom: 24px;
-        padding: 0 12px;
+        padding: 85px 0 20px;
     }
 
     .showreel-tab-bar {
-        gap: 4px;
-        padding: 5px;
-        border-radius: 32px;
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .showreel-tab {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .showreel-hub-section {
+        padding: 70px 0 16px;
+        scroll-margin-top: 70px;
+    }
+
+    .showreel-hub-header {
+        margin-bottom: 18px;
+    }
+
+    .showreel-hub-title {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+    }
+
+    .showreel-tab-container {
+        margin-bottom: 20px;
+        padding: 0 12px;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .showreel-tab-bar {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 6px;
+        padding: 6px;
+        border-radius: 36px;
+        width: 100%;
         max-width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        justify-content: flex-start;
+        box-sizing: border-box;
     }
 
     .showreel-tab-bar::-webkit-scrollbar {
@@ -238,19 +272,43 @@
     }
 
     .showreel-tab {
-        padding: 9px 16px;
-        font-size: 0.74rem;
+        padding: 9px 15px;
+        font-size: 0.72rem;
         border-radius: 24px;
+        flex-shrink: 0;
+        gap: 7px;
     }
 
     .showreel-tab-icon {
-        transform: scale(0.92);
+        transform: scale(0.9);
     }
 }
 
 @media (max-width: 480px) {
+    .showreel-hub-section {
+        padding: 60px 0 12px;
+        scroll-margin-top: 60px;
+    }
+
+    .showreel-tab-container {
+        padding: 0 8px;
+        margin-bottom: 16px;
+    }
+
+    .showreel-tab-bar {
+        gap: 4px;
+        padding: 5px;
+        border-radius: 28px;
+    }
+
     .showreel-tab {
         padding: 8px 12px;
         font-size: 0.68rem;
+        gap: 6px;
+    }
+
+    .showreel-tab-icon svg {
+        width: 13px;
+        height: 13px;
     }
 }
