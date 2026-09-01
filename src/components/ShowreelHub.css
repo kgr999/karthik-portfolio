@@ -209,6 +209,39 @@
     border: none;
 }
 
+/* ── Simple Minimal Tab Loader ── */
+.showreel-tab-loading {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 30px 16px;
+    text-align: center;
+}
+
+.showreel-simple-spinner {
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-top-color: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    animation: showreel-spin 0.7s linear infinite;
+}
+
+.showreel-simple-text {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 1px;
+    font-family: var(--font-primary, sans-serif);
+}
+
+@keyframes showreel-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 /* ==========================================================================
    RESPONSIVE BREAKPOINTS: 3x2 COMPACT CYBER GRID ON MOBILE VIEW
    ========================================================================== */

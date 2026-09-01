@@ -11,28 +11,9 @@ const CinematicShowreelMap = lazy(() => import('./CinematicShowreelMap'));
 const PirateShowreelMap = lazy(() => import('./PirateShowreelMap'));
 
 const TabLoadingFallback = () => (
-    <div style={{
-        minHeight: '400px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '14px',
-        color: 'rgba(255, 255, 255, 0.45)',
-        fontFamily: 'var(--font-heading)',
-        fontSize: '0.82rem',
-        letterSpacing: '2px',
-        textTransform: 'uppercase'
-    }}>
-        <div style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            border: '2px solid rgba(229, 9, 20, 0.2)',
-            borderTopColor: '#E50914',
-            animation: 'showreel-spin 0.8s linear infinite'
-        }} />
-        <span>LOADING SHOWCASE...</span>
+    <div className="showreel-tab-loading">
+        <div className="showreel-simple-spinner" />
+        <span className="showreel-simple-text">Loading...</span>
     </div>
 );
 
@@ -137,11 +118,11 @@ export default function ShowreelHub() {
             case 'theme':
             case 'vfx':
                 return (
-                    <Suspense fallback={null}>
+                    <div className="theme-maps-wrapper">
                         <CinematicShowreelMap />
                         <div style={{ height: '28px' }} />
                         <PirateShowreelMap />
-                    </Suspense>
+                    </div>
                 );
             default:
                 return null;

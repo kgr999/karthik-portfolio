@@ -1213,9 +1213,9 @@ export default function App() {
                     {/* Contact Section */}
                     <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
                         <Suspense fallback={
-                            <div style={{ height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.85rem', fontFamily: 'var(--font-primary)', letterSpacing: '1px' }}>
-                                <span className="status-dot animate-ping" style={{ background: '#e5c060', width: '8px', height: '8px', borderRadius: '50%', marginRight: '10px' }}></span>
-                                LOADING CREATIVE SANDBOX...
+                            <div style={{ height: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                                <div className="showreel-simple-spinner" />
+                                <span className="showreel-simple-text">Loading...</span>
                             </div>
                         }>
                             <ContactPhysicsArena />
