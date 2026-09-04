@@ -11998,38 +11998,10 @@ nav.nav-standby .menu-toggle {
 
 @media (max-width: 768px) {
     .ap-governance-box {
-        padding: 20px 16px;
-        margin-top: 24px;
-    }
-    .ap-governance-bezel {
-        width: 8px;
-        height: 8px;
-    }
-    .ap-governance-bezel.tl { top: 8px; left: 8px; }
-    .ap-governance-bezel.tr { top: 8px; right: 8px; }
-    .ap-governance-bezel.bl { bottom: 8px; left: 8px; }
-    .ap-governance-bezel.br { bottom: 8px; right: 8px; }
-    .ap-governance-header {
-        align-items: center;
-        text-align: center;
-    }
-    .ap-governance-meta {
-        font-size: 0.55rem;
-        margin-bottom: 6px;
-    }
-    .ap-governance-header-row {
-        justify-content: center;
-    }
-    .ap-governance-grid {
-        display: none;
+        display: none !important;
     }
 }
 
-@media (max-width: 480px) {
-    .ap-governance-grid {
-        display: none;
-    }
-}
 
 
 
