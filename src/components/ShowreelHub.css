@@ -291,10 +291,10 @@
         overflow: visible !important;
     }
 
-    /* 3-Column x 2-Row Cyber Grid Container */
+    /* 5-Tab Balanced Cyber Grid Container: 3 on Top (2 cols each), 2 on Bottom (3 cols each) */
     .showreel-tab-bar {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(6, 1fr) !important;
         gap: 8px !important;
         padding: 8px !important;
         background: rgba(12, 14, 20, 0.85) !important;
@@ -308,6 +308,19 @@
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
+    }
+
+    /* Top Row: 3 tabs (2 cols each = 6 cols) */
+    .showreel-tab:nth-child(1),
+    .showreel-tab:nth-child(2),
+    .showreel-tab:nth-child(3) {
+        grid-column: span 2 !important;
+    }
+
+    /* Bottom Row: 2 tabs (3 cols each = 6 cols) */
+    .showreel-tab:nth-child(4),
+    .showreel-tab:nth-child(5) {
+        grid-column: span 3 !important;
     }
 
     .showreel-tab {
