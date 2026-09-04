@@ -6,7 +6,6 @@ const AIMicrodramaShowcase = lazy(() => import('./AIMicrodramaShowcase'));
 const TadkaShowcase = lazy(() => import('./TadkaShowcase'));
 const VintageCinemaShowcase = lazy(() => import('./VintageCinemaShowcase'));
 const PhoneMockupShowcase = lazy(() => import('./PhoneMockupShowcase'));
-const CinematicVisuals = lazy(() => import('./CinematicVisuals'));
 const CinematicShowreelMap = lazy(() => import('./CinematicShowreelMap'));
 const PirateShowreelMap = lazy(() => import('./PirateShowreelMap'));
 
@@ -71,20 +70,7 @@ const tabs = [
                 <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z" />
             </svg>
         )
-    },
-    {
-        id: 'multigenre',
-        label: 'Multi-Genre',
-        accent: 'purple',
-        icon: (
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="3" width="7" height="7" rx="1.5" />
-                <rect x="14" y="3" width="7" height="7" rx="1.5" />
-                <rect x="14" y="14" width="7" height="7" rx="1.5" />
-                <rect x="3" y="14" width="7" height="7" rx="1.5" />
-            </svg>
-        )
-    },
+    }
 ];
 
 export default function ShowreelHub() {
@@ -107,8 +93,6 @@ export default function ShowreelHub() {
         switch (activeTab) {
             case 'microdramas':
                 return <AIMicrodramaShowcase />;
-            case 'multigenre':
-                return <CinematicVisuals />;
             case 'adfilms':
                 return <TadkaShowcase />;
             case 'aicinema':

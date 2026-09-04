@@ -95,7 +95,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                 left: 0,
                                 width: '100%',
                                 height: '100%',
-                                background: 'linear-gradient(to right, #050506 35%, rgba(5, 5, 6, 0.6) 60%, rgba(5, 5, 6, 0) 100%)',
+                                background: 'linear-gradient(to right, #050506 48%, rgba(5, 5, 6, 0.75) 72%, rgba(5, 5, 6, 0.2) 100%)',
                                 zIndex: 1
                             }}></div>
 
@@ -145,54 +145,87 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                             {/* Hero Section */}
                             <div className="kuku-tv-hero" style={{ position: 'relative', zIndex: 2 }}>
                                 <div className="kuku-tv-hero-content">
-                                    <h2 className="kuku-tv-show-title">AI Video Producer</h2>
-                                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace', marginTop: '-8px', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
-                                        <span>Bengaluru · kuku</span>
-                                        <span className="xp-date-shimmer kuku-date-accent" style={{ marginTop: '2px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                                            <span className="badge-dot" style={{ backgroundColor: '#E50914', boxShadow: '0 0 8px #E50914' }}></span>
-                                            Present
-                                        </span>
-                                    </p>
-
-                                    {/* Primary Focus Banner */}
-                                    <div style={{
-                                        borderLeft: '4px solid #E50914',
-                                        background: 'linear-gradient(90deg, rgba(229, 9, 20, 0.15) 0%, rgba(229, 9, 20, 0) 100%)',
-                                        padding: '8px 16px',
-                                        borderRadius: '0 8px 8px 0',
-                                        marginTop: '16px',
-                                        marginBottom: '6px',
-                                        maxWidth: '520px'
-                                    }}>
-                                        <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: '800', color: '#ffffff', letterSpacing: '0.8px', textTransform: 'uppercase', fontFamily: 'monospace' }}>
-                                            Primary Focus: <span style={{ color: '#FF4D55', textShadow: '0 0 10px rgba(229, 9, 20, 0.4)' }}>AI Microdrama Production</span>
+                                    {/* Company Header */}
+                                    <div className="kuku-company-header">
+                                        <div className="kuku-title-row">
+                                            <h3 className="kuku-company-name">Kuku Technologies Limited</h3>
+                                        </div>
+                                        <p className="kuku-location-text">
+                                            <svg viewBox="0 0 24 24" width="12" height="12" stroke="#E50914" strokeWidth="2.2" fill="none" style={{ display: 'inline', verticalAlign: '-1px', marginRight: '5px' }}>
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                                <circle cx="12" cy="10" r="3"></circle>
+                                            </svg>
+                                            Bengaluru
                                         </p>
                                     </div>
 
-                                    {/* Description Points — Clean & Human */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '520px', marginTop: '16px', fontSize: '0.86rem' }}>
+                                    {/* Multi-Role Connected Career Timeline */}
+                                    <div className="kuku-timeline-container">
+                                        {/* Continuous Vertical Connecting Line */}
+                                        <div className="kuku-timeline-track" />
 
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                            <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
-                                            <p style={{ margin: 0, color: 'rgba(255,255,255,0.88)', lineHeight: '1.55' }}>
-                                                I take a story from <strong style={{ color: '#FF4D55' }}>script to screen</strong>, handling everything from breaking down the narrative to delivering the final cut, all built using AI.
-                                            </p>
+                                        {/* ROLE 1: AI Creative Architect (Current) */}
+                                        <div className="kuku-role-entry current">
+                                            <div className="kuku-role-node current" />
+                                            <div className="kuku-role-card current">
+                                                <div className="kuku-role-header-row">
+                                                    <h4 className="kuku-role-title">AI Creative Architect</h4>
+                                                    <span className="xp-date-shimmer kuku-date-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                                                        <span className="badge-dot" style={{ backgroundColor: '#E50914', boxShadow: '0 0 8px #E50914' }}></span>
+                                                        Present
+                                                    </span>
+                                                </div>
+                                                <p className="kuku-role-date">Aug 2026 — Present</p>
+
+                                                <div className="kuku-bullets-list">
+                                                    <div className="kuku-bullet-row">
+                                                        <span className="kuku-bullet-marker">✦</span>
+                                                        <p>
+                                                            Currently directing an <strong style={{ color: '#FF4D55' }}>AI Microdrama</strong> ft. a famous retired Indian Cricketer
+                                                            <span className="kuku-confidential-pill">
+                                                                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ display: 'inline', verticalAlign: '-1px', marginRight: '3px' }}>
+                                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                                </svg>
+                                                                Confidential until completion
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div className="kuku-bullet-row">
+                                                        <span className="kuku-bullet-marker">✦</span>
+                                                        <p>
+                                                            Working on a node based workflow (<strong style={{ color: '#FF4D55' }}>Native AI Studio</strong>) for consistent characters, environments, continuity, and visual styles with video editor and music generator integration
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                            <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
-                                            <p style={{ margin: 0, color: 'rgba(255,255,255,0.88)', lineHeight: '1.55' }}>
-                                                I work inside <strong style={{ color: '#FF4D55' }}>Native AI Studio</strong> to keep characters, locations, and lighting consistent across episodes, because visual continuity is what makes a show feel real.
-                                            </p>
-                                        </div>
+                                        {/* ROLE 2: AI Video Producer */}
+                                        <div className="kuku-role-entry previous">
+                                            <div className="kuku-role-node previous" />
+                                            <div className="kuku-role-card previous">
+                                                <div className="kuku-role-header-row">
+                                                    <h4 className="kuku-role-title secondary">AI Video Producer</h4>
+                                                </div>
+                                                <p className="kuku-role-date">Jun 2026 — Jul 2026</p>
 
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                            <span style={{ color: '#E50914', fontSize: '0.9rem', marginTop: '2px' }}>✦</span>
-                                            <p style={{ margin: 0, color: 'rgba(255,255,255,0.88)', lineHeight: '1.55' }}>
-                                                I actively bring in new tools like <strong style={{ color: '#FF4D55' }}>Higgsfield</strong> for motion and <strong style={{ color: '#FF4D55' }}>ElevenLabs</strong> for voice, whenever they genuinely speed things up or make the output better.
-                                            </p>
+                                                <div className="kuku-bullets-list">
+                                                    <div className="kuku-bullet-row">
+                                                        <span className="kuku-bullet-marker">✦</span>
+                                                        <p>
+                                                            Producing AI Microdramas for <strong style={{ color: '#FF4D55' }}>Kuku TV</strong> and the <strong style={{ color: '#FF4D55' }}>FreeDrama App</strong>
+                                                        </p>
+                                                    </div>
+                                                    <div className="kuku-bullet-row">
+                                                        <span className="kuku-bullet-marker">✦</span>
+                                                        <p>
+                                                            Exploring and implementing emerging AI tools and workflows to improve creative quality and production efficiency
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
