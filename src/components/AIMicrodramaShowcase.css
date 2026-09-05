@@ -182,19 +182,25 @@
 }
 
 .rb-show-card-logo.icon-logo {
-    height: 56px;
-    margin-top: 16px;
+    height: 42px;
+    margin-top: 0;
 }
 
 .rb-show-badge {
     font-family: var(--font-primary);
     font-size: 0.58rem;
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    padding: 2px 7px;
-    border-radius: 3px;
+    padding: 3px 8px;
+    border-radius: 5px;
     width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
 }
 
 .rb-show-studio-tag {
@@ -213,14 +219,48 @@
 .rb-show-badge.independent {
     color: #05ff99;
     background: rgba(5, 255, 153, 0.12);
-    border: 1px solid rgba(5, 255, 153, 0.2);
+    border: 1px solid rgba(5, 255, 153, 0.25);
+    box-shadow: 0 0 10px rgba(5, 255, 153, 0.15);
 }
 
 .rb-show-badge.produced {
-    color: #7c8aff;
-    background: rgba(124, 138, 255, 0.1);
-    border: 1px solid rgba(124, 138, 255, 0.2);
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.14);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
 }
+
+.rb-show-badge.personal {
+    color: #38bdf8;
+    background: rgba(14, 165, 233, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.18);
+}
+
+.rb-show-badge.kannada {
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    font-size: 0.54rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.16);
+}
+
+.rb-show-badge.hindi {
+    color: #fb923c;
+    background: rgba(249, 115, 22, 0.15);
+    border: 1px solid rgba(251, 146, 60, 0.35);
+    font-size: 0.54rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.16);
+}
+
 
 .rb-show-card-title {
     font-family: var(--font-heading);
@@ -463,6 +503,11 @@
 .rb-card-accent-line.green-accent {
     background: #00ff80;
     box-shadow: 0 0 8px rgba(0, 255, 128, 0.6);
+}
+
+.rb-card-accent-line.cyan-accent {
+    background: #38bdf8;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
 }
 
 .rb-card-category {
@@ -799,6 +844,25 @@
     color: #ff4747;
     background: rgba(229, 9, 20, 0.05);
 }
+
+.rb-tag.kannada-tag {
+    border-color: rgba(251, 191, 36, 0.35);
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.08);
+}
+
+.rb-tag.hindi-tag {
+    border-color: rgba(251, 146, 60, 0.35);
+    color: #fb923c;
+    background: rgba(249, 115, 22, 0.08);
+}
+
+.rb-tag.personal-tag {
+    border-color: rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.08);
+}
+
 
 .rb-desc {
     font-family: var(--font-primary);

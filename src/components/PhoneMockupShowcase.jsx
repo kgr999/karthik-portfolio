@@ -4,11 +4,7 @@ import './PhoneMockupShowcase.css';
 const reels = [
     { id: 'tiger', src: '/assets/videos/tiger.MP4', poster: '/assets/images/tiger_poster.png' },
     { id: 'yaksha', src: '/assets/videos/yaksha.MP4', poster: '/assets/images/yaksha_poster.png' },
-    { id: 'ap1', src: '/assets/videos/ap1.MP4', poster: '/assets/images/ap1_poster.png' },
-    { id: 'ap2', src: '/assets/videos/ap2.MP4', poster: '/assets/images/ap2_poster.png' },
-    { id: 'ap3', src: '/assets/videos/ap3.MP4', poster: '/assets/images/ap3_poster.png' },
-    { id: 'ap4', src: '/assets/videos/ap4.MP4', poster: '/assets/images/ap4_poster.png' },
-    { id: 'ap5', src: '/assets/videos/ap5.MP4', poster: '/assets/images/ap5_poster.png' },
+    { id: 'toxic', src: '/assets/videos/toxic.MP4', poster: '/assets/images/toxic_poster.png' },
 ];
 
 export default function PhoneMockupShowcase() {

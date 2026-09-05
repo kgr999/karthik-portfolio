@@ -10,12 +10,13 @@ const SHOWS = [
         title: 'BrahmYodhha',
         badge: 'PRODUCED',
         badgeType: 'produced',
+        langTag: 'HINDI',
         studioLabel: 'WOW TV',
         logoSrc: '/assets/images/kukutv-icon.webp',
         cardBgSrc: '/assets/images/by_thumb.jpg',
         posterSrc: null,
         totalCount: 45,
-        tags: ['AI MICRODRAMA', 'PRODUCED END-TO-END'],
+        tags: ['AI MICRODRAMA', 'HINDI', 'PRODUCED END-TO-END'],
         description: "BrahmYodhha follows Kashyap, a young man residing in a tranquil village near Kashmir, who discovers his extraordinary destiny after inheriting a mystical divine trident gifted by his father.\n\n I handled pre-production and post-production for most of the episodes (excluding sound design) with Creative Producer approval for Kuku's WowTV unit.",
         status: 'IN PRODUCTION',
         episodes: [
@@ -32,15 +33,82 @@ const SHOWS = [
         ]
     },
     {
+        id: 'appu',
+        title: 'A.P.P.U',
+        badge: 'PERSONAL',
+        badgeType: 'personal',
+        langTag: 'KANNADA',
+        studioLabel: 'PERSONAL',
+        cardBgSrc: '/assets/images/ap1_poster.jpg',
+        posterSrc: null,
+        totalCount: 5,
+        tags: ['AI MICRODRAMA', 'PERSONAL', 'KANNADA', 'SCI-FI ACTION', '1080x1920 PORTRAIT'],
+        description: "A futuristic AI sci-fi action microdrama series following the activation of A.P.P.U (Autonomous Predictive Protection Unit) — an advanced cybernetic protector awakened to intervene in high-stakes urban catastrophes.\n\nWritten, directed, and produced by Karthik G Raj using end-to-end multimodal generative AI pipelines.",
+        status: '5 EPISODES STREAMING',
+        episodes: [
+            {
+                id: 1,
+                numLabel: 'EPISODE 01',
+                title: 'Protocol Initiation',
+                duration: '00:58',
+                status: 'Playing',
+                videoSrc: '/assets/videos/ap1.MP4',
+                thumbSrc: '/assets/images/ap1_poster.jpg',
+                isLocked: false
+            },
+            {
+                id: 2,
+                numLabel: 'EPISODE 02',
+                title: 'The Pursuit',
+                duration: '01:13',
+                status: 'Playing',
+                videoSrc: '/assets/videos/ap2.MP4',
+                thumbSrc: '/assets/images/ap2_poster.jpg',
+                isLocked: false
+            },
+            {
+                id: 3,
+                numLabel: 'EPISODE 03',
+                title: 'System Recovery',
+                duration: '00:41',
+                status: 'Playing',
+                videoSrc: '/assets/videos/ap3.MP4',
+                thumbSrc: '/assets/images/ap3_poster.jpg',
+                isLocked: false
+            },
+            {
+                id: 4,
+                numLabel: 'EPISODE 04',
+                title: 'Metro Impact',
+                duration: '00:44',
+                status: 'Playing',
+                videoSrc: '/assets/videos/ap4.MP4',
+                thumbSrc: '/assets/images/ap4_poster.jpg',
+                isLocked: false
+            },
+            {
+                id: 5,
+                numLabel: 'EPISODE 05',
+                title: 'The Architect',
+                duration: '00:51',
+                status: 'Playing',
+                videoSrc: '/assets/videos/ap5.MP4',
+                thumbSrc: '/assets/images/ap5_poster.jpg',
+                isLocked: false
+            }
+        ]
+    },
+    {
         id: 'the-riverborn',
         title: 'The Riverborn',
-        badge: 'INDEPENDENT',
-        badgeType: 'independent',
-        studioLabel: 'INDEPENDENT',
+        badge: 'PERSONAL',
+        badgeType: 'personal',
+        langTag: 'KANNADA',
+        studioLabel: 'PERSONAL',
         cardBgSrc: '/assets/images/rb_poster.webp',
         posterSrc: '/assets/images/rb_poster.webp',
-        tags: ['AI MICRODRAMA', 'MYTHO FICTION', '1080x1920 PORTRAIT'],
-        description: 'An independent 6-episode mytho-fiction microdrama series imagined and written by me. Produced entirely through generative AI video pipelines, the project is actively in production.',
+        tags: ['AI MICRODRAMA', 'PERSONAL', 'KANNADA', 'MYTHO FICTION', '1080x1920 PORTRAIT'],
+        description: 'A personal 6-episode mytho-fiction microdrama series imagined and written by me. Produced entirely through generative AI video pipelines, the project is actively in production.',
         status: 'IN PRODUCTION',
         episodes: [
             {
@@ -100,12 +168,13 @@ const SHOWS = [
         title: 'Sarbadal',
         badge: 'PRODUCED',
         badgeType: 'produced',
+        langTag: 'HINDI',
         studioLabel: 'KUKU TV',
         logoSrc: '/assets/images/kukutv-logo.webp',
         cardBgSrc: '/assets/images/sb_thumb.jpg',
         posterSrc: null,
         totalCount: 52,
-        tags: ['AI MICRODRAMA', 'PRODUCED END-TO-END'],
+        tags: ['AI MICRODRAMA', 'HINDI', 'PRODUCED END-TO-END'],
         description: "Sarbadal is an AI microdrama adaptation inspired by Thomas Mann’s classic German novella, \"The Transposed Heads\"\n\nHandled end-to-end production across pre-production and post-production (excluding sound design) under Creative Producer approval for Kuku TV",
         status: 'IN PRODUCTION',
         episodes: [
@@ -140,6 +209,38 @@ export default function AIMicrodramaShowcase() {
     const activeShow = SHOWS.find(s => s.id === activeShowId) || null;
     const hasContent = activeShow ? activeShow.episodes.some(ep => !ep.isLocked && ep.videoSrc) : false;
     const currentEpisode = activeShow ? (activeShow.episodes.find(ep => ep.id === activeEp) || activeShow.episodes[0]) : null;
+
+    // Switch episode handler
+    const handleEpisodeSwitch = (epId) => {
+        if (epId === activeEp) {
+            togglePlay();
+            return;
+        }
+
+        if (videoRef.current && !videoRef.current.paused) {
+            videoRef.current.pause();
+        }
+
+        setActiveEp(epId);
+        setProgress(0);
+        setIsBuffering(false);
+
+        setTimeout(() => {
+            if (videoRef.current) {
+                videoRef.current.currentTime = 0;
+                videoRef.current.play().then(() => {
+                    setIsPlaying(true);
+                }).catch(err => {
+                    console.log("Episode switch play blocked, playing muted:", err);
+                    if (videoRef.current) {
+                        videoRef.current.muted = true;
+                        setIsMuted(true);
+                        videoRef.current.play().then(() => setIsPlaying(true)).catch(e => console.log(e));
+                    }
+                });
+            }
+        }, 100);
+    };
 
     // Switch show handler — opens the phone mockup & details when clicked
     const handleShowSwitch = (showId) => {
@@ -408,6 +509,9 @@ export default function AIMicrodramaShowcase() {
                                         ) : (
                                             <span className={`rb-show-badge ${show.badgeType}`}>{show.badge}</span>
                                         )}
+                                        {show.langTag && (
+                                            <span className={`rb-show-badge ${show.langTag.toLowerCase()}`}>{show.langTag}</span>
+                                        )}
                                     </div>
                                     <h3 className="rb-show-card-title">{show.title}</h3>
                                     <span className="rb-show-card-meta">
@@ -445,7 +549,7 @@ export default function AIMicrodramaShowcase() {
                                             </div>
                                             <div className="rb-tags-row" style={{ marginTop: '14px', marginBottom: '16px' }}>
                                                 {activeShow.tags.map((tag, i) => (
-                                                    <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
+                                                    <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''} ${tag.includes('KANNADA') ? 'kannada-tag' : ''} ${tag.includes('HINDI') ? 'hindi-tag' : ''} ${tag.includes('PERSONAL') ? 'personal-tag' : ''}`}>{tag}</span>
                                                 ))}
                                             </div>
                                             <p className="rb-desc">
@@ -489,7 +593,9 @@ export default function AIMicrodramaShowcase() {
                                         <div className="rb-phone-screen">
                                             <video
                                                 ref={videoRef}
-                                                src={isNearViewport ? currentEpisode.videoSrc : undefined}
+                                                key={`${activeShow?.id}-${currentEpisode?.id}`}
+                                                src={isNearViewport ? currentEpisode?.videoSrc : undefined}
+                                                poster={currentEpisode?.thumbSrc}
                                                 preload={isNearViewport ? "metadata" : "none"}
                                                 className="rb-video"
                                                 loop
@@ -563,15 +669,15 @@ export default function AIMicrodramaShowcase() {
                                     </div>
                                 </div>
 
-                                {/* Right Column: Production Scope (for BrahmYodhha & Sarbadal) or Standard Info & Playlist (for poster shows) */}
-                                {!activeShow.posterSrc ? (
+                                {/* Right Column: Production Scope (for BrahmYodhha & Sarbadal) or Info & Episode Index */}
+                                {(!activeShow.posterSrc && activeShow.episodes.length <= 1) ? (
                                     <div className="rb-production-col">
                                         <div className="rb-side-card">
                                             <div className="rb-card-header">
                                                 <span className="rb-card-accent-line green-accent"></span>
                                                 <span className="rb-card-category">PRODUCTION SCOPE</span>
                                             </div>
-                                            <div className="rb-badge-row" style={{ marginTop: '14px', marginBottom: '16px', display: 'flex', alignItems: 'center' }}>
+                                            <div className="rb-badge-row" style={{ marginTop: '14px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                                                 {activeShow.logoSrc ? (
                                                     <img
                                                         src={activeShow.logoSrc}
@@ -587,6 +693,9 @@ export default function AIMicrodramaShowcase() {
                                                 ) : (
                                                     <span className="rb-show-badge produced" style={{ display: 'inline-block' }}>{activeShow.studioLabel || 'PRODUCED'}</span>
                                                 )}
+                                                {activeShow.langTag && (
+                                                    <span className={`rb-show-badge ${activeShow.langTag.toLowerCase()}`}>{activeShow.langTag}</span>
+                                                )}
                                             </div>
                                             <p className="rb-desc">
                                                 {activeShow.description.split('\n\n')[1] || activeShow.description}
@@ -595,17 +704,31 @@ export default function AIMicrodramaShowcase() {
                                     </div>
                                 ) : (
                                     <div className="rb-info-col">
-                                        <div className="rb-series-details">
-                                            <div className="rb-tags-row">
-                                                {activeShow.tags.map((tag, i) => (
-                                                    <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''}`}>{tag}</span>
-                                                ))}
-                                            </div>
+                                        {activeShow.posterSrc ? (
+                                            <div className="rb-series-details">
+                                                <div className="rb-tags-row">
+                                                    {activeShow.tags.map((tag, i) => (
+                                                        <span key={i} className={`rb-tag ${i === 0 ? 'accent-tag' : ''} ${tag.includes('KANNADA') ? 'kannada-tag' : ''} ${tag.includes('HINDI') ? 'hindi-tag' : ''} ${tag.includes('PERSONAL') ? 'personal-tag' : ''}`}>{tag}</span>
+                                                    ))}
+                                                </div>
 
-                                            <p className="rb-desc" style={{ whiteSpace: 'pre-line' }}>
-                                                {activeShow.description}
-                                            </p>
-                                        </div>
+                                                <p className="rb-desc" style={{ whiteSpace: 'pre-line' }}>
+                                                    {activeShow.description}
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            activeShow.description.split('\n\n')[1] && (
+                                                <div className="rb-side-card" style={{ marginBottom: '16px' }}>
+                                                    <div className="rb-card-header">
+                                                        <span className="rb-card-accent-line cyan-accent"></span>
+                                                        <span className="rb-card-category">PRODUCTION & PIPELINE</span>
+                                                    </div>
+                                                    <p className="rb-desc" style={{ marginTop: '12px' }}>
+                                                        {activeShow.description.split('\n\n')[1]}
+                                                    </p>
+                                                </div>
+                                            )
+                                        )}
 
                                         {activeShow.episodes.length > 1 && activeShow.id !== 'the-riverborn' && (
                                             <div className="rb-playlist-container">
@@ -654,7 +777,7 @@ export default function AIMicrodramaShowcase() {
                                                             <div
                                                                 key={ep.id}
                                                                 className={`rb-ep-card ${isActive ? 'active' : ''}`}
-                                                                onClick={() => setActiveEp(ep.id)}
+                                                                onClick={() => handleEpisodeSwitch(ep.id)}
                                                             >
                                                                 <div className="rb-ep-thumb-box">
                                                                     <img src={ep.thumbSrc} alt={ep.title} className="rb-ep-thumb" width="160" height="90" loading="lazy" />

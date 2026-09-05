@@ -23,6 +23,7 @@
 .phone-reel-stack {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 12px;
     max-height: 590px;
     overflow-y: auto;
