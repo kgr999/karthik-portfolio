@@ -9108,45 +9108,25 @@ nav.nav-standby .menu-toggle {
     }
 }
 
-/* 2. Optimized & Compact Creative Tech Stack for Mobile Views */
 @media (max-width: 768px) {
-    #tech-stack.workflow-router-section {
-        padding: 36px 0 24px !important;
-        scroll-margin-top: 20px !important;
-    }
-
     #tech-stack .section-heading {
         font-size: 1.6rem !important;
         letter-spacing: 3px !important;
     }
 
-    .tech-stack-dashboard {
-        margin: 6px auto 0 !important;
-        gap: 8px !important;
-    }
-
     .tech-stack-columns {
-        gap: 8px !important;
-    }
-
-    .tech-stack-row {
-        gap: 8px !important;
+        gap: 14px !important;
     }
 
     .tech-stack-row.row-3 {
-        max-width: 100% !important;
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    /* Expand the 3rd card (Level 07) in row-3 fully horizontally on mobile views */
+    /* Make the 7th card span both columns in the last row */
     .tech-stack-row.row-3 .tech-stack-card:nth-child(3) {
         grid-column: 1 / -1 !important;
         width: 100% !important;
         max-width: 100% !important;
-    }
-
-    /* Level 07 spans full width: render its 4 tools horizontally in a 4-col grid to reduce vertical height */
-    .tech-stack-row.row-3 .tech-stack-card:nth-child(3) .category-skills-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
     }
 
     .tech-stack-card {
@@ -9155,126 +9135,35 @@ nav.nav-standby .menu-toggle {
         display: flex !important;
         flex-direction: column !important;
         justify-content: flex-start !important;
-        padding: 10px 8px !important;
-        border-radius: 9px !important;
-    }
-
-    .tech-stack-card-header {
-        margin-bottom: 4px !important;
-    }
-
-    .category-icon-box {
-        width: 22px !important;
-        height: 22px !important;
-        border-radius: 5px !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    }
-
-    .category-icon-box svg {
-        width: 12px !important;
-        height: 12px !important;
-    }
-
-    .category-level-badge {
-        font-size: 0.48rem !important;
-        letter-spacing: 0.5px !important;
-    }
-
-    .category-display-title {
-        font-size: 0.72rem !important;
-        line-height: 1.15 !important;
-        letter-spacing: 0.2px !important;
-        margin-bottom: 2px !important;
-    }
-
-    .tech-stack-divider {
-        margin: 3px 0 5px !important;
-        height: 1px !important;
+        padding: 20px !important;
     }
 
     .category-skills-grid {
-        gap: 4px !important;
         margin-top: auto !important;
     }
 
-    .category-skills-grid[data-level="01"] .category-skill-tile:nth-child(3),
-    .category-skills-grid[data-level="04"] .category-skill-tile:nth-child(3) {
-        grid-column: 1 / -1 !important;
-        justify-self: center !important;
+    /* Mobile 2-column flex wrap fallback */
+    .tech-stack-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 14px !important;
+    }
+
+    .tech-stack-row .tech-stack-card {
+        flex: 1 1 calc(50% - 8px) !important;
         width: 100% !important;
         max-width: calc(50% - 4px) !important;
-    }
-
-    .category-skill-tile {
-        padding: 5px 3px !important;
-        gap: 2.5px !important;
-        border-radius: 5px !important;
-    }
-
-    .tech-stack-tile-icon {
-        width: 20px !important;
-        height: 20px !important;
-        border-radius: 4px !important;
-    }
-
-    .tech-stack-tile-icon img,
-    .tech-stack-tile-icon svg {
-        width: 13px !important;
-        height: 13px !important;
-        max-width: 13px !important;
-        max-height: 13px !important;
-    }
-
-    .category-skill-tile-name {
-        font-size: 0.46rem !important;
-        letter-spacing: 0.1px !important;
-        line-height: 1.1 !important;
-    }
-
-    .skill-tile-learning-badge {
-        font-size: 0.38rem !important;
-        padding: 0.5px 2.5px !important;
-        border-radius: 2px !important;
-        top: 1px !important;
-        right: 1px !important;
     }
 }
 
 @media (max-width: 480px) {
-    #tech-stack.workflow-router-section {
-        padding: 26px 0 18px !important;
-    }
-
     #tech-stack .section-heading {
         font-size: 1.3rem !important;
         letter-spacing: 2px !important;
     }
 
     .tech-stack-card {
-        padding: 8px 6px !important;
-    }
-
-    .category-display-title {
-        font-size: 0.67rem !important;
-    }
-
-    .category-skill-tile {
-        padding: 4px 2px !important;
-    }
-
-    .category-skill-tile-name {
-        font-size: 0.43rem !important;
-    }
-
-    .tech-stack-tile-icon {
-        width: 18px !important;
-        height: 18px !important;
-    }
-
-    .tech-stack-tile-icon img,
-    .tech-stack-tile-icon svg {
-        width: 12px !important;
-        height: 12px !important;
+        padding: 16px !important;
     }
 }
 
