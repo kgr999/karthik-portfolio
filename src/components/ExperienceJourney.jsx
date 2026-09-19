@@ -476,11 +476,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                                     <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Prismara</span>
                                                 </div>
                                             </div>
-                                        <div className="xp-admitra-footer-note" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '16px', fontSize: '0.72rem', color: 'rgba(255, 255, 255, 0.45)', fontFamily: 'monospace' }}>
-                                            <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#3B82F6', boxShadow: '0 0 6px #3B82F6', flexShrink: 0 }} />
-                                            <span>Hyperlocal Video Ads & Posters · Multi-state regional rollouts</span>
                                         </div>
-                                    </div>
 
                                 </div>
 

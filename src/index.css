@@ -8904,11 +8904,6 @@ nav.nav-standby .menu-toggle {
         display: none !important;
     }
 
-    /* Hide footer note on mobile — space is tight */
-    .xp-window-fal .xp-admitra-footer-note {
-        display: none !important;
-    }
-
     /* Creative Preview Marquee Mobile Styles */
     .hyperlocal-marquee-wrapper {
         width: 100% !important;
