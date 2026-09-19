@@ -182,80 +182,192 @@
 }
 
 /* ═══════════════════════════════════════════════════
-   RESPONSIVE — Mobile (≤ 640px)
+   RESPONSIVE — Mobile (≤ 768px): Vertical Side-by-Side Profile Cards
    ═══════════════════════════════════════════════════ */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .minimal-social-section {
-        padding: 4px 0 8px;
+        padding: 6px 0 16px;
     }
 
     .minimal-social-container {
-        grid-template-columns: 1fr;
-        max-width: 360px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 440px;
+        gap: 12px;
+        padding: 0 12px;
+    }
+
+    .minimal-social-strip {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        height: auto;
+        min-height: 154px;
+        padding: 16px 10px 14px;
+        border-radius: 14px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        background: rgba(14, 16, 22, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        gap: 10px;
+    }
+
+    .minimal-social-strip.linkedin-strip {
+        border-color: rgba(10, 102, 194, 0.35);
+        box-shadow: 0 4px 20px -4px rgba(10, 102, 194, 0.18), inset 0 1px 0 rgba(10, 102, 194, 0.2);
+    }
+
+    .minimal-social-strip.instagram-strip {
+        border-color: rgba(225, 48, 108, 0.35);
+        box-shadow: 0 4px 20px -4px rgba(225, 48, 108, 0.18), inset 0 1px 0 rgba(225, 48, 108, 0.2);
+    }
+
+    .strip-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .strip-avatar-box {
+        width: 46px;
+        height: 46px;
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .strip-avatar-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .linkedin-avatar-box .strip-avatar-img {
+        border: 2px solid #0a66c2;
+        box-shadow: 0 0 12px rgba(10, 102, 194, 0.35);
+    }
+
+    .instagram-avatar-box .strip-avatar-img {
+        border: 2px solid transparent;
+        background: linear-gradient(#111, #111) padding-box,
+                    linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045) border-box;
+        box-shadow: 0 0 12px rgba(225, 48, 108, 0.35);
+    }
+
+    .strip-badge-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        bottom: -2px;
+        right: -2px;
+        border: 2px solid #0e1016;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .strip-badge-dot svg {
+        width: 8px;
+        height: 8px;
+    }
+
+    .strip-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 3px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .strip-name-row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .strip-name {
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: -0.15px;
+        color: #ffffff;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    .strip-stat {
+        font-size: 0.69rem;
+        font-weight: 600;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    /* Bottom Pill Action Button */
+    .strip-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        width: 100%;
+        padding: 6px 0;
+        border-radius: 20px;
+        box-sizing: border-box;
+        transition: all 0.2s ease;
+    }
+
+    .minimal-social-strip.linkedin-strip .strip-action {
+        background: rgba(10, 102, 194, 0.15);
+        border: 1px solid rgba(10, 102, 194, 0.4);
+        color: #93c5fd;
+    }
+
+    .minimal-social-strip.instagram-strip .strip-action {
+        background: rgba(225, 48, 108, 0.15);
+        border: 1px solid rgba(225, 48, 108, 0.4);
+        color: #f9a8d4;
+    }
+
+    .strip-action-text {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    .strip-arrow {
+        width: 11px;
+        height: 11px;
+    }
+}
+
+/* Extra small mobile screens (≤ 380px) */
+@media (max-width: 380px) {
+    .minimal-social-container {
         gap: 8px;
         padding: 0 8px;
     }
 
     .minimal-social-strip {
-        height: 46px;
-        padding: 0 12px;
-        border-radius: 7px;
-    }
-
-    .strip-left {
-        gap: 10px;
+        padding: 14px 8px 12px;
+        min-height: 146px;
     }
 
     .strip-avatar-box {
-        width: 28px;
-        height: 28px;
-    }
-
-    .strip-avatar-img {
-        border-radius: 5px;
-    }
-
-    .strip-badge-dot {
-        width: 12px;
-        height: 12px;
-        bottom: -2px;
-        right: -2px;
-    }
-
-    .strip-badge-dot svg {
-        width: 6.5px;
-        height: 6.5px;
-    }
-
-    .strip-name {
-        font-size: 0.82rem;
-    }
-
-    .strip-stat {
-        font-size: 0.67rem;
-    }
-
-    .strip-action-text {
-        font-size: 0.7rem;
-    }
-
-    .strip-arrow {
-        width: 12px;
-        height: 12px;
-    }
-}
-
-/* Extra small mobile (≤ 360px) */
-@media (max-width: 360px) {
-    .minimal-social-container {
-        max-width: 100%;
-        padding: 0 4px;
-        gap: 6px;
-    }
-
-    .minimal-social-strip {
-        height: 44px;
-        padding: 0 10px;
+        width: 42px;
+        height: 42px;
     }
 
     .strip-name {
@@ -263,22 +375,31 @@
     }
 
     .strip-stat {
-        font-size: 0.64rem;
+        font-size: 0.65rem;
+    }
+
+    .strip-action {
+        padding: 5px 0;
+    }
+
+    .strip-action-text {
+        font-size: 0.68rem;
     }
 }
 
 /* Touch feedback for mobile devices */
 @media (hover: none) and (pointer: coarse) {
     .minimal-social-strip:active {
-        transform: scale(0.985);
-        background: rgba(255, 255, 255, 0.08);
+        transform: scale(0.97);
     }
 
     .minimal-social-strip.linkedin-strip:active {
-        border-color: rgba(10, 102, 194, 0.5);
+        background: rgba(10, 102, 194, 0.22);
+        border-color: rgba(10, 102, 194, 0.6);
     }
 
     .minimal-social-strip.instagram-strip:active {
-        border-color: rgba(225, 48, 108, 0.5);
+        background: rgba(225, 48, 108, 0.22);
+        border-color: rgba(225, 48, 108, 0.6);
     }
 }
