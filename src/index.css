@@ -3874,18 +3874,21 @@ footer {
 
     /* Contact */
     #contact {
-        min-height: 70vh;
+        min-height: auto;
         padding-bottom: 0;
     }
 
     #contact .container {
-        min-height: 70vh;
-        padding: 40px 16px 20px 16px;
+        min-height: auto;
+        padding: 40px 16px 24px 16px;
+        gap: 28px;
     }
 
     .contact-mail {
-        font-size: clamp(1.8rem, 7vw, 3rem);
-        letter-spacing: -1px;
+        font-size: clamp(1.25rem, 5.8vw, 2.6rem);
+        letter-spacing: -0.5px;
+        max-width: 100%;
+        word-break: break-all;
     }
 
     /* Mobile: Make copy indicators evident since hover is not present */
@@ -4196,12 +4199,34 @@ footer {
 
     #contact .container {
         min-height: auto;
-        padding: 30px 16px 15px 16px;
+        padding: 24px 12px 16px 12px;
+        gap: 20px;
+    }
+
+    .contact-center-group {
+        gap: 14px;
+        width: 100%;
+    }
+
+    .status-badge {
+        padding: 9px 18px !important;
+        gap: 10px;
+    }
+
+    .status-text {
+        font-size: 0.68rem;
+        letter-spacing: 1.2px;
     }
 
     .contact-mail {
-        font-size: clamp(1.5rem, 8vw, 2.5rem);
-        letter-spacing: -0.5px;
+        font-size: clamp(1.05rem, 5.2vw, 1.85rem);
+        letter-spacing: -0.3px;
+        max-width: 100%;
+        word-break: break-all;
+    }
+
+    .contact-mail-copy-icon {
+        width: 24px !important;
     }
 
     .contact-mail-tooltip {
@@ -4211,7 +4236,9 @@ footer {
     }
 
     .social-dock-title {
-        margin-top: 0;
+        margin-top: 4px;
+        margin-bottom: 8px;
+        font-size: 0.62rem;
     }
 
     .social-dock {
@@ -4918,6 +4945,10 @@ footer {
 }
 
 /* Ambient colored hover glows without border lines */
+.xp-window-jiostar:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(215, 0, 140, 0.45) !important;
+}
+
 .xp-window-kuku:hover {
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(229, 9, 20, 0.45) !important;
 }
@@ -4931,7 +4962,7 @@ footer {
 }
 
 .xp-window-lens:hover {
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(255, 234, 77, 0.45) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 234, 77, 0.18) !important;
 }
 
 .xp-window-header {
@@ -5215,10 +5246,10 @@ footer {
 }
 
 .marquee-card-bezel {
-    width: 135px;
+    width: 115px;
     aspect-ratio: 9 / 16;
-    border-radius: 14px;
-    border: 2.5px solid #1c1c24;
+    border-radius: 12px;
+    border: 2px solid #1c1c24;
     background: #09090b;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
     overflow: hidden;
@@ -5228,7 +5259,7 @@ footer {
 .marquee-card-bezel.poster-bezel {
     aspect-ratio: 4 / 5;
     border-radius: 10px;
-    width: 140px;
+    width: 130px;
 }
 
 .marquee-card-format-badge {
@@ -6104,7 +6135,7 @@ footer {
 
 /* ── WINDOW 3: Snap AR (Lens Studio style) ── */
 .xp-window-lens .xp-window-body {
-    height: 500px;
+    min-height: 250px;
 }
 
 .xp-window-lens .xp-window-sidebar {
@@ -6536,8 +6567,8 @@ footer {
 @media (max-width: 768px) {
     .xp-3d-viewport {
         display: flex !important;
-        flex-direction: column-reverse !important;
-        justify-content: flex-end !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
         align-items: center !important;
         padding: 24px 16px !important;
         gap: 16px !important;
@@ -8576,6 +8607,13 @@ nav.nav-standby .menu-toggle {
     display: inline-block;
 }
 
+.xp-date-shimmer.jiostar-date-accent {
+    background: rgba(215, 0, 140, 0.14) !important;
+    color: #fff !important;
+    border: 1px solid rgba(215, 0, 140, 0.45) !important;
+    box-shadow: 0 0 12px rgba(215, 0, 140, 0.22);
+}
+
 .xp-date-shimmer.kuku-date-accent {
     background: rgba(229, 9, 20, 0.12) !important;
     color: #fff !important;
@@ -8736,8 +8774,13 @@ nav.nav-standby .menu-toggle {
     }
 }
 
-/* --- 3. AdMitra: Hide sidebar, show logo + title only, center viewport --- */
+/* --- 3. AdMitra: Hide completely on mobile view --- */
 @media (max-width: 768px) {
+
+    /* Hide AdMitra Section only on mobile view */
+    .xp-window-fal {
+        display: none !important;
+    }
 
     /* Hide the sidebar completely on mobile */
     .xp-window-fal .xp-window-sidebar {
@@ -13529,6 +13572,202 @@ nav.nav-standby .menu-toggle {
 }
 
 /* ==========================================
+   JIOSTAR EXPERIENCE TIMELINE STYLES
+   ========================================== */
+.jiostar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px 10px;
+    background: transparent;
+    height: 60px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.jiostar-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.jiostar-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 14px rgba(215, 0, 140, 0.45));
+    transition: transform 0.25s ease;
+}
+
+.jiostar-logo-img:hover {
+    transform: scale(1.03);
+}
+
+.jiostar-nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.jiostar-division-tag {
+    font-family: var(--font-primary);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.jiostar-hero {
+    display: flex;
+    min-height: 180px;
+    padding: 8px 40px 28px;
+    box-sizing: border-box;
+    position: relative;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.jiostar-hero-content {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.jiostar-company-header {
+    margin-bottom: 12px;
+}
+
+.jiostar-company-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    letter-spacing: -0.3px;
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.jiostar-location-text {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: monospace;
+    margin: 3px 0 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.jiostar-timeline-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 550px;
+    margin-top: 6px;
+}
+
+.jiostar-timeline-track {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, #d7008c 0%, rgba(215, 0, 140, 0.45) 100%);
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.jiostar-role-entry {
+    position: relative;
+    padding-left: 26px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.jiostar-role-node {
+    position: absolute;
+    left: 8px;
+    top: 18px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.jiostar-role-node.current {
+    background-color: #d7008c;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 10px #d7008c, 0 0 18px rgba(215, 0, 140, 0.6);
+    animation: jiostar-pulse-glow 2.2s infinite ease-in-out;
+}
+
+@keyframes jiostar-pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(215, 0, 140, 0.7), 0 0 10px #d7008c;
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(215, 0, 140, 0), 0 0 14px #d7008c;
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(215, 0, 140, 0), 0 0 10px #d7008c;
+    }
+}
+
+.jiostar-role-card {
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+}
+
+.jiostar-role-card.current {
+    background: linear-gradient(135deg, rgba(215, 0, 140, 0.08) 0%, rgba(20, 20, 26, 0.65) 100%);
+    border: 1px solid rgba(215, 0, 140, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    padding: 14px 18px;
+}
+
+.jiostar-role-card.current:hover {
+    border-color: rgba(215, 0, 140, 0.5);
+    box-shadow: 0 6px 26px rgba(215, 0, 140, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.jiostar-role-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.jiostar-role-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+    font-family: var(--font-heading);
+    margin: 0;
+}
+
+.jiostar-role-date {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: monospace;
+    margin: 4px 0 0 0;
+    letter-spacing: 0.3px;
+}
+
+/* ==========================================
    KUKU EXPERIENCE CAREER PROGRESSION TIMELINE
    ========================================== */
 .kuku-company-header {
@@ -13786,6 +14025,11 @@ nav.nav-standby .menu-toggle {
 
 /* Responsive Kuku TV Mockup */
 @media (max-width: 768px) {
+    /* Hide AdMitra Section only from mobile view */
+    .xp-window-fal {
+        display: none !important;
+    }
+
     .kuku-tv-nav-right button {
         display: none !important;
     }
@@ -13794,32 +14038,234 @@ nav.nav-standby .menu-toggle {
         display: none !important;
     }
 
+    /* Kuku TV Mobile Optimizations */
+    .kuku-tv-gradient-overlay {
+        background: linear-gradient(180deg, rgba(5, 5, 6, 0.88) 0%, rgba(5, 5, 6, 0.94) 45%, #050506 100%) !important;
+    }
+
     .kuku-tv-nav {
-        padding: 12px 28px !important;
+        padding: 10px 16px 6px !important;
+        height: auto !important;
+        min-height: 46px !important;
+    }
+
+    .kuku-tv-nav-left {
+        gap: 10px !important;
+        margin-left: 0 !important;
+        padding-top: 2px !important;
+    }
+
+    .kuku-logo-main {
+        height: 24px !important;
+        max-width: 95px !important;
+    }
+
+    .kuku-logo-icon {
+        height: 42px !important;
+        margin-left: -5px !important;
+    }
+
+    .kuku-logo-sub {
+        height: 18px !important;
+    }
+
+    .kuku-tv-lang {
+        padding: 3px 8px !important;
+        font-size: 0.68rem !important;
+        border-radius: 12px !important;
     }
 
     .kuku-tv-hero {
-        background: linear-gradient(to top, #050506 50%, rgba(5, 5, 6, 0.4) 100%), var(--hero-bg) !important;
+        padding: 6px 16px 20px !important;
         height: auto !important;
-        padding: 20px 28px !important;
+        min-height: auto !important;
     }
 
     .kuku-tv-hero-content {
         max-width: 100% !important;
-        gap: 12px !important;
     }
 
-    .kuku-tv-show-title {
-        font-size: 1.6rem !important;
+    .kuku-company-header {
+        margin-bottom: 10px !important;
     }
 
-    .kuku-tv-shows-row {
-        padding: 16px 20px !important;
+    .kuku-company-name {
+        font-size: 1.12rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.2px !important;
     }
 
-    .kuku-tv-card {
-        flex: 0 0 85px !important;
-        height: 120px !important;
+    .kuku-location-text {
+        font-size: 0.72rem !important;
+        margin-top: 3px !important;
+    }
+
+    .kuku-timeline-container {
+        gap: 10px !important;
+        margin-top: 6px !important;
+        max-width: 100% !important;
+    }
+
+    .kuku-timeline-track {
+        left: 6px !important;
+        top: 14px !important;
+        bottom: 14px !important;
+    }
+
+    .kuku-role-entry {
+        padding-left: 20px !important;
+    }
+
+    .kuku-role-node {
+        left: 6px !important;
+        top: 16px !important;
+        width: 10px !important;
+        height: 10px !important;
+    }
+
+    .kuku-role-card {
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.035) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .kuku-role-title {
+        font-size: 0.98rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .kuku-role-title.secondary {
+        font-size: 0.92rem !important;
+    }
+
+    .kuku-role-date {
+        font-size: 0.70rem !important;
+        margin: 2px 0 6px 0 !important;
+    }
+
+    .kuku-bullet-marker {
+        font-size: 0.72rem !important;
+        margin-top: 2px !important;
+    }
+
+    .kuku-bullet-row {
+        gap: 8px !important;
+        align-items: flex-start !important;
+    }
+
+    .kuku-bullet-row p {
+        font-size: 0.78rem !important;
+        line-height: 1.44 !important;
+        word-break: break-word !important;
+    }
+
+    .kuku-confidential-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        font-size: 0.65rem !important;
+        padding: 2px 7px !important;
+        margin-top: 4px !important;
+        margin-left: 0 !important;
+        border-radius: 4px !important;
+        vertical-align: middle !important;
+    }
+
+    /* JioStar Mobile Optimizations */
+    .jiostar-nav {
+        padding: 12px 18px 8px !important;
+        height: auto !important;
+        min-height: 48px !important;
+    }
+
+    .jiostar-logo-img {
+        height: 32px !important;
+        max-width: 130px !important;
+        width: auto !important;
+    }
+
+    .jiostar-division-tag {
+        font-size: 0.56rem !important;
+        padding: 3px 8px !important;
+        letter-spacing: 0.8px !important;
+        border-radius: 12px !important;
+    }
+
+    .jiostar-hero {
+        padding: 6px 18px 20px !important;
+        min-height: auto !important;
+    }
+
+    .jiostar-hero-content {
+        max-width: 100% !important;
+    }
+
+    .jiostar-company-header {
+        margin-bottom: 10px !important;
+    }
+
+    .jiostar-company-name {
+        font-size: 1.12rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.2px !important;
+    }
+
+    .jiostar-location-text {
+        font-size: 0.72rem !important;
+        margin-top: 3px !important;
+    }
+
+    .jiostar-timeline-container {
+        margin-top: 6px !important;
+        max-width: 100% !important;
+    }
+
+    .jiostar-timeline-track {
+        left: 6px !important;
+        top: 14px !important;
+        bottom: 14px !important;
+    }
+
+    .jiostar-role-entry {
+        padding-left: 20px !important;
+    }
+
+    .jiostar-role-node {
+        left: 6px !important;
+        top: 16px !important;
+        width: 10px !important;
+        height: 10px !important;
+    }
+
+    .jiostar-role-card.current {
+        padding: 12px 14px !important;
+        border-radius: 8px !important;
+    }
+
+    .jiostar-role-header-row {
+        gap: 6px !important;
+    }
+
+    .jiostar-role-title {
+        font-size: 0.98rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .jiostar-role-date {
+        font-size: 0.72rem !important;
+        margin-top: 3px !important;
+    }
+
+    .xp-date-shimmer.jiostar-date-accent {
+        font-size: 0.68rem !important;
+        padding: 1.5px 7px !important;
+        border-radius: 4px !important;
+        gap: 4.5px !important;
+    }
+
+    .xp-date-shimmer.jiostar-date-accent .badge-dot {
+        width: 5px !important;
+        height: 5px !important;
     }
 }
 
@@ -13837,6 +14283,17 @@ nav.nav-standby .menu-toggle {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 24px !important;
         flex-direction: unset !important;
+    }
+
+    /* ── Window 0: JioStar (Current Headline Org) ── */
+    .xp-window-jiostar {
+        grid-column: 1 / -1 !important;
+    }
+    .xp-window-jiostar .xp-window-body {
+        min-height: 180px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
     }
 
     /* ── Window 0: Kuku TV Compact Style ── */
@@ -13907,27 +14364,47 @@ nav.nav-standby .menu-toggle {
         justify-content: space-between !important;
     }
     .xp-window-fal .hyperlocal-marquee-wrapper {
-        width: 220px !important;
+        width: 195px !important;
         flex-shrink: 0 !important;
         padding: 8px !important;
-        gap: 8px !important;
+        gap: 6px !important;
         margin-top: 0 !important;
         height: 100% !important;
     }
+    .xp-window-fal .marquee-card-bezel {
+        width: 110px !important;
+        border-radius: 11px !important;
+    }
+    .xp-window-fal .marquee-card-bezel.poster-bezel {
+        width: 128px !important;
+        border-radius: 10px !important;
+    }
+    .xp-window-fal .marquee-card-label {
+        font-size: 0.55rem !important;
+        max-width: 110px !important;
+    }
+    .xp-window-fal .hyperlocal-marquee-viewport {
+        padding: 3px 0 !important;
+    }
     .xp-window-fal .hyperlocal-marquee-header {
-        margin-bottom: 2px !important;
+        margin-top: 2px !important;
+        margin-bottom: 8px !important;
+    }
+    .xp-window-fal .xp-blue-shimmer-badge {
+        font-size: 0.65rem !important;
+        padding: 2.5px 8px !important;
     }
     .xp-window-fal .hyperlocal-marquee-title {
-        font-size: 1.05rem !important;
+        font-size: 0.95rem !important;
         font-weight: 800 !important;
         letter-spacing: 0.5px !important;
         color: #ffffff !important;
     }
     .xp-window-fal .hyperlocal-marquee-subtitle {
-        margin: 4px 0 8px 0 !important;
-        font-size: 0.85rem !important;
+        margin: 3px 0 6px 0 !important;
+        font-size: 0.78rem !important;
         font-weight: 600 !important;
-        line-height: 1.35 !important;
+        line-height: 1.3 !important;
         color: rgba(255, 255, 255, 0.85) !important;
     }
     .xp-window-fal .xp-main-header h3 {
@@ -13989,56 +14466,123 @@ nav.nav-standby .menu-toggle {
         height: 180px !important;
     }
 
-    /* ── Window 3: Snap AR (Lens Studio style) Overrides ── */
+    /* ── Window 3: Snap AR (Lens Studio style) Full-Width Bottom Window ── */
+    .xp-window-lens {
+        grid-column: 1 / -1 !important;
+    }
     .xp-window-lens .xp-window-body {
-        height: 480px !important;
+        min-height: 250px !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: row !important;
+        background: #07070a !important;
     }
     .xp-window-lens .xp-window-sidebar {
-        width: 175px !important;
-        padding: 10px !important;
-    }
-    .xp-window-lens .xp-insights-value {
-        font-size: 0.92rem !important;
-    }
-    .xp-window-lens .xp-3d-viewport {
-        display: block !important;
-        position: relative !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-    }
-    .xp-window-lens .xp-viewport-overlay {
-        position: absolute !important;
-        top: 12px !important;
-        bottom: 12px !important;
-        left: 12px !important;
-        right: 144px !important;
-        width: auto !important;
-        padding: 12px !important;
-        margin: 0 !important;
-        background: rgba(10, 10, 12, 0.85) !important;
-        border: 1px solid rgba(255, 234, 77, 0.2) !important;
-        border-radius: 10px !important;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6) !important;
-    }
-    .xp-window-lens .xp-snap-preview-container {
-        position: absolute !important;
-        top: 50% !important;
-        right: 12px !important;
-        transform: translateY(-50%) !important;
-        width: 120px !important;
-        margin: 0 !important;
+        width: 200px !important;
+        flex-shrink: 0 !important;
+        padding: 14px 16px !important;
+        background: rgba(10, 10, 12, 0.7) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
         gap: 6px !important;
     }
-    .xp-window-lens .xp-viewport-overlay h3 {
-        font-size: 1.15rem !important;
+    .xp-window-lens .xp-snap-brand {
+        padding: 0 0 6px !important;
+        margin-bottom: 4px !important;
     }
-    .xp-window-lens .xp-viewport-overlay p {
-        font-size: 0.74rem !important;
+    .xp-window-lens .xp-insights-container {
+        gap: 6px !important;
     }
-    .xp-window-lens .xp-viewport-overlay > div:nth-of-type(2) {
-        font-size: 0.74rem !important;
-        line-height: 1.35 !important;
-        gap: 8px !important;
+    .xp-window-lens .xp-insights-header {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding-bottom: 6px !important;
+        margin-bottom: 4px !important;
+        width: 100% !important;
+    }
+    .xp-window-lens .xp-insights-title {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+    .xp-window-lens .xp-insights-dropdown {
+        margin: 0 !important;
+        line-height: 1 !important;
+    }
+    .xp-window-lens .xp-insights-list {
+        gap: 6px !important;
+    }
+    .xp-window-lens .xp-insights-card {
+        padding: 5px 10px !important;
+    }
+    .xp-window-lens .xp-insights-label {
+        font-size: 0.55rem !important;
+        margin-bottom: 2px !important;
+    }
+    .xp-window-lens .xp-insights-value {
+        font-size: 0.95rem !important;
+        font-weight: 800 !important;
+        color: #fff !important;
+        font-family: 'Space Grotesk', sans-serif !important;
+    }
+    .xp-window-lens .xp-3d-viewport {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 16px 36px !important;
+        gap: 32px !important;
+        position: relative !important;
+        overflow: hidden !important;
+        background: radial-gradient(circle at 80% 50%, rgba(255, 234, 77, 0.04), transparent 70%), #07070a !important;
+    }
+    .xp-window-lens .xp-viewport-overlay {
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        flex: 1 !important;
+        max-width: 680px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+    .xp-window-lens .xp-snap-preview-container {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: 120px !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 6px !important;
+    }
+    .xp-window-lens .xp-snap-camera-frame {
+        width: 120px !important;
+        max-width: 120px !important;
+        aspect-ratio: 9/16 !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 234, 77, 0.25) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
     }
 }
 
@@ -14488,23 +15032,22 @@ img, video {
     /* Clean, spacious Contact layout on mobile without overlaps */
     #contact {
         min-height: auto !important;
-        padding: 40px 0 30px !important;
+        padding: 36px 0 20px !important;
     }
 
     #contact .container {
         min-height: auto !important;
-        padding: 24px 16px 36px 16px !important;
-        gap: 32px !important;
+        padding: 0 16px 20px 16px !important;
+        gap: 20px !important;
     }
 
     .status-badge-container {
-        margin-top: 54px !important;
-        margin-bottom: 28px !important;
+        margin: 0 0 4px 0 !important;
     }
 
     .status-badge {
-        padding: 10px 22px !important;
-        gap: 10px !important;
+        padding: 9px 18px !important;
+        gap: 9px !important;
         border-radius: 4px !important;
     }
 
@@ -14515,8 +15058,8 @@ img, video {
     }
 
     .status-dot {
-        width: 9px !important;
-        height: 9px !important;
+        width: 8.5px !important;
+        height: 8.5px !important;
     }
 
     .status-text {
@@ -14529,15 +15072,197 @@ img, video {
     }
 
     .contact-center-group {
-        gap: 24px !important;
-        margin: 8px 0 16px 0 !important;
+        gap: 16px !important;
+        margin: 0 !important;
         width: 100%;
     }
 
     .contact-mail {
-        font-size: clamp(1.5rem, 6.8vw, 2.3rem) !important;
-        word-break: normal !important;
+        font-size: clamp(1.2rem, 5.4vw, 1.85rem) !important;
         white-space: nowrap !important;
-        letter-spacing: -0.5px !important;
+        word-break: normal !important;
+        letter-spacing: -0.4px !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #contact {
+        padding: 28px 0 16px !important;
+    }
+
+    #contact .container {
+        padding: 0 12px 16px 12px !important;
+        gap: 18px !important;
+    }
+
+    .contact-mail {
+        font-size: clamp(1.1rem, 5.2vw, 1.6rem) !important;
+        letter-spacing: -0.2px !important;
+    }
+
+    .contact-mail-copy-icon {
+        width: 22px !important;
+    }
+
+    .social-dock-title {
+        font-size: 0.62rem !important;
+        letter-spacing: 1.8px !important;
+        margin-top: 4px !important;
+        margin-bottom: 10px !important;
+    }
+
+    footer p {
+        font-size: 0.68rem !important;
+        letter-spacing: 0.6px !important;
+        line-height: 1.4 !important;
+        padding: 0 10px !important;
+    }
+
+    /* JioStar Fine-Tuning for small screens */
+    .jiostar-nav {
+        padding: 10px 14px 6px !important;
+    }
+
+    .jiostar-logo-img {
+        height: 28px !important;
+        max-width: 115px !important;
+        width: auto !important;
+    }
+
+    .jiostar-division-tag {
+        font-size: 0.5rem !important;
+        padding: 2px 7px !important;
+    }
+
+    .jiostar-hero {
+        padding: 4px 14px 16px !important;
+    }
+
+    .jiostar-company-name {
+        font-size: 1.05rem !important;
+    }
+
+    .jiostar-role-title {
+        font-size: 0.92rem !important;
+    }
+
+    .jiostar-role-card.current {
+        padding: 10px 12px !important;
+    }
+
+    .xp-date-shimmer.jiostar-date-accent {
+        font-size: 0.63rem !important;
+        padding: 1px 6px !important;
+        gap: 4px !important;
+    }
+
+    .xp-date-shimmer.jiostar-date-accent .badge-dot {
+        width: 4.5px !important;
+        height: 4.5px !important;
+    }
+
+    /* Kuku TV Fine-Tuning for small screens */
+    .kuku-tv-nav {
+        padding: 8px 14px 4px !important;
+    }
+
+    .kuku-tv-nav-left {
+        gap: 8px !important;
+        margin-left: 0 !important;
+    }
+
+    .kuku-logo-main {
+        height: 20px !important;
+        max-width: 85px !important;
+    }
+
+    .kuku-logo-icon {
+        height: 36px !important;
+        margin-left: -4px !important;
+    }
+
+    .kuku-logo-sub {
+        height: 15px !important;
+    }
+
+    .kuku-tv-lang {
+        padding: 2.5px 7px !important;
+        font-size: 0.62rem !important;
+    }
+
+    .kuku-tv-hero {
+        padding: 4px 14px 16px !important;
+    }
+
+    .kuku-company-header {
+        margin-bottom: 8px !important;
+    }
+
+    .kuku-company-name {
+        font-size: 1.05rem !important;
+    }
+
+    .kuku-location-text {
+        font-size: 0.68rem !important;
+    }
+
+    .kuku-timeline-container {
+        gap: 8px !important;
+        margin-top: 4px !important;
+    }
+
+    .kuku-timeline-track {
+        left: 5px !important;
+        top: 12px !important;
+        bottom: 12px !important;
+    }
+
+    .kuku-role-entry {
+        padding-left: 18px !important;
+    }
+
+    .kuku-role-node {
+        left: 5px !important;
+        top: 14px !important;
+        width: 8px !important;
+        height: 8px !important;
+    }
+
+    .kuku-role-card {
+        padding: 9px 12px !important;
+    }
+
+    .kuku-role-title {
+        font-size: 0.92rem !important;
+    }
+
+    .kuku-role-title.secondary {
+        font-size: 0.86rem !important;
+    }
+
+    .kuku-role-date {
+        font-size: 0.66rem !important;
+        margin: 1px 0 5px 0 !important;
+    }
+
+    .kuku-bullets-list {
+        gap: 5px !important;
+    }
+
+    .kuku-bullet-marker {
+        font-size: 0.68rem !important;
+    }
+
+    .kuku-bullet-row p {
+        font-size: 0.74rem !important;
+        line-height: 1.38 !important;
+    }
+
+    .kuku-confidential-pill {
+        font-size: 0.6rem !important;
+        padding: 1.5px 5.5px !important;
+        margin-top: 3px !important;
     }
 }

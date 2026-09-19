@@ -478,27 +478,7 @@
 
 @media (max-width: 768px) {
     .cinematic-film-strip-container {
-        top: 0;
-        transform: none;
-        height: 100px;
-        overflow: visible; /* Let the running robot stand on top without getting cropped */
-    }
-    .cinematic-film-strip {
-        height: 90px;
-        width: max-content;
-        animation: film-strip-marquee 65s linear infinite;
-    }
-    .sprocket-holes-row {
-        height: 12px;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='19' height='12'><rect x='6' y='2.5' width='7' height='7' rx='1.5' ry='1.5' fill='black' stroke='rgba(255,255,255,0.08)' stroke-width='1'/></svg>");
-        padding: 0;
-    }
-    .film-frames-track {
-        height: 66px;
-    }
-    .film-frame {
-        width: 150px;
-        padding: 4px 6px;
+        display: none !important;
     }
     .cinematic-reel-bg {
         width: 200px;
@@ -511,48 +491,16 @@
         display: none !important; /* Hide floating robot on tablet/mobile */
     }
     .aero-running-robot {
-        display: block;
-        left: 20%;
+        display: none !important;
     }
 }
 
 @media (max-width: 480px) {
-    .cinematic-film-strip-container {
-        top: 0;
-        transform: none;
-        height: 86px;
-    }
-    .cinematic-film-strip {
-        height: 78px;
-        animation-duration: 55s; /* Slowed down to feel extremely premium and smooth */
-    }
-    .sprocket-holes-row {
-        height: 10px;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10'><rect x='4' y='2' width='6' height='6' rx='1.2' ry='1.2' fill='black' stroke='rgba(255,255,255,0.08)' stroke-width='1'/></svg>");
-        padding: 0;
-    }
-    .film-frames-track {
-        height: 58px;
-    }
-    .film-frame {
-        width: 120px;
-        padding: 2px 4px;
-        border-right-width: 1.5px;
-    }
-    .film-frame-header {
-        font-size: 0.44rem;
-        letter-spacing: 0.5px;
-    }
     .cinematic-reel-bg {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
         bottom: -10px;
         right: 5px;
-    }
-    .aero-running-robot {
-        left: 15%;
-        transform: scale(0.85);
-        transform-origin: bottom center;
     }
 }
 

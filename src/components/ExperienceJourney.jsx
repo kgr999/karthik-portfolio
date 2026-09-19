@@ -5,7 +5,7 @@ import LazyVideo from './LazyVideo';
 export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
     // Feature Toggles: Set to true whenever you want to bring Freelance or Snapchat back
     const SHOW_FREELANCE = false;
-    const SHOW_SNAPCHAT = false;
+    const SHOW_SNAPCHAT = true;
     // DaVinci Timeline Scrubber controls
     const [dvrPlaying, setDvrPlaying] = useState(true);
     const [scrubberKey, setScrubberKey] = useState(0);
@@ -64,7 +64,83 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
 
                 <div className="xp-windows-container">
 
-                    {/* ─── WINDOW 0: Kuku TV (Streaming Interface Inspired) ─── */}
+                    {/* ─── WINDOW 0: JioStar (Media Powerhouse / Gen AI Media) ─── */}
+                    <div className="xp-interface-window xp-window-jiostar" data-theme="jiostar">
+                        <div className="xp-window-body" style={{ flexDirection: 'column', background: '#07070a', position: 'relative', overflow: 'hidden' }}>
+                            {/* Subtle Ambient Glow */}
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                background: 'radial-gradient(circle at 85% 20%, rgba(215, 0, 140, 0.16) 0%, rgba(7, 7, 10, 0.75) 55%, #07070a 100%)',
+                                zIndex: 1,
+                                pointerEvents: 'none'
+                            }}></div>
+
+                            {/* JioStar Nav Bar */}
+                            <div className="jiostar-nav" style={{ position: 'relative', zIndex: 2 }}>
+                                <div className="jiostar-nav-left" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                                    {/* JioStar Pink Logo */}
+                                    <img
+                                        src="/assets/images/jiostar-logo.svg"
+                                        alt="JioStar Logo"
+                                        width="135"
+                                        height="38"
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="jiostar-logo-img"
+                                    />
+                                </div>
+                                <div className="jiostar-nav-right">
+                                    <span className="jiostar-division-tag">GEN AI MEDIA</span>
+                                </div>
+                            </div>
+
+                            {/* Hero Section */}
+                            <div className="jiostar-hero" style={{ position: 'relative', zIndex: 2 }}>
+                                <div className="jiostar-hero-content">
+                                    {/* Company Header */}
+                                    <div className="jiostar-company-header">
+                                        <div className="jiostar-title-row">
+                                            <h3 className="jiostar-company-name">JioStar India Private Limited</h3>
+                                        </div>
+                                        <p className="jiostar-location-text">
+                                            <svg viewBox="0 0 24 24" width="12" height="12" stroke="#d7008c" strokeWidth="2.2" fill="none" style={{ display: 'inline', verticalAlign: '-1px', marginRight: '5px' }}>
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                                <circle cx="12" cy="10" r="3"></circle>
+                                            </svg>
+                                            Bengaluru
+                                        </p>
+                                    </div>
+
+                                    {/* Timeline Container */}
+                                    <div className="jiostar-timeline-container">
+                                        {/* Vertical Connecting Track */}
+                                        <div className="jiostar-timeline-track" />
+
+                                        {/* ROLE: Associate Visionscaper (Current) */}
+                                        <div className="jiostar-role-entry current">
+                                            <div className="jiostar-role-node current" />
+                                            <div className="jiostar-role-card current">
+                                                <div className="jiostar-role-header-row">
+                                                    <h4 className="jiostar-role-title">Associate Visionscaper</h4>
+                                                    <span className="xp-date-shimmer jiostar-date-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                                                        <span className="badge-dot" style={{ backgroundColor: '#d7008c', boxShadow: '0 0 8px #d7008c' }}></span>
+                                                        Present
+                                                    </span>
+                                                </div>
+                                                <p className="jiostar-role-date">Sept 2026</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ─── WINDOW 1: Kuku TV (Streaming Interface Inspired) ─── */}
                     <div className="xp-interface-window xp-window-kuku" data-theme="kuku">
                         {/* Kuku TV Mockup Layout */}
                         <div className="xp-window-body" style={{ flexDirection: 'column', background: '#050506', position: 'relative', overflow: 'hidden' }}>
@@ -89,7 +165,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                 }}
                             />
                             {/* Gradient Overlay */}
-                            <div style={{
+                            <div className="kuku-tv-gradient-overlay" style={{
                                 position: 'absolute',
                                 top: 0,
                                 left: 0,
@@ -110,6 +186,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         height="32"
                                         loading="lazy"
                                         decoding="async"
+                                        className="kuku-logo-main"
                                         style={{ height: '32px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
                                     {/* Wow TV Logo */}
@@ -120,6 +197,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         height="68"
                                         loading="lazy"
                                         decoding="async"
+                                        className="kuku-logo-icon"
                                         style={{ height: '68px', width: 'auto', objectFit: 'contain', flexShrink: 0, marginLeft: '-8px' }}
                                     />
                                     {/* Free Drama Logo */}
@@ -130,6 +208,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         height="24"
                                         loading="lazy"
                                         decoding="async"
+                                        className="kuku-logo-sub"
                                         style={{ height: '24px', width: 'auto', objectFit: 'contain', flexShrink: 0 }}
                                     />
                                 </div>
@@ -164,24 +243,20 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         {/* Continuous Vertical Connecting Line */}
                                         <div className="kuku-timeline-track" />
 
-                                        {/* ROLE 1: AI Creative Architect (Current) */}
-                                        <div className="kuku-role-entry current">
-                                            <div className="kuku-role-node current" />
-                                            <div className="kuku-role-card current">
+                                        {/* ROLE 1: AI Creative Architect */}
+                                        <div className="kuku-role-entry previous">
+                                            <div className="kuku-role-node previous" />
+                                            <div className="kuku-role-card previous">
                                                 <div className="kuku-role-header-row">
                                                     <h4 className="kuku-role-title">AI Creative Architect</h4>
-                                                    <span className="xp-date-shimmer kuku-date-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                                                        <span className="badge-dot" style={{ backgroundColor: '#E50914', boxShadow: '0 0 8px #E50914' }}></span>
-                                                        Present
-                                                    </span>
                                                 </div>
-                                                <p className="kuku-role-date">Aug 2026 — Present</p>
+                                                <p className="kuku-role-date">Aug 2026 — Sept 2026</p>
 
                                                 <div className="kuku-bullets-list">
                                                     <div className="kuku-bullet-row">
                                                         <span className="kuku-bullet-marker">✦</span>
                                                         <p>
-                                                            Currently directing an <strong style={{ color: '#FF4D55' }}>AI Microdrama</strong> ft. a famous retired Indian Cricketer
+                                                            Directed an <strong style={{ color: '#FF4D55' }}>AI Microdrama</strong> ft. a famous retired Indian Cricketer
                                                             <span className="kuku-confidential-pill">
                                                                 <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ display: 'inline', verticalAlign: '-1px', marginRight: '3px' }}>
                                                                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -265,7 +340,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                                 <span style={{ color: '#3B82F6', fontSize: '0.9rem', marginTop: '2px', flexShrink: 0 }}>✦</span>
                                                 <p style={{ margin: 0, lineHeight: '1.6' }}>
-                                                    I ran the <strong style={{ color: '#3B82F6' }}>full creative operation</strong>, turning brand briefs into video ads and posters for hyperlocal campaigns. AI let me move at a speed that would've taken a full team otherwise.
+                                                    I ran the <strong style={{ color: '#3B82F6' }}>full creative operation</strong>, turning brand briefs into video ads and posters for hyperlocal campaigns.
                                                 </p>
                                             </div>
 
@@ -925,11 +1000,46 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
 
                                 {/* Premium Visual Insights Panel */}
                                 <div className="xp-insights-container">
-                                    <div className="xp-insights-header">
-                                        <h4 className="xp-insights-title">Insights</h4>
-                                        <div className="xp-insights-dropdown">
-                                            <span>Lifetime</span>
-                                            <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    <div className="xp-insights-header" style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                        width: '100%',
+                                        paddingBottom: '8px',
+                                        marginBottom: '6px',
+                                        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+                                    }}>
+                                        <h4 className="xp-insights-title" style={{
+                                            margin: 0,
+                                            padding: 0,
+                                            fontSize: '0.8rem',
+                                            fontWeight: '700',
+                                            color: '#ffffff',
+                                            letterSpacing: '0.6px',
+                                            textTransform: 'uppercase',
+                                            lineHeight: 1
+                                        }}>
+                                            Insights
+                                        </h4>
+                                        <div className="xp-insights-dropdown" style={{
+                                            margin: 0,
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: '5px',
+                                            padding: '3px 8px',
+                                            borderRadius: '6px',
+                                            background: 'rgba(255, 255, 255, 0.06)',
+                                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                                            fontSize: '0.62rem',
+                                            fontWeight: '600',
+                                            color: 'rgba(255, 255, 255, 0.85)',
+                                            lineHeight: 1,
+                                            cursor: 'default'
+                                        }}>
+                                            <span style={{ lineHeight: 1 }}>Lifetime</span>
+                                            <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" strokeWidth="2.5" fill="none" style={{ display: 'block' }}>
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
                                         </div>
                                     </div>
 
@@ -950,6 +1060,87 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                 </div>
                             </div>
                             <div className="xp-window-main xp-3d-viewport">
+                                <div className="xp-viewport-overlay" style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'flex-start',
+                                    textAlign: 'left',
+                                    gap: '10px',
+                                    padding: '0',
+                                    background: 'transparent',
+                                    border: 'none',
+                                    boxShadow: 'none',
+                                    width: '100%',
+                                    boxSizing: 'border-box'
+                                }}>
+                                    {/* Company / Program Tag */}
+                                    <span style={{ color: '#FFEA4D', fontSize: '0.78rem', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                                        Snap Inc. · Creator Program
+                                    </span>
+
+                                    {/* Role Title */}
+                                    <h3 style={{ margin: '0', fontSize: '1.42rem', color: '#fff', fontWeight: '800', letterSpacing: '-0.3px', lineHeight: '1.2' }}>
+                                        Snap AR Lens Creator
+                                    </h3>
+
+                                    {/* Clean Highlight Achievement */}
+                                    <p style={{ margin: '0', color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.86rem', lineHeight: '1.55', maxWidth: '580px' }}>
+                                        Designed and published viral AR experiences qualifying for the <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Snap Lens Creator Rewards</strong> program by driving massive community engagement and user-generated content.
+                                    </p>
+
+                                    {/* Credentials Row: Under25 Bubble beside Featured Badge */}
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginTop: '2px' }}>
+                                        <div style={{
+                                            display: 'inline-flex',
+                                            gap: '8px',
+                                            alignItems: 'center',
+                                            padding: '0 10px',
+                                            height: '26px',
+                                            boxSizing: 'border-box',
+                                            background: 'rgba(255, 255, 255, 0.04)',
+                                            borderRadius: '8px',
+                                            border: '1px solid rgba(255, 255, 255, 0.08)',
+                                            width: 'fit-content',
+                                            whiteSpace: 'nowrap'
+                                        }}>
+                                            <img
+                                                src="https://media.licdn.com/dms/image/v2/C560BAQGixHOmwquQXQ/company-logo_200_200/company-logo_200_200/0/1668519541906?e=2147483647&v=beta&t=6NYXwZcOGv4H2SgLnu_e36Wt8aBZMJ6U0ILowKguQoU"
+                                                alt="Under25 Logo"
+                                                onError={(e) => {
+                                                    e.target.src = "https://www.google.com/s2/favicons?domain=under25.com&sz=128";
+                                                }}
+                                                style={{
+                                                    width: '15px',
+                                                    height: '15px',
+                                                    borderRadius: '3px',
+                                                    border: '1px solid rgba(255,255,255,0.1)',
+                                                    objectFit: 'cover'
+                                                }}
+                                            />
+                                            <span style={{ fontSize: '0.74rem', color: 'rgba(255, 255, 255, 0.8)', fontWeight: '500' }}>
+                                                In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
+                                            </span>
+                                        </div>
+
+                                        <span className="xp-shimmer-badge" style={{
+                                            fontSize: '0.64rem',
+                                            padding: '0 10px',
+                                            height: '26px',
+                                            boxSizing: 'border-box',
+                                            borderRadius: '8px',
+                                            fontWeight: '700',
+                                            letterSpacing: '0.6px',
+                                            textTransform: 'uppercase',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            whiteSpace: 'nowrap'
+                                        }}>
+                                            featured by Snapchat India
+                                        </span>
+                                    </div>
+                                </div>
+
                                 <div className="xp-snap-preview-container">
                                     <div className="xp-snap-camera-frame">
                                         <div className="xp-snap-camera-inner" style={{ position: 'relative' }}>
@@ -976,16 +1167,16 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         <div className="xp-snap-corner br"></div>
                                     </div>
 
-                                    {/* Tiny Snapchat logo and @karthik.graj tag below snaps preview */}
+                                    {/* Prominent Snapchat logo and @karthik.graj tag below snaps preview */}
                                     <div style={{
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         gap: '6px',
-                                        background: 'rgba(0, 0, 0, 0.65)',
-                                        padding: '5px 12px',
-                                        borderRadius: '20px',
-                                        border: '1px solid rgba(255, 234, 77, 0.2)',
+                                        background: 'rgba(0, 0, 0, 0.75)',
+                                        padding: '4px 10px',
+                                        borderRadius: '16px',
+                                        border: '1px solid rgba(255, 234, 77, 0.25)',
                                         backdropFilter: 'blur(10px)',
                                         boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
                                         width: '100%',
@@ -994,126 +1185,17 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         <img
                                             src="/assets/logos/snapchat.svg"
                                             alt="Snapchat Logo"
-                                            style={{ width: '12px', height: '12px' }}
+                                            style={{ width: '13px', height: '13px' }}
                                         />
                                         <span style={{
                                             color: '#FFEA4D',
-                                            fontSize: '0.65rem',
+                                            fontSize: '0.74rem',
                                             fontWeight: '700',
                                             fontFamily: "'Space Grotesk', sans-serif",
-                                            letterSpacing: '0.5px'
+                                            letterSpacing: '0.6px'
                                         }}>
                                             @karthik.graj
                                         </span>
-                                    </div>
-                                </div>
-
-                                <div className="xp-viewport-overlay" style={{
-                                    top: '20px',
-                                    bottom: '20px',
-                                    left: '20px',
-                                    right: '200px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    gap: '24px',
-                                    padding: '22px 26px',
-                                    background: 'rgba(10, 10, 12, 0.85)',
-                                    backdropFilter: 'blur(20px)',
-                                    border: '1px solid rgba(255, 234, 77, 0.2)',
-                                    borderRadius: '12px',
-                                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)'
-                                }}>
-                                    <div style={{ textAlign: 'center', marginBottom: '16px', paddingTop: '0' }}>
-                                        <h3 style={{ margin: 0, fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>Snap AR Lens Creator</h3>
-                                        <p style={{ margin: '4px 0 8px 0', color: '#FFEA4D', fontSize: '0.85rem', fontWeight: '600' }}>Snap Inc. · Creator Program</p>
-                                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                            <span className="xp-shimmer-badge" style={{
-                                                fontSize: '0.65rem',
-                                                padding: '4px 10px',
-                                                borderRadius: '12px',
-                                                fontWeight: '700',
-                                                letterSpacing: '0.8px',
-                                                textTransform: 'uppercase'
-                                            }}>
-                                                featured by Snapchat India
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {/* Bulleted points */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', margin: '12px 0' }}>
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                            <div style={{
-                                                background: 'rgba(255, 234, 77, 0.1)',
-                                                border: '1px solid rgba(255, 234, 77, 0.3)',
-                                                borderRadius: '50%',
-                                                width: '22px',
-                                                height: '22px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                flexShrink: 0,
-                                                marginTop: '2px',
-                                                boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
-                                            }}>
-                                                <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
-                                            </div>
-                                            <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                                                Designed and published viral AR experiences that qualified for the <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Snap Lens Creator Rewards</strong> program by driving massive community engagement and user-generated content.
-                                            </p>
-                                        </div>
-
-                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                                            <div style={{
-                                                background: 'rgba(255, 234, 77, 0.1)',
-                                                border: '1px solid rgba(255, 234, 77, 0.3)',
-                                                borderRadius: '50%',
-                                                width: '22px',
-                                                height: '22px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                flexShrink: 0,
-                                                marginTop: '2px',
-                                                boxShadow: '0 0 10px rgba(255, 234, 77, 0.15)'
-                                            }}>
-                                                <span style={{ color: '#FFEA4D', fontSize: '0.75rem', fontWeight: 'bold' }}>✦</span>
-                                            </div>
-                                            <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                                                Hosted a <strong style={{ color: '#FFEA4D', fontWeight: '600' }}>Hyperlocal community workshop</strong> to share my knowledge of Augmented Reality and Basics of Lens Studio.
-                                            </p>
-                                        </div>
-
-                                        {/* Collaboration Info Container — Sitting with spacing below bullet points */}
-                                        <div style={{
-                                            display: 'flex',
-                                            gap: '10px',
-                                            alignItems: 'center',
-                                            background: 'rgba(255, 255, 255, 0.03)',
-                                            padding: '8px 12px',
-                                            borderRadius: '6px',
-                                            border: '1px solid rgba(255, 255, 255, 0.05)',
-                                            backdropFilter: 'blur(5px)',
-                                            width: 'fit-content',
-                                            margin: '22px auto 0 auto'
-                                        }}>
-                                            <img
-                                                src="https://media.licdn.com/dms/image/v2/C560BAQGixHOmwquQXQ/company-logo_200_200/company-logo_200_200/0/1668519541906?e=2147483647&v=beta&t=6NYXwZcOGv4H2SgLnu_e36Wt8aBZMJ6U0ILowKguQoU"
-                                                alt="Under25 Logo"
-                                                style={{
-                                                    width: '20px',
-                                                    height: '20px',
-                                                    borderRadius: '4px',
-                                                    border: '1px solid rgba(255,255,255,0.1)',
-                                                    objectFit: 'cover'
-                                                }}
-                                            />
-                                            <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500' }}>
-                                                In collaboration with <strong style={{ color: '#fff', fontWeight: '700' }}>Under25</strong>
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
