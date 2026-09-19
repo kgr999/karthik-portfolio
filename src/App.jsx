@@ -20,17 +20,17 @@ const techStackCategories = [
         tools: [
             { name: "ChatGPT", logo: "/assets/logos/openai.svg", glow: "#10a37f", level: "98%" },
             { name: "Claude", logo: "/assets/logos/claude.svg", glow: "#d97757", level: "95%" },
-            { name: "Gemini", logo: "/assets/logos/gemini.svg", glow: "#4285f4", level: "90%" }
+            { name: "Gemini", mobileCenter: true, logo: "/assets/logos/gemini.svg", glow: "#4285f4", level: "90%" }
         ]
     },
     {
         num: "02",
         name: "CREATIVE PIPELINE",
         tools: [
-            { name: "Storyboarding", svg: "storyboard", glow: "#faff00", level: "92%" },
-            { name: "Narrative Design", svg: "narrative", glow: "#faff00", level: "95%" },
-            { name: "Custom API Workflows", svg: "apiworkflow", glow: "#a78bfa", level: "85%" },
-            { name: "Proprietary Platforms", svg: "proprietary", glow: "#f59e0b", level: "88%" }
+            { name: "Storyboarding", mobileName: "Storyboard", svg: "storyboard", glow: "#faff00", level: "92%" },
+            { name: "Narrative Design", hideOnMobile: true, svg: "narrative", glow: "#faff00", level: "95%" },
+            { name: "Custom API Workflows", mobileName: "Custom APIs", svg: "apiworkflow", glow: "#a78bfa", level: "85%" },
+            { name: "Proprietary Platforms", mobileCenter: true, mobileName: "Proprietary", svg: "proprietary", glow: "#f59e0b", level: "88%" }
         ]
     },
     {
@@ -39,8 +39,8 @@ const techStackCategories = [
         tools: [
             { name: "Fal AI", logo: "/assets/logos/fal.svg", glow: "#ff4154", level: "88%" },
             { name: "Higgsfield AI", logo: "/assets/logos/higgsfield.png", glow: "#a855f7", level: "82%" },
-            { name: "Runway", logo: "/assets/logos/runway.svg", glow: "#c084fc", level: "94%" },
-            { name: "ComfyUI", logo: "/assets/logos/comfyui.svg", glow: "#4ade80", level: "90%", learning: true }
+            { name: "Runway", hideOnMobile: true, logo: "/assets/logos/runway.svg", glow: "#c084fc", level: "94%" },
+            { name: "ComfyUI", mobileCenter: true, logo: "/assets/logos/comfyui.svg", glow: "#4ade80", level: "90%", learning: true }
         ]
     },
     {
@@ -49,7 +49,7 @@ const techStackCategories = [
         tools: [
             { name: "GPT Image", logo: "/assets/logos/openai.svg", glow: "#10a37f", level: "95%" },
             { name: "NanoBanana", logo: "/assets/logos/nanobanana.png", svg: "nanobanana", glow: "#eab308", level: "80%" },
-            { name: "Midjourney", logo: "/assets/logos/midjourney.svg", glow: "#ffffff", level: "96%" }
+            { name: "Midjourney", mobileCenter: true, logo: "/assets/logos/midjourney.svg", glow: "#ffffff", level: "96%" }
         ]
     },
     {
@@ -57,9 +57,9 @@ const techStackCategories = [
         name: "VIDEO GENERATION",
         tools: [
             { name: "Kling", logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "92%" },
-            { name: "Veo", logo: "/assets/logos/veo.svg", glow: "#4285f4", level: "90%" },
-            { name: "Gen-4 Turbo", logo: "/assets/logos/runway.svg", glow: "#c084fc", level: "95%" },
-            { name: "Seedance", logo: "/assets/logos/seedance.webp", svg: "seedance", glow: "#06b6d4", level: "85%" }
+            { name: "Veo", mobileName: "Omni", logo: "/assets/logos/veo.svg", glow: "#4285f4", level: "90%" },
+            { name: "Gen-4 Turbo", hideOnMobile: true, logo: "/assets/logos/runway.svg", glow: "#c084fc", level: "95%" },
+            { name: "Seedance", mobileCenter: true, logo: "/assets/logos/seedance.webp", svg: "seedance", glow: "#06b6d4", level: "85%" }
         ]
     },
     {
@@ -67,9 +67,9 @@ const techStackCategories = [
         name: "AI AVATAR & DESIGN",
         tools: [
             { name: "HeyGen", logo: "/assets/logos/heygen.png", glow: "#06b6d4", level: "90%" },
-            { name: "Kling AI Avatar", logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "88%" },
+            { name: "Kling AI Avatar", hideOnMobile: true, logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "88%" },
             { name: "Canva", logo: "/assets/logos/canva.png", glow: "#00c4cc", level: "95%" },
-            { name: "Creative Cloud", logo: "/assets/logos/adobecc.svg", glow: "#ff0080", level: "90%" }
+            { name: "Creative Cloud", mobileCenter: true, logo: "/assets/logos/adobecc.svg", glow: "#ff0080", level: "90%" }
         ]
     },
     {
@@ -1108,7 +1108,7 @@ export default function App() {
                                                     {category.tools.map((tool) => (
                                                         <div
                                                             key={tool.name}
-                                                            className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''}`}
+                                                            className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''} ${tool.hideOnMobile ? 'hide-on-mobile' : ''} ${tool.mobileCenter ? 'mobile-center-tile' : ''}`}
                                                             style={{ '--tool-glow': tool.glow }}
                                                             onMouseEnter={(e) => {
                                                                 e.stopPropagation();
@@ -1127,7 +1127,12 @@ export default function App() {
                                                                 {renderToolIcon(tool, 24)}
                                                             </div>
                                                             <span className="category-skill-tile-name">
-                                                                {tool.name === "Storyboarding" ? (
+                                                                {tool.mobileName ? (
+                                                                    <>
+                                                                        <span className="hide-on-mobile">{tool.name.toUpperCase()}</span>
+                                                                        <span className="show-on-mobile">{tool.mobileName.toUpperCase()}</span>
+                                                                    </>
+                                                                ) : tool.name === "Storyboarding" ? (
                                                                     <>
                                                                         <span className="hide-on-mobile">STORYBOARDING</span>
                                                                         <span className="show-on-mobile">STORYBOARD</span>
@@ -1167,7 +1172,7 @@ export default function App() {
                                                     {category.tools.map((tool) => (
                                                         <div
                                                             key={tool.name}
-                                                            className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''}`}
+                                                            className={`category-skill-tile ${hoveredTool === tool.name ? 'active-tile' : ''} ${tool.hideOnMobile ? 'hide-on-mobile' : ''} ${tool.mobileCenter ? 'mobile-center-tile' : ''}`}
                                                             style={{ '--tool-glow': tool.glow }}
                                                             onMouseEnter={(e) => {
                                                                 e.stopPropagation();
@@ -1186,7 +1191,12 @@ export default function App() {
                                                                 {renderToolIcon(tool, 24)}
                                                             </div>
                                                             <span className="category-skill-tile-name">
-                                                                {tool.name === "Storyboarding" ? (
+                                                                {tool.mobileName ? (
+                                                                    <>
+                                                                        <span className="hide-on-mobile">{tool.name.toUpperCase()}</span>
+                                                                        <span className="show-on-mobile">{tool.mobileName.toUpperCase()}</span>
+                                                                    </>
+                                                                ) : tool.name === "Storyboarding" ? (
                                                                     <>
                                                                         <span className="hide-on-mobile">STORYBOARDING</span>
                                                                         <span className="show-on-mobile">STORYBOARD</span>

@@ -9127,6 +9127,13 @@ nav.nav-standby .menu-toggle {
         grid-column: 1 / -1 !important;
         width: 100% !important;
         max-width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+
+    /* Level 07 spans full width: render its 4 tools in a sleek horizontal row */
+    .tech-stack-row.row-3 .tech-stack-card:nth-child(3) .category-skills-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 6px !important;
     }
 
     .tech-stack-card {
@@ -9135,17 +9142,24 @@ nav.nav-standby .menu-toggle {
         display: flex !important;
         flex-direction: column !important;
         justify-content: flex-start !important;
-        padding: 15px 12px !important;
-        border-radius: 10px !important;
+        padding: 14px 11px !important;
+        border-radius: 11px !important;
+        background: rgba(12, 12, 16, 0.65) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
 
     .category-display-title {
-        font-size: 0.78rem !important;
+        font-size: 0.76rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0.2px !important;
+        margin-bottom: 2px !important;
     }
 
     .category-icon-box {
         width: 26px !important;
         height: 26px !important;
+        border-radius: 6px !important;
     }
 
     .category-skills-grid {
@@ -9153,23 +9167,47 @@ nav.nav-standby .menu-toggle {
         margin-top: auto !important;
     }
 
+    /* Beautiful symmetrical centering for the 3rd tool in 3-tool categories */
+    .category-skills-grid[data-level="01"] .category-skill-tile:nth-child(3),
+    .category-skill-tile.mobile-center-tile {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+        width: 100% !important;
+        max-width: calc(50% - 3px) !important;
+    }
+
     .category-skill-tile {
-        padding: 8px 5px !important;
+        padding: 8px 4px !important;
+        gap: 4px !important;
+        border-radius: 7px !important;
     }
 
     .tech-stack-tile-icon {
         width: 26px !important;
         height: 26px !important;
+        border-radius: 5px !important;
     }
 
     .tech-stack-tile-icon img,
     .tech-stack-tile-icon svg {
         width: 16px !important;
         height: 16px !important;
+        max-width: 16px !important;
+        max-height: 16px !important;
     }
 
     .category-skill-tile-name {
-        font-size: 0.50rem !important;
+        font-size: 0.48rem !important;
+        letter-spacing: 0.2px !important;
+        line-height: 1.1 !important;
+    }
+
+    .skill-tile-learning-badge {
+        font-size: 0.38rem !important;
+        padding: 0.5px 3px !important;
+        border-radius: 2px !important;
+        top: 2px !important;
+        right: 2px !important;
     }
 
     /* Mobile 2-column flex wrap fallback */
@@ -9180,7 +9218,7 @@ nav.nav-standby .menu-toggle {
     }
 
     .tech-stack-row .tech-stack-card {
-        flex: 1 1 calc(50% - 6px) !important;
+        flex: 1 1 calc(50% - 5px) !important;
         width: 100% !important;
         max-width: calc(50% - 5px) !important;
     }
@@ -9192,16 +9230,35 @@ nav.nav-standby .menu-toggle {
         letter-spacing: 2px !important;
     }
 
-    .tech-stack-card {
-        padding: 13px 10px !important;
+    .tech-stack-columns {
+        gap: 8px !important;
+    }
+
+    .tech-stack-row {
+        gap: 8px !important;
+    }
+
+    .tech-stack-row .tech-stack-card {
+        flex: 1 1 calc(50% - 4px) !important;
+        max-width: calc(50% - 4px) !important;
+        padding: 12px 8px !important;
+    }
+
+    .tech-stack-row.row-3 .tech-stack-card:nth-child(3) {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
     }
 
     .category-display-title {
-        font-size: 0.72rem !important;
+        font-size: 0.69rem !important;
     }
 
     .category-skill-tile {
-        padding: 7px 4px !important;
+        padding: 7px 3px !important;
+    }
+
+    .category-skill-tile-name {
+        font-size: 0.44rem !important;
     }
 
     .tech-stack-tile-icon {
@@ -9213,10 +9270,6 @@ nav.nav-standby .menu-toggle {
     .tech-stack-tile-icon svg {
         width: 15px !important;
         height: 15px !important;
-    }
-
-    .category-skill-tile-name {
-        font-size: 0.47rem !important;
     }
 }
 

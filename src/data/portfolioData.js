@@ -32,17 +32,17 @@ export const techStackCategories = [
         tools: [
             { name: "ChatGPT", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", glow: "#10a37f", level: "98%" },
             { name: "Claude", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/claude-color.svg", glow: "#d97757", level: "95%" },
-            { name: "Gemini", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/gemini-color.svg", glow: "#4285f4", level: "90%" }
+            { name: "Gemini", mobileCenter: true, logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/gemini-color.svg", glow: "#4285f4", level: "90%" }
         ]
     },
     {
         num: "02",
         name: "CREATIVE DIRECTION",
         tools: [
-            { name: "Storyboarding", svg: "storyboard", glow: "#faff00", level: "92%" },
-            { name: "Narrative Design", svg: "narrative", glow: "#faff00", level: "95%" },
+            { name: "Storyboarding", mobileName: "Storyboard", svg: "storyboard", glow: "#faff00", level: "92%" },
+            { name: "Narrative Design", hideOnMobile: true, svg: "narrative", glow: "#faff00", level: "95%" },
             { name: "Visual Storytelling", svg: "visual", glow: "#faff00", level: "94%" },
-            { name: "Concept Development", svg: "concept", glow: "#faff00", level: "90%" }
+            { name: "Concept Development", mobileCenter: true, svg: "concept", glow: "#faff00", level: "90%" }
         ]
     },
     {
@@ -51,8 +51,8 @@ export const techStackCategories = [
         tools: [
             { name: "Fal AI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/fal-color.svg", glow: "#ff4154", level: "88%" },
             { name: "Higgsfield AI", logo: "https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128", glow: "#a855f7", level: "82%" },
-            { name: "Runway", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc", level: "94%" },
-            { name: "ComfyUI", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg", glow: "#4ade80", level: "90%", learning: true }
+            { name: "Runway", hideOnMobile: true, logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc", level: "94%" },
+            { name: "ComfyUI", mobileCenter: true, logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/comfyui-color.svg", glow: "#4ade80", level: "90%", learning: true }
         ]
     },
     {
@@ -61,7 +61,7 @@ export const techStackCategories = [
         tools: [
             { name: "GPT Image", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg", glow: "#10a37f", level: "95%" },
             { name: "NanoBanana", logo: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/nanobanana-color.png", svg: "nanobanana", glow: "#eab308", level: "80%" },
-            { name: "Midjourney", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/midjourney.svg", glow: "#ffffff", level: "96%" }
+            { name: "Midjourney", mobileCenter: true, logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/midjourney.svg", glow: "#ffffff", level: "96%" }
         ]
     },
     {
@@ -69,9 +69,9 @@ export const techStackCategories = [
         name: "VIDEO GENERATION",
         tools: [
             { name: "Kling", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "92%" },
-            { name: "Veo", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/google-color.svg", glow: "#4285f4", level: "90%" },
-            { name: "Gen-4 Turbo", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc", level: "95%" },
-            { name: "Seedance", logo: "https://mixhubai.com/ModelsLogos/seedance_logo.webp", svg: "seedance", glow: "#06b6d4", level: "85%" }
+            { name: "Veo", mobileName: "Omni", logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/google-color.svg", glow: "#4285f4", level: "90%" },
+            { name: "Gen-4 Turbo", hideOnMobile: true, logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/runway.svg", glow: "#c084fc", level: "95%" },
+            { name: "Seedance", mobileCenter: true, logo: "https://mixhubai.com/ModelsLogos/seedance_logo.webp", svg: "seedance", glow: "#06b6d4", level: "85%" }
         ]
     },
     {
@@ -79,9 +79,9 @@ export const techStackCategories = [
         name: "AI AVATAR & DESIGN",
         tools: [
             { name: "HeyGen", logo: "https://www.google.com/s2/favicons?domain=heygen.com&sz=128", glow: "#06b6d4", level: "90%" },
-            { name: "Kling AI Avatar", logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "88%" },
+            { name: "Kling AI Avatar", hideOnMobile: true, logo: "https://www.google.com/s2/favicons?domain=klingai.com&sz=128", glow: "#3b82f6", level: "88%" },
             { name: "Canva", logo: "https://www.google.com/s2/favicons?domain=canva.com&sz=128", glow: "#00c4cc", level: "95%" },
-            { name: "Creative Cloud", logo: "/assets/logos/adobecc.svg", glow: "#ff0080", level: "90%" }
+            { name: "Creative Cloud", mobileCenter: true, logo: "/assets/logos/adobecc.svg", glow: "#ff0080", level: "90%" }
         ]
     },
     {
