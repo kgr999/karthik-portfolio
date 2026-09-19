@@ -6486,9 +6486,10 @@ footer {
     flex: 1.2;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 32px;
+    justify-content: space-between;
+    gap: 24px;
     min-height: 100%;
+    height: 100%;
 }
 
 /* Responsive Override and Layout Adapters */
@@ -8802,13 +8803,13 @@ nav.nav-standby .menu-toggle {
     /* Left-align header to match JioStar and Kuku TV workstation style */
     .xp-window-fal .xp-main-header {
         text-align: left !important;
-        margin-bottom: 10px !important;
+        margin-bottom: 16px !important;
     }
 
     .xp-window-fal .xp-admitra-logo {
         display: flex !important;
         justify-content: flex-start !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 12px !important;
     }
 
     .xp-window-fal .xp-main-header h3 {
@@ -8835,8 +8836,8 @@ nav.nav-standby .menu-toggle {
 
     /* Streamlined experience description bullets */
     .xp-window-fal .xp-main-desc {
-        gap: 8px !important;
-        margin-top: 4px !important;
+        gap: 10px !important;
+        margin-top: 6px !important;
     }
 
     .xp-window-fal .xp-main-desc > div {
@@ -8900,6 +8901,11 @@ nav.nav-standby .menu-toggle {
     /* Hide Prismara and Lincoln Pharma only in mobile view */
     .xp-window-fal .xp-brand-lincoln-pharma,
     .xp-window-fal .xp-brand-prismara {
+        display: none !important;
+    }
+
+    /* Hide footer note on mobile — space is tight */
+    .xp-window-fal .xp-admitra-footer-note {
         display: none !important;
     }
 

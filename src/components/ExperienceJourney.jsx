@@ -314,10 +314,10 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                             <div className="xp-window-main">
                                 {/* Left Side: Professional Experience Details & Clients */}
                                 <div className="xp-left-pane">
-                                    <div>
-                                        <div className="xp-main-header" style={{ marginBottom: '14px' }}>
+                                    <div className="xp-left-top-block">
+                                        <div className="xp-main-header" style={{ marginBottom: '24px' }}>
                                             {/* Inline logo */}
-                                            <div className="xp-admitra-logo" style={{ marginBottom: '8px' }}>
+                                            <div className="xp-admitra-logo" style={{ marginBottom: '16px' }}>
                                                 <div style={{ width: '100px', height: '27px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                     <img
                                                         src="/assets/images/admitra.webp"
@@ -339,7 +339,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                                 Bengaluru
                                             </p>
                                         </div>
-                                        <div className="xp-main-desc" style={{ fontSize: '0.82rem', lineHeight: '1.55', color: 'rgba(255,255,255,0.85)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                                        <div className="xp-main-desc" style={{ fontSize: '0.84rem', lineHeight: '1.65', color: 'rgba(255,255,255,0.88)', display: 'flex', flexDirection: 'column', gap: '18px' }}>
 
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                                 <span style={{ color: '#3B82F6', fontSize: '0.9rem', marginTop: '2px', flexShrink: 0 }}>✦</span>
@@ -363,13 +363,14 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                             </div>
 
                                         </div>
+                                    </div>
 
-                                        {/* Key Campaign Clients block for desktop */}
-                                        <div className="xp-client-brands xp-clients-desktop" style={{ width: '100%', maxWidth: '340px', marginTop: '18px', paddingTop: '14px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                                            <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1.5px', marginBottom: '10px' }}>
-                                                KEY CAMPAIGN CLIENTS
-                                            </p>
-                                            <div className="xp-brands-logos">
+                                    {/* Key Campaign Clients block for desktop */}
+                                    <div className="xp-client-brands xp-clients-desktop" style={{ width: '100%', marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                                        <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '1.5px', marginBottom: '12px' }}>
+                                            KEY CAMPAIGN CLIENTS
+                                        </p>
+                                        <div className="xp-brands-logos">
                                                 <div className="xp-brand-logo-btn xp-brand-montra">
                                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '4px', overflow: 'hidden', position: 'relative' }}>
                                                         <img
@@ -475,6 +476,9 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                                     <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Prismara</span>
                                                 </div>
                                             </div>
+                                        <div className="xp-admitra-footer-note" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '16px', fontSize: '0.72rem', color: 'rgba(255, 255, 255, 0.45)', fontFamily: 'monospace' }}>
+                                            <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#3B82F6', boxShadow: '0 0 6px #3B82F6', flexShrink: 0 }} />
+                                            <span>Hyperlocal Video Ads & Posters · Multi-state regional rollouts</span>
                                         </div>
                                     </div>
 
