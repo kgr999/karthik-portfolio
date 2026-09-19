@@ -366,7 +366,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                     </div>
 
                                     {/* Key Campaign Clients block for desktop */}
-                                    <div className="xp-client-brands xp-clients-desktop" style={{ width: '100%', marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                                    <div className="xp-client-brands xp-clients-desktop" style={{ width: '100%', marginTop: '28px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                                         <p className="xp-brands-title" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '1.5px', marginBottom: '12px' }}>
                                             KEY CAMPAIGN CLIENTS
                                         </p>
