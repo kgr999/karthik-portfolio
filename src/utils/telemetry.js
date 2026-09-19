@@ -98,9 +98,10 @@ export const getTelemetryLogs = (categoryName, toolName) => {
                     "• frame rate: 60fps high-FPS active",
                     "• status: Motion vector simulation..."
                 ];
+            case "Omni":
             case "Veo":
                 return [
-                    "🎬 VIDEO GEN CORE: VEO_3.1",
+                    "🎬 VIDEO GEN CORE: OMNI_GEN_AI",
                     "• prompt: Volumetric lighting cinematic shadows",
                     "• realism depth: DCI-P3 4K resolution master",
                     "• temporal persistence: Max coherence mode",
@@ -252,7 +253,7 @@ export const getTelemetryLogs = (categoryName, toolName) => {
         case "VIDEO GENERATION":
             return [
                 "🎥 VIDEO SYNTHESIS ARRAY ACTIVE...",
-                "• engine: Kling, Veo, Seedance",
+                "• engine: Kling, Omni, Seedance",
                 "• rendering: Anamorphic temporal consistency",
                 "• capability: High-FPS cinematic motion frames",
                 "• status: Hover over a tool to inspect viewport"

@@ -57,7 +57,7 @@ const techStackCategories = [
         name: "VIDEO GENERATION",
         tools: [
             { name: "Kling", logo: "/assets/logos/kling.png", glow: "#3b82f6", level: "92%" },
-            { name: "Veo", mobileName: "Omni", logo: "/assets/logos/veo.svg", glow: "#4285f4", level: "90%" },
+            { name: "Omni", logo: "/assets/logos/veo.svg", glow: "#4285f4", level: "90%" },
             { name: "Gen-4 Turbo", hideOnMobile: true, logo: "/assets/logos/runway.svg", glow: "#c084fc", level: "95%" },
             { name: "Seedance", mobileCenter: true, logo: "/assets/logos/seedance.webp", svg: "seedance", glow: "#06b6d4", level: "85%" }
         ]
