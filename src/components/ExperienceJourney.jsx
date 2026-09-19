@@ -318,21 +318,25 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         <div className="xp-main-header" style={{ marginBottom: '14px' }}>
                                             {/* Inline logo */}
                                             <div className="xp-admitra-logo" style={{ marginBottom: '8px' }}>
-                                                <div style={{ width: '120px', height: '32px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <div style={{ width: '100px', height: '27px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                     <img
                                                         src="/assets/images/admitra.webp"
                                                         alt="AdMitra Logo"
-                                                        width="120"
-                                                        height="120"
+                                                        width="100"
+                                                        height="100"
                                                         loading="lazy"
                                                         decoding="async"
-                                                        style={{ width: '120px', height: '120px', objectFit: 'contain', display: 'block', opacity: 0.95 }}
+                                                        style={{ width: '100px', height: '100px', objectFit: 'contain', display: 'block', opacity: 0.95 }}
                                                     />
                                                 </div>
                                             </div>
-                                            <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '4px', paddingLeft: '8px' }}>Creative Head</h3>
+                                            <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#fff', marginBottom: '4px', paddingLeft: '8px' }}>AdMitra Private Limited</h3>
                                             <p style={{ fontSize: '0.85rem', color: '#3B82F6', fontFamily: 'monospace', fontWeight: '600', paddingLeft: '8px' }}>
-                                                Bengaluru · AdMitra Pvt. Ltd.
+                                                <svg viewBox="0 0 24 24" width="12" height="12" stroke="#3B82F6" strokeWidth="2.2" fill="none" style={{ display: 'inline', verticalAlign: '-1px', marginRight: '5px' }}>
+                                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                                    <circle cx="12" cy="10" r="3"></circle>
+                                                </svg>
+                                                Bengaluru
                                             </p>
                                         </div>
                                         <div className="xp-main-desc" style={{ fontSize: '0.82rem', lineHeight: '1.55', color: 'rgba(255,255,255,0.85)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -354,7 +358,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                                                 <span style={{ color: '#3B82F6', fontSize: '0.9rem', marginTop: '2px', flexShrink: 0 }}>✦</span>
                                                 <p style={{ margin: 0, lineHeight: '1.6' }}>
-                                                    I worked closely with the <strong style={{ color: '#3B82F6' }}>engineering team</strong> to bring new AI tools into our production workflow, not just exploring them but actually integrating them into daily execution.
+                                                    I worked closely with the <strong style={{ color: '#3B82F6' }}>engineering team</strong> to improvise the production workflow.
                                                 </p>
                                             </div>
 
