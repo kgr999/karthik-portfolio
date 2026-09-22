@@ -75,7 +75,7 @@ export default function SocialLivePreview() {
                             <div className="strip-name-row">
                                 <span className="strip-name">@karthik.graj</span>
                             </div>
-                            <span className="strip-stat instagram-stat">8000+ followers</span>
+                            <span className="strip-stat instagram-stat">8500+ followers</span>
                         </div>
                     </div>
 
