@@ -4,6 +4,7 @@ import LazyVideo from './LazyVideo';
 
 export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
     // Feature Toggles: Set to true whenever you want to bring Freelance or Snapchat back
+    const SHOW_JIOSTAR = false;
     const SHOW_FREELANCE = false;
     const SHOW_SNAPCHAT = true;
     // DaVinci Timeline Scrubber controls
@@ -65,6 +66,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                 <div className="xp-windows-container">
 
                     {/* ─── WINDOW 0: JioStar (Media Powerhouse / Gen AI Media) ─── */}
+                    {SHOW_JIOSTAR && (
                     <div className="xp-interface-window xp-window-jiostar" data-theme="jiostar">
                         <div className="xp-window-body" style={{ flexDirection: 'column', background: '#07070a', position: 'relative', overflow: 'hidden' }}>
                             {/* Subtle Ambient Glow */}
@@ -139,6 +141,7 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                             </div>
                         </div>
                     </div>
+                    )}
 
                     {/* ─── WINDOW 1: Kuku TV (Streaming Interface Inspired) ─── */}
                     <div className="xp-interface-window xp-window-kuku" data-theme="kuku">
