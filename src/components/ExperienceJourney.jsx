@@ -4,7 +4,7 @@ import LazyVideo from './LazyVideo';
 
 export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
     // Feature Toggles: Set to true whenever you want to bring Freelance or Snapchat back
-    const SHOW_JIOSTAR = false;
+    const SHOW_JIOSTAR = true;
     const SHOW_FREELANCE = false;
     const SHOW_SNAPCHAT = true;
     // DaVinci Timeline Scrubber controls
