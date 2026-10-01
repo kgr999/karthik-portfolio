@@ -138,6 +138,22 @@ export default function ExperienceJourney({ locIdx = 0, simTime = 0 }) {
                                         </div>
                                     </div>
                                 </div>
+
+                                {/* Onboarding Video Preview — right side */}
+                                <div className="jiostar-video-preview">
+                                    <div className="jiostar-video-phone-frame">
+                                        <LazyVideo
+                                            src="/assets/videos/onboarding_jiostar_web.mp4"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            className="jiostar-video-el"
+                                        />
+                                        {/* Glass reflection overlay */}
+                                        <div className="jiostar-video-reflection" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
