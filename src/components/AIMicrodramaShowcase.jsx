@@ -162,33 +162,6 @@ const SHOWS = [
                 isLocked: true
             }
         ]
-    },
-    {
-        id: 'sarbadal',
-        title: 'Sarbadal',
-        badge: 'PRODUCED',
-        badgeType: 'produced',
-        langTag: 'HINDI',
-        studioLabel: 'KUKU TV',
-        logoSrc: '/assets/images/kukutv-logo.webp',
-        cardBgSrc: '/assets/images/sb_thumb.jpg',
-        posterSrc: null,
-        totalCount: 52,
-        tags: ['AI MICRODRAMA', 'HINDI', 'PRODUCED END-TO-END'],
-        description: "Sarbadal is an AI microdrama adaptation inspired by Thomas Mann’s classic German novella, \"The Transposed Heads\"\n\nHandled end-to-end production across pre-production and post-production (excluding sound design) under Creative Producer approval for Kuku TV",
-        status: 'IN PRODUCTION',
-        episodes: [
-            {
-                id: 1,
-                numLabel: 'EPISODE 01',
-                title: 'Bali Parichay',
-                duration: '01:24',
-                status: 'Playing',
-                videoSrc: '/assets/videos/ep1_sb.MP4',
-                thumbSrc: '/assets/images/sb_thumb.jpg',
-                isLocked: false
-            }
-        ]
     }
 ];
 
